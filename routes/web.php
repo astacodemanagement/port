@@ -16,6 +16,7 @@ use App\Http\Controllers\StepController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RejectVerifikasiController;
+use App\Http\Controllers\SeleksiController;
 use App\Http\Controllers\SudahVerifikasiController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,20 @@ Route::get('/sudah_diverifikasi/{id}/detail', [SudahVerifikasiController::class,
 Route::get('/reject_diverifikasi', [RejectVerifikasiController::class, 'index']);
 Route::post('/update-status', [RejectVerifikasiController::class, 'updateStatus'])->name('update.status'); 
 Route::get('/reject_diverifikasi/{id}/detail', [RejectVerifikasiController::class, 'detail'])->name('reject_diverifikasi.detail');
+
+
+
+
+
+
+
+
+// SELEKSI
+
+// Awal Seleksi
+Route::get('/seleksi', [SeleksiController::class, 'index']);
+Route::post('/update-status', [SeleksiController::class, 'updateStatus'])->name('update.status'); 
+Route::get('/seleksi/{id}/detail', [SeleksiController::class, 'detail'])->name('seleksi.detail');
 
 // Kategori Job
 Route::get('/kategori_job', [KategoriJobController::class, 'index']);

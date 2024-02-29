@@ -125,6 +125,23 @@
                                                                                             name="tanggal_tutup">
                                                                                     </div>
                                                                                 </div>
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="nama_perusahaan">Nama Perusahaan</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control form-control-success"
+                                                                                            id="nama_perusahaan" name="nama_perusahaan">
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="mitra">Mitra</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control form-control-success"
+                                                                                            id="mitra" name="mitra">
+                                                                                    </div>
+                                                                                    
+                                                                                </div>
 
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">

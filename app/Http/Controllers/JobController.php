@@ -128,6 +128,7 @@ class JobController extends Controller
     {
         $request->validate([
             'nama_job' => 'required',
+            'nama_perusahaan' => 'required',
             'nama_benefit' => 'required|array|min:1',
             'negara_id' => 'required|exists:negara,id',
         ]);
@@ -142,6 +143,7 @@ class JobController extends Controller
             // Simpan ke dalam tabel job
             $job = Job::create([
                 'nama_job' => $request->nama_job,
+                'nama_perusahaan' => $request->nama_perusahaan,
                 'negara_id' => $request->negara_id,
                 'nama_negara' => $namaNegara,
             ]);

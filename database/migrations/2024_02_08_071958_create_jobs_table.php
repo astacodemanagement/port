@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('job', function (Blueprint $table) {
             $table->id();
             $table->string('nama_job');
+            $table->string('nama_perusahaan');
+            $table->string('mitra');
             $table->string('tanggal_tutup');
             $table->string('gaji');
             $table->string('jenis_pembayaran');

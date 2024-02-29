@@ -457,7 +457,7 @@
                                         </ul>
                                     </li>
                                     <li class="pcoded-hasmenu">
-                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <a href="/seleksi" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-filter"></i>
                                             </span>
