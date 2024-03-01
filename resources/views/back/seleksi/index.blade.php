@@ -57,9 +57,11 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="5%">No</th>
+                                                        <th width="15%">Nama Kandidat</th>
                                                         <th width="15%">Posisi</th>
                                                         <th width="15%">Negara</th>
                                                         <th width="15%">Nama Perusahaan</th>
+                                                        {{-- <th width="5%">Urutan Industri Pekerjaan</th> --}}
                                                         <th width="5%">Kategori Industri Pekerjaan</th>
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
@@ -68,16 +70,24 @@
                                                     @foreach ($seleksi as $p)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
+                                                            <td>{{ $p->nama_kandidat }}</td>
+                                                            <td>{{ $p->nama_job }}</td>
+                                                            <td>{{ $p->nama_negara }}</td>
+                                                            <td>{{ $p->nama_perusahaan }}</td>
+                                                            {{-- <td>{{ $p->kategori_urutan }}</td> --}}
+                                                            <td>{{ $p->nama_kategori_job }}</td>
                                                             <td class="text-center">
                                                                 <a style="color: rgb(242, 236, 236)" href="#"
                                                                     class="btn btn-sm btn-primary btn-edit"
                                                                     data-toggle="modal" data-target="#modal-edit"
-                                                                    data-id="" style="color: black">
-                                                                    <i class="fas fa-edit"></i> Edit
+                                                                    data-id="{{ $p->id }}" style="color: black">
+                                                                    <i class="fas fa-eye"></i> Detail
+                                                                </a>
+                                                                <a style="color: rgb(242, 236, 236)" href="#"
+                                                                    class="btn btn-sm btn-success btn-verifikasi"
+                                                                    data-toggle="modal" data-target="#ubahStatusModal{{ $p->id }}"
+                                                                    data-id="{{ $p->id }}" style="color: black">
+                                                                    <i class="fas fa-edit"></i> Verifikasi
                                                                 </a>
                                                                 <button class="btn btn-sm btn-danger btn-hapus"
                                                                     data-id="" style="color: white">
@@ -104,6 +114,52 @@
                 </div>
             </div>
 
+             <!-- Modal -->
+             <div class="modal fade" id="ubahStatusModal{{ $p->id }}"
+                tabindex="-1" role="dialog" aria-labelledby="ubahStatusModalLabel"
+                aria-hidden="true">
+                aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ubahStatusModalLabel">Ubah
+                                Status - {{ $p->nama_kandidat }}</h5>
+                            <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Add your form with combo box for status update -->
+                            <form id="ubahStatusForm{{ $p->id }}">
+                                <!-- Combo box for status update -->
+                                <div class="form-group">
+                                    <label for="statusSelect">Ubah Status:</label>
+                                    <select class="form-control"
+                                        id="statusSelect{{ $p->id }}"
+                                        name="status">
+                                        <option value="Verifikasi">Verifikasi</option>
+                                        <option value="Reject">Reject</option>
+                                        <!-- Add other status options if needed -->
+                                    </select>
+                                </div>
+                                <!-- Add hidden input for the Pendaftaran ID -->
+                                <input type="hidden" name="pendaftaran_id"
+                                    value="{{ $p->id }}">
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal"><i class="fas fa-undo"></i>
+                                Tutup</button>
+                            <button type="button" class="btn btn-primary"
+                                onclick="submitUbahStatus({{ $p->id }})"><i
+                                    class="fas fa-save"></i> Simpan</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             {{-- Modal Tambah Data --}}
             <div class="modal fade" id="modal-seleksi" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
@@ -126,8 +182,8 @@
                                             <label class="col-form-label" for="judul">Judul</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
-                                                id="judul" name="judul">
+                                            <input type="text" class="form-control form-control-success" id="judul"
+                                                name="judul">
                                         </div>
                                     </div>
 
@@ -136,7 +192,7 @@
                                             <label class="col-form-label" for="keterangan">Keterangan </label>
                                         </div>
                                         <div class="col-sm-12">
-                                           <textarea class="form-control form-control-success" name="keterangan" id="keterangan" cols="30" rows="3"></textarea>
+                                            <textarea class="form-control form-control-success" name="keterangan" id="keterangan" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -145,8 +201,8 @@
                                             <label class="col-form-label" for="urutan">Urutan </label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success" id="urutan"
-                                                name="urutan">
+                                            <input type="number" class="form-control form-control-success"
+                                                id="urutan" name="urutan">
                                         </div>
                                     </div>
 
@@ -198,7 +254,8 @@
                                             <label class="col-form-label" for="edit_keterangan">Keterangan </label>
                                         </div>
                                         <div class="col-sm-12">
-                                           <textarea class="form-control form-control-success" name="keterangan" id="edit_keterangan" cols="30" rows="3"></textarea>
+                                            <textarea class="form-control form-control-success" name="keterangan" id="edit_keterangan" cols="30"
+                                                rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">

@@ -457,7 +457,7 @@
                                         </ul>
                                     </li>
                                     <li class="pcoded-hasmenu">
-                                        <a href="/seleksi" class="waves-effect waves-dark">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
                                                 <i class="feather icon-filter"></i>
                                             </span>
@@ -465,7 +465,7 @@
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class>
-                                                <a href="default/alert.html" class="waves-effect waves-dark">
+                                                <a href="/seleksi" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Cek Kualifikasi</span>
                                                 </a>
                                             </li>

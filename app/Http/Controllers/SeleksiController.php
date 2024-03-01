@@ -6,6 +6,7 @@ use App\Models\Seleksi;
 use App\Models\LogHistori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class SeleksiController extends Controller
@@ -30,7 +31,19 @@ class SeleksiController extends Controller
 
     public function index()
     {
-        $seleksi = Seleksi::orderBy('id', 'desc')->get();
+        $seleksi = DB::table('seleksi')
+        ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
+        ->join('job', 'seleksi.job_id', '=', 'job.id')
+        ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
+        ->select(
+            'seleksi.*', 
+            'kandidat.nama_kandidat', 
+            'job.nama_job',
+            'job.nama_negara',
+            'job.nama_perusahaan',
+            'job.nama_kategori_job',
+            'kategori_job.urutan as kategori_urutan')
+        ->get();
         return view('back.seleksi.index', compact('seleksi'));
     }
 
