@@ -15,6 +15,7 @@ use App\Http\Controllers\StepController;
 
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\RejectVerifikasiController;
 use App\Http\Controllers\SeleksiController;
 use App\Http\Controllers\SudahVerifikasiController;
@@ -37,6 +38,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [DashboardController::class, 'index']);
+
+// Kandidat
+Route::get('/kandidat', [KandidatController::class, 'index']);
+
 
 
 // Belum Verifikasi
@@ -67,8 +72,12 @@ Route::get('/reject_diverifikasi/{id}/detail', [RejectVerifikasiController::clas
 
 // Awal Seleksi
 Route::get('/seleksi', [SeleksiController::class, 'index']);
-Route::post('/update-status', [SeleksiController::class, 'updateStatus'])->name('update.status'); 
+Route::post('/update-status-seleksi', [SeleksiController::class, 'updateStatus'])->name('update.status'); 
 Route::get('/seleksi/{id}/detail', [SeleksiController::class, 'detail'])->name('seleksi.detail');
+
+
+
+
 
 // Kategori Job
 Route::get('/kategori_job', [KategoriJobController::class, 'index']);

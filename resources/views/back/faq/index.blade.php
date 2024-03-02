@@ -2,6 +2,7 @@
 @section('title', 'Halaman Faq')
 @section('subtitle', 'Menu Faq')
 @push('css')
+    @extends('back.layouts.css_datatables')
 @endpush
 
 @section('content')
@@ -129,8 +130,8 @@
                                             <label class="col-form-label" for="pertanyaan">Pertanyaan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
-                                                id="pertanyaan" name="pertanyaan">
+                                            <input type="text" class="form-control form-control-success" id="pertanyaan"
+                                                name="pertanyaan">
                                         </div>
                                     </div>
 
@@ -139,7 +140,7 @@
                                             <label class="col-form-label" for="jawaban">Jawaban </label>
                                         </div>
                                         <div class="col-sm-12">
-                                           <textarea class="form-control form-control-success" name="jawaban" id="jawaban" cols="30" rows="3"></textarea>
+                                            <textarea class="form-control form-control-success" name="jawaban" id="jawaban" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -202,7 +203,7 @@
                                             <label class="col-form-label" for="edit_jawaban">Jawaban </label>
                                         </div>
                                         <div class="col-sm-12">
-                                           <textarea class="form-control form-control-success" name="jawaban" id="edit_jawaban" cols="30" rows="3"></textarea>
+                                            <textarea class="form-control form-control-success" name="jawaban" id="edit_jawaban" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -226,168 +227,171 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
 
 
 
 
-        @endsection
+@endsection
 
 
 
 
-        @push('script')
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@push('script')
+    @include('back.layouts.js_datatables')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
 
-            {{-- TAMBAH --}}
-            <script>
-                $(document).ready(function() {
-                    $('#btn-save-faq').click(function() {
-                        var form = $('#form-faq');
+    {{-- TAMBAH --}}
+    <script>
+        $(document).ready(function() {
+            $('#btn-save-faq').click(function() {
+                var form = $('#form-faq');
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function(response) {
+                        $('#modal-faq').modal('hide');
+                        Swal.fire({
+                            title: 'Sukses!',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(function() {
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr) {
+                        var errorMessages = xhr.responseJSON.errors;
+                        var errorMessage = '';
+                        $.each(errorMessages, function(key, value) {
+                            errorMessage += value + '<br>';
+                        });
+                        Swal.fire({
+                            title: 'Error!',
+                            html: errorMessage,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+    {{-- EDIT dan UPDATE --}}
+    <script>
+        $(document).ready(function() {
+            // Tampilkan data di modal edit
+            $('.btn-edit').click(function() {
+                var id = $(this).data('id');
+                $.ajax({
+                    url: '/faq/' + id + '/edit',
+                    type: 'GET',
+                    success: function(response) {
+                        $('#edit_pertanyaan').val(response.pertanyaan);
+                        $('#edit_urutan').val(response.urutan);
+                        $('#edit_jawaban').val(response.jawaban);
+                        // Set action form untuk update
+                        $('#form-edit-faq').attr('action', '/faq/' + id);
+                        $('#modal-edit').modal('show');
+                    },
+                    error: function(xhr) {
+                        // Handle error
+                    }
+                });
+            });
+
+            // AJAX untuk update data
+            $('#btn-update-faq').click(function() {
+                var form = $('#form-edit-faq');
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize() + '&_method=PUT',
+                    success: function(response) {
+                        $('#modal-edit').modal('hide');
+                        Swal.fire({
+                            title: 'Sukses!',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(function() {
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr) {
+                        var errorMessages = xhr.responseJSON.errors;
+                        var errorMessage = '';
+                        $.each(errorMessages, function(key, value) {
+                            errorMessage += value + '<br>';
+                        });
+                        Swal.fire({
+                            title: 'Error!',
+                            html: errorMessage,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.btn-hapus').click(function() {
+                var id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data akan dihapus permanen!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
                         $.ajax({
-                            url: form.attr('action'),
-                            type: 'POST',
-                            data: form.serialize(),
+
+                            url: '/faq/' + id,
+                            type: 'DELETE',
+
                             success: function(response) {
-                                $('#modal-faq').modal('hide');
                                 Swal.fire({
                                     title: 'Sukses!',
                                     text: response.message,
                                     icon: 'success',
-                                    confirmButtonText: 'OK'
+                                    confirmButtonText: 'OK',
                                 }).then(function() {
                                     location.reload();
                                 });
-                            },
-                            error: function(xhr) {
-                                var errorMessages = xhr.responseJSON.errors;
-                                var errorMessage = '';
-                                $.each(errorMessages, function(key, value) {
-                                    errorMessage += value + '<br>';
-                                });
-                                Swal.fire({
-                                    title: 'Error!',
-                                    html: errorMessage,
-                                    icon: 'error',
-                                    confirmButtonText: 'OK'
-                                });
-                            }
-                        });
-                    });
-                });
-            </script>
-
-
-
-            {{-- EDIT dan UPDATE --}}
-            <script>
-                $(document).ready(function() {
-                    // Tampilkan data di modal edit
-                    $('.btn-edit').click(function() {
-                        var id = $(this).data('id');
-                        $.ajax({
-                            url: '/faq/' + id + '/edit',
-                            type: 'GET',
-                            success: function(response) {
-                                $('#edit_pertanyaan').val(response.pertanyaan);
-                                $('#edit_urutan').val(response.urutan);
-                                $('#edit_jawaban').val(response.jawaban);
-                                // Set action form untuk update
-                                $('#form-edit-faq').attr('action', '/faq/' + id);
-                                $('#modal-edit').modal('show');
                             },
                             error: function(xhr) {
                                 // Handle error
-                            }
-                        });
-                    });
-
-                    // AJAX untuk update data
-                    $('#btn-update-faq').click(function() {
-                        var form = $('#form-edit-faq');
-                        $.ajax({
-                            url: form.attr('action'),
-                            type: 'POST',
-                            data: form.serialize() + '&_method=PUT',
-                            success: function(response) {
-                                $('#modal-edit').modal('hide');
-                                Swal.fire({
-                                    title: 'Sukses!',
-                                    text: response.message,
-                                    icon: 'success',
-                                    confirmButtonText: 'OK'
-                                }).then(function() {
-                                    location.reload();
-                                });
-                            },
-                            error: function(xhr) {
-                                var errorMessages = xhr.responseJSON.errors;
-                                var errorMessage = '';
-                                $.each(errorMessages, function(key, value) {
-                                    errorMessage += value + '<br>';
-                                });
                                 Swal.fire({
                                     title: 'Error!',
-                                    html: errorMessage,
+                                    text: 'Gagal menghapus data.',
                                     icon: 'error',
-                                    confirmButtonText: 'OK'
+                                    confirmButtonText: 'OK',
                                 });
-                            }
+                            },
                         });
-                    });
+                    }
                 });
-            </script>
-
-            <script>
-                $(document).ready(function() {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-
-                    $('.btn-hapus').click(function() {
-                        var id = $(this).data('id');
-
-                        Swal.fire({
-                            title: 'Apakah Anda yakin?',
-                            text: 'Data akan dihapus permanen!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya, hapus!',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $.ajax({
-
-                                    url: '/faq/' + id,
-                                    type: 'DELETE',
-
-                                    success: function(response) {
-                                        Swal.fire({
-                                            title: 'Sukses!',
-                                            text: response.message,
-                                            icon: 'success',
-                                            confirmButtonText: 'OK',
-                                        }).then(function() {
-                                            location.reload();
-                                        });
-                                    },
-                                    error: function(xhr) {
-                                        // Handle error
-                                        Swal.fire({
-                                            title: 'Error!',
-                                            text: 'Gagal menghapus data.',
-                                            icon: 'error',
-                                            confirmButtonText: 'OK',
-                                        });
-                                    },
-                                });
-                            }
-                        });
-                    });
-                });
-            </script>
-        @endpush
+            });
+        });
+    </script>
+@endpush

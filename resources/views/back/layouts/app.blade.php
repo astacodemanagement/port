@@ -31,23 +31,15 @@
     <link rel="stylesheet" type="text/css"
         href="{{ asset('template') }}/files/bower_components/bootstrap/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="{{ asset('template') }}/files/assets/pages/waves/css/waves.min.css" type="text/css"
-        media="all">
+    
 
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/assets/icon/feather/css/feather.css">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/assets/css/font-awesome-n.min.css">
 
-    <link rel="stylesheet" href="{{ asset('template') }}/files/bower_components/chartist/css/chartist.css"
-        type="text/css" media="all">
-
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/assets/css/widget.css">
 
 
-    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}//files/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}//files/assets/pages/data-table/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}//files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
 
  
 
@@ -440,6 +432,11 @@
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class>
+                                                <a href="/kandidat" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Data Kandidat</span>
+                                                </a>
+                                            </li>
+                                            <li class>
                                                 <a href="/belum_diverifikasi" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Belum Diverifikasi</span>
                                                 </a>
@@ -555,7 +552,7 @@
 
 
  
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+ 
     <script type="text/javascript" src="{{ asset('template') }}/files/bower_components/jquery/js/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('template') }}/files/bower_components/jquery-ui/js/jquery-ui.min.js">
     </script>
@@ -566,36 +563,18 @@
 
     <script src="{{ asset('template') }}/files/assets/pages/waves/js/waves.min.js"></script>
 
-    <script type="text/javascript"
-        src="{{ asset('template') }}/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="{{ asset('template') }}/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
 
     <script src="{{ asset('template') }}/files/assets/pages/chart/float/jquery.flot.js"></script>
     <script src="{{ asset('template') }}/files/assets/pages/chart/float/jquery.flot.categories.js"></script>
     <script src="{{ asset('template') }}/files/assets/pages/chart/float/curvedLines.js"></script>
     <script src="{{ asset('template') }}/files/assets/pages/chart/float/jquery.flot.tooltip.min.js"></script>
 
-    <script src="{{ asset('template') }}/files/bower_components/chartist/js/chartist.js"></script>
-
-    <script src="{{ asset('template') }}/files/assets/pages/widget/amchart/amcharts.js"></script>
-    <script src="{{ asset('template') }}/files/assets/pages/widget/amchart/serial.js"></script>
-    <script src="{{ asset('template') }}/files/assets/pages/widget/amchart/light.js"></script>
-
+  
     <script src="{{ asset('template') }}/files/assets/js/pcoded.min.js"></script>
     <script src="{{ asset('template') }}/files/assets/js/vertical/vertical-layout.min.js"></script>
     <script type="text/javascript" src="{{ asset('template') }}/files/assets/js/script.min.js"></script>
-    <script src="{{ asset('template') }}/files/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('template') }}/files/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="{{ asset('template') }}/files/assets/pages/data-table/js/jszip.min.js"></script>
-    <script src="{{ asset('template') }}/files/assets/pages/data-table/js/pdfmake.min.js"></script>
-    <script src="{{ asset('template') }}/files/assets/pages/data-table/js/vfs_fonts.js"></script>
-    <script src="{{ asset('template') }}/files/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="{{ asset('template') }}/files/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="{{ asset('template') }}/files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="{{ asset('template') }}/files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="{{ asset('template') }}/files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-
-    <script src="{{ asset('template') }}/files/assets/pages/data-table/js/data-table-custom.js"></script>
-
+  
 
       
 

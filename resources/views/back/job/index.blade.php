@@ -2,10 +2,8 @@
 @section('title', 'Halaman Job')
 @section('subtitle', 'Menu Job')
 @push('css')
-    {{-- <link rel="stylesheet" href="{{ asset('template') }}/files/bower_components/select2/css/select2.min.css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/bower_components/multiselect/css/multi-select.css" /> --}}
-    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/custom.css" />
+    @extends('back.layouts.css_datatables')
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/custom.css" /> --}}
 @endpush
 
 @section('content')
@@ -155,122 +153,125 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
 
 
 
 
-        @endsection
+@endsection
 
 
 
 
-        @push('script')
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@push('script')
+    @include('back.layouts.js_datatables')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
-            <script>
-                $(document).ready(function() {
-                    var namaJob; // Deklarasikan variabel di luar event
+    <script>
+        $(document).ready(function() {
+            var namaJob; // Deklarasikan variabel di luar event
 
-                    // Event klik tombol gambar
-                    $('.btn-gambar').on('click', function() {
-                        var job_id = $(this).data('id');
-                        namaJob = $(this).closest('tr').find('td:eq(1)')
+            // Event klik tombol gambar
+            $('.btn-gambar').on('click', function() {
+                var job_id = $(this).data('id');
+                namaJob = $(this).closest('tr').find('td:eq(1)')
                     .text(); // Mendapatkan nama_job dari kolom kedua
-                        $('#job_id').val(job_id);
-                        $('#nama-job-info').text(namaJob);
-                        $('#modal-gambar').modal('show');
-                    });
+                $('#job_id').val(job_id);
+                $('#nama-job-info').text(namaJob);
+                $('#modal-gambar').modal('show');
+            });
 
-                    // Event klik tombol upload gambar
-                    $('#btn-simpan-gambar').on('click', function() {
-                        var formData = new FormData($('#form-gambar')[0]);
+            // Event klik tombol upload gambar
+            $('#btn-simpan-gambar').on('click', function() {
+                var formData = new FormData($('#form-gambar')[0]);
 
+                $.ajax({
+                    url: '{{ route('upload-gambar') }}',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        Swal.fire({
+                            title: 'Sukses!',
+                            html: 'Data berhasil disimpan untuk Job: <strong>' +
+                                namaJob + '</strong>',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(function() {
+                            $('#modal-gambar').modal('hide');
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr) {
+                        var errorMessages = xhr.responseJSON.errors;
+                        var errorMessage = '';
+                        $.each(errorMessages, function(key, value) {
+                            errorMessage += value + '<br>';
+                        });
+                        Swal.fire({
+                            title: 'Error!',
+                            html: errorMessage,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.btn-hapus').click(function() {
+                var id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data akan dihapus permanen!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
                         $.ajax({
-                            url: '{{ route('upload-gambar') }}',
-                            type: 'POST',
-                            data: formData,
-                            contentType: false,
-                            processData: false,
+
+                            url: '/job/' + id,
+                            type: 'DELETE',
+
                             success: function(response) {
                                 Swal.fire({
                                     title: 'Sukses!',
-                                    html: 'Data berhasil disimpan untuk Job: <strong>' +
-                                        namaJob + '</strong>',
+                                    text: response.message,
                                     icon: 'success',
-                                    confirmButtonText: 'OK'
+                                    confirmButtonText: 'OK',
                                 }).then(function() {
-                                    $('#modal-gambar').modal('hide');
                                     location.reload();
                                 });
                             },
                             error: function(xhr) {
-                                var errorMessages = xhr.responseJSON.errors;
-                                var errorMessage = '';
-                                $.each(errorMessages, function(key, value) {
-                                    errorMessage += value + '<br>';
-                                });
+                                // Handle error
                                 Swal.fire({
                                     title: 'Error!',
-                                    html: errorMessage,
+                                    text: 'Gagal menghapus data.',
                                     icon: 'error',
-                                    confirmButtonText: 'OK'
+                                    confirmButtonText: 'OK',
                                 });
-                            }
+                            },
                         });
-                    });
+                    }
                 });
-            </script>
-
-            <script>
-                $(document).ready(function() {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-
-                    $('.btn-hapus').click(function() {
-                        var id = $(this).data('id');
-
-                        Swal.fire({
-                            title: 'Apakah Anda yakin?',
-                            text: 'Data akan dihapus permanen!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya, hapus!',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $.ajax({
-
-                                    url: '/job/' + id,
-                                    type: 'DELETE',
-
-                                    success: function(response) {
-                                        Swal.fire({
-                                            title: 'Sukses!',
-                                            text: response.message,
-                                            icon: 'success',
-                                            confirmButtonText: 'OK',
-                                        }).then(function() {
-                                            location.reload();
-                                        });
-                                    },
-                                    error: function(xhr) {
-                                        // Handle error
-                                        Swal.fire({
-                                            title: 'Error!',
-                                            text: 'Gagal menghapus data.',
-                                            icon: 'error',
-                                            confirmButtonText: 'OK',
-                                        });
-                                    },
-                                });
-                            }
-                        });
-                    });
-                });
-            </script>
-        @endpush
+            });
+        });
+    </script>
+@endpush

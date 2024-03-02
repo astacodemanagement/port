@@ -32,20 +32,55 @@ class SeleksiController extends Controller
     public function index()
     {
         $seleksi = DB::table('seleksi')
-        ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
-        ->join('job', 'seleksi.job_id', '=', 'job.id')
-        ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
-        ->select(
-            'seleksi.*', 
-            'kandidat.nama_kandidat', 
-            'job.nama_job',
-            'job.nama_negara',
-            'job.nama_perusahaan',
-            'job.nama_kategori_job',
-            'kategori_job.urutan as kategori_urutan')
-        ->get();
-        return view('back.seleksi.index', compact('seleksi'));
+            ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
+            ->join('job', 'seleksi.job_id', '=', 'job.id')
+            ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
+            ->where('seleksi.status', 'Cek Kualifikasi') // Menambahkan klausa where untuk status
+            ->select(
+                'seleksi.*',
+                'kandidat.nama_kandidat',
+                'job.nama_job',
+                'job.nama_negara',
+                'job.nama_perusahaan',
+                'job.nama_kategori_job',
+                'job.mitra',
+                'kategori_job.urutan as kategori_urutan'
+            )
+            ->get();
+    
+        // Cetak hasil query ke konsol untuk diinspeksi
+        \Illuminate\Support\Facades\Log::info('Query Result:', ['seleksi' => $seleksi]);
+    
+        $seleksi_group = $seleksi->groupBy('job_id');
+    
+        return view('back.seleksi.index', compact('seleksi', 'seleksi_group'));
     }
+    
+
+    public function updateStatus(Request $request)
+    {
+        $cek_kualifikasi_id = $request->input('id');
+        $status = $request->input('status');
+
+        // Get the original data before the update
+        $cek_kualifikasi = Seleksi::findOrFail($cek_kualifikasi_id);
+        $oldData = $cek_kualifikasi->getOriginal();
+
+        // Update the status in the database
+        Seleksi::where('id', $cek_kualifikasi_id)->update(['status' => $status]);
+
+        // Get the updated data after the update
+        $updatedData = Seleksi::findOrFail($cek_kualifikasi_id)->getOriginal();
+
+        // Log the histori
+        $loggedInUserId = Auth::id();
+        $this->simpanLogHistori('Update', 'Cek Kualifikasi', $cek_kualifikasi_id, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
+
+        return response()->json(['message' => 'Status updated successfully']);
+    }
+
+
+
 
     /**
      * Show the form for creating a new resource.

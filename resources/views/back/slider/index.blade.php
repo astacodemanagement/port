@@ -2,6 +2,7 @@
 @section('title', 'Halaman Slider')
 @section('subtitle', 'Menu Slider')
 @push('css')
+    @extends('back.layouts.css_datatables')
 @endpush
 
 @section('content')
@@ -264,223 +265,226 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
 
 
 
 
-        @endsection
+@endsection
 
 
 
 
-        @push('script')
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@push('script')
+    @include('back.layouts.js_datatables')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
 
-            {{-- TAMBAH --}}
-            <script>
-                $(document).ready(function() {
-                    $('#btn-save-slider').click(function() {
-                        event.preventDefault();
-                        const tombolSimpan = $('#btn-save-slider')
-                        var form = $('#form-slider');
+    {{-- TAMBAH --}}
+    <script>
+        $(document).ready(function() {
+            $('#btn-save-slider').click(function() {
+                event.preventDefault();
+                const tombolSimpan = $('#btn-save-slider')
+                var form = $('#form-slider');
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: new FormData(form[0]),
+                    contentType: false,
+                    beforeSend: function() {
+                        $('form').find('.error-message').remove()
+                        tombolSimpan.prop('disabled', true)
+                    },
+                    processData: false,
+                    success: function(response) {
+                        $('#modal-slider').modal('hide');
+                        Swal.fire({
+                            title: 'Sukses!',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(function() {
+                            location.reload();
+                        });
+                    },
+                    complete: function() {
+                        tombolSimpan.prop('disabled', false);
+                    },
+                    error: function(xhr) {
+                        var errorMessages = xhr.responseJSON.errors;
+                        var errorMessage = '';
+                        $.each(errorMessages, function(key, value) {
+                            errorMessage += value + '<br>';
+                        });
+                        Swal.fire({
+                            title: 'Error!',
+                            html: errorMessage,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+
+    {{-- PERINTAH EDIT DATA --}}
+    <script>
+        $(document).ready(function() {
+            // $('.dataTable tbody').on('click', 'td .btn-edit', function(e) {
+            $('.btn-edit').click(function(e) {
+                e.preventDefault();
+
+                var id = $(this).data('id');
+
+                $.ajax({
+                    slider: 'GET',
+                    url: '/slider/' + id + '/edit',
+                    success: function(data) {
+                        // console.log(data); // Cek apakah data terisi dengan benar
+                        // Mengisi data pada form modal
+                        $('#id').val(data.id); // Menambahkan nilai id ke input tersembunyi
+                        $('#edit_nama_slider').val(data.nama_slider);
+                        $('#edit_keterangan').val(data.keterangan);
+                        $('#edit_urutan').val(data.urutan);
+                        if (data.gambar) {
+                            var gambarImg = '<img src="/upload/slider/' + data.gambar +
+                                '" style="max-width: 100px; max-height: 100px;">';
+                            var gambarLink = '<a href="/upload/slider/' + data.gambar +
+                                '" target="_blank"><i class="fa fa-eye"></i> Lihat Bukti</a>';
+                            $('#gambar_edit_container').append(gambarImg + '<br>' + gambarLink);
+                        }
+
+                        $('#modal-slider-edit').modal('show');
+                        $('#id').val(id);
+                    },
+
+                    error: function(xhr) {
+                        // Tangani kesalahan jika ada
+                        alert('Error: ' + xhr.statusText);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    {{-- PERINTAH UPDATE DATA --}}
+    <script>
+        $(document).ready(function() {
+            $('#btn-update-slider').click(function(e) {
+                e.preventDefault();
+                const tombolUpdate = $('#btn-update-slider');
+                var id = $('#id').val();
+                var formData = new FormData($('#form-edit-slider')[0]);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/slider/update/' + id,
+                    data: formData,
+                    headers: {
+                        'X-HTTP-Method-Override': 'PUT'
+                    },
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('form').find('.error-message').remove();
+                        tombolUpdate.prop('disabled', true);
+                    },
+                    success: function(response) {
+                        $('#modal-slider-edit').modal('hide');
+                        Swal.fire({
+                            title: 'Sukses!',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed || result.isDismissed) {
+                                location.reload();
+                            }
+                        });
+                    },
+                    complete: function() {
+                        tombolUpdate.prop('disabled', false);
+                    },
+                    error: function(xhr) {
+                        if (xhr.status !== 422) {
+                            $('#modal-slider-edit').modal('hide');
+                        }
+                        var errorMessages = xhr.responseJSON.errors;
+                        var errorMessage = '';
+                        $.each(errorMessages, function(key, value) {
+                            errorMessage += value + '<br>';
+                        });
+                        Swal.fire({
+                            title: 'Error!',
+                            html: errorMessage,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    {{-- HAPUS DATA --}}
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.btn-hapus').click(function() {
+                var id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data akan dihapus permanen!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
                         $.ajax({
-                            url: form.attr('action'),
-                            type: 'POST',
-                            data: new FormData(form[0]),
-                            contentType: false,
-                            beforeSend: function() {
-                                $('form').find('.error-message').remove()
-                                tombolSimpan.prop('disabled', true)
-                            },
-                            processData: false,
+
+                            url: '/slider/' + id,
+                            type: 'DELETE',
+
                             success: function(response) {
-                                $('#modal-slider').modal('hide');
                                 Swal.fire({
                                     title: 'Sukses!',
                                     text: response.message,
                                     icon: 'success',
-                                    confirmButtonText: 'OK'
+                                    confirmButtonText: 'OK',
                                 }).then(function() {
                                     location.reload();
                                 });
                             },
-                            complete: function() {
-                                tombolSimpan.prop('disabled', false);
-                            },
                             error: function(xhr) {
-                                var errorMessages = xhr.responseJSON.errors;
-                                var errorMessage = '';
-                                $.each(errorMessages, function(key, value) {
-                                    errorMessage += value + '<br>';
-                                });
+                                // Handle error
                                 Swal.fire({
                                     title: 'Error!',
-                                    html: errorMessage,
+                                    text: 'Gagal menghapus data.',
                                     icon: 'error',
-                                    confirmButtonText: 'OK'
+                                    confirmButtonText: 'OK',
                                 });
-                            }
+                            },
                         });
-                    });
+                    }
                 });
-            </script>
-
-
-
-
-            {{-- PERINTAH EDIT DATA --}}
-            <script>
-                $(document).ready(function() {
-                    // $('.dataTable tbody').on('click', 'td .btn-edit', function(e) {
-                    $('.btn-edit').click(function(e) {
-                        e.preventDefault();
-
-                        var id = $(this).data('id');
-
-                        $.ajax({
-                            slider: 'GET',
-                            url: '/slider/' + id + '/edit',
-                            success: function(data) {
-                                // console.log(data); // Cek apakah data terisi dengan benar
-                                // Mengisi data pada form modal
-                                $('#id').val(data.id); // Menambahkan nilai id ke input tersembunyi
-                                $('#edit_nama_slider').val(data.nama_slider);
-                                $('#edit_keterangan').val(data.keterangan);
-                                $('#edit_urutan').val(data.urutan);
-                                if (data.gambar) {
-                                    var gambarImg = '<img src="/upload/slider/' + data.gambar +
-                                        '" style="max-width: 100px; max-height: 100px;">';
-                                    var gambarLink = '<a href="/upload/slider/' + data.gambar +
-                                        '" target="_blank"><i class="fa fa-eye"></i> Lihat Bukti</a>';
-                                    $('#gambar_edit_container').append(gambarImg + '<br>' + gambarLink);
-                                }
-
-                                $('#modal-slider-edit').modal('show');
-                                $('#id').val(id);
-                            },
-
-                            error: function(xhr) {
-                                // Tangani kesalahan jika ada
-                                alert('Error: ' + xhr.statusText);
-                            }
-                        });
-                    });
-                });
-            </script>
-
-
-            {{-- PERINTAH UPDATE DATA --}}
-            <script>
-                $(document).ready(function() {
-                    $('#btn-update-slider').click(function(e) {
-                        e.preventDefault();
-                        const tombolUpdate = $('#btn-update-slider');
-                        var id = $('#id').val();
-                        var formData = new FormData($('#form-edit-slider')[0]);
-
-                        $.ajax({
-                            type: 'POST',
-                            url: '/slider/update/' + id,
-                            data: formData,
-                            headers: {
-                                'X-HTTP-Method-Override': 'PUT'
-                            },
-                            contentType: false,
-                            processData: false,
-                            beforeSend: function() {
-                                $('form').find('.error-message').remove();
-                                tombolUpdate.prop('disabled', true);
-                            },
-                            success: function(response) {
-                                $('#modal-slider-edit').modal('hide');
-                                Swal.fire({
-                                    title: 'Sukses!',
-                                    text: response.message,
-                                    icon: 'success',
-                                    confirmButtonText: 'OK'
-                                }).then((result) => {
-                                    if (result.isConfirmed || result.isDismissed) {
-                                        location.reload();
-                                    }
-                                });
-                            },
-                            complete: function() {
-                                tombolUpdate.prop('disabled', false);
-                            },
-                            error: function(xhr) {
-                                if (xhr.status !== 422) {
-                                    $('#modal-slider-edit').modal('hide');
-                                }
-                                var errorMessages = xhr.responseJSON.errors;
-                                var errorMessage = '';
-                                $.each(errorMessages, function(key, value) {
-                                    errorMessage += value + '<br>';
-                                });
-                                Swal.fire({
-                                    title: 'Error!',
-                                    html: errorMessage,
-                                    icon: 'error',
-                                    confirmButtonText: 'OK'
-                                });
-                            }
-                        });
-                    });
-                });
-            </script>
-
-
-            {{-- HAPUS DATA --}}
-            <script>
-                $(document).ready(function() {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-
-                    $('.btn-hapus').click(function() {
-                        var id = $(this).data('id');
-
-                        Swal.fire({
-                            title: 'Apakah Anda yakin?',
-                            text: 'Data akan dihapus permanen!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya, hapus!',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $.ajax({
-
-                                    url: '/slider/' + id,
-                                    type: 'DELETE',
-
-                                    success: function(response) {
-                                        Swal.fire({
-                                            title: 'Sukses!',
-                                            text: response.message,
-                                            icon: 'success',
-                                            confirmButtonText: 'OK',
-                                        }).then(function() {
-                                            location.reload();
-                                        });
-                                    },
-                                    error: function(xhr) {
-                                        // Handle error
-                                        Swal.fire({
-                                            title: 'Error!',
-                                            text: 'Gagal menghapus data.',
-                                            icon: 'error',
-                                            confirmButtonText: 'OK',
-                                        });
-                                    },
-                                });
-                            }
-                        });
-                    });
-                });
-            </script>
-        @endpush
+            });
+        });
+    </script>
+@endpush

@@ -2,13 +2,13 @@
 @section('title', 'Halaman Negara')
 @section('subtitle', 'Menu Negara')
 @push('css')
+    @extends('back.layouts.css_datatables')
 @endpush
 
 @section('content')
 
 
     <div class="pcoded-content">
-
         <div class="page-header card">
             <div class="row align-items-end">
                 <div class="col-lg-8">
@@ -128,8 +128,8 @@
                                             <label class="col-form-label" for="nama_negara">Nama Negara</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
-                                                id="nama_negara" name="nama_negara">
+                                            <input type="text" class="form-control form-control-success" id="nama_negara"
+                                                name="nama_negara">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -207,167 +207,167 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
+
+@endsection
 
 
 
 
-        @endsection
+@push('script')
+    @include('back.layouts.js_datatables')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
 
+    {{-- TAMBAH --}}
+    <script>
+        $(document).ready(function() {
+            $('#btn-save-negara').click(function() {
+                var form = $('#form-negara');
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function(response) {
+                        $('#modal-negara').modal('hide');
+                        Swal.fire({
+                            title: 'Sukses!',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(function() {
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr) {
+                        var errorMessages = xhr.responseJSON.errors;
+                        var errorMessage = '';
+                        $.each(errorMessages, function(key, value) {
+                            errorMessage += value + '<br>';
+                        });
+                        Swal.fire({
+                            title: 'Error!',
+                            html: errorMessage,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 
-        @push('script')
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
+    {{-- EDIT dan UPDATE --}}
+    <script>
+        $(document).ready(function() {
+            // Tampilkan data di modal edit
+            $('.btn-edit').click(function() {
+                var id = $(this).data('id');
+                $.ajax({
+                    url: '/negara/' + id + '/edit',
+                    type: 'GET',
+                    success: function(response) {
+                        $('#edit_nama_negara').val(response.nama_negara);
+                        $('#edit_kode_negara').val(response.kode_negara);
+                        // Set action form untuk update
+                        $('#form-edit-negara').attr('action', '/negara/' + id);
+                        $('#modal-edit').modal('show');
+                    },
+                    error: function(xhr) {
+                        // Handle error
+                    }
+                });
+            });
 
-            {{-- TAMBAH --}}
-            <script>
-                $(document).ready(function() {
-                    $('#btn-save-negara').click(function() {
-                        var form = $('#form-negara');
+            // AJAX untuk update data
+            $('#btn-update-negara').click(function() {
+                var form = $('#form-edit-negara');
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize() + '&_method=PUT',
+                    success: function(response) {
+                        $('#modal-edit').modal('hide');
+                        Swal.fire({
+                            title: 'Sukses!',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(function() {
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr) {
+                        var errorMessages = xhr.responseJSON.errors;
+                        var errorMessage = '';
+                        $.each(errorMessages, function(key, value) {
+                            errorMessage += value + '<br>';
+                        });
+                        Swal.fire({
+                            title: 'Error!',
+                            html: errorMessage,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.btn-hapus').click(function() {
+                var id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data akan dihapus permanen!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
                         $.ajax({
-                            url: form.attr('action'),
-                            type: 'POST',
-                            data: form.serialize(),
+
+                            url: '/negara/' + id,
+                            type: 'DELETE',
+
                             success: function(response) {
-                                $('#modal-negara').modal('hide');
                                 Swal.fire({
                                     title: 'Sukses!',
                                     text: response.message,
                                     icon: 'success',
-                                    confirmButtonText: 'OK'
+                                    confirmButtonText: 'OK',
                                 }).then(function() {
                                     location.reload();
                                 });
-                            },
-                            error: function(xhr) {
-                                var errorMessages = xhr.responseJSON.errors;
-                                var errorMessage = '';
-                                $.each(errorMessages, function(key, value) {
-                                    errorMessage += value + '<br>';
-                                });
-                                Swal.fire({
-                                    title: 'Error!',
-                                    html: errorMessage,
-                                    icon: 'error',
-                                    confirmButtonText: 'OK'
-                                });
-                            }
-                        });
-                    });
-                });
-            </script>
-
-
-
-            {{-- EDIT dan UPDATE --}}
-            <script>
-                $(document).ready(function() {
-                    // Tampilkan data di modal edit
-                    $('.btn-edit').click(function() {
-                        var id = $(this).data('id');
-                        $.ajax({
-                            url: '/negara/' + id + '/edit',
-                            type: 'GET',
-                            success: function(response) {
-                                $('#edit_nama_negara').val(response.nama_negara);
-                                $('#edit_kode_negara').val(response.kode_negara);
-                                // Set action form untuk update
-                                $('#form-edit-negara').attr('action', '/negara/' + id);
-                                $('#modal-edit').modal('show');
                             },
                             error: function(xhr) {
                                 // Handle error
-                            }
-                        });
-                    });
-
-                    // AJAX untuk update data
-                    $('#btn-update-negara').click(function() {
-                        var form = $('#form-edit-negara');
-                        $.ajax({
-                            url: form.attr('action'),
-                            type: 'POST',
-                            data: form.serialize() + '&_method=PUT',
-                            success: function(response) {
-                                $('#modal-edit').modal('hide');
-                                Swal.fire({
-                                    title: 'Sukses!',
-                                    text: response.message,
-                                    icon: 'success',
-                                    confirmButtonText: 'OK'
-                                }).then(function() {
-                                    location.reload();
-                                });
-                            },
-                            error: function(xhr) {
-                                var errorMessages = xhr.responseJSON.errors;
-                                var errorMessage = '';
-                                $.each(errorMessages, function(key, value) {
-                                    errorMessage += value + '<br>';
-                                });
                                 Swal.fire({
                                     title: 'Error!',
-                                    html: errorMessage,
+                                    text: 'Gagal menghapus data.',
                                     icon: 'error',
-                                    confirmButtonText: 'OK'
+                                    confirmButtonText: 'OK',
                                 });
-                            }
+                            },
                         });
-                    });
+                    }
                 });
-            </script>
-
-            <script>
-                $(document).ready(function() {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-
-                    $('.btn-hapus').click(function() {
-                        var id = $(this).data('id');
-
-                        Swal.fire({
-                            title: 'Apakah Anda yakin?',
-                            text: 'Data akan dihapus permanen!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya, hapus!',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $.ajax({
-
-                                    url: '/negara/' + id,
-                                    type: 'DELETE',
-
-                                    success: function(response) {
-                                        Swal.fire({
-                                            title: 'Sukses!',
-                                            text: response.message,
-                                            icon: 'success',
-                                            confirmButtonText: 'OK',
-                                        }).then(function() {
-                                            location.reload();
-                                        });
-                                    },
-                                    error: function(xhr) {
-                                        // Handle error
-                                        Swal.fire({
-                                            title: 'Error!',
-                                            text: 'Gagal menghapus data.',
-                                            icon: 'error',
-                                            confirmButtonText: 'OK',
-                                        });
-                                    },
-                                });
-                            }
-                        });
-                    });
-                });
-            </script>
-        @endpush
+            });
+        });
+    </script>
+@endpush

@@ -2,6 +2,7 @@
 @section('title', 'Halaman Log Histori')
 @section('subtitle', 'Menu Log Histori')
 @push('css')
+    @extends('back.layouts.css_datatables')
 @endpush
 
 @section('content')
@@ -51,10 +52,12 @@
 
                                     </div>
                                     <div class="card-block">
-                                         
 
-                                        <a href="{{ route('log-histori.delete-all') }}" class="btn btn-danger mb-3" onclick="return confirm('Apakah Anda Yakin Akan Menghapus Semua Data, silahkan Back Up terlebih dahulu?')"><i class="fas fa-trash"></i> Hapus Semua Data</a>       
-      
+
+                                        <a href="{{ route('log-histori.delete-all') }}" class="btn btn-danger mb-3"
+                                            onclick="return confirm('Apakah Anda Yakin Akan Menghapus Semua Data, silahkan Back Up terlebih dahulu?')"><i
+                                                class="fas fa-trash"></i> Hapus Semua Data</a>
+
 
                                         <br><br>
 
@@ -70,7 +73,7 @@
                                                         <th width="5%">Pengguna</th>
                                                         <th width="5%">Data Lama</th>
                                                         <th width="5%">Data Baru</th>
-                                                         
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -84,7 +87,7 @@
                                                             <td>{{ $p->Pengguna }}</td>
                                                             <td>{{ $p->Data_Lama }}</td>
                                                             <td>{{ $p->Data_Baru }}</td>
-                                                             
+
                                                         </tr>
                                                     @endforeach
 
@@ -104,18 +107,17 @@
 
                 </div>
             </div>
-
-        
-
-        @endsection
+        </div>
+    </div>
 
 
 
-
-        @push('script')
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@endsection
 
 
 
-         
-        @endpush
+
+@push('script')
+@include('back.layouts.js_datatables')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@endpush

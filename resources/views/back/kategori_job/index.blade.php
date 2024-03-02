@@ -2,6 +2,7 @@
 @section('title', 'Halaman Kategori Job')
 @section('subtitle', 'Menu Kategori Job')
 @push('css')
+    @extends('back.layouts.css_datatables')
 @endpush
 
 @section('content')
@@ -208,167 +209,170 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div>
 
 
 
 
-        @endsection
+@endsection
 
 
 
 
-        @push('script')
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@push('script')
+@include('back.layouts.js_datatables')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
 
-            {{-- TAMBAH --}}
-            <script>
-                $(document).ready(function() {
-                    $('#btn-save-kategori-job').click(function() {
-                        var form = $('#form-kategori-job');
+    {{-- TAMBAH --}}
+    <script>
+        $(document).ready(function() {
+            $('#btn-save-kategori-job').click(function() {
+                var form = $('#form-kategori-job');
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize(),
+                    success: function(response) {
+                        $('#modal-kategori-job').modal('hide');
+                        Swal.fire({
+                            title: 'Sukses!',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(function() {
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr) {
+                        var errorMessages = xhr.responseJSON.errors;
+                        var errorMessage = '';
+                        $.each(errorMessages, function(key, value) {
+                            errorMessage += value + '<br>';
+                        });
+                        Swal.fire({
+                            title: 'Error!',
+                            html: errorMessage,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+
+
+    {{-- EDIT dan UPDATE --}}
+    <script>
+        $(document).ready(function() {
+            // Tampilkan data di modal edit
+            $('.btn-edit').click(function() {
+                var id = $(this).data('id');
+                $.ajax({
+                    url: '/kategori_job/' + id + '/edit',
+                    type: 'GET',
+                    success: function(response) {
+                        $('#edit_nama_kategori_job').val(response.nama_kategori_job);
+                        $('#edit_urutan').val(response.urutan);
+                        // Set action form untuk update
+                        $('#form-edit-kategori-job').attr('action', '/kategori_job/' + id);
+                        $('#modal-edit').modal('show');
+                    },
+                    error: function(xhr) {
+                        // Handle error
+                    }
+                });
+            });
+
+            // AJAX untuk update data
+            $('#btn-update-kategori-job').click(function() {
+                var form = $('#form-edit-kategori-job');
+                $.ajax({
+                    url: form.attr('action'),
+                    type: 'POST',
+                    data: form.serialize() + '&_method=PUT',
+                    success: function(response) {
+                        $('#modal-edit').modal('hide');
+                        Swal.fire({
+                            title: 'Sukses!',
+                            text: response.message,
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then(function() {
+                            location.reload();
+                        });
+                    },
+                    error: function(xhr) {
+                        var errorMessages = xhr.responseJSON.errors;
+                        var errorMessage = '';
+                        $.each(errorMessages, function(key, value) {
+                            errorMessage += value + '<br>';
+                        });
+                        Swal.fire({
+                            title: 'Error!',
+                            html: errorMessage,
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $('.btn-hapus').click(function() {
+                var id = $(this).data('id');
+
+                Swal.fire({
+                    title: 'Apakah Anda yakin?',
+                    text: 'Data akan dihapus permanen!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Ya, hapus!',
+                }).then((result) => {
+                    if (result.isConfirmed) {
                         $.ajax({
-                            url: form.attr('action'),
-                            type: 'POST',
-                            data: form.serialize(),
+
+                            url: '/kategori_job/' + id,
+                            type: 'DELETE',
+
                             success: function(response) {
-                                $('#modal-kategori-job').modal('hide');
                                 Swal.fire({
                                     title: 'Sukses!',
                                     text: response.message,
                                     icon: 'success',
-                                    confirmButtonText: 'OK'
+                                    confirmButtonText: 'OK',
                                 }).then(function() {
                                     location.reload();
                                 });
-                            },
-                            error: function(xhr) {
-                                var errorMessages = xhr.responseJSON.errors;
-                                var errorMessage = '';
-                                $.each(errorMessages, function(key, value) {
-                                    errorMessage += value + '<br>';
-                                });
-                                Swal.fire({
-                                    title: 'Error!',
-                                    html: errorMessage,
-                                    icon: 'error',
-                                    confirmButtonText: 'OK'
-                                });
-                            }
-                        });
-                    });
-                });
-            </script>
-
-
-
-            {{-- EDIT dan UPDATE --}}
-            <script>
-                $(document).ready(function() {
-                    // Tampilkan data di modal edit
-                    $('.btn-edit').click(function() {
-                        var id = $(this).data('id');
-                        $.ajax({
-                            url: '/kategori_job/' + id + '/edit',
-                            type: 'GET',
-                            success: function(response) {
-                                $('#edit_nama_kategori_job').val(response.nama_kategori_job);
-                                $('#edit_urutan').val(response.urutan);
-                                // Set action form untuk update
-                                $('#form-edit-kategori-job').attr('action', '/kategori_job/' + id);
-                                $('#modal-edit').modal('show');
                             },
                             error: function(xhr) {
                                 // Handle error
-                            }
-                        });
-                    });
-
-                    // AJAX untuk update data
-                    $('#btn-update-kategori-job').click(function() {
-                        var form = $('#form-edit-kategori-job');
-                        $.ajax({
-                            url: form.attr('action'),
-                            type: 'POST',
-                            data: form.serialize() + '&_method=PUT',
-                            success: function(response) {
-                                $('#modal-edit').modal('hide');
-                                Swal.fire({
-                                    title: 'Sukses!',
-                                    text: response.message,
-                                    icon: 'success',
-                                    confirmButtonText: 'OK'
-                                }).then(function() {
-                                    location.reload();
-                                });
-                            },
-                            error: function(xhr) {
-                                var errorMessages = xhr.responseJSON.errors;
-                                var errorMessage = '';
-                                $.each(errorMessages, function(key, value) {
-                                    errorMessage += value + '<br>';
-                                });
                                 Swal.fire({
                                     title: 'Error!',
-                                    html: errorMessage,
+                                    text: 'Gagal menghapus data.',
                                     icon: 'error',
-                                    confirmButtonText: 'OK'
+                                    confirmButtonText: 'OK',
                                 });
-                            }
+                            },
                         });
-                    });
+                    }
                 });
-            </script>
-
-            <script>
-                $(document).ready(function() {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-
-                    $('.btn-hapus').click(function() {
-                        var id = $(this).data('id');
-
-                        Swal.fire({
-                            title: 'Apakah Anda yakin?',
-                            text: 'Data akan dihapus permanen!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya, hapus!',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $.ajax({
-
-                                    url: '/kategori_job/' + id,
-                                    type: 'DELETE',
-
-                                    success: function(response) {
-                                        Swal.fire({
-                                            title: 'Sukses!',
-                                            text: response.message,
-                                            icon: 'success',
-                                            confirmButtonText: 'OK',
-                                        }).then(function() {
-                                            location.reload();
-                                        });
-                                    },
-                                    error: function(xhr) {
-                                        // Handle error
-                                        Swal.fire({
-                                            title: 'Error!',
-                                            text: 'Gagal menghapus data.',
-                                            icon: 'error',
-                                            confirmButtonText: 'OK',
-                                        });
-                                    },
-                                });
-                            }
-                        });
-                    });
-                });
-            </script>
-        @endpush
+            });
+        });
+    </script>
+@endpush

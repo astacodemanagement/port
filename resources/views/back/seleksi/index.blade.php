@@ -2,6 +2,7 @@
 @section('title', 'Halaman Seleksi')
 @section('subtitle', 'Menu Seleksi')
 @push('css')
+    @extends('back.layouts.css_datatables')
 @endpush
 
 @section('content')
@@ -45,7 +46,7 @@
                             <div class="col-sm-12">
 
 
-                                <div class="card">
+                                <div class="card" id="tb1">
                                     <div class="card-header">
                                         <h5>Data Seleksi</h5>
 
@@ -57,390 +58,256 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="5%">No</th>
-                                                        <th width="15%">Nama Kandidat</th>
                                                         <th width="15%">Posisi</th>
                                                         <th width="15%">Negara</th>
                                                         <th width="15%">Nama Perusahaan</th>
-                                                        {{-- <th width="5%">Urutan Industri Pekerjaan</th> --}}
+                                                        <th width="5%">Mitra</th>
+                                                        <th width="5%">Total Employe</th>
                                                         <th width="5%">Kategori Industri Pekerjaan</th>
-                                                        <th class="text-center" width="5%">Aksi</th>
+                                                        <th width="5%">Detail</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($seleksi as $p)
-                                                        <tr>
+                                                    @foreach ($seleksi_group as $jobId => $group)
+                                                        @foreach ($group as $p)
+                                                            <tr>
+                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td><b>{{ $p->nama_job }}</b></td>
+
+                                                                <td>{{ $p->nama_negara }}</td>
+                                                                <td>{{ $p->nama_perusahaan }}</td>
+                                                                <td>{{ $p->mitra }}</td>
+                                                                <td style="text-align: center; font-size:23px;"><span class="label label-danger">{{ count($group) }}</span></td>
+                                                                <td style="text-align: center; font-size:18px;"><span class="label label-warning">{{ $p->nama_kategori_job }}</span></td>
+                                                                <td class="text-center">
+                                                                    <a style="color: rgb(242, 236, 236)" href="#"
+                                                                        class="btn btn-sm btn-primary btn-detail"
+                                                                        data-id="{{ $p->id }}" style="color: black">
+                                                                        <i class="fas fa-eye"></i> Detail
+                                                                    </a>
+                                                                </td>
+
+
+                                                            </tr>
+                                                            {{-- Break out of the inner loop after the first iteration --}}
+                                                        @break
+                                                    @endforeach
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card" id="tb2">
+                                <div class="card-header">
+                                    <h5>Data Seleksi</h5>
+
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="dt-responsive table-responsive">
+                                        <table id="order-table2" class="table table-striped table-bordered nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th width="5%">No</th>
+                                                    <th width="15%">Tanggal Apply</th>
+                                                    <th width="15%">Nama Kandidat</th>
+                                                    <th width="15%">Posisi</th>
+                                                    <th width="15%">Negara</th>
+                                                    <th width="15%">Nama Perusahaan</th>
+                                                    <th width="5%">Kategori Industri Pekerjaan</th>
+                                                    <th width="5%">Status Seleksi</th>
+                                                    <th width="15%" class="text-center" width="5%">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($seleksi_group as $jobId => $group)
+                                                    @foreach ($group as $p2)
+                                                        <tr data-job-id="{{ $jobId }}">
                                                             <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $p->nama_kandidat }}</td>
-                                                            <td>{{ $p->nama_job }}</td>
-                                                            <td>{{ $p->nama_negara }}</td>
-                                                            <td>{{ $p->nama_perusahaan }}</td>
-                                                            {{-- <td>{{ $p->kategori_urutan }}</td> --}}
-                                                            <td>{{ $p->nama_kategori_job }}</td>
-                                                            <td class="text-center">
-                                                                <a style="color: rgb(242, 236, 236)" href="#"
-                                                                    class="btn btn-sm btn-primary btn-edit"
-                                                                    data-toggle="modal" data-target="#modal-edit"
-                                                                    data-id="{{ $p->id }}" style="color: black">
-                                                                    <i class="fas fa-eye"></i> Detail
+                                                            <td>{{ $p2->created_at }}</td>
+                                                            <td>{{ $p2->nama_kandidat }}</td>
+                                                            <td>{{ $p2->nama_job }}</td>
+                                                            <td>{{ $p2->nama_negara }}</td>
+                                                            <td>{{ $p2->nama_perusahaan }}</td>
+                                                            <td>{{ $p2->nama_kategori_job }}</td>
+                                                            <td>{{ $p2->status }}</td>
+                                                            <td class="text-center d-flex">
+
+                                                                <a href="" data-toggle="modal"
+                                                                    data-target="#ubahStatusModal{{ $p->id }}"
+                                                                    class="form-control mr-2"
+                                                                    style="background-color: #00324F; color: #fff; font-size: 12px; "
+                                                                    title="Detail">
+                                                                    <i class="fa fa-edit"></i>
+                                                                    Ubah Status
+
                                                                 </a>
-                                                                <a style="color: rgb(242, 236, 236)" href="#"
-                                                                    class="btn btn-sm btn-success btn-verifikasi"
-                                                                    data-toggle="modal" data-target="#ubahStatusModal{{ $p->id }}"
-                                                                    data-id="{{ $p->id }}" style="color: black">
-                                                                    <i class="fas fa-edit"></i> Verifikasi
-                                                                </a>
-                                                                <button class="btn btn-sm btn-danger btn-hapus"
-                                                                    data-id="" style="color: white">
-                                                                    <i class="fas fa-trash-alt"></i> Delete
-                                                                </button>
+                                                                <a href="{{ route('belum_diverifikasi.detail', $p->id) }}"
+                                                                    class="form-control"
+                                                                    style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
+                                                                    title="Detail"><i class="fa fa-arrow-right"></i>
+                                                                    Lihat Detail</a>
                                                             </td>
                                                         </tr>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="ubahStatusModal{{ $p->id }}"
+                                                            tabindex="-1" role="dialog"
+                                                            aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
+
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title"
+                                                                            id="ubahStatusModalLabel">Ubah
+                                                                            Status - {{ $p->nama_kandidat }}</h5>
+                                                                        <button type="button" class="close"
+                                                                            data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <!-- Add your form with combo box for status update -->
+                                                                        <form id="ubahStatusForm{{ $p->id }}">
+                                                                            <!-- Combo box for status update -->
+                                                                            <div class="form-group">
+                                                                                <label for="statusSelect">Ubah
+                                                                                    Status:</label>
+                                                                                <select class="form-control"
+                                                                                    id="statusSelect{{ $p->id }}"
+                                                                                    name="status">
+                                                                                    <option value="Lolos Kualifikasi">
+                                                                                        Lolos Kualifikasi</option>
+                                                                                    {{-- <option value="Reject">Reject</option> --}}
+                                                                                    <!-- Add other status options if needed -->
+                                                                                </select>
+                                                                            </div>
+                                                                            <!-- Add hidden input for the Pendaftaran ID -->
+                                                                            <input type="hidden" name="id"
+                                                                                value="{{ $p->id }}">
+                                                                        </form>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button"
+                                                                            class="btn btn-secondary"
+                                                                            data-dismiss="modal"><i
+                                                                                class="fas fa-undo"></i>
+                                                                            Tutup</button>
+                                                                        <button type="button" class="btn btn-primary"
+                                                                            onclick="submitUbahStatus({{ $p->id }})"><i
+                                                                                class="fas fa-save"></i>
+                                                                            Simpan</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @endforeach
+                                                @endforeach
 
-                                                </tbody>
+                                            </tbody>
 
-                                            </table>
-                                        </div>
+                                        </table>
+                                        <button id="btnClear" class="btn btn-warning"><i
+                                                class="fa fa-undo"></i>Clear</button>
                                     </div>
                                 </div>
-
-
-
-
                             </div>
-                        </div>
-                    </div>
 
-                </div>
-            </div>
 
-             <!-- Modal -->
-             <div class="modal fade" id="ubahStatusModal{{ $p->id }}"
-                tabindex="-1" role="dialog" aria-labelledby="ubahStatusModalLabel"
-                aria-hidden="true">
-                aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="ubahStatusModalLabel">Ubah
-                                Status - {{ $p->nama_kandidat }}</h5>
-                            <button type="button" class="close" data-dismiss="modal"
-                                aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Add your form with combo box for status update -->
-                            <form id="ubahStatusForm{{ $p->id }}">
-                                <!-- Combo box for status update -->
-                                <div class="form-group">
-                                    <label for="statusSelect">Ubah Status:</label>
-                                    <select class="form-control"
-                                        id="statusSelect{{ $p->id }}"
-                                        name="status">
-                                        <option value="Verifikasi">Verifikasi</option>
-                                        <option value="Reject">Reject</option>
-                                        <!-- Add other status options if needed -->
-                                    </select>
-                                </div>
-                                <!-- Add hidden input for the Pendaftaran ID -->
-                                <input type="hidden" name="pendaftaran_id"
-                                    value="{{ $p->id }}">
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary"
-                                data-dismiss="modal"><i class="fas fa-undo"></i>
-                                Tutup</button>
-                            <button type="button" class="btn btn-primary"
-                                onclick="submitUbahStatus({{ $p->id }})"><i
-                                    class="fas fa-save"></i> Simpan</button>
+
+
                         </div>
                     </div>
                 </div>
+
             </div>
+        </div>
+    </div>
 
-            {{-- Modal Tambah Data --}}
-            <div class="modal fade" id="modal-seleksi" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <form id="form-seleksi" action="" method="POST">
-                        @csrf <!-- Tambahkan token CSRF -->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Form Input Seleksi</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-
-                                <div class="card-block">
-
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="judul">Judul</label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success" id="judul"
-                                                name="judul">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="keterangan">Keterangan </label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="keterangan" id="keterangan" cols="30" rows="3"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="urutan">Urutan </label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success"
-                                                id="urutan" name="urutan">
-                                        </div>
-                                    </div>
-
-                                </div>
+@endsection
 
 
 
+@push('script')
+    @include('back.layouts.js_datatables')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+    <script>
+        $(document).ready(function() {
+            $('#order-table2').DataTable();
+            // Sembunyikan tabel kedua saat halaman dimuat
+            $("#tb2").hide();
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect "
-                                    data-dismiss="modal">Kembali</button>
-                                <button type="button" class="btn btn-primary waves-effect waves-light"
-                                    id="btn-save-seleksi"><i class="fas fa-save"></i> Simpan</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+            // Tangani klik pada tombol "Detail" pada tabel pertama
+            $("#order-table tbody").on("click", ".btn-detail", function() {
+                var jobId = $(this).data("id");
 
+                // Cetak nilai jobId ke konsol untuk diinspeksi
+                console.log("jobId:", jobId);
 
-            <!-- Modal Edit Data -->
-            <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <form id="form-edit-seleksi" action="" method="POST">
-                        @csrf <!-- Tambahkan token CSRF -->
-                        @method('PUT') <!-- Tambahkan method PUT untuk update -->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Form Edit Seleksi</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="card-block">
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_judul">Judul</label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
-                                                id="edit_judul" name="judul">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_keterangan">Keterangan </label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="keterangan" id="edit_keterangan" cols="30"
-                                                rows="3"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_urutan">Urutan</label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success"
-                                                id="edit_urutan" name="urutan">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect"
-                                    data-dismiss="modal">Kembali</button>
-                                <button type="button" class="btn btn-primary waves-effect waves-light"
-                                    id="btn-update-seleksi"><i class="fas fa-save"></i> Simpan Perubahan</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                // Sembunyikan tabel pertama
+                $("#tb1").hide();
 
+                // Sembunyikan semua baris pada tabel kedua
+                // $("#order-table2 tbody tr").hide();
 
+                // Tampilkan baris yang sesuai dengan job_id yang dipilih
+                $("#order-table2 tbody tr[data-job-id='" + jobId + "']").show();
 
+                // Tampilkan tabel kedua
+                $("#tb2").show();
+            });
 
-        @endsection
+            // Tangani klik pada tombol Clear
+            $("#btnClear").on("click", function() {
+                // Sembunyikan tabel kedua
+                $("#tb2").hide();
 
+                // Tampilkan tabel pertama
+                $("#tb1").show();
+            });
+        });
+    </script>
 
+    <script>
+        function submitUbahStatus(id) {
+            var formData = $('#ubahStatusForm' + id).serialize();
+            // Tambahkan script berikut di bagian head template atau di dalam tag script Anda
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-
-        @push('script')
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-
-
-            {{-- TAMBAH --}}
-            <script>
-                $(document).ready(function() {
-                    $('#btn-save-seleksi').click(function() {
-                        var form = $('#form-seleksi');
-                        $.ajax({
-                            url: form.attr('action'),
-                            type: 'POST',
-                            data: form.serialize(),
-                            success: function(response) {
-                                $('#modal-seleksi').modal('hide');
-                                Swal.fire({
-                                    title: 'Sukses!',
-                                    text: response.message,
-                                    icon: 'success',
-                                    confirmButtonText: 'OK'
-                                }).then(function() {
-                                    location.reload();
-                                });
-                            },
-                            error: function(xhr) {
-                                var errorMessages = xhr.responseJSON.errors;
-                                var errorMessage = '';
-                                $.each(errorMessages, function(key, value) {
-                                    errorMessage += value + '<br>';
-                                });
-                                Swal.fire({
-                                    title: 'Error!',
-                                    html: errorMessage,
-                                    icon: 'error',
-                                    confirmButtonText: 'OK'
-                                });
-                            }
-                        });
+            $.ajax({
+                type: 'POST',
+                url: '/update-status-seleksi', // Sesuaikan dengan URL rute Anda
+                data: formData,
+                success: function(response) {
+                    // Handle success, tampilkan SweetAlert untuk konfirmasi OK
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Status berhasil diubah',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK'
+                    }).then(function() {
+                        // Reload halaman setelah pengguna mengklik OK
+                        location.reload();
                     });
-                });
-            </script>
-
-
-
-            {{-- EDIT dan UPDATE --}}
-            <script>
-                $(document).ready(function() {
-                    // Tampilkan data di modal edit
-                    $('.btn-edit').click(function() {
-                        var id = $(this).data('id');
-                        $.ajax({
-                            url: '/seleksi/' + id + '/edit',
-                            type: 'GET',
-                            success: function(response) {
-                                $('#edit_judul').val(response.judul);
-                                $('#edit_urutan').val(response.urutan);
-                                $('#edit_keterangan').val(response.keterangan);
-                                // Set action form untuk update
-                                $('#form-edit-seleksi').attr('action', '/seleksi/' + id);
-                                $('#modal-edit').modal('show');
-                            },
-                            error: function(xhr) {
-                                // Handle error
-                            }
-                        });
+                },
+                error: function(error) {
+                    // Handle error, tampilkan SweetAlert error jika diperlukan
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Terjadi kesalahan',
+                        text: 'Gagal mengubah data.'
                     });
-
-                    // AJAX untuk update data
-                    $('#btn-update-seleksi').click(function() {
-                        var form = $('#form-edit-seleksi');
-                        $.ajax({
-                            url: form.attr('action'),
-                            type: 'POST',
-                            data: form.serialize() + '&_method=PUT',
-                            success: function(response) {
-                                $('#modal-edit').modal('hide');
-                                Swal.fire({
-                                    title: 'Sukses!',
-                                    text: response.message,
-                                    icon: 'success',
-                                    confirmButtonText: 'OK'
-                                }).then(function() {
-                                    location.reload();
-                                });
-                            },
-                            error: function(xhr) {
-                                var errorMessages = xhr.responseJSON.errors;
-                                var errorMessage = '';
-                                $.each(errorMessages, function(key, value) {
-                                    errorMessage += value + '<br>';
-                                });
-                                Swal.fire({
-                                    title: 'Error!',
-                                    html: errorMessage,
-                                    icon: 'error',
-                                    confirmButtonText: 'OK'
-                                });
-                            }
-                        });
-                    });
-                });
-            </script>
-
-            <script>
-                $(document).ready(function() {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-
-                    $('.btn-hapus').click(function() {
-                        var id = $(this).data('id');
-
-                        Swal.fire({
-                            title: 'Apakah Anda yakin?',
-                            text: 'Data akan dihapus permanen!',
-                            icon: 'warning',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Ya, hapus!',
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                $.ajax({
-
-                                    url: '/seleksi/' + id,
-                                    type: 'DELETE',
-
-                                    success: function(response) {
-                                        Swal.fire({
-                                            title: 'Sukses!',
-                                            text: response.message,
-                                            icon: 'success',
-                                            confirmButtonText: 'OK',
-                                        }).then(function() {
-                                            location.reload();
-                                        });
-                                    },
-                                    error: function(xhr) {
-                                        // Handle error
-                                        Swal.fire({
-                                            title: 'Error!',
-                                            text: 'Gagal menghapus data.',
-                                            icon: 'error',
-                                            confirmButtonText: 'OK',
-                                        });
-                                    },
-                                });
-                            }
-                        });
-                    });
-                });
-            </script>
-        @endpush
+                    console.error(error);
+                }
+            });
+        }
+    </script>
+@endpush
