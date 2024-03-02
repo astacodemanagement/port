@@ -14,6 +14,9 @@
 {{-- <link rel="stylesheet" href="{{ asset('backend/css/toastr.min.css') }}"> --}}
 <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}">
 
+{{-- <link href="frontend/css/style.bundle.css" rel="stylesheet" type="text/css" /> --}}
+
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
