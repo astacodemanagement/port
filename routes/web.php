@@ -157,3 +157,7 @@ Route::put('/step/update/{id}', [StepController::class, 'update'])->name('step.u
 
 
 Route::get('/home', [HomeController::class, 'index']);
+
+Route::get('/register', function(){
+    return view('frontend.pages.register');
+});

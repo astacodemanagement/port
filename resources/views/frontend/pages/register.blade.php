@@ -84,11 +84,110 @@
             </div>
             <!--begin::Stepper-->
             <div class="stepper stepper-pills stepper-column d-flex flex-column flex-lg-row" id="kt_stepper_example_vertical">
-                <!--begin::Aside-->
                 <div class="d-flex flex-row-auto w-100 w-lg-300px">
-                    <!--begin::Nav-->
                     <div class="stepper-nav flex-cente">
-                        <!--begin::Step 1-->
+                        <div class="stepper-item me-5 current" data-kt-stepper-element="nav">
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check fas fa-check"></i>
+                                    <span class="stepper-number">1</span>
+                                </div>
+                                
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Step 1
+                                    </h3>
+                                    <div class="stepper-desc">
+                                        Minat & Informasi Pribadi
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stepper-line h-40px"></div>      
+                        </div>
+                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check fas fa-check"></i>
+                                    <span class="stepper-number">2</span>
+                                </div>
+                                
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Step 2
+                                    </h3>
+                                    <div class="stepper-desc">
+                                        Dokumen Perjalanan Luar Negeri
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stepper-line h-40px"></div>
+                        </div>
+
+                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check fas fa-check"></i>
+                                    <span class="stepper-number">3</span>
+                                </div>
+                                
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Step 3
+                                    </h3>
+                                    <div class="stepper-desc">
+                                        Pengalaman Kerja & English Skills
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stepper-line h-40px"></div>
+                        </div>
+
+                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check fas fa-check"></i>
+                                    <span class="stepper-number">4</span>
+                                </div>
+                                
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Step 4
+                                    </h3>
+                                    <div class="stepper-desc">
+                                        Pertanyaan Screening
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stepper-line h-40px"></div>
+                        </div>
+
+                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <div class="stepper-icon w-40px h-40px">
+                                    <i class="stepper-check fas fa-check"></i>
+                                    <span class="stepper-number">5</span>
+                                </div>
+                                
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Step 5
+                                    </h3>
+                                    <div class="stepper-desc">
+                                        English Skills
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {{-- <div class="stepper-line h-40px"></div> --}}
+                        </div>
+
+
+
+                        {{-- <!--begin::Step 1-->
                         <div class="stepper-item me-5 current" data-kt-stepper-element="nav">
                             <!--begin::Line-->
                             <div class="stepper-line w-40px"></div>
@@ -112,11 +211,11 @@
                                 </div>
                             </div>
                             <!--end::Label-->
-                        </div>
+                        </div> --}}
                         <!--end::Step 1-->
 
                         <!--begin::Step 2-->
-                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                        {{-- <div class="stepper-item me-5" data-kt-stepper-element="nav">
                             <!--begin::Line-->
                             <div class="stepper-line w-40px"></div>
                             <!--end::Line-->
@@ -139,11 +238,11 @@
                                 </div>
                             </div>
                             <!--end::Label-->
-                        </div>
+                        </div> --}}
                         <!--end::Step 2-->
 
                         <!--begin::Step 3-->
-                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                        {{-- <div class="stepper-item me-5" data-kt-stepper-element="nav">
                             <!--begin::Line-->
                             <div class="stepper-line w-40px"></div>
                             <!--end::Line-->
@@ -166,11 +265,11 @@
                                 </div>
                             </div>
                             <!--end::Label-->
-                        </div>
+                        </div> --}}
                         <!--end::Step 3-->
 
                         <!--begin::Step 4-->
-                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                        {{-- <div class="stepper-item me-5" data-kt-stepper-element="nav">
                             <!--begin::Line-->
                             <div class="stepper-line w-40px"></div>
                             <!--end::Line-->
@@ -193,11 +292,11 @@
                                 </div>
                             </div>
                             <!--end::Label-->
-                        </div>
+                        </div> --}}
                         <!--end::Step 5-->
 
                         <!--begin::Step 5-->
-                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                        {{-- <div class="stepper-item me-5" data-kt-stepper-element="nav">
                             <!--begin::Line-->
                             <div class="stepper-line w-40px"></div>
                             <!--end::Line-->
@@ -220,11 +319,11 @@
                                 </div>
                             </div>
                             <!--end::Label-->
-                        </div>
+                        </div> --}}
                         <!--end::Step 5-->
 
                         <!--begin::Step 4-->
-                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                        {{-- <div class="stepper-item me-5" data-kt-stepper-element="nav">
                             <!--begin::Line-->
                             <div class="stepper-line w-40px"></div>
                             <!--end::Line-->
@@ -247,7 +346,7 @@
                                 </div>
                             </div>
                             <!--end::Label-->
-                        </div>
+                        </div> --}}
                         <!--end::Step 4-->
                     </div>
                     <!--end::Nav-->
@@ -266,20 +365,18 @@
                                     <!--begin::Label-->
                                     <label class="form-label">Minat Pekarjaan</label>
                                     <!--end::Label-->
-                                    <div class="input-group">
-                                        <select class="form-select" aria-label="dropdownNegara">
-                                            <option selected>Negara Yang Diminat</option>
-                                            <option value="1">Belgia</option>
-                                            <option value="2">Romania</option>
-                                            <option value="3">Francis</option>
-                                        </select>
-                                        <select class="form-select" aria-labelledby="dropdownKategori">
-                                            <option selected>Kategori Yang Diminati</option>
-                                            <option value="1">Manufacturing</option>
-                                            <option value="2">Healthcare</option>
-                                            <option value="3">Agriculture</option>
-                                        </select>
-                                    </div>
+                                    <select class="form-select mb-5" aria-label="dropdownNegara">
+                                        <option selected>Negara Yang Diminat</option>
+                                        <option value="1">Belgia</option>
+                                        <option value="2">Romania</option>
+                                        <option value="3">Francis</option>
+                                    </select>
+                                    <select class="form-select" aria-labelledby="dropdownKategori">
+                                        <option selected>Kategori Yang Diminati</option>
+                                        <option value="1">Manufacturing</option>
+                                        <option value="2">Healthcare</option>
+                                        <option value="3">Agriculture</option>
+                                    </select>
 
                                     <!--end::Input-->
                                 </div>
@@ -289,46 +386,41 @@
                                 <label class="form-label">Informasi Pribadi</label>
                                 <!--end::Label-->
                                 <div class="fv-row mb-10">
-                                    <input type="text" class="form-control " name="nik"
-                                        placeholder="Nomor E-KTP (NIK)" value="" />
-                                    <input type="text" class="form-control " name="nama" placeholder="Nama Lengkap"
+                                    <input type="text" class="form-control mb-5" name="nik" placeholder="Nomor E-KTP (NIK)" value="" />
+                                    <input type="text" class="form-control mb-5" name="nama" placeholder="Nama Lengkap"
                                         value="" />
-                                    <input type="text" class="form-control " name="tmp_lahir" placeholder="Tempat Lahir"
+                                    <input type="text" class="form-control mb-5" name="tmp_lahir" placeholder="Tempat Lahir"
                                         value="" />
                                     <div class="input-group mb-10">
-                                        <input type="text" class="form-control" name="tgl_lahir"
-                                            placeholder="Tanggal Lahir" value="" />
-                                        <input type="text" class="form-control" name="usia" placeholder="Usia"
-                                            value="" />
+                                        <input type="text" class="form-control mb-5" name="tgl_lahir" placeholder="Tanggal Lahir" value="" />
+                                        <input type="text" class="form-control mb-5" name="usia" placeholder="Usia" value="" />
                                     </div>
-                                    <input type="text" class="form-control" name="agama" placeholder="Agama"
-                                        value="" />
+                                    <input type="text" class="form-control mb-5" name="agama" placeholder="Agama" value="" />
                                     <div class="input-group mb-10">
                                         <input type="text" class="form-control" name="bb"
                                             placeholder="Berat Badan" value="" />
                                         <input type="text" class="form-control" name="tb"
                                             placeholder="Tinggi Badan" value="" />
                                     </div>
-                                    <input type="text" class="form-control" name="nik"
+                                    <input type="text" class="form-control mb-5" name="nik"
                                         placeholder="Jenis Kelamin" value="" />
-                                    <input type="text" class="form-control" name="nik" placeholder="Status Kawin"
+                                    <input type="text" class="form-control mb-5" name="nik" placeholder="Status Kawin"
                                         value="" />
-                                    <input type="text" class="form-control" name="nik"
+                                    <input type="text" class="form-control mb-5" name="nik"
                                         placeholder="Nama Lengkap Ayah" value="" />
-                                    <input type="text" class="form-control" name="nik"
+                                    <input type="text" class="form-control mb-5" name="nik"
                                         placeholder="Nama Lengkap Ibu" value="" />
-                                    <textarea class="form-control" rows="3" name="input2" placeholder="Alamat"></textarea>
-                                    <div class="input-group">
-                                        <select class="form-select" aria-labelledby="provinsi">
-                                            <option selected>Provinsi</option>
-                                        </select>
-                                        <select class="form-select" aria-labelledby="kota">
-                                            <option selected>Kota/Kaupaten</option>
-                                        </select>
-                                        <select class="form-select" aria-labelledby="kecamatan">
-                                            <option selected>Kecamatan</option>
-                                        </select>
-                                    </div>
+                                    <textarea class="form-control mb-5" rows="3" name="input2" placeholder="Alamat"></textarea>
+                                    
+                                    <select class="form-select mb-5" aria-labelledby="provinsi">
+                                        <option selected>Provinsi</option>
+                                    </select>
+                                    <select class="form-select mb-5" aria-labelledby="kota">
+                                        <option selected>Kota/Kaupaten</option>
+                                    </select>
+                                    <select class="form-select mb-5" aria-labelledby="kecamatan">
+                                        <option selected>Kecamatan</option>
+                                    </select>
                                     <input type="text" class="form-control" name="nik"
                                         placeholder="Dari mana kamu mengetahui kami ?" value="" />
                                 </div>
@@ -511,6 +603,20 @@
             <!--end::Stepper-->
         </div>
     </div>
+@endsection
+@push('css')
+    <link rel="stylesheet" href="https://preview.keenthemes.com/html/metronic/docs/assets/css/style.bundle.css">
+    <style>
+        .stepper.stepper-pills.stepper-column .stepper-line {
+            position: unset !important;
+            transform: unset !important;
+        }
+    </style>
+@endpush
+@push('script')
+    <script src="https://preview.keenthemes.com/html/metronic/docs/assets/js/scripts.bundle.js"></script>
+    <script src="https://preview.keenthemes.com/html/metronic/docs/assets/js/custom/documentation/general/stepper.js"></script>
+    
 
     <script>
         // Stepper lement
@@ -529,4 +635,4 @@
             stepper.goPrevious(); // go previous step
         });
     </script>
-@endsection
+@endpush
