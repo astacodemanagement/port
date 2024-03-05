@@ -157,3 +157,5 @@ Route::put('/step/update/{id}', [StepController::class, 'update'])->name('step.u
 
 
 Route::get('/home', [HomeController::class, 'index']);
+
+Auth::routes();
