@@ -467,37 +467,37 @@
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="default/breadcrumb.html" class="waves-effect waves-dark">
+                                                <a href="/seleksi_lolos_kualifikasi" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Lolos Kualifikasi</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="default/button.html" class="waves-effect waves-dark">
+                                                <a href="/seleksi_interview" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Interview</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="default/alert.html" class="waves-effect waves-dark">
+                                                <a href="/seleksi_lolos_interview" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Lolos Interview</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="default/breadcrumb.html" class="waves-effect waves-dark">
+                                                <a href="/seleksi_dalam_proses" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Dalam Proses</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="default/button.html" class="waves-effect waves-dark">
+                                                <a href="/seleksi_terbang" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Terbang</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="default/button.html" class="waves-effect waves-dark">
+                                                <a href="/seleksi_selesai_kontrak" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Selesai Kontrak</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="default/button.html" class="waves-effect waves-dark">
+                                                <a href="/seleksi_batal" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Batal</span>
                                                 </a>
                                             </li>

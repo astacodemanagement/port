@@ -1,6 +1,6 @@
 @extends('back.layouts.app')
-@section('title', 'Halaman Seleksi')
-@section('subtitle', 'Menu Seleksi')
+@section('title', 'Halaman Seleksi Batal')
+@section('subtitle', 'Menu Seleksi Batal')
 @push('css')
     @extends('back.layouts.css_datatables')
 @endpush

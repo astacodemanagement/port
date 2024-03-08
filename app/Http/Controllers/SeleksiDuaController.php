@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class SeleksiController extends Controller
+class SeleksiDuaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class SeleksiController extends Controller
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
-            ->where('seleksi.status', 'Cek Kualifikasi') // Menambahkan klausa where untuk status
+            ->where('seleksi.status', 'Lolos Kualifikasi') // Menambahkan klausa where untuk status
             ->select(
                 'seleksi.*',
                 'kandidat.nama_kandidat',
@@ -53,7 +53,7 @@ class SeleksiController extends Controller
     
         $seleksi_group = $seleksi->groupBy('job_id');
     
-        return view('back.seleksi.index', compact('seleksi', 'seleksi_group'));
+        return view('back.seleksi_lolos_kualifikasi.index', compact('seleksi', 'seleksi_group'));
     }
     
 
@@ -122,7 +122,7 @@ class SeleksiController extends Controller
      */
     public function edit($id)
     {
-        
+         
     }
 
     /**
@@ -134,7 +134,7 @@ class SeleksiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+       
     }
 
     /**

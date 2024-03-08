@@ -17,7 +17,9 @@ use App\Http\Controllers\StepController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\RejectVerifikasiController;
+use App\Http\Controllers\SeleksiBatalController;
 use App\Http\Controllers\SeleksiController;
+use App\Http\Controllers\SeleksiDuaController;
 use App\Http\Controllers\SudahVerifikasiController;
 use Illuminate\Support\Facades\Route;
 
@@ -74,6 +76,18 @@ Route::get('/reject_diverifikasi/{id}/detail', [RejectVerifikasiController::clas
 Route::get('/seleksi', [SeleksiController::class, 'index']);
 Route::post('/update-status-seleksi', [SeleksiController::class, 'updateStatus'])->name('update.status'); 
 Route::get('/seleksi/{id}/detail', [SeleksiController::class, 'detail'])->name('seleksi.detail');
+
+
+// Awal Seleksi Dua Lolos Kualifikasi
+Route::get('/seleksi_lolos_kualifikasi', [SeleksiDuaController::class, 'index']);
+Route::post('/update-status-seleksi_lolos_kualifikasi', [SeleksiDuaController::class, 'updateStatus'])->name('update.status'); 
+Route::get('/seleksi_lolos_kualifikasi/{id}/detail', [SeleksiDuaController::class, 'detail'])->name('seleksi_lolos_kualifikasi.detail');
+
+
+// Awal Seleksi Batal
+Route::get('/seleksi_batal', [SeleksiBatalController::class, 'index']);
+Route::post('/update-status-seleksi_batal', [SeleksiBatalController::class, 'updateStatus'])->name('update.status'); 
+Route::get('/seleksi_batal/{id}/detail', [SeleksiBatalController::class, 'detail'])->name('seleksi_batal.detail');
 
 
 
