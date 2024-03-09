@@ -360,7 +360,7 @@
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class>
-                                                <a href="/belum_diverifikasi" class="waves-effect waves-dark">
+                                                <a href="{{ route('pengguna.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Pengguna</span>
                                                 </a>
                                             </li>

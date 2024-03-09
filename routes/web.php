@@ -16,6 +16,7 @@ use App\Http\Controllers\StepController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KandidatController;
+use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\RejectVerifikasiController;
 use App\Http\Controllers\SeleksiBatalController;
 use App\Http\Controllers\SeleksiController;
@@ -40,6 +41,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [DashboardController::class, 'index']);
+
+Route::resource('pengguna', PenggunaController::class);
 
 // Kandidat
 Route::get('/kandidat', [KandidatController::class, 'index']);
