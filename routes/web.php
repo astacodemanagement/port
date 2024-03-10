@@ -16,12 +16,16 @@ use App\Http\Controllers\StepController;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KandidatController;
+use App\Http\Controllers\PemasukanController;
+use App\Http\Controllers\PengaduanController;
+use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\RejectVerifikasiController;
 use App\Http\Controllers\SeleksiBatalController;
 use App\Http\Controllers\SeleksiController;
 use App\Http\Controllers\SeleksiDuaController;
 use App\Http\Controllers\SudahVerifikasiController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -135,7 +139,7 @@ Route::put('/slider/update/{id}', [SliderController::class, 'update'])->name('sl
 Route::get('/galeri', [GaleriController::class, 'index']);
 Route::resource('galeri', GaleriController::class);
 Route::get('/galeri/{id}/edit', [GaleriController::class, 'edit']);
-Route::put('/galeri/update/{id}', [GaleriController::class, 'update'])->name('slider.update');
+Route::put('/galeri/update/{id}', [GaleriController::class, 'update'])->name('pengaduan.update');
 
 
 // Review
@@ -170,7 +174,28 @@ Route::resource('step', StepController::class);
 Route::get('/step/{id}/edit', [StepController::class, 'edit']);
 Route::put('/step/update/{id}', [StepController::class, 'update'])->name('step.update');
 
+// Pengaduan
+Route::get('/pengaduan', [PengaduanController::class, 'index']);
+Route::resource('pengaduan', PengaduanController::class);
+Route::get('/pengaduan/{id}/edit', [PengaduanController::class, 'edit']);
+Route::put('/pengaduan/update/{id}', [PengaduanController::class, 'update'])->name('pengaduan.update');
 
+
+// Pemasukan
+Route::get('/pemasukan', [PemasukanController::class, 'index']);
+Route::resource('pemasukan', PemasukanController::class);
+Route::get('/pemasukan/{id}/edit', [PemasukanController::class, 'edit']);
+Route::put('/pemasukan/update/{id}', [PemasukanController::class, 'update'])->name('pemasukan.update');
+
+
+
+// Pengeluaran
+Route::get('/pengeluaran', [PengeluaranController::class, 'index']);
+Route::resource('pengeluaran', PengeluaranController::class);
+Route::get('/pengeluaran/{id}/edit', [PengeluaranController::class, 'edit']);
+Route::put('/pengeluaran/update/{id}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
+
+ 
 
 
 Route::get('/home', [HomeController::class, 'index']);

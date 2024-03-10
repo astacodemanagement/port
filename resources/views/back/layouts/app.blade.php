@@ -517,6 +517,30 @@
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class>
+                                        <a href="/pemasukan" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="feather icon-corner-down-left"></i></span>
+                                            <span class="pcoded-mtext">Pemasukan</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class>
+                                        <a href="/pengeluaran" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="feather icon-corner-down-right"></i></span>
+                                            <span class="pcoded-mtext">Pengeluaran</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class>
+                                        <a href="/pengaduan" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="feather icon-phone-call"></i></span>
+                                            <span class="pcoded-mtext">Pengaduan</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class>
                                         <a href="/log_histori" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-message-circle"></i></span>
                                             <span class="pcoded-mtext">Log Histori</span>
