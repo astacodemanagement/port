@@ -223,6 +223,7 @@
                                                                             name="status">
                                                                             <option value="Verifikasi">Verifikasi</option>
                                                                             <option value="Reject">Reject</option>
+                                                                            <option value="Pending">Pending</option>
                                                                             <!-- Add other status options if needed -->
                                                                         </select>
                                                                     </div>
