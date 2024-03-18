@@ -64,13 +64,14 @@ class SeleksiDalamProsesController extends Controller
     public function detail($id)
     {
         // $seleksi = Seleksi::select('seleksi.*', 'job.nama_job as nama_job', 'kandidat.nama_lengkap as nama_lengkap')
+        $detail_bayar = DetailBayar::orderBy('id', 'desc')->get();
         $seleksi_dalam_proses = Seleksi::select('*')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->where('seleksi.id', $id)
             ->first();
 
-        return view('back.seleksi_dalam_proses.detail', compact('seleksi_dalam_proses'));
+        return view('back.seleksi_dalam_proses.detail', compact('seleksi_dalam_proses','detail_bayar'));
     }
 
 
@@ -105,8 +106,8 @@ class SeleksiDalamProsesController extends Controller
     }
 
 
-    public function updateDetail(Request $request, $id)
-    {
+    public function updateDetail(Request $request, $id) {
+    
         // Validasi request
         $validator = Validator::make($request->all(), [
             // 'tanggal_bayar' => 'required|date',
@@ -132,9 +133,10 @@ class SeleksiDalamProsesController extends Controller
 
         // Hapus karakter titik dan koma dari nilai total_biaya sebelum disimpan
         $seleksi->total_biaya = str_replace(['.', ','], '', $request->total_biaya);
+        $seleksi->total_bayar = str_replace(['.', ','], '', $request->total_bayar);
+        $seleksi->sisa_bayar = str_replace(['.', ','], '', $request->sisa_bayar);
 
-        $seleksi->total_bayar = $request->total_bayar;
-        $seleksi->sisa_bayar = $request->sisa_bayar;
+    
 
         if ($request->hasFile('bukti_bayar')) {
             $image = $request->file('bukti_bayar');
@@ -266,9 +268,62 @@ class SeleksiDalamProsesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function delete($id)
+    {
+        $bukti_bayar = DetailBayar::find($id);
+
+        if (!$bukti_bayar) {
+            return response()->json(['message' => 'Data bukti_bayar not found'], 404);
+        }
+
+        // Hapus file terkait jika ada sebelum menghapus entitas dari database
+        $oldBuktiFileName = $bukti_bayar->bukti_bayar; // Nama file saja
+        $oldBuktiPath = public_path('upload/bukti_bayar/' . $oldBuktiFileName);
+
+        if ($oldBuktiFileName && file_exists($oldBuktiPath)) {
+            unlink($oldBuktiPath);
+        }
+
+        $bukti_bayar->delete();
+
+        $loggedInUserId = Auth::id();
+
+        // Simpan log histori untuk operasi Delete dengan user_id yang sedang login dan informasi data yang dihapus
+        $this->simpanLogHistori('Delete', 'bukti_bayar', $id, $loggedInUserId, json_encode($bukti_bayar), null);
+
+
+        return response()->json(['message' => 'Data Berhasil Dihapus']);
+    }
+
+
     public function destroy($id)
     {
+        $bukti_bayar = DetailBayar::find($id);
+
+        if (!$bukti_bayar) {
+            return response()->json(['message' => 'Data bukti_bayar not found'], 404);
+        }
+
+        // Hapus file terkait jika ada sebelum menghapus entitas dari database
+        $oldBuktiFileName = $bukti_bayar->bukti_bayar; // Nama file saja
+        $oldBuktiPath = public_path('upload/bukti_bayar/' . $oldBuktiFileName);
+
+        if ($oldBuktiFileName && file_exists($oldBuktiPath)) {
+            unlink($oldBuktiPath);
+        }
+
+        $bukti_bayar->delete();
+
+        $loggedInUserId = Auth::id();
+
+        // Simpan log histori untuk operasi Delete dengan user_id yang sedang login dan informasi data yang dihapus
+        $this->simpanLogHistori('Delete', 'bukti_bayar', $id, $loggedInUserId, json_encode($bukti_bayar), null);
+
+
+        return response()->json(['message' => 'Data Berhasil Dihapus']);
     }
+
+
 
 
 

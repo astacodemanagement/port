@@ -3,6 +3,7 @@
 use App\Http\Controllers\AlasanController;
 use App\Http\Controllers\BelumVerifikasiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DetailBayarController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\JobController;
@@ -31,6 +32,7 @@ use App\Http\Controllers\SeleksiSelesaiKontrakController;
 use App\Http\Controllers\SeleksiTerbangController;
 use App\Http\Controllers\SemuaSeleksiController;
 use App\Http\Controllers\SudahVerifikasiController;
+use App\Models\DetailBayar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -119,9 +121,10 @@ Route::get('/seleksi_dalam_proses', [SeleksiDalamProsesController::class, 'index
 Route::get('/seleksi_dalam_proses/{id}/detail', [SeleksiDalamProsesController::class, 'detail'])->name('seleksi_dalam_proses.detail');
 Route::post('/update-status-seleksi_dalam_proses', [SeleksiDalamProsesController::class, 'updateStatus'])->name('update_seleksi_dalam_proses.status'); 
 Route::put('/seleksi_dalam_proses/update/{id}', [SeleksiDalamProsesController::class, 'updateDetail'])->name('updateDetail.update');
-
 Route::post('/tambah-pembayaran', [SeleksiDalamProsesController::class, 'tambahPembayaran'])->name('tambahPembayaran'); 
  
+Route::get('/hapus-detail-bayar/{id}', [DetailBayarController::class, 'hapusDetailBayar'])->name('detail_bayar.hapus');
+
 
 
 //  Seleksi Terbang

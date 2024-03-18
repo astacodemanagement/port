@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css" />
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/bower_components/multiselect/css/multi-select.css" /> --}}
 
-
+    @extends('back.layouts.css_datatables')
     <link rel="stylesheet" type="text/css"
         href="{{ asset('template') }}/files/assets/icon/font-awesome/css/font-awesome.min.css">
 
@@ -28,7 +28,7 @@
                     <div class="page-header-title">
                         <i class="feather icon-list bg-c-blue"></i>
                         <div class="d-inline">
-                            <h5>Detail Pendaftaran Verifikasi</h5>
+                            <h5>Detail Dalam Proses</h5>
                             {{-- <span>Silahkan isi dengan data yang sesuai dan valid !</span> --}}
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             <li class="breadcrumb-item">
                                 <a href="/"><i class="feather icon-home"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#!">Halaman Detail Pendaftaran Verifikasi</a>
+                            <li class="breadcrumb-item"><a href="#!">Halaman Detail Dalam Proses</a>
                             </li>
 
                         </ul>
@@ -809,8 +809,19 @@
                                                                                         value="{{ $seleksi_dalam_proses->biaya_mcu }}"
                                                                                         onchange="hitungTotalBiaya()">
                                                                                 </div>
-
                                                                                 <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="total_biaya">Total
+                                                                                        Biaya</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="total_biaya"
+                                                                                        name="total_biaya"
+                                                                                        value="{{ number_format($seleksi_dalam_proses->total_biaya, 0, ',', ',') }}"
+                                                                                        readonly>
+                                                                                </div>
+
+                                                                                {{-- <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="total_biaya">Total Biaya
                                                                                     </label>
@@ -820,7 +831,7 @@
                                                                                         name="total_biaya"
                                                                                         value=" {{ number_format($seleksi_dalam_proses->total_biaya, 0, ',', ',') }}"
                                                                                         readonly>
-                                                                                </div>
+                                                                                </div> --}}
                                                                             </div>
 
                                                                             <script>
@@ -870,20 +881,26 @@
                                                                                         class="form-control"
                                                                                         id="total_bayar"
                                                                                         name="total_bayar"
-                                                                                        value="{{ number_format($seleksi_dalam_proses->total_bayar, 0, ',', ',') }}"
+                                                                                        value="{{ number_format($detail_bayar->sum('jumlah_bayar'), 0, ',', ',') }}"
                                                                                         readonly>
                                                                                 </div>
-
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="sisa_bayar">Sisa Bayar</label>
+                                                                                    <?php
+                                                                                    $totalBiaya = $seleksi_dalam_proses->total_biaya;
+                                                                                    $totalBayar = $detail_bayar->sum('jumlah_bayar');
+                                                                                    $sisaBayar = $totalBiaya - $totalBayar;
+                                                                                    ?>
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="sisa_bayar" name="sisa_bayar"
-                                                                                        value="{{ number_format($seleksi_dalam_proses->sisa_bayar, 0, ',', ',') }}"
+                                                                                        value="{{ number_format($sisaBayar, 0, ',', ',') }}"
                                                                                         readonly>
                                                                                 </div>
+
                                                                             </div>
+
 
 
 
@@ -896,47 +913,69 @@
                                                                                 Tambah Pembayaran</a>
                                                                             <hr>
                                                                             <br><br>
-                                                                            <table id="order-table2"
-                                                                                class="table table-striped table-bordered nowrap">
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th width="5%">No</th>
-                                                                                        <th width="10%">Tanggal Bayar
-                                                                                        </th>
-                                                                                        <th width="10%">Total Bayar</th>
-                                                                                        <th width="5%"
-                                                                                            class="text-center"
-                                                                                            width="5%">Bukti Bayar</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
+                                                                            <div class="dt-responsive table-responsive">
+                                                                                <table id="order-table"
+                                                                                    class="table table-striped table-bordered nowrap">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th width="5%">No</th>
+                                                                                            <th width="10%">Tanggal
+                                                                                                Bayar</th>
+                                                                                            <th width="10%">Total Bayar
+                                                                                            </th>
+                                                                                            <th width="5%"
+                                                                                                class="text-center">Bukti
+                                                                                                Bayar</th>
+                                                                                            <th width="10%">Aksi</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach ($detail_bayar as $p)
+                                                                                            <tr>
+                                                                                                <td>{{ $loop->iteration }}
+                                                                                                </td>
+                                                                                                <td>{{ $p->tanggal_bayar }}
+                                                                                                </td>
+                                                                                                <td>Rp.
+                                                                                                    {{ number_format($p->jumlah_bayar, 0, ',', ',') }}
+                                                                                                </td>
+                                                                                                <td
+                                                                                                    class="text-center d-flex">
+                                                                                                    <a href="/upload/bukti_bayar/{{ $p->bukti_bayar }}"
+                                                                                                        target="_blank">
+                                                                                                        <img style="max-width:50px; max-height:50px"
+                                                                                                            src="/upload/bukti_bayar/{{ $p->bukti_bayar }}"
+                                                                                                            alt="">
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <a href="#"
+                                                                                                        data-id="{{ $p->id }}"
+                                                                                                        class="btn btn-sm btn-danger btn-hapus"
+                                                                                                        style="color: white">
+                                                                                                        <i
+                                                                                                            class="fas fa-trash-alt"></i>
+                                                                                                        Delete
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        @endforeach
+                                                                                    </tbody>
+                                                                                    <tfoot>
+                                                                                        <tr>
+                                                                                            <th colspan="2"></th>
+                                                                                            <th>Rp.
+                                                                                                {{ number_format($detail_bayar->sum('jumlah_bayar'), 0, ',', ',') }}
+                                                                                            </th>
+                                                                                            <th></th>
+                                                                                            <th></th>
+                                                                                        </tr>
+                                                                                    </tfoot>
+                                                                                </table>
 
-                                                                                    <tr>
-                                                                                        <td>1</td>
-                                                                                        <td>1</td>
-                                                                                        <td>1</td>
-
-                                                                                        <td class="text-center d-flex">
-
-                                                                                            <a href=""
-                                                                                                data-toggle="modal"
-                                                                                                data-target="#ubahStatusModal"
-                                                                                                class="form-control mr-2"
-                                                                                                style="background-color: #00324F; color: #fff; font-size: 12px; "
-                                                                                                title="Detail">
-                                                                                                <i class="fa fa-eye"></i>
-                                                                                                Lihat Bukti Bayar
-
-                                                                                            </a>
+                                                                            </div>
 
 
-                                                                                        </td>
-                                                                                    </tr>
-
-
-                                                                                </tbody>
-
-                                                                            </table>
 
 
                                                                         </div>
@@ -949,6 +988,7 @@
 
                                                             </div>
 
+
                                                             <a href="javascript:history.back()"
                                                                 class="btn btn-warning waves-effect waves-light mt-3">
                                                                 <i class="fas fa-undo"></i> Kembali
@@ -957,7 +997,7 @@
 
                                                             <button type="button"
                                                                 class="btn btn-primary waves-effect waves-light mt-3"
-                                                                id="btn-update-verifikasi" style="float: right;">
+                                                                id="btn-update-seleksi" style="float: right;">
                                                                 <i class="fas fa-save"></i> Update
                                                             </button>
                                                             {{-- <button type="button"
@@ -995,7 +1035,8 @@
                 <div class="modal fade" id="ubahStatusModal" tabindex="-1" role="dialog"
                     aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
                     <!-- Add your form with combo box for status update -->
-                    <form action="{{ route('tambahPembayaran') }}" id="form-pembayaran" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('tambahPembayaran') }}" id="form-pembayaran" method="post"
+                        enctype="multipart/form-data">
                         @csrf <!-- Tambahkan token CSRF -->
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -1029,7 +1070,7 @@
                                         <input type="file" class="form-control" id="bukti_bayar" name="bukti_bayar">
                                     </div>
                                     <!-- Add hidden input for the Pendaftaran ID -->
-                                    
+
 
                                 </div>
                                 <div class="modal-footer">
@@ -1057,6 +1098,7 @@
 
 
             @push('script')
+                @include('back.layouts.js_datatables')
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         // Ambil semua input dengan kelas border-checkbox
@@ -1086,6 +1128,15 @@
                 <script type="text/javascript"
                     src="{{ asset('template') }}/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
 
+
+                <script>
+                    $(document).ready(function() {
+                        $('#order-table3').DataTable();
+                        // Sembunyikan tabel kedua saat halaman dimuat
+
+                    });
+                </script>
+
                 {{-- TAMBAH --}}
                 <script>
                     $(document).ready(function() {
@@ -1106,7 +1157,8 @@
                                 },
                                 processData: false,
                                 success: function(response) {
-                                    $('#ubahStatusModal').modal('hide'); // Sembunyikan modal setelah berhasil disimpan
+                                    $('#ubahStatusModal').modal(
+                                        'hide'); // Sembunyikan modal setelah berhasil disimpan
                                     Swal.fire({
                                         title: 'Sukses!',
                                         text: response.message,
@@ -1136,15 +1188,88 @@
                         });
                     });
                 </script>
-                
+
+
+
+                {{-- HAPUS DATA --}}
+                <script>
+                    $(document).ready(function() {
+                        $('.btn-hapus').click(function(e) {
+                            e.preventDefault();
+                            var id = $(this).data('id');
+
+                            Swal.fire({
+                                title: 'Apakah Anda yakin?',
+                                text: 'Data akan dihapus permanen!',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Ya, hapus!',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        url: '/hapus-detail-bayar/' + id,
+                                        type: 'GET',
+                                        success: function(response) {
+                                            Swal.fire({
+                                                title: 'Sukses!',
+                                                text: response.message,
+                                                icon: 'success',
+                                                confirmButtonText: 'OK',
+                                            }).then(function() {
+                                                location.reload();
+                                            });
+                                        },
+                                        error: function(xhr) {
+                                            Swal.fire({
+                                                title: 'Error!',
+                                                text: 'Gagal menghapus data.',
+                                                icon: 'error',
+                                                confirmButtonText: 'OK',
+                                            });
+                                        },
+                                    });
+                                }
+                            });
+                        });
+                    });
+                </script>
+
+
+                <script>
+                    // Fungsi untuk mengambil nilai total bayar dari tabel dan memasukkannya ke dalam input
+                    function updateTotalBayar() {
+                        var totalBayar = 0;
+                        $('#order-table tbody tr').each(function() {
+                            var jumlahBayar = $(this).find('td:nth-child(3)').text().replace('Rp. ', '').replace(',', '')
+                                .trim();
+                            totalBayar += parseFloat(jumlahBayar);
+                        });
+                        $('#total_bayar').val(formatRupiah(totalBayar));
+                    }
+
+                    // Fungsi untuk memformat angka menjadi format Rupiah
+                    function formatRupiah(angka) {
+                        var reverse = angka.toString().split('').reverse().join(''),
+                            ribuan = reverse.match(/\d{1,3}/g);
+                        ribuan = ribuan.join('.').split('').reverse().join('');
+                        return ribuan;
+                    }
+
+                    // Panggil fungsi saat halaman dimuat
+                    $(document).ready(function() {
+                        updateTotalBayar();
+                    });
+                </script>
 
 
                 {{-- PERINTAH UPDATE DATA --}}
                 <script>
                     $(document).ready(function() {
-                        $('#btn-update-verifikasi').click(function(e) {
+                        $('#btn-update-seleksi').click(function(e) {
                             e.preventDefault();
-                            const tombolUpdate = $('#btn-update-verifikasi');
+                            const tombolUpdate = $('#btn-update-seleksi');
                             var id = $('#id').val();
                             var formData = new FormData($('#form_verifikasi')[0]);
 
