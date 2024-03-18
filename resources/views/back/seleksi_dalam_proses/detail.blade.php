@@ -995,7 +995,7 @@
                 <div class="modal fade" id="ubahStatusModal" tabindex="-1" role="dialog"
                     aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
                     <!-- Add your form with combo box for status update -->
-                    <form action="{{ route('tambahPembayaran') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('tambahPembayaran') }}" id="form-pembayaran" method="post" enctype="multipart/form-data">
                         @csrf <!-- Tambahkan token CSRF -->
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
