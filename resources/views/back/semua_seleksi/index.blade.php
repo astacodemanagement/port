@@ -1,6 +1,6 @@
 @extends('back.layouts.app')
-@section('title', 'Halaman Seleksi')
-@section('subtitle', 'Menu Seleksi')
+@section('title', 'Halaman Semua Seleksi')
+@section('subtitle', 'Menu Semua Seleksi')
 @push('css')
     @extends('back.layouts.css_datatables')
 @endpush
@@ -16,7 +16,7 @@
                     <div class="page-header-title">
                         <i class="feather icon-list bg-c-blue"></i>
                         <div class="d-inline">
-                            <h5>Seleksi</h5>
+                            <h5>Semua Seleksi</h5>
                             <span>Silahkan isi dengan data yang sesuai dan valid !</span>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                             <li class="breadcrumb-item">
                                 <a href="/"><i class="feather icon-home"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#!">Halaman Seleksi</a>
+                            <li class="breadcrumb-item"><a href="#!">Halaman Semua Seleksi</a>
                             </li>
 
                         </ul>
@@ -48,7 +48,9 @@
 
                                 <div class="card" id="tb1">
                                     <div class="card-header">
-                                        <h5>  <span class="badge badge-pill badge-warning" style="color: #2c2f30; display: inline-block;"> Data Cek Kualifikasi</span> </h5>
+                                        <h5> <span class="badge badge-pill badge-primary"
+                                                style="color: #ecf1f3; display: inline-block;"> Data Semua Seleksi</span>
+                                        </h5>
 
                                     </div>
                                     <div class="card-block">
@@ -59,6 +61,7 @@
                                                     <tr>
                                                         <th width="5%">No</th>
                                                         <th width="15%">Posisi</th>
+
                                                         <th width="15%">Negara</th>
                                                         <th width="15%">Nama Perusahaan</th>
                                                         <th width="5%">Mitra</th>
@@ -74,13 +77,18 @@
                                                                 <td>{{ $loop->iteration }}</td>
                                                                 <td><b>{{ $p->nama_job }}</b></td>
 
+
                                                                 <td>{{ $p->nama_negara }}</td>
                                                                 <td>{{ $p->nama_perusahaan }}</td>
                                                                 <td>{{ $p->mitra }}</td>
-                                                                <td style="text-align: center; font-size:23px;"><span class="label label-danger">{{ count($group) }}</span></td>
-                                                                <td style="text-align: center; font-size:18px;"><span class="label label-warning">{{ $p->nama_kategori_job }}</span></td>
+                                                                <td style="text-align: center; font-size:23px;"><span
+                                                                        class="label label-danger">{{ count($group) }}</span>
+                                                                </td>
+                                                                <td style="text-align: center; font-size:18px;"><span
+                                                                        class="label label-warning">{{ $p->nama_kategori_job }}</span>
+                                                                </td>
                                                                 <td class="text-center">
-                                                                    <a title="Detail" style="color: rgb(242, 236, 236)" href="#"
+                                                                    <a style="color: rgb(242, 236, 236)" href="#"
                                                                         class="btn btn-sm btn-primary btn-detail"
                                                                         data-id="{{ $p->id }}" style="color: black">
                                                                         <i class="fas fa-eye"></i> Detail
@@ -103,7 +111,9 @@
 
                             <div class="card" id="tb2">
                                 <div class="card-header">
-                                    <h5>  <span class="badge badge-pill badge-warning" style="color: #2c2f30; display: inline-block;"> Data Cek Kualifikasi</span> </h5>
+                                    <h5> <span class="badge badge-pill badge-primary"
+                                            style="color: #ecf1f3; display: inline-block;"> Data Semua Seleksi</span>
+                                    </h5>
 
                                 </div>
                                 <div class="card-block">
@@ -114,12 +124,11 @@
                                                 <tr>
                                                     <th width="5%">No</th>
                                                     <th width="15%">Tanggal Apply</th>
+                                                    <th width="15%">Tanggal Interview</th>
                                                     <th width="15%">Nama Kandidat</th>
                                                     <th width="15%">Posisi</th>
-                                                    <th width="15%">Negara</th>
                                                     <th width="15%">Nama Perusahaan</th>
-                                                    <th width="5%">Kategori Industri Pekerjaan</th>
-                                                    <th width="5%">Status Seleksi</th>
+                                                    <th width="5%">Status Semua Seleksi</th>
                                                     <th width="15%" class="text-center" width="5%">Aksi</th>
                                                 </tr>
                                             </thead>
@@ -129,11 +138,10 @@
                                                         <tr data-job-id="{{ $jobId }}">
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p2->created_at }}</td>
+                                                            <td> {{ $p2->tanggal_interview }} </td>
                                                             <td>{{ $p2->nama_kandidat }}</td>
                                                             <td>{{ $p2->nama_job }}</td>
-                                                            <td>{{ $p2->nama_negara }}</td>
                                                             <td>{{ $p2->nama_perusahaan }}</td>
-                                                            <td>{{ $p2->nama_kategori_job }}</td>
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
 
@@ -141,19 +149,19 @@
                                                                     data-target="#ubahStatusModal{{ $p2->id }}"
                                                                     class="form-control mr-2"
                                                                     style="background-color: #00324F; color: #fff; font-size: 12px; "
-                                                                    title="Ubah Status">
+                                                                    title="Detail">
                                                                     <i class="fa fa-edit"></i>
                                                                     Ubah Status
 
                                                                 </a>
-                                                                <a href="{{ route('seleksi.detail', $p2->id) }}"
+                                                                <a href="{{ route('seleksi_dalam_proses.detail', $p2->id) }}"
                                                                     class="form-control"
                                                                     style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
                                                                     title="Detail">
                                                                     <i class="fa fa-arrow-right"></i>
                                                                     Lihat Detail
                                                                 </a>
-                                                                
+
                                                             </td>
                                                         </tr>
                                                         <!-- Modal -->
@@ -182,16 +190,31 @@
                                                                                 <select class="form-control"
                                                                                     id="statusSelect{{ $p2->id }}"
                                                                                     name="status">
-                                                                                    {{-- <option value="Cek Kualifikasi">Cek Kualifikasi</option> --}}
-                                                                                    <option value="Lolos Kualifikasi">Lolos Kualifikasi</option>
-                                                                                    <option value="Interview">Interview</option>
-                                                                                    <option value="Lolos Interview">Lolos Interview</option>
-                                                                                    <option value="Dalam Proses">Dalam Proses</option>
-                                                                                    <option value="Terbang">Terbang</option>
-                                                                                    <option value="Selesai Kontrak">Selesai Kontrak</option>
-                                                                                    <option value="Batal">Batal</option>
+                                                                                    <option value="Terbang">Terbang
+                                                                                    </option>
+                                                                                    <option value="Cek Kualifikasi">Cek
+                                                                                        Kualifikasi</option>
+                                                                                    <option value="Lolos Kualifikasi">
+                                                                                        Lolos Kualifikasi</option>
+                                                                                    <option value="Interview">
+                                                                                        Interview</option>
+                                                                                    <option value="Lolos Interview">
+                                                                                        Lolos Interview</option>
+                                                                                   
+                                                                                    <option value="Selesai Kontrak">
+                                                                                        Selesai Kontrak</option>
+                                                                                    <option value="Batal">Batal
+                                                                                    </option>
                                                                                     <!-- Add other status options if needed -->
                                                                                 </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    for="keterangan_dalam_proses">Keterangan
+                                                                                    Dari Dalam Proses :</label>
+                                                                                <textarea name="keterangan_dalam_proses" id="keterangan_dalam_proses" cols="30" rows="3"
+                                                                                    class="form-control"></textarea>
+
                                                                             </div>
                                                                             <!-- Add hidden input for the Pendaftaran ID -->
                                                                             <input type="hidden" name="id"
@@ -218,8 +241,8 @@
                                             </tbody>
 
                                         </table>
-                                        <button id="btnClear" class="btn btn-warning" title="Clear atau Kembali"><i
-                                                class="fa fa-undo"></i>Clear</button>
+                                        {{-- <button id="btnClear" class="btn btn-warning"><i
+                                                class="fa fa-undo"></i>Clear</button> --}}
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +270,7 @@
         $(document).ready(function() {
             $('#order-table2').DataTable();
             // Sembunyikan tabel kedua saat halaman dimuat
-            $("#tb2").hide();
+            $("#tb1").hide();
 
             // Tangani klik pada tombol "Detail" pada tabel pertama
             $("#order-table tbody").on("click", ".btn-detail", function() {
@@ -292,7 +315,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/update-status-seleksi', // Sesuaikan dengan URL rute Anda
+                url: '/update-status-seleksi_dalam_proses', // Sesuaikan dengan URL rute Anda
                 data: formData,
                 success: function(response) {
                     // Handle success, tampilkan SweetAlert untuk konfirmasi OK

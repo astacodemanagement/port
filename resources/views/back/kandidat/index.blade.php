@@ -75,29 +75,22 @@
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p->nik }}</td>
-                                                            <td>{{ $p->nama_kandidat }}</td>
+                                                            <td>{{ $p->nama_lengkap }}</td>
                                                             <td>
-                                                                <a href="/upload/kandidat/{{ $p->gambar }}"
-                                                                    target="_blank">
+                                                                <a href="/upload/foto/{{ $p->foto }}" target="_blank">
                                                                     <img style="max-width:50px; max-height:50px"
-                                                                        src="/upload/kandidat/{{ $p->gambar }}"
+                                                                        src="/upload/foto/{{ $p->foto }}"
                                                                         alt="">
                                                                 </a>
                                                             </td>
                                                             <td class="text-center">
-                                                                <a title="Detail" style="color: rgb(242, 236, 236)" href="#"
-                                                                    class="btn btn-sm btn-success btn-detail"
-                                                                    data-toggle="modal" data-target="#modal-detail"
-                                                                    data-id="{{ $p->id }}" style="color: black">
+                                                                <a title="Detail" style="color: rgb(242, 236, 236)" href="{{ route('kandidat.detail', $p->id) }}"
+                                                                    class="btn btn-sm btn-primary btn-detail"
+                                                                     style="color: black">
                                                                     <i class="fas fa-eye"></i> Detail
                                                                 </a>
-                                                                <a title="Edit" style="color: rgb(242, 236, 236)" href="#"
-                                                                    class="btn btn-sm btn-primary btn-edit"
-                                                                    data-toggle="modal" data-target="#modal-edit"
-                                                                    data-id="{{ $p->id }}" style="color: black">
-                                                                    <i class="fas fa-edit"></i> Edit
-                                                                </a>
-                                                                <button title="Hapus" class="btn btn-sm btn-danger btn-hapus"
+                                                                <button title="Hapus"
+                                                                    class="btn btn-sm btn-danger btn-hapus"
                                                                     data-id="{{ $p->id }}" style="color: white">
                                                                     <i class="fas fa-trash-alt"></i> Delete
                                                                 </button>
@@ -121,156 +114,9 @@
 
                 </div>
             </div>
+ 
 
-            {{-- Modal Tambah Data --}}
-            <div class="modal fade" id="modal-kandidat" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <form id="form-kandidat" action="" method="POST" enctype="multipart/form-data">
-                        @csrf <!-- Tambahkan token CSRF -->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Form Input Kandidat</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-
-                                <div class="card-block">
-
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="nama_kandidat">Nama Kandidat</label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
-                                                id="nama_kandidat" name="nama_kandidat">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="keterangan">Keterangan</label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="keterangan" id="keterangan" cols="30" rows="3"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="urutan">Urutan</label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success"
-                                                id="urutan" name="urutan">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="gambar">Upload Gambar Kandidat</label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <input type="file" class="form-control form-control-success"
-                                                id="gambar" name="gambar">
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
-
-
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect "
-                                    data-dismiss="modal">Kembali</button>
-                                <button type="button" class="btn btn-primary waves-effect waves-light"
-                                    id="btn-save-kandidat"><i class="fas fa-save"></i> Simpan</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-
-            <!-- Modal Edit Data -->
-            <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <form id="form-edit-kandidat" action="" method="POST">
-                        @csrf <!-- Tambahkan token CSRF -->
-                        @method('PUT') <!-- Tambahkan method PUT untuk update -->
-                        <input type="hidden" id="id" name="id">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">Form Edit Kandidat</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-
-                                <div class="card-block">
-
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_nama_kandidat">Nama Kandidat</label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
-                                                id="edit_nama_kandidat" name="nama_kandidat">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_keterangan">Keterangan</label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="keterangan" id="edit_keterangan" cols="30"
-                                                rows="3"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_urutan">Urutan</label>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success"
-                                                id="edit_urutan" name="urutan">
-                                        </div>
-                                    </div>
-                                    <div class="form-group" id="gambar_edit_container">
-                                        <label for="gambar_edit">Bukti Pengeluaran</label>
-
-                                        <input type="file" class="form-control" name="gambar" id="gambar_edit">
-
-                                        <div id="gambar_image_container"></div>
-                                        <br>
-                                        <!-- Tautan untuk mengunduh atau melihat gambar -->
-                                        <a id="gambar_download_link" href="" target="_blank">
-
-                                        </a>
-                                    </div>
-
-
-                                </div>
-
-
-
-
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect"
-                                    data-dismiss="modal">Kembali</button>
-                                <button type="button" class="btn btn-primary waves-effect waves-light"
-                                    id="btn-update-kandidat"><i class="fas fa-save"></i> Simpan Perubahan</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+ 
         </div>
     </div>
 
@@ -287,159 +133,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 
-
-    {{-- TAMBAH --}}
-    <script>
-        $(document).ready(function() {
-            $('#btn-save-kandidat').click(function() {
-                event.preventDefault();
-                const tombolSimpan = $('#btn-save-kandidat')
-                var form = $('#form-kandidat');
-                $.ajax({
-                    url: form.attr('action'),
-                    type: 'POST',
-                    data: new FormData(form[0]),
-                    contentType: false,
-                    beforeSend: function() {
-                        $('form').find('.error-message').remove()
-                        tombolSimpan.prop('disabled', true)
-                    },
-                    processData: false,
-                    success: function(response) {
-                        $('#modal-kandidat').modal('hide');
-                        Swal.fire({
-                            title: 'Sukses!',
-                            text: response.message,
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then(function() {
-                            location.reload();
-                        });
-                    },
-                    complete: function() {
-                        tombolSimpan.prop('disabled', false);
-                    },
-                    error: function(xhr) {
-                        var errorMessages = xhr.responseJSON.errors;
-                        var errorMessage = '';
-                        $.each(errorMessages, function(key, value) {
-                            errorMessage += value + '<br>';
-                        });
-                        Swal.fire({
-                            title: 'Error!',
-                            html: errorMessage,
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-
-
-
-
-    {{-- PERINTAH EDIT DATA --}}
-    <script>
-        $(document).ready(function() {
-            // $('.dataTable tbody').on('click', 'td .btn-edit', function(e) {
-            $('.btn-edit').click(function(e) {
-                e.preventDefault();
-
-                var id = $(this).data('id');
-
-                $.ajax({
-                    kandidat: 'GET',
-                    url: '/kandidat/' + id + '/edit',
-                    success: function(data) {
-                        // console.log(data); // Cek apakah data terisi dengan benar
-                        // Mengisi data pada form modal
-                        $('#id').val(data.id); // Menambahkan nilai id ke input tersembunyi
-                        $('#edit_nama_kandidat').val(data.nama_kandidat);
-                        $('#edit_keterangan').val(data.keterangan);
-                        $('#edit_urutan').val(data.urutan);
-                        if (data.gambar) {
-                            var gambarImg = '<img src="/upload/kandidat/' + data.gambar +
-                                '" style="max-width: 100px; max-height: 100px;">';
-                            var gambarLink = '<a href="/upload/kandidat/' + data.gambar +
-                                '" target="_blank"><i class="fa fa-eye"></i> Lihat Bukti</a>';
-                            $('#gambar_edit_container').append(gambarImg + '<br>' + gambarLink);
-                        }
-
-                        $('#modal-kandidat-edit').modal('show');
-                        $('#id').val(id);
-                    },
-
-                    error: function(xhr) {
-                        // Tangani kesalahan jika ada
-                        alert('Error: ' + xhr.statusText);
-                    }
-                });
-            });
-        });
-    </script>
-
-
-    {{-- PERINTAH UPDATE DATA --}}
-    <script>
-        $(document).ready(function() {
-            $('#btn-update-kandidat').click(function(e) {
-                e.preventDefault();
-                const tombolUpdate = $('#btn-update-kandidat');
-                var id = $('#id').val();
-                var formData = new FormData($('#form-edit-kandidat')[0]);
-
-                $.ajax({
-                    type: 'POST',
-                    url: '/kandidat/update/' + id,
-                    data: formData,
-                    headers: {
-                        'X-HTTP-Method-Override': 'PUT'
-                    },
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {
-                        $('form').find('.error-message').remove();
-                        tombolUpdate.prop('disabled', true);
-                    },
-                    success: function(response) {
-                        $('#modal-kandidat-edit').modal('hide');
-                        Swal.fire({
-                            title: 'Sukses!',
-                            text: response.message,
-                            icon: 'success',
-                            confirmButtonText: 'OK'
-                        }).then((result) => {
-                            if (result.isConfirmed || result.isDismissed) {
-                                location.reload();
-                            }
-                        });
-                    },
-                    complete: function() {
-                        tombolUpdate.prop('disabled', false);
-                    },
-                    error: function(xhr) {
-                        if (xhr.status !== 422) {
-                            $('#modal-kandidat-edit').modal('hide');
-                        }
-                        var errorMessages = xhr.responseJSON.errors;
-                        var errorMessage = '';
-                        $.each(errorMessages, function(key, value) {
-                            errorMessage += value + '<br>';
-                        });
-                        Swal.fire({
-                            title: 'Error!',
-                            html: errorMessage,
-                            icon: 'error',
-                            confirmButtonText: 'OK'
-                        });
-                    }
-                });
-            });
-        });
-    </script>
-
+ 
 
     {{-- HAPUS DATA --}}
     <script>
@@ -464,10 +158,8 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-
                             url: '/kandidat/' + id,
                             type: 'DELETE',
-
                             success: function(response) {
                                 Swal.fire({
                                     title: 'Sukses!',
@@ -479,18 +171,28 @@
                                 });
                             },
                             error: function(xhr) {
-                                // Handle error
-                                Swal.fire({
-                                    title: 'Error!',
-                                    text: 'Gagal menghapus data.',
-                                    icon: 'error',
-                                    confirmButtonText: 'OK',
-                                });
+                                if (xhr.status == 422) {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: xhr.responseJSON
+                                        .message, // Menampilkan pesan spesifik dari server
+                                        icon: 'error',
+                                        confirmButtonText: 'OK',
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'Gagal menghapus data.',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK',
+                                    });
+                                }
                             },
                         });
                     }
                 });
             });
+
         });
     </script>
 @endpush

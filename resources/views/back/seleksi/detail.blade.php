@@ -28,7 +28,7 @@
                     <div class="page-header-title">
                         <i class="feather icon-list bg-c-blue"></i>
                         <div class="d-inline">
-                            <h5>Detail Pendaftaran Verifikasi</h5>
+                            <h5>Detail Seleksi</h5>
                             {{-- <span>Silahkan isi dengan data yang sesuai dan valid !</span> --}}
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             <li class="breadcrumb-item">
                                 <a href="/"><i class="feather icon-home"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#!">Halaman Detail Pendaftaran Verifikasi</a>
+                            <li class="breadcrumb-item"><a href="#!">Halaman Detail Seleksi</a>
                             </li>
 
                         </ul>
@@ -60,7 +60,7 @@
 
 
                                 {{-- <div class="card-header">
-                                        <h5>Data Detail Pendaftaran Belum Verifikasi : {{ $belum_diverifikasi->nama_lengkap }}</h5>
+                                        <h5>Data Detail Pendaftaran Belum Verifikasi : {{ $seleksi->nama_lengkap }}</h5>
 
                                     </div> --}}
                                 <div class="card-block">
@@ -102,7 +102,7 @@
                                                     <form id="form_verifikasi" action="" method="POST" enctype="multipart/form-data">
                                                         @csrf <!-- Tambahkan token CSRF -->
                                                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
-                                                        <input type="hidden" id="id" name="id" value="{{ $belum_diverifikasi->id }}">
+                                                        <input type="hidden" id="id" name="id" value="{{ $seleksi->id }}">
                                                         <div class="tab-content card-block">
 
                                                             <div class="tab-pane active" id="home7" role="tabpanel">
@@ -121,7 +121,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="nama_negara" name="nama_negara"
-                                                                                        value="{{ $belum_diverifikasi->nama_negara }}">
+                                                                                        value="{{ $seleksi->nama_negara }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -131,7 +131,7 @@
                                                                                         class="form-control"
                                                                                         id="nama_kategori_job"
                                                                                         name="nama_kategori_job"
-                                                                                        value="{{ $belum_diverifikasi->nama_kategori_job }}">
+                                                                                        value="{{ $seleksi->nama_kategori_job }}">
                                                                                 </div>
                                                                             </div>
 
@@ -142,7 +142,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="nik" name="nik"
-                                                                                        value="{{ $belum_diverifikasi->nik }}">
+                                                                                        value="{{ $seleksi->nik }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -152,7 +152,7 @@
                                                                                         class="form-control"
                                                                                         id="nama_lengkap"
                                                                                         name="nama_lengkap"
-                                                                                        value="{{ $belum_diverifikasi->nama_lengkap }}">
+                                                                                        value="{{ $seleksi->nama_lengkap }}">
 
                                                                                 </div>
                                                                             </div>
@@ -166,7 +166,7 @@
                                                                                         class="form-control"
                                                                                         id="tempat_lahir"
                                                                                         name="tempat_lahir"
-                                                                                        value="{{ $belum_diverifikasi->tempat_lahir }}">
+                                                                                        value="{{ $seleksi->tempat_lahir }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -176,7 +176,7 @@
                                                                                         class="form-control"
                                                                                         id="tanggal_lahir"
                                                                                         name="tanggal_lahir"
-                                                                                        value="{{ $belum_diverifikasi->tanggal_lahir }}">
+                                                                                        value="{{ $seleksi->tanggal_lahir }}">
                                                                                 </div>
                                                                             </div>
 
@@ -187,7 +187,7 @@
                                                                                     <input type="number"
                                                                                         class="form-control"
                                                                                         id="usia" name="usia"
-                                                                                        value="{{ $belum_diverifikasi->usia }}">
+                                                                                        value="{{ $seleksi->usia }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -195,7 +195,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="agama" name="agama"
-                                                                                        value="{{ $belum_diverifikasi->agama }}">
+                                                                                        value="{{ $seleksi->agama }}">
                                                                                 </div>
                                                                             </div>
 
@@ -208,7 +208,7 @@
                                                                                         class="form-control"
                                                                                         id="berat_badan"
                                                                                         name="berat_badan"
-                                                                                        value="{{ $belum_diverifikasi->berat_badan }}">
+                                                                                        value="{{ $seleksi->berat_badan }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -218,7 +218,7 @@
                                                                                         class="form-control"
                                                                                         id="tinggi_badan"
                                                                                         name="tinggi_badan"
-                                                                                        value="{{ $belum_diverifikasi->tinggi_badan }}">
+                                                                                        value="{{ $seleksi->tinggi_badan }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
@@ -230,10 +230,10 @@
                                                                                         id="jenis_kelamin"
                                                                                         name="jenis_kelamin">
                                                                                         <option value="Laki-laki"
-                                                                                            {{ $belum_diverifikasi->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>
+                                                                                            {{ $seleksi->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>
                                                                                             Laki-laki</option>
                                                                                         <option value="Perempuan"
-                                                                                            {{ $belum_diverifikasi->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
+                                                                                            {{ $seleksi->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
                                                                                             Perempuan</option>
                                                                                     </select>
                                                                                 </div>
@@ -246,7 +246,7 @@
                                                                                         class="form-control"
                                                                                         id="status_kawin"
                                                                                         name="status_kawin"
-                                                                                        value="{{ $belum_diverifikasi->status_kawin }}">
+                                                                                        value="{{ $seleksi->status_kawin }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
@@ -259,7 +259,7 @@
                                                                                         class="form-control"
                                                                                         id="nama_lengkap_ayah"
                                                                                         name="nama_lengkap_ayah"
-                                                                                        value="{{ $belum_diverifikasi->nama_lengkap_ayah }}">
+                                                                                        value="{{ $seleksi->nama_lengkap_ayah }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -269,14 +269,14 @@
                                                                                         class="form-control"
                                                                                         id="nama_lengkap_ibu"
                                                                                         name="nama_lengkap_ibu"
-                                                                                        value="{{ $belum_diverifikasi->nama_lengkap_ibu }}">
+                                                                                        value="{{ $seleksi->nama_lengkap_ibu }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-12">
                                                                                     <label class="col-form-label"
                                                                                         for="alamat">Alamat</label>
-                                                                                    <textarea class="form-control" name="alamat" id="alamat" cols="30" rows="2">{{ $belum_diverifikasi->alamat }}</textarea>
+                                                                                    <textarea class="form-control" name="alamat" id="alamat" cols="30" rows="2">{{ $seleksi->alamat }}</textarea>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
@@ -286,7 +286,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="kota" name="kota"
-                                                                                        value="{{ $belum_diverifikasi->kota }}">
+                                                                                        value="{{ $seleksi->kota }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -294,7 +294,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="kecamatan" name="kecamatan"
-                                                                                        value="{{ $belum_diverifikasi->kecamatan }}">
+                                                                                        value="{{ $seleksi->kecamatan }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -302,7 +302,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control" idprovinsi
                                                                                         name="provinsi"
-                                                                                        value="{{ $belum_diverifikasi->provinsi }}">
+                                                                                        value="{{ $seleksi->provinsi }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
@@ -312,7 +312,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="referensi" name="referensi"
-                                                                                        value="{{ $belum_diverifikasi->referensi }}">
+                                                                                        value="{{ $seleksi->referensi }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -322,7 +322,7 @@
                                                                                         class="form-control"
                                                                                         id="nama_referensi"
                                                                                         name="nama_referensi"
-                                                                                        value="{{ $belum_diverifikasi->nama_referensi }}">
+                                                                                        value="{{ $seleksi->nama_referensi }}">
                                                                                 </div>
                                                                             </div>
 
@@ -333,7 +333,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="email" name="email"
-                                                                                        value="{{ $belum_diverifikasi->email }}">
+                                                                                        value="{{ $seleksi->email }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -342,7 +342,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="no_hp" name="no_hp"
-                                                                                        value="{{ $belum_diverifikasi->no_hp }}">
+                                                                                        value="{{ $seleksi->no_hp }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -351,7 +351,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="no_wa" name="no_wa"
-                                                                                        value="{{ $belum_diverifikasi->no_wa }}">
+                                                                                        value="{{ $seleksi->no_wa }}">
                                                                                 </div>
                                                                             </div>
 
@@ -386,7 +386,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="no_paspor" name="no_paspor"
-                                                                                        value="{{ $belum_diverifikasi->no_paspor }}">
+                                                                                        value="{{ $seleksi->no_paspor }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -396,7 +396,7 @@
                                                                                         class="form-control"
                                                                                         id="tanggal_pengeluaran_paspor"
                                                                                         name="tanggal_pengeluaran_paspor"
-                                                                                        value="{{ $belum_diverifikasi->tanggal_pengeluaran_paspor }}">
+                                                                                        value="{{ $seleksi->tanggal_pengeluaran_paspor }}">
                                                                                 </div>
                                                                             </div>
 
@@ -409,7 +409,7 @@
                                                                                         class="form-control"
                                                                                         id="masa_kadaluarsa"
                                                                                         name="masa_kadaluarsa"
-                                                                                        value="{{ $belum_diverifikasi->masa_kadaluarsa }}">
+                                                                                        value="{{ $seleksi->masa_kadaluarsa }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -419,7 +419,7 @@
                                                                                         class="form-control"
                                                                                         id="kantor_paspor"
                                                                                         name="kantor_paspor"
-                                                                                        value="{{ $belum_diverifikasi->kantor_paspor }}">
+                                                                                        value="{{ $seleksi->kantor_paspor }}">
                                                                                 </div>
                                                                             </div>
 
@@ -432,7 +432,7 @@
                                                                                         class="form-control"
                                                                                         id="kondisi_paspor"
                                                                                         name="kondisi_paspor"
-                                                                                        value="{{ $belum_diverifikasi->kondisi_paspor }}">
+                                                                                        value="{{ $seleksi->kondisi_paspor }}">
                                                                                 </div>
                                                                             </div>
 
@@ -595,8 +595,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_ktp"
                                                                                                     name="ada_ktp"
-                                                                                                    value="{{ $belum_diverifikasi->ada_ktp }}"
-                                                                                                    {{ $belum_diverifikasi->ada_ktp == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi->ada_ktp }}"
+                                                                                                    {{ $seleksi->ada_ktp == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_ktp">KTP</label>
@@ -611,8 +611,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_kk"
                                                                                                     name="ada_kk"
-                                                                                                    value="{{ $belum_diverifikasi->ada_kk }}"
-                                                                                                    {{ $belum_diverifikasi->ada_kk == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi->ada_kk }}"
+                                                                                                    {{ $seleksi->ada_kk == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_kk">KK</label>
@@ -625,8 +625,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_akta_lahir"
                                                                                                     name="ada_akta_lahir"
-                                                                                                    value="{{ $belum_diverifikasi->ada_akta_lahir }}"
-                                                                                                    {{ $belum_diverifikasi->ada_akta_lahir == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi->ada_akta_lahir }}"
+                                                                                                    {{ $seleksi->ada_akta_lahir == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_akta_lahir">Akta
@@ -640,8 +640,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_ijazah"
                                                                                                     name="ada_ijazah"
-                                                                                                    value="{{ $belum_diverifikasi->ada_ijazah }}"
-                                                                                                    {{ $belum_diverifikasi->ada_ijazah == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi->ada_ijazah }}"
+                                                                                                    {{ $seleksi->ada_ijazah == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_ijazah">Ijazah</label>
@@ -654,8 +654,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_buku_nikah"
                                                                                                     name="ada_buku_nikah"
-                                                                                                    value="{{ $belum_diverifikasi->ada_buku_nikah }}"
-                                                                                                    {{ $belum_diverifikasi->ada_buku_nikah == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi->ada_buku_nikah }}"
+                                                                                                    {{ $seleksi->ada_buku_nikah == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_buku_nikah">Buku
@@ -669,8 +669,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_paspor"
                                                                                                     name="ada_paspor"
-                                                                                                    value="{{ $belum_diverifikasi->ada_paspor }}"
-                                                                                                    {{ $belum_diverifikasi->ada_paspor == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi->ada_paspor }}"
+                                                                                                    {{ $seleksi->ada_paspor == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_paspor">Paspor</label>
@@ -689,7 +689,7 @@
                                                                                             nama/alamat/tempat
                                                                                             tanggal
                                                                                             lahir/hilang/rusak/lainnya</label>
-                                                                                        <textarea class="form-control" name="penjelasan_dokumen" id="penjelasan_dokumen" cols="30" rows="4">{{ $belum_diverifikasi->penjelasan_dokumen }} </textarea>
+                                                                                        <textarea class="form-control" name="penjelasan_dokumen" id="penjelasan_dokumen" cols="30" rows="4">{{ $seleksi->penjelasan_dokumen }} </textarea>
                                                                                     </div>
                                                                                 </div>
                                                                                 <h4 class="sub-title">Upload Dokumen
@@ -782,7 +782,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="bayar_cf" name="bayar_cf"
-                                                                                        value="{{ number_format($belum_diverifikasi->bayar_cf, 0, ',', ',') }}">
+                                                                                        value="{{ number_format($seleksi->bayar_cf, 0, ',', ',') }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -792,7 +792,7 @@
                                                                                         class="form-control"
                                                                                         id="tanggal_tf_cf"
                                                                                         name="tanggal_tf_cf"
-                                                                                        value="{{ $belum_diverifikasi->tanggal_tf_cf }}">
+                                                                                        value="{{ $seleksi->tanggal_tf_cf }}">
                                                                                 </div>
                                                                             </div>
 
@@ -811,10 +811,10 @@
                                                                                         for="bukti_tf_cf">Bukti
                                                                                         Transfer</label>
                                                                                     <br>
-                                                                                    <a href="/upload/bukti_tf_cf/{{ $belum_diverifikasi->bukti_tf_cf }}"
+                                                                                    <a href="/upload/bukti_tf_cf/{{ $seleksi->bukti_tf_cf }}"
                                                                                         target="_blank"><img
                                                                                             title="Bukti Transfer"
-                                                                                            src="/upload/bukti_tf_cf/{{ $belum_diverifikasi->bukti_tf_cf }}"
+                                                                                            src="/upload/bukti_tf_cf/{{ $seleksi->bukti_tf_cf }}"
                                                                                             alt="" width="30px"
                                                                                             height="30px"></a>
 
@@ -827,7 +827,7 @@
                                                                                         class="form-control"
                                                                                         id="status_paid_cf"
                                                                                         name="status_paid_cf"
-                                                                                        value="{{ $belum_diverifikasi->status_paid_cf }}">
+                                                                                        value="{{ $seleksi->status_paid_cf }}">
                                                                                 </div>
                                                                             </div>
                                                                             <hr>
@@ -841,7 +841,7 @@
                                                                                         class="form-control"
                                                                                         id="tanggal_refund_cf"
                                                                                         name="tanggal_refund_cf"
-                                                                                        value="{{ $belum_diverifikasi->tanggal_refund_cf }}">
+                                                                                        value="{{ $seleksi->tanggal_refund_cf }}">
                                                                                 </div>
 
                                                                                 <div class="col-sm-6">
@@ -852,7 +852,7 @@
                                                                                         class="form-control"
                                                                                         id="bayar_refund_cf"
                                                                                         name="bayar_refund_cf"
-                                                                                        value="{{ number_format($belum_diverifikasi->bayar_refund_cf, 0, ',', ',') }}">
+                                                                                        value="{{ number_format($seleksi->bayar_refund_cf, 0, ',', ',') }}">
                                                                                 </div>
                                                                             </div>
 

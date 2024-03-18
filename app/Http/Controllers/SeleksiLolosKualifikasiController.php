@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class SeleksiBatalController extends Controller
+class SeleksiLolosKualifikasiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,7 +36,7 @@ class SeleksiBatalController extends Controller
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
-            ->where('seleksi.status', 'Batal') // Menambahkan klausa where untuk status
+            ->where('seleksi.status', 'Lolos Kualifikasi') // Menambahkan klausa where untuk status
             ->select(
                 'seleksi.*',
                 'kandidat.nama_lengkap',
@@ -54,28 +54,17 @@ class SeleksiBatalController extends Controller
     
         $seleksi_group = $seleksi->groupBy('job_id');
     
-        return view('back.seleksi_batal.index', compact('seleksi', 'seleksi_group'));
+        return view('back.seleksi_lolos_kualifikasi.index', compact('seleksi', 'seleksi_group'));
     }
     
-    public function detail($id)
-    {
-        // $seleksi = Seleksi::select('seleksi.*', 'job.nama_job as nama_job', 'kandidat.nama_lengkap as nama_lengkap')
-        $seleksi_batal = Seleksi::select('*')
-            ->join('job', 'seleksi.job_id', '=', 'job.id')
-            ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
-            ->where('seleksi.id', $id)
-            ->first();
-
-        return view('back.seleksi_batal.detail', compact('seleksi_batal'));
-    }
-
 
      
     public function updateStatus(Request $request)
     {
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
-        $keterangan_batal = $request->input('keterangan_batal');
+        $tanggal_interview = $request->input('tanggal_interview');
+        $keterangan_interview = $request->input('keterangan_interview');
        
 
         // Get the original data before the update
@@ -85,8 +74,9 @@ class SeleksiBatalController extends Controller
         // Update the status in the database
         Seleksi::where('id', $cek_kualifikasi_id)->update([
             'status' => $status,
-            'tanggal_batal' => Carbon::now()->toDateString(),
-            'keterangan_batal' => $keterangan_batal,
+            'tanggal_lolos_kualifikasi' => Carbon::now()->toDateString(),
+            'tanggal_interview' => $tanggal_interview,
+            'keterangan_interview' => $keterangan_interview,
              
         ]);
 

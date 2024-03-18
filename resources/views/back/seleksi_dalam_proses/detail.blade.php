@@ -60,7 +60,7 @@
 
 
                                 {{-- <div class="card-header">
-                                        <h5>Data Detail Pendaftaran Belum Verifikasi : {{ $belum_diverifikasi->nama_lengkap }}</h5>
+                                        <h5>Data Detail Pendaftaran Belum Verifikasi : {{ $seleksi_dalam_proses->nama_lengkap }}</h5>
 
                                     </div> --}}
                                 <div class="card-block">
@@ -93,16 +93,18 @@
                                                         </li>
                                                         <li class="nav-item">
                                                             <a class="nav-link" data-toggle="tab" href="#cf"
-                                                                role="tab"><i class="fas fa-dollar-sign"></i>Commitment
-                                                                Fee</a>
+                                                                role="tab"><i
+                                                                    class="fas fa-dollar-sign"></i>Pembayaran</a>
                                                             <div class="slide"></div>
                                                         </li>
                                                     </ul>
 
-                                                    <form id="form_verifikasi" action="" method="POST" enctype="multipart/form-data">
+                                                    <form id="form_verifikasi" action="" method="POST"
+                                                        enctype="multipart/form-data">
                                                         @csrf <!-- Tambahkan token CSRF -->
                                                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
-                                                        <input type="hidden" id="id" name="id" value="{{ $belum_diverifikasi->id }}">
+                                                        <input type="hidden" id="id" name="id"
+                                                            value="{{ $seleksi_dalam_proses->id }}">
                                                         <div class="tab-content card-block">
 
                                                             <div class="tab-pane active" id="home7" role="tabpanel">
@@ -121,7 +123,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="nama_negara" name="nama_negara"
-                                                                                        value="{{ $belum_diverifikasi->nama_negara }}">
+                                                                                        value="{{ $seleksi_dalam_proses->nama_negara }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -131,7 +133,7 @@
                                                                                         class="form-control"
                                                                                         id="nama_kategori_job"
                                                                                         name="nama_kategori_job"
-                                                                                        value="{{ $belum_diverifikasi->nama_kategori_job }}">
+                                                                                        value="{{ $seleksi_dalam_proses->nama_kategori_job }}">
                                                                                 </div>
                                                                             </div>
 
@@ -142,7 +144,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="nik" name="nik"
-                                                                                        value="{{ $belum_diverifikasi->nik }}">
+                                                                                        value="{{ $seleksi_dalam_proses->nik }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -152,7 +154,7 @@
                                                                                         class="form-control"
                                                                                         id="nama_lengkap"
                                                                                         name="nama_lengkap"
-                                                                                        value="{{ $belum_diverifikasi->nama_lengkap }}">
+                                                                                        value="{{ $seleksi_dalam_proses->nama_lengkap }}">
 
                                                                                 </div>
                                                                             </div>
@@ -166,7 +168,7 @@
                                                                                         class="form-control"
                                                                                         id="tempat_lahir"
                                                                                         name="tempat_lahir"
-                                                                                        value="{{ $belum_diverifikasi->tempat_lahir }}">
+                                                                                        value="{{ $seleksi_dalam_proses->tempat_lahir }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -176,7 +178,7 @@
                                                                                         class="form-control"
                                                                                         id="tanggal_lahir"
                                                                                         name="tanggal_lahir"
-                                                                                        value="{{ $belum_diverifikasi->tanggal_lahir }}">
+                                                                                        value="{{ $seleksi_dalam_proses->tanggal_lahir }}">
                                                                                 </div>
                                                                             </div>
 
@@ -187,7 +189,7 @@
                                                                                     <input type="number"
                                                                                         class="form-control"
                                                                                         id="usia" name="usia"
-                                                                                        value="{{ $belum_diverifikasi->usia }}">
+                                                                                        value="{{ $seleksi_dalam_proses->usia }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -195,7 +197,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="agama" name="agama"
-                                                                                        value="{{ $belum_diverifikasi->agama }}">
+                                                                                        value="{{ $seleksi_dalam_proses->agama }}">
                                                                                 </div>
                                                                             </div>
 
@@ -208,7 +210,7 @@
                                                                                         class="form-control"
                                                                                         id="berat_badan"
                                                                                         name="berat_badan"
-                                                                                        value="{{ $belum_diverifikasi->berat_badan }}">
+                                                                                        value="{{ $seleksi_dalam_proses->berat_badan }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -218,7 +220,7 @@
                                                                                         class="form-control"
                                                                                         id="tinggi_badan"
                                                                                         name="tinggi_badan"
-                                                                                        value="{{ $belum_diverifikasi->tinggi_badan }}">
+                                                                                        value="{{ $seleksi_dalam_proses->tinggi_badan }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
@@ -230,10 +232,10 @@
                                                                                         id="jenis_kelamin"
                                                                                         name="jenis_kelamin">
                                                                                         <option value="Laki-laki"
-                                                                                            {{ $belum_diverifikasi->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>
+                                                                                            {{ $seleksi_dalam_proses->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>
                                                                                             Laki-laki</option>
                                                                                         <option value="Perempuan"
-                                                                                            {{ $belum_diverifikasi->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
+                                                                                            {{ $seleksi_dalam_proses->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
                                                                                             Perempuan</option>
                                                                                     </select>
                                                                                 </div>
@@ -246,7 +248,7 @@
                                                                                         class="form-control"
                                                                                         id="status_kawin"
                                                                                         name="status_kawin"
-                                                                                        value="{{ $belum_diverifikasi->status_kawin }}">
+                                                                                        value="{{ $seleksi_dalam_proses->status_kawin }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
@@ -259,7 +261,7 @@
                                                                                         class="form-control"
                                                                                         id="nama_lengkap_ayah"
                                                                                         name="nama_lengkap_ayah"
-                                                                                        value="{{ $belum_diverifikasi->nama_lengkap_ayah }}">
+                                                                                        value="{{ $seleksi_dalam_proses->nama_lengkap_ayah }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -269,14 +271,14 @@
                                                                                         class="form-control"
                                                                                         id="nama_lengkap_ibu"
                                                                                         name="nama_lengkap_ibu"
-                                                                                        value="{{ $belum_diverifikasi->nama_lengkap_ibu }}">
+                                                                                        value="{{ $seleksi_dalam_proses->nama_lengkap_ibu }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-12">
                                                                                     <label class="col-form-label"
                                                                                         for="alamat">Alamat</label>
-                                                                                    <textarea class="form-control" name="alamat" id="alamat" cols="30" rows="2">{{ $belum_diverifikasi->alamat }}</textarea>
+                                                                                    <textarea class="form-control" name="alamat" id="alamat" cols="30" rows="2">{{ $seleksi_dalam_proses->alamat }}</textarea>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
@@ -286,7 +288,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="kota" name="kota"
-                                                                                        value="{{ $belum_diverifikasi->kota }}">
+                                                                                        value="{{ $seleksi_dalam_proses->kota }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -294,7 +296,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="kecamatan" name="kecamatan"
-                                                                                        value="{{ $belum_diverifikasi->kecamatan }}">
+                                                                                        value="{{ $seleksi_dalam_proses->kecamatan }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -302,7 +304,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control" idprovinsi
                                                                                         name="provinsi"
-                                                                                        value="{{ $belum_diverifikasi->provinsi }}">
+                                                                                        value="{{ $seleksi_dalam_proses->provinsi }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
@@ -312,7 +314,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="referensi" name="referensi"
-                                                                                        value="{{ $belum_diverifikasi->referensi }}">
+                                                                                        value="{{ $seleksi_dalam_proses->referensi }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -322,7 +324,7 @@
                                                                                         class="form-control"
                                                                                         id="nama_referensi"
                                                                                         name="nama_referensi"
-                                                                                        value="{{ $belum_diverifikasi->nama_referensi }}">
+                                                                                        value="{{ $seleksi_dalam_proses->nama_referensi }}">
                                                                                 </div>
                                                                             </div>
 
@@ -333,7 +335,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="email" name="email"
-                                                                                        value="{{ $belum_diverifikasi->email }}">
+                                                                                        value="{{ $seleksi_dalam_proses->email }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -342,7 +344,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="no_hp" name="no_hp"
-                                                                                        value="{{ $belum_diverifikasi->no_hp }}">
+                                                                                        value="{{ $seleksi_dalam_proses->no_hp }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -351,7 +353,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="no_wa" name="no_wa"
-                                                                                        value="{{ $belum_diverifikasi->no_wa }}">
+                                                                                        value="{{ $seleksi_dalam_proses->no_wa }}">
                                                                                 </div>
                                                                             </div>
 
@@ -386,7 +388,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="no_paspor" name="no_paspor"
-                                                                                        value="{{ $belum_diverifikasi->no_paspor }}">
+                                                                                        value="{{ $seleksi_dalam_proses->no_paspor }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -396,7 +398,7 @@
                                                                                         class="form-control"
                                                                                         id="tanggal_pengeluaran_paspor"
                                                                                         name="tanggal_pengeluaran_paspor"
-                                                                                        value="{{ $belum_diverifikasi->tanggal_pengeluaran_paspor }}">
+                                                                                        value="{{ $seleksi_dalam_proses->tanggal_pengeluaran_paspor }}">
                                                                                 </div>
                                                                             </div>
 
@@ -409,7 +411,7 @@
                                                                                         class="form-control"
                                                                                         id="masa_kadaluarsa"
                                                                                         name="masa_kadaluarsa"
-                                                                                        value="{{ $belum_diverifikasi->masa_kadaluarsa }}">
+                                                                                        value="{{ $seleksi_dalam_proses->masa_kadaluarsa }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -419,7 +421,7 @@
                                                                                         class="form-control"
                                                                                         id="kantor_paspor"
                                                                                         name="kantor_paspor"
-                                                                                        value="{{ $belum_diverifikasi->kantor_paspor }}">
+                                                                                        value="{{ $seleksi_dalam_proses->kantor_paspor }}">
                                                                                 </div>
                                                                             </div>
 
@@ -432,7 +434,7 @@
                                                                                         class="form-control"
                                                                                         id="kondisi_paspor"
                                                                                         name="kondisi_paspor"
-                                                                                        value="{{ $belum_diverifikasi->kondisi_paspor }}">
+                                                                                        value="{{ $seleksi_dalam_proses->kondisi_paspor }}">
                                                                                 </div>
                                                                             </div>
 
@@ -595,8 +597,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_ktp"
                                                                                                     name="ada_ktp"
-                                                                                                    value="{{ $belum_diverifikasi->ada_ktp }}"
-                                                                                                    {{ $belum_diverifikasi->ada_ktp == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi_dalam_proses->ada_ktp }}"
+                                                                                                    {{ $seleksi_dalam_proses->ada_ktp == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_ktp">KTP</label>
@@ -611,8 +613,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_kk"
                                                                                                     name="ada_kk"
-                                                                                                    value="{{ $belum_diverifikasi->ada_kk }}"
-                                                                                                    {{ $belum_diverifikasi->ada_kk == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi_dalam_proses->ada_kk }}"
+                                                                                                    {{ $seleksi_dalam_proses->ada_kk == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_kk">KK</label>
@@ -625,8 +627,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_akta_lahir"
                                                                                                     name="ada_akta_lahir"
-                                                                                                    value="{{ $belum_diverifikasi->ada_akta_lahir }}"
-                                                                                                    {{ $belum_diverifikasi->ada_akta_lahir == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi_dalam_proses->ada_akta_lahir }}"
+                                                                                                    {{ $seleksi_dalam_proses->ada_akta_lahir == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_akta_lahir">Akta
@@ -640,8 +642,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_ijazah"
                                                                                                     name="ada_ijazah"
-                                                                                                    value="{{ $belum_diverifikasi->ada_ijazah }}"
-                                                                                                    {{ $belum_diverifikasi->ada_ijazah == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi_dalam_proses->ada_ijazah }}"
+                                                                                                    {{ $seleksi_dalam_proses->ada_ijazah == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_ijazah">Ijazah</label>
@@ -654,8 +656,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_buku_nikah"
                                                                                                     name="ada_buku_nikah"
-                                                                                                    value="{{ $belum_diverifikasi->ada_buku_nikah }}"
-                                                                                                    {{ $belum_diverifikasi->ada_buku_nikah == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi_dalam_proses->ada_buku_nikah }}"
+                                                                                                    {{ $seleksi_dalam_proses->ada_buku_nikah == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_buku_nikah">Buku
@@ -669,8 +671,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_paspor"
                                                                                                     name="ada_paspor"
-                                                                                                    value="{{ $belum_diverifikasi->ada_paspor }}"
-                                                                                                    {{ $belum_diverifikasi->ada_paspor == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $seleksi_dalam_proses->ada_paspor }}"
+                                                                                                    {{ $seleksi_dalam_proses->ada_paspor == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_paspor">Paspor</label>
@@ -689,7 +691,7 @@
                                                                                             nama/alamat/tempat
                                                                                             tanggal
                                                                                             lahir/hilang/rusak/lainnya</label>
-                                                                                        <textarea class="form-control" name="penjelasan_dokumen" id="penjelasan_dokumen" cols="30" rows="4">{{ $belum_diverifikasi->penjelasan_dokumen }} </textarea>
+                                                                                        <textarea class="form-control" name="penjelasan_dokumen" id="penjelasan_dokumen" cols="30" rows="4">{{ $seleksi_dalam_proses->penjelasan_dokumen }} </textarea>
                                                                                     </div>
                                                                                 </div>
                                                                                 <h4 class="sub-title">Upload Dokumen
@@ -772,92 +774,174 @@
 
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
-                                                                            <h5>COMMITMENT FEE</h5>
+
 
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
-                                                                                        for="bayar_cf">Bayar Commitment
-                                                                                        Fee</label>
+                                                                                        for="biaya_penempatan">Biaya
+                                                                                        Penempatan</label>
                                                                                     <input type="text"
                                                                                         class="form-control"
-                                                                                        id="bayar_cf" name="bayar_cf"
-                                                                                        value="{{ number_format($belum_diverifikasi->bayar_cf, 0, ',', ',') }}">
+                                                                                        id="biaya_penempatan"
+                                                                                        name="biaya_penempatan"
+                                                                                        value="{{ $seleksi_dalam_proses->biaya_penempatan }}"
+                                                                                        onchange="hitungTotalBiaya()">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
-                                                                                        for="tanggal_tf_cf">Tanggal
-                                                                                        Transfer</label>
-                                                                                    <input type="date"
+                                                                                        for="biaya_id">Biaya ID</label>
+                                                                                    <input type="text"
                                                                                         class="form-control"
-                                                                                        id="tanggal_tf_cf"
-                                                                                        name="tanggal_tf_cf"
-                                                                                        value="{{ $belum_diverifikasi->tanggal_tf_cf }}">
+                                                                                        id="biaya_id" name="biaya_id"
+                                                                                        value="{{ $seleksi_dalam_proses->biaya_id }}"
+                                                                                        onchange="hitungTotalBiaya()">
                                                                                 </div>
                                                                             </div>
 
                                                                             <div class="form-group row">
-                                                                                <div class="col-sm-3">
-                                                                                    <label class="col-form-label"
-                                                                                        for="bukti_tf_cf">Upload
-                                                                                        Transfer</label>
-                                                                                    <input type="file"
-                                                                                        class="form-control"
-                                                                                        id="bukti_tf_cf"
-                                                                                        name="bukti_tf_cf">
-                                                                                </div>
-                                                                                <div class="col-sm-3">
-                                                                                    <label class="col-form-label"
-                                                                                        for="bukti_tf_cf">Bukti
-                                                                                        Transfer</label>
-                                                                                    <br>
-                                                                                    <a href="/upload/bukti_tf_cf/{{ $belum_diverifikasi->bukti_tf_cf }}"
-                                                                                        target="_blank"><img
-                                                                                            title="Bukti Transfer"
-                                                                                            src="/upload/bukti_tf_cf/{{ $belum_diverifikasi->bukti_tf_cf }}"
-                                                                                            alt="" width="30px"
-                                                                                            height="30px"></a>
-
-                                                                                </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
-                                                                                        for="status_paid_cf">Status
-                                                                                        Paid</label>
+                                                                                        for="biaya_mcu">Biaya MCU</label>
                                                                                     <input type="text"
                                                                                         class="form-control"
-                                                                                        id="status_paid_cf"
-                                                                                        name="status_paid_cf"
-                                                                                        value="{{ $belum_diverifikasi->status_paid_cf }}">
+                                                                                        id="biaya_mcu" name="biaya_mcu"
+                                                                                        value="{{ $seleksi_dalam_proses->biaya_mcu }}"
+                                                                                        onchange="hitungTotalBiaya()">
+                                                                                </div>
+
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="total_biaya">Total Biaya
+                                                                                    </label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="total_biaya"
+                                                                                        name="total_biaya"
+                                                                                        value=" {{ number_format($seleksi_dalam_proses->total_biaya, 0, ',', ',') }}"
+                                                                                        readonly>
                                                                                 </div>
                                                                             </div>
+
+                                                                            <script>
+                                                                                function hitungTotalBiaya() {
+                                                                                    // Ambil nilai dari input biaya_penempatan, biaya_id, dan biaya_mcu
+                                                                                    var biaya_penempatan = parseFloat(document.getElementById('biaya_penempatan').value.replace(/[^0-9,]/g, '')
+                                                                                        .replace(',', '.'));
+                                                                                    var biaya_id = parseFloat(document.getElementById('biaya_id').value.replace(/[^0-9,]/g, '').replace(',', '.'));
+                                                                                    var biaya_mcu = parseFloat(document.getElementById('biaya_mcu').value.replace(/[^0-9,]/g, '').replace(',',
+                                                                                        '.'));
+
+                                                                                    // Hitung total biaya
+                                                                                    var total_biaya = biaya_penempatan + biaya_id + biaya_mcu;
+
+                                                                                    // Tampilkan total biaya pada input total_biaya
+                                                                                    document.getElementById('total_biaya').value = formatRupiah(total_biaya, 'Rp ');
+                                                                                }
+
+                                                                                // Fungsi untuk memformat angka ke format rupiah
+                                                                                function formatRupiah(angka, prefix) {
+                                                                                    var number_string = angka.toString().replace(/[^,\d]/g, ''),
+                                                                                        split = number_string.split(','),
+                                                                                        sisa = split[0].length % 3,
+                                                                                        rupiah = split[0].substr(0, sisa),
+                                                                                        ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+                                                                                    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+                                                                                    if (ribuan) {
+                                                                                        separator = sisa ? '.' : '';
+                                                                                        rupiah += separator + ribuan.join('.');
+                                                                                    }
+
+                                                                                    rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+                                                                                    return prefix == undefined ? rupiah : (rupiah ? rupiah : '');
+                                                                                }
+                                                                            </script>
+
+
                                                                             <hr>
-                                                                            <h5>REFUND COMMITMENT FEE</h5>
+
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
-                                                                                        for="tanggal_refund_cf">Tanggal
-                                                                                        Refund</label>
-                                                                                    <input type="date"
+                                                                                        for="total_bayar">Total
+                                                                                        Bayar</label>
+                                                                                    <input type="text"
                                                                                         class="form-control"
-                                                                                        id="tanggal_refund_cf"
-                                                                                        name="tanggal_refund_cf"
-                                                                                        value="{{ $belum_diverifikasi->tanggal_refund_cf }}">
+                                                                                        id="total_bayar"
+                                                                                        name="total_bayar"
+                                                                                        value="{{ number_format($seleksi_dalam_proses->total_bayar, 0, ',', ',') }}"
+                                                                                        readonly>
                                                                                 </div>
 
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
-                                                                                        for="bayar_refund_cf">Jumlah
-                                                                                        Refund</label>
+                                                                                        for="sisa_bayar">Sisa Bayar</label>
                                                                                     <input type="text"
                                                                                         class="form-control"
-                                                                                        id="bayar_refund_cf"
-                                                                                        name="bayar_refund_cf"
-                                                                                        value="{{ number_format($belum_diverifikasi->bayar_refund_cf, 0, ',', ',') }}">
+                                                                                        id="sisa_bayar" name="sisa_bayar"
+                                                                                        value="{{ number_format($seleksi_dalam_proses->sisa_bayar, 0, ',', ',') }}"
+                                                                                        readonly>
                                                                                 </div>
                                                                             </div>
+
+
+
+                                                                            <a href="" data-toggle="modal"
+                                                                                data-target="#ubahStatusModal"
+                                                                                class="btn btn-success waves-effect waves-light mt-3"
+                                                                                style="background-color: #00324F; color: #fff; font-size: 12px;float: left; "
+                                                                                title="Tambah Pembayaran">
+                                                                                <i class="fa fa-plus-circle"></i>
+                                                                                Tambah Pembayaran</a>
+                                                                            <hr>
+                                                                            <br><br>
+                                                                            <table id="order-table2"
+                                                                                class="table table-striped table-bordered nowrap">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th width="5%">No</th>
+                                                                                        <th width="10%">Tanggal Bayar
+                                                                                        </th>
+                                                                                        <th width="10%">Total Bayar</th>
+                                                                                        <th width="5%"
+                                                                                            class="text-center"
+                                                                                            width="5%">Bukti Bayar</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+
+                                                                                    <tr>
+                                                                                        <td>1</td>
+                                                                                        <td>1</td>
+                                                                                        <td>1</td>
+
+                                                                                        <td class="text-center d-flex">
+
+                                                                                            <a href=""
+                                                                                                data-toggle="modal"
+                                                                                                data-target="#ubahStatusModal"
+                                                                                                class="form-control mr-2"
+                                                                                                style="background-color: #00324F; color: #fff; font-size: 12px; "
+                                                                                                title="Detail">
+                                                                                                <i class="fa fa-eye"></i>
+                                                                                                Lihat Bukti Bayar
+
+                                                                                            </a>
+
+
+                                                                                        </td>
+                                                                                    </tr>
+
+
+                                                                                </tbody>
+
+                                                                            </table>
+
 
                                                                         </div>
                                                                     </div>
+
 
 
 
@@ -907,7 +991,60 @@
                 </div>
 
 
+                <!-- Modal -->
+                <div class="modal fade" id="ubahStatusModal" tabindex="-1" role="dialog"
+                    aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
+                    <!-- Add your form with combo box for status update -->
+                    <form action="{{ route('tambahPembayaran') }}" method="post" enctype="multipart/form-data">
+                        @csrf <!-- Tambahkan token CSRF -->
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ubahStatusModalLabel">
+                                        Tambah Pembayaran</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
 
+                                    <!-- Combo box for status update -->
+                                    <input type="hidden" id="seleksi_id" name="seleksi_id"
+                                        value="{{ $seleksi_dalam_proses->id }}">
+                                    <div class="form-group">
+                                        <label for="tanggal_bayar">Tanggal
+                                            Bayar :</label>
+                                        <input type="date" class="form-control" id="tanggal_bayar"
+                                            name="tanggal_bayar" value="<?= date('Y-m-d') ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jumlah_bayar">Jumlah
+                                            Bayar :</label>
+                                        <input type="text" class="form-control" id="jumlah_bayar"
+                                            name="jumlah_bayar">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="bukti_bayar">Bukti
+                                            Bayar :</label>
+                                        <input type="file" class="form-control" id="bukti_bayar" name="bukti_bayar">
+                                    </div>
+                                    <!-- Add hidden input for the Pendaftaran ID -->
+                                    
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                                            class="fas fa-undo"></i>
+                                        Tutup</button>
+                                    <button type="submit" id="btn-save-pembayaran" class="btn btn-primary"><i
+                                            class="fas fa-save"></i>
+                                        Simpan</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
 
 
 
@@ -949,6 +1086,57 @@
                 <script type="text/javascript"
                     src="{{ asset('template') }}/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
 
+                {{-- TAMBAH --}}
+                <script>
+                    $(document).ready(function() {
+                        $('#btn-save-pembayaran').click(function() {
+                            event.preventDefault();
+                            const tombolSimpan = $(this);
+                            var form = $('#form-pembayaran');
+                            $.ajax({
+                                url: form.attr('action'),
+                                type: 'POST',
+                                data: new FormData(form[0]),
+                                contentType: false,
+                                beforeSend: function(xhr) {
+                                    xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr(
+                                        'content'));
+                                    $('form').find('.error-message').remove()
+                                    tombolSimpan.prop('disabled', true)
+                                },
+                                processData: false,
+                                success: function(response) {
+                                    $('#ubahStatusModal').modal('hide'); // Sembunyikan modal setelah berhasil disimpan
+                                    Swal.fire({
+                                        title: 'Sukses!',
+                                        text: response.message,
+                                        icon: 'success',
+                                        confirmButtonText: 'OK'
+                                    }).then(function() {
+                                        location.reload(); // Atau tindakan lain setelah disimpan
+                                    });
+                                },
+                                complete: function() {
+                                    tombolSimpan.prop('disabled', false);
+                                },
+                                error: function(xhr) {
+                                    var errorMessages = xhr.responseJSON.errors;
+                                    var errorMessage = '';
+                                    $.each(errorMessages, function(key, value) {
+                                        errorMessage += value + '<br>';
+                                    });
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        html: errorMessage,
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    });
+                                }
+                            });
+                        });
+                    });
+                </script>
+                
 
 
                 {{-- PERINTAH UPDATE DATA --}}
@@ -962,7 +1150,7 @@
 
                             $.ajax({
                                 type: 'POST',
-                                url: '/verifikasi/update/' + id,
+                                url: '/seleksi_dalam_proses/update/' + id,
                                 data: formData,
                                 headers: {
                                     'X-HTTP-Method-Override': 'PUT'

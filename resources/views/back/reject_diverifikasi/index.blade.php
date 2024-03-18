@@ -24,11 +24,6 @@
             object-position: center;
             height: 100%;
         }
-
-
- 
-      
-
     </style>
 @endpush
 
@@ -75,7 +70,8 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Data Pendaftaran Kandidat Reject Verifikasi</h5>
+                                        <h5>Data Pendaftaran Kandidat <span class="badge badge-pill badge-danger" style="color: #f9fbfc; display: inline-block;"> <i class="fa fa-ban"></i> REJECT VERIFIKASI</span> </h5>
+
                                     </div>
 
 
@@ -144,7 +140,7 @@
                                                         <div class="card-block">
 
 
-                                                            <a href="{{ route('reject_diverifikasi.detail', $p->id) }}">
+                                                            <a href="{{ route('verifikasi.detail', $p->id) }}">
                                                                 <h5 class="card-title">
                                                                     <b
                                                                         style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->nama_lengkap }}</b>
@@ -164,6 +160,15 @@
                                                                     <i class="fa fa-calendar"></i>
                                                                     <b>{{ $p->created_at->format('l, j F Y') }}</b>
                                                                 </small>
+                                                                @if ($p->status === 'Reject-Blacklist')
+                                                                    <small class="text-muted" style="padding-left: 10px;">
+                                                                        <span class="badge badge-pill badge-danger"
+                                                                            style="color: #f9fbfc;">
+                                                                            <i class="fa fa-ban"></i> BLACKLIST
+                                                                        </span>
+                                                                    </small>
+                                                                @endif
+
                                                             </div>
                                                             <br>
 
@@ -180,7 +185,7 @@
                                                                         Ubah Status
 
                                                                     </a>
-                                                                    <a href="{{ route('reject_diverifikasi.detail', $p->id) }}"
+                                                                    <a href="{{ route('verifikasi.detail', $p->id) }}"
                                                                         class="form-control"
                                                                         style="background-color: transparent; color: #00324F; border-radius: 1rem; font-size: 12px;  border: 1px solid #00324F;"
                                                                         title="Detail"><i class="fa fa-arrow-right"></i>
@@ -201,14 +206,14 @@
                                                 <div class="modal fade" id="ubahStatusModal{{ $p->id }}"
                                                     tabindex="-1" role="dialog" aria-labelledby="ubahStatusModalLabel"
                                                     aria-hidden="true">
-                                                    aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
+
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="ubahStatusModalLabel">Ubah
                                                                     Status - {{ $p->nama_lengkap }}</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
@@ -221,9 +226,10 @@
                                                                         <select class="form-control"
                                                                             id="statusSelect{{ $p->id }}"
                                                                             name="status">
+                                                                            <option value="Pending">Pending</option>
                                                                             <option value="Verifikasi">Verifikasi</option>
                                                                             <option value="Reject">Reject</option>
-                                                                            <option value="Pending">Pending</option>
+                                                                            <option value="Reject-Blacklist">Reject-Blacklist</option>
                                                                             <!-- Add other status options if needed -->
                                                                         </select>
                                                                     </div>
@@ -280,7 +286,7 @@
 
         @push('script')
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-            
+
             <!-- Add this inside your HTML body, after the card layout code -->
             <script>
                 function searchCards() {
@@ -315,7 +321,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: '/update-status', // Sesuaikan dengan URL rute Anda
+                        url: '/update-status-verifikasi-reject', // Sesuaikan dengan URL rute Anda
                         data: formData,
                         success: function(response) {
                             // Handle success, tampilkan SweetAlert untuk konfirmasi OK

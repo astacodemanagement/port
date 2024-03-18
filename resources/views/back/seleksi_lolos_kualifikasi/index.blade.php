@@ -1,6 +1,6 @@
 @extends('back.layouts.app')
-@section('title', 'Halaman Seleksi Lolos Kualifikasi')
-@section('subtitle', 'Menu Seleksi Lolos Kualifikasi')
+@section('title', 'Halaman Seleksi')
+@section('subtitle', 'Menu Seleksi')
 @push('css')
     @extends('back.layouts.css_datatables')
 @endpush
@@ -48,7 +48,7 @@
 
                                 <div class="card" id="tb1">
                                     <div class="card-header">
-                                        <h5>Data Seleksi</h5>
+                                        <h5>  <span class="badge badge-pill badge-primary" style="color: #ecf1f3; display: inline-block;"> Data Lolos Kualifikasi</span> </h5>
 
                                     </div>
                                     <div class="card-block">
@@ -80,7 +80,7 @@
                                                                 <td style="text-align: center; font-size:23px;"><span class="label label-danger">{{ count($group) }}</span></td>
                                                                 <td style="text-align: center; font-size:18px;"><span class="label label-warning">{{ $p->nama_kategori_job }}</span></td>
                                                                 <td class="text-center">
-                                                                    <a style="color: rgb(242, 236, 236)" href="#"
+                                                                    <a title="Detail" style="color: rgb(242, 236, 236)" href="#"
                                                                         class="btn btn-sm btn-primary btn-detail"
                                                                         data-id="{{ $p->id }}" style="color: black">
                                                                         <i class="fas fa-eye"></i> Detail
@@ -103,7 +103,7 @@
 
                             <div class="card" id="tb2">
                                 <div class="card-header">
-                                    <h5>Data Seleksi</h5>
+                                    <h5>  <span class="badge badge-pill badge-primary" style="color: #ecf1f3; display: inline-block;"> Data Lolos Kualifikasi</span> </h5>
 
                                 </div>
                                 <div class="card-block">
@@ -141,20 +141,23 @@
                                                                     data-target="#ubahStatusModal{{ $p->id }}"
                                                                     class="form-control mr-2"
                                                                     style="background-color: #00324F; color: #fff; font-size: 12px; "
-                                                                    title="Detail">
+                                                                    title="Ubah Status">
                                                                     <i class="fa fa-edit"></i>
                                                                     Ubah Status
 
                                                                 </a>
-                                                                <a href="{{ route('belum_diverifikasi.detail', $p->id) }}"
+                                                                <a href="{{ route('seleksi.detail', $p2->id) }}"
                                                                     class="form-control"
                                                                     style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
-                                                                    title="Detail"><i class="fa fa-arrow-right"></i>
-                                                                    Lihat Detail</a>
+                                                                    title="Detail">
+                                                                    <i class="fa fa-arrow-right"></i>
+                                                                    Lihat Detail
+                                                                </a>
+                                                                
                                                             </td>
                                                         </tr>
                                                         <!-- Modal -->
-                                                        <div class="modal fade" id="ubahStatusModal{{ $p->id }}"
+                                                        <div class="modal fade" id="ubahStatusModal{{ $p2->id }}"
                                                             tabindex="-1" role="dialog"
                                                             aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
 
@@ -163,7 +166,7 @@
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title"
                                                                             id="ubahStatusModalLabel">Ubah
-                                                                            Status - {{ $p->nama_kandidat }}</h5>
+                                                                            Status - {{ $p2->nama_kandidat }}</h5>
                                                                         <button type="button" class="close"
                                                                             data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
@@ -171,17 +174,16 @@
                                                                     </div>
                                                                     <div class="modal-body">
                                                                         <!-- Add your form with combo box for status update -->
-                                                                        <form id="ubahStatusForm{{ $p->id }}">
+                                                                        <form id="ubahStatusForm{{ $p2->id }}">
                                                                             <!-- Combo box for status update -->
                                                                             <div class="form-group">
                                                                                 <label for="statusSelect">Ubah
                                                                                     Status:</label>
                                                                                 <select class="form-control"
-                                                                                    id="statusSelect{{ $p->id }}"
+                                                                                    id="statusSelect{{ $p2->id }}"
                                                                                     name="status">
-                                                                                    <option value="Cek Kualifikasi">Cek Kualifikasi</option>
-                                                                                    <option value="Lolos Kualifikasi">Lolos Kualifikasi</option>
                                                                                     <option value="Interview">Interview</option>
+                                                                                    <option value="Cek Kualifikasi">Cek Kualifikasi</option>
                                                                                     <option value="Lolos Interview">Lolos Interview</option>
                                                                                     <option value="Dalam Proses">Dalam Proses</option>
                                                                                     <option value="Terbang">Terbang</option>
@@ -190,9 +192,19 @@
                                                                                     <!-- Add other status options if needed -->
                                                                                 </select>
                                                                             </div>
+                                                                            <div class="form-group">
+                                                                                <label for="tanggal_interview">Tanggal Interview :</label>
+                                                                                <input type="date" id="tanggal_interview" name="tanggal_interview" class="form-control">
+                                                                                
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="keterangan_interview">Keterangan Interview :</label>
+                                                                                <textarea name="keterangan_interview" id="keterangan_interview" cols="30" rows="3" class="form-control"></textarea>
+                                                                                
+                                                                            </div>
                                                                             <!-- Add hidden input for the Pendaftaran ID -->
                                                                             <input type="hidden" name="id"
-                                                                                value="{{ $p->id }}">
+                                                                                value="{{ $p2->id }}">
                                                                         </form>
                                                                     </div>
                                                                     <div class="modal-footer">
@@ -202,7 +214,7 @@
                                                                                 class="fas fa-undo"></i>
                                                                             Tutup</button>
                                                                         <button type="button" class="btn btn-primary"
-                                                                            onclick="submitUbahStatus({{ $p->id }})"><i
+                                                                            onclick="submitUbahStatus({{ $p2->id }})"><i
                                                                                 class="fas fa-save"></i>
                                                                             Simpan</button>
                                                                     </div>
@@ -215,7 +227,7 @@
                                             </tbody>
 
                                         </table>
-                                        <button id="btnClear" class="btn btn-warning"><i
+                                        <button id="btnClear" class="btn btn-warning" title="Clear atau Kembali"><i
                                                 class="fa fa-undo"></i>Clear</button>
                                     </div>
                                 </div>
@@ -289,7 +301,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/update-status-seleksi', // Sesuaikan dengan URL rute Anda
+                url: '/update-status-seleksi_lolos_kualifikasi', // Sesuaikan dengan URL rute Anda
                 data: formData,
                 success: function(response) {
                     // Handle success, tampilkan SweetAlert untuk konfirmasi OK

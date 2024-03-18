@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kandidat;
 use App\Models\Seleksi;
 use App\Models\LogHistori;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -38,7 +40,7 @@ class SeleksiController extends Controller
             ->where('seleksi.status', 'Cek Kualifikasi') // Menambahkan klausa where untuk status
             ->select(
                 'seleksi.*',
-                'kandidat.nama_kandidat',
+                'kandidat.nama_lengkap',
                 'job.nama_job',
                 'job.nama_negara',
                 'job.nama_perusahaan',
@@ -47,27 +49,31 @@ class SeleksiController extends Controller
                 'kategori_job.urutan as kategori_urutan'
             )
             ->get();
-    
+
         // Cetak hasil query ke konsol untuk diinspeksi
         \Illuminate\Support\Facades\Log::info('Query Result:', ['seleksi' => $seleksi]);
-    
+
         $seleksi_group = $seleksi->groupBy('job_id');
-    
+
         return view('back.seleksi.index', compact('seleksi', 'seleksi_group'));
     }
-    
+
 
     public function updateStatus(Request $request)
     {
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
+       
 
         // Get the original data before the update
         $cek_kualifikasi = Seleksi::findOrFail($cek_kualifikasi_id);
         $oldData = $cek_kualifikasi->getOriginal();
 
         // Update the status in the database
-        Seleksi::where('id', $cek_kualifikasi_id)->update(['status' => $status]);
+        Seleksi::where('id', $cek_kualifikasi_id)->update([
+            'status' => $status,
+            'tanggal_cek_kualifikasi' => Carbon::now()->toDateString()
+        ]);
 
         // Get the updated data after the update
         $updatedData = Seleksi::findOrFail($cek_kualifikasi_id)->getOriginal();
@@ -77,6 +83,18 @@ class SeleksiController extends Controller
         $this->simpanLogHistori('Update', 'Cek Kualifikasi', $cek_kualifikasi_id, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
 
         return response()->json(['message' => 'Status updated successfully']);
+    }
+
+    public function detail($id)
+    {
+        // $seleksi = Seleksi::select('seleksi.*', 'job.nama_job as nama_job', 'kandidat.nama_lengkap as nama_lengkap')
+        $seleksi = Seleksi::select('*')
+            ->join('job', 'seleksi.job_id', '=', 'job.id')
+            ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
+            ->where('seleksi.id', $id)
+            ->first();
+
+        return view('back.seleksi.detail', compact('seleksi'));
     }
 
 
@@ -100,7 +118,6 @@ class SeleksiController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
@@ -122,7 +139,6 @@ class SeleksiController extends Controller
      */
     public function edit($id)
     {
-        
     }
 
     /**
@@ -134,7 +150,6 @@ class SeleksiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
     }
 
     /**
@@ -145,7 +160,6 @@ class SeleksiController extends Controller
      */
     public function destroy($id)
     {
-      
     }
 
 

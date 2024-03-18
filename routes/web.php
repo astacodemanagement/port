@@ -23,7 +23,13 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\RejectVerifikasiController;
 use App\Http\Controllers\SeleksiBatalController;
 use App\Http\Controllers\SeleksiController;
-use App\Http\Controllers\SeleksiDuaController;
+use App\Http\Controllers\SeleksiDalamProsesController;
+use App\Http\Controllers\SeleksiInterviewController;
+use App\Http\Controllers\SeleksiLolosInterviewController;
+use App\Http\Controllers\SeleksiLolosKualifikasiController;
+use App\Http\Controllers\SeleksiSelesaiKontrakController;
+use App\Http\Controllers\SeleksiTerbangController;
+use App\Http\Controllers\SemuaSeleksiController;
 use App\Http\Controllers\SudahVerifikasiController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -50,25 +56,28 @@ Route::resource('pengguna', PenggunaController::class);
 
 // Kandidat
 Route::get('/kandidat', [KandidatController::class, 'index']);
+Route::resource('kandidat', KandidatController::class);
+Route::get('/kandidat/{id}/detail', [KandidatController::class, 'detail'])->name('kandidat.detail');
 
 
 
 // Belum Verifikasi
 Route::get('/belum_diverifikasi', [BelumVerifikasiController::class, 'index']);
 Route::post('/update-status', [BelumVerifikasiController::class, 'updateStatus'])->name('update.status'); 
-Route::get('/belum_diverifikasi/{id}/detail', [BelumVerifikasiController::class, 'detail'])->name('belum_diverifikasi.detail');
+// Route::get('/belum_verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('belum_verifikasi.detail');
+Route::get('/verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('verifikasi.detail');
+Route::put('/verifikasi/update/{id}', [BelumVerifikasiController::class, 'updateDetail'])->name('updateDetail.update');
+
 
 
 // Sudah Verifikasi
 Route::get('/sudah_diverifikasi', [SudahVerifikasiController::class, 'index']);
-Route::post('/update-status', [SudahVerifikasiController::class, 'updateStatus'])->name('update.status'); 
-Route::get('/sudah_diverifikasi/{id}/detail', [SudahVerifikasiController::class, 'detail'])->name('sudah_diverifikasi.detail');
+Route::post('/update-status-verifikasi', [SudahVerifikasiController::class, 'updateStatus'])->name('update.status'); 
 
 
 // Reject Verifikasi
 Route::get('/reject_diverifikasi', [RejectVerifikasiController::class, 'index']);
-Route::post('/update-status', [RejectVerifikasiController::class, 'updateStatus'])->name('update.status'); 
-Route::get('/reject_diverifikasi/{id}/detail', [RejectVerifikasiController::class, 'detail'])->name('reject_diverifikasi.detail');
+Route::post('/update-status-verifikasi-reject', [RejectVerifikasiController::class, 'updateStatus'])->name('update.status'); 
 
 
 
@@ -79,22 +88,56 @@ Route::get('/reject_diverifikasi/{id}/detail', [RejectVerifikasiController::clas
 
 // SELEKSI
 
-// Awal Seleksi
+//  Seleksi
+Route::get('/semua_seleksi', [SemuaSeleksiController::class, 'index']);
+ 
+
+
+//  Seleksi
 Route::get('/seleksi', [SeleksiController::class, 'index']);
 Route::post('/update-status-seleksi', [SeleksiController::class, 'updateStatus'])->name('update.status'); 
 Route::get('/seleksi/{id}/detail', [SeleksiController::class, 'detail'])->name('seleksi.detail');
 
 
-// Awal Seleksi Dua Lolos Kualifikasi
-Route::get('/seleksi_lolos_kualifikasi', [SeleksiDuaController::class, 'index']);
-Route::post('/update-status-seleksi_lolos_kualifikasi', [SeleksiDuaController::class, 'updateStatus'])->name('update.status'); 
-Route::get('/seleksi_lolos_kualifikasi/{id}/detail', [SeleksiDuaController::class, 'detail'])->name('seleksi_lolos_kualifikasi.detail');
+
+//  Seleksi Dua Lolos Kualifikasi
+Route::get('/seleksi_lolos_kualifikasi', [SeleksiLolosKualifikasiController::class, 'index']);
+Route::post('/update-status-seleksi_lolos_kualifikasi', [SeleksiLolosKualifikasiController::class, 'updateStatus'])->name('update_lolos_kualifikasi.status'); 
+
+//  Seleksi Interview
+Route::get('/seleksi_interview', [SeleksiInterviewController::class, 'index']);
+Route::post('/update-status-seleksi_interview', [SeleksiInterviewController::class, 'updateStatus'])->name('update_seleksi_interview.status'); 
 
 
-// Awal Seleksi Batal
+//  Seleksi Lolos Interview
+Route::get('/seleksi_lolos_interview', [SeleksiLolosInterviewController::class, 'index']);
+Route::post('/update-status-seleksi_lolos_interview', [SeleksiLolosInterviewController::class, 'updateStatus'])->name('update_seleksi_lolos_interview.status'); 
+
+
+//  Seleksi Dalam Proses
+Route::get('/seleksi_dalam_proses', [SeleksiDalamProsesController::class, 'index']);
+Route::get('/seleksi_dalam_proses/{id}/detail', [SeleksiDalamProsesController::class, 'detail'])->name('seleksi_dalam_proses.detail');
+Route::post('/update-status-seleksi_dalam_proses', [SeleksiDalamProsesController::class, 'updateStatus'])->name('update_seleksi_dalam_proses.status'); 
+Route::put('/seleksi_dalam_proses/update/{id}', [SeleksiDalamProsesController::class, 'updateDetail'])->name('updateDetail.update');
+
+Route::post('/tambah-pembayaran', [SeleksiDalamProsesController::class, 'tambahPembayaran'])->name('tambahPembayaran'); 
+ 
+
+
+//  Seleksi Terbang
+Route::get('/seleksi_terbang', [SeleksiTerbangController::class, 'index']);
+Route::post('/update-status-seleksi_terbang', [SeleksiTerbangController::class, 'updateStatus'])->name('update_seleksi_terbang.status'); 
+
+
+//  Seleksi Selesai Kontrak
+Route::get('/seleksi_selesai_kontrak', [SeleksiSelesaiKontrakController::class, 'index']);
+Route::post('/update-status-seleksi_selesai_kontrak', [SeleksiSelesaiKontrakController::class, 'updateStatus'])->name('update_seleksi_selesai_kontrak.status'); 
+
+
+
+// Seleksi Batal
 Route::get('/seleksi_batal', [SeleksiBatalController::class, 'index']);
-Route::post('/update-status-seleksi_batal', [SeleksiBatalController::class, 'updateStatus'])->name('update.status'); 
-Route::get('/seleksi_batal/{id}/detail', [SeleksiBatalController::class, 'detail'])->name('seleksi_batal.detail');
+Route::post('/update-status-seleksi_batal', [SeleksiBatalController::class, 'updateStatus'])->name('update_seleksi_batal.status'); 
 
 
 

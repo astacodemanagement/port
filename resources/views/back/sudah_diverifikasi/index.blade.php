@@ -75,7 +75,7 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Data Pendaftaran Kandidat Sudah Verifikasi</h5>
+                                        <h5>Data Pendaftaran Kandidat <span class="badge badge-pill badge-success" style="color: #f9fbfc; display: inline-block;"> <i class="fa fa-check"></i> SUDAH VERIFIKASI </span> </h5>
                                     </div>
 
 
@@ -144,7 +144,7 @@
                                                         <div class="card-block">
 
 
-                                                            <a href="{{ route('sudah_diverifikasi.detail', $p->id) }}">
+                                                            <a href="{{ route('verifikasi.detail', $p->id) }}">
                                                                 <h5 class="card-title">
                                                                     <b
                                                                         style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->nama_lengkap }}</b>
@@ -180,7 +180,7 @@
                                                                         Ubah Status
 
                                                                     </a>
-                                                                    <a href="{{ route('sudah_diverifikasi.detail', $p->id) }}"
+                                                                    <a href="{{ route('verifikasi.detail', $p->id) }}"
                                                                         class="form-control"
                                                                         style="background-color: transparent; color: #00324F; border-radius: 1rem; font-size: 12px;  border: 1px solid #00324F;"
                                                                         title="Detail"><i class="fa fa-arrow-right"></i>
@@ -201,7 +201,7 @@
                                                 <div class="modal fade" id="ubahStatusModal{{ $p->id }}"
                                                     tabindex="-1" role="dialog" aria-labelledby="ubahStatusModalLabel"
                                                     aria-hidden="true">
-                                                    aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
+                                                  
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -221,8 +221,8 @@
                                                                         <select class="form-control"
                                                                             id="statusSelect{{ $p->id }}"
                                                                             name="status">
-                                                                            <option value="Verifikasi">Verifikasi</option>
                                                                             <option value="Reject">Reject</option>
+                                                                            <option value="Reject-Blacklist">Reject-Blacklist</option>
                                                                             <option value="Pending">Pending</option>
                                                                             <!-- Add other status options if needed -->
                                                                         </select>
@@ -315,7 +315,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: '/update-status', // Sesuaikan dengan URL rute Anda
+                        url: '/update-status-verifikasi', // Sesuaikan dengan URL rute Anda
                         data: formData,
                         success: function(response) {
                             // Handle success, tampilkan SweetAlert untuk konfirmasi OK

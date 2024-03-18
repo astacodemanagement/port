@@ -431,11 +431,7 @@
                                             <span class="pcoded-mtext">Pelamar</span>
                                         </a>
                                         <ul class="pcoded-submenu">
-                                            <li class>
-                                                <a href="/kandidat" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Data Kandidat</span>
-                                                </a>
-                                            </li>
+                                           
                                             <li class>
                                                 <a href="/belum_diverifikasi" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Belum Diverifikasi</span>
@@ -451,6 +447,11 @@
                                                     <span class="pcoded-mtext">Reject</span>
                                                 </a>
                                             </li>
+                                            <li class>
+                                                <a href="/kandidat" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Data Kandidat</span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="pcoded-hasmenu">
@@ -461,6 +462,11 @@
                                             <span class="pcoded-mtext">Proses Seleksi</span>
                                         </a>
                                         <ul class="pcoded-submenu">
+                                            <li class>
+                                                <a href="/semua_seleksi" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">All Data</span>
+                                                </a>
+                                            </li>
                                             <li class>
                                                 <a href="/seleksi" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Cek Kualifikasi</span>

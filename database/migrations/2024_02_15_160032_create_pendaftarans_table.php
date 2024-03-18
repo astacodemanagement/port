@@ -84,6 +84,7 @@ return new class extends Migration
             $table->string('video_skill')->nullable();
             $table->string('password')->nullable();
             $table->string('status')->nullable();
+            $table->string('blacklist')->nullable();
 
              // informasi kontak
              $table->string('email')->nullable();

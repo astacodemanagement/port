@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kandidat;
 use App\Models\LogHistori;
+use App\Models\Pendaftaran;
+use App\Models\Seleksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -33,6 +35,15 @@ class KandidatController extends Controller
         $kandidat = Kandidat::orderBy('id', 'desc')->get();
         return view('back.kandidat.index', compact('kandidat'));
     }
+
+    public function detail($id)
+    {
+        $detail_kandidat = Kandidat::where('id', $id)->first();
+
+
+        return view('back.kandidat.detail', compact('detail_kandidat'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -72,7 +83,7 @@ class KandidatController extends Controller
 
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
-            $destinationPath = 'upload/kandidat/';
+            $destinationPath = 'upload/foto/';
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move($destinationPath, $imageName);
             $input['gambar'] = $imageName;
@@ -144,18 +155,18 @@ class KandidatController extends Controller
 
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
-            $destinationPath = 'upload/kandidat/';
+            $destinationPath = 'upload/foto/';
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move($destinationPath, $imageName);
-    
+
             // Hapus file gambar lama jika ada
-            if ($kandidat->gambar && file_exists(public_path('upload/kandidat/' . $kandidat->gambar))) {
-                unlink(public_path('upload/kandidat/' . $kandidat->gambar));
+            if ($kandidat->gambar && file_exists(public_path('upload/foto/' . $kandidat->gambar))) {
+                unlink(public_path('upload/foto/' . $kandidat->gambar));
             }
-    
+
             $input['gambar'] = $imageName;
         }
-    
+
         // Update kandidat data di database
         $kandidat->update($input);
 
@@ -184,9 +195,19 @@ class KandidatController extends Controller
             return response()->json(['message' => 'Data kandidat not found'], 404);
         }
 
+        // Periksa apakah NIK ada di tabel pendaftaran
+        $nikExistsInPendaftaran = Pendaftaran::where('nik', $kandidat->nik)->exists();
+
+        // Periksa apakah ID ada di tabel seleksi
+        $idExistsInSeleksi = Seleksi::where('id', $kandidat->id)->exists();
+
+        if ($nikExistsInPendaftaran || $idExistsInSeleksi) {
+            return response()->json(['message' => 'Data kandidat tidak dapat dihapus karena NIK terkait ada di tabel pendaftaran atau ID terkait ada di tabel seleksi'], 422);
+        }
+
         // Hapus file terkait jika ada sebelum menghapus entitas dari database
-        $oldBuktiFileName = $kandidat->gambar; // Nama file saja
-        $oldBuktiPath = public_path('upload/kandidat/' . $oldBuktiFileName);
+        $oldBuktiFileName = $kandidat->foto; // Nama file saja
+        $oldBuktiPath = public_path('upload/foto/' . $oldBuktiFileName);
 
         if ($oldBuktiFileName && file_exists($oldBuktiPath)) {
             unlink($oldBuktiPath);
@@ -198,7 +219,6 @@ class KandidatController extends Controller
 
         // Simpan log histori untuk operasi Delete dengan user_id yang sedang login dan informasi data yang dihapus
         $this->simpanLogHistori('Delete', 'kandidat', $id, $loggedInUserId, json_encode($kandidat), null);
-
 
         return response()->json(['message' => 'Data Berhasil Dihapus']);
     }

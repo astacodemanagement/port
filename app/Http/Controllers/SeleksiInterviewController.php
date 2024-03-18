@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Seleksi;
 use App\Models\LogHistori;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class SeleksiDuaController extends Controller
+class SeleksiInterviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,10 +36,10 @@ class SeleksiDuaController extends Controller
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
-            ->where('seleksi.status', 'Lolos Kualifikasi') // Menambahkan klausa where untuk status
+            ->where('seleksi.status', 'Interview') // Menambahkan klausa where untuk status
             ->select(
                 'seleksi.*',
-                'kandidat.nama_kandidat',
+                'kandidat.nama_lengkap',
                 'job.nama_job',
                 'job.nama_negara',
                 'job.nama_perusahaan',
@@ -53,28 +54,36 @@ class SeleksiDuaController extends Controller
     
         $seleksi_group = $seleksi->groupBy('job_id');
     
-        return view('back.seleksi_lolos_kualifikasi.index', compact('seleksi', 'seleksi_group'));
+        return view('back.seleksi_interview.index', compact('seleksi', 'seleksi_group'));
     }
     
 
+     
     public function updateStatus(Request $request)
     {
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
+        $keterangan_lolos_interview = $request->input('keterangan_lolos_interview');
+       
 
         // Get the original data before the update
         $cek_kualifikasi = Seleksi::findOrFail($cek_kualifikasi_id);
         $oldData = $cek_kualifikasi->getOriginal();
 
         // Update the status in the database
-        Seleksi::where('id', $cek_kualifikasi_id)->update(['status' => $status]);
+        Seleksi::where('id', $cek_kualifikasi_id)->update([
+            'status' => $status,
+            'tanggal_lolos_interview' => Carbon::now()->toDateString(),
+            'keterangan_lolos_interview' => $keterangan_lolos_interview,
+             
+        ]);
 
         // Get the updated data after the update
         $updatedData = Seleksi::findOrFail($cek_kualifikasi_id)->getOriginal();
 
         // Log the histori
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Update', 'Cek Kualifikasi', $cek_kualifikasi_id, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
+        $this->simpanLogHistori('Update', 'Lolos Kualifikasi', $cek_kualifikasi_id, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
 
         return response()->json(['message' => 'Status updated successfully']);
     }

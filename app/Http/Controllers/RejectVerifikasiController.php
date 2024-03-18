@@ -32,10 +32,14 @@ class RejectVerifikasiController extends Controller
 
     public function index()
     {
-        $reject_diverifikasi = Pendaftaran::where('status', 'Reject')->orderBy('id', 'desc')->paginate(4); // Ganti 10 dengan jumlah item per halaman yang diinginkan
+        $reject_diverifikasi = Pendaftaran::where('status', 'Reject')
+            ->orWhere('status', 'Reject-Blacklist')
+            ->orderBy('id', 'desc')
+            ->paginate(4); // Ganti 10 dengan jumlah item per halaman yang diinginkan
+    
         return view('back.reject_diverifikasi.index', compact('reject_diverifikasi'));
     }
- 
+    
 
 
     public function updateStatus(Request $request)

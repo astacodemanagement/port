@@ -24,11 +24,6 @@
             object-position: center;
             height: 100%;
         }
-
-
- 
-      
-
     </style>
 @endpush
 
@@ -75,7 +70,7 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Data Pendaftaran Kandidat Belum Verifikasi</h5>
+                                        <h5>Data Pendaftaran Kandidat <span class="badge badge-pill badge-warning" style="color: #2c2f30; display: inline-block;"> <i class="fa fa-spinner"></i> BELUM VERIFIKASI (PENDING)</span> </h5>
                                     </div>
 
 
@@ -144,7 +139,7 @@
                                                         <div class="card-block">
 
 
-                                                            <a href="{{ route('belum_diverifikasi.detail', $p->id) }}">
+                                                            <a href="{{ route('verifikasi.detail', $p->id) }}">
                                                                 <h5 class="card-title">
                                                                     <b
                                                                         style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->nama_lengkap }}</b>
@@ -180,7 +175,7 @@
                                                                         Ubah Status
 
                                                                     </a>
-                                                                    <a href="{{ route('belum_diverifikasi.detail', $p->id) }}"
+                                                                    <a href="{{ route('verifikasi.detail', $p->id) }}"
                                                                         class="form-control"
                                                                         style="background-color: transparent; color: #00324F; border-radius: 1rem; font-size: 12px;  border: 1px solid #00324F;"
                                                                         title="Detail"><i class="fa fa-arrow-right"></i>
@@ -201,7 +196,6 @@
                                                 <div class="modal fade" id="ubahStatusModal{{ $p->id }}"
                                                     tabindex="-1" role="dialog" aria-labelledby="ubahStatusModalLabel"
                                                     aria-hidden="true">
-                                                    aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
@@ -215,18 +209,31 @@
                                                             <div class="modal-body">
                                                                 <!-- Add your form with combo box for status update -->
                                                                 <form id="ubahStatusForm{{ $p->id }}">
-                                                                    <!-- Combo box for status update -->
                                                                     <div class="form-group">
-                                                                        <label for="statusSelect">Ubah Status:</label>
+                                                                        <label for="statusSelect{{ $p->id }}">Ubah
+                                                                            Status:</label>
                                                                         <select class="form-control"
                                                                             id="statusSelect{{ $p->id }}"
-                                                                            name="status">
+                                                                            name="status"
+                                                                            onchange="handleStatusChange(this)">
                                                                             <option value="Verifikasi">Verifikasi</option>
                                                                             <option value="Reject">Reject</option>
-                                                                            <option value="Pending">Pending</option>
+                                                                            <option value="Reject-Blacklist">Reject-Blacklist</option>
+                                                                            <!-- <option value="Pending">Pending</option> -->
                                                                             <!-- Add other status options if needed -->
                                                                         </select>
                                                                     </div>
+
+                                                                    {{-- <div class="form-group" id="statusBlacklistGroup{{ $p->id }}" style="display: none;">
+                                                                        <label for="blacklist{{ $p->id }}">Status Blacklist:</label>
+                                                                        <br>
+                                                                        <select class="form-control" id="blacklist{{ $p->id }}" name="blacklist">
+                                                                            <option value="Ya">Ya</option>
+                                                                            <option value="Tidak">Tidak</option>
+                                                                        </select>
+                                                                    </div> --}}
+                                                                    
+
                                                                     <!-- Add hidden input for the Pendaftaran ID -->
                                                                     <input type="hidden" name="pendaftaran_id"
                                                                         value="{{ $p->id }}">
@@ -280,7 +287,22 @@
 
         @push('script')
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-            
+
+
+            {{-- <script>
+                function handleStatusChange(selectElement) {
+                    var pendaftaranId = selectElement.id.replace('statusSelect', '');
+                    var statusBlacklistGroup = document.getElementById("statusBlacklistGroup" + pendaftaranId);
+
+                    // Tampilkan atau sembunyikan group radio berdasarkan pilihan select
+                    if (selectElement.value === "Reject") {
+                        statusBlacklistGroup.style.display = "block";
+                    } else {
+                        statusBlacklistGroup.style.display = "none";
+                    }
+                }
+            </script> --}}
+
             <!-- Add this inside your HTML body, after the card layout code -->
             <script>
                 function searchCards() {

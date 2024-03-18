@@ -48,7 +48,7 @@
 
                                 <div class="card" id="tb1">
                                     <div class="card-header">
-                                        <h5>  <span class="badge badge-pill badge-warning" style="color: #2c2f30; display: inline-block;"> Data Cek Kualifikasi</span> </h5>
+                                        <h5>  <span class="badge badge-pill badge-success" style="color: #ecf1f3; display: inline-block;"> Data Lolos Interview</span> </h5>
 
                                     </div>
                                     <div class="card-block">
@@ -59,6 +59,7 @@
                                                     <tr>
                                                         <th width="5%">No</th>
                                                         <th width="15%">Posisi</th>
+                                                   
                                                         <th width="15%">Negara</th>
                                                         <th width="15%">Nama Perusahaan</th>
                                                         <th width="5%">Mitra</th>
@@ -73,6 +74,7 @@
                                                             <tr>
                                                                 <td>{{ $loop->iteration }}</td>
                                                                 <td><b>{{ $p->nama_job }}</b></td>
+                                                               
 
                                                                 <td>{{ $p->nama_negara }}</td>
                                                                 <td>{{ $p->nama_perusahaan }}</td>
@@ -103,7 +105,7 @@
 
                             <div class="card" id="tb2">
                                 <div class="card-header">
-                                    <h5>  <span class="badge badge-pill badge-warning" style="color: #2c2f30; display: inline-block;"> Data Cek Kualifikasi</span> </h5>
+                                    <h5>  <span class="badge badge-pill badge-success" style="color: #ecf1f3; display: inline-block;"> Data Lolos Interview</span> </h5>
 
                                 </div>
                                 <div class="card-block">
@@ -114,11 +116,10 @@
                                                 <tr>
                                                     <th width="5%">No</th>
                                                     <th width="15%">Tanggal Apply</th>
+                                                    <th width="15%">Tanggal Interview</th>
                                                     <th width="15%">Nama Kandidat</th>
                                                     <th width="15%">Posisi</th>
-                                                    <th width="15%">Negara</th>
                                                     <th width="15%">Nama Perusahaan</th>
-                                                    <th width="5%">Kategori Industri Pekerjaan</th>
                                                     <th width="5%">Status Seleksi</th>
                                                     <th width="15%" class="text-center" width="5%">Aksi</th>
                                                 </tr>
@@ -129,11 +130,10 @@
                                                         <tr data-job-id="{{ $jobId }}">
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p2->created_at }}</td>
+                                                            <td> {{ $p2->tanggal_interview }} </td>
                                                             <td>{{ $p2->nama_kandidat }}</td>
                                                             <td>{{ $p2->nama_job }}</td>
-                                                            <td>{{ $p2->nama_negara }}</td>
                                                             <td>{{ $p2->nama_perusahaan }}</td>
-                                                            <td>{{ $p2->nama_kategori_job }}</td>
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
 
@@ -182,16 +182,20 @@
                                                                                 <select class="form-control"
                                                                                     id="statusSelect{{ $p2->id }}"
                                                                                     name="status">
-                                                                                    {{-- <option value="Cek Kualifikasi">Cek Kualifikasi</option> --}}
-                                                                                    <option value="Lolos Kualifikasi">Lolos Kualifikasi</option>
-                                                                                    <option value="Interview">Interview</option>
-                                                                                    <option value="Lolos Interview">Lolos Interview</option>
                                                                                     <option value="Dalam Proses">Dalam Proses</option>
+                                                                                    <option value="Cek Kualifikasi">Cek Kualifikasi</option>
+                                                                                    <option value="Lolos Kualifikasi">Lolos Kualifikasi</option>
+                                                                                    <option value="Lolos Interview">Interview</option>
                                                                                     <option value="Terbang">Terbang</option>
                                                                                     <option value="Selesai Kontrak">Selesai Kontrak</option>
                                                                                     <option value="Batal">Batal</option>
                                                                                     <!-- Add other status options if needed -->
                                                                                 </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="keterangan_lolos_interview">Keterangan Dari Lolos Interview :</label>
+                                                                                <textarea name="keterangan_lolos_interview" id="keterangan_lolos_interview" cols="30" rows="3" class="form-control"></textarea>
+                                                                                
                                                                             </div>
                                                                             <!-- Add hidden input for the Pendaftaran ID -->
                                                                             <input type="hidden" name="id"
@@ -292,7 +296,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/update-status-seleksi', // Sesuaikan dengan URL rute Anda
+                url: '/update-status-seleksi_lolos_interview', // Sesuaikan dengan URL rute Anda
                 data: formData,
                 success: function(response) {
                     // Handle success, tampilkan SweetAlert untuk konfirmasi OK
