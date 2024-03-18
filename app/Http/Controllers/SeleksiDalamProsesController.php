@@ -109,11 +109,11 @@ class SeleksiDalamProsesController extends Controller
     {
         // Validasi request
         $validator = Validator::make($request->all(), [
-            'tanggal_bayar' => 'required|date',
+            // 'tanggal_bayar' => 'required|date',
             'bukti_bayar' => 'nullable|mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
         ], [
-            'tanggal_bayar.required' => 'Tanggal Bayar Wajib diisi',
-            'tanggal_bayar.date' => 'Tanggal Bayar harus dalam format tanggal yang valid',
+            // 'tanggal_bayar.required' => 'Tanggal Bayar Wajib diisi',
+            // 'tanggal_bayar.date' => 'Tanggal Bayar harus dalam format tanggal yang valid',
             'bukti_bayar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
             'bukti_bayar.max' => 'Ukuran bukti bayar tidak boleh lebih dari 2 MB',
         ]);
