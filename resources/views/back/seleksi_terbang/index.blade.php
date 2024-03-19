@@ -3,6 +3,15 @@
 @section('subtitle', 'Menu Seleksi')
 @push('css')
     @extends('back.layouts.css_datatables')
+    <style>
+        #tb {
+            display: block;
+        }
+
+        #tb3 {
+            display: none;
+        }
+    </style>
 @endpush
 
 @section('content')
@@ -109,11 +118,18 @@
                                 </div>
                             </div>
 
-                            <div class="card" id="tb2">
+                            <div class="card" id="tb">
                                 <div class="card-header">
                                     <h5> <span class="badge badge-pill badge-success"
                                             style="color: #ecf1f3; display: inline-block;"> Data Seleksi Terbang</span>
                                     </h5>
+                                    <button type="button" class="btn btn-warning" onclick=""><i
+                                            class="fas fa-eye"></i>
+                                        AN 05</button>
+                                    <button type="button" class="btn btn-primary" onclick=""><i
+                                            class="fas fa-plane"></i>
+                                        Terbang</button>
+
 
                                 </div>
                                 <div class="card-block">
@@ -123,7 +139,7 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th width="10%">Tanggal Keberangkatan</th>
+                                                    <th width="10%">Tanggal Berangkat</th>
                                                     <th width="10%">Nama</th>
                                                     <th width="10%">No Paspor</th>
                                                     <th width="10%">Negara</th>
@@ -198,7 +214,7 @@
                                                                                     name="status">
                                                                                     <option value="Selesai Kontrak">
                                                                                         Selesai Kontrak</option>
-                                                                                  
+
                                                                                     <option value="Cek Kualifikasi">Cek
                                                                                         Kualifikasi</option>
                                                                                     <option value="Lolos Kualifikasi">
@@ -207,11 +223,12 @@
                                                                                         Interview</option>
                                                                                     <option value="Lolos Interview">
                                                                                         Lolos Interview</option>
-                                                                                        <option value="Dalam Proses">Dalam Proses</option>
-                                                                                   
-                                                                                    
-                                                                                        <option value="Terbang">Terbang
-                                                                                        </option>
+                                                                                    <option value="Dalam Proses">Dalam
+                                                                                        Proses</option>
+
+
+                                                                                    <option value="Terbang">Terbang
+                                                                                    </option>
                                                                                     <option value="Batal">Batal
                                                                                     </option>
                                                                                     <!-- Add other status options if needed -->
@@ -219,7 +236,8 @@
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label
-                                                                                    for="keterangan_seleksi_terbang">Keterangan Dari Seleksi Terbang :</label>
+                                                                                    for="keterangan_seleksi_terbang">Keterangan
+                                                                                    Dari Seleksi Terbang :</label>
                                                                                 <textarea name="keterangan_seleksi_terbang" id="keterangan_seleksi_terbang" cols="30" rows="3"
                                                                                     class="form-control"></textarea>
 
@@ -255,6 +273,64 @@
                                 </div>
                             </div>
 
+                            <div class="card" id="tb3">
+                                <div class="card-header">
+                                    <h5> <span class="badge badge-pill badge-success"
+                                            style="color: #ecf1f3; display: inline-block;"> Data Seleksi Terbang</span>
+                                    </h5>
+                                    <button type="button" class="btn btn-warning" onclick=""><i
+                                            class="fas fa-eye"></i>
+                                        AN 05</button>
+                                    <button type="button" class="btn btn-primary" onclick=""><i
+                                            class="fas fa-plane"></i>
+                                        Terbang</button>
+
+                                </div>
+                                <div class="card-block">
+
+                                    <div class="dt-responsive table-responsive">
+                                        <table id="order-table3" class="table table-striped table-bordered nowrap">
+                                            <thead>
+                                                <tr>
+                                                    <th width="5%">No</th>
+
+                                                    <th width="10%">Nama</th>
+                                                    <th width="10%">Alamat</th>
+                                                    <th width="10%">Email</th>
+                                                    <th width="10%">No HP</th>
+                                                    <th width="10%">Tempat Lahir</th>
+                                                    <th width="10%">Tanggal Lahir</th>
+                                                    <th width="10%">No Visa</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($seleksi_group as $jobId => $group)
+                                                    @foreach ($group as $p2)
+                                                        <tr data-job-id="{{ $jobId }}">
+                                                            <td>{{ $loop->iteration }}</td>
+
+                                                            <td>{{ $p2->nama_lengkap }}</td>
+                                                            <td>{{ $p2->alamat }} </td>
+                                                            <td>{{ $p2->email }}</td>
+                                                            <td>{{ $p2->no_hp }}</td>
+                                                            <td>{{ $p2->tempat_lahir }}</td>
+                                                            <td>{{ $p2->tanggal_lahir }}</td>
+                                                            <td>{{ $p2->referensi }}</td>
+                                                        </tr>
+                                                        <!-- Modal -->
+                                                    @endforeach
+                                                @endforeach
+
+                                            </tbody>
+
+                                        </table>
+                                        {{-- <button id="btnClear" class="btn btn-warning"><i
+                                                class="fa fa-undo"></i>Clear</button> --}}
+                                    </div>
+                                </div>
+                            </div>
+
 
 
 
@@ -274,9 +350,38 @@
     @include('back.layouts.js_datatables')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+    {{-- button --}}
+    <!-- DataTables Buttons CSS -->
+
+
+
     <script>
         $(document).ready(function() {
-            $('#order-table2').DataTable();
+
+// Script untuk mengubah tampilan antara #tb dan #tb3
+document.querySelector('#tb .btn-warning').addEventListener('click', function() {
+    document.getElementById('tb').style.display = 'none';
+    document.getElementById('tb3').style.display = 'block';
+});
+
+document.querySelector('#tb3 .btn-primary').addEventListener('click', function() {
+    document.getElementById('tb3').style.display = 'none';
+    document.getElementById('tb').style.display = 'block';
+});
+
+
+
+
+            $('#order-table2').DataTable({
+                buttons: [
+                    'excel', 'pdf', 'print'
+                ]
+            });
+            $('#order-table3').DataTable({
+                buttons: [
+                    'excel', 'pdf', 'print'
+                ]
+            });
             // Sembunyikan tabel kedua saat halaman dimuat
             $("#tb1").hide();
 

@@ -953,14 +953,14 @@
                                                                                         class="form-control"
                                                                                         id="total_bayar"
                                                                                         name="total_bayar"
-                                                                                        value="{{ number_format($detail_bayar->sum('jumlah_bayar'), 0, ',', ',') }}"
+                                                                                        value="{{ number_format($detail_bayar->sum('jumlah_bayar') - $refund_detail_bayar->sum('jumlah_bayar_refund'), 0, ',', ',') }}"
                                                                                         readonly>
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="sisa_bayar">Sisa Bayar</label>
                                                                                     <?php
-                                                                                    $totalBiaya = $seleksi_dalam_proses->total_biaya;
+                                                                                    $totalBiaya = $seleksi_dalam_proses->total_biaya+$refund_detail_bayar->sum('jumlah_bayar_refund');
                                                                                     $totalBayar = $detail_bayar->sum('jumlah_bayar');
                                                                                     $sisaBayar = $totalBiaya - $totalBayar;
                                                                                     ?>
@@ -1526,50 +1526,50 @@
                     });
                 </script>
 
-                    {{-- HAPUS DATA --}}
-                    <script>
-                        $(document).ready(function() {
-                            $('.btn-hapus-refund').click(function(e) {
-                                e.preventDefault();
-                                var id = $(this).data('id');
-    
-                                Swal.fire({
-                                    title: 'Apakah Anda yakin?',
-                                    text: 'Data akan dihapus permanen!',
-                                    icon: 'warning',
-                                    showCancelButton: true,
-                                    confirmButtonColor: '#3085d6',
-                                    cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Ya, hapus!',
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
-                                        $.ajax({
-                                            url: '/hapus-detail-bayar-refund/' + id,
-                                            type: 'GET',
-                                            success: function(response) {
-                                                Swal.fire({
-                                                    title: 'Sukses!',
-                                                    text: response.message,
-                                                    icon: 'success',
-                                                    confirmButtonText: 'OK',
-                                                }).then(function() {
-                                                    location.reload();
-                                                });
-                                            },
-                                            error: function(xhr) {
-                                                Swal.fire({
-                                                    title: 'Error!',
-                                                    text: 'Gagal menghapus data.',
-                                                    icon: 'error',
-                                                    confirmButtonText: 'OK',
-                                                });
-                                            },
-                                        });
-                                    }
-                                });
+                {{-- HAPUS DATA --}}
+                <script>
+                    $(document).ready(function() {
+                        $('.btn-hapus-refund').click(function(e) {
+                            e.preventDefault();
+                            var id = $(this).data('id');
+
+                            Swal.fire({
+                                title: 'Apakah Anda yakin?',
+                                text: 'Data akan dihapus permanen!',
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Ya, hapus!',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        url: '/hapus-detail-bayar-refund/' + id,
+                                        type: 'GET',
+                                        success: function(response) {
+                                            Swal.fire({
+                                                title: 'Sukses!',
+                                                text: response.message,
+                                                icon: 'success',
+                                                confirmButtonText: 'OK',
+                                            }).then(function() {
+                                                location.reload();
+                                            });
+                                        },
+                                        error: function(xhr) {
+                                            Swal.fire({
+                                                title: 'Error!',
+                                                text: 'Gagal menghapus data.',
+                                                icon: 'error',
+                                                confirmButtonText: 'OK',
+                                            });
+                                        },
+                                    });
+                                }
                             });
                         });
-                    </script>
+                    });
+                </script>
 
 
                 <script>
