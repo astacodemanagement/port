@@ -6,6 +6,7 @@ use App\Models\DetailBayar;
 use App\Models\Seleksi;
 use App\Models\LogHistori;
 use App\Models\Pendaftaran;
+use App\Models\RefundDetailBayar;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -65,13 +66,14 @@ class SeleksiDalamProsesController extends Controller
     {
         // $seleksi = Seleksi::select('seleksi.*', 'job.nama_job as nama_job', 'kandidat.nama_lengkap as nama_lengkap')
         $detail_bayar = DetailBayar::orderBy('id', 'desc')->get();
+        $refund_detail_bayar = RefundDetailBayar::orderBy('id', 'desc')->get();
         $seleksi_dalam_proses = Seleksi::select('*')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->where('seleksi.id', $id)
             ->first();
 
-        return view('back.seleksi_dalam_proses.detail', compact('seleksi_dalam_proses','detail_bayar'));
+        return view('back.seleksi_dalam_proses.detail', compact('seleksi_dalam_proses', 'detail_bayar', 'refund_detail_bayar'));
     }
 
 
@@ -106,8 +108,9 @@ class SeleksiDalamProsesController extends Controller
     }
 
 
-    public function updateDetail(Request $request, $id) {
-    
+    public function updateDetail(Request $request, $id)
+    {
+
         // Validasi request
         $validator = Validator::make($request->all(), [
             // 'tanggal_bayar' => 'required|date',
@@ -136,7 +139,7 @@ class SeleksiDalamProsesController extends Controller
         $seleksi->total_bayar = str_replace(['.', ','], '', $request->total_bayar);
         $seleksi->sisa_bayar = str_replace(['.', ','], '', $request->sisa_bayar);
 
-    
+
 
         if ($request->hasFile('bukti_bayar')) {
             $image = $request->file('bukti_bayar');
@@ -182,7 +185,16 @@ class SeleksiDalamProsesController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $input = $request->all();  // Pindahkan ini ke bawah validasi
+
+        $seleksi_id = $request->input('seleksi_id');
+        $tanggal_bayar = $request->input('tanggal_bayar');
+        $jumlah_bayar = $request->input('jumlah_bayar');
+
+        $input = [
+            'seleksi_id' => $seleksi_id,
+            'tanggal_bayar' => $tanggal_bayar,
+            'jumlah_bayar' => str_replace(['.', ','], '', $jumlah_bayar)
+        ];
 
         if ($request->hasFile('bukti_bayar')) {
             $image = $request->file('bukti_bayar');
@@ -201,6 +213,56 @@ class SeleksiDalamProsesController extends Controller
 
         // Simpan log histori untuk operasi Create dengan user_id yang sedang login
         $this->simpanLogHistori('Create', 'Tambah Pembayaran', $detail_bayar->id, $loggedInUserId, null, json_encode($detail_bayar));
+
+        return response()->json(['message' => 'Data Berhasil Disimpan']);
+    }
+
+    public function tambahPembayaranRefund(Request $request)
+    {
+        // Ubah validasi pada controller menjadi 'tanggal_bayar_refund'
+        $validator = Validator::make($request->all(), [
+            'tanggal_bayar_refund' => 'required',
+            'bukti_bayar_refund' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
+        ], [
+            'tanggal_bayar_refund.required' => 'Tanggal Pembayaran Wajib diisi', // Ubah pesan validasi
+            'bukti_bayar_refund.required' => 'Gambar Galeri Wajib diisi',
+            'bukti_bayar_refund.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
+            'bukti_bayar_refund.max' => 'Ukuran bukti_bayar_refund tidak boleh lebih dari 2 MB',
+        ]);
+
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+
+        $seleksi_id = $request->input('seleksi_id');
+        $tanggal_bayar_refund = $request->input('tanggal_bayar_refund');
+        $jumlah_bayar_refund = $request->input('jumlah_bayar_refund');
+
+        $input = [
+            'seleksi_id' => $seleksi_id,
+            'tanggal_bayar_refund' => $tanggal_bayar_refund,
+            'jumlah_bayar_refund' => str_replace(['.', ','], '', $jumlah_bayar_refund)
+        ];
+
+        if ($request->hasFile('bukti_bayar_refund')) {
+            $image = $request->file('bukti_bayar_refund');
+            $destinationPath = 'upload/bukti_bayar_refund/';
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move($destinationPath, $imageName);
+            $input['bukti_bayar_refund'] = $imageName;
+        }
+
+        // Simpan data spp ke database menggunakan fill()
+        $detail_bayar_refund = new RefundDetailBayar();
+        $detail_bayar_refund->fill($input);
+        $detail_bayar_refund->save();
+
+        $loggedInUserId = Auth::id();
+
+        // Simpan log histori untuk operasi Create dengan user_id yang sedang login
+        $this->simpanLogHistori('Create', 'Tambah Refund Pembayaran', $detail_bayar_refund->id, $loggedInUserId, null, json_encode($detail_bayar_refund));
 
         return response()->json(['message' => 'Data Berhasil Disimpan']);
     }

@@ -21,6 +21,7 @@ use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\RefundDetailBayarController;
 use App\Http\Controllers\RejectVerifikasiController;
 use App\Http\Controllers\SeleksiBatalController;
 use App\Http\Controllers\SeleksiController;
@@ -122,8 +123,10 @@ Route::get('/seleksi_dalam_proses/{id}/detail', [SeleksiDalamProsesController::c
 Route::post('/update-status-seleksi_dalam_proses', [SeleksiDalamProsesController::class, 'updateStatus'])->name('update_seleksi_dalam_proses.status'); 
 Route::put('/seleksi_dalam_proses/update/{id}', [SeleksiDalamProsesController::class, 'updateDetail'])->name('updateDetail.update');
 Route::post('/tambah-pembayaran', [SeleksiDalamProsesController::class, 'tambahPembayaran'])->name('tambahPembayaran'); 
+Route::post('/tambah-pembayaran-refund', [SeleksiDalamProsesController::class, 'tambahPembayaranRefund'])->name('tambahPembayaranRefund'); 
  
 Route::get('/hapus-detail-bayar/{id}', [DetailBayarController::class, 'hapusDetailBayar'])->name('detail_bayar.hapus');
+Route::get('/hapus-detail-bayar-refund/{id}', [RefundDetailBayarController::class, 'hapusDetailBayarRefund'])->name('detail_bayar_refund.hapus');
 
 
 

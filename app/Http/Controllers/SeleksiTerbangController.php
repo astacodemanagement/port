@@ -40,6 +40,8 @@ class SeleksiTerbangController extends Controller
             ->select(
                 'seleksi.*',
                 'kandidat.nama_lengkap',
+                'kandidat.no_paspor',
+                'kandidat.referensi',
                 'job.nama_job',
                 'job.nama_negara',
                 'job.nama_perusahaan',

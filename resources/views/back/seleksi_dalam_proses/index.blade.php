@@ -204,13 +204,38 @@
                                                                                         Interview</option>
                                                                                     <option value="Lolos Interview">
                                                                                         Lolos Interview</option>
-                                                                                   
+
                                                                                     <option value="Selesai Kontrak">
                                                                                         Selesai Kontrak</option>
                                                                                     <option value="Batal">Batal
                                                                                     </option>
                                                                                     <!-- Add other status options if needed -->
                                                                                 </select>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    for="tanggal_berangkat">Tanggal Keberangkatan :</label>
+                                                                                <input type="datetime-local"
+                                                                                    class="form-control"
+                                                                                    id="tanggal_berangkat"
+                                                                                    name="tanggal_berangkat">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    for="tanggal_berangkat">Jam terbang :</label>
+                                                                                <input type="time"
+                                                                                    class="form-control"
+                                                                                    id="tanggal_berangkat"
+                                                                                    name="tanggal_berangkat">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label
+                                                                                    for="supplied_by">Supplied By :</label>
+                                                                               <select name="supplied_by" id="supplied_by" class="form-control">
+                                                                                <option value="">--Pilih Supplier-- </option>
+                                                                                <option value="">Jojo</option>
+                                                                                <option value="">Ginting</option>
+                                                                               </select>
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label

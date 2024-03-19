@@ -123,11 +123,14 @@
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
-                                                    <th width="15%">Tanggal Apply</th>
-                                                    <th width="15%">Tanggal Interview</th>
-                                                    <th width="15%">Nama Kandidat</th>
-                                                    <th width="15%">Posisi</th>
-                                                    <th width="15%">Nama Perusahaan</th>
+                                                    <th width="10%">Tanggal Keberangkatan</th>
+                                                    <th width="10%">Nama</th>
+                                                    <th width="10%">No Paspor</th>
+                                                    <th width="10%">Negara</th>
+                                                    <th width="10%">Posisi</th>
+                                                    <th width="10%">Mitra</th>
+                                                    <th width="10%">ID KTKLN</th>
+                                                    <th width="10%">Sponsor</th>
                                                     <th width="5%">Status Seleksi</th>
                                                     <th width="15%" class="text-center" width="5%">Aksi</th>
                                                 </tr>
@@ -137,11 +140,14 @@
                                                     @foreach ($group as $p2)
                                                         <tr data-job-id="{{ $jobId }}">
                                                             <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $p2->created_at }}</td>
-                                                            <td> {{ $p2->tanggal_interview }} </td>
-                                                            <td>{{ $p2->nama_kandidat }}</td>
+                                                            <td>{{ $p2->tanggal_berangkat }}</td>
+                                                            <td>{{ $p2->nama_lengkap }}</td>
+                                                            <td>{{ $p2->no_paspor }} </td>
+                                                            <td>{{ $p2->nama_negara }}</td>
                                                             <td>{{ $p2->nama_job }}</td>
-                                                            <td>{{ $p2->nama_perusahaan }}</td>
+                                                            <td>{{ $p2->mitra }}</td>
+                                                            <td>{{ $p2->mitra }}</td>
+                                                            <td>{{ $p2->referensi }}</td>
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
 

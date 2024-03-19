@@ -70,7 +70,9 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Data Pendaftaran Kandidat <span class="badge badge-pill badge-warning" style="color: #2c2f30; display: inline-block;"> <i class="fa fa-spinner"></i> BELUM VERIFIKASI (PENDING)</span> </h5>
+                                        <h5>Data Pendaftaran Kandidat <span class="badge badge-pill badge-warning"
+                                                style="color: #2c2f30; display: inline-block;"> <i
+                                                    class="fa fa-spinner"></i> BELUM VERIFIKASI (PENDING)</span> </h5>
                                     </div>
 
 
@@ -123,13 +125,19 @@
                                                                         </a>
                                                                     </h5>
 
-                                                                    <p><b style="font-weight: bold;">Usia:
+                                                                    <p class="mb-1">Pendidikan : <b
+                                                                            style="font-weight: bold;">{{ $p->pendidikan }}</b>
+                                                                    </p>
+                                                                    <p class="mb-1">Tinggi Badan : <b
+                                                                            style="font-weight: bold; margin:0%">{{ $p->tinggi_badan }}
+                                                                            cm</b> </p>
+                                                                    <p  class="mb-1">Usia: <b style="font-weight: bold;">
                                                                             {{ $p->usia }}
                                                                             Tahun</b></p>
-                                                                    <p class="card-text" style="margin-top: -8%"
-                                                                        style="font-family: 'Poppins', sans-serif; text-align: justify;">
-                                                                        Domisili :
-                                                                        {{ $p->alamat }}</p>
+                                                                    <p class="card-text mb-1" style="font-family: 'Poppins', sans-serif; ">
+                                                                        Domisili Provinsi : <b style="font-weight: bold;">
+                                                                            {{ $p->provinsi }}</b></p>
+                                                                  
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -150,9 +158,11 @@
 
                                                             <h5 class="card-title">
                                                                 <span class="badge badge-pill badge-warning"
-                                                                    style="color: #00324F;">{{ $p->nama_kategori_job }}</span>
+                                                                    style="color: #00324F; font-size:12px;">{{ $p->nama_kategori_job }}</span>
                                                             </h5>
-
+                                                            <p class="mb-1">No Paspor: <b style="font-weight: bold;">
+                                                                {{ $p->no_paspor }}
+                                                                </b></p>
                                                             <div class="text-left">
                                                                 <!-- Adjusted alignment to the left -->
                                                                 <small class="text-muted">
@@ -161,6 +171,7 @@
                                                                 </small>
                                                             </div>
                                                             <br>
+                                                           
 
                                                             <div class="text-left">
                                                                 <!-- Icon mata untuk detail -->
@@ -201,8 +212,8 @@
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="ubahStatusModalLabel">Ubah
                                                                     Status - {{ $p->nama_lengkap }}</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
@@ -218,7 +229,8 @@
                                                                             onchange="handleStatusChange(this)">
                                                                             <option value="Verifikasi">Verifikasi</option>
                                                                             <option value="Reject">Reject</option>
-                                                                            <option value="Reject-Blacklist">Reject-Blacklist</option>
+                                                                            <option value="Reject-Blacklist">
+                                                                                Reject-Blacklist</option>
                                                                             <!-- <option value="Pending">Pending</option> -->
                                                                             <!-- Add other status options if needed -->
                                                                         </select>
@@ -232,7 +244,7 @@
                                                                             <option value="Tidak">Tidak</option>
                                                                         </select>
                                                                     </div> --}}
-                                                                    
+
 
                                                                     <!-- Add hidden input for the Pendaftaran ID -->
                                                                     <input type="hidden" name="pendaftaran_id"

@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\DetailBayar;
 use App\Models\LogHistori;
+use App\Models\RefundDetailBayar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class DetailBayarController extends Controller
+class RefundDetailBayarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -103,28 +104,28 @@ class DetailBayarController extends Controller
         
     }
 
-    public function hapusDetailBayar($id)
+    public function hapusDetailBayarRefund($id)
     {
-        $detail_bayar = DetailBayar::find($id);
+        $detail_bayar_refund = RefundDetailBayar::find($id);
 
-        if (!$detail_bayar) {
-            return response()->json(['message' => 'Data detail_bayar not found'], 404);
+        if (!$detail_bayar_refund) {
+            return response()->json(['message' => 'Data detail_bayar_refund not found'], 404);
         }
 
         // Hapus file terkait jika ada sebelum menghapus entitas dari database
-        $oldBuktiFileName = $detail_bayar->bukti_bayar; // Nama file saja
-        $oldBuktiPath = public_path('upload/bukti_bayar/' . $oldBuktiFileName);
+        $oldBuktiFileName = $detail_bayar_refund->bukti_bayar_refund; // Nama file saja
+        $oldBuktiPath = public_path('upload/bukti_bayar_refund/' . $oldBuktiFileName);
 
         if ($oldBuktiFileName && file_exists($oldBuktiPath)) {
             unlink($oldBuktiPath);
         }
 
-        $detail_bayar->delete();
+        $detail_bayar_refund->delete();
 
         $loggedInUserId = Auth::id();
 
         // Simpan log histori untuk operasi Delete dengan user_id yang sedang login dan informasi data yang dihapus
-        $this->simpanLogHistori('Delete', 'detail_bayar', $id, $loggedInUserId, json_encode($detail_bayar), null);
+        $this->simpanLogHistori('Delete', 'detail_bayar_refund', $id, $loggedInUserId, json_encode($detail_bayar_refund), null);
 
 
         return response()->json(['message' => 'Data Berhasil Dihapus']);
