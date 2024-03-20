@@ -358,26 +358,28 @@
     <script>
         $(document).ready(function() {
 
-// Script untuk mengubah tampilan antara #tb dan #tb3
-document.querySelector('#tb .btn-warning').addEventListener('click', function() {
-    document.getElementById('tb').style.display = 'none';
-    document.getElementById('tb3').style.display = 'block';
-});
+            // Script untuk mengubah tampilan antara #tb dan #tb3
+            document.querySelector('#tb .btn-warning').addEventListener('click', function() {
+                document.getElementById('tb').style.display = 'none';
+                document.getElementById('tb3').style.display = 'block';
+            });
 
-document.querySelector('#tb3 .btn-primary').addEventListener('click', function() {
-    document.getElementById('tb3').style.display = 'none';
-    document.getElementById('tb').style.display = 'block';
-});
+            document.querySelector('#tb3 .btn-primary').addEventListener('click', function() {
+                document.getElementById('tb3').style.display = 'none';
+                document.getElementById('tb').style.display = 'block';
+            });
 
 
 
 
             $('#order-table2').DataTable({
+                dom: 'Bfrtip',
                 buttons: [
                     'excel', 'pdf', 'print'
                 ]
             });
             $('#order-table3').DataTable({
+                dom: 'Bfrtip',
                 buttons: [
                     'excel', 'pdf', 'print'
                 ]
