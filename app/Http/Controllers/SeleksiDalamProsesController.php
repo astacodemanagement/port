@@ -7,6 +7,7 @@ use App\Models\Seleksi;
 use App\Models\LogHistori;
 use App\Models\Pendaftaran;
 use App\Models\RefundDetailBayar;
+use App\Models\Supplier;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,13 +54,14 @@ class SeleksiDalamProsesController extends Controller
                 'kategori_job.urutan as kategori_urutan'
             )
             ->get();
+        $supplier = Supplier::pluck('nama_supplier', 'id');
 
         // Cetak hasil query ke konsol untuk diinspeksi
         \Illuminate\Support\Facades\Log::info('Query Result:', ['seleksi' => $seleksi]);
 
         $seleksi_group = $seleksi->groupBy('job_id');
 
-        return view('back.seleksi_dalam_proses.index', compact('seleksi', 'seleksi_group'));
+        return view('back.seleksi_dalam_proses.index', compact('seleksi', 'seleksi_group','supplier'));
     }
 
     public function detail($id)
@@ -80,8 +82,24 @@ class SeleksiDalamProsesController extends Controller
 
     public function updateStatus(Request $request)
     {
+        $mik = $request->has('mik') ? true : false;
+        $iktt = $request->has('iktt') ? true : false;
+        $mjk = $request->has('mjk') ? true : false;
+        $jak = $request->has('jak') ? true : false;
+        $vt = $request->has('vt') ? true : false;
+        $vd = $request->has('vd') ? true : false;
+        $pap = $request->has('pap') ? true : false;
+
+
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
+        $keterangan_dalam_proses = $request->input('keterangan_dalam_proses');
+        $tanggal_ak = $request->input('tanggal_ak');
+        $tanggal_validity = $request->input('tanggal_validity');
+        $tanggal_terbit = $request->input('tanggal_terbit');
+        $tanggal_habis = $request->input('tanggal_habis');
+        $tanggal_berangkat = $request->input('tanggal_berangkat');
+        $supplier_id = $request->input('supplier_id');
         $keterangan_dalam_proses = $request->input('keterangan_dalam_proses');
 
 
@@ -93,6 +111,20 @@ class SeleksiDalamProsesController extends Controller
         Seleksi::where('id', $cek_kualifikasi_id)->update([
             'status' => $status,
             'tanggal_dalam_proses' => Carbon::now()->toDateString(),
+            'keterangan_dalam_proses' => $keterangan_dalam_proses,
+            'mik' => $mik,
+            'iktt' => $iktt,
+            'mjk' => $mjk,
+            'jak' => $jak,
+            'vt' => $vt,
+            'vd' => $vd,
+            'pap' => $pap,
+            'tanggal_ak' => $tanggal_ak,
+            'tanggal_validity' => $tanggal_validity,
+            'tanggal_terbit' => $tanggal_terbit,
+            'tanggal_habis' => $tanggal_habis,
+            'tanggal_berangkat' => $tanggal_berangkat,
+            'supplier_id' => $supplier_id,
             'keterangan_dalam_proses' => $keterangan_dalam_proses,
 
         ]);

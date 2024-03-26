@@ -103,6 +103,12 @@
                                                                     class="fas fa-dollar-sign"></i>Pembayaran</a>
                                                             <div class="slide"></div>
                                                         </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#status"
+                                                                role="tab"><i class="fas fa-info"></i>Status Dalam
+                                                                Kerja</a>
+                                                            <div class="slide"></div>
+                                                        </li>
                                                     </ul>
 
                                                     <form id="form_verifikasi" action="" method="POST"
@@ -443,7 +449,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            
+
 
                                                             <div class="tab-pane" id="messages7" role="tabpanel">
                                                                 <div class="modal-content">
@@ -844,6 +850,137 @@
                                                             </div>
 
 
+                                                            <div class="tab-pane" id="status" role="tabpanel">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                        <div class="card-block">
+                                                                            <div class="card-block">
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <h4 class="sub-title">Status Dalam Proses Pada Proses Seleksi</h4>
+                                                                                        <div
+                                                                                            class="border-checkbox-section">
+                                                                                            <div
+                                                                                                class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input disabled
+                                                                                                    class="border-checkbox"
+                                                                                                    type="checkbox"
+                                                                                                    id="mik"
+                                                                                                    name="mik"
+                                                                                                    value="{{ $seleksi_dalam_proses->mik }}"
+                                                                                                    {{ $seleksi_dalam_proses->mik == '1' ? 'checked' : '' }}>
+                                                                                                <label
+                                                                                                    class="border-checkbox-label"
+                                                                                                    for="mik">Menunggu
+                                                                                                    Izin Kerja</label>
+                                                                                            </div>
+
+
+
+                                                                                            <div
+                                                                                                class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input disabled
+                                                                                                    class="border-checkbox"
+                                                                                                    type="checkbox"
+                                                                                                    id="iktt"
+                                                                                                    name="iktt"
+                                                                                                    value="{{ $seleksi_dalam_proses->iktt }}"
+                                                                                                    {{ $seleksi_dalam_proses->iktt == '1' ? 'checked' : '' }}>
+                                                                                                <label
+                                                                                                    class="border-checkbox-label"
+                                                                                                    for="iktt">Izin
+                                                                                                    Kerja Telah
+                                                                                                    Terbit</label>
+                                                                                            </div>
+
+                                                                                            <div
+                                                                                                class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input disabled
+                                                                                                    class="border-checkbox"
+                                                                                                    type="checkbox"
+                                                                                                    id="mjk"
+                                                                                                    name="mjk"
+                                                                                                    value="{{ $seleksi_dalam_proses->mjk }}"
+                                                                                                    {{ $seleksi_dalam_proses->mjk == '1' ? 'checked' : '' }}>
+                                                                                                <label
+                                                                                                    class="border-checkbox-label"
+                                                                                                    for="mjk">Menunggu
+                                                                                                    Jadwal Kedutaan</label>
+                                                                                            </div>
+
+                                                                                            <div
+                                                                                                class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input disabled
+                                                                                                    class="border-checkbox"
+                                                                                                    type="checkbox"
+                                                                                                    id="jak"
+                                                                                                    name="jak"
+                                                                                                    value="{{ $seleksi_dalam_proses->jak }}"
+                                                                                                    {{ $seleksi_dalam_proses->jak == '1' ? 'checked' : '' }}>
+                                                                                                <label
+                                                                                                    class="border-checkbox-label"
+                                                                                                    for="jak">Jadwal
+                                                                                                    Appointment
+                                                                                                    Kedutaan</label>
+                                                                                            </div>
+
+
+
+                                                                                            <div
+                                                                                                class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input disabled
+                                                                                                    class="border-checkbox"
+                                                                                                    type="checkbox"
+                                                                                                    id="vt"
+                                                                                                    name="vt"
+                                                                                                    value="{{ $seleksi_dalam_proses->vt }}"
+                                                                                                    {{ $seleksi_dalam_proses->vt == '1' ? 'checked' : '' }}>
+                                                                                                <label
+                                                                                                    class="border-checkbox-label"
+                                                                                                    for="vt">Visa Terbit</label>
+                                                                                            </div>
+
+                                                                                            <div
+                                                                                                class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input disabled
+                                                                                                    class="border-checkbox"
+                                                                                                    type="checkbox"
+                                                                                                    id="vd"
+                                                                                                    name="vd"
+                                                                                                    value="{{ $seleksi_dalam_proses->vd }}"
+                                                                                                    {{ $seleksi_dalam_proses->vd == '1' ? 'checked' : '' }}>
+                                                                                                <label
+                                                                                                    class="border-checkbox-label"
+                                                                                                    for="vd">Visa Ditolak</label>
+                                                                                            </div>
+
+                                                                                            <div
+                                                                                                class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input disabled
+                                                                                                    class="border-checkbox"
+                                                                                                    type="checkbox"
+                                                                                                    id="pap"
+                                                                                                    name="pap"
+                                                                                                    value="{{ $seleksi_dalam_proses->pap }}"
+                                                                                                    {{ $seleksi_dalam_proses->pap == '1' ? 'checked' : '' }}>
+                                                                                                <label
+                                                                                                    class="border-checkbox-label"
+                                                                                                    for="pap">P.A.P</label>
+                                                                                            </div>
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
                                                             <div class="tab-pane active" id="cf" role="tabpanel">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body">
@@ -862,27 +999,6 @@
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
-                                                                                        for="biaya_id">Biaya ID</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="biaya_id" name="biaya_id"
-                                                                                        value="{{ $seleksi_dalam_proses->biaya_id }}"
-                                                                                        onchange="hitungTotalBiaya()">
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="biaya_mcu">Biaya MCU</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="biaya_mcu" name="biaya_mcu"
-                                                                                        value="{{ $seleksi_dalam_proses->biaya_mcu }}"
-                                                                                        onchange="hitungTotalBiaya()">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
                                                                                         for="total_biaya">Total
                                                                                         Biaya</label>
                                                                                     <input type="text"
@@ -893,17 +1009,34 @@
                                                                                         readonly>
                                                                                 </div>
 
-                                                                                {{-- <div class="col-sm-6">
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-6">
                                                                                     <label class="col-form-label"
-                                                                                        for="total_biaya">Total Biaya
-                                                                                    </label>
+                                                                                        for="total_bayar">Total
+                                                                                        Bayar</label>
                                                                                     <input type="text"
                                                                                         class="form-control"
-                                                                                        id="total_biaya"
-                                                                                        name="total_biaya"
-                                                                                        value=" {{ number_format($seleksi_dalam_proses->total_biaya, 0, ',', ',') }}"
+                                                                                        id="total_bayar"
+                                                                                        name="total_bayar"
+                                                                                        value="{{ number_format($detail_bayar->sum('jumlah_bayar') - $refund_detail_bayar->sum('jumlah_bayar_refund'), 0, ',', ',') }}"
                                                                                         readonly>
-                                                                                </div> --}}
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="sisa_bayar">Sisa Bayar</label>
+                                                                                    <?php
+                                                                                    $totalBiaya = $seleksi_dalam_proses->total_biaya + $refund_detail_bayar->sum('jumlah_bayar_refund');
+                                                                                    $totalBayar = $detail_bayar->sum('jumlah_bayar');
+                                                                                    $sisaBayar = $totalBiaya - $totalBayar;
+                                                                                    ?>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="sisa_bayar" name="sisa_bayar"
+                                                                                        value="{{ number_format($sisaBayar, 0, ',', ',') }}"
+                                                                                        readonly>
+                                                                                </div>
+
                                                                             </div>
 
                                                                             <script>
@@ -916,7 +1049,7 @@
                                                                                         '.'));
 
                                                                                     // Hitung total biaya
-                                                                                    var total_biaya = biaya_penempatan + biaya_id + biaya_mcu;
+                                                                                    var total_biaya = biaya_penempatan;
 
                                                                                     // Tampilkan total biaya pada input total_biaya
                                                                                     document.getElementById('total_biaya').value = formatRupiah(total_biaya, 'Rp ');
@@ -944,33 +1077,40 @@
 
                                                                             <hr>
 
+
+
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
-                                                                                        for="total_bayar">Total
-                                                                                        Bayar</label>
+                                                                                        for="biaya_mcu">Biaya MCU</label>
                                                                                     <input type="text"
                                                                                         class="form-control"
-                                                                                        id="total_bayar"
-                                                                                        name="total_bayar"
-                                                                                        value="{{ number_format($detail_bayar->sum('jumlah_bayar') - $refund_detail_bayar->sum('jumlah_bayar_refund'), 0, ',', ',') }}"
-                                                                                        readonly>
+                                                                                        id="biaya_mcu" name="biaya_mcu"
+                                                                                        value="{{ $seleksi_dalam_proses->biaya_mcu }}"
+                                                                                        onchange="hitungTotalBiaya()">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
-                                                                                        for="sisa_bayar">Sisa Bayar</label>
-                                                                                    <?php
-                                                                                    $totalBiaya = $seleksi_dalam_proses->total_biaya+$refund_detail_bayar->sum('jumlah_bayar_refund');
-                                                                                    $totalBayar = $detail_bayar->sum('jumlah_bayar');
-                                                                                    $sisaBayar = $totalBiaya - $totalBayar;
-                                                                                    ?>
+                                                                                        for="biaya_id">Biaya ID</label>
                                                                                     <input type="text"
                                                                                         class="form-control"
-                                                                                        id="sisa_bayar" name="sisa_bayar"
-                                                                                        value="{{ number_format($sisaBayar, 0, ',', ',') }}"
-                                                                                        readonly>
+                                                                                        id="biaya_id" name="biaya_id"
+                                                                                        value="{{ $seleksi_dalam_proses->biaya_id }}"
+                                                                                        onchange="hitungTotalBiaya()">
                                                                                 </div>
 
+
+                                                                                {{-- <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="total_biaya">Total Biaya
+                                                                                    </label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="total_biaya"
+                                                                                        name="total_biaya"
+                                                                                        value=" {{ number_format($seleksi_dalam_proses->total_biaya, 0, ',', ',') }}"
+                                                                                        readonly>
+                                                                                </div> --}}
                                                                             </div>
 
 
@@ -985,7 +1125,7 @@
                                                                                 title="Tambah Pembayaran">
                                                                                 <i class="fa fa-plus-circle"></i>
                                                                                 Tambah Pembayaran</a>
-                                                                            
+
                                                                             <br><br>
                                                                             <div class="dt-responsive table-responsive">
                                                                                 <table id="order-table"
@@ -1053,75 +1193,76 @@
                                                                             <br>
                                                                             <h5>Refund Pembayaran</h5>
                                                                             <a href="" data-toggle="modal"
-                                                                            data-target="#ubahStatusModalRefund"
-                                                                            class="btn btn-success waves-effect waves-light mt-3"
-                                                                            style="background-color: #00324F; color: #fff; font-size: 12px;float: left; "
-                                                                            title="Tambah Refund Pembayaran">
-                                                                            <i class="fa fa-plus-circle"></i>
-                                                                            Tambah Refund Pembayaran</a>
-                                                                       
-                                                                        <br><br>
-                                                                        <div class="dt-responsive table-responsive">
-                                                                            <table id="order-table2"
-                                                                                class="table table-striped table-bordered nowrap">
-                                                                                <thead>
-                                                                                    <tr>
-                                                                                        <th width="5%">No</th>
-                                                                                        <th width="10%">Tanggal
-                                                                                            Bayar Refund</th>
-                                                                                        <th width="10%">Jumlah Bayar Refund
-                                                                                        </th>
-                                                                                        <th width="5%"
-                                                                                            class="text-center">Bukti
-                                                                                            Bayar Refund</th>
-                                                                                        <th width="10%">Aksi</th>
-                                                                                    </tr>
-                                                                                </thead>
-                                                                                <tbody>
-                                                                                    @foreach ($refund_detail_bayar as $p)
-                                                                                        <tr>
-                                                                                            <td>{{ $loop->iteration }}
-                                                                                            </td>
-                                                                                            <td>{{ $p->tanggal_bayar_refund }}
-                                                                                            </td>
-                                                                                            <td>Rp.
-                                                                                                {{ number_format($p->jumlah_bayar_refund, 0, ',', ',') }}
-                                                                                            </td>
-                                                                                            <td
-                                                                                                class="text-center d-flex">
-                                                                                                <a href="/upload/bukti_bayar_refund/{{ $p->bukti_bayar_refund }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:50px; max-height:50px"
-                                                                                                        src="/upload/bukti_bayar_refund/{{ $p->bukti_bayar_refund }}"
-                                                                                                        alt="">
-                                                                                                </a>
-                                                                                            </td>
-                                                                                            <td>
-                                                                                                <a href="#"
-                                                                                                    data-id="{{ $p->id }}"
-                                                                                                    class="btn btn-sm btn-danger btn-hapus-refund"
-                                                                                                    style="color: white">
-                                                                                                    <i
-                                                                                                        class="fas fa-trash-alt"></i>
-                                                                                                    Delete
-                                                                                                </a>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    @endforeach
-                                                                                </tbody>
-                                                                                <tfoot>
-                                                                                    <tr>
-                                                                                        <th colspan="2"></th>
-                                                                                        <th>Rp.
-                                                                                            {{ number_format($refund_detail_bayar->sum('jumlah_bayar_refund'), 0, ',', ',') }}
-                                                                                        </th>
-                                                                                        <th></th>
-                                                                                        <th></th>
-                                                                                    </tr>
-                                                                                </tfoot>
-                                                                            </table>
+                                                                                data-target="#ubahStatusModalRefund"
+                                                                                class="btn btn-success waves-effect waves-light mt-3"
+                                                                                style="background-color: #00324F; color: #fff; font-size: 12px;float: left; "
+                                                                                title="Tambah Refund Pembayaran">
+                                                                                <i class="fa fa-plus-circle"></i>
+                                                                                Tambah Refund Pembayaran</a>
 
-                                                                        </div>
+                                                                            <br><br>
+                                                                            <div class="dt-responsive table-responsive">
+                                                                                <table id="order-table2"
+                                                                                    class="table table-striped table-bordered nowrap">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                            <th width="5%">No</th>
+                                                                                            <th width="10%">Tanggal
+                                                                                                Bayar Refund</th>
+                                                                                            <th width="10%">Jumlah Bayar
+                                                                                                Refund
+                                                                                            </th>
+                                                                                            <th width="5%"
+                                                                                                class="text-center">Bukti
+                                                                                                Bayar Refund</th>
+                                                                                            <th width="10%">Aksi</th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        @foreach ($refund_detail_bayar as $p)
+                                                                                            <tr>
+                                                                                                <td>{{ $loop->iteration }}
+                                                                                                </td>
+                                                                                                <td>{{ $p->tanggal_bayar_refund }}
+                                                                                                </td>
+                                                                                                <td>Rp.
+                                                                                                    {{ number_format($p->jumlah_bayar_refund, 0, ',', ',') }}
+                                                                                                </td>
+                                                                                                <td
+                                                                                                    class="text-center d-flex">
+                                                                                                    <a href="/upload/bukti_bayar_refund/{{ $p->bukti_bayar_refund }}"
+                                                                                                        target="_blank">
+                                                                                                        <img style="max-width:50px; max-height:50px"
+                                                                                                            src="/upload/bukti_bayar_refund/{{ $p->bukti_bayar_refund }}"
+                                                                                                            alt="">
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                                <td>
+                                                                                                    <a href="#"
+                                                                                                        data-id="{{ $p->id }}"
+                                                                                                        class="btn btn-sm btn-danger btn-hapus-refund"
+                                                                                                        style="color: white">
+                                                                                                        <i
+                                                                                                            class="fas fa-trash-alt"></i>
+                                                                                                        Delete
+                                                                                                    </a>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        @endforeach
+                                                                                    </tbody>
+                                                                                    <tfoot>
+                                                                                        <tr>
+                                                                                            <th colspan="2"></th>
+                                                                                            <th>Rp.
+                                                                                                {{ number_format($refund_detail_bayar->sum('jumlah_bayar_refund'), 0, ',', ',') }}
+                                                                                            </th>
+                                                                                            <th></th>
+                                                                                            <th></th>
+                                                                                        </tr>
+                                                                                    </tfoot>
+                                                                                </table>
+
+                                                                            </div>
 
 
 
@@ -1217,14 +1358,14 @@
                                             var input = evt.target;
                                             var value = input.value.replace(/\D/g, ''); // Menghapus semua karakter non-digit
                                             var formattedValue = formatNumber(value); // Memformat angka dengan pemisah
-                                        
+
                                             input.value = formattedValue;
                                         });
-                                        
+
                                         function formatNumber(number) {
                                             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Menambahkan pemisah setiap 3 digit
                                         }
-                                        </script>
+                                    </script>
                                     <div class="form-group">
                                         <label for="bukti_bayar">Bukti
                                             Bayar :</label>
@@ -1249,75 +1390,76 @@
                 </div>
 
 
-                       <!-- Modal -->
-                       <div class="modal fade" id="ubahStatusModalRefund" tabindex="-1" role="dialog"
-                       aria-labelledby="ubahStatusModalLabelRefund" aria-hidden="true">
-                       <!-- Add your form with combo box for status update -->
-                       <form action="{{ route('tambahPembayaranRefund') }}" id="form-pembayaran-refund" method="post"
-                           enctype="multipart/form-data">
-                           @csrf <!-- Tambahkan token CSRF -->
-                           <div class="modal-dialog" role="document">
-                               <div class="modal-content">
-                                   <div class="modal-header">
-                                       <h5 class="modal-title" id="ubahStatusModalLabelRefund">
-                                           Tambah Pembayaran Refund</h5>
-                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                           <span aria-hidden="true">&times;</span>
-                                       </button>
-                                   </div>
-                                   <div class="modal-body">
-   
-                                       <!-- Combo box for status update -->
-                                       <input type="hidden" id="seleksi_id" name="seleksi_id"
-                                           value="{{ $seleksi_dalam_proses->id }}">
-                                       <div class="form-group">
-                                           <label for="tanggal_bayar_refund">Tanggal
-                                               Bayar Refund :</label>
-                                           <input type="date" class="form-control" id="tanggal_bayar_refund"
-                                               name="tanggal_bayar_refund" value="<?= date('Y-m-d') ?>">
-                                       </div>
-                                       <div class="form-group">
-                                           <label for="jumlah_bayar_refund">Jumlah
-                                               Bayar Refund :</label>
-                                           <input type="text" class="form-control" id="jumlah_bayar_refund"
-                                               name="jumlah_bayar_refund">
-                                       </div>
-                                       <script>
-                                           document.getElementById('jumlah_bayar_refund').addEventListener('input', function(evt) {
-                                               var input = evt.target;
-                                               var value = input.value.replace(/\D/g, ''); // Menghapus semua karakter non-digit
-                                               var formattedValue = formatNumber(value); // Memformat angka dengan pemisah
-                                           
-                                               input.value = formattedValue;
-                                           });
-                                           
-                                           function formatNumber(number) {
-                                               return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Menambahkan pemisah setiap 3 digit
-                                           }
-                                           </script>
-                                       <div class="form-group">
-                                           <label for="bukti_bayar_refund">Bukti
-                                               Bayar Refund :</label>
-                                           <input type="file" class="form-control" id="bukti_bayar_refund" name="bukti_bayar_refund">
-                                       </div>
-                                       <!-- Add hidden input for the Pendaftaran ID -->
-   
-   
-                                   </div>
-                                   <div class="modal-footer">
-                                       <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
-                                               class="fas fa-undo"></i>
-                                           Tutup</button>
-                                       <button type="submit" id="btn-save-pembayaran-refund" class="btn btn-primary"><i
-                                               class="fas fa-save"></i>
-                                           Simpan</button>
-                                   </div>
-   
-                               </div>
-                           </div>
-                       </form>
-                   </div>
-   
+                <!-- Modal -->
+                <div class="modal fade" id="ubahStatusModalRefund" tabindex="-1" role="dialog"
+                    aria-labelledby="ubahStatusModalLabelRefund" aria-hidden="true">
+                    <!-- Add your form with combo box for status update -->
+                    <form action="{{ route('tambahPembayaranRefund') }}" id="form-pembayaran-refund" method="post"
+                        enctype="multipart/form-data">
+                        @csrf <!-- Tambahkan token CSRF -->
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ubahStatusModalLabelRefund">
+                                        Tambah Pembayaran Refund</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+
+                                    <!-- Combo box for status update -->
+                                    <input type="hidden" id="seleksi_id" name="seleksi_id"
+                                        value="{{ $seleksi_dalam_proses->id }}">
+                                    <div class="form-group">
+                                        <label for="tanggal_bayar_refund">Tanggal
+                                            Bayar Refund :</label>
+                                        <input type="date" class="form-control" id="tanggal_bayar_refund"
+                                            name="tanggal_bayar_refund" value="<?= date('Y-m-d') ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="jumlah_bayar_refund">Jumlah
+                                            Bayar Refund :</label>
+                                        <input type="text" class="form-control" id="jumlah_bayar_refund"
+                                            name="jumlah_bayar_refund">
+                                    </div>
+                                    <script>
+                                        document.getElementById('jumlah_bayar_refund').addEventListener('input', function(evt) {
+                                            var input = evt.target;
+                                            var value = input.value.replace(/\D/g, ''); // Menghapus semua karakter non-digit
+                                            var formattedValue = formatNumber(value); // Memformat angka dengan pemisah
+
+                                            input.value = formattedValue;
+                                        });
+
+                                        function formatNumber(number) {
+                                            return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); // Menambahkan pemisah setiap 3 digit
+                                        }
+                                    </script>
+                                    <div class="form-group">
+                                        <label for="bukti_bayar_refund">Bukti
+                                            Bayar Refund :</label>
+                                        <input type="file" class="form-control" id="bukti_bayar_refund"
+                                            name="bukti_bayar_refund">
+                                    </div>
+                                    <!-- Add hidden input for the Pendaftaran ID -->
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i
+                                            class="fas fa-undo"></i>
+                                        Tutup</button>
+                                    <button type="submit" id="btn-save-pembayaran-refund" class="btn btn-primary"><i
+                                            class="fas fa-save"></i>
+                                        Simpan</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
 
 
 
@@ -1425,7 +1567,7 @@
 
 
 
-                {{-- TAMBAH REFUND--}}
+                {{-- TAMBAH REFUND --}}
                 <script>
                     $(document).ready(function() {
                         $('#btn-save-pembayaran-refund').click(function() {

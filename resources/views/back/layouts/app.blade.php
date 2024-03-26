@@ -416,6 +416,11 @@
                                                 </a>
                                             </li>
                                             <li class>
+                                                <a href="/supplier" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Supplier</span>
+                                                </a>
+                                            </li>
+                                            <li class>
                                                 <a href="/other" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Lainnya</span>
                                                 </a>
@@ -550,6 +555,14 @@
                                         <a href="/log_histori" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-message-circle"></i></span>
                                             <span class="pcoded-mtext">Log Histori</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class>
+                                        <a href="/home" target="_blank" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i class="feather icon-globe"></i></span>
+                                            <span class="pcoded-mtext">Lihat Website</span>
                                         </a>
                                     </li>
                                 </ul>

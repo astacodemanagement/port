@@ -33,6 +33,7 @@ use App\Http\Controllers\SeleksiSelesaiKontrakController;
 use App\Http\Controllers\SeleksiTerbangController;
 use App\Http\Controllers\SemuaSeleksiController;
 use App\Http\Controllers\SudahVerifikasiController;
+use App\Http\Controllers\SupplierController;
 use App\Models\DetailBayar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -168,6 +169,12 @@ Route::get('/getKategoriJob', [JobController::class, 'getKategoriJobList'])->nam
 
 Route::post('/upload-gambar', [JobController::class, 'uploadGambar'])->name('upload-gambar'); 
 
+
+// Supplier
+Route::get('/supplier', [SupplierController::class, 'index']);
+Route::resource('supplier', SupplierController::class);
+Route::get('/supplier/{id}/edit', [SupplierController::class, 'edit']);
+Route::put('/supplier/{id}', [SupplierController::class, 'update']);
 
 
 // Negara

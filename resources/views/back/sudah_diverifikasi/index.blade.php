@@ -24,11 +24,6 @@
             object-position: center;
             height: 100%;
         }
-
-
- 
-      
-
     </style>
 @endpush
 
@@ -75,7 +70,9 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Data Pendaftaran Kandidat <span class="badge badge-pill badge-success" style="color: #f9fbfc; display: inline-block;"> <i class="fa fa-check"></i> SUDAH VERIFIKASI </span> </h5>
+                                        <h5>Data Pendaftaran Kandidat <span class="badge badge-pill badge-success"
+                                                style="color: #f9fbfc; display: inline-block;"> <i class="fa fa-check"></i>
+                                                SUDAH VERIFIKASI </span> </h5>
                                     </div>
 
 
@@ -128,13 +125,20 @@
                                                                         </a>
                                                                     </h5>
 
-                                                                    <p><b style="font-weight: bold;">Usia:
+                                                                    <p class="mb-1">Pendidikan : <b
+                                                                            style="font-weight: bold;">{{ $p->pendidikan }}</b>
+                                                                    </p>
+                                                                    <p class="mb-1">Tinggi & Berat Badan : <b
+                                                                            style="font-weight: bold; margin:0%">{{ $p->tinggi_badan }}
+                                                                            cm - {{ $p->berat_badan }} Kg</b> </p>
+                                                                    <p class="mb-1">Usia: <b style="font-weight: bold;">
                                                                             {{ $p->usia }}
                                                                             Tahun</b></p>
-                                                                    <p class="card-text" style="margin-top: -8%"
-                                                                        style="font-family: 'Poppins', sans-serif; text-align: justify;">
-                                                                        Domisili :
-                                                                        {{ $p->alamat }}</p>
+                                                                    <p class="card-text mb-1"
+                                                                        style="font-family: 'Poppins', sans-serif; ">
+                                                                        Domisili Provinsi : <b style="font-weight: bold;">
+                                                                            {{ $p->provinsi }}</b></p>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -153,11 +157,14 @@
 
 
 
+
+                                                            <p class="mb-1">No Paspor: <b style="font-weight: bold;">
+                                                                    {{ $p->no_paspor }}
+                                                                </b></p>
                                                             <h5 class="card-title">
                                                                 <span class="badge badge-pill badge-warning"
-                                                                    style="color: #00324F;">{{ $p->nama_kategori_job }}</span>
+                                                                    style="color: #00324F; font-size:12px;">{{ $p->nama_kategori_job }}</span>
                                                             </h5>
-
                                                             <div class="text-left">
                                                                 <!-- Adjusted alignment to the left -->
                                                                 <small class="text-muted">
@@ -166,6 +173,7 @@
                                                                 </small>
                                                             </div>
                                                             <br>
+
 
                                                             <div class="text-left">
                                                                 <!-- Icon mata untuk detail -->
@@ -201,14 +209,14 @@
                                                 <div class="modal fade" id="ubahStatusModal{{ $p->id }}"
                                                     tabindex="-1" role="dialog" aria-labelledby="ubahStatusModalLabel"
                                                     aria-hidden="true">
-                                                  
+
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="ubahStatusModalLabel">Ubah
                                                                     Status - {{ $p->nama_lengkap }}</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                    aria-label="Close">
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
                                                                 </button>
                                                             </div>
@@ -222,11 +230,40 @@
                                                                             id="statusSelect{{ $p->id }}"
                                                                             name="status">
                                                                             <option value="Reject">Reject</option>
-                                                                            <option value="Reject-Blacklist">Reject-Blacklist</option>
+                                                                            <option value="Reject-Blacklist">
+                                                                                Reject-Blacklist</option>
                                                                             <option value="Pending">Pending</option>
                                                                             <!-- Add other status options if needed -->
                                                                         </select>
                                                                     </div>
+                                                                    <div id="alasan_reject_container"
+                                                                        style="display: none;">
+                                                                        <div class="form-group">
+                                                                            <label for="alasan_reject">Alasan :</label>
+                                                                            <textarea name="alasan_reject" id="alasan_reject" cols="30" rows="3" class="form-control"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <script>
+                                                                        // Mendengarkan perubahan pada setiap elemen select dengan id yang sesuai
+                                                                        document.addEventListener("DOMContentLoaded", function() {
+                                                                            var statusSelect = document.getElementById("statusSelect{{ $p->id }}");
+                                                                            var alasanRejectContainer = document.getElementById("alasan_reject_container");
+
+                                                                            // Sembunyikan div alasan_reject_container saat halaman dimuat
+                                                                            alasanRejectContainer.style.display = "none";
+
+                                                                            // Tambahkan event listener untuk setiap kali pilihan berubah
+                                                                            statusSelect.addEventListener("change", function() {
+                                                                                // Jika status adalah Reject atau Reject-Blacklist, tampilkan div alasan_reject_container
+                                                                                if (statusSelect.value === "Reject" || statusSelect.value === "Reject-Blacklist") {
+                                                                                    alasanRejectContainer.style.display = "block";
+                                                                                } else {
+                                                                                    // Jika tidak, sembunyikan div alasan_reject_container
+                                                                                    alasanRejectContainer.style.display = "none";
+                                                                                }
+                                                                            });
+                                                                        });
+                                                                    </script>
                                                                     <!-- Add hidden input for the Pendaftaran ID -->
                                                                     <input type="hidden" name="pendaftaran_id"
                                                                         value="{{ $p->id }}">
@@ -280,7 +317,7 @@
 
         @push('script')
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-            
+
             <!-- Add this inside your HTML body, after the card layout code -->
             <script>
                 function searchCards() {
