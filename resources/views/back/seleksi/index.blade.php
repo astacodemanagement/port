@@ -103,7 +103,7 @@
 
                             <div class="card" id="tb2">
                                 <div class="card-header">
-                                    <h5>  <span class="badge badge-pill badge-warning" style="color: #2c2f30; display: inline-block;"> Data Cek Kualifikasi</span> </h5>
+                                    <h5>  <span class="badge badge-pill badge-warning" style="color: #2c2f30; display: inline-block;"> Data Cek Kualifikasi</span> :  </h5>
 
                                 </div>
                                 <div class="card-block">
@@ -115,10 +115,10 @@
                                                     <th width="5%">No</th>
                                                     <th width="15%">Tanggal Apply</th>
                                                     <th width="15%">Nama Kandidat</th>
-                                                    <th width="15%">Posisi</th>
+                                                    {{-- <th width="15%">Posisi</th> --}}
                                                     <th width="15%">Negara</th>
                                                     <th width="15%">Nama Perusahaan</th>
-                                                    <th width="5%">Kategori Industri Pekerjaan</th>
+                                                    {{-- <th width="5%">Kategori Industri Pekerjaan</th> --}}
                                                     <th width="5%">Status Seleksi</th>
                                                     <th width="15%" class="text-center" width="5%">Aksi</th>
                                                 </tr>
@@ -130,10 +130,10 @@
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p2->created_at }}</td>
                                                             <td>{{ $p2->nama_kandidat }}</td>
-                                                            <td>{{ $p2->nama_job }}</td>
+                                                            {{-- <td>{{ $p2->nama_job }}</td> --}}
                                                             <td>{{ $p2->nama_negara }}</td>
                                                             <td>{{ $p2->nama_perusahaan }}</td>
-                                                            <td>{{ $p2->nama_kategori_job }}</td>
+                                                            {{-- <td>{{ $p2->nama_kategori_job }}</td> --}}
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
 

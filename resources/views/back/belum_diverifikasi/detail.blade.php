@@ -779,10 +779,21 @@
                                                                                     <label class="col-form-label"
                                                                                         for="bayar_cf">Bayar Commitment
                                                                                         Fee</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="bayar_cf" name="bayar_cf"
-                                                                                        value="{{ number_format($belum_diverifikasi->bayar_cf, 0, ',', ',') }}">
+                                                                                        <input type="text" class="form-control" id="bayar_cf" name="bayar_cf" onkeyup="formatNumber(this)" value="{{ number_format($belum_diverifikasi->bayar_cf, 0, ',', ',') }}">
+
+                                                                                        <script>
+                                                                                        function formatNumber(input) {
+                                                                                            // Menghapus semua karakter selain angka
+                                                                                            var num = input.value.replace(/\D/g, '');
+                                                                                            
+                                                                                            // Menambahkan separator ribuan setiap 3 digit
+                                                                                            var formattedNum = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                                                                                            
+                                                                                            // Memasukkan hasil format kembali ke input
+                                                                                            input.value = formattedNum;
+                                                                                        }
+                                                                                        </script>
+                                                                                        
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -823,11 +834,12 @@
                                                                                     <label class="col-form-label"
                                                                                         for="status_paid_cf">Status
                                                                                         Paid</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="status_paid_cf"
-                                                                                        name="status_paid_cf"
-                                                                                        value="{{ $belum_diverifikasi->status_paid_cf }}">
+                                                                                        <select name="status_paid_cf" id="status_paid_cf" class="form-control">
+                                                                                            <option value="Unpaid" {{ $belum_diverifikasi->status_paid_cf == "Unpaid" ? 'selected' : '' }}>Unpaid</option>
+                                                                                            <option value="Paid" {{ $belum_diverifikasi->status_paid_cf == "Paid" ? 'selected' : '' }}>Paid</option>
+                                                                                        </select>
+                                                                                        
+                                                                                   
                                                                                 </div>
                                                                             </div>
                                                                             <hr>
