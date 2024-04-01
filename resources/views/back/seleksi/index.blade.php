@@ -116,8 +116,8 @@
                                                     <th width="15%">Tanggal Apply</th>
                                                     <th width="15%">Nama Kandidat</th>
                                                     {{-- <th width="15%">Posisi</th> --}}
-                                                    <th width="15%">Negara</th>
-                                                    <th width="15%">Nama Perusahaan</th>
+                                                    {{-- <th width="15%">Negara</th>
+                                                    <th width="15%">Nama Perusahaan</th> --}}
                                                     {{-- <th width="5%">Kategori Industri Pekerjaan</th> --}}
                                                     <th width="5%">Status Seleksi</th>
                                                     <th width="15%" class="text-center" width="5%">Aksi</th>
@@ -128,14 +128,21 @@
                                                     @foreach ($group as $p2)
                                                         <tr data-job-id="{{ $jobId }}">
                                                             <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $p2->created_at }}</td>
+                                                            <td>{{ $p2->tanggal_apply }}</td>
                                                             <td>{{ $p2->nama_kandidat }}</td>
                                                             {{-- <td>{{ $p2->nama_job }}</td> --}}
-                                                            <td>{{ $p2->nama_negara }}</td>
-                                                            <td>{{ $p2->nama_perusahaan }}</td>
+                                                            {{-- <td>{{ $p2->nama_negara }}</td>
+                                                            <td>{{ $p2->nama_perusahaan }}</td> --}}
                                                             {{-- <td>{{ $p2->nama_kategori_job }}</td> --}}
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
+                                                                <a href="{{ route('seleksi.detail', $p2->id) }}"
+                                                                    class="form-control mr-2"
+                                                                    style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
+                                                                    title="Detail">
+                                                                    <i class="fa fa-eye"></i>
+                                                                    Lihat CV
+                                                                </a>
 
                                                                 <a href="" data-toggle="modal"
                                                                     data-target="#ubahStatusModal{{ $p2->id }}"

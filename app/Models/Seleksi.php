@@ -20,4 +20,8 @@ class Seleksi extends Model
     {
         return $this->belongsTo(Kandidat::class, 'kandidat_id');
     }
+    public function pendaftaran()
+    {
+        return $this->hasOneThrough(Pendaftaran::class, Kandidat::class, 'nik', 'nik');
+    }
 }

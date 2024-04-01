@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
 use App\Models\LogHistori;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -41,13 +42,23 @@ class SudahVerifikasiController extends Controller
     {
         $pendaftaranId = $request->input('pendaftaran_id');
         $status = $request->input('status');
+        $alasan_reject = $request->input('alasan_reject');
 
         // Get the original data before the update
         $sudah_diverifikasi = Pendaftaran::findOrFail($pendaftaranId);
         $oldData = $sudah_diverifikasi->getOriginal();
 
+    
+       
         // Update the status in the database
-        Pendaftaran::where('id', $pendaftaranId)->update(['status' => $status]);
+        Pendaftaran::where('id', $pendaftaranId)->update([
+            'status' => $status,
+            'tanggal_reject_verifikasi' => Carbon::now()->toDateString(),
+            'tanggal_sudah_verifikasi' => Carbon::now()->toDateString(),
+            'tanggal_cek_verifikasi' => Carbon::now()->toDateString(),
+            'alasan_reject' => $alasan_reject,
+             
+        ]);
 
         // Get the updated data after the update
         $updatedData = Pendaftaran::findOrFail($pendaftaranId)->getOriginal();

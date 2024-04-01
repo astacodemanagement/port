@@ -452,7 +452,7 @@
                                             </li>
                                             <li class>
                                                 <a href="/reject_diverifikasi" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Reject</span>
+                                                    <span class="pcoded-mtext">Reject Diverifikasi</span>
                                                 </a>
                                             </li>
                                             <li class>

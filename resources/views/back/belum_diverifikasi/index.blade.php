@@ -101,11 +101,11 @@
                                                             <div class="card-img-container d-flex justify-content-between">
                                                                 <div style="flex: 1;">
                                                                     <!-- Image -->
-                                                                    @if ($p->foto)
-                                                                        <a href="/upload/foto/{{ $p->foto }}"
+                                                                    @if ($p->kandidat->foto)
+                                                                        <a href="/upload/foto/{{ $p->kandidat->foto }}"
                                                                             target="_blank">
                                                                             <img class="card-img-top img-fluid"
-                                                                                src="/upload/foto/{{ $p->foto }}"
+                                                                                src="/upload/foto/{{ $p->kandidat->foto }}"
                                                                                 alt="Card image cap"
                                                                                 style="border-radius:1rem;">
                                                                         </a>
@@ -126,18 +126,18 @@
                                                                     </h5>
 
                                                                     <p class="mb-1">Pendidikan : <b
-                                                                            style="font-weight: bold;">{{ $p->pendidikan }}</b>
+                                                                            style="font-weight: bold;">{{ $p->kandidat->pendidikan }}</b>
                                                                     </p>
                                                                     <p class="mb-1">Tinggi & Berat Badan : <b
-                                                                            style="font-weight: bold; margin:0%">{{ $p->tinggi_badan }}
-                                                                            cm - {{ $p->berat_badan }} Kg</b> </p>
+                                                                            style="font-weight: bold; margin:0%">{{ $p->kandidat->tinggi_badan }}
+                                                                            cm - {{ $p->kandidat->berat_badan }} Kg</b> </p>
                                                                     <p class="mb-1">Usia: <b style="font-weight: bold;">
-                                                                            {{ $p->usia }}
+                                                                            {{ $p->kandidat->usia }}
                                                                             Tahun</b></p>
                                                                     <p class="card-text mb-1"
                                                                         style="font-family: 'Poppins', sans-serif; ">
                                                                         Domisili Provinsi : <b style="font-weight: bold;">
-                                                                            {{ $p->provinsi }}</b></p>
+                                                                            {{ $p->kandidat->provinsi }}</b></p>
 
                                                                 </div>
                                                             </div>
@@ -151,7 +151,7 @@
                                                             <a href="{{ route('verifikasi.detail', $p->id) }}">
                                                                 <h5 class="card-title">
                                                                     <b
-                                                                        style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->nama_lengkap }}</b>
+                                                                        style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->kandidat->nama_lengkap }}</b>
                                                                 </h5>
                                                             </a>
 
@@ -159,7 +159,7 @@
 
 
                                                             <p class="mb-1">No Paspor: <b style="font-weight: bold;">
-                                                                    {{ $p->no_paspor }}
+                                                                    {{ $p->kandidat->no_paspor }}
                                                                 </b></p>
                                                             <h5 class="card-title">
                                                                 <span class="badge badge-pill badge-warning"
@@ -213,7 +213,7 @@
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="ubahStatusModalLabel">Ubah
-                                                                    Status - {{ $p->nama_lengkap }}</h5>
+                                                                    Status - {{ $p->kandidat->nama_lengkap }}</h5>
                                                                 <button type="button" class="close"
                                                                     data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">&times;</span>
@@ -229,6 +229,7 @@
                                                                             id="statusSelect{{ $p->id }}"
                                                                             name="status"
                                                                             onchange="handleStatusChange(this)">
+                                                                           
                                                                             <option value="Verifikasi">Verifikasi</option>
                                                                             <option value="Reject">Reject</option>
                                                                             <option value="Reject-Blacklist">

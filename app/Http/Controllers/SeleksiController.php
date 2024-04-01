@@ -37,6 +37,7 @@ class SeleksiController extends Controller
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
+            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik') // Join dengan tabel pendaftaran melalui tabel kandidat
             ->where('seleksi.status', 'Cek Kualifikasi') // Menambahkan klausa where untuk status
             ->select(
                 'seleksi.*',
@@ -46,7 +47,8 @@ class SeleksiController extends Controller
                 'job.nama_perusahaan',
                 'job.nama_kategori_job',
                 'job.mitra',
-                'kategori_job.urutan as kategori_urutan'
+                'kategori_job.urutan as kategori_urutan',
+                'pendaftaran.bayar_cf' // Ambil kolom bayar_cf dari tabel pendaftaran
             )
             ->get();
 
@@ -59,11 +61,13 @@ class SeleksiController extends Controller
     }
 
 
+
+
     public function updateStatus(Request $request)
     {
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
-       
+
 
         // Get the original data before the update
         $cek_kualifikasi = Seleksi::findOrFail($cek_kualifikasi_id);
@@ -85,17 +89,25 @@ class SeleksiController extends Controller
         return response()->json(['message' => 'Status updated successfully']);
     }
 
+
+
     public function detail($id)
     {
-        // $seleksi = Seleksi::select('seleksi.*', 'job.nama_job as nama_job', 'kandidat.nama_lengkap as nama_lengkap')
-        $seleksi = Seleksi::select('*')
+        $seleksi = Seleksi::select(
+                'seleksi.*',
+                'job.nama_job as nama_job',
+                'kandidat.nama_lengkap as nama_lengkap',
+                'pendaftaran.*' // Memilih semua kolom dari tabel pendaftaran
+            )
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
+            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik') // Join dengan tabel pendaftaran melalui tabel kandidat
             ->where('seleksi.id', $id)
             ->first();
-
+    
         return view('back.seleksi.detail', compact('seleksi'));
     }
+    
 
 
 

@@ -10,4 +10,14 @@ class Kandidat extends Model
     use HasFactory;
     protected $table = 'kandidat';
     protected $guarded = [];
+    
+    public function pendaftaran()
+    {
+        return $this->hasOne(Pendaftaran::class, 'nik', 'nik');
+    }
+
+    public function seleksi()
+    {
+        return $this->belongsTo(Seleksi::class, 'kandidat_id');
+    }
 }

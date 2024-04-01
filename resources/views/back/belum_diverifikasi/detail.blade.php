@@ -60,7 +60,7 @@
 
 
                                 {{-- <div class="card-header">
-                                        <h5>Data Detail Pendaftaran Belum Verifikasi : {{ $belum_diverifikasi->nama_lengkap }}</h5>
+                                        <h5>Data Detail Pendaftaran Belum Verifikasi : {{ $belum_diverifikasi->kandidat->nama_lengkap }}</h5>
 
                                     </div> --}}
                                 <div class="card-block">
@@ -97,6 +97,11 @@
                                                                 Fee</a>
                                                             <div class="slide"></div>
                                                         </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#reason"
+                                                                role="tab"><i class="fas fa-info"></i>Alasan</a>
+                                                            <div class="slide"></div>
+                                                        </li>
                                                     </ul>
 
                                                     <form id="form_verifikasi" action="" method="POST" enctype="multipart/form-data">
@@ -118,20 +123,32 @@
                                                                                     <label class="col-form-label"
                                                                                         for="nama_negara">Nama
                                                                                         Negara</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="nama_negara" name="nama_negara"
                                                                                         value="{{ $belum_diverifikasi->nama_negara }}">
+
+
+                                                                                        <input type="hidden" readonly
+                                                                                        class="form-control"
+                                                                                        id="negara_id" name="negara_id"
+                                                                                        value="{{ $belum_diverifikasi->negara_id }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="nama_kategori_job">Industri
                                                                                         Pekerjaan</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="nama_kategori_job"
                                                                                         name="nama_kategori_job"
                                                                                         value="{{ $belum_diverifikasi->nama_kategori_job }}">
+
+                                                                                        <input type="hidden" readonly
+                                                                                        class="form-control"
+                                                                                        id="kategori_job_id"
+                                                                                        name="kategori_job_id"
+                                                                                        value="{{ $belum_diverifikasi->kategori_job_id }}">
                                                                                 </div>
                                                                             </div>
 
@@ -139,20 +156,20 @@
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="nik">NIK</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="nik" name="nik"
-                                                                                        value="{{ $belum_diverifikasi->nik }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->nik }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="nama_lengkap">Nama
                                                                                         Lengkap</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="nama_lengkap"
                                                                                         name="nama_lengkap"
-                                                                                        value="{{ $belum_diverifikasi->nama_lengkap }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->nama_lengkap }}">
 
                                                                                 </div>
                                                                             </div>
@@ -162,21 +179,21 @@
                                                                                     <label class="col-form-label"
                                                                                         for="tempat_lahir">Tempat
                                                                                         Lahir</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="tempat_lahir"
                                                                                         name="tempat_lahir"
-                                                                                        value="{{ $belum_diverifikasi->tempat_lahir }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->tempat_lahir }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="tanggal_lahir">Tanggal
                                                                                         Lahir</label>
-                                                                                    <input type="date"
+                                                                                    <input type="date" readonly
                                                                                         class="form-control"
                                                                                         id="tanggal_lahir"
                                                                                         name="tanggal_lahir"
-                                                                                        value="{{ $belum_diverifikasi->tanggal_lahir }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->tanggal_lahir }}">
                                                                                 </div>
                                                                             </div>
 
@@ -184,18 +201,18 @@
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="usia">Usia</label>
-                                                                                    <input type="number"
+                                                                                    <input type="number" readonly
                                                                                         class="form-control"
                                                                                         id="usia" name="usia"
-                                                                                        value="{{ $belum_diverifikasi->usia }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->usia }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="agama">Agama</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="agama" name="agama"
-                                                                                        value="{{ $belum_diverifikasi->agama }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->agama }}">
                                                                                 </div>
                                                                             </div>
 
@@ -204,21 +221,21 @@
                                                                                     <label class="col-form-label"
                                                                                         for="berat_badan">Berat
                                                                                         Badan</label>
-                                                                                    <input type="number"
+                                                                                    <input type="number" readonly
                                                                                         class="form-control"
                                                                                         id="berat_badan"
                                                                                         name="berat_badan"
-                                                                                        value="{{ $belum_diverifikasi->berat_badan }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->berat_badan }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="tinggi_badan">Tinggi
                                                                                         Badan</label>
-                                                                                    <input type="number"
+                                                                                    <input type="number" readonly
                                                                                         class="form-control"
                                                                                         id="tinggi_badan"
                                                                                         name="tinggi_badan"
-                                                                                        value="{{ $belum_diverifikasi->tinggi_badan }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->tinggi_badan }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
@@ -226,14 +243,14 @@
                                                                                     <label class="col-form-label"
                                                                                         for="jenis_kelamin">Jenis
                                                                                         Kelamin</label>
-                                                                                    <select class="form-control"
+                                                                                    <select readonly class="form-control"
                                                                                         id="jenis_kelamin"
                                                                                         name="jenis_kelamin">
                                                                                         <option value="Laki-laki"
-                                                                                            {{ $belum_diverifikasi->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>
+                                                                                            {{ $belum_diverifikasi->kandidat->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>
                                                                                             Laki-laki</option>
                                                                                         <option value="Perempuan"
-                                                                                            {{ $belum_diverifikasi->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
+                                                                                            {{ $belum_diverifikasi->kandidat->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
                                                                                             Perempuan</option>
                                                                                     </select>
                                                                                 </div>
@@ -242,11 +259,11 @@
                                                                                     <label class="col-form-label"
                                                                                         for="status_kawin">Status
                                                                                         Kawin</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="status_kawin"
                                                                                         name="status_kawin"
-                                                                                        value="{{ $belum_diverifikasi->status_kawin }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->status_kawin }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
@@ -255,74 +272,74 @@
                                                                                         for="nama_lengkap_ayah">Nama
                                                                                         Lengkap
                                                                                         Ayah</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="nama_lengkap_ayah"
                                                                                         name="nama_lengkap_ayah"
-                                                                                        value="{{ $belum_diverifikasi->nama_lengkap_ayah }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->nama_lengkap_ayah }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="nama_lengkap_ibu">Nama
                                                                                         Lengkap Ibu</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="nama_lengkap_ibu"
                                                                                         name="nama_lengkap_ibu"
-                                                                                        value="{{ $belum_diverifikasi->nama_lengkap_ibu }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->nama_lengkap_ibu }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-12">
                                                                                     <label class="col-form-label"
                                                                                         for="alamat">Alamat</label>
-                                                                                    <textarea class="form-control" name="alamat" id="alamat" cols="30" rows="2">{{ $belum_diverifikasi->alamat }}</textarea>
+                                                                                    <textarea readonly class="form-control" name="alamat" id="alamat" cols="30" rows="2">{{ $belum_diverifikasi->kandidat->alamat }}</textarea>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
                                                                                         for="kota">Kota</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="kota" name="kota"
-                                                                                        value="{{ $belum_diverifikasi->kota }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->kota }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
                                                                                         for="kecamatan">Kecamatan</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="kecamatan" name="kecamatan"
-                                                                                        value="{{ $belum_diverifikasi->kecamatan }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->kecamatan }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
                                                                                         for="provinsi">Provinsi</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control" idprovinsi
                                                                                         name="provinsi"
-                                                                                        value="{{ $belum_diverifikasi->provinsi }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->provinsi }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="referensi">Referensi</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="referensi" name="referensi"
-                                                                                        value="{{ $belum_diverifikasi->referensi }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->referensi }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="nama_referensi">Nama
                                                                                         Referensi</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="nama_referensi"
                                                                                         name="nama_referensi"
-                                                                                        value="{{ $belum_diverifikasi->nama_referensi }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->nama_referensi }}">
                                                                                 </div>
                                                                             </div>
 
@@ -330,30 +347,48 @@
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
                                                                                         for="email">Email</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="email" name="email"
-                                                                                        value="{{ $belum_diverifikasi->email }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->email }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
                                                                                         for="no_hp">No
                                                                                         Telephone</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="no_hp" name="no_hp"
-                                                                                        value="{{ $belum_diverifikasi->no_hp }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->no_hp }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
                                                                                         for="no_wa">No
                                                                                         WA</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="no_wa" name="no_wa"
-                                                                                        value="{{ $belum_diverifikasi->no_wa }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->no_wa }}">
                                                                                 </div>
                                                                             </div>
+                                                                            <br><br>
+                                                                            <h4 class="sub-title"> > Kontak Darurat</h4>
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-4">
+                                                                                    <label class="col-form-label" for="nama_keluarga">Nama Keluarga</label>
+                                                                                    <input type="text" readonly class="form-control" id="nama_keluarga" name="nama_keluarga" value="{{ $belum_diverifikasi->kandidat->nama_keluarga }}">
+                                                                                </div>
+                                                                                <div class="col-sm-4">
+                                                                                    <label class="col-form-label" for="hubungan">Hubungan Keluarga</label>
+                                                                                    <input type="text" readonly class="form-control" id="hubungan" name="hubungan" value="{{ $belum_diverifikasi->kandidat->hubungan }}">
+                                                                                </div>
+                                                                                <div class="col-sm-4">
+                                                                                    <label class="col-form-label" for="no_telp_darurat">No Darurat</label>
+                                                                                    <input type="text" readonly class="form-control" id="no_telp_darurat" name="no_telp_darurat" value="{{ $belum_diverifikasi->kandidat->no_telp_darurat }}">
+                                                                                </div>
+                                                                            </div>
+                                                                            
+                                                                            
 
 
 
@@ -383,20 +418,20 @@
                                                                                     <label class="col-form-label"
                                                                                         for="no_paspor">No
                                                                                         Paspor</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="no_paspor" name="no_paspor"
-                                                                                        value="{{ $belum_diverifikasi->no_paspor }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->no_paspor }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="tanggal_pengeluaran_paspor">Tanggal
                                                                                         Pengeluaran Paspor</label>
-                                                                                    <input type="date"
+                                                                                    <input type="date" readonly
                                                                                         class="form-control"
                                                                                         id="tanggal_pengeluaran_paspor"
                                                                                         name="tanggal_pengeluaran_paspor"
-                                                                                        value="{{ $belum_diverifikasi->tanggal_pengeluaran_paspor }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->tanggal_pengeluaran_paspor }}">
                                                                                 </div>
                                                                             </div>
 
@@ -405,21 +440,21 @@
                                                                                     <label class="col-form-label"
                                                                                         for="masa_kadaluarsa">Masa
                                                                                         Kadaluarsa Paspor</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="masa_kadaluarsa"
                                                                                         name="masa_kadaluarsa"
-                                                                                        value="{{ $belum_diverifikasi->masa_kadaluarsa }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->masa_kadaluarsa }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="kantor_paspor">Kantor Yang
                                                                                         Mengeluarkan Paspor</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="kantor_paspor"
                                                                                         name="kantor_paspor"
-                                                                                        value="{{ $belum_diverifikasi->kantor_paspor }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->kantor_paspor }}">
                                                                                 </div>
                                                                             </div>
 
@@ -428,11 +463,11 @@
                                                                                     <label class="col-form-label"
                                                                                         for="kondisi_paspor">Kondisi
                                                                                         Paspor</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="kondisi_paspor"
                                                                                         name="kondisi_paspor"
-                                                                                        value="{{ $belum_diverifikasi->kondisi_paspor }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->kondisi_paspor }}">
                                                                                 </div>
                                                                             </div>
 
@@ -458,7 +493,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="estimasi_maksimal">Negara
                                                                                         Tempat Bekerja</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="" name=""
                                                                                         value="">
@@ -467,7 +502,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="estimasi_maksimal">Nama
                                                                                         Perusahaan</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="" name=""
                                                                                         value="">
@@ -479,7 +514,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="estimasi_maksimal">Tanggal
                                                                                         Mulai Bekerja</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="" name=""
                                                                                         value="">
@@ -488,7 +523,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="estimasi_maksimal">Tanggal
                                                                                         Akhir Bekerja</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="" name=""
                                                                                         value="">
@@ -499,7 +534,7 @@
                                                                                 <div class="col-sm-12">
                                                                                     <label class="col-form-label"
                                                                                         for="estimasi_maksimal">Posisi</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="" name=""
                                                                                         value="">
@@ -513,7 +548,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="estimasi_maksimal">Negara
                                                                                         Tempat Bekerja</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="" name=""
                                                                                         value="">
@@ -522,7 +557,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="estimasi_maksimal">Nama
                                                                                         Perusahaan</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="" name=""
                                                                                         value="">
@@ -534,7 +569,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="estimasi_maksimal">Tanggal
                                                                                         Mulai Bekerja</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="" name=""
                                                                                         value="">
@@ -543,7 +578,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="estimasi_maksimal">Tanggal
                                                                                         Akhir Bekerja</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="" name=""
                                                                                         value="">
@@ -554,7 +589,7 @@
                                                                                 <div class="col-sm-12">
                                                                                     <label class="col-form-label"
                                                                                         for="estimasi_maksimal">Posisi</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="" name=""
                                                                                         value="">
@@ -595,8 +630,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_ktp"
                                                                                                     name="ada_ktp"
-                                                                                                    value="{{ $belum_diverifikasi->ada_ktp }}"
-                                                                                                    {{ $belum_diverifikasi->ada_ktp == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $belum_diverifikasi->kandidat->ada_ktp }}"
+                                                                                                    {{ $belum_diverifikasi->kandidat->ada_ktp == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_ktp">KTP</label>
@@ -611,8 +646,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_kk"
                                                                                                     name="ada_kk"
-                                                                                                    value="{{ $belum_diverifikasi->ada_kk }}"
-                                                                                                    {{ $belum_diverifikasi->ada_kk == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $belum_diverifikasi->kandidat->ada_kk }}"
+                                                                                                    {{ $belum_diverifikasi->kandidat->ada_kk == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_kk">KK</label>
@@ -625,8 +660,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_akta_lahir"
                                                                                                     name="ada_akta_lahir"
-                                                                                                    value="{{ $belum_diverifikasi->ada_akta_lahir }}"
-                                                                                                    {{ $belum_diverifikasi->ada_akta_lahir == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $belum_diverifikasi->kandidat->ada_akta_lahir }}"
+                                                                                                    {{ $belum_diverifikasi->kandidat->ada_akta_lahir == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_akta_lahir">Akta
@@ -640,8 +675,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_ijazah"
                                                                                                     name="ada_ijazah"
-                                                                                                    value="{{ $belum_diverifikasi->ada_ijazah }}"
-                                                                                                    {{ $belum_diverifikasi->ada_ijazah == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $belum_diverifikasi->kandidat->ada_ijazah }}"
+                                                                                                    {{ $belum_diverifikasi->kandidat->ada_ijazah == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_ijazah">Ijazah</label>
@@ -654,8 +689,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_buku_nikah"
                                                                                                     name="ada_buku_nikah"
-                                                                                                    value="{{ $belum_diverifikasi->ada_buku_nikah }}"
-                                                                                                    {{ $belum_diverifikasi->ada_buku_nikah == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $belum_diverifikasi->kandidat->ada_buku_nikah }}"
+                                                                                                    {{ $belum_diverifikasi->kandidat->ada_buku_nikah == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_buku_nikah">Buku
@@ -669,8 +704,8 @@
                                                                                                     type="checkbox"
                                                                                                     id="ada_paspor"
                                                                                                     name="ada_paspor"
-                                                                                                    value="{{ $belum_diverifikasi->ada_paspor }}"
-                                                                                                    {{ $belum_diverifikasi->ada_paspor == 'Ya' ? 'checked' : '' }}>
+                                                                                                    value="{{ $belum_diverifikasi->kandidat->ada_paspor }}"
+                                                                                                    {{ $belum_diverifikasi->kandidat->ada_paspor == 'Ya' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
                                                                                                     for="ada_paspor">Paspor</label>
@@ -689,7 +724,7 @@
                                                                                             nama/alamat/tempat
                                                                                             tanggal
                                                                                             lahir/hilang/rusak/lainnya</label>
-                                                                                        <textarea class="form-control" name="penjelasan_dokumen" id="penjelasan_dokumen" cols="30" rows="4">{{ $belum_diverifikasi->penjelasan_dokumen }} </textarea>
+                                                                                        <textarea class="form-control" name="penjelasan_dokumen" id="penjelasan_dokumen" cols="30" rows="4">{{ $belum_diverifikasi->kandidat->penjelasan_dokumen }} </textarea>
                                                                                     </div>
                                                                                 </div>
                                                                                 <h4 class="sub-title">Upload Dokumen
@@ -779,7 +814,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="bayar_cf">Bayar Commitment
                                                                                         Fee</label>
-                                                                                        <input type="text" class="form-control" id="bayar_cf" name="bayar_cf" onkeyup="formatNumber(this)" value="{{ number_format($belum_diverifikasi->bayar_cf, 0, ',', ',') }}">
+                                                                                        <input type="text"  class="form-control" id="bayar_cf" name="bayar_cf" onkeyup="formatNumber(this)" value="{{ number_format($belum_diverifikasi->bayar_cf, 0, ',', ',') }}">
 
                                                                                         <script>
                                                                                         function formatNumber(input) {
@@ -799,7 +834,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="tanggal_tf_cf">Tanggal
                                                                                         Transfer</label>
-                                                                                    <input type="date"
+                                                                                    <input type="date" 
                                                                                         class="form-control"
                                                                                         id="tanggal_tf_cf"
                                                                                         name="tanggal_tf_cf"
@@ -834,7 +869,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="status_paid_cf">Status
                                                                                         Paid</label>
-                                                                                        <select name="status_paid_cf" id="status_paid_cf" class="form-control">
+                                                                                        <select  name="status_paid_cf" id="status_paid_cf" class="form-control">
                                                                                             <option value="Unpaid" {{ $belum_diverifikasi->status_paid_cf == "Unpaid" ? 'selected' : '' }}>Unpaid</option>
                                                                                             <option value="Paid" {{ $belum_diverifikasi->status_paid_cf == "Paid" ? 'selected' : '' }}>Paid</option>
                                                                                         </select>
@@ -849,7 +884,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="tanggal_refund_cf">Tanggal
                                                                                         Refund</label>
-                                                                                    <input type="date"
+                                                                                    <input type="date" 
                                                                                         class="form-control"
                                                                                         id="tanggal_refund_cf"
                                                                                         name="tanggal_refund_cf"
@@ -860,10 +895,10 @@
                                                                                     <label class="col-form-label"
                                                                                         for="bayar_refund_cf">Jumlah
                                                                                         Refund</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" 
                                                                                         class="form-control"
                                                                                         id="bayar_refund_cf"
-                                                                                        name="bayar_refund_cf"
+                                                                                        name="bayar_refund_cf" onkeyup="formatNumber(this)" 
                                                                                         value="{{ number_format($belum_diverifikasi->bayar_refund_cf, 0, ',', ',') }}">
                                                                                 </div>
                                                                             </div>
@@ -876,6 +911,50 @@
                                                                 </div>
 
                                                             </div>
+
+                                                            <div class="tab-pane" id="reason" role="tabpanel">
+
+                                                                <div class="modal-content">
+
+                                                                    <div class="modal-body">
+                                                                        <div class="card-block">
+                                                                            <h5>REASON</h5>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-3">
+                                                                                    <label class="col-form-label"
+                                                                                        for="tanggal_reject_verifikasi">Tanggal
+                                                                                        Verifikasi</label>
+                                                                                    <input readonly type="text" 
+                                                                                        class="form-control"
+                                                                                        id="tanggal_reject_verifikasi"
+                                                                                        name="tanggal_reject_verifikasi"
+                                                                                        value="{{ $belum_diverifikasi->tanggal_reject_verifikasi }}">
+                                                                                </div>
+                                                                                <div class="col-sm-9">
+                                                                                    <label class="col-form-label"
+                                                                                        for="alasan_reject">Alasan Reject</label>
+                                                                                    <input readonly type="text" 
+                                                                                        class="form-control"
+                                                                                        id="alasan_reject"
+                                                                                        name="alasan_reject"
+                                                                                        value="{{ $belum_diverifikasi->alasan_reject }}">
+                                                                                </div>
+                                                                            </div>
+
+                                                                           
+                                                                             
+
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                </div>
+
+                                                            </div>
+
+                                                            
 
                                                             <a href="javascript:history.back()"
                                                                 class="btn btn-warning waves-effect waves-light mt-3">

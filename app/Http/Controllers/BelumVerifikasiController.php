@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pendaftaran;
 use App\Models\LogHistori;
-
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -33,7 +33,7 @@ class BelumVerifikasiController extends Controller
 
     public function index()
     {
-        $belum_diverifikasi = Pendaftaran::where('status', 'Pending')->orderBy('id', 'desc')->paginate(4); // Ganti 10 dengan jumlah item per halaman yang diinginkan
+        $belum_diverifikasi = Pendaftaran::where('status', 'Belum Verifikasi(Pending)')->orderBy('id', 'desc')->paginate(4);  
         return view('back.belum_diverifikasi.index', compact('belum_diverifikasi'));
     }
 
@@ -43,13 +43,21 @@ class BelumVerifikasiController extends Controller
         $pendaftaranId = $request->input('pendaftaran_id');
         $status = $request->input('status');
         // $blacklist = $request->input('blacklist');
+        $alasan_reject = $request->input('alasan_reject');
 
         // Get the original data before the update
         $belum_diverifikasi = Pendaftaran::findOrFail($pendaftaranId);
         $oldData = $belum_diverifikasi->getOriginal();
 
-        // Update the status in the database
-        Pendaftaran::where('id', $pendaftaranId)->update(['status' => $status]);
+      // Update the status in the database
+        Pendaftaran::where('id', $pendaftaranId)->update([
+            'status' => $status,
+            'tanggal_reject_verifikasi' => Carbon::now()->toDateString(),
+            'tanggal_sudah_verifikasi' => Carbon::now()->toDateString(),
+            'tanggal_cek_verifikasi' => Carbon::now()->toDateString(),
+            'alasan_reject' => $alasan_reject,
+             
+        ]);
 
         // Get the updated data after the update
         $updatedData = Pendaftaran::findOrFail($pendaftaranId)->getOriginal();
@@ -72,51 +80,53 @@ class BelumVerifikasiController extends Controller
             'bukti_tf_cf.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
             'bukti_tf_cf.max' => 'Ukuran bukti_tf_cf tidak boleh lebih dari 2 MB',
         ]);
-
+    
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-
-
+    
         $verifikasi = Pendaftaran::findOrFail($id);
-
-        $input = $request->except(['_token', '_method','bayar_cf','bayar_refund_cf']); // Exclude unnecessary fields
-       
- 
+    
+        // Ambil hanya bidang-bidang yang ditentukan dari permintaan
+        $input = $request->only([
+            'negara_id', 'nama_negara', 'kategori_job_id', 'nama_kategori_job',
+            'nik', 'nama_lengkap', 'bayar_cf', 'bukti_tf_cf', 'tanggal_tf_cf',
+            'status_paid_cf', 'tanggal_refund_cf', 'bayar_refund_cf'
+        ]);
+    
         if ($request->has('bayar_cf')) {
             $input['bayar_cf'] = str_replace(',', '', $request->input('bayar_cf'));
         }
-
+    
         if ($request->has('bayar_refund_cf')) {
             $input['bayar_refund_cf'] = str_replace(',', '', $request->input('bayar_refund_cf'));
         }
-
+    
         if ($request->hasFile('bukti_tf_cf')) {
             $image = $request->file('bukti_tf_cf');
             $destinationPath = 'upload/bukti_tf_cf/';
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move($destinationPath, $imageName);
-
+    
             // Hapus file bukti_tf_cf lama jika ada
             if ($verifikasi->bukti_tf_cf && file_exists(public_path('upload/verifikasi/' . $verifikasi->bukti_tf_cf))) {
                 unlink(public_path('upload/bukti_tf_cf/' . $verifikasi->bukti_tf_cf));
             }
-
+    
             $input['bukti_tf_cf'] = $imageName;
         }
-
-  
-   
+    
         // Update verifikasi data di database
         $verifikasi->update($input);
-
+    
         $loggedInUserId = Auth::id();
-
+    
         // Simpan log histori untuk operasi Update dengan user_id yang sedang login
         $this->simpanLogHistori('Update', 'Update Detail Verifikasi', $verifikasi->id, $loggedInUserId, json_encode($verifikasi->getOriginal()), json_encode($verifikasi));
-
+    
         return response()->json(['message' => 'Data Berhasil Diupdate']);
     }
+    
 
 
     /**
