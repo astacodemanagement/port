@@ -424,6 +424,16 @@
                                                 </a>
                                             </li>
                                             <li class>
+                                                <a href="/agency" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Agency</span>
+                                                </a>
+                                            </li>
+                                            <li class>
+                                                <a href="/employer" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Employer</span>
+                                                </a>
+                                            </li>
+                                            <li class>
                                                 <a href="/other" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Lainnya</span>
                                                 </a>
@@ -442,7 +452,7 @@
                                            
                                             <li class>
                                                 <a href="/belum_diverifikasi" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Belum Diverifikasi</span>
+                                                    <span class="pcoded-mtext">Belum Diverifikasi (Pending)</span>
                                                 </a>
                                             </li>
                                             <li class>
@@ -519,6 +529,32 @@
                                     </li>
                                     
                                      
+                                </ul>
+                                
+                                <ul class="pcoded-item pcoded-left-item">
+                                    <li class="pcoded-hasmenu">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-credit-card"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Pembayaran</span>
+                                        </a>
+                                        <ul class="pcoded-submenu">
+                                           
+                                            <li class>
+                                                <a href="/penempatan" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Biaya Penempatan</span>
+                                                </a>
+                                            </li>
+                                            <li class>
+                                                <a href="/commitment_fee" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Komitmen Fee</span>
+                                                </a>
+                                            </li>
+                                            
+                                        </ul>
+                                    </li>
+                                    
                                 </ul>
                                 <div class="pcoded-navigation-label">Setting</div>
                                 <ul class="pcoded-item pcoded-left-item">

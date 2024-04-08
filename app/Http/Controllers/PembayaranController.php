@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employer;
+
 use App\Models\LogHistori;
+use App\Models\Seleksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class EmployerController extends Controller
+class PembayaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,9 +32,38 @@ class EmployerController extends Controller
 
     public function index()
     {
-        $employer = Employer::orderBy('id', 'desc')->get();
-        return view('back.employer.index', compact('employer'));
+        $pembayaran = Seleksi::select('seleksi.*', 'pendaftaran.*') 
+            ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id') 
+            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik') 
+            ->orderBy('seleksi.id', 'asc') // Mengurutkan berdasarkan id seleksi secara ascending
+            ->get();
+    
+        return view('back.pembayaran.index', compact('pembayaran'));
     }
+
+    public function penempatan()
+    {
+        $pembayaran = Seleksi::select('seleksi.*', 'pendaftaran.*') 
+            ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id') 
+            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik') 
+            ->orderBy('seleksi.id', 'asc') // Mengurutkan berdasarkan id seleksi secara ascending
+            ->get();
+    
+        return view('back.pembayaran.penempatan', compact('pembayaran'));
+    }
+
+    public function commitment_fee()
+    {
+        $pembayaran = Seleksi::select('seleksi.*', 'pendaftaran.*') 
+            ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id') 
+            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik') 
+            ->orderBy('seleksi.id', 'asc') // Mengurutkan berdasarkan id seleksi secara ascending
+            ->get();
+    
+        return view('back.pembayaran.commitment_fee', compact('pembayaran'));
+    }
+    
+
 
     /**
      * Show the form for creating a new resource.
@@ -54,12 +85,12 @@ class EmployerController extends Controller
     {
         // Validasi request
         $validator = Validator::make($request->all(), [
-            'nama_employer' => 'required|unique:employer,nama_employer',
-            
+            'nama_pembayaran' => 'required|unique:pembayaran,nama_pembayaran',
+
         ], [
-            'nama_employer.required' => 'Nama Employer Wajib diisi',
-            'nama_employer.unique' => 'Nama Employer sudah digunakan',
-             
+            'nama_pembayaran.required' => 'Nama Pembayaran Wajib diisi',
+            'nama_pembayaran.unique' => 'Nama Pembayaran sudah digunakan',
+
         ]);
 
 
@@ -70,14 +101,14 @@ class EmployerController extends Controller
         $input = $request->all();
 
         // Simpan data spp ke database menggunakan fill()
-        $employer = new Employer();
-        $employer->fill($input);
-        $employer->save();
+        $pembayaran = new Seleksi();
+        $pembayaran->fill($input);
+        $pembayaran->save();
 
         $loggedInUserId = Auth::id();
 
         // Simpan log histori untuk operasi Create dengan user_id yang sedang login
-        $this->simpanLogHistori('Create', 'Employer', $employer->id, $loggedInUserId, null, json_encode($employer));
+        $this->simpanLogHistori('Create', 'Pembayaran', $pembayaran->id, $loggedInUserId, null, json_encode($pembayaran));
 
 
         return response()->json(['message' => 'Data Berhasil Disimpan']);
@@ -102,8 +133,8 @@ class EmployerController extends Controller
      */
     public function edit($id)
     {
-        $employer = Employer::findOrFail($id);
-        return response()->json($employer);
+        $pembayaran = Seleksi::findOrFail($id);
+        return response()->json($pembayaran);
     }
 
     /**
@@ -116,31 +147,32 @@ class EmployerController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'nama_employer' => 'required',
-           
+            'nama_pembayaran' => 'required',
+
         ], [
-            'nama_employer.required' => 'Nama Employer Wajib diisi',
-            
+            'nama_pembayaran.required' => 'Nama Pembayaran Wajib diisi',
+
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $employer = Employer::findOrFail($id);
-        $oldData = $employer->getOriginal();
+        $pembayaran = Seleksi::findOrFail($id);
+        $oldData = $pembayaran->getOriginal();
 
         // Update data
-        $employer->update([
-            'nama_employer' => $request->nama_employer,
+        $pembayaran->update([
+            'nama_pembayaran' => $request->nama_pembayaran,
             'no_telp' => $request->no_telp,
+            'email' => $request->email,
             'alamat' => $request->alamat,
             'keterangan' => $request->keterangan,
         ]);
 
 
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Update', 'Employer', $employer->id, $loggedInUserId, json_encode($oldData), json_encode($employer));
+        $this->simpanLogHistori('Update', 'Pembayaran', $pembayaran->id, $loggedInUserId, json_encode($oldData), json_encode($pembayaran));
 
         return response()->json(['message' => 'Data berhasil diupdate.']);
     }
@@ -153,29 +185,29 @@ class EmployerController extends Controller
      */
     public function destroy($id)
     {
-        $employer = Employer::findOrFail($id);
-            
-        if (!$employer) {
-            return response()->json(['message' => 'Data Employer not found'], 404);
+        $pembayaran = Seleksi::findOrFail($id);
+
+        if (!$pembayaran) {
+            return response()->json(['message' => 'Data Pembayaran not found'], 404);
         }
 
-        $employer->delete();
+        $pembayaran->delete();
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Delete', 'Employer', $id, $loggedInUserId, json_encode($employer), null);
+        $this->simpanLogHistori('Delete', 'Pembayaran', $id, $loggedInUserId, json_encode($pembayaran), null);
 
         return response()->json(['message' => 'Data berhasil dihapus.']);
     }
 
-  
 
-   
 
-  
- 
-   
+
+
+
+
+
 
     // Simpan log histori untuk operasi Delete dengan user_id yang sedang login dan informasi data yang dihapus
-  
+
 
 
 

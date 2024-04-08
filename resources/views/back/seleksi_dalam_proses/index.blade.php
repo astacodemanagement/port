@@ -130,6 +130,7 @@
                                                     <th width="10%">Mitra</th>
                                                     <th width="10%">ID KTKLN</th>
                                                     <th width="10%">Sponsor</th>
+                                                    <th width="10%">Tanggal Akhir Kontrak</th>
                                                     <th width="5%">Status Seleksi</th>
                                                     <th width="15%" class="text-center" width="5%">Aksi</th>
                                                 </tr>
@@ -146,6 +147,7 @@
                                                             <td>{{ $p2->mitra }}</td>
                                                             <td>{{ $p2->mitra }}</td>
                                                             <td>{{ $p2->referensi }}</td>
+                                                            <td>{{ $p2->tanggal_akhir_kontrak }}</td>
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
 
@@ -374,24 +376,57 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-                                                                            <div class="form-group">
-                                                                                <label for="tanggal_berangkat">Tanggal
-                                                                                    Keberangkatan :</label>
-                                                                                <input type="datetime-local"
-                                                                                    class="form-control"
-                                                                                    id="tanggal_berangkat"
-                                                                                    name="tanggal_berangkat" value="{{ $p2->tanggal_berangkat }}">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label for="tanggal_berangkat">Tanggal Keberangkatan:</label>
+                                                                                        <input type="date" class="form-control" id="tanggal_berangkat" name="tanggal_berangkat" value="{{ $p2->tanggal_berangkat }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-md-6">
+                                                                                    <div class="form-group">
+                                                                                        <label for="jam_terbang">Jam Terbang:</label>
+                                                                                        <select name="jam_terbang" id="jam_terbang" class="form-control">
+                                                                                            <option value="01" {{ $p2->jam_terbang == "01" ? 'selected' : '' }}>01</option>
+                                                                                            <option value="02" {{ $p2->jam_terbang == "02" ? 'selected' : '' }}>02</option>
+                                                                                            <option value="03" {{ $p2->jam_terbang == "03" ? 'selected' : '' }}>03</option>
+                                                                                            <option value="04" {{ $p2->jam_terbang == "04" ? 'selected' : '' }}>04</option>
+                                                                                            <option value="05" {{ $p2->jam_terbang == "05" ? 'selected' : '' }}>05</option>
+                                                                                            <option value="06" {{ $p2->jam_terbang == "06" ? 'selected' : '' }}>06</option>
+                                                                                            <option value="07" {{ $p2->jam_terbang == "07" ? 'selected' : '' }}>07</option>
+                                                                                            <option value="08" {{ $p2->jam_terbang == "08" ? 'selected' : '' }}>08</option>
+                                                                                            <option value="09" {{ $p2->jam_terbang == "09" ? 'selected' : '' }}>09</option>
+                                                                                            <option value="10" {{ $p2->jam_terbang == "10" ? 'selected' : '' }}>10</option>
+                                                                                            <option value="11" {{ $p2->jam_terbang == "11" ? 'selected' : '' }}>11</option>
+                                                                                            <option value="12" {{ $p2->jam_terbang == "12" ? 'selected' : '' }}>12</option>
+                                                                                            <option value="13" {{ $p2->jam_terbang == "13" ? 'selected' : '' }}>13</option>
+                                                                                            <option value="14" {{ $p2->jam_terbang == "14" ? 'selected' : '' }}>14</option>
+                                                                                            <option value="15" {{ $p2->jam_terbang == "15" ? 'selected' : '' }}>15</option>
+                                                                                            <option value="16" {{ $p2->jam_terbang == "16" ? 'selected' : '' }}>16</option>
+                                                                                            <option value="17" {{ $p2->jam_terbang == "17" ? 'selected' : '' }}>17</option>
+                                                                                            <option value="18" {{ $p2->jam_terbang == "18" ? 'selected' : '' }}>18</option>
+                                                                                            <option value="19" {{ $p2->jam_terbang == "19" ? 'selected' : '' }}>19</option>
+                                                                                            <option value="20" {{ $p2->jam_terbang == "20" ? 'selected' : '' }}>20</option>
+                                                                                            <option value="21" {{ $p2->jam_terbang == "21" ? 'selected' : '' }}>21</option>
+                                                                                            <option value="22" {{ $p2->jam_terbang == "22" ? 'selected' : '' }}>22</option>
+                                                                                            <option value="23" {{ $p2->jam_terbang == "23" ? 'selected' : '' }}>23</option>
+                                                                                            <option value="00" {{ $p2->jam_terbang == "00" ? 'selected' : '' }}>00</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
+                                                                            
                                                                             
                                                                             <div class="form-group">
                                                                                 <label for="supplier_id">Supplied By :</label>
                                                                                 <select name="supplier_id" id="supplier_id" class="form-control">
                                                                                     <option value="">--Pilih Supplier--</option>
-                                                                                    @foreach($supplier as $id => $supplier)
-                                                                                        <option value="{{ $id }}" {{ $p2->supplier_id == $id ? 'selected' : '' }}>{{ $supplier }}</option>
+                                                                                    @foreach($supplierList as $id => $supplierName)
+                                                                                        <option value="{{ $id }}" {{ $p2->supplier_id == $id ? 'selected' : '' }}>{{ $supplierName }}</option>
                                                                                     @endforeach
                                                                                 </select>
                                                                             </div>
+                                                                            
                                                                             
                                                                             
                                                                             <div class="form-group">

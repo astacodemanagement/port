@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employer;
+use App\Models\Agency;
 use App\Models\LogHistori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class EmployerController extends Controller
+class AgencyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,8 +30,8 @@ class EmployerController extends Controller
 
     public function index()
     {
-        $employer = Employer::orderBy('id', 'desc')->get();
-        return view('back.employer.index', compact('employer'));
+        $agency = Agency::orderBy('id', 'desc')->get();
+        return view('back.agency.index', compact('agency'));
     }
 
     /**
@@ -54,11 +54,11 @@ class EmployerController extends Controller
     {
         // Validasi request
         $validator = Validator::make($request->all(), [
-            'nama_employer' => 'required|unique:employer,nama_employer',
+            'nama_agency' => 'required|unique:agency,nama_agency',
             
         ], [
-            'nama_employer.required' => 'Nama Employer Wajib diisi',
-            'nama_employer.unique' => 'Nama Employer sudah digunakan',
+            'nama_agency.required' => 'Nama Agency Wajib diisi',
+            'nama_agency.unique' => 'Nama Agency sudah digunakan',
              
         ]);
 
@@ -70,14 +70,14 @@ class EmployerController extends Controller
         $input = $request->all();
 
         // Simpan data spp ke database menggunakan fill()
-        $employer = new Employer();
-        $employer->fill($input);
-        $employer->save();
+        $agency = new Agency();
+        $agency->fill($input);
+        $agency->save();
 
         $loggedInUserId = Auth::id();
 
         // Simpan log histori untuk operasi Create dengan user_id yang sedang login
-        $this->simpanLogHistori('Create', 'Employer', $employer->id, $loggedInUserId, null, json_encode($employer));
+        $this->simpanLogHistori('Create', 'Agency', $agency->id, $loggedInUserId, null, json_encode($agency));
 
 
         return response()->json(['message' => 'Data Berhasil Disimpan']);
@@ -102,8 +102,8 @@ class EmployerController extends Controller
      */
     public function edit($id)
     {
-        $employer = Employer::findOrFail($id);
-        return response()->json($employer);
+        $agency = Agency::findOrFail($id);
+        return response()->json($agency);
     }
 
     /**
@@ -116,10 +116,10 @@ class EmployerController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'nama_employer' => 'required',
+            'nama_agency' => 'required',
            
         ], [
-            'nama_employer.required' => 'Nama Employer Wajib diisi',
+            'nama_agency.required' => 'Nama Agency Wajib diisi',
             
         ]);
 
@@ -127,20 +127,21 @@ class EmployerController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $employer = Employer::findOrFail($id);
-        $oldData = $employer->getOriginal();
+        $agency = Agency::findOrFail($id);
+        $oldData = $agency->getOriginal();
 
         // Update data
-        $employer->update([
-            'nama_employer' => $request->nama_employer,
+        $agency->update([
+            'nama_agency' => $request->nama_agency,
             'no_telp' => $request->no_telp,
+            'email' => $request->email,
             'alamat' => $request->alamat,
             'keterangan' => $request->keterangan,
         ]);
 
 
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Update', 'Employer', $employer->id, $loggedInUserId, json_encode($oldData), json_encode($employer));
+        $this->simpanLogHistori('Update', 'Agency', $agency->id, $loggedInUserId, json_encode($oldData), json_encode($agency));
 
         return response()->json(['message' => 'Data berhasil diupdate.']);
     }
@@ -153,15 +154,15 @@ class EmployerController extends Controller
      */
     public function destroy($id)
     {
-        $employer = Employer::findOrFail($id);
+        $agency = Agency::findOrFail($id);
             
-        if (!$employer) {
-            return response()->json(['message' => 'Data Employer not found'], 404);
+        if (!$agency) {
+            return response()->json(['message' => 'Data Agency not found'], 404);
         }
 
-        $employer->delete();
+        $agency->delete();
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Delete', 'Employer', $id, $loggedInUserId, json_encode($employer), null);
+        $this->simpanLogHistori('Delete', 'Agency', $id, $loggedInUserId, json_encode($agency), null);
 
         return response()->json(['message' => 'Data berhasil dihapus.']);
     }

@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\AlasanController;
 use App\Http\Controllers\BelumVerifikasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailBayarController;
+use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\JobController;
@@ -18,6 +20,7 @@ use App\Http\Controllers\StepController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\PemasukanController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PengaduanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PenggunaController;
@@ -100,21 +103,25 @@ Route::get('/semua_seleksi', [SemuaSeleksiController::class, 'index']);
 //  Seleksi
 Route::get('/seleksi', [SeleksiController::class, 'index']);
 Route::post('/update-status-seleksi', [SeleksiController::class, 'updateStatus'])->name('update.status'); 
+Route::post('/update-status-multiple', [SeleksiController::class, 'updateStatusMultiple'])->name('update.statusMultiple'); 
 Route::get('/seleksi/{id}/detail', [SeleksiController::class, 'detail'])->name('seleksi.detail');
 
 
 
 //  Seleksi Dua Lolos Kualifikasi
 Route::get('/seleksi_lolos_kualifikasi', [SeleksiLolosKualifikasiController::class, 'index']);
+Route::post('/update-status-multiple-lolos-kualifikasi', [SeleksiLolosKualifikasiController::class, 'updateStatusMultiple'])->name('update.statusMultipleLolosKualifikasi'); 
 Route::post('/update-status-seleksi_lolos_kualifikasi', [SeleksiLolosKualifikasiController::class, 'updateStatus'])->name('update_lolos_kualifikasi.status'); 
 
 //  Seleksi Interview
 Route::get('/seleksi_interview', [SeleksiInterviewController::class, 'index']);
+Route::post('/update-status-multiple-interview', [SeleksiInterviewController::class, 'updateStatusMultiple'])->name('update.statusMultipleInterview'); 
 Route::post('/update-status-seleksi_interview', [SeleksiInterviewController::class, 'updateStatus'])->name('update_seleksi_interview.status'); 
 
 
 //  Seleksi Lolos Interview
 Route::get('/seleksi_lolos_interview', [SeleksiLolosInterviewController::class, 'index']);
+Route::post('/update-status-multiple-lolos-interview', [SeleksiLolosInterviewController::class, 'updateStatusMultiple'])->name('update.statusMultipleLolosInterview'); 
 Route::post('/update-status-seleksi_lolos_interview', [SeleksiLolosInterviewController::class, 'updateStatus'])->name('update_seleksi_lolos_interview.status'); 
 
 
@@ -128,6 +135,9 @@ Route::post('/tambah-pembayaran-refund', [SeleksiDalamProsesController::class, '
  
 Route::get('/hapus-detail-bayar/{id}', [DetailBayarController::class, 'hapusDetailBayar'])->name('detail_bayar.hapus');
 Route::get('/hapus-detail-bayar-refund/{id}', [RefundDetailBayarController::class, 'hapusDetailBayarRefund'])->name('detail_bayar_refund.hapus');
+
+Route::get('/getAgencyAlamat/{id}', [SeleksiDalamProsesController::class, 'getAgencyAlamat']);
+Route::get('/getEmployerAlamat/{id}', [SeleksiDalamProsesController::class, 'getEmployerAlamat']);
 
 
 
@@ -176,6 +186,25 @@ Route::resource('supplier', SupplierController::class);
 Route::get('/supplier/{id}/edit', [SupplierController::class, 'edit']);
 Route::put('/supplier/{id}', [SupplierController::class, 'update']);
 
+
+// Agency
+Route::get('/agency', [AgencyController::class, 'index']);
+Route::resource('agency', AgencyController::class);
+Route::get('/agency/{id}/edit', [AgencyController::class, 'edit']);
+Route::put('/agency/{id}', [AgencyController::class, 'update']);
+
+
+// Employer
+Route::get('/employer', [EmployerController::class, 'index']);
+Route::resource('employer', EmployerController::class);
+Route::get('/employer/{id}/edit', [EmployerController::class, 'edit']);
+Route::put('/employer/{id}', [EmployerController::class, 'update']);
+
+
+// Pembayaran
+Route::get('/penempatan', [PembayaranController::class, 'penempatan']);
+Route::get('/commitment_fee', [PembayaranController::class, 'commitment_fee']);
+ 
 
 // Negara
 Route::get('/negara', [NegaraController::class, 'index']);

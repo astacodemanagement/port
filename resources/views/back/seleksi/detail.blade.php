@@ -102,7 +102,8 @@
                                                     <form id="form_verifikasi" action="" method="POST" enctype="multipart/form-data">
                                                         @csrf <!-- Tambahkan token CSRF -->
                                                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
-                                                        <input type="hidden" id="id" name="id" value="{{ $seleksi->id }}">
+                                                        <input type="hidden" id="id" name="id" value="{{ $id }}">
+
                                                         <div class="tab-content card-block">
 
                                                             <div class="tab-pane active" id="home7" role="tabpanel">

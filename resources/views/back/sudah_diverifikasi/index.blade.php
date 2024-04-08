@@ -223,37 +223,31 @@
                                                                 <!-- Add your form with combo box for status update -->
                                                                 <form id="ubahStatusForm{{ $p->id }}">
                                                                     <div class="form-group">
-                                                                        <label for="statusSelect{{ $p->id }}">Ubah
-                                                                            Status:</label>
-                                                                        <select class="form-control"
-                                                                            id="statusSelect{{ $p->id }}"
-                                                                            name="status"
-                                                                            onchange="handleStatusChange(this)">
-                                                                            <option value="Verifikasi">Verifikasi</option>
+                                                                        <label for="statusSelect{{ $p->id }}">Ubah Status:</label>
+                                                                        <select class="form-control" id="statusSelect{{ $p->id }}" name="status" onchange="handleStatusChange(this)">
+                                                                            {{-- <option value="Verifikasi">Verifikasi</option> --}}
                                                                             <option value="Belum Verifikasi(Pending)">Belum Verifikasi(Pending)</option>
                                                                             <option value="Reject">Reject</option>
-                                                                            <option value="Reject-Blacklist">
-                                                                                Reject-Blacklist</option>
+                                                                            <option value="Reject-Blacklist">Reject-Blacklist</option>
                                                                             <!-- <option value="Pending">Pending</option> -->
                                                                             <!-- Add other status options if needed -->
                                                                         </select>
                                                                     </div>
-                                                                    <div id="alasan_reject_container"
-                                                                        style="display: none;">
+                                                                    <div id="alasan_reject_container{{ $p->id }}" style="display: none;">
                                                                         <div class="form-group">
-                                                                            <label for="alasan_reject">Alasan :</label>
-                                                                            <textarea name="alasan_reject" id="alasan_reject" cols="30" rows="3" class="form-control"></textarea>
+                                                                            <label for="alasan_reject{{ $p->id }}">Alasan :</label>
+                                                                            <textarea name="alasan_reject" id="alasan_reject{{ $p->id }}" cols="30" rows="3" class="form-control"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <script>
                                                                         // Mendengarkan perubahan pada setiap elemen select dengan id yang sesuai
                                                                         document.addEventListener("DOMContentLoaded", function() {
                                                                             var statusSelect = document.getElementById("statusSelect{{ $p->id }}");
-                                                                            var alasanRejectContainer = document.getElementById("alasan_reject_container");
-
+                                                                            var alasanRejectContainer = document.getElementById("alasan_reject_container{{ $p->id }}");
+                                                            
                                                                             // Sembunyikan div alasan_reject_container saat halaman dimuat
                                                                             alasanRejectContainer.style.display = "none";
-
+                                                            
                                                                             // Tambahkan event listener untuk setiap kali pilihan berubah
                                                                             statusSelect.addEventListener("change", function() {
                                                                                 // Jika status adalah Reject atau Reject-Blacklist, tampilkan div alasan_reject_container
@@ -266,22 +260,12 @@
                                                                             });
                                                                         });
                                                                     </script>
-
-                                                                    {{-- <div class="form-group" id="statusBlacklistGroup{{ $p->id }}" style="display: none;">
-                                                                        <label for="blacklist{{ $p->id }}">Status Blacklist:</label>
-                                                                        <br>
-                                                                        <select class="form-control" id="blacklist{{ $p->id }}" name="blacklist">
-                                                                            <option value="Ya">Ya</option>
-                                                                            <option value="Tidak">Tidak</option>
-                                                                        </select>
-                                                                    </div> --}}
-
-
+                                                            
                                                                     <!-- Add hidden input for the Pendaftaran ID -->
-                                                                    <input type="hidden" name="pendaftaran_id"
-                                                                        value="{{ $p->id }}">
+                                                                    <input type="hidden" name="pendaftaran_id" value="{{ $p->id }}">
                                                                 </form>
                                                             </div>
+                                                            
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal"><i class="fas fa-undo"></i>

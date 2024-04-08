@@ -63,7 +63,7 @@ class SeleksiInterviewController extends Controller
     {
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
-        $keterangan_lolos_interview = $request->input('keterangan_lolos_interview');
+        $keterangan_dari_interview = $request->input('keterangan_dari_interview');
        
 
         // Get the original data before the update
@@ -73,8 +73,8 @@ class SeleksiInterviewController extends Controller
         // Update the status in the database
         Seleksi::where('id', $cek_kualifikasi_id)->update([
             'status' => $status,
-            'tanggal_lolos_interview' => Carbon::now()->toDateString(),
-            'keterangan_lolos_interview' => $keterangan_lolos_interview,
+            'tanggal_dari_interview' => Carbon::now()->toDateString(),
+            'keterangan_dari_interview' => $keterangan_dari_interview,
              
         ]);
 
@@ -88,6 +88,35 @@ class SeleksiInterviewController extends Controller
         return response()->json(['message' => 'Status updated successfully']);
     }
 
+    public function updateStatusMultiple(Request $request)
+    {
+        // Mengambil ID dari baris tabel yang dipilih
+        $selectedIds = $request->input('ids');
+        $status = $request->input('status');
+        $keterangan_dari_interview = $request->input('keterangan');
+
+
+        // Memastikan minimal satu ID dipilih
+        if (empty($selectedIds)) {
+            return response()->json(['message' => 'Tidak ada data yang dipilih untuk diperbarui.'], 422);
+        }
+
+        // Update status untuk setiap ID yang dipilih
+        foreach ($selectedIds as $id) {
+            Seleksi::where('id', $id)->update([
+                'status' => $status,
+                'keterangan_dari_interview' => $keterangan_dari_interview,
+                'tanggal_dari_interview' => Carbon::now()->toDateString()
+            ]);
+
+            // Log histori untuk setiap ID yang diperbarui
+            $cek_kualifikasi = Seleksi::findOrFail($id);
+            $loggedInUserId = Auth::id();
+            $this->simpanLogHistori('Update', 'Cek Kualifikasi', $id, $loggedInUserId, json_encode($cek_kualifikasi->getOriginal()), json_encode($cek_kualifikasi));
+        }
+
+        return response()->json(['message' => 'Status berhasil diperbarui untuk semua data yang dipilih.']);
+    }
 
 
 

@@ -48,7 +48,9 @@
 
                                 <div class="card" id="tb1">
                                     <div class="card-header">
-                                        <h5>  <span class="badge badge-pill badge-warning" style="color: #2c2f30; display: inline-block;"> Data Cek Kualifikasi</span> </h5>
+                                        <h5> <span class="badge badge-pill badge-warning"
+                                                style="color: #2c2f30; display: inline-block;"> Data Cek Kualifikasi</span>
+                                        </h5>
 
                                     </div>
                                     <div class="card-block">
@@ -77,10 +79,15 @@
                                                                 <td>{{ $p->nama_negara }}</td>
                                                                 <td>{{ $p->nama_perusahaan }}</td>
                                                                 <td>{{ $p->mitra }}</td>
-                                                                <td style="text-align: center; font-size:23px;"><span class="label label-danger">{{ count($group) }}</span></td>
-                                                                <td style="text-align: center; font-size:18px;"><span class="label label-warning">{{ $p->nama_kategori_job }}</span></td>
+                                                                <td style="text-align: center; font-size:23px;"><span
+                                                                        class="label label-danger">{{ count($group) }}</span>
+                                                                </td>
+                                                                <td style="text-align: center; font-size:18px;"><span
+                                                                        class="label label-warning">{{ $p->nama_kategori_job }}</span>
+                                                                </td>
                                                                 <td class="text-center">
-                                                                    <a title="Detail" style="color: rgb(242, 236, 236)" href="#"
+                                                                    <a title="Detail" style="color: rgb(242, 236, 236)"
+                                                                        href="#"
                                                                         class="btn btn-sm btn-primary btn-detail"
                                                                         data-id="{{ $p->id }}" style="color: black">
                                                                         <i class="fas fa-eye"></i> Detail
@@ -102,23 +109,42 @@
                             </div>
 
                             <div class="card" id="tb2">
-                                <div class="card-header">
-                                    <h5>  <span class="badge badge-pill badge-warning" style="color: #2c2f30; display: inline-block;"> Data Cek Kualifikasi</span> :  </h5>
-
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5>
+                                        <span class="badge badge-pill badge-warning" style="color: #2c2f30; display: inline-block;">Data Cek Kualifikasi</span>
+                                    </h5>
+                                    <div class="d-flex align-items-center">
+                                        <!-- Select dropdown -->
+                                        <div class="mr-2" style="width: 200px;"> <!-- Sesuaikan lebar yang diinginkan -->
+                                      
+                                            <select class="form-control" id="status_multiple" name="status_multiple">
+                                                <option value="">--Pilih Status--</option>
+                                                <option value="Lolos Kualifikasi">Lolos Kualifikasi</option>
+                                                <option value="Interview">Interview</option>
+                                                <option value="Lolos Interview">Lolos Interview</option>
+                                                <option value="Dalam Proses">Dalam Proses</option>
+                                                <option value="Terbang">Terbang</option>
+                                                <option value="Selesai Kontrak">Selesai Kontrak</option>
+                                                <option value="Batal">Batal</option>
+                                                <!-- Add other status options if needed -->
+                                            </select>
+                                        </div>
+                                        <!-- Tombol "Update Status" -->
+                                        <button id="updateStatusBtn" class="btn btn-primary">Multiple Update Status</button>
+                                    </div>
                                 </div>
+                                
                                 <div class="card-block">
 
                                     <div class="dt-responsive table-responsive">
                                         <table id="order-table2" class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
+                                                    <th width="5%"><input type="checkbox" id="checkAll"></th>
+                                                    <!-- Checkbox for "Check All" -->
                                                     <th width="5%">No</th>
                                                     <th width="15%">Tanggal Apply</th>
                                                     <th width="15%">Nama Kandidat</th>
-                                                    {{-- <th width="15%">Posisi</th> --}}
-                                                    {{-- <th width="15%">Negara</th>
-                                                    <th width="15%">Nama Perusahaan</th> --}}
-                                                    {{-- <th width="5%">Kategori Industri Pekerjaan</th> --}}
                                                     <th width="5%">Status Seleksi</th>
                                                     <th width="15%" class="text-center" width="5%">Aksi</th>
                                                 </tr>
@@ -127,13 +153,12 @@
                                                 @foreach ($seleksi_group as $jobId => $group)
                                                     @foreach ($group as $p2)
                                                         <tr data-job-id="{{ $jobId }}">
+                                                            <td><input type="checkbox" name="selected_items[]"
+                                                                    value="{{ $p2->id }}"></td>
+                                                            <!-- Checkbox for each row -->
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p2->tanggal_apply }}</td>
                                                             <td>{{ $p2->nama_kandidat }}</td>
-                                                            {{-- <td>{{ $p2->nama_job }}</td> --}}
-                                                            {{-- <td>{{ $p2->nama_negara }}</td>
-                                                            <td>{{ $p2->nama_perusahaan }}</td> --}}
-                                                            {{-- <td>{{ $p2->nama_kategori_job }}</td> --}}
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
                                                                 <a href="{{ route('seleksi.detail', $p2->id) }}"
@@ -160,7 +185,6 @@
                                                                     <i class="fa fa-arrow-right"></i>
                                                                     Lihat Detail
                                                                 </a>
-                                                                
                                                             </td>
                                                         </tr>
                                                         <!-- Modal -->
@@ -190,13 +214,20 @@
                                                                                     id="statusSelect{{ $p2->id }}"
                                                                                     name="status">
                                                                                     {{-- <option value="Cek Kualifikasi">Cek Kualifikasi</option> --}}
-                                                                                    <option value="Lolos Kualifikasi">Lolos Kualifikasi</option>
-                                                                                    <option value="Interview">Interview</option>
-                                                                                    <option value="Lolos Interview">Lolos Interview</option>
-                                                                                    <option value="Dalam Proses">Dalam Proses</option>
-                                                                                    <option value="Terbang">Terbang</option>
-                                                                                    <option value="Selesai Kontrak">Selesai Kontrak</option>
-                                                                                    <option value="Batal">Batal</option>
+                                                                                    <option value="Lolos Kualifikasi">
+                                                                                        Lolos Kualifikasi</option>
+                                                                                    <option value="Interview">Interview
+                                                                                    </option>
+                                                                                    <option value="Lolos Interview">
+                                                                                        Lolos Interview</option>
+                                                                                    <option value="Dalam Proses">Dalam
+                                                                                        Proses</option>
+                                                                                    <option value="Terbang">Terbang
+                                                                                    </option>
+                                                                                    <option value="Selesai Kontrak">
+                                                                                        Selesai Kontrak</option>
+                                                                                    <option value="Batal">Batal
+                                                                                    </option>
                                                                                     <!-- Add other status options if needed -->
                                                                                 </select>
                                                                             </div>
@@ -221,14 +252,29 @@
                                                         </div>
                                                     @endforeach
                                                 @endforeach
-
                                             </tbody>
-
                                         </table>
+                                        <!-- Tambahkan event listener untuk checkbox "Check All" -->
+                                        <script>
+                                            // Mengambil referensi checkbox "Check All"
+                                            const checkAllCheckbox = document.getElementById('checkAll');
+
+                                            // Mengambil referensi semua checkbox lainnya di dalam tabel
+                                            const checkboxes = document.querySelectorAll('input[name="selected_items[]"]');
+
+                                            // Menambahkan event listener untuk checkbox "Check All"
+                                            checkAllCheckbox.addEventListener('change', function() {
+                                                checkboxes.forEach(function(checkbox) {
+                                                    checkbox.checked = checkAllCheckbox.checked;
+                                                });
+                                            });
+                                        </script>
+
                                         <button id="btnClear" class="btn btn-warning" title="Clear atau Kembali"><i
                                                 class="fa fa-undo"></i>Clear</button>
                                     </div>
                                 </div>
+                                
                             </div>
 
 
@@ -286,6 +332,84 @@
             });
         });
     </script>
+
+<script>
+    $(document).ready(function() {
+        // Ketika tombol "Update Status" diklik
+        $('#updateStatusBtn').click(function() {
+            // Mendapatkan nilai status dari dropdown select
+            var status = $('#status_multiple').val();
+
+            // Memeriksa apakah status telah dipilih
+            if (status === '') {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'Harap pilih status sebelum memperbarui!',
+                });
+                return; // Menghentikan proses jika status belum dipilih
+            }
+
+            // Array untuk menyimpan ID yang dicentang
+            var selectedIds = [];
+
+            // Mengambil ID dari setiap checkbox yang dicentang
+            $('input[name="selected_items[]"]:checked').each(function() {
+                selectedIds.push($(this).val());
+            });
+
+            // Memastikan minimal satu checkbox dicentang
+            if (selectedIds.length === 0) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'Pilih setidaknya satu baris untuk diperbarui!',
+                });
+                return;
+            }
+
+            // Mengumpulkan data untuk dikirim ke server
+            var formData = {
+                ids: selectedIds,
+                status: status,
+                // Anda bisa menambahkan data lain yang diperlukan di sini
+            };
+
+            // Mengirim data ke server menggunakan AJAX
+            $.ajax({
+                type: 'POST',
+                url: '/update-status-multiple', // Sesuaikan dengan URL rute Anda
+                data: formData,
+                dataType: 'json',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(response) {
+                    // Handle success
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Status berhasil diperbarui!',
+                        showConfirmButton: true, // Tampilkan tombol OK
+                    }).then(function() {
+                        location.reload(); // Reload halaman setelah pengguna mengklik OK
+                    });
+                },
+                error: function(error) {
+                    // Handle error
+                    console.error(error);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Terjadi kesalahan saat memperbarui status.',
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+
+
 
     <script>
         function submitUbahStatus(id) {

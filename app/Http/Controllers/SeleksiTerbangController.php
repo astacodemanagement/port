@@ -93,7 +93,7 @@ class SeleksiTerbangController extends Controller
         // Update the status in the database
         Seleksi::where('id', $cek_kualifikasi_id)->update([
             'status' => $status,
-            'tanggal_terbang' => Carbon::now()->toDateString(),
+            'tanggal_seleksi_terbang' => Carbon::now()->toDateString(),
             'keterangan_seleksi_terbang' => $keterangan_seleksi_terbang,
              
         ]);

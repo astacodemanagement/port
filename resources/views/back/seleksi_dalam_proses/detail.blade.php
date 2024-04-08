@@ -98,9 +98,15 @@
                                                             <div class="slide"></div>
                                                         </li>
                                                         <li class="nav-item active">
-                                                            <a class="nav-link" data-toggle="tab" href="#cf"
+                                                            <a class="nav-link" data-toggle="tab" href="#pembayaran"
                                                                 role="tab"><i
                                                                     class="fas fa-dollar-sign"></i>Pembayaran</a>
+                                                            <div class="slide"></div>
+                                                        </li>
+                                                        <li class="nav-item active">
+                                                            <a class="nav-link" data-toggle="tab" href="#cf"
+                                                                role="tab"><i class="fas fa-dollar-sign"></i>Comitment
+                                                                Fee</a>
                                                             <div class="slide"></div>
                                                         </li>
                                                         <li class="nav-item">
@@ -116,7 +122,8 @@
                                                         @csrf <!-- Tambahkan token CSRF -->
                                                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
                                                         <input type="hidden" id="id" name="id"
-                                                            value="{{ $seleksi_dalam_proses->id }}">
+                                                            value="{{ $id }}">
+
                                                         <div class="tab-content card-block">
 
                                                             <div class="tab-pane " id="home7" role="tabpanel">
@@ -756,92 +763,161 @@
                                                                 <div class="modal-content">
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
+                                                                            <h4 class="sub-title"
+                                                                                style="font-size: 25px;">Pre - Job</h4>
 
                                                                             <div class="form-group row">
-                                                                                <div class="col-sm-6">
+                                                                                <div class="col-sm-4">
                                                                                     <label class="col-form-label"
-                                                                                        for="no_paspor">Nama Job</label>
-                                                                                    <input type="text"
+                                                                                        for="no_paspor">Posisi Yang
+                                                                                        Dilamar</label>
+                                                                                    <input readonly type="text"
                                                                                         class="form-control"
                                                                                         id="no_paspor" name="no_paspor"
                                                                                         value="{{ $seleksi_dalam_proses->nama_job }}">
                                                                                 </div>
-                                                                                <div class="col-sm-6">
+                                                                                <div class="col-sm-4">
+                                                                                    <label class="col-form-label" for="gaji">Gaji</label>
+                                                                                    <input readonly type="text" class="form-control" id="gaji" name="gaji" value="{{ number_format($seleksi_dalam_proses->job->gaji) }}">
+                                                                                </div>
+                                                                                
+                                                                                <div class="col-sm-4">
                                                                                     <label class="col-form-label"
-                                                                                        for="tanggal_pengeluaran_paspor">Nama
-                                                                                        Perusahaan</label>
-                                                                                    <input type="text"
+                                                                                        for="tanggal_pengeluaran_paspor">Negara</label>
+                                                                                    <input readonly type="text"
                                                                                         class="form-control"
                                                                                         id="tanggal_pengeluaran_paspor"
                                                                                         name="tanggal_pengeluaran_paspor"
-                                                                                        value="{{ $seleksi_dalam_proses->nama_perusahaan }}">
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="masa_kadaluarsa">Mitra</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="masa_kadaluarsa"
-                                                                                        name="masa_kadaluarsa"
-                                                                                        value="{{ $seleksi_dalam_proses->mitra }}">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="kantor_paspor">Gaji</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="kantor_paspor"
-                                                                                        name="kantor_paspor"
-                                                                                        value="{{ $seleksi_dalam_proses->gaji }}">
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="masa_kadaluarsa">Estimasi
-                                                                                        Minimal</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="masa_kadaluarsa"
-                                                                                        name="masa_kadaluarsa"
-                                                                                        value="{{ $seleksi_dalam_proses->estimasi_minimal }}">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="kantor_paspor">Estimasi
-                                                                                        Maksimal</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="kantor_paspor"
-                                                                                        name="kantor_paspor"
-                                                                                        value="{{ $seleksi_dalam_proses->estimasi_maksimal }}">
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="masa_kadaluarsa">Gaji
-                                                                                        Diterima</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="masa_kadaluarsa"
-                                                                                        name="masa_kadaluarsa"
-                                                                                        value="{{ $seleksi_dalam_proses->gaji_diterima }}">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="kantor_paspor">Nama
-                                                                                        Negara</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="kantor_paspor"
-                                                                                        name="kantor_paspor"
                                                                                         value="{{ $seleksi_dalam_proses->nama_negara }}">
                                                                                 </div>
+                                                                                
+                                                                            </div>
+
+
+
+
+                                                                            <br>
+                                                                            <h4 class="sub-title"
+                                                                                style="font-size: 25px;">Job Terseleksi
+                                                                            </h4>
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-3">
+                                                                                    <label class="col-form-label"
+                                                                                        for="tanggal_interview">Tanggal
+                                                                                        Interview</label>
+                                                                                    <input type="date"
+                                                                                        class="form-control"
+                                                                                        id="tanggal_interview"
+                                                                                        name="tanggal_interview"
+                                                                                        value="{{ $seleksi_dalam_proses->tanggal_interview }}">
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <label class="col-form-label"
+                                                                                        for="kantor_paspor">Job
+                                                                                        Terselect</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="job_terselect"
+                                                                                        name="job_terselect"
+                                                                                        value="{{ $seleksi_dalam_proses->job_terselect }}">
+                                                                                </div>
+
+                                                                                <div class="col-sm-3">
+                                                                                    <label class="col-form-label"
+                                                                                        for="gaji_akhir">Gaji Akhir</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="gaji_akhir" name="gaji_akhir"
+                                                                                        value="{{ number_format($seleksi_dalam_proses->gaji_akhir, 0, ',', '.') }}"
+                                                                                        onkeyup="formatNumber4(this)">
+                                                                                </div>
+
+                                                                                <script>
+                                                                                    window.addEventListener('DOMContentLoaded', (event) => {
+                                                                                        // Memformat nilai gaji saat tampilan dimuat
+                                                                                        formatNumber4(document.getElementById('gaji_akhir'));
+                                                                                    });
+
+                                                                                    function formatNumber4(input) {
+                                                                                        // Menghapus karakter non-numeric dari input
+                                                                                        let value = input.value.replace(/\D/g, '');
+
+                                                                                        // Menggunakan fungsi toLocaleString() untuk memformat angka dengan pemisah ribuan
+                                                                                        input.value = parseFloat(value).toLocaleString('en');
+                                                                                    }
+                                                                                </script>
+                                                                                 <div class="col-sm-3">
+                                                                                    <label class="col-form-label"
+                                                                                        for="durasi_kontrak">Durasi Kontrak (Hitungan Bulan) Contoh : 6</label>
+                                                                                    <input type="number"
+                                                                                        class="form-control"
+                                                                                        id="durasi_kontrak" name="durasi_kontrak"
+                                                                                        value="{{ $seleksi_dalam_proses->durasi_kontrak}}"
+                                                                                        onkeyup="formatNumber4(this)">
+                                                                                </div>
+
+
+
+                                                                            </div>
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="employer_id">Employer</label>
+                                                                                        <select name="employer_id" id="employer_id" class="form-control">
+                                                                                            @foreach ($employer as $p)
+                                                                                                <option value="{{ $p->id }}" {{ $p->id == $seleksi_dalam_proses->employer_id ? 'selected' : '' }}>
+                                                                                                    {{ $p->nama_employer }}
+                                                                                                </option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                        
+                                                                                </div>
+
+
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="alamat_employer">Alamat
+                                                                                        Employer</label>
+                                                                                    <input readonly type="text"
+                                                                                        class="form-control"
+                                                                                        id="alamat_employer"
+                                                                                        name="alamat_employer"
+                                                                                        value="{{ $seleksi_dalam_proses->alamat_agency }}">
+                                                                                </div>
+
+
+
+                                                                            </div>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="agency_id">Agency</label>
+                                                                                        <select name="agency_id" id="agency_id" class="form-control">
+                                                                                            <option value="">--Pilih Agency--</option>
+                                                                                            @foreach ($agency as $p)
+                                                                                                <option value="{{ $p->id }}" {{ $p->id == $seleksi_dalam_proses->agency_id ? 'selected' : '' }}>
+                                                                                                    {{ $p->nama_agency }}
+                                                                                                </option>
+                                                                                            @endforeach
+                                                                                        </select>
+                                                                                        
+                                                                                </div>
+
+
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="alamat_agency">Alamat
+                                                                                        Agency</label>
+                                                                                    <input readonly type="text"
+                                                                                        class="form-control"
+                                                                                        id="alamat_agency"
+                                                                                        name="alamat_agency"
+                                                                                        value="{{ $seleksi_dalam_proses->alamat_agency }}">
+                                                                                </div>
+
+
+
                                                                             </div>
 
                                                                         </div>
@@ -856,8 +932,86 @@
                                                                         <div class="card-block">
                                                                             <div class="card-block">
                                                                                 <div class="form-group row">
+                                                                                    <div class="col-sm-3">
+                                                                                        <label class="col-form-label"
+                                                                                            for="tanggal_ak">Tanggal
+                                                                                            Appointment Kedutaan</label>
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            id="tanggal_ak"
+                                                                                            name="tanggal_ak"
+                                                                                            value="{{ $seleksi_dalam_proses->tanggal_ak }}">
+                                                                                    </div>
+                                                                                    <div class="col-sm-3">
+                                                                                        <label class="col-form-label"
+                                                                                            for="tanggal_terbit">Tanggal
+                                                                                            Visa Terbit</label>
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            id="tanggal_terbit"
+                                                                                            name="tanggal_terbit"
+                                                                                            value="{{ $seleksi_dalam_proses->tanggal_terbit }}">
+                                                                                    </div>
+                                                                                    <div class="col-sm-3">
+                                                                                        <label class="col-form-label"
+                                                                                            for="tanggal_habis">Masa
+                                                                                            Berlaku Visa</label>
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            id="tanggal_habis"
+                                                                                            name="tanggal_habis"
+                                                                                            value="{{ $seleksi_dalam_proses->tanggal_habis }}">
+                                                                                    </div>
+                                                                                    <div class="col-sm-3">
+                                                                                        <label class="col-form-label"
+                                                                                            for="tanggal_pengeluaran_paspor">Tanggal
+                                                                                            P.A.P</label>
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            id="tanggal_pengeluaran_paspor"
+                                                                                            name="tanggal_pengeluaran_paspor"
+                                                                                            value="{{ $seleksi_dalam_proses->nama_perusahaan }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <br>
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-4">
+                                                                                        <label class="col-form-label"
+                                                                                            for="supplier_id">Supplied
+                                                                                            By</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="supplier_id"
+                                                                                            name="supplier_id"
+                                                                                            value="{{ $seleksi_dalam_proses->nama_supplier }}">
+                                                                                    </div>
+                                                                                    <div class="col-sm-4">
+                                                                                        <label class="col-form-label"
+                                                                                            for="tanggal_berangkat">Tanggal
+                                                                                            Keberangkatan</label>
+                                                                                        <input type="date"
+                                                                                            class="form-control"
+                                                                                            id="tanggal_berangkat"
+                                                                                            name="tanggal_berangkat"
+                                                                                            value="{{ $seleksi_dalam_proses->tanggal_berangkat }}">
+                                                                                    </div>
+                                                                                    <div class="col-sm-4">
+                                                                                        <label class="col-form-label"
+                                                                                            for="jam_terbang">Jam
+                                                                                            Terbang</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            id="jam_terbang"
+                                                                                            name="jam_terbang"
+                                                                                            value="{{ $seleksi_dalam_proses->jam_terbang }}">
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <br>
+                                                                                <div class="form-group row">
                                                                                     <div class="col-sm-12">
-                                                                                        <h4 class="sub-title">Status Dalam Proses Pada Proses Seleksi</h4>
+                                                                                        <h4 class="sub-title">Status Dalam
+                                                                                            Proses Pada Proses Seleksi</h4>
                                                                                         <div
                                                                                             class="border-checkbox-section">
                                                                                             <div
@@ -937,7 +1091,8 @@
                                                                                                     {{ $seleksi_dalam_proses->vt == '1' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
-                                                                                                    for="vt">Visa Terbit</label>
+                                                                                                    for="vt">Visa
+                                                                                                    Terbit</label>
                                                                                             </div>
 
                                                                                             <div
@@ -951,7 +1106,8 @@
                                                                                                     {{ $seleksi_dalam_proses->vd == '1' ? 'checked' : '' }}>
                                                                                                 <label
                                                                                                     class="border-checkbox-label"
-                                                                                                    for="vd">Visa Ditolak</label>
+                                                                                                    for="vd">Visa
+                                                                                                    Ditolak</label>
                                                                                             </div>
 
                                                                                             <div
@@ -969,6 +1125,43 @@
                                                                                             </div>
 
                                                                                         </div>
+
+
+
+                                                                                    </div>
+
+
+
+
+
+
+
+
+                                                                                    <div class="col-sm-12"
+                                                                                        style="margin-top: 50px;">
+                                                                                        <h4 class="sub-title">Perubahan ID
+                                                                                            KTKLN</h4>
+                                                                                        <div
+                                                                                            class="border-checkbox-section">
+                                                                                            <div
+                                                                                                class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <select
+                                                                                                    class="form-control"
+                                                                                                    id="id_ktkln"
+                                                                                                    name="id_ktkln">
+                                                                                                    <option value="Sudah"
+                                                                                                        {{ $seleksi_dalam_proses->id_ktkln == 'Sudah' ? 'selected' : '' }}>
+                                                                                                        Sudah</option>
+                                                                                                    <option value="Belum"
+                                                                                                        {{ $seleksi_dalam_proses->id_ktkln == 'Belum' ? 'selected' : '' }}>
+                                                                                                        Belum</option>
+                                                                                                </select>
+                                                                                            </div>
+
+
+
+
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
 
@@ -981,12 +1174,21 @@
                                                             </div>
 
 
-                                                            <div class="tab-pane active" id="cf" role="tabpanel">
+                                                            <div class="tab-pane active" id="pembayaran" role="tabpanel">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
                                                                             <div class="form-group row">
-                                                                                <div class="col-sm-6">
+                                                                                <div class="col-sm-3">
+                                                                                    <label class="col-form-label"
+                                                                                        for="bayar_cf">Commitment
+                                                                                        Fee</label>
+                                                                                    <input readonly type="text"
+                                                                                        class="form-control"
+                                                                                        id="bayar_cf" name="bayar_cf"
+                                                                                        value="{{ number_format($seleksi_dalam_proses->bayar_cf, 0, ',', ',') }}">
+                                                                                </div>
+                                                                                <div class="col-sm-3">
                                                                                     <label class="col-form-label"
                                                                                         for="biaya_penempatan">Biaya
                                                                                         Penempatan</label>
@@ -994,9 +1196,24 @@
                                                                                         class="form-control"
                                                                                         id="biaya_penempatan"
                                                                                         name="biaya_penempatan"
-                                                                                        value="{{ $seleksi_dalam_proses->biaya_penempatan }}"
+                                                                                        value="{{ number_format($seleksi_dalam_proses->biaya_penempatan, 0, ',', ',') }}"
+                                                                                        oninput="formatNumber2(this)"
                                                                                         onchange="hitungTotalBiaya()">
+                                                                                    <script>
+                                                                                        function formatNumber2(input) {
+                                                                                            // Menghapus semua karakter selain angka
+                                                                                            var num = input.value.replace(/\D/g, '');
+
+                                                                                            // Menambahkan separator ribuan setiap 3 digit
+                                                                                            var formattedNum = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+                                                                                            // Memasukkan hasil format kembali ke input
+                                                                                            input.value = formattedNum;
+                                                                                        }
+                                                                                    </script>
                                                                                 </div>
+
+
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="total_biaya">Total
@@ -1042,14 +1259,22 @@
                                                                             <script>
                                                                                 function hitungTotalBiaya() {
                                                                                     // Ambil nilai dari input biaya_penempatan, biaya_id, dan biaya_mcu
-                                                                                    var biaya_penempatan = parseFloat(document.getElementById('biaya_penempatan').value.replace(/[^0-9,]/g, '')
-                                                                                        .replace(',', '.'));
+                                                                                    var biaya_penempatan = document.getElementById('biaya_penempatan').value.replace(/[.,]/g, '');
+
+                                                                                    // Konversi nilai biaya_penempatan menjadi float
+                                                                                    biaya_penempatan = parseFloat(biaya_penempatan);
+
+                                                                                    var bayar_cf = document.getElementById('bayar_cf').value.replace(/[.,]/g, '');
+
+                                                                                    // Konversi nilai bayar_cf menjadi float
+                                                                                    bayar_cf = parseFloat(bayar_cf);
+
                                                                                     var biaya_id = parseFloat(document.getElementById('biaya_id').value.replace(/[^0-9,]/g, '').replace(',', '.'));
                                                                                     var biaya_mcu = parseFloat(document.getElementById('biaya_mcu').value.replace(/[^0-9,]/g, '').replace(',',
                                                                                         '.'));
 
                                                                                     // Hitung total biaya
-                                                                                    var total_biaya = biaya_penempatan;
+                                                                                    var total_biaya = biaya_penempatan - bayar_cf;
 
                                                                                     // Tampilkan total biaya pada input total_biaya
                                                                                     document.getElementById('total_biaya').value = formatRupiah(total_biaya, 'Rp ');
@@ -1086,7 +1311,8 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="biaya_mcu" name="biaya_mcu"
-                                                                                        value="{{ $seleksi_dalam_proses->biaya_mcu }}"
+                                                                                        value="{{ number_format($seleksi_dalam_proses->biaya_mcu, 0, ',', '.') }}"
+                                                                                        oninput="formatNumber3(this)"
                                                                                         onchange="hitungTotalBiaya()">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
@@ -1095,23 +1321,35 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="biaya_id" name="biaya_id"
-                                                                                        value="{{ $seleksi_dalam_proses->biaya_id }}"
+                                                                                        value="{{ number_format($seleksi_dalam_proses->biaya_id, 0, ',', '.') }}"
+                                                                                        oninput="formatNumber3(this)"
                                                                                         onchange="hitungTotalBiaya()">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <script>
+                                                                                function formatNumber3(input) {
+                                                                                    // Menghapus semua karakter selain angka
+                                                                                    var num = input.value.replace(/\D/g, '');
+
+                                                                                    // Menambahkan separator ribuan setiap 3 digit
+                                                                                    var formattedNum = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+                                                                                    // Memasukkan hasil format kembali ke input
+                                                                                    input.value = formattedNum;
+                                                                                }
+                                                                            </script>
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-12">
+                                                                                    <label class="col-form-label"
+                                                                                        for="biaya_mcu">Keterangan</label>
+                                                                                    <textarea name="keterangan" id="keterangan" cols="30" rows="3" class="form-control">{{ $seleksi_dalam_proses->keterangan }}</textarea>
                                                                                 </div>
 
 
-                                                                                {{-- <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="total_biaya">Total Biaya
-                                                                                    </label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="total_biaya"
-                                                                                        name="total_biaya"
-                                                                                        value=" {{ number_format($seleksi_dalam_proses->total_biaya, 0, ',', ',') }}"
-                                                                                        readonly>
-                                                                                </div> --}}
+
                                                                             </div>
+
 
 
                                                                             <hr>
@@ -1277,6 +1515,129 @@
 
                                                             </div>
 
+                                                            <div class="tab-pane" id="cf" role="tabpanel">
+
+                                                                <div class="modal-content">
+
+                                                                    <div class="modal-body">
+                                                                        <div class="card-block">
+                                                                            <h5>COMMITMENT FEE</h5>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="bayar_cf">Bayar Commitment
+                                                                                        Fee</label>
+                                                                                    <input readonly type="text"
+                                                                                        class="form-control"
+                                                                                        id="bayar_cf" name="bayar_cf"
+                                                                                        onkeyup="formatNumber(this)"
+                                                                                        value="{{ number_format($seleksi_dalam_proses->bayar_cf, 0, ',', ',') }}">
+
+                                                                                    <script>
+                                                                                        function formatNumber(input) {
+                                                                                            // Menghapus semua karakter selain angka
+                                                                                            var num = input.value.replace(/\D/g, '');
+
+                                                                                            // Menambahkan separator ribuan setiap 3 digit
+                                                                                            var formattedNum = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+                                                                                            // Memasukkan hasil format kembali ke input
+                                                                                            input.value = formattedNum;
+                                                                                        }
+                                                                                    </script>
+
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="tanggal_tf_cf">Tanggal
+                                                                                        Transfer</label>
+                                                                                    <input readonly type="date"
+                                                                                        class="form-control"
+                                                                                        id="tanggal_tf_cf"
+                                                                                        name="tanggal_tf_cf"
+                                                                                        value="{{ $seleksi_dalam_proses->tanggal_tf_cf }}">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-3">
+                                                                                    <label class="col-form-label"
+                                                                                        for="bukti_tf_cf">Upload
+                                                                                        Transfer</label>
+                                                                                    <input type="file"
+                                                                                        class="form-control"
+                                                                                        id="bukti_tf_cf"
+                                                                                        name="bukti_tf_cf">
+                                                                                </div>
+                                                                                <div class="col-sm-3">
+                                                                                    <label class="col-form-label"
+                                                                                        for="bukti_tf_cf">Bukti
+                                                                                        Transfer</label>
+                                                                                    <br>
+                                                                                    <a href="/upload/bukti_tf_cf/{{ $seleksi_dalam_proses->bukti_tf_cf }}"
+                                                                                        target="_blank"><img
+                                                                                            title="Bukti Transfer"
+                                                                                            src="/upload/bukti_tf_cf/{{ $seleksi_dalam_proses->bukti_tf_cf }}"
+                                                                                            alt="" width="30px"
+                                                                                            height="30px"></a>
+
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="status_paid_cf">Status
+                                                                                        Paid</label>
+                                                                                    <select name="status_paid_cf"
+                                                                                        id="status_paid_cf"
+                                                                                        class="form-control" readonly>
+                                                                                        <option value="Unpaid"
+                                                                                            {{ $seleksi_dalam_proses->status_paid_cf == 'Unpaid' ? 'selected' : '' }}>
+                                                                                            Unpaid</option>
+                                                                                        <option value="Paid"
+                                                                                            {{ $seleksi_dalam_proses->status_paid_cf == 'Paid' ? 'selected' : '' }}>
+                                                                                            Paid</option>
+                                                                                    </select>
+
+
+                                                                                </div>
+                                                                            </div>
+                                                                            <hr>
+                                                                            <h5>REFUND COMMITMENT FEE</h5>
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="tanggal_refund_cf">Tanggal
+                                                                                        Refund</label>
+                                                                                    <input readonly type="date"
+                                                                                        class="form-control"
+                                                                                        id="tanggal_refund_cf"
+                                                                                        name="tanggal_refund_cf"
+                                                                                        value="{{ $seleksi_dalam_proses->tanggal_refund_cf }}">
+                                                                                </div>
+
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="bayar_refund_cf">Jumlah
+                                                                                        Refund</label>
+                                                                                    <input readonly type="text"
+                                                                                        class="form-control"
+                                                                                        id="bayar_refund_cf"
+                                                                                        name="bayar_refund_cf"
+                                                                                        onkeyup="formatNumber(this)"
+                                                                                        value="{{ number_format($seleksi_dalam_proses->bayar_refund_cf, 0, ',', ',') }}">
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                </div>
+
+                                                            </div>
+
+
 
                                                             <a href="javascript:history.back()"
                                                                 class="btn btn-warning waves-effect waves-light mt-3">
@@ -1369,7 +1730,8 @@
                                     <div class="form-group">
                                         <label for="bukti_bayar">Bukti
                                             Bayar :</label>
-                                        <input type="file" class="form-control" id="bukti_bayar" name="bukti_bayar">
+                                        <input type="file" class="form-control" id="bukti_bayar"
+                                            name="bukti_bayar">
                                     </div>
                                     <!-- Add hidden input for the Pendaftaran ID -->
 
@@ -1472,6 +1834,62 @@
 
             @push('script')
                 @include('back.layouts.js_datatables')
+
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        var agencySelect = document.getElementById('agency_id');
+                        var employerSelect = document.getElementById('employer_id');
+                        var alamatAgencyInput = document.getElementById('alamat_agency');
+                        var alamatEmployerInput = document.getElementById('alamat_employer');
+                
+                        // Fungsi untuk mengambil alamat dari server
+                        function getAlamat(url, id, targetInput) {
+                            var xhr = new XMLHttpRequest();
+                            xhr.onreadystatechange = function() {
+                                if (xhr.readyState === XMLHttpRequest.DONE) {
+                                    if (xhr.status === 200) {
+                                        var response = JSON.parse(xhr.responseText);
+                                        targetInput.value = response.alamat;
+                                    } else {
+                                        // Handling error jika diperlukan
+                                    }
+                                }
+                            };
+                            xhr.open('GET', url + id);
+                            xhr.send();
+                        }
+                
+                        // Memanggil fungsi saat halaman dimuat
+                        getAlamat('/getAgencyAlamat/', agencySelect.value, alamatAgencyInput);
+                        getAlamat('/getEmployerAlamat/', employerSelect.value, alamatEmployerInput);
+                
+                        // Event listener untuk select agency
+                        agencySelect.addEventListener('change', function() {
+                            var agencyId = this.value;
+                            if (agencyId !== '') {
+                                getAlamat('/getAgencyAlamat/', agencyId, alamatAgencyInput);
+                            } else {
+                                alamatAgencyInput.value = '';
+                            }
+                        });
+                
+                        // Event listener untuk select employer
+                        employerSelect.addEventListener('change', function() {
+                            var employerId = this.value;
+                            if (employerId !== '') {
+                                getAlamat('/getEmployerAlamat/', employerId, alamatEmployerInput);
+                            } else {
+                                alamatEmployerInput.value = '';
+                            }
+                        });
+                    });
+                </script>
+                
+
+
+
+
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         // Ambil semua input dengan kelas border-checkbox

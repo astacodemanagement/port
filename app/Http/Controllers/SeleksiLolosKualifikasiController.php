@@ -64,6 +64,7 @@ class SeleksiLolosKualifikasiController extends Controller
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
         $tanggal_interview = $request->input('tanggal_interview');
+        $keterangan_dari_lolos_kualifikasi = $request->input('keterangan_dari_lolos_kualifikasi');
         $keterangan_interview = $request->input('keterangan_interview');
        
 
@@ -76,6 +77,7 @@ class SeleksiLolosKualifikasiController extends Controller
             'status' => $status,
             'tanggal_lolos_kualifikasi' => Carbon::now()->toDateString(),
             'tanggal_interview' => $tanggal_interview,
+            'keterangan_dari_lolos_kualifikasi' => $keterangan_dari_lolos_kualifikasi,
             'keterangan_interview' => $keterangan_interview,
              
         ]);
@@ -88,6 +90,42 @@ class SeleksiLolosKualifikasiController extends Controller
         $this->simpanLogHistori('Update', 'Lolos Kualifikasi', $cek_kualifikasi_id, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
 
         return response()->json(['message' => 'Status updated successfully']);
+    }
+
+
+    
+    public function updateStatusMultiple(Request $request)
+    {
+        // Mengambil ID dari baris tabel yang dipilih
+        $selectedIds = $request->input('ids');
+        $status = $request->input('status');
+        $keterangan_dari_lolos_kualifikasi = $request->input('keterangan');
+        $keterangan_interview = $request->input('keterangan_interview');
+        $tanggal_interview = $request->input('tanggal_interview');
+
+
+        // Memastikan minimal satu ID dipilih
+        if (empty($selectedIds)) {
+            return response()->json(['message' => 'Tidak ada data yang dipilih untuk diperbarui.'], 422);
+        }
+
+        // Update status untuk setiap ID yang dipilih
+        foreach ($selectedIds as $id) {
+            Seleksi::where('id', $id)->update([
+                'status' => $status,
+                'tanggal_interview' => $tanggal_interview,
+                'keterangan_dari_lolos_kualifikasi' => $keterangan_dari_lolos_kualifikasi,
+                'keterangan_interview' => $keterangan_interview,
+                'tanggal_cek_kualifikasi' => Carbon::now()->toDateString()
+            ]);
+
+            // Log histori untuk setiap ID yang diperbarui
+            $cek_kualifikasi = Seleksi::findOrFail($id);
+            $loggedInUserId = Auth::id();
+            $this->simpanLogHistori('Update', 'Cek Kualifikasi', $id, $loggedInUserId, json_encode($cek_kualifikasi->getOriginal()), json_encode($cek_kualifikasi));
+        }
+
+        return response()->json(['message' => 'Status berhasil diperbarui untuk semua data yang dipilih.']);
     }
 
 

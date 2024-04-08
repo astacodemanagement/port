@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agency;
 use App\Models\DetailBayar;
+use App\Models\Employer;
+use App\Models\Job;
 use App\Models\Seleksi;
 use App\Models\LogHistori;
 use App\Models\Pendaftaran;
@@ -54,28 +57,63 @@ class SeleksiDalamProsesController extends Controller
                 'kategori_job.urutan as kategori_urutan'
             )
             ->get();
-        $supplier = Supplier::pluck('nama_supplier', 'id');
-
+        $supplierList = Supplier::pluck('nama_supplier', 'id'); // Definisikan $supplierList di sini
+    
         // Cetak hasil query ke konsol untuk diinspeksi
         \Illuminate\Support\Facades\Log::info('Query Result:', ['seleksi' => $seleksi]);
-
+    
         $seleksi_group = $seleksi->groupBy('job_id');
-
-        return view('back.seleksi_dalam_proses.index', compact('seleksi', 'seleksi_group','supplier'));
+    
+        return view('back.seleksi_dalam_proses.index', compact('seleksi', 'seleksi_group','supplierList'));
     }
+    
 
     public function detail($id)
     {
-        // $seleksi = Seleksi::select('seleksi.*', 'job.nama_job as nama_job', 'kandidat.nama_lengkap as nama_lengkap')
+        $agency = Agency::orderBy('id', 'desc')->get();
+        $employer = Employer::orderBy('id', 'desc')->get();
         $detail_bayar = DetailBayar::orderBy('id', 'desc')->get();
         $refund_detail_bayar = RefundDetailBayar::orderBy('id', 'desc')->get();
-        $seleksi_dalam_proses = Seleksi::select('*')
+        $seleksi_dalam_proses = Seleksi::select(
+                'seleksi.*',
+                'job.nama_job as nama_job',
+                'kandidat.nama_lengkap as nama_lengkap',
+                'pendaftaran.*',
+                'supplier.nama_supplier as nama_supplier' // tambahkan kolom nama_supplier
+            )
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
+            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik')
+            ->leftJoin('supplier', 'seleksi.supplier_id', '=', 'supplier.id') // melakukan left join dengan tabel supplier
             ->where('seleksi.id', $id)
             ->first();
+    
+        // Load daftar pekerjaan
+        $jobList = Job::pluck('nama_job', 'id');
+    
+        // Kirim nilai ID ke tampilan menggunakan compact
+        return view('back.seleksi_dalam_proses.detail', compact('seleksi_dalam_proses', 'detail_bayar', 'refund_detail_bayar', 'id', 'jobList', 'agency', 'employer'));
+    }
+    
+    public function getAgencyAlamat($id)
+    {
+        $agency = Agency::find($id);
+        if ($agency) {
+            return response()->json(['alamat' => $agency->alamat]);
+        } else {
+            return response()->json(['error' => 'Agency not found'], 404);
+        }
+    }
 
-        return view('back.seleksi_dalam_proses.detail', compact('seleksi_dalam_proses', 'detail_bayar', 'refund_detail_bayar'));
+    // Metode untuk mengambil alamat employer berdasarkan ID
+    public function getEmployerAlamat($id)
+    {
+        $employer = Employer::find($id);
+        if ($employer) {
+            return response()->json(['alamat' => $employer->alamat]);
+        } else {
+            return response()->json(['error' => 'Employer not found'], 404);
+        }
     }
 
 
@@ -99,6 +137,7 @@ class SeleksiDalamProsesController extends Controller
         $tanggal_terbit = $request->input('tanggal_terbit');
         $tanggal_habis = $request->input('tanggal_habis');
         $tanggal_berangkat = $request->input('tanggal_berangkat');
+        $jam_terbang = $request->input('jam_terbang');
         $supplier_id = $request->input('supplier_id');
         $keterangan_dalam_proses = $request->input('keterangan_dalam_proses');
 
@@ -124,6 +163,7 @@ class SeleksiDalamProsesController extends Controller
             'tanggal_terbit' => $tanggal_terbit,
             'tanggal_habis' => $tanggal_habis,
             'tanggal_berangkat' => $tanggal_berangkat,
+            'jam_terbang' => $jam_terbang,
             'supplier_id' => $supplier_id,
             'keterangan_dalam_proses' => $keterangan_dalam_proses,
 
@@ -162,14 +202,24 @@ class SeleksiDalamProsesController extends Controller
         $seleksi = Seleksi::findOrFail($id);
 
         // Tetapkan nilai atribut seleksi berdasarkan permintaan
-        $seleksi->biaya_penempatan = $request->biaya_penempatan;
-        $seleksi->biaya_id = $request->biaya_id;
-        $seleksi->biaya_mcu = $request->biaya_mcu;
+        // $seleksi->biaya_penempatan = $request->biaya_penempatan;
+        // $seleksi->biaya_id = $request->biaya_id;
+        // $seleksi->biaya_mcu = $request->biaya_mcu;
 
         // Hapus karakter titik dan koma dari nilai total_biaya sebelum disimpan
         $seleksi->total_biaya = str_replace(['.', ','], '', $request->total_biaya);
         $seleksi->total_bayar = str_replace(['.', ','], '', $request->total_bayar);
         $seleksi->sisa_bayar = str_replace(['.', ','], '', $request->sisa_bayar);
+        $seleksi->biaya_penempatan = str_replace(['.', ','], '', $request->biaya_penempatan);
+        $seleksi->biaya_id = str_replace(['.', ','], '', $request->biaya_id);
+        $seleksi->biaya_mcu = str_replace(['.', ','], '', $request->biaya_mcu);
+        $seleksi->keterangan = $request->keterangan;
+        $seleksi->id_ktkln = $request->id_ktkln;
+        $seleksi->job_terselect = $request->job_terselect;
+        $seleksi->gaji_akhir = str_replace(['.', ','], '', $request->gaji_akhir);
+        $seleksi->employer_id = $request->employer_id;
+        $seleksi->agency_id = $request->agency_id;
+        $seleksi->durasi_kontrak = $request->durasi_kontrak;
 
 
 

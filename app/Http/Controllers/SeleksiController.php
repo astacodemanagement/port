@@ -89,26 +89,56 @@ class SeleksiController extends Controller
         return response()->json(['message' => 'Status updated successfully']);
     }
 
+    public function updateStatusMultiple(Request $request)
+    {
+        // Mengambil ID dari baris tabel yang dipilih
+        $selectedIds = $request->input('ids');
+        $status = $request->input('status');
+
+
+        // Memastikan minimal satu ID dipilih
+        if (empty($selectedIds)) {
+            return response()->json(['message' => 'Tidak ada data yang dipilih untuk diperbarui.'], 422);
+        }
+
+        // Update status untuk setiap ID yang dipilih
+        foreach ($selectedIds as $id) {
+            Seleksi::where('id', $id)->update([
+                'status' => $status,
+                'tanggal_cek_kualifikasi' => Carbon::now()->toDateString()
+            ]);
+
+            // Log histori untuk setiap ID yang diperbarui
+            $cek_kualifikasi = Seleksi::findOrFail($id);
+            $loggedInUserId = Auth::id();
+            $this->simpanLogHistori('Update', 'Cek Kualifikasi', $id, $loggedInUserId, json_encode($cek_kualifikasi->getOriginal()), json_encode($cek_kualifikasi));
+        }
+
+        return response()->json(['message' => 'Status berhasil diperbarui untuk semua data yang dipilih.']);
+    }
+
+
 
 
     public function detail($id)
     {
+       
         $seleksi = Seleksi::select(
-                'seleksi.*',
-                'job.nama_job as nama_job',
-                'kandidat.nama_lengkap as nama_lengkap',
-                'pendaftaran.*' // Memilih semua kolom dari tabel pendaftaran
-            )
+            'seleksi.*',
+            'job.nama_job as nama_job',
+            'kandidat.nama_lengkap as nama_lengkap',
+            'pendaftaran.*'
+        )
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
-            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik') // Join dengan tabel pendaftaran melalui tabel kandidat
+            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik')
             ->where('seleksi.id', $id)
             ->first();
     
-        return view('back.seleksi.detail', compact('seleksi'));
+        // Kirim nilai ID ke tampilan menggunakan compact
+        return view('back.seleksi.detail', compact('seleksi', 'id'));
     }
     
-
 
 
 
