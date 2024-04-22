@@ -1,0 +1,1211 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+    --orange: #F97316;
+    --biru-d: #00314F;
+    --biru-n: #00314fb4;
+    --bg-gray: #F5F5F5;
+    --text-w: #ffff;
+    --biru-b: #F2FAFF;
+    --biru-s: #94D6FF;
+    --orange-c: #FFEDD5;
+    --hijau-b: #DCFCE7;
+    --orange-i: #FFF7ED;
+    --white-b-d: #FAFAFA;
+    --danger-bg: #FEE2E2;
+    --text-danger: #EF4444;
+    --text-green: #22C55E;
+}
+
+* {
+    box-sizing: 0;
+    font-family: inter;
+}
+
+/* Navbar Section */
+.Element-nav-items {
+    padding: 24px 0;
+    background-color: var(--biru-b);
+    min-height: 100vh;
+}
+
+.Element-nav-items .navbar {
+    display: flex;
+    margin: 24px 90px;
+    padding: 20px 24px;
+    background: var(--biru-n);
+    border-radius: 16px;
+}
+
+
+.Element-nav-items .navbar .link-pages {
+    padding: 12px;
+    text-decoration: none;
+    color: var(--text-w);
+    font-size: 16px;
+}
+
+.Element-nav-items .navbar .link-btn {
+    padding: 12px 24px;
+    background: var(--orange);
+    text-decoration: none;
+    color: var(--text-w);
+    opacity: 100%;
+    border-radius: 14px;
+    font-size: 16px;
+
+}
+
+.Element-nav-items .navbar .link-btn:hover {
+    background: none;
+    text-decoration: none;
+    color: var(--orange);
+    opacity: 100%;
+    border-radius: 14px;
+    font-size: 16px;
+    border: 1px solid var(--orange);
+    transition: 1s;
+
+}
+
+.Element-nav-items .carousel-items {
+    display: flex;
+    padding: 56px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Element-nav-items .carousel-items .carousel-items-left .text-heading h6 {
+    font-size: 24px;
+    color: var(--biru-d);
+}
+
+.Element-nav-items .carousel-items .carousel-items-left .carousel-text span {
+    font-size: 18px;
+}
+
+.Element-nav-items .carousel-items .carousel-items-left .carousel-link-button a {
+    padding: 12px;
+    background-color: var(--orange);
+    font-size: 16px;
+    color: var(--text-w);
+    border-radius: 7px;
+    text-decoration: none;
+}
+
+.Element-nav-items .carousel-item .carousel-items-left .carousel-link-button a {
+    padding: 12px;
+    background-color: var(--orange);
+    font-size: 16px;
+    color: var(--text-w);
+    border-radius: 7px;
+    text-decoration: none;
+}
+
+.Element-nav-items .carousel-items .carousel-items-left .carousel-link-button a:hover {
+    background: none;
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    transition: 1s;
+}
+
+.Element-nav-items .carousel-dark .carousel-indicators [data-bs-target] {
+    background-color: var(--biru-s);
+}
+
+.Element-nav-items .carousel-items .carousel-items-left .carousel-title-heading h1 {
+    font-size: 60px;
+    font-weight: bold;
+    color: var(--biru-d);
+}
+
+.Element-nav-items .carousel-items .items-right-image img {
+    width: 600px;
+}
+
+/* Card Items */
+.Element-card-items {
+    padding: 56px 0;
+}
+
+.Element-card-items .row .card-items {
+    padding: 24px;
+    border: 1px solid var(--biru-b);
+    border-radius: 16px;
+}
+
+.Element-card-items .row .card-items:hover {
+    box-shadow: 0px 10px 35px -3px rgba(0, 0, 0, 0.055);
+    cursor: pointer;
+}
+
+.Element-card-items .row .card-items .box-items {
+    padding: 20px;
+    margin: 0 60px;
+    background-color: var(--biru-b);
+    border-radius: 7px;
+}
+
+
+.Element-card-items .row .card-items .fw-reguler {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+}
+
+.Element-card-items {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 1s all ease;
+}
+
+.Element-card-items.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Element herosection */
+.Element-herosection {
+    padding: 56px 0;
+}
+
+.Element-herosection .container .bagde {
+    background-color: var(--orange);
+    color: var(--text-w);
+}
+
+.Element-herosection .container-sm {
+    padding: 56px 0;
+}
+
+.Element-herosection .row .col-sm-3 {
+    padding: 24px;
+}
+
+.Element-herosection .row .col-sm-3 .title-heading {
+    padding: 24px 0;
+}
+
+.Element-herosection .row .col-sm-3 .title-heading h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--biru-d);
+}
+
+.Element-herosection .row .col-sm-3 .title-heading span {
+    font-size: 14px;
+}
+
+.Element-herosection {
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 2s all ease;
+}
+
+.Element-herosection.active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Element-about-sipol */
+.Element-about-sipol {
+    margin: 56px 0;
+}
+
+.Element-about-sipol .Element-sipol-tentang-content {
+    padding: 56px 120px;
+    background-color: var(--biru-d);
+    font-size: 20px;
+    border-radius: 16px;
+}
+
+.Element-about-sipol .Element-sipol-tentang-content {
+    background-size: cover;
+    background-position: center;
+    background-image: url('../assets/slider/line-image.png');
+}
+
+/* Fitur SIPOL */
+.Element-fitur-sipol {
+    padding: 56px 0;
+}
+
+.Element-fitur-sipol .row .card-fitur-sipool-items h3 {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.Element-fitur-sipol .row .card-fitur-sipool-danger h3 {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.Element-fitur-sipol .row .card-fitur-sipool-items {
+    padding: 59px 0px 0px 24px;
+    min-height: 200px;
+    background-color: var(--biru-b);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.Element-fitur-sipol .row .card-fitur-sipool-items .col-1 {
+    float: right;
+    background-image: url("../assets/image/Mobile-App-Placeholder-2\ \(1\).png");
+    width: 210px;
+    height: 200px;
+}
+
+.Element-fitur-sipol .row .card-fitur-sipool-danger {
+    background-color: var(--orange-i);
+    padding: 59px 0px 0px 24px;
+    min-height: 200px;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.Element-fitur-sipol .row .card-fitur-sipool-danger .col-1 {
+    background-image: url("../assets/image/Mobile-App-Placeholder-2\ \(1\).png");
+    width: 210px;
+    height: 200px;
+    background-image: cover;
+    object-fit: contain;
+}
+
+.Element-fitur-sipol .row .card-fitur-sipool-item {
+    padding: 24px;
+    min-height: 250px;
+    background-color: var(--orange-c);
+    border-radius: 14px;
+}
+
+.Element-fitur-sipol .row .card-fitur-sipool-items-r {
+    padding: 24px;
+    min-height: 545px;
+    background-color: var(--biru-b);
+    border-radius: 14px;
+}
+
+.Element-fitur-sipol .row .card-fitur-sipool-items-r h3 {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+/* Section Steps */
+.Element-work-steps {
+    padding: 56px 0;
+    background-image: url(../assets/image/background.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Element-work-steps .container {
+    padding: 130px 0;
+}
+
+.Element-work-steps .steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+.Element-work-steps .step-button {
+    margin: 10px 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--biru-s);
+}
+
+.Element-work-steps .step-button[aria-expanded="true"] {
+    width: 60px;
+    height: 60px;
+    background-color: var(--biru-b);
+    color: #fff;
+}
+
+.Element-work-steps .done {
+    background-color: var(--biru-b);
+    color: #fff;
+}
+
+.Element-work-steps .step-item {
+    z-index: 10;
+    text-align: center;
+}
+
+.Element-work-steps #progress {
+    -webkit-appearance: none;
+    position: absolute;
+    width: 90%;
+    z-index: 5;
+    height: 10px;
+    margin-left: 55px;
+    margin-bottom: 18px;
+    color: var(--biru-b);
+}
+
+.Element-work-steps #progress::-webkit-progress-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--biru-s);
+    height: 5px;
+    width: 100%;
+}
+
+.Element-work-steps .btn-action {
+    padding: 12px;
+    color: var(--text-w);
+    background: var(--orange);
+    font-weight: 700px;
+    border: none;
+    border-radius: 7px;
+    text-decoration: none;
+}
+
+.Element-work-steps .btn-action:hover {
+    background: none;
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    transition: 1s;
+}
+
+/* Section Application */
+.Element-application-jobs {
+    padding: 56px 0;
+    min-height: 964px;
+}
+
+.Element-application-jobs .title-heading h1 {
+    font-size: 40px;
+}
+
+.Element-application-jobs .element-items-card .row .card-body {
+    padding: 12px;
+    border: 1px solid var(--biru-b);
+    border-radius: 16px;
+}
+
+.Element-application-jobs .element-items-card .row .card-body .card-image img {
+    width: 100%;
+}
+
+.Element-application-jobs .element-items-card .row .card-body:hover {
+    box-shadow: 0px 10px 35px -3px rgba(0, 0, 0, 0.055);
+    border: 2px solid var(--biru-b);
+}
+
+.Element-application-jobs .element-items-card .row .card-body .card-items-bagde {
+    display: flex;
+    padding: 8px 4px;
+    margin: 20px 0px 10px 0px;
+    background-color: var(--hijau-b);
+    width: 80px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+}
+
+.Element-application-jobs .element-items-card .row .card-body .card-items-bagde span {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.Element-application-jobs .element-items-card .row .card-body .card-title-heading-card h5 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.Element-application-jobs .element-items-card .row .card-body .card-title-heading-card span {
+    font-size: 12px;
+}
+
+.Element-application-jobs .element-items-card .row .card-body .card-content .col-10 p {
+    font-size: 12px;
+}
+
+.Element-application-jobs .element-items-card .row .card-body .card-content .col-12 h6 {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.Element-application-jobs .element-items-card .row .card-body .card-content .col-12 a {
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--orange);
+    text-decoration: none;
+}
+
+.Element-application-jobs .element-items-card .row .card-body .card-content .col-12 a:hover {
+    padding: 4px 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--text-w);
+    text-decoration: none;
+    background-color: var(--orange);
+    border-radius: 4px;
+}
+
+.Element-application-jobs .element-search-items .row {
+    display: flex;
+    padding: 56px 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.Element-application-jobs .element-search-items .row .form-control-lg {
+    padding: 11px 20px;
+    font-size: 17px;
+    color: var(--biru-n);
+}
+
+.Element-application-jobs .element-search-items .row .form-select {
+    padding: 11px 20px;
+    font-size: 17px;
+    color: var(--biru-n);
+}
+
+.Element-application-jobs .element-search-items .col-2 button {
+    padding: 11px 30px;
+    background-color: var(--orange);
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    color: var(--text-w);
+    border: none;
+}
+
+.Element-application-jobs .element-search-items .col-2 button:hover {
+    font-weight: 600;
+    background: none;
+    border: 1px solid var(--orange);
+    color: var(--orange);
+    transition: 1s;
+}
+
+.Element-application-jobs .element-next a {
+    padding: 12px 36px;
+    border: 2px solid var(--biru-d);
+    text-decoration: none;
+    border-radius: 8px;
+    color: var(--biru-d);
+}
+
+.Element-application-jobs .element-next a:hover {
+    background-color: var(--biru-d);
+    color: var(--text-w);
+    transition: 1s;
+}
+
+/* Section they said */
+.Elemenet-they-said {
+    margin: auto;
+    width: 70%;
+}
+
+.Elemenet-they-said .container .mySwiper {
+    padding: 56px 0;
+}
+
+.Elemenet-they-said .container .mySwiper .swiper-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Elemenet-they-said .container .mySwiper .swiper-items .swiper-image img {
+    padding: 0 24px;
+}
+
+.Elemenet-they-said .swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.Elemenet-they-said .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    justify-content: center;
+    align-items: center;
+}
+
+.Elemenet-they-said .swiper-slide .swiper-button-prev {
+    display: block;
+}
+
+
+/* wrapper-details-jobs */
+.wrapper-content {
+    background-color: var(--white-b-d);
+}
+
+.wrapper-content .row .tab-content-items {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.wrapper-content .row .deskripsi-pekerjaan span {
+    font-size: 14px;
+}
+
+.wrapper-content .row .wrapper-content-left {
+    border-radius: 16px;
+}
+
+.wrapper-content .row .wrapper-content-left .text-small {
+    font-size: 14px;
+}
+
+.wrapper-content .row .col-6 span {
+    font-size: 12px;
+}
+
+.wrapper-content .row .tab-content-items .col-6 h6 {
+    font-size: 15px;
+}
+
+.wrapper-content .row .tab-content-items span {
+    font-size: 12px;
+}
+
+.wrapper-content .wrapper-content-left {
+    padding: 25px 30px;
+}
+
+.wrapper-content-left .nav-tabs .nav-link {
+    font-size: 12px;
+    color: var(--biru-d);
+}
+
+.wrapper-content-left .nav-tabs .nav-link.active {
+    padding: 12px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    background-color: var(--orange-i);
+    border-radius: 1px;
+    border-bottom: var(--orange);
+    color: var(--orange);
+}
+
+.nav .nav-tabs.active {
+    border: 1px solid var(--orange);
+}
+
+.wrapper-content-left .nav-tabs.active {
+    border: none;
+}
+
+.wrapper-content-left .nav-tabs .nav-link:hover {
+    border: none;
+}
+
+.wrapper-content .row .col-4 .wrapper-content-right {
+    background-color: var(--biru-d);
+    min-height: 765px;
+    border-radius: 16px;
+}
+
+.wrapper-content .row .col-4 .wrapper-content-right .items-negara .col {
+    padding-left: 20px;
+}
+
+.wrapper-content .row .col-4 .wrapper-content-right .items-negara h6 {
+    font-size: 12px;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.wrapper-content .row .col-4 .wrapper-content-right .items-negara span {
+    font-size: 12px;
+}
+
+.wrapper-content .nav-tabs.active {
+    border: none;
+}
+
+.wrapper-content .row .col-6 .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    background-color: none;
+    background: #F97316;
+    border-bottom: 1px solid var(--orange-i);
+}
+
+.wrapper-content .row .col-6 .nav-tabs .tab-pane {
+    border-bottom: 1px solid var(--biru-d);
+}
+
+.wrapper-content .row .wrapper-content-left .benefit-pekerjaan .card-item {
+    padding: 8px;
+    align-items: center;
+    background-color: var(--hijau-b);
+    border-radius: 8px;
+    color: var(--text-green);
+    font-size: small;
+}
+
+.wrapper-content .row .wrapper-content-left .benefit-pekerjaan .card-item span {
+    font-size: 12px;
+}
+
+.wrapper-content .row .wrapper-content-left .deskripsi-pekerjaan .card-item {
+    padding: 8px;
+    align-items: center;
+    background-color: var(--orange-i);
+    border-radius: 8px;
+    color: var(--orange);
+    font-size: small;
+}
+
+.wrapper-content .content-warning {
+    margin: 20px 0;
+    padding: 12px;
+    background-color: var(--danger-bg);
+    color: var(--text-danger);
+    border-radius: 16px;
+    font-size: small;
+}
+
+.wrapper-content .col-4 .wrapper-content-right {
+    padding: 15px;
+}
+
+.wrapper-content .col-4 .wrapper-content-right .wrapper-image img {
+    width: 100%;
+}
+
+.wrapper-content .col-4 .wrapper-content-right .wrapper-salary {
+    padding: 12px;
+    margin: 20px 0;
+    background-color: var(--orange);
+    border-radius: 8px;
+}
+
+.wrapper-content .col-4 .wrapper-content-right .salary-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper-content .col-4 .wrapper-content-right .salary-items h6 {
+    font-size: 15px;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.wrapper-content .col-4 .wrapper-content-right .salary-items span {
+    margin-left: 5px;
+    padding: 5px;
+    background: var(--text-w);
+    color: var(--orange);
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+.wrapper-content .col-4 .wrapper-content-right .text-information span {
+    font-size: 11px;
+    font-weight: 400px;
+    color: var(--text-w);
+}
+
+.wrapper-content .col-4 .wrapper-content-right .element-button-action {
+    padding: 12px 0;
+    background-color: var(--text-w);
+    border-radius: 8px;
+}
+
+.wrapper-content .col-4 .wrapper-content-right .element-button-action a {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--biru-d);
+}
+
+/* Wrapper Detail Pekerjaan */
+.wrapper-detail-pekerjaan .wrapper-content-detail h2 {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.wrapper-detail-pekerjaan .wrapper-content-detail img {
+    width: 40px;
+    height: 40px;
+}
+
+/* Wrapper Register Sipool */
+.wrapper-register-sipol {
+    width: 100%;
+    border: none;
+}
+
+.wrapper-register-sipol .form {
+    padding: 10px;
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 500px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.wrapper-register-sipol .content-from-action {
+    float: right;
+    width: 800px;
+}
+
+/* Detail Jobs Information */
+.Element-information-jobs {
+    padding: 56px 0;
+    background-color: var(--white-b-d);
+}
+
+.Element-information-jobs a {
+    color: var(--biru-d);
+    font-size: 17px;
+}
+
+.Element-information-jobs .container .row {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    padding: 8px 12px;
+    background: var(--bg-gray);
+    border-radius: 8px;
+}
+
+.Element-information-jobs .row .card-items-bagde {
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    margin: 0 12px;
+    background-color: var(--hijau-b);
+    border-radius: 8px;
+}
+
+.Element-information-jobs .row .element-detail-date {
+    display: flex;
+    align-items: center;
+}
+
+.Element-information-jobs .row .col-4 .element-detail-share {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    gap: 10px;
+    float: right;
+}
+
+.Element-information-jobs .row .element-detail-date span {
+    font-size: small;
+    align-items: center;
+}
+
+.Element-information-jobs .row .col-4 .element-detail-share input {
+    border: none;
+}
+
+.Element-information-jobs .row .col-4 .element-detail-share input:focus {
+    outline: none;
+}
+
+
+.Element-information-jobs .row .col-4 .element-detail-share button {
+    border: none;
+    background: none;
+}
+
+.Element-information-jobs .row .col-4 .element-detail-share .clipboard-copy {
+    padding: 8px;
+    background: var(--text-w);
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+/* Wrapper Register Sipool */
+.wrapper-register-sipol {
+    min-height: 100vh;
+    background-color: var(--bg-gray);
+    padding: 56px;
+}
+
+.wrapper-register-sipol .container {
+    padding: 20px 30px;
+    background-color: var(--text-w);
+    border-radius: 16px;
+}
+
+/* Footer */
+.Element-footer {
+    min-height: 350px;
+    background-color: var(--biru-d);
+}
+
+.Element-footer .container {
+    padding: 56px 0;
+}
+
+/* Mobile Responsive */
+@media only screen and (max-width: 600px) {
+
+    /* Navbar Mobile */
+    .Element-nav-items {
+        min-height: 50vh;
+    }
+
+    .Element-nav-items .navbar {
+        display: flex;
+        margin: 24px 20px;
+        padding: 12px 7px;
+        background: var(--biru-n);
+        border-radius: 8px;
+    }
+
+    .Element-nav-items .navbar .link-btn:hover {
+        padding: 12px 7px;
+        background: none;
+        text-decoration: none;
+        color: var(--orange);
+        border-radius: 8px;
+        font-size: 12px;
+        border: 1px solid var(--orange);
+        transition: none;
+
+    }
+
+    .Element-nav-items .navbar .navbar-brand {
+        display: none;
+    }
+
+    .Element-nav-items .navbar .link-pages {
+        padding: 12px;
+        text-decoration: none;
+        color: var(--text-w);
+        font-size: 11px;
+    }
+
+    .Element-nav-items .navbar .link-btn {
+        padding: 12px 7px;
+        background: var(--orange);
+        text-decoration: none;
+        color: var(--text-w);
+        opacity: 100%;
+        border-radius: 8px;
+        font-size: 12px;
+
+    }
+
+    /* Carousel Mobile */
+    .Element-nav-items .carousel-items {
+        display: grid;
+        margin-top: 65px;
+        padding: 25px 15px;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .Element-nav-items .carousel-items .carousel-items-left .text-heading h6 {
+        font-size: 12px;
+        color: var(--biru-d);
+    }
+
+    .Element-nav-items .carousel-items .carousel-items-left .carousel-text span {
+        font-size: 13px;
+    }
+
+    .Element-nav-items .carousel-items .carousel-items-left .carousel-link-button a {
+        padding: 12px;
+        background-color: var(--orange);
+        font-size: 12px;
+        color: var(--text-w);
+        border-radius: 7px;
+        text-decoration: none;
+    }
+
+    .Element-nav-items .carousel-items .carousel-items-left .carousel-title-heading h1 {
+        font-size: 30px;
+        font-weight: bold;
+        color: var(--biru-d);
+    }
+
+    .Element-nav-items .carousel-items .items-right-image img {
+        width: 330px;
+    }
+
+    /* Card Items */
+    .Element-card-items {
+        padding: 30px 20px;
+        grid: 8px;
+    }
+
+    .Element-card-items .row .col {
+        margin: 15px 0;
+    }
+
+    .Element-card-items .row .col {}
+
+    /* Fitur SIPOOL Section */
+    .Element-fitur-sipol {
+        padding: 0 15px;
+    }
+
+    .Element-fitur-sipol .row .card-fitur-sipool-items .col-1 {
+        position: relative;
+        margin-left: 130px;
+        background-image: url("../assets/image/Mobile-App-Placeholder-2\ \(1\).png");
+        object-fit: cover;
+        left: -900px;
+    }
+
+    .Element-fitur-sipol .row .col-8 {
+        width: 100%;
+    }
+
+    .Element-fitur-sipol .row .card-fitur-sipool-danger .col-1 {
+        position: relative;
+        margin-left: 130px;
+        background-image: url("../assets/image/Mobile-App-Placeholder-2\ \(1\).png");
+        object-fit: cover;
+    }
+
+
+    /* Element-about-sipol */
+    .Element-about-sipol {
+        margin: auto;
+        padding: 20px;
+    }
+
+    /* Fitur Sipol */
+    .Element-fitur-sipol .container .row {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .Element-fitur-sipol .container .row .col-6 {
+        padding: 10px;
+        width: auto;
+    }
+
+    .Element-fitur-sipol .container .row .col-6 .card-fitur-sipool-items-r .image-items img {
+        width: 100%;
+    }
+
+    .Element-about-sipol .Element-sipol-tentang-content {
+        padding: 30px 20px;
+        background-color: var(--biru-d);
+        font-size: 12px;
+        border-radius: 16px;
+    }
+
+    .Element-fitur-sipol .row .card-fitur-sipool-items-r {
+        min-height: 300px;
+        margin-top: 20px 0;
+    }
+
+    /* Work Space */
+    .Element-work-steps img {
+        width: 100%;
+    }
+
+    /* Jobs Section */
+    .Element-application-jobs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .Element-application-jobs .container .row {
+        display: grid;
+        margin: 0;
+        padding: 0;
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+
+    .Element-application-jobs .container .element-items-card {
+        display: flex;
+        justify-content: center;
+    }
+
+    .Element-application-jobs .container .element-items-card .row .col-3 {
+        margin: 10px 0;
+    }
+
+    .Element-application-jobs .container .row .col-3 {
+        display: block;
+        padding: 0 20px;
+        width: 390px;
+    }
+
+    .Element-application-jobs .title-heading h1 {
+        font-size: 23px;
+    }
+
+    .Element-application-jobs .element-search-items .row {
+        display: grid;
+        width: 100%;
+        padding: 26px 0;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+    }
+
+    /* Wrapper Sipol Register */
+    .wrapper-register-sipol {
+        padding: 20px;
+    }
+
+    .wrapper-register-sipol .content-from-action {
+        float: right;
+        width: 100%;
+    }
+
+    .wrapper-register-sipol .form {
+        padding: 20px 10px;
+        overflow: hidden;
+        overflow-x: hidden;
+        height: 100%;
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    /* Wrapper Content */
+    .wrapper-content .col-4 {
+        width: 350px;
+    }
+
+    /* Elemenet-they-said */
+    .Elemenet-they-said {
+        display: flex;
+        padding: 20px 20px;
+        width: 100%;
+    }
+
+    .Elemenet-they-said .title-heading h1 {
+        font-size: 19px;
+    }
+
+    .Elemenet-they-said .container .mySwiper .swiper-items {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
+        align-items: center;
+    }
+
+    .Elemenet-they-said .container .mySwiper .swiper-items .swiper-image img {
+        width: 70%;
+    }
+
+
+    /* Wrapper Content */
+    .wrapper-content .row {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+    }
+
+    .wrapper-content-left .nav-tabs .nav-link {
+        font-size: 8px;
+    }
+
+    .wrapper-content .row .col-8 {
+        width: 100%;
+    }
+
+    .wrapper-content .wrapper-content-left .tab-content .col-6 {
+        width: 100%;
+    }
+
+    .wrapper-content-left .nav-tabs .nav-link.active {
+        padding: 7px;
+    }
+
+    .wrapper-content .wrapper-content-left {
+        padding: 18px;
+    }
+
+    .wrapper-content .row .wrapper-content-left .benefit-pekerjaan {
+        display: block;
+    }
+
+    .wrapper-content .row .wrapper-content-left .benefit-pekerjaan .card-item {
+        padding: 4px 6px;
+    }
+
+    .wrapper-content .row .wrapper-content-left .benefit-pekerjaan .card-item span {
+        font-size: 7px;
+    }
+
+    /* Detail Pekerjaan */
+    .wrapper-detail-pekerjaan .wrapper-content-detail {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .wrapper-detail-pekerjaan .wrapper-content-detail h2 {
+        font-size: 16px;
+        align-items: center;
+    }
+
+    /* Wrapper Information */
+    .Element-information-jobs .container .row {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        border-radius: 1px;
+    }
+
+    .Element-information-jobs .container .row .col-8 {
+        width: 100%;
+    }
+
+    .Element-information-jobs .container .row .col-4 {
+        display: flex;
+        width: 100%;
+    }
+
+    .Element-information-jobs .row .element-detail-date span {
+        font-size: 10px;
+    }
+
+    .Element-information-jobs .row .col-4 .element-detail-share input {
+        font-size: 12px;
+    }
+
+    .Element-information-jobs .row .col-4 .element-detail-share span {
+        font-size: 12px;
+    }
+
+    .Element-information-jobs .row .col-4 .element-detail-share svg {
+        width: 10px;
+    }
+
+    .Element-information-jobs .row .card-items-bagde {
+        padding: 4px;
+    }
+
+    /* Element Footer */
+    .Element-footer {
+        min-height: 100%;
+    }
+
+    .Element-footer .container .row {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .Element-footer .container .row .foter-bottom {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        padding: 20px;
+    }
+
+    .Element-footer .container .list-unstyled {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

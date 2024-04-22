@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Pekerjaan</title>
+    <!-- Css Style -->
+    <link rel="stylesheet" href="css/app.css">
+    <!-- Font Family -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Bootstarp 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/fastbootstrap@2.2.0/dist/css/fastbootstrap.min.css" rel="stylesheet"
+        integrity="sha256-V6lu+OdYNKTKTsVFBuQsyIlDiRWiOmtC8VQ8Lzdm2i4=" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!--Animate Css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <!-- Detail Jobs Information -->
+    <section class="Element-information-jobs">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <div class="element-detail-date d-flex align-self-center">
+                        <div class="items-icons">
+                            <a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+                                </svg></a>
+                            |
+                        </div>
+                        <div class="card-items-bagde gap-1">
+                            <img src="./assets/icons/stop-circle.svg" alt="">
+                            <span>Tersedia</span>
+                        </div>
+                        <span class="text-small">Berakhir pada tanggal 1 Februari 2024</span>
+                    </div>
+                </div>
+
+
+                <div class="col-4">
+                    <div class="element-detail-share">
+                        <span class="fw-bold">Bagikan:</span>
+                        <div class="icons-items">
+                            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                                </svg></a>
+                            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                                </svg></a>
+                        </div>
+                        <div class="clipboard-copy">
+                            <input type="text" value="http://192.168.20.120:5000/" id="myInput"> |
+                            <button onclick="myFunction()"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                    height="16" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z" />
+                                </svg></button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+    <!-- #End -->
+    <!-- Wrapper Detail Pekerjaan -->
+    <section class="wrapper-detail-pekerjaan" style="background: var(--white-b-d);">
+        <div class="container">
+            <div class="wrapper-content-detail">
+                <div class="wrapper-items d-flex gap-4 align-self-center">
+                    <img src="./assets/icons/bag-icon 2.png" alt="">
+                    <h2>Customer Service Representative</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End -->
+    <!-- Content Wrapper -->
+    <section class="wrapper-content p-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    <div class="wrapper-content-left bg-white ">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab"
+                                    href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0"
+                                    aria-selected="true">Detail Pekerjaan</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1"
+                                    role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Galeri
+                                    Pekerjaan</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2"
+                                    role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Informasi
+                                    Lainnya</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content pt-5" id="tab-content">
+                            <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel"
+                                aria-labelledby="simple-tab-0">
+                                <h5 class="fw-bold">Kualifikasi:</h5>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="tab-content-items mt-4">
+                                            <div class="row gap-2">
+                                                <div class="col-1">
+                                                    <div class="tab-icons">
+                                                        <img src="./assets/icons/button-gender.png" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <h6 class="fw-bold">Jenis Kelamin</h6>
+                                                    <span>Tidak Ada Ketentuan</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row gap-2 mt-3">
+                                                <div class="col-1">
+                                                    <div class="tab-icons">
+                                                        <img src="./assets/icons/button-gender.png" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <h6 class="fw-bold">Usia</h6>
+                                                    <span>Tidak Ada Ketentuan</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row gap-2 mt-3">
+                                                <div class="col-1">
+                                                    <div class="tab-icons">
+                                                        <img src="./assets/icons/clarity_language-solid.svg" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-10">
+                                                    <h6 class="fw-bold">Level Bahasa yang dibutuhkan</h6>
+                                                    <span>Mahir</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-6 mt-4">
+                                        <div class="d-flex gap-2">
+                                            <div class="col-1">
+                                                <div class="tab-icons">
+                                                    <img src="./assets/icons/teacher.svg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="fw-bold">Pendidikan</h6>
+                                                <span>Minimal D3/D4</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex gap-2 mt-3">
+                                            <div class="col-1">
+                                                <div class="tab-icons">
+                                                    <img src="./assets/icons/briefcase.svg" alt="">
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <h6 class="fw-bold">Pengalaman</h6>
+                                                <span>Tidak Ada Ketentuan</span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="deskripsi-pekerjaan">
+                                    <h5 class="fw-bold">Deskripsi Pekerjaan:</h5>
+                                    <span>Lorem ipsum dolor sit amet consectetur. Amet sociis diam tempus pharetra
+                                        tortor sed pharetra sit. Morbi rhoncus tempor dolor metus ultricies velit
+                                        hendrerit. Bibendum accumsan semper condimentum cursus porttitor. Pretium odio
+                                        nunc mi amet eget in auctor ut. Cursus varius quam in eget nibh. Id hac blandit
+                                        dui est. Cum quisque est sed morbi pretium lectus netus netus justo. Imperdiet
+                                        ultricies sed velit elementum morbi. Fusce nunc arcu cursus nunc. Arcu etiam
+                                        purus aliquam ultrices. Non ultrices convallis vestibulum nisi at at pulvinar
+                                        lectus. Platea lectus facilisi viverra eget metus consectetur.</span>
+                                </div>
+                                <hr>
+                                <div class="benefit-pekerjaan">
+                                    <h5 class="fw-bold">Benefit Pekerjaan :</h5>
+                                    <div class="d-flex gap-3">
+                                        <div class="card-item">
+                                            <span>Bonus Kinerja</span>
+                                        </div>
+                                        <div class="card-item">
+                                            <span>Asuransi kesehatan</span>
+                                        </div>
+                                        <div class="card-item">
+                                            <span>Pelatihan / kursus</span>
+                                        </div>
+                                        <div class="card-item">
+                                            <span>Perawatan gigi</span>
+                                        </div>
+
+                                    </div>
+                                    <hr>
+                                    <div class="deskripsi-pekerjaan">
+                                        <h5 class="fw-bold">Pekerjaan ini membutuhkan :</h5>
+                                        <div class="d-flex gap-3">
+                                            <div class=" card-item">
+                                                <span>Keterampilan komunikasi</span>
+                                            </div>
+                                            <div class=" card-item">
+                                                <span>Keterampilan pemasaran</span>
+                                            </div>
+                                            <div class="card-item">
+                                                <span>Berbicara depan umum</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
+                                <h5 class="fw-bold">Galeri</h5>
+                                <div class="row m-0">
+                                    <div class="col-3 border-rounded"><img
+                                            src="assets/image/fpkdl.com_960_images_fpkdl 1.png" width="160" alt="">
+                                    </div>
+                                    <div class="col-3 border-rounded"><img
+                                            src="assets/image/fpkdl.com_960_images_fpkdl 1.png" width="160" alt="">
+                                    </div>
+                                    <div class="col-3 border-rounded"><img
+                                            src="assets/image/fpkdl.com_960_images_fpkdl 1.png" width="160" alt="">
+                                    </div>
+                                    <div class="col-2"><img src="assets/image/fpkdl.com_960_images_fpkdl 1.png"
+                                            width="160" alt="">
+                                    </div>
+                                    <div class="col-3 mt-2 border-rounded"><img
+                                            src="assets/image/fpkdl.com_960_images_fpkdl 1.png" width="160" alt="">
+                                    </div>
+                                    <div class="col-3 mt-2 border-rounded"><img
+                                            src="assets/image/fpkdl.com_960_images_fpkdl 1.png" width="160" alt="">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <h5 class="fw-bold">Lorem ipsum dolor sit amet consectetur :</h5>
+                                    <span class="text-small">Lorem ipsum dolor sit amet consectetur. Amet sociis diam
+                                        tempus pharetra
+                                        tortor sed pharetra sit. Morbi rhoncus tempor dolor metus ultricies velit
+                                        hendrerit. Bibendum accumsan semper condimentum cursus porttitor. Pretium odio
+                                        nunc mi amet eget in auctor ut. Cursus varius quam in eget nibh. Id hac blandit
+                                        dui est. Cum quisque est sed morbi pretium lectus netus netus justo. Imperdiet
+                                        ultricies sed velit elementum morbi. Fusce nunc arcu cursus nunc. Arcu etiam
+                                        purus aliquam ultrices. Non ultrices convallis vestibulum nisi at at pulvinar
+                                        lectus. Platea lectus facilisi viverra eget metus consectetur. Sit a pharetra
+                                        nulla cras convallis sed quisque nunc sagittis. Pretium faucibus lorem sed
+                                        gravida tellus purus. Id duis nisl pellentesque vel id pellentesque. Odio
+                                        pulvinar et in aenean nibh gravida. Ultrices tortor hendrerit porttitor
+                                        malesuada nulla scelerisque. Egestas bibendum vel eu felis tincidunt posuere.
+                                        Nunc non dignissim elementum lacus lorem molestie.</span>
+                                </div>
+                            </div>
+                            <div class=" tab-pane" id="simple-tabpanel-2" role="tabpanel"
+                                aria-labelledby="simple-tab-2">
+                                <div class="content-information">
+                                    <span class="text-small">Lorem ipsum dolor sit amet consectetur. Tincidunt diam
+                                        phasellus eget
+                                        hac.
+                                        Urna purus aenean id nulla et adipiscing lectus felis interdum.
+                                        Parturient elit
+                                        lorem vitae nec massa egestas. Sed tincidunt duis pretium at ac
+                                        bibendum.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=" content-warning">
+                        <div class="row">
+                            <div class="col-1 float-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                                    class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                                </svg>
+                            </div>
+                            <div class="col-11">
+                                <span>“HATI-HATI DENGAN OKNUM YANG MENGATASNAMAKAN PERUSAHAAN. KAMI
+                                    TIDAK PERNAH
+                                    MELAKUKAN
+                                    PEMBAYARAN
+                                    DILUAR ATAS NAMA REKENING PERUSAHAAN”. Segala informasi pekerjaan di
+                                    atas
+                                    merupakan
+                                    informasi
+                                    sebenar-benarnya yang diperoleh dari Perusahaan Pemberi
+                                    Kerja.</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-4 d-block">
+                    <div class="wrapper-content-right">
+                        <div class="wrapper-image">
+                            <img src="./assets/image/wrapper (1).png" alt="">
+                        </div>
+                        <div class="wrapper-salary">
+                            <div class="wrapper-icon">
+                                <div class="d-flex">
+                                    <img src="./assets/icons/bulk/coin.png" width="30" height="30">
+                                    <h4 class="fw-bold text-white">GAJI</h4>
+                                </div>
+                                <div class="salary-items">
+                                    <div class="d-flex align-middle">
+                                        <h6 class="fw-bold text-white">Mulai USD $31.26 - $50.00 / jam</h6>
+                                        <span>Tersedia</span>
+                                    </div>
+                                    <hr class="text-white">
+                                </div>
+                                <hr class="text-white">
+                                <div class="text-information d-flex">
+                                    <span class="gap-1">IDR ± 487.343 - 779.500</span>
+                                    <span> | Kurs: 12/02/2024 - IDR 15.591</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class=" text-white">
+                        <div class="row">
+                            <div class="col-sm">
+                                <div class="items-negara">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img src="assets/icons/location.png" alt="">
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="text-white">Negara</h6>
+                                            <span class="text-white">New York</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="items-negara mt-3">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img src="assets/icons/bulk/document-text.png" alt="">
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="text-white">Kontrak Kerja</h6>
+                                            <span class="text-white">1-2 Tahun</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="items-negara mt-3">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img src="assets/icons/bulk/clock.png" alt="">
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="text-white">Jam Kerja</h6>
+                                            <span class="text-white">200 Jam Per Bulan</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="items-negara mt-3">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img src="assets/icons/bulk/calendar-2.png" alt="">
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="text-white">Hari Kerja</h6>
+                                            <span class="text-white">6 Hari / Minggu</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class=" col-sm">
+                                <div class="items-negara">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img src="assets/icons/bulk/airplane-square.png" alt="">
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="text-white">Cuti Kerja</h6>
+                                            <span class="text-white">20 Hari Per tahun</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="items-negara mt-3">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img src="assets/icons/bulk/calendar-tick.png" alt="">
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="text-white">Masa Percobaan</h6>
+                                            <span class="text-white">3 Bulan</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="items-negara mt-3">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img src="assets/icons/bulk/translate.png" alt="">
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="text-white">Bahasa Yang Digunakan</h6>
+                                            <span class="text-white">English</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="items-negara mt-3">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img src="assets/icons/bulk/timer.png" alt="">
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="text-white">Overtime</h6>
+                                            <span class="text-white">Dibayar</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                        <hr class="text-white">
+                        <div class="row mt-4 mb-4">
+                            <div class="col-sm">
+                                <div class="items-negara">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img src="assets/icons/bulk/building-4.png" alt="">
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="text-white">Industri Pekerjaan</h6>
+                                            <span class="text-white">Hospitality</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <div class="items-negara">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <img src="assets/icons/bulk/transaction-minus.png" alt="">
+                                        </div>
+                                        <div class="col">
+                                            <h6 class="text-white">Jenis Pekerjaan</h6>
+                                            <span class="text-white">Full Time</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row d-block">
+                            <div class="col-12">
+                                <div class="element-button-action text-center">
+                                    <a href="">Lamaran Pekerjaan</a>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="element-akun text-center mt-3">
+                                    <h6 class="text-white">Belum Punya Akun? <a href="register.html"
+                                            class="text-white">Daftar
+                                            SIPOL</a></h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- End -->
+    <!-- Section Lamaran pekerjaan -->
+    <section class="Element-application-jobs">
+        <div class="container">
+            <div class="title-heading ">
+                <h1 class="fw-bold">Pekerjaan Lainnya
+                </h1>
+            </div>
+            <div class="element-items-card mt-5">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="card-body">
+                            <div class="card-image">
+                                <img src="./assets/image/Picture.png" alt="">
+                            </div>
+                            <div class="card-items-bagde gap-1">
+                                <img src="./assets/icons/stop-circle.svg" alt="">
+                                <span>Tersedia</span>
+                            </div>
+                            <div class="card-title-heading-card">
+                                <h5 class="col-10 text-truncate">Conservation Acquisition Representative - Yogyakarta
+                                </h5>
+                                <span>PT Padma Raharja Sentosa</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/image/location.png" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Negara</h6>
+                                        <p>Kalimantan Timur, Indonesia</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/icons/document-text.svg" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
+                                        <p>Full Time</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/icons/Component 1.svg" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Gaji</h6>
+                                        <p>Rp 3.000.000</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h6>Berakhir pada tanggal 1 Februari 2024</h6>
+                                    </div>
+                                    <div class="col-12 d-flex align-self-center mt-2">
+                                        <a href="">Lihat Detail <span><svg xmlns="http://www.w3.org/2000/svg" clas
+                                                    width="16" height="16" fill="currentColor"
+                                                    class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                                                </svg></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card-body">
+                            <div class="card-image">
+                                <img src="./assets/image/Picture (1).png" alt="">
+                            </div>
+                            <div class="card-items-bagde gap-1">
+                                <img src="./assets/icons/stop-circle.svg" alt="">
+                                <span>Tersedia</span>
+                            </div>
+                            <div class="card-title-heading-card">
+                                <h5 class="col-10 text-truncate">General Manager Operation</h5>
+                                <span>ALDI</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/image/location.png" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Negara</h6>
+                                        <p>New York, NY</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/icons/document-text.svg" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
+                                        <p>Full Time</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/icons/Component 1.svg" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Gaji</h6>
+                                        <p>$19.50 - $30.00 per jam</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h6>Berakhir pada tanggal 1 Februari 2024</h6>
+                                    </div>
+                                    <div class="col-12 d-flex align-self-center mt-2">
+                                        <a href="">Lihat Detail <span><svg xmlns="http://www.w3.org/2000/svg" clas
+                                                    width="16" height="16" fill="currentColor"
+                                                    class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                                                </svg></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card-body">
+                            <div class="card-image">
+                                <img src="./assets/image/Picture (2).png" alt="">
+                            </div>
+                            <div class="card-items-bagde gap-1">
+                                <img src="./assets/icons/stop-circle.svg" alt="">
+                                <span>Tersedia</span>
+                            </div>
+                            <div class="card-title-heading-card">
+                                <h5 class="col-10 text-truncate">Customer Service Representative</h5>
+                                <span>New York University</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/image/location.png" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Negara</h6>
+                                        <p>New York, NY</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/icons/document-text.svg" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
+                                        <p>Full time & Internship</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/icons/Component 1.svg" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Gaji</h6>
+                                        <p>$30.00 per jam</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h6>Berakhir pada tanggal 1 Februari 2024</h6>
+                                    </div>
+                                    <div class="col-12 d-flex align-self-center mt-2">
+                                        <a href="">Lihat Detail <span><svg xmlns="http://www.w3.org/2000/svg" clas
+                                                    width="16" height="16" fill="currentColor"
+                                                    class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                                                </svg></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="card-body">
+                            <div class="card-image">
+                                <img src="./assets/image/Picture (3).png" alt="">
+                            </div>
+                            <div class="card-items-bagde gap-1">
+                                <img src="./assets/icons/stop-circle.svg" alt="">
+                                <span>Tersedia</span>
+                            </div>
+                            <div class="card-title-heading-card">
+                                <h5 class="col-10 text-truncate">Budtender/Cashier</h5>
+                                <span>ALDI</span>
+                            </div>
+                            <div class="card-content">
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/image/location.png" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Negara</h6>
+                                        <p>New York, NY</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/icons/document-text.svg" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
+                                        <p>Full Time</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-1 mt-1">
+                                        <img src="./assets/icons/Component 1.svg" alt="">
+                                    </div>
+                                    <div class="col-10 mt-2">
+                                        <h6 class="title-heading fw-bold">Gaji</h6>
+                                        <p>$31.26 per jam</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h6>Berakhir pada tanggal 1 Februari 2024</h6>
+                                    </div>
+                                    <div class="col-12 d-flex align-self-center mt-2">
+                                        <a href="">Lihat Detail <span><svg xmlns="http://www.w3.org/2000/svg" clas
+                                                    width="16" height="16" fill="currentColor"
+                                                    class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                                                </svg></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="element-next mt-5 text-center">
+                        <a href="#">Lihat lebih lanjut
+                            <svg xmlns=" http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                            </svg>
+                        </a>
+                    </div>
+    </section>
+    <!-- #End -->
+
+    <!-- Footer -->
+    <section class="Element-footer">
+        <div class="container">
+            <div class="row gap-4">
+                <div class="col">
+                    <div class="d-flex">
+                        <img src="./assets/logo/logo.png" alt="">
+                        <a class="navbar-brand text-white fw-semibold mt-2 col-sm-hidden">PT. PUTRA SAHABAT
+                            INTERNATIONAL</a>
+                    </div>
+                </div>
+                <div class="col mb-3">
+                    <h5 class="text-white fw-bold">Produk & Layanan</h5>
+
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0  text-white">Worker</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0  text-white">Employer</a></li>
+                    </ul>
+                </div>
+                <div class="col mb-3">
+                    <h5 class="text-white fw-bold">Perusahaan</h5>
+
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0  text-white">Tentang Kami</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0  text-white">Alamat Kami</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0  text-white">FAQ</a></li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0  text-white">Galeri</a></li>
+                    </ul>
+                </div>
+                <div class="col mb-3">
+                    <h5 class="text-white fw-bold">Lainnya</h5>
+
+                    <ul class="nav flex-column">
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0  text-white">Kebijakan Privasi</a>
+                        </li>
+                        <li class="nav-item mb-2"><a href="#" class="nav-link p-0  text-white">Syarat & Ketentuan</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="d-flex flex-column  col-sm-12 flex-sm-row justify-content-between pt-4 border-top text-white">
+                <p>PT. Sahabat Putra International@2024. All rights reserved.</p>
+                <ul class="list-unstyled d-flex">
+                    <li class="ms-3"><a class="link-body-emphasis text-white" href="#"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                <path
+                                    d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                            </svg></a></li>
+                    <li class="ms-3"><a class="link-body-emphasis text-white" href="#"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-instagram" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                            </svg></a></li>
+                    <li class="ms-3"><a class="link-body-emphasis text-white" href="#"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-twitter" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15" />
+                            </svg></a></li>
+                    <li class="ms-3"><a class="link-body-emphasis text-white" href="#"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                class="bi bi-facebook" viewBox="0 0 16 16">
+                                <path
+                                    d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                            </svg></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script -->
+    <script src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+</body>
+
+</html>

@@ -63,8 +63,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="5%">No</th>
-                                                        <th width="15%">Judul</th>
+
+                                                        <th width="15%">Nama Alasan</th>
                                                         <th width="5%">Urutan</th>
+                                                        <th width="5%">Gambar</th>
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -72,8 +74,16 @@
                                                     @foreach ($alasan as $p)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $p->judul }}</td>
+                                                            <td>{{ $p->nama_alasan }}</td>
                                                             <td>{{ $p->urutan }}</td>
+                                                            <td>
+                                                                <a href="/upload/alasan/{{ $p->gambar }}"
+                                                                    target="_blank">
+                                                                    <img style="max-width:50px; max-height:50px"
+                                                                        src="/upload/alasan/{{ $p->gambar }}"
+                                                                        alt="">
+                                                                </a>
+                                                            </td>
                                                             <td class="text-center">
                                                                 <a style="color: rgb(242, 236, 236)" href="#"
                                                                     class="btn btn-sm btn-primary btn-edit"
@@ -109,7 +119,7 @@
             {{-- Modal Tambah Data --}}
             <div class="modal fade" id="modal-alasan" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                    <form id="form-alasan" action="" method="POST">
+                    <form id="form-alasan" action="" method="POST" enctype="multipart/form-data">
                         @csrf <!-- Tambahkan token CSRF -->
                         <div class="modal-content">
                             <div class="modal-header">
@@ -125,30 +135,37 @@
 
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="judul">Judul</label>
+                                            <label class="col-form-label" for="nama_alasan">Nama Alasan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success" id="judul"
-                                                name="judul">
+                                            <input type="text" class="form-control form-control-success" id="nama_alasan"
+                                                name="nama_alasan">
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="keterangan">Keterangan </label>
+                                            <label class="col-form-label" for="keterangan">Keterangan</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <textarea class="form-control form-control-success" name="keterangan" id="keterangan" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="urutan">Urutan </label>
+                                            <label class="col-form-label" for="urutan">Urutan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success" id="urutan"
-                                                name="urutan">
+                                            <input type="number" class="form-control form-control-success"
+                                                id="urutan" name="urutan">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="col-form-label" for="gambar">Upload Gambar Alasan</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <input type="file" class="form-control form-control-success"
+                                                id="gambar" name="gambar">
                                         </div>
                                     </div>
 
@@ -177,6 +194,7 @@
                     <form id="form-edit-alasan" action="" method="POST">
                         @csrf <!-- Tambahkan token CSRF -->
                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
+                        <input type="hidden" id="id" name="id">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title">Form Edit Alasan</h4>
@@ -185,19 +203,22 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+
+
                                 <div class="card-block">
+
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_judul">Judul</label>
+                                            <label class="col-form-label" for="edit_nama_alasan">Nama Alasan</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control form-control-success"
-                                                id="edit_judul" name="judul">
+                                                id="edit_nama_alasan" name="nama_alasan">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_keterangan">Keterangan </label>
+                                            <label class="col-form-label" for="edit_keterangan">Keterangan</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <textarea class="form-control form-control-success" name="keterangan" id="edit_keterangan" cols="30"
@@ -213,7 +234,26 @@
                                                 id="edit_urutan" name="urutan">
                                         </div>
                                     </div>
+                                    <div class="form-group" id="gambar_edit_container">
+                                        <label for="gambar_edit">Bukti Pengeluaran</label>
+
+                                        <input type="file" class="form-control" name="gambar" id="gambar_edit">
+
+                                        <div id="gambar_image_container"></div>
+                                        <br>
+                                        <!-- Tautan untuk mengunduh atau melihat gambar -->
+                                        <a id="gambar_download_link" href="" target="_blank">
+
+                                        </a>
+                                    </div>
+
+
                                 </div>
+
+
+
+
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default waves-effect"
@@ -246,11 +286,19 @@
     <script>
         $(document).ready(function() {
             $('#btn-save-alasan').click(function() {
+                event.preventDefault();
+                const tombolSimpan = $('#btn-save-alasan')
                 var form = $('#form-alasan');
                 $.ajax({
                     url: form.attr('action'),
                     type: 'POST',
-                    data: form.serialize(),
+                    data: new FormData(form[0]),
+                    contentType: false,
+                    beforeSend: function() {
+                        $('form').find('.error-message').remove()
+                        tombolSimpan.prop('disabled', true)
+                    },
+                    processData: false,
                     success: function(response) {
                         $('#modal-alasan').modal('hide');
                         Swal.fire({
@@ -262,6 +310,9 @@
                             location.reload();
                         });
                     },
+                    complete: function() {
+                        tombolSimpan.prop('disabled', false);
+                    },
                     error: function(xhr) {
                         var errorMessages = xhr.responseJSON.errors;
                         var errorMessage = '';
@@ -282,48 +333,90 @@
 
 
 
-    {{-- EDIT dan UPDATE --}}
+
+    {{-- PERINTAH EDIT DATA --}}
     <script>
         $(document).ready(function() {
-            // Tampilkan data di modal edit
-            $('.btn-edit').click(function() {
+            // $('.dataTable tbody').on('click', 'td .btn-edit', function(e) {
+            $('.btn-edit').click(function(e) {
+                e.preventDefault();
+
                 var id = $(this).data('id');
+
                 $.ajax({
+                    alasan: 'GET',
                     url: '/alasan/' + id + '/edit',
-                    type: 'GET',
-                    success: function(response) {
-                        $('#edit_judul').val(response.judul);
-                        $('#edit_urutan').val(response.urutan);
-                        $('#edit_keterangan').val(response.keterangan);
-                        // Set action form untuk update
-                        $('#form-edit-alasan').attr('action', '/alasan/' + id);
-                        $('#modal-edit').modal('show');
+                    success: function(data) {
+                        // console.log(data); // Cek apakah data terisi dengan benar
+                        // Mengisi data pada form modal
+                        $('#id').val(data.id); // Menambahkan nilai id ke input tersembunyi
+                        $('#edit_nama_alasan').val(data.nama_alasan);
+                        $('#edit_keterangan').val(data.keterangan);
+                        $('#edit_urutan').val(data.urutan);
+                        if (data.gambar) {
+                            var gambarImg = '<img src="/upload/alasan/' + data.gambar +
+                                '" style="max-width: 100px; max-height: 100px;">';
+                            var gambarLink = '<a href="/upload/alasan/' + data.gambar +
+                                '" target="_blank"><i class="fa fa-eye"></i> Lihat Bukti</a>';
+                            $('#gambar_edit_container').append(gambarImg + '<br>' + gambarLink);
+                        }
+
+                        $('#modal-alasan-edit').modal('show');
+                        $('#id').val(id);
                     },
+
                     error: function(xhr) {
-                        // Handle error
+                        // Tangani kesalahan jika ada
+                        alert('Error: ' + xhr.statusText);
                     }
                 });
             });
+        });
+    </script>
 
-            // AJAX untuk update data
-            $('#btn-update-alasan').click(function() {
-                var form = $('#form-edit-alasan');
+
+    {{-- PERINTAH UPDATE DATA --}}
+    <script>
+        $(document).ready(function() {
+            $('#btn-update-alasan').click(function(e) {
+                e.preventDefault();
+                const tombolUpdate = $('#btn-update-alasan');
+                var id = $('#id').val();
+                var formData = new FormData($('#form-edit-alasan')[0]);
+
                 $.ajax({
-                    url: form.attr('action'),
                     type: 'POST',
-                    data: form.serialize() + '&_method=PUT',
+                    url: '/alasan/update/' + id,
+                    data: formData,
+                    headers: {
+                        'X-HTTP-Method-Override': 'PUT'
+                    },
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('form').find('.error-message').remove();
+                        tombolUpdate.prop('disabled', true);
+                    },
                     success: function(response) {
-                        $('#modal-edit').modal('hide');
+                        $('#modal-alasan-edit').modal('hide');
                         Swal.fire({
                             title: 'Sukses!',
                             text: response.message,
                             icon: 'success',
                             confirmButtonText: 'OK'
-                        }).then(function() {
-                            location.reload();
+                        }).then((result) => {
+                            if (result.isConfirmed || result.isDismissed) {
+                                location.reload();
+                            }
                         });
                     },
+                    complete: function() {
+                        tombolUpdate.prop('disabled', false);
+                    },
                     error: function(xhr) {
+                        if (xhr.status !== 422) {
+                            $('#modal-alasan-edit').modal('hide');
+                        }
                         var errorMessages = xhr.responseJSON.errors;
                         var errorMessage = '';
                         $.each(errorMessages, function(key, value) {
@@ -341,6 +434,8 @@
         });
     </script>
 
+
+    {{-- HAPUS DATA --}}
     <script>
         $(document).ready(function() {
             $.ajaxSetup({

@@ -1,0 +1,47 @@
+:root {
+    --orange: #F97316;
+    --biru-d: #00314F;
+    --biru-n: #00314fb4;
+    --bg-gray: #F5F5F5;
+    --text-w: #ffff;
+    --biru-b: #F2FAFF;
+    --biru-s: #94D6FF;
+    --orange-c: #FFEDD5;
+    --hijau-b: #DCFCE7;
+    --orange-i: #f974167a;
+    --white-b-d: #FAFAFA;
+    --danger-bg: #FEE2E2;
+    --text-danger: #EF4444;
+    --text-green: #22C55E;
+}
+
+/* Costume Swiper */
+
+.swiper .swiper-button-prev .swiper-button-next {
+    position: absolute;
+
+}
+
+.wrapper-register-sipol {
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.wrapper-register-sipol .row .col {
+    background: var(--biru-d);
+    min-height: 100vh;
+    width: 100%;
+}
+
+.wrapper-register-sipol .col-7 {
+    padding: 20px 0;
+}
+
+.wrapper-register-sipol .col-7 .stepper .content-from-action {
+    padding: 20px;
+    overflow-y: scroll;
+    width: 800px;
+    height: 500px;
+}

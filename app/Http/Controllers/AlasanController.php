@@ -54,18 +54,29 @@ class AlasanController extends Controller
     {
         // Validasi request
         $validator = Validator::make($request->all(), [
-            'judul' => 'required|unique:alasan,judul',
+            'nama_alasan' => 'required|unique:alasan,nama_alasan',
+            'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
         ], [
-            'judul.required' => 'Nama Alasan Wajib diisi',
-            'judul.unique' => 'Nama Alasan sudah digunakan',
+            'nama_alasan.required' => 'Nama Alasan Wajib diisi',
+            'gambar.required' => 'Gambar Alasan Wajib diisi',
+            'nama_alasan.unique' => 'Nama Alasan sudah digunakan',
+            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
+            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
         ]);
-
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $input = $request->all();
+        $input = $request->all();  // Pindahkan ini ke bawah validasi
+
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $destinationPath = 'upload/alasan/';
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move($destinationPath, $imageName);
+            $input['gambar'] = $imageName;
+        }
 
         // Simpan data spp ke database menggunakan fill()
         $alasan = new Alasan();
@@ -77,9 +88,9 @@ class AlasanController extends Controller
         // Simpan log histori untuk operasi Create dengan user_id yang sedang login
         $this->simpanLogHistori('Create', 'Alasan', $alasan->id, $loggedInUserId, null, json_encode($alasan));
 
-
         return response()->json(['message' => 'Data Berhasil Disimpan']);
     }
+
 
     /**
      * Display the specified resource.
@@ -113,10 +124,14 @@ class AlasanController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Validasi request
         $validator = Validator::make($request->all(), [
-            'judul' => 'required',
+            'nama_alasan' => 'required|unique:alasan,nama_alasan,' . $id,
+            'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
         ], [
-            'judul.required' => 'Nama Alasan Wajib diisi',
+            'nama_alasan.required' => 'Nama Alasan Wajib diisi',
+            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
+            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
         ]);
 
         if ($validator->fails()) {
@@ -124,17 +139,36 @@ class AlasanController extends Controller
         }
 
         $alasan = Alasan::findOrFail($id);
-        $oldData = $alasan->getOriginal();
 
-        $input = $request->all();
+        $input = $request->except(['_token', '_method']); // Exclude unnecessary fields
+
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $destinationPath = 'upload/alasan/';
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move($destinationPath, $imageName);
+    
+            // Hapus file gambar lama jika ada
+            if ($alasan->gambar && file_exists(public_path('upload/alasan/' . $alasan->gambar))) {
+                unlink(public_path('upload/alasan/' . $alasan->gambar));
+            }
+    
+            $input['gambar'] = $imageName;
+        }
+    
+        // Update alasan data di database
         $alasan->update($input);
 
-
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Update', 'Alasan', $alasan->id, $loggedInUserId, json_encode($oldData), json_encode($alasan));
 
-        return response()->json(['message' => 'Data berhasil diupdate.']);
+        // Simpan log histori untuk operasi Update dengan user_id yang sedang login
+        $this->simpanLogHistori('Update', 'Alasan', $alasan->id, $loggedInUserId, json_encode($alasan->getOriginal()), json_encode($alasan));
+
+        return response()->json(['message' => 'Data Berhasil Diupdate']);
     }
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -144,23 +178,30 @@ class AlasanController extends Controller
      */
     public function destroy($id)
     {
-        $alasan = Alasan::findOrFail($id);
+        $alasan = Alasan::find($id);
 
         if (!$alasan) {
-            return response()->json(['message' => 'Data Alasan not found'], 404);
+            return response()->json(['message' => 'Data alasan not found'], 404);
+        }
+
+        // Hapus file terkait jika ada sebelum menghapus entitas dari database
+        $oldBuktiFileName = $alasan->gambar; // Nama file saja
+        $oldBuktiPath = public_path('upload/alasan/' . $oldBuktiFileName);
+
+        if ($oldBuktiFileName && file_exists($oldBuktiPath)) {
+            unlink($oldBuktiPath);
         }
 
         $alasan->delete();
+
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Delete', 'Alasan', $id, $loggedInUserId, json_encode($alasan), null);
 
-        return response()->json(['message' => 'Data berhasil dihapus.']);
+        // Simpan log histori untuk operasi Delete dengan user_id yang sedang login dan informasi data yang dihapus
+        $this->simpanLogHistori('Delete', 'alasan', $id, $loggedInUserId, json_encode($alasan), null);
+
+
+        return response()->json(['message' => 'Data Berhasil Dihapus']);
     }
-
-
-
-
-
 
 
 

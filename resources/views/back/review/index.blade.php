@@ -63,8 +63,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="5%">No</th>
+
                                                         <th width="15%">Nama Review</th>
                                                         <th width="5%">Urutan</th>
+                                                        <th width="5%">Gambar</th>
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -74,6 +76,14 @@
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p->nama_review }}</td>
                                                             <td>{{ $p->urutan }}</td>
+                                                            <td>
+                                                                <a href="/upload/review/{{ $p->gambar }}"
+                                                                    target="_blank">
+                                                                    <img style="max-width:50px; max-height:50px"
+                                                                        src="/upload/review/{{ $p->gambar }}"
+                                                                        alt="">
+                                                                </a>
+                                                            </td>
                                                             <td class="text-center">
                                                                 <a style="color: rgb(242, 236, 236)" href="#"
                                                                     class="btn btn-sm btn-primary btn-edit"
@@ -109,7 +119,7 @@
             {{-- Modal Tambah Data --}}
             <div class="modal fade" id="modal-review" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                    <form id="form-review" action="" method="POST">
+                    <form id="form-review" action="" method="POST" enctype="multipart/form-data">
                         @csrf <!-- Tambahkan token CSRF -->
                         <div class="modal-content">
                             <div class="modal-header">
@@ -132,23 +142,30 @@
                                                 name="nama_review">
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="keterangan">Keterangan </label>
+                                            <label class="col-form-label" for="keterangan">Keterangan</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <textarea class="form-control form-control-success" name="keterangan" id="keterangan" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="urutan">Urutan </label>
+                                            <label class="col-form-label" for="urutan">Urutan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success" id="urutan"
-                                                name="urutan">
+                                            <input type="number" class="form-control form-control-success"
+                                                id="urutan" name="urutan">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="col-form-label" for="gambar">Upload Gambar Review</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <input type="file" class="form-control form-control-success"
+                                                id="gambar" name="gambar">
                                         </div>
                                     </div>
 
@@ -177,6 +194,7 @@
                     <form id="form-edit-review" action="" method="POST">
                         @csrf <!-- Tambahkan token CSRF -->
                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
+                        <input type="hidden" id="id" name="id">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title">Form Edit Review</h4>
@@ -185,11 +203,13 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+
+
                                 <div class="card-block">
+
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_nama_review">Nama Kategori
-                                                Job</label>
+                                            <label class="col-form-label" for="edit_nama_review">Nama Review</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control form-control-success"
@@ -198,7 +218,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_keterangan">Keterangan </label>
+                                            <label class="col-form-label" for="edit_keterangan">Keterangan</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <textarea class="form-control form-control-success" name="keterangan" id="edit_keterangan" cols="30"
@@ -214,7 +234,26 @@
                                                 id="edit_urutan" name="urutan">
                                         </div>
                                     </div>
+                                    <div class="form-group" id="gambar_edit_container">
+                                        <label for="gambar_edit">Bukti Pengeluaran</label>
+
+                                        <input type="file" class="form-control" name="gambar" id="gambar_edit">
+
+                                        <div id="gambar_image_container"></div>
+                                        <br>
+                                        <!-- Tautan untuk mengunduh atau melihat gambar -->
+                                        <a id="gambar_download_link" href="" target="_blank">
+
+                                        </a>
+                                    </div>
+
+
                                 </div>
+
+
+
+
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default waves-effect"
@@ -247,11 +286,19 @@
     <script>
         $(document).ready(function() {
             $('#btn-save-review').click(function() {
+                event.preventDefault();
+                const tombolSimpan = $('#btn-save-review')
                 var form = $('#form-review');
                 $.ajax({
                     url: form.attr('action'),
                     type: 'POST',
-                    data: form.serialize(),
+                    data: new FormData(form[0]),
+                    contentType: false,
+                    beforeSend: function() {
+                        $('form').find('.error-message').remove()
+                        tombolSimpan.prop('disabled', true)
+                    },
+                    processData: false,
                     success: function(response) {
                         $('#modal-review').modal('hide');
                         Swal.fire({
@@ -263,6 +310,9 @@
                             location.reload();
                         });
                     },
+                    complete: function() {
+                        tombolSimpan.prop('disabled', false);
+                    },
                     error: function(xhr) {
                         var errorMessages = xhr.responseJSON.errors;
                         var errorMessage = '';
@@ -283,48 +333,90 @@
 
 
 
-    {{-- EDIT dan UPDATE --}}
+
+    {{-- PERINTAH EDIT DATA --}}
     <script>
         $(document).ready(function() {
-            // Tampilkan data di modal edit
-            $('.btn-edit').click(function() {
+            // $('.dataTable tbody').on('click', 'td .btn-edit', function(e) {
+            $('.btn-edit').click(function(e) {
+                e.preventDefault();
+
                 var id = $(this).data('id');
+
                 $.ajax({
+                    review: 'GET',
                     url: '/review/' + id + '/edit',
-                    type: 'GET',
-                    success: function(response) {
-                        $('#edit_nama_review').val(response.nama_review);
-                        $('#edit_urutan').val(response.urutan);
-                        $('#edit_keterangan').val(response.keterangan);
-                        // Set action form untuk update
-                        $('#form-edit-review').attr('action', '/review/' + id);
-                        $('#modal-edit').modal('show');
+                    success: function(data) {
+                        // console.log(data); // Cek apakah data terisi dengan benar
+                        // Mengisi data pada form modal
+                        $('#id').val(data.id); // Menambahkan nilai id ke input tersembunyi
+                        $('#edit_nama_review').val(data.nama_review);
+                        $('#edit_keterangan').val(data.keterangan);
+                        $('#edit_urutan').val(data.urutan);
+                        if (data.gambar) {
+                            var gambarImg = '<img src="/upload/review/' + data.gambar +
+                                '" style="max-width: 100px; max-height: 100px;">';
+                            var gambarLink = '<a href="/upload/review/' + data.gambar +
+                                '" target="_blank"><i class="fa fa-eye"></i> Lihat Bukti</a>';
+                            $('#gambar_edit_container').append(gambarImg + '<br>' + gambarLink);
+                        }
+
+                        $('#modal-review-edit').modal('show');
+                        $('#id').val(id);
                     },
+
                     error: function(xhr) {
-                        // Handle error
+                        // Tangani kesalahan jika ada
+                        alert('Error: ' + xhr.statusText);
                     }
                 });
             });
+        });
+    </script>
 
-            // AJAX untuk update data
-            $('#btn-update-review').click(function() {
-                var form = $('#form-edit-review');
+
+    {{-- PERINTAH UPDATE DATA --}}
+    <script>
+        $(document).ready(function() {
+            $('#btn-update-review').click(function(e) {
+                e.preventDefault();
+                const tombolUpdate = $('#btn-update-review');
+                var id = $('#id').val();
+                var formData = new FormData($('#form-edit-review')[0]);
+
                 $.ajax({
-                    url: form.attr('action'),
                     type: 'POST',
-                    data: form.serialize() + '&_method=PUT',
+                    url: '/review/update/' + id,
+                    data: formData,
+                    headers: {
+                        'X-HTTP-Method-Override': 'PUT'
+                    },
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $('form').find('.error-message').remove();
+                        tombolUpdate.prop('disabled', true);
+                    },
                     success: function(response) {
-                        $('#modal-edit').modal('hide');
+                        $('#modal-review-edit').modal('hide');
                         Swal.fire({
                             title: 'Sukses!',
                             text: response.message,
                             icon: 'success',
                             confirmButtonText: 'OK'
-                        }).then(function() {
-                            location.reload();
+                        }).then((result) => {
+                            if (result.isConfirmed || result.isDismissed) {
+                                location.reload();
+                            }
                         });
                     },
+                    complete: function() {
+                        tombolUpdate.prop('disabled', false);
+                    },
                     error: function(xhr) {
+                        if (xhr.status !== 422) {
+                            $('#modal-review-edit').modal('hide');
+                        }
                         var errorMessages = xhr.responseJSON.errors;
                         var errorMessage = '';
                         $.each(errorMessages, function(key, value) {
@@ -342,6 +434,8 @@
         });
     </script>
 
+
+    {{-- HAPUS DATA --}}
     <script>
         $(document).ready(function() {
             $.ajaxSetup({

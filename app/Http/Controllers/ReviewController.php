@@ -55,17 +55,28 @@ class ReviewController extends Controller
         // Validasi request
         $validator = Validator::make($request->all(), [
             'nama_review' => 'required|unique:review,nama_review',
+            'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
         ], [
             'nama_review.required' => 'Nama Review Wajib diisi',
+            'gambar.required' => 'Gambar Review Wajib diisi',
             'nama_review.unique' => 'Nama Review sudah digunakan',
+            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
+            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
         ]);
-
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $input = $request->all();
+        $input = $request->all();  // Pindahkan ini ke bawah validasi
+
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $destinationPath = 'upload/review/';
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move($destinationPath, $imageName);
+            $input['gambar'] = $imageName;
+        }
 
         // Simpan data spp ke database menggunakan fill()
         $review = new Review();
@@ -77,9 +88,9 @@ class ReviewController extends Controller
         // Simpan log histori untuk operasi Create dengan user_id yang sedang login
         $this->simpanLogHistori('Create', 'Review', $review->id, $loggedInUserId, null, json_encode($review));
 
-
         return response()->json(['message' => 'Data Berhasil Disimpan']);
     }
+
 
     /**
      * Display the specified resource.
@@ -113,10 +124,14 @@ class ReviewController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Validasi request
         $validator = Validator::make($request->all(), [
-            'nama_review' => 'required',
+            'nama_review' => 'required|unique:review,nama_review,' . $id,
+            'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
         ], [
             'nama_review.required' => 'Nama Review Wajib diisi',
+            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
+            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
         ]);
 
         if ($validator->fails()) {
@@ -124,17 +139,36 @@ class ReviewController extends Controller
         }
 
         $review = Review::findOrFail($id);
-        $oldData = $review->getOriginal();
 
-        $input = $request->all();
+        $input = $request->except(['_token', '_method']); // Exclude unnecessary fields
+
+        if ($request->hasFile('gambar')) {
+            $image = $request->file('gambar');
+            $destinationPath = 'upload/review/';
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move($destinationPath, $imageName);
+    
+            // Hapus file gambar lama jika ada
+            if ($review->gambar && file_exists(public_path('upload/review/' . $review->gambar))) {
+                unlink(public_path('upload/review/' . $review->gambar));
+            }
+    
+            $input['gambar'] = $imageName;
+        }
+    
+        // Update review data di database
         $review->update($input);
 
-
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Update', 'Review', $review->id, $loggedInUserId, json_encode($oldData), json_encode($review));
 
-        return response()->json(['message' => 'Data berhasil diupdate.']);
+        // Simpan log histori untuk operasi Update dengan user_id yang sedang login
+        $this->simpanLogHistori('Update', 'Review', $review->id, $loggedInUserId, json_encode($review->getOriginal()), json_encode($review));
+
+        return response()->json(['message' => 'Data Berhasil Diupdate']);
     }
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -144,23 +178,30 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        $review = Review::findOrFail($id);
+        $review = Review::find($id);
 
         if (!$review) {
-            return response()->json(['message' => 'Data Review not found'], 404);
+            return response()->json(['message' => 'Data review not found'], 404);
+        }
+
+        // Hapus file terkait jika ada sebelum menghapus entitas dari database
+        $oldBuktiFileName = $review->gambar; // Nama file saja
+        $oldBuktiPath = public_path('upload/review/' . $oldBuktiFileName);
+
+        if ($oldBuktiFileName && file_exists($oldBuktiPath)) {
+            unlink($oldBuktiPath);
         }
 
         $review->delete();
+
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Delete', 'Review', $id, $loggedInUserId, json_encode($review), null);
 
-        return response()->json(['message' => 'Data berhasil dihapus.']);
+        // Simpan log histori untuk operasi Delete dengan user_id yang sedang login dan informasi data yang dihapus
+        $this->simpanLogHistori('Delete', 'review', $id, $loggedInUserId, json_encode($review), null);
+
+
+        return response()->json(['message' => 'Data Berhasil Dihapus']);
     }
-
-
-
-
-
 
 
 
