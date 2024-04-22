@@ -429,6 +429,8 @@ CREATE TABLE IF NOT EXISTS `pendaftaran` (
   `nama_kategori_job` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nik` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nama_lengkap` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tempat_lahir` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tanggal_lahir` DATE COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `alasan_reject` text COLLATE utf8mb4_unicode_ci,
   `blacklist` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,

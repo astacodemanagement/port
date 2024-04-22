@@ -758,9 +758,104 @@
     width: 800px;
 }
 
+/* List Jobs Search  */
+.list-jobs-search .container .search-items-jobs {
+    display: flex;
+    justify-content: space-between;
+    padding: 46px 110px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--biru-b);
+    border-radius: 16px;
+}
+
+.list-jobs-search .container .search-items-jobs .search-input-items {
+    margin: 0 3px;
+}
+
+.list-jobs-search .container .search-items-jobs input {
+    border: none;
+}
+
+.list-jobs-search .container .search-items-jobs select {
+    border: none;
+}
+
+/* Navbar Search Jobs */
+
+.Element-nav-items-search .navbar {
+    display: flex;
+    margin: 24px 90px;
+    padding: 20px 24px;
+    background: var(--biru-n);
+    border-radius: 16px;
+}
+
+
+.Element-nav-items-search .navbar .link-pages {
+    padding: 12px;
+    text-decoration: none;
+    color: var(--text-w);
+    font-size: 16px;
+}
+
+.Element-nav-items-search .navbar .link-btn {
+    padding: 12px 24px;
+    background: var(--orange);
+    text-decoration: none;
+    color: var(--text-w);
+    opacity: 100%;
+    border-radius: 14px;
+    font-size: 16px;
+
+}
+
+.Element-nav-items-search .navbar .link-btn:hover {
+    background: none;
+    text-decoration: none;
+    color: var(--orange);
+    opacity: 100%;
+    border-radius: 14px;
+    font-size: 16px;
+    border: 1px solid var(--orange);
+    transition: 1s;
+
+}
+
+/* List Jobs Search */
+.list-jobs-search {
+    display: flex;
+    min-height: 50vh;
+    align-items: center;
+}
+
+/* Content Search Jobs */
+.Content-search-all-jobs {
+    padding: 26px 0;
+}
+
+.Content-search-all-jobs .row {
+    margin: 15px 0;
+}
+
+.Content-search-all-jobs .container .row {
+    display: flex;
+    justify-content: center;
+}
+
+.Content-search-all-jobs .row .col .card-body {
+    padding: 12px;
+    border: 1px solid var(--biru-b);
+    border-radius: 16px;
+}
+
+.Content-search-all-jobs .row .col .card-body .card-image img {
+    width: 100%;
+}
+
 /* Detail Jobs Information */
 .Element-information-jobs {
-    padding: 56px 0;
+    padding: 30px 0;
     background-color: var(--white-b-d);
 }
 
@@ -830,7 +925,7 @@
 .wrapper-register-sipol {
     min-height: 100vh;
     background-color: var(--bg-gray);
-    padding: 56px;
+    padding: 150px 0;
 }
 
 .wrapper-register-sipol .container {
@@ -841,7 +936,7 @@
 
 /* Footer */
 .Element-footer {
-    min-height: 350px;
+    min-height: 300px;
     background-color: var(--biru-d);
 }
 
@@ -1184,6 +1279,16 @@
 
     .Element-information-jobs .row .card-items-bagde {
         padding: 4px;
+    }
+
+    /* List Jobs Search  */
+    .list-jobs-search .container .search-items-jobs {
+        display: grid;
+        padding: 10px 10px;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--biru-b);
+        border-radius: 7px;
     }
 
     /* Element Footer */

@@ -47,7 +47,7 @@ class RegisterController extends Controller
         $countries = Negara::all();
         $categories = KategoriJob::all();
 
-        return view('frontend.pages.register', compact('countries', 'categories'));
+        return view('front.register.index', compact('countries', 'categories'));
     }
 
     /**

@@ -296,7 +296,7 @@
                 <img src="{{ asset('frontend') }}/assets/image/wrapper.png" alt="">
             </div>
             <div class="text-center mt-5">
-                <a href="register.html" class="btn-action">Daftar SIPOL</a>
+                <a href="{{ route('register') }}" class="btn-action">Daftar SIPOL</a>
             </div>
         </div>
         </div>
