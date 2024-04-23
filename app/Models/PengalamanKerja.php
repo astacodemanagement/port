@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class PengalamanKerja extends Model
 {
     use HasFactory;
+
+    protected $table = 'pengalaman_kerja';
 }

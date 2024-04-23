@@ -3,6 +3,7 @@
 use App\Http\Controllers\AgencyController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AlasanController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BelumVerifikasiController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailBayarController;
@@ -293,5 +294,7 @@ Route::prefix('ajax')->group(function () {
         Route::get('village/{subdistrictId?}', [AjaxController::class, 'getVillage'])->name('village');
     });
 });
+
+Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
 
 Auth::routes();

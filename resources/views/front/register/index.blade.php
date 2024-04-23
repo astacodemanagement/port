@@ -152,19 +152,20 @@
                         <form class="form mx-auto form-register" novalidate="novalidate">
                             @csrf
                             <div class="mb-5">
+
                                 <!--begin::Step 1-->
                                 <div class="flex-column current" data-kt-stepper-element="content">
                                     <div class="fv-row mb-10">
                                         <label class="form-label">Minat Pekerjaan</label>
                                         <select class="form-select mb-5" name="negara_id" aria-label="dropdownNegara">
-                                            <option selected="">Negara Yang Diminat</option>
+                                            <option value="">Negara Yang Diminat</option>
                                             @foreach ($countries as $country)
                                                 <option value="{{ $country->id }}">{{ $country->nama_negara }}</option>
                                             @endforeach
                                         </select>
                                         <select class="form-select" name="kategori_job_id"
                                             aria-labelledby="dropdownKategori">
-                                            <option selected="">Kategori Yang Diminati</option>
+                                            <option value="">Kategori Yang Diminati</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->nama_kategori_job }}
                                                 </option>
@@ -181,9 +182,9 @@
                                         <div class="input-group">
                                             <input type="text" class="form-control mb-5" name="tempat_lahir"
                                                 placeholder="Tempat Lahir" value="">
-                                            <input type="text" class="form-control datetimepicker mb-5"
+                                            <input type="text" class="form-control tanggal-lahir mb-5"
                                                 placeholder="Tanggal Lahir" value="">
-                                            <input type="hidden" class="d-none tanggal-lahir" name="tanggal_lahir">
+                                            <input type="hidden" class="d-none h-tanggal-lahir" name="tanggal_lahir">
                                         </div>
                                         <input type="text" class="form-control mb-5" name="agama"
                                             placeholder="Agama" value="">
@@ -242,12 +243,15 @@
                                 <div class="flex-column" data-kt-stepper-element="content">
                                     <div class="fv-row mb-10">
                                         <label class="form-label">Dokumen Perjalanan Luar Negeri</label>
-                                        <input type="text" class="form-control mb-5" name="no_paspor"
-                                            placeholder="Nomor Paspor" value="">
-                                        <input type="text" class="form-control mb-5" name="tanggal_pengeluaran_paspor"
-                                            placeholder="Tanggal Pengeluaran Paspor / Date of Issue" value="">
-                                        <input type="text" class="form-control mb-5" name="masa_kadaluarsa"
-                                            placeholder="Masa Kadaluarsa Paspor / Date of Expiry" value="">
+                                        <input type="text" class="form-control mb-5" name="no_paspor" placeholder="Nomor Paspor" value="">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control tanggal-pengeluaran-paspor mb-5"placeholder="Tanggal Pengeluaran Paspor / Date of Issue">
+                                            <input type="text" class="form-control h-tanggal-pengeluaran-paspor d-none" name="tanggal_pengeluaran_paspor">
+                                        </div>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control masa-kadaluarsa mb-5" placeholder="Masa Kadaluarsa Paspor / Date of Expiry" value="">
+                                            <input type="text" class="form-control h-masa-kadaluarsa d-none" name="masa_kadaluarsa">
+                                        </div>
                                         <input type="text" class="form-control mb-5" name="kantor_paspor"
                                             placeholder="Kantor Yang Mengeluarkan Paspor / Issuing Office" value="">
                                         <select class="form-select mb-5" name="kondisi_paspor"
@@ -273,20 +277,15 @@
                                     </div>
                                     <div class="fv-row row-list-experience"></div>
                                     <div class="fv-row mb-10 row-add-experience">
-                                        <input type="text" class="form-control mb-5 input-add-experience experience-country"
-                                            placeholder="Negara Tempat Bekerja">
-                                        <input type="text" class="form-control mb-5 input-add-experience experience-company"
-                                            placeholder="Nama Perusahaan atau Majikan">
+                                        <input type="text" class="form-control mb-5 input-add-experience experience-country" placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
+                                        <input type="text" class="form-control mb-5 input-add-experience experience-company" placeholder="Nama Perusahaan atau Majikan" name="nama_perusahaan[]">
                                         <div class="input-group">
-                                            <input type="text" class="form-control datetimepicker mb-5 input-add-experience experience-start-work-date"
-                                                placeholder="Tanggal mulai bekerja">
-                                            <input type="text" class="form-control datetimepicker mb-5 input-add-experience experience-end-work-date"
-                                                placeholder="Tanggal selesai bekerja">
-                                            <input type="hidden" class="d-none tanggal-mulai-bekerja input-add-experience experience-h-start-work-date">
-                                            <input type="hidden" class="d-none tanggal-selesai-bekerja input-add-experience experience-h-end-work-date">
+                                            <input type="text" class="form-control datetimepicker mb-5 input-add-experience experience-start-work-date" placeholder="Tanggal mulai bekerja">
+                                            <input type="text" class="form-control datetimepicker mb-5 input-add-experience experience-end-work-date" placeholder="Tanggal selesai bekerja">
+                                            <input type="hidden" class="d-none tanggal-mulai-bekerja input-add-experience h-experience-start-work-date" name="tanggal_mulai_kerja[]">
+                                            <input type="hidden" class="d-none tanggal-selesai-bekerja input-add-experience h-experience-end-work-date" name="tanggal_selesai_kerja[]">
                                         </div>
-                                        <input type="text" class="form-control mb-5 input-add-experience experience-position"
-                                            placeholder="Posisi">
+                                        <input type="text" class="form-control mb-5 input-add-experience experience-position" placeholder="Posisi" name="posisi[]">
                                         <button type="button" class="btn btn-add-experience btn-primary w-100"><i class="fas fa-plus"></i> Tambahkan
                                             Pengalaman Kerja Lainnya</button>
                                     </div>
@@ -339,13 +338,74 @@
         integrity="sha512-ej3mVbjyGQoZGS3JkES4ewdpjD8UBxHRGW+MN5j7lg3aGQ0k170sFCj5QJVCFghZRCio7DEmyi+8/HAwmwWWiA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $( document ).ready(function() {
             // $(".select2").select2({
             //     theme: "bootstrap",
             // });
         })
-        let datetimepicker = $('.datetimepicker').datetimepicker({
+        let tanggalLahir = $('.tanggal-lahir').datetimepicker({
+            format: 'DD MMMM YYYY',
+            locale: 'id',
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down",
+                previous: "fa fa-chevron-left",
+                next: "fa fa-chevron-right",
+                today: "fa fa-clock-o",
+                clear: "fa fa-trash-o"
+            }
+        })
+        
+        let tanggalPengeluaranPaspor = $('.tanggal-pengeluaran-paspor').datetimepicker({
+            format: 'DD MMMM YYYY',
+            locale: 'id',
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down",
+                previous: "fa fa-chevron-left",
+                next: "fa fa-chevron-right",
+                today: "fa fa-clock-o",
+                clear: "fa fa-trash-o"
+            }
+        })
+
+        let masaKadaluarsa = $('.masa-kadaluarsa').datetimepicker({
+            format: 'DD MMMM YYYY',
+            locale: 'id',
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down",
+                previous: "fa fa-chevron-left",
+                next: "fa fa-chevron-right",
+                today: "fa fa-clock-o",
+                clear: "fa fa-trash-o"
+            }
+        })
+
+        let experienceStartWorkDate = $('.experience-start-work-date').datetimepicker({
+            format: 'DD MMMM YYYY',
+            locale: 'id',
+            icons: {
+                time: "fa fa-clock-o",
+                date: "fa fa-calendar",
+                up: "fa fa-arrow-up",
+                down: "fa fa-arrow-down",
+                previous: "fa fa-chevron-left",
+                next: "fa fa-chevron-right",
+                today: "fa fa-clock-o",
+                clear: "fa fa-trash-o"
+            }
+        })
+
+        let experienceEndWorkDate = $('.experience-end-work-date').datetimepicker({
             format: 'DD MMMM YYYY',
             locale: 'id',
             icons: {
@@ -373,11 +433,35 @@
             stepper.goPrevious(); // go previous step
         });
 
-        datetimepicker.on('dp.change', function(e) {
+        tanggalLahir.on('dp.change', function(e) {
             let selectDate = e.date.format('YYYY-MM-DD')
 
-            $('.tanggal-lahir').val(selectDate)
+            $('.h-tanggal-lahir').val(selectDate)
             calculateUsia(selectDate)
+        })
+
+        tanggalPengeluaranPaspor.on('dp.change', function(e) {
+            let selectDate = e.date.format('YYYY-MM-DD')
+
+            $('.h-tanggal-pengeluaran-paspor').val(selectDate)
+        })
+
+        masaKadaluarsa.on('dp.change', function(e) {
+            let selectDate = e.date.format('YYYY-MM-DD')
+
+            $('.h-masa-kadaluarsa').val(selectDate)
+        })
+
+        experienceStartWorkDate.on('dp.change', function(e) {
+            let selectDate = e.date.format('YYYY-MM-DD')
+
+            $('.h-experience-start-work-date').val(selectDate)
+        })
+
+        experienceEndWorkDate.on('dp.change', function(e) {
+            let selectDate = e.date.format('YYYY-MM-DD')
+
+            $('.h-experience-end-work-date').val(selectDate)
         })
 
         function calculateUsia(birthdate) {
@@ -451,11 +535,6 @@
 
             cloneEl.find('.btn-primary').removeClass('btn-primary').addClass('btn-danger btn-remove-experience').html('<i class="fas fa-times"></i> Hapus Pengalaman Kerja');
             cloneEl.find('.input-add-experience').removeClass('input-add-experience')
-            cloneEl.find('.experience-country').attr('name', 'negara_tempat_kerja[]')
-            cloneEl.find('.experience-company').attr('name', 'nama_perusahaan[]')
-            cloneEl.find('.experience-h-start-work-date').attr('name', 'tanggal_mulai_kerja[]')
-            cloneEl.find('.experience-h-end-work-date').attr('name', 'tanggal_selesai_kerja[]')
-            cloneEl.find('.experience-position').attr('name', 'posisi[]')
             cloneEl.removeClass('row-add-experience fv-row mb-10').addClass('list-experience list-experience- mb-10')
             cloneEl.append('<hr>')
             cloneEl.appendTo('.row-list-experience')
@@ -479,7 +558,20 @@
                     $('.btn-prev').prop('disabled', true)
                 },
                 success: function(response){
-                    console.log(response)
+                    if (response.success) {
+                        location.href = '{{ route('register.complete') }}'
+                    }
+                },
+                complete: function() {
+                    t.prop('disabled', false).html('Submit')
+                    $('.btn-prev').prop('disabled', false)
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Something went wrong!",
+                    });
                 }
             })
         })
