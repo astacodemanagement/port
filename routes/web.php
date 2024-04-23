@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AgencyController;
+use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AlasanController;
 use App\Http\Controllers\BelumVerifikasiController;
 use App\Http\Controllers\DashboardController;
@@ -284,5 +285,13 @@ Route::put('/pengeluaran/update/{id}', [PengeluaranController::class, 'update'])
 
 
 Route::get('/home', [HomeController::class, 'index']);
+
+Route::prefix('ajax')->group(function () {
+    Route::name('ajax.')->group(function () {
+        Route::get('city/{provinceId?}', [AjaxController::class, 'getCity'])->name('city');
+        Route::get('subdistrict/{cityId?}', [AjaxController::class, 'getSubdistrict'])->name('subdistrict');
+        Route::get('village/{subdistrictId?}', [AjaxController::class, 'getVillage'])->name('village');
+    });
+});
 
 Auth::routes();

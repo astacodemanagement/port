@@ -17,9 +17,10 @@
     <!-- Swiper -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- All CSS -->
-    <link rel="stylesheet" href="{{ asset('frontend') }}/css/css2">
+    <link rel="stylesheet" href="{{ asset('frontend') }}/css/css2.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/bootstrap-datepicker.min.css">
+
     <!--<link rel="stylesheet" href="css/jquery-ui.css" />-->
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/animate.min.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/magnific-popup.css">
@@ -32,58 +33,14 @@
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/timeline-tab.css">
 
-    <link rel="stylesheet" href="{{ asset('frontend') }}/css/font-awesome.min.css">
+    {{-- <link rel="stylesheet" href="{{ asset('frontend') }}/css/font-awesome.min.css"> --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- All Javascripts -->
-    <script src="{{ asset('frontend') }}/js/jquery-3.6.1.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/bootstrap.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/bootstrap-datepicker.min.js"></script>
-    <!--<script src="js/jquery-ui.js"></script>-->
-    <script src="{{ asset('frontend') }}/js/jquery.magnific-popup.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/owl.carousel.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/wow.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/select2.full.js"></script>
-    <script src="{{ asset('frontend') }}/js/jquery.waypoints.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/moment.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/jquery.meanmenu.js"></script>
-    <script src="{{ asset('frontend') }}/js/timeline-tab.js"></script>
-
-    <script src="{{ asset('frontend') }}/js/toastr.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/jquery-1.12.0.min.js"></script>
-    <script src="{{ asset('frontend') }}/js/bootstrap.min(1).js"></script>
+    @stack('css')
 </head>
 
 <body>
-
-    <section class="Element-nav-items">
-        <div class="container">
-            <!-- Navbar Navigation -->
-            <nav class="navbar fixed-top">
-                <div class="container-fluid">
-                    <div class="d-flex">
-                        <img src="{{ asset('frontend') }}/assets/logo/logo.png" alt="">
-                        <a class="navbar-brand text-white fw-semibold mt-2 col-sm-hidden">PT. PUTRA SAHABAT
-                            INTERNATIONAL</a>
-                    </div>
-                    <div class="d-flex">
-                        <a href="#" class="link-pages">Worker</a>
-                        <a href="#" class="link-pages">Employer</a>
-                        <a href="{{ route('register') }}" class="link-btn fw-semibold">Daftar SIPOOL</a>
-                    </div>
-                </div>
-            </nav>
-            <!-- #End -->
-
-
-
-
-
     @yield('content')
-
-
-
-
-
 
     <!-- Footer -->
     <div class="Element-footer">
@@ -164,6 +121,25 @@
     </div>
     </section>
     <!-- #End -->
+    
+
+    <!-- All Javascripts -->
+    <script src="{{ asset('frontend') }}/js/jquery-3.6.1.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/bootstrap.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/bootstrap-datepicker.min.js"></script>
+    <!--<script src="js/jquery-ui.js"></script>-->
+    <script src="{{ asset('frontend') }}/js/jquery.magnific-popup.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/owl.carousel.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/wow.min.js"></script>
+    {{-- <script src="{{ asset('frontend') }}/js/select2.full.js"></script> --}}
+    <script src="{{ asset('frontend') }}/js/jquery.waypoints.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/moment.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/jquery.meanmenu.js"></script>
+    <script src="{{ asset('frontend') }}/js/timeline-tab.js"></script>
+
+    <script src="{{ asset('frontend') }}/js/toastr.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/jquery-1.12.0.min.js"></script>
+    <script src="{{ asset('frontend') }}/js/bootstrap.min(1).js"></script>
     <script src="{{ asset('frontend') }}/js/app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
@@ -172,6 +148,7 @@
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    @stack('script')
 </body>
 
 </html>

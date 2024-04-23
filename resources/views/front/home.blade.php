@@ -1,13 +1,11 @@
-@extends('front.app')
+@extends('front.layouts.app')
 @section('title', 'Halaman Awal')
 @section('subtitle', 'Menu Awal')
 
 @section('content')
-
-
-    
-            
-
+    <section class="Element-nav-items">
+        <div class="container">
+            @include('front.layouts.navbar')
             <!-- Caraousel Section -->
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -74,39 +72,37 @@
                         </div>
                     </div> --}}
                     @foreach ($slider as $p)
-                    <div class="carousel-item" data-bs-interval="1000">
-                        <div class="carousel-items">
-                            <div class="carousel-items-left">
-                                <div class="items-left-text">
-                                    <div class="text-heading">
-                                        <h6>PT. Sahabat Putra International</h6>
-                                    </div>
-                                    <div class="carousel-title-heading">
-                                        <h1>{{ $p->nama_slider }}</h1>
-                                    </div>
-                                    <div class="carousel-text">
-                                        <span>{{ $p->keterangan }}</span>
-                                    </div>
-                                    <div class="carousel-link-button mt-4">
-                                        <a href="#">Lihat Pekerjaan Tersedia</a>
+                        <div class="carousel-item" data-bs-interval="1000">
+                            <div class="carousel-items">
+                                <div class="carousel-items-left">
+                                    <div class="items-left-text">
+                                        <div class="text-heading">
+                                            <h6>PT. Sahabat Putra International</h6>
+                                        </div>
+                                        <div class="carousel-title-heading">
+                                            <h1>{{ $p->nama_slider }}</h1>
+                                        </div>
+                                        <div class="carousel-text">
+                                            <span>{{ $p->keterangan }}</span>
+                                        </div>
+                                        <div class="carousel-link-button mt-4">
+                                            <a href="#">Lihat Pekerjaan Tersedia</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="items-right-image">
-                                <div class="carousel-image">
-                                    <img src="/upload/slider/{{ $p->gambar }}" alt="">
+                                <div class="items-right-image">
+                                    <div class="carousel-image">
+                                        <img src="/upload/slider/{{ $p->gambar }}" alt="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
-
             </div>
             <!-- #End -->
-  
+        </div>
     </section>
-
 
     <!-- Card Items -->
     <section class="Element-card-items">
@@ -151,6 +147,7 @@
         </div>
     </section>
     <!-- #End -->
+
     <!-- Hero Section -->
     <section class="Element-herosection">
         <div class="container gap-3">
@@ -162,16 +159,16 @@
             <div class="container-sm text-center">
                 <div class="row">
                     @foreach ($alasan as $p)
-                    <div class="col-sm-3 align-self-top">
+                        <div class="col-sm-3 align-self-top">
 
-                        <div class="element-image">
-                            <img src="/upload/alasan/{{ $p->gambar }}" alt="">
+                            <div class="element-image">
+                                <img src="/upload/alasan/{{ $p->gambar }}" alt="">
+                            </div>
+                            <div class="title-heading">
+                                <h3 class="fw-bold">{{ $p->nama_alasan }}</h3>
+                                <span>{{ $p->keterangan }}</span>
+                            </div>
                         </div>
-                        <div class="title-heading">
-                            <h3 class="fw-bold">{{ $p->nama_alasan }}</h3>
-                            <span>{{ $p->keterangan }}</span>
-                        </div>
-                    </div>
                     @endforeach
                     {{-- <div class="col-sm-3 align-self-center mt-5">
                         <div class="element-image">
@@ -208,6 +205,7 @@
         </div>
     </section>
     <!-- #End -->
+
     <!-- Tentang Sipol -->
     <section class="Element-about-sipol">
         <div class="container text-center">
@@ -223,6 +221,8 @@
             </div>
         </div>
     </section>
+    <!-- #End -->
+
     <!-- Fitur SIPOL Section -->
     <section class="Element-fitur-sipol">
         <div class="container">
@@ -284,7 +284,8 @@
             </div>
         </div>
     </section>
-    <!-- #end -->
+    <!-- #End -->
+
     <!-- Section Langkah Kerja -->
     <section class="Element-work-steps">
         <div class="container">
@@ -299,8 +300,9 @@
                 <a href="{{ route('register') }}" class="btn-action">Daftar SIPOL</a>
             </div>
         </div>
-        </div>
     </section>
+    <!-- #End -->
+
     <!-- Section Lamaran pekerjaan -->
     <section class="Element-application-jobs">
         <div class="container">
@@ -335,64 +337,66 @@
             <div class="element-items-card mt-5">
                 <div class="row">
                     @foreach ($job as $p)
-                    <div class="col-3">
-                        <div class="card-body">
-                            <div class="card-image">
-                                <img src="{{ asset('frontend') }}/assets/image/Picture.png" alt="">
-                            </div>
-                            <div class="card-items-bagde gap-1">
-                                <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
-                                <span>Tersedia</span>
-                            </div>
-                            <div class="card-title-heading-card">
-                                <h5 class="col-10 text-truncate">{{ $p->nama_job }}
-                                </h5>
-                                <span>{{ $p->nama_perusahaan }}</span>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/image/location.png" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Negara</h6>
-                                        <p>Kalimantan Timur, Indonesia</p>
-                                    </div>
+                        <div class="col-3">
+                            <div class="card-body">
+                                <div class="card-image">
+                                    <img src="{{ asset('frontend') }}/assets/image/Picture.png" alt="">
                                 </div>
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/icons/document-text.svg" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
-                                        <p>Full Time</p>
-                                    </div>
+                                <div class="card-items-bagde gap-1">
+                                    <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
+                                    <span>Tersedia</span>
                                 </div>
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/icons/Component 1.svg" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Gaji</h6>
-                                        <p>Rp 3.000.000</p>
-                                    </div>
+                                <div class="card-title-heading-card">
+                                    <h5 class="col-10 text-truncate">{{ $p->nama_job }}
+                                    </h5>
+                                    <span>{{ $p->nama_perusahaan }}</span>
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h6>Berakhir pada tanggal 1 Februari 2024</h6>
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="col-1 mt-1">
+                                            <img src="{{ asset('frontend') }}/assets/image/location.png" alt="">
+                                        </div>
+                                        <div class="col-10 mt-2">
+                                            <h6 class="title-heading fw-bold">Negara</h6>
+                                            <p>Kalimantan Timur, Indonesia</p>
+                                        </div>
                                     </div>
-                                    <div class="col-12 d-flex align-self-center mt-2">
-                                        <a href="">Lihat Detail <span><svg xmlns="http://www.w3.org/2000/svg" clas
-                                                    width="16" height="16" fill="currentColor"
-                                                    class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
-                                                </svg></a>
+                                    <div class="row">
+                                        <div class="col-1 mt-1">
+                                            <img src="{{ asset('frontend') }}/assets/icons/document-text.svg"
+                                                alt="">
+                                        </div>
+                                        <div class="col-10 mt-2">
+                                            <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
+                                            <p>Full Time</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-1 mt-1">
+                                            <img src="{{ asset('frontend') }}/assets/icons/Component 1.svg"
+                                                alt="">
+                                        </div>
+                                        <div class="col-10 mt-2">
+                                            <h6 class="title-heading fw-bold">Gaji</h6>
+                                            <p>Rp 3.000.000</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <h6>Berakhir pada tanggal 1 Februari 2024</h6>
+                                        </div>
+                                        <div class="col-12 d-flex align-self-center mt-2">
+                                            <a href="">Lihat Detail <span><svg xmlns="http://www.w3.org/2000/svg"
+                                                        clas width="16" height="16" fill="currentColor"
+                                                        class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                                                    </svg></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                     {{-- <div class="col-3">
                         <div class="card-body">
@@ -587,19 +591,19 @@
             </div>
             <swiper-container class="mySwiper" navigation="true">
                 @foreach ($review as $p)
-                <swiper-slide>
-                    <div class="swiper-items">
-                        <div class="swiper-image">
-                            <img src="/upload/review/{{ $p->gambar }}" alt="">
-                        </div>
-                        <div class="swiper-text">
-                            <div class="swiper-heading">
-                                <span>{{ $p->keterangan }}</span>
-                                <p>{{ $p->nama_review }} <span class="fw-semibold">Financial Counselor</span>~</p>
+                    <swiper-slide>
+                        <div class="swiper-items">
+                            <div class="swiper-image">
+                                <img src="/upload/review/{{ $p->gambar }}" alt="">
+                            </div>
+                            <div class="swiper-text">
+                                <div class="swiper-heading">
+                                    <span>{{ $p->keterangan }}</span>
+                                    <p>{{ $p->nama_review }} <span class="fw-semibold">Financial Counselor</span>~</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </swiper-slide>
+                    </swiper-slide>
                 @endforeach
                 {{-- <swiper-slide>
                     <div class="swiper-items">
@@ -635,5 +639,4 @@
         </div>
     </section>
     <!-- #End -->
-
 @endsection
