@@ -17,6 +17,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -79,6 +80,19 @@ class RegisterController extends Controller
         $provinsi = Provinsi::find($request->provinsi_id);
         $kota = Kota::find($request->kota_id);
         $kecamatan = Kecamatan::find($request->kecamatan_id);
+        $noHp = str_replace(' ', '', $request->no_hp);
+        $noWa = $request->has('check_whatsapp_number') ? $noHp : str_replace(' ', '', $request->no_wa);
+
+        $agama = [
+            0 => null,
+            1 => 'Islam',
+            2 => 'Kristen',
+            3 => 'Katolik',
+            4 => 'Hindu',
+            5 => 'Buddha',
+            6 => 'Khonghucu',
+            7 => 'Lainnya'
+        ];
 
         $kondisiPaspor = [
             0 => null,
@@ -102,6 +116,13 @@ class RegisterController extends Controller
         DB::beginTransaction();
 
         try {
+            /** INSERT USER */
+            $user = User::create([
+                'name' => $request->nama_lengkap,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'is_kandidat' => 1
+            ]);
 
             /** INSERT PENDAFTARAN */
             $pendaftaran = [
@@ -120,13 +141,14 @@ class RegisterController extends Controller
     
             /** INSERT KANDIDAT */
             $kandidat = [
+                'pendaftaran_id' => $pendaftaran->id,
                 'nik' => $request->nik,
                 'nama_lengkap' => $request->nama_lengkap,
                 'tempat_lahir' => $request->tempat_lahir,
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'status' => 'Pending',
                 'usia' => Carbon::parse($request->tanggal_lahir)->age ?? 0,
-                'agama' => $request->agama,
+                'agama' => isset($agama[$request->agama]) ? $agama[$request->agama] : null,
                 'berat_badan' => $request->berat_badan,
                 'tinggi_badan' => $request->tinggi_badan,
                 'jenis_kelamin' => $request->jenis_kelamin == 'P' ? 'Laki-laki' : 'Perempuan',
@@ -144,7 +166,58 @@ class RegisterController extends Controller
                 'masa_kadaluarsa' => $request->masa_kadaluarsa,
                 'kantor_paspor' => $request->kantor_paspor,
                 'kondisi_paspor' => isset($kondisiPaspor[$request->kondisi_paspor]) ? $kondisiPaspor[$request->kondisi_paspor] : null,
+                'ada_ktp' => $request->has('check_ktp') ? 'Ya' : null,
+                'ada_kk' => $request->has('check_kartu_keluarga') ? 'Ya' : null,
+                'ada_akta_lahir' => $request->has('check_akta_lahir') ? 'Ya' : null,
+                'ada_ijazah' => $request->has('check_ijazah') ? 'Ya' : null,
+                'ada_buku_nikah' => $request->has('check_buku_nikah') ? 'Ya' : null,
+                'ada_paspor' => $request->has('check_paspor') ? 'Ya' : null,
+                'penjelasan_dokumen' => $request->penjelasan_dokumen,
+                'email' => $request->email,
+                'no_hp' => $noHp,
+                'no_wa' => $noWa,
+                'user_id' => $user->id
             ];
+
+            /** UPLOAD FOTO */
+            $filenameFoto = $request->file_foto->hashName();
+            $dirFoto = 'upload/foto/';
+
+            $uploadFoto = Storage::disk('public_uploads')->putFileAs($dirFoto, $request->file_foto, $filenameFoto, 'public');
+
+            if ($uploadFoto) {
+                $kandidat['foto'] = $filenameFoto;
+            }
+
+            /** UPLOAD PASPOR */
+            $filenamePaspor = $request->file_paspor->hashName();
+            $dirPaspor = 'upload/paspor/';
+
+            $uploadPaspor = Storage::disk('public_uploads')->putFileAs($dirPaspor, $request->file_paspor, $filenamePaspor, 'public');
+
+            if ($uploadPaspor) {
+                $kandidat['paspor'] = $filenamePaspor;
+            }
+
+            /** UPLOAD KTP */
+            $filenameKTP = $request->file_ktp->hashName();
+            $dirKTP = 'upload/ktp/';
+
+            $uploadKTP = Storage::disk('public_uploads')->putFileAs($dirKTP, $request->file_ktp, $filenameKTP, 'public');
+
+            if ($uploadKTP) {
+                $kandidat['ktp'] = $filenameKTP;
+            }
+
+            /** UPLOAD KK */
+            $filenameKK = $request->file_kk->hashName();
+            $dirKK = 'upload/kartu-keluarga/';
+
+            $uploadKK = Storage::disk('public_uploads')->putFileAs($dirKK, $request->file_kk, $filenameKK, 'public');
+
+            if ($uploadKK) {
+                $kandidat['kk'] = $filenameKK;
+            }
     
             Kandidat::create($kandidat);
     
