@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailBayarController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\Front\JobController as FrontJobController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\KategoriJobController;
@@ -286,6 +287,7 @@ Route::put('/pengeluaran/update/{id}', [PengeluaranController::class, 'update'])
 
 
 Route::get('/home', [HomeController::class, 'index']);
+Route::get('/jobs', [FrontJobController::class, 'index'])->name('front.jobs.index');
 
 Route::prefix('ajax')->group(function () {
     Route::name('ajax.')->group(function () {

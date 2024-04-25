@@ -444,7 +444,6 @@ h6 {
 }
 
 @media (min-width: 992px) {
-
     div,
     main,
     ol,
@@ -455,7 +454,6 @@ h6 {
         scrollbar-color: var(--bs-scrollbar-color) transparent;
     }
 }
-
 .stepper.stepper-pills .stepper-item.current .stepper-icon .stepper-number {
     font-size: 1.05rem;
 }

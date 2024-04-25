@@ -90,19 +90,19 @@
                                         Step 3
                                     </h3>
                                     <div class="stepper-desc">
-                                        Pengalaman Kerja &amp; English Skills
+                                        Pengalaman Kerja
                                     </div>
                                 </div>
                             </div>
 
-                            {{-- <div class="stepper-line h-40px"></div> --}}
+                            <div class="stepper-line h-40px"></div>
                         </div>
 
-                        {{-- <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
                             <div class="stepper-wrapper d-flex align-items-center">
                                 <div class="stepper-icon w-40px h-40px">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="stepper-check bi bi-check2" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="stepper-check bi bi-check2" viewBox="0 0 16 16">
                                         <path
                                             d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
                                     </svg>
@@ -114,19 +114,19 @@
                                         Step 4
                                     </h3>
                                     <div class="stepper-desc">
-                                        Pertanyaan Screening
+                                        Ceklist Dokumen Pribadi
                                     </div>
                                 </div>
                             </div>
 
                             <div class="stepper-line h-40px"></div>
-                        </div> --}}
+                        </div>
 
-                        {{-- <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
                             <div class="stepper-wrapper d-flex align-items-center">
                                 <div class="stepper-icon w-40px h-40px">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="stepper-check bi bi-check2" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="stepper-check bi bi-check2" viewBox="0 0 16 16">
                                         <path
                                             d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
                                     </svg>
@@ -138,11 +138,35 @@
                                         Step 5
                                     </h3>
                                     <div class="stepper-desc">
-                                        English Skills
+                                        Upload Dokumen
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+
+                            <div class="stepper-line h-40px"></div>
+                        </div>
+
+                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
+                            <div class="stepper-wrapper d-flex align-items-center">
+                                <div class="stepper-icon w-40px h-40px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="stepper-check bi bi-check2" viewBox="0 0 16 16">
+                                        <path
+                                            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+                                    </svg>
+                                    <span class="stepper-number">6</span>
+                                </div>
+
+                                <div class="stepper-label">
+                                    <h3 class="stepper-title">
+                                        Step 6
+                                    </h3>
+                                    <div class="stepper-desc">
+                                        Kontak &amp; Akun
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!--end::Nav-->
                 </div>
@@ -174,7 +198,7 @@
                                     </div>
                                     <label class="form-label">Informasi Pribadi</label>
                                     <div class="fv-row mb-10">
-                                        <input type="text" class="form-control mb-5" name="nik"
+                                        <input type="text" class="form-control number-format mb-5" name="nik"
                                             placeholder="Nomor E-KTP (NIK)" value="">
                                         <input type="text" class="form-control mb-5" name="nama_lengkap"
                                             placeholder="Nama Lengkap" value="">
@@ -186,8 +210,16 @@
                                                 placeholder="Tanggal Lahir" value="">
                                             <input type="hidden" class="d-none h-tanggal-lahir" name="tanggal_lahir">
                                         </div>
-                                        <input type="text" class="form-control mb-5" name="agama"
-                                            placeholder="Agama" value="">
+                                        <select type="text" class="form-control form-select mb-5" name="agama">
+                                            <option value="">Agama</option>
+                                            <option value="1">Islam</option>
+                                            <option value="2">Kristen</option>
+                                            <option value="3">Katolik</option>
+                                            <option value="4">Hindu</option>
+                                            <option value="5">Buddha</option>
+                                            <option value="6">Khonghucu</option>
+                                            <option value="7">Lainnya</option>
+                                        </select>
                                         <div class="input-group mb-5">
                                             <input type="number" class="form-control" name="berat_badan"
                                                 placeholder="Berat Badan" value="">
@@ -211,16 +243,19 @@
                                             placeholder="Nama Lengkap Ibu" value="">
                                         <textarea class="form-control mb-5" rows="3" name="alamat" placeholder="Alamat"></textarea>
 
-                                        <select class="form-select mb-5 select2 provinsi" name="provinsi_id" aria-labelledby="provinsi">
+                                        <select class="form-select mb-5 select2 provinsi" name="provinsi_id"
+                                            aria-labelledby="provinsi">
                                             <option value="">Provinsi</option>
                                             @foreach ($provinces as $province)
                                                 <option value="{{ $province->id }}">{{ $province->nama_provinsi }}</option>
                                             @endforeach
                                         </select>
-                                        <select class="form-select mb-5 kota" name="kota_id" aria-labelledby="kota" disabled>
+                                        <select class="form-select mb-5 select2 kota" name="kota_id"
+                                            aria-labelledby="kota" disabled>
                                             <option value="">Kota/Kabupaten</option>
                                         </select>
-                                        <select class="form-select mb-5 kecamatan" name="kecamatan_id" aria-labelledby="kecamatan" disabled>
+                                        <select class="form-select mb-5 select2 kecamatan" name="kecamatan_id"
+                                            aria-labelledby="kecamatan" disabled>
                                             <option value="">Kecamatan</option>
                                         </select>
                                         <select name="referensi" id="" class="form-select reference mb-5">
@@ -243,14 +278,19 @@
                                 <div class="flex-column" data-kt-stepper-element="content">
                                     <div class="fv-row mb-10">
                                         <label class="form-label">Dokumen Perjalanan Luar Negeri</label>
-                                        <input type="text" class="form-control mb-5" name="no_paspor" placeholder="Nomor Paspor" value="">
+                                        <input type="text" class="form-control mb-5" name="no_paspor"
+                                            placeholder="Nomor Paspor" value="">
                                         <div class="input-group">
-                                            <input type="text" class="form-control tanggal-pengeluaran-paspor mb-5"placeholder="Tanggal Pengeluaran Paspor / Date of Issue">
-                                            <input type="text" class="form-control h-tanggal-pengeluaran-paspor d-none" name="tanggal_pengeluaran_paspor">
+                                            <input type="text"
+                                                class="form-control tanggal-pengeluaran-paspor mb-5"placeholder="Tanggal Pengeluaran Paspor / Date of Issue">
+                                            <input type="text" class="form-control h-tanggal-pengeluaran-paspor d-none"
+                                                name="tanggal_pengeluaran_paspor">
                                         </div>
                                         <div class="input-group">
-                                            <input type="text" class="form-control masa-kadaluarsa mb-5" placeholder="Masa Kadaluarsa Paspor / Date of Expiry" value="">
-                                            <input type="text" class="form-control h-masa-kadaluarsa d-none" name="masa_kadaluarsa">
+                                            <input type="text" class="form-control masa-kadaluarsa mb-5"
+                                                placeholder="Masa Kadaluarsa Paspor / Date of Expiry" value="">
+                                            <input type="text" class="form-control h-masa-kadaluarsa d-none"
+                                                name="masa_kadaluarsa">
                                         </div>
                                         <input type="text" class="form-control mb-5" name="kantor_paspor"
                                             placeholder="Kantor Yang Mengeluarkan Paspor / Issuing Office" value="">
@@ -277,29 +317,175 @@
                                     </div>
                                     <div class="fv-row row-list-experience"></div>
                                     <div class="fv-row mb-10 row-add-experience">
-                                        <input type="text" class="form-control mb-5 input-add-experience experience-country" placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
-                                        <input type="text" class="form-control mb-5 input-add-experience experience-company" placeholder="Nama Perusahaan atau Majikan" name="nama_perusahaan[]">
+                                        <input type="text"
+                                            class="form-control mb-5 input-add-experience experience-country"
+                                            placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
+                                        <input type="text"
+                                            class="form-control mb-5 input-add-experience experience-company"
+                                            placeholder="Nama Perusahaan atau Majikan" name="nama_perusahaan[]">
                                         <div class="input-group">
-                                            <input type="text" class="form-control datetimepicker mb-5 input-add-experience experience-start-work-date" placeholder="Tanggal mulai bekerja">
-                                            <input type="text" class="form-control datetimepicker mb-5 input-add-experience experience-end-work-date" placeholder="Tanggal selesai bekerja">
-                                            <input type="hidden" class="d-none tanggal-mulai-bekerja input-add-experience h-experience-start-work-date" name="tanggal_mulai_kerja[]">
-                                            <input type="hidden" class="d-none tanggal-selesai-bekerja input-add-experience h-experience-end-work-date" name="tanggal_selesai_kerja[]">
+                                            <input type="text"
+                                                class="form-control datetimepicker mb-5 input-add-experience experience-start-work-date"
+                                                placeholder="Tanggal mulai bekerja">
+                                            <input type="text"
+                                                class="form-control datetimepicker mb-5 input-add-experience experience-end-work-date"
+                                                placeholder="Tanggal selesai bekerja">
+                                            <input type="hidden"
+                                                class="d-none tanggal-mulai-bekerja input-add-experience h-experience-start-work-date"
+                                                name="tanggal_mulai_kerja[]">
+                                            <input type="hidden"
+                                                class="d-none tanggal-selesai-bekerja input-add-experience h-experience-end-work-date"
+                                                name="tanggal_selesai_kerja[]">
                                         </div>
-                                        <input type="text" class="form-control mb-5 input-add-experience experience-position" placeholder="Posisi" name="posisi[]">
-                                        <button type="button" class="btn btn-add-experience btn-primary w-100"><i class="fas fa-plus"></i> Tambahkan
+                                        <input type="text"
+                                            class="form-control mb-5 input-add-experience experience-position"
+                                            placeholder="Posisi" name="posisi[]">
+                                        <button type="button" class="btn btn-add-experience btn-primary w-100"><i
+                                                class="fas fa-plus"></i> Tambahkan
                                             Pengalaman Kerja Lainnya</button>
                                     </div>
                                 </div>
                                 <!--end::Step 3-->
 
-                                {{-- <!--begin::Step 4-->
+
+                                <!--begin::Step 4-->
                                 <div class="flex-column" data-kt-stepper-element="content">
+                                    <div class="fv-row mb-10">
+                                        <label class="form-label">Dokumen Persyaratan Jati Diri yang dimiliki (ceklist
+                                            untuk berkas yang dimiliki)</label>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="check_ktp" id="ktp">
+                                                    <label class="form-check-label" for="ktp" style="padding-top:2px">
+                                                        <b>KTP</b>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="check_kartu_keluarga" id="kk">
+                                                    <label class="form-check-label" for="kk" style="padding-top:2px">
+                                                        <b>Kartu Keluarga</b>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="check_akta_lahir" id="akta_lahir">
+                                                    <label class="form-check-label" for="akta_lahir" style="padding-top:2px">
+                                                        <b>Akta Lahir</b>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="check_ijazah" id="ijazah">
+                                                    <label class="form-check-label" for="ijazah" style="padding-top:2px">
+                                                        <b>Ijazah</b>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="check_buku_nikah" id="buku_nikah">
+                                                    <label class="form-check-label" for="buku_nikah" style="padding-top:2px">
+                                                        <b>Buku Nikah/Akta Cerai</b>
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="check_paspor" id="paspor">
+                                                    <label class="form-check-label" for="paspor" style="padding-top:2px">
+                                                        <b>Paspor</b>
+                                                    </label>
+                                                </div>
+                                                <div class="form-input mt-3">
+                                                    <label for=""><i>Jelaskan jika kelengkapan berkas anda terdapat perbedaan nama/alamat/tempat tanggal lahir/hilang/rusak/lainnya:</i></label>
+                                                    <textarea name="penjelasan_dokumen" id="" cols="30" rows="2" class="form-control" placeholder=""></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <!--end::Step 4--> --}}
+                                <!--end::Step 4-->
+
+
+                                <!--begin::Step 5-->
+                                <div class="flex-column" data-kt-stepper-element="content">
+                                    <div class="fv-row mb-10">
+                                        <label class="form-label">Upload Dokumen</label>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-input">
+                                                    <div class="input-group">
+                                                        <label class="input-group-text" for="foto" style="width: 150px">Foto</label>
+                                                        <input type="file" class="form-control" id="foto" name="file_foto" accept="image/*">
+                                                    </div>
+                                                    <label class="text-muted"><small>Foto formal background putih/biru/merah</small></label>
+                                                </div>
+                                                <div class="form-input mt-2">
+                                                    <div class="input-group">
+                                                        <label class="input-group-text" for="paspor" style="width: 150px">Paspor</label>
+                                                        <input type="file" class="form-control" id="paspor" name="file_paspor">
+                                                    </div>
+                                                    <label class="text-muted"><small>Jika ada</small></label>
+                                                </div>
+                                                <div class="form-input mt-2">
+                                                    <div class="input-group">
+                                                        <label class="input-group-text" for="ktp" style="width: 150px">KTP</label>
+                                                        <input type="file" class="form-control" id="ktp" name="file_ktp">
+                                                    </div>
+                                                    <label class="text-muted"><small>Mohon di Scan</small></label>
+                                                </div>
+                                                <div class="form-input mt-2">
+                                                    <div class="input-group">
+                                                        <label class="input-group-text" for="kk" style="width: 150px">Kartu Keluarga</label>
+                                                        <input type="file" class="form-control" id="kk" name="file_kk">
+                                                    </div>
+                                                    <label class="text-muted"><small>Mohon di Scan</small></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Step 5-->
+
+
+                                <!--begin::Step 6-->
+                                <div class="flex-column" data-kt-stepper-element="content">
+                                    <div class="fv-row mb-10">
+                                        <label class="form-label">Kontak &amp; Akun</label>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-input mb-3">
+                                                    <input type="email" class="form-control" placeholder="Email" name="email">
+                                                </div>
+                                                <div class="form-input mb-3">
+                                                    <input type="text" class="form-control phone-number phone-number" name="no_hp" placeholder="Nomor HP Aktif">
+                                                    <div class="pt-3 pl-2 pb-0">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" name="check_whatsapp_number" id="check_whatsapp_number">
+                                                            <label class="form-check-label" for="check_whatsapp_number" style="padding-top:2px">Nomor whatsapp sama dengan nomor handphone aktif</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-input mb-3">
+                                                    <input type="text" class="form-control phone-number whatsapp-number" name="no_wa" placeholder="Nomor Whatsapp Aktif">
+                                                </div>
+                                                <div class="form-input mb-3">
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" placeholder="Password">
+                                                        <button class="btn btn-show-password text-white" name="password" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
+                                                    </div>
+                                                </div>
+                                                <div class="form-input mb-3">
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" name="" placeholder="Konfirmasi Password">
+                                                        <button class="btn btn-show-password text-white" name="password_confirmation" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end::Step 6-->
                             </div>
                         </form>
                         <div class="me-2">
-                            <button type="button" class="btn btn-light btn-prev float-start mt-5 btn-active-light-primary"
+                            <button type="button"
+                                class="btn btn-light btn-prev float-start mt-5 btn-active-light-primary"
                                 data-kt-stepper-action="previous">
                                 Back
                             </button>
@@ -320,105 +506,130 @@
 
 @push('css')
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/stepper.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css"
+        integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
+        .Element-nav-items .navbar {
+            z-index: 999999;
+        }
+
         .stepper.stepper-pills.stepper-column .stepper-line {
             position: unset !important;
             transform: unset !important;
+        }
+
+        .select2-container {
+            margin-bottom: 1.25rem
+        }
+
+        .select2-container--bootstrap .select2-selection--single .select2-selection__arrow b {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2378829D' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+            background-color: transparent;
+            background-size: contain;
+            border: none !important;
+            height: 12px !important;
+            width: 12px !important;
+            margin: auto !important;
+            top: 16px !important;
+            left: -13px !important;
+        }
+
+        .select2-container--open .select2-selection__arrow b {
+            transform: rotate(180deg) !important;
+        }
+
+        .select2-container--bootstrap.select2-container--focus .select2-selection,
+        .select2-container--bootstrap.select2-container--open .select2-selection {
+            -webkit-box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+            box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+            border-color: #86b7fe;
+        }
+
+        .select2-container--bootstrap .select2-selection--single {
+            height: 43.83px !important;
+            line-height: 43.83px !important;
+        }
+
+        .select2-container--bootstrap .select2-selection--single .select2-selection__rendered {
+            color: var(--bs-gray-700);
+            font-weight: 500;
+        }
+
+        .select2-container--bootstrap .select2-selection {
+            -webkit-box-shadow: usnet;
+            box-shadow: unset;
+            background-color: #fff;
+            border: 1px solid var(--bs-gray-300);
+            ;
+            border-radius: .475rem;
+            color: var(--bs-gray-700);
+        }
+
+        .datepicker {
+            font-size: 14.5px;
+        }
+
+        .datepicker table tr td.active,
+        .datepicker table tr td.active.active {
+            background-image: unset;
+            background-color: #04f;
+        }
+
+        .btn-show-password {
+            background-color: var(--bs-primaray)
         }
     </style>
 @endpush
 
 @push('script')
+    @include('vendors.cleave-js')
     <script src="{{ asset('frontend') }}/js/validate.js"></script>
     <script src="{{ asset('frontend') }}/js/scripts.bundle.js"></script>
     <script src="{{ asset('frontend') }}/js/core.js"></script>
     <script type="text/javascript" src="{{ asset('frontend') }}/js/moment-with-locales.min.js"></script>
-    <script type="text/javascript" src="{{ asset('frontend') }}/js/bootstrap-datetimepicker.min.js"></script>
+    {{-- <script type="text/javascript" src="{{ asset('frontend') }}/js/bootstrap-datetimepicker.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"
+        integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{ asset('frontend') }}/js/moment-duration-format.min.js"
         integrity="sha512-ej3mVbjyGQoZGS3JkES4ewdpjD8UBxHRGW+MN5j7lg3aGQ0k170sFCj5QJVCFghZRCio7DEmyi+8/HAwmwWWiA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script>
-        $( document ).ready(function() {
-            // $(".select2").select2({
-            //     theme: "bootstrap",
-            // });
-        })
-        let tanggalLahir = $('.tanggal-lahir').datetimepicker({
-            format: 'DD MMMM YYYY',
-            locale: 'id',
-            icons: {
-                time: "fa fa-clock-o",
-                date: "fa fa-calendar",
-                up: "fa fa-arrow-up",
-                down: "fa fa-arrow-down",
-                previous: "fa fa-chevron-left",
-                next: "fa fa-chevron-right",
-                today: "fa fa-clock-o",
-                clear: "fa fa-trash-o"
-            }
-        })
-        
-        let tanggalPengeluaranPaspor = $('.tanggal-pengeluaran-paspor').datetimepicker({
-            format: 'DD MMMM YYYY',
-            locale: 'id',
-            icons: {
-                time: "fa fa-clock-o",
-                date: "fa fa-calendar",
-                up: "fa fa-arrow-up",
-                down: "fa fa-arrow-down",
-                previous: "fa fa-chevron-left",
-                next: "fa fa-chevron-right",
-                today: "fa fa-clock-o",
-                clear: "fa fa-trash-o"
-            }
+        $(document).ready(function() {
+            $(".select2").select2({
+                theme: "bootstrap"
+            });
         })
 
-        let masaKadaluarsa = $('.masa-kadaluarsa').datetimepicker({
-            format: 'DD MMMM YYYY',
-            locale: 'id',
-            icons: {
-                time: "fa fa-clock-o",
-                date: "fa fa-calendar",
-                up: "fa fa-arrow-up",
-                down: "fa fa-arrow-down",
-                previous: "fa fa-chevron-left",
-                next: "fa fa-chevron-right",
-                today: "fa fa-clock-o",
-                clear: "fa fa-trash-o"
-            }
-        })
+        let datepickerOption = {
+            format: "dd MM yyyy",
+            autoclose: true
+        }
 
-        let experienceStartWorkDate = $('.experience-start-work-date').datetimepicker({
-            format: 'DD MMMM YYYY',
-            locale: 'id',
-            icons: {
-                time: "fa fa-clock-o",
-                date: "fa fa-calendar",
-                up: "fa fa-arrow-up",
-                down: "fa fa-arrow-down",
-                previous: "fa fa-chevron-left",
-                next: "fa fa-chevron-right",
-                today: "fa fa-clock-o",
-                clear: "fa fa-trash-o"
-            }
-        })
+        $('.tanggal-lahir').datepicker(datepickerOption).on('changeDate', function(e) {
+            $('.h-tanggal-lahir').val(e.format(0, "yyyy-mm-dd"))
+        });
 
-        let experienceEndWorkDate = $('.experience-end-work-date').datetimepicker({
-            format: 'DD MMMM YYYY',
-            locale: 'id',
-            icons: {
-                time: "fa fa-clock-o",
-                date: "fa fa-calendar",
-                up: "fa fa-arrow-up",
-                down: "fa fa-arrow-down",
-                previous: "fa fa-chevron-left",
-                next: "fa fa-chevron-right",
-                today: "fa fa-clock-o",
-                clear: "fa fa-trash-o"
-            }
-        })
+        $('.tanggal-pengeluaran-paspor').datepicker(datepickerOption).on('changeDate', function(e) {
+            $('.h-tanggal-pengeluaran-paspor').val(e.format(0, "yyyy-mm-dd"))
+        });
+
+        $('.masa-kadaluarsa').datepicker(datepickerOption).on('changeDate', function(e) {
+            $('.h-masa-kadaluarsa').val(e.format(0, "yyyy-mm-dd"))
+        });
+
+        $('.experience-start-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
+            $('.h-experience-start-work-date').val(e.format(0, "yyyy-mm-dd"))
+        });
+
+        $('.experience-end-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
+            $('.h-experience-end-work-date').val(e.format(0, "yyyy-mm-dd"))
+        });
 
         var element = document.querySelector("#kt_stepper_example_vertical");
 
@@ -433,41 +644,10 @@
             stepper.goPrevious(); // go previous step
         });
 
-        tanggalLahir.on('dp.change', function(e) {
-            let selectDate = e.date.format('YYYY-MM-DD')
-
-            $('.h-tanggal-lahir').val(selectDate)
-            calculateUsia(selectDate)
-        })
-
-        tanggalPengeluaranPaspor.on('dp.change', function(e) {
-            let selectDate = e.date.format('YYYY-MM-DD')
-
-            $('.h-tanggal-pengeluaran-paspor').val(selectDate)
-        })
-
-        masaKadaluarsa.on('dp.change', function(e) {
-            let selectDate = e.date.format('YYYY-MM-DD')
-
-            $('.h-masa-kadaluarsa').val(selectDate)
-        })
-
-        experienceStartWorkDate.on('dp.change', function(e) {
-            let selectDate = e.date.format('YYYY-MM-DD')
-
-            $('.h-experience-start-work-date').val(selectDate)
-        })
-
-        experienceEndWorkDate.on('dp.change', function(e) {
-            let selectDate = e.date.format('YYYY-MM-DD')
-
-            $('.h-experience-end-work-date').val(selectDate)
-        })
-
-        function calculateUsia(birthdate) {
-            let diff = moment(birthdate).diff(moment(), 'years');
-            $('.usia').val(diff.toString().replace("-", ""))
-        }
+        // function calculateUsia(birthdate) {
+        //     let diff = moment(birthdate).diff(moment(), 'years');
+        //     $('.usia').val(diff.toString().replace("-", ""))
+        // }
 
         $('.provinsi').on('change', function() {
             let provinceId = $(this).val()
@@ -476,14 +656,14 @@
                 $.ajax({
                     url: `{{ route('ajax.city') }}/${provinceId}`,
                     type: 'get',
-                    beforeSend: function(){
+                    beforeSend: function() {
                         $('.kota').prop('disabled', true).val('').change()
                         $('.kecamatan').prop('disabled', true).val('').change()
                     },
-                    success: function(response){
+                    success: function(response) {
                         let cities = '<option value="">Kota/Kabupaten</option>'
 
-                        $.each(response.data, function(i, item){
+                        $.each(response.data, function(i, item) {
                             cities += `<option value="${item.id}">${item.nama_kota}</option>`
                         })
 
@@ -503,14 +683,15 @@
                 $.ajax({
                     url: `{{ route('ajax.subdistrict') }}/${cityId}`,
                     type: 'get',
-                    beforeSend: function(){
+                    beforeSend: function() {
                         $('.kecamatan').prop('disabled', true).val('').change()
                     },
-                    success: function(response){
+                    success: function(response) {
                         let subdistrict = '<option value="">Kecamatan</option>'
 
-                        $.each(response.data, function(i, item){
-                            subdistrict += `<option value="${item.id}">${item.nama_kecamatan}</option>`
+                        $.each(response.data, function(i, item) {
+                            subdistrict +=
+                                `<option value="${item.id}">${item.nama_kecamatan}</option>`
                         })
 
                         $('.kecamatan').html(subdistrict).prop('disabled', false)
@@ -521,7 +702,7 @@
             }
         })
 
-        $('.reference').on('change', function(){
+        $('.reference').on('change', function() {
             $('.sponsor').addClass('d-none')
 
             if ($(this).val() === '6') {
@@ -529,13 +710,15 @@
             }
         })
 
-        $('.btn-add-experience').on('click', function(){
+        $('.btn-add-experience').on('click', function() {
             const el = $('.row-add-experience')
             const cloneEl = el.clone()
 
-            cloneEl.find('.btn-primary').removeClass('btn-primary').addClass('btn-danger btn-remove-experience').html('<i class="fas fa-times"></i> Hapus Pengalaman Kerja');
+            cloneEl.find('.btn-primary').removeClass('btn-primary').addClass('btn-danger btn-remove-experience')
+                .html('<i class="fas fa-times"></i> Hapus Pengalaman Kerja');
             cloneEl.find('.input-add-experience').removeClass('input-add-experience')
-            cloneEl.removeClass('row-add-experience fv-row mb-10').addClass('list-experience list-experience- mb-10')
+            cloneEl.removeClass('row-add-experience fv-row mb-10').addClass(
+                'list-experience list-experience- mb-10')
             cloneEl.append('<hr>')
             cloneEl.appendTo('.row-list-experience')
 
@@ -546,18 +729,52 @@
             $(this).closest('div.list-experience').remove()
         })
 
-        $('.btn-submit').on('click', function(){
+        $('#check_whatsapp_number').on('click', function(){
             const t = $(this)
+
+            if (t.is(':checked')) {
+                $('.whatsapp-number').prop('disabled', true)
+                $('.whatsapp-number').val($('.phone-number').val())
+            } else {
+                $('.whatsapp-number').prop('disabled', false)
+            }
+        })
+
+        $('.phone-number').on('keyup keydown change', function(){
+            if ($('#check_whatsapp_number').is(':checked')) {
+                $('.whatsapp-number').val($(this).val())
+            }
+        })
+
+        $('.btn-show-password').on('click', function(){
+            const t = $(this)
+
+            if (t.closest('div').find('input').attr('type') === 'password') {
+                t.closest('div').find('input').attr('type', 'text')
+                t.find('i').removeClass('fa-eye-slash').addClass('fa-eye')
+            } else {
+                t.closest('div').find('input').attr('type', 'password')
+                t.find('i').removeClass('fa-eye').addClass('fa-eye-slash')
+            }
+        })
+
+        $('.btn-submit').on('click', function() {
+            const t = $(this)
+            var formData = new FormData($('.form-register')[0]);
 
             $.ajax({
                 url: `{{ route('register') }}/`,
                 type: 'POST',
-                data: $('.form-register').serialize(),
-                beforeSend: function(){
-                    t.prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting')
+                data: formData,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    t.prop('disabled', true).html(
+                        '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting'
+                    )
                     $('.btn-prev').prop('disabled', true)
                 },
-                success: function(response){
+                success: function(response) {
                     if (response.success) {
                         location.href = '{{ route('register.complete') }}'
                     }
