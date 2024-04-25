@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `alasan` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_psi.alasan: ~0 rows (approximately)
+-- Dumping data for table db_psi.alasan: ~4 rows (approximately)
 INSERT INTO `alasan` (`id`, `nama_alasan`, `keterangan`, `urutan`, `gambar`, `created_at`, `updated_at`) VALUES
 	(3, 'Pasti Jaminan', 'Lorem ipsum dolor sit amet consectetur. Ullamcorper tellus amet duis enim dignissim neque nisi sed.', '1', '1713756875_image-character-1.png', '2024-04-21 20:34:35', '2024-04-21 20:34:35'),
 	(4, 'Pasti Transparan', 'Lorem ipsum dolor sit amet consectetur. Ullamcorper tellus amet duis enim dignissim neque nisi sed.', '2', '1713756899_image-character-2.png', '2024-04-21 20:34:59', '2024-04-21 20:34:59'),
@@ -201,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `job` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_psi.job: ~1 rows (approximately)
+-- Dumping data for table db_psi.job: ~2 rows (approximately)
 INSERT INTO `job` (`id`, `nama_job`, `nama_perusahaan`, `mitra`, `tanggal_tutup`, `gaji`, `jenis_pembayaran`, `estimasi_minimal`, `estimasi_maksimal`, `gaji_diterima`, `tanggal_kurs`, `nominal_kurs`, `negara_id`, `nama_negara`, `kategori_job_id`, `nama_kategori_job`, `kontrak_kerja`, `jam_kerja`, `hari_kerja`, `cuti_kerja`, `masa_percobaan`, `mata_uang_gaji`, `kerja_lembur`, `bahasa`, `deskripsi`, `jenis_kelamin`, `tinggi_badan`, `berat_badan`, `rentang_usia`, `level_bahasa`, `pengalaman_kerja`, `paragraf_galeri`, `link_video`, `info_lain`, `disclaimer`, `created_at`, `updated_at`) VALUES
 	(1, 'Pelayan Restoran', 'Marriot Hotel', 'Mark Z', NULL, '2000000', NULL, NULL, NULL, NULL, NULL, NULL, 1, 'Rumania', 1, 'Manufacturing', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 	(2, 'Bartender', 'Coffe Shop Indi', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 'Slovakia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-04-21 19:23:21', '2024-04-21 19:23:21');
@@ -315,7 +315,7 @@ CREATE TABLE IF NOT EXISTS `log_histori` (
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=928 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
--- Dumping data for table db_psi.log_histori: ~1 rows (approximately)
+-- Dumping data for table db_psi.log_histori: ~11 rows (approximately)
 INSERT INTO `log_histori` (`ID`, `Tabel_Asal`, `ID_Entitas`, `Aksi`, `Waktu`, `Pengguna`, `Data_Lama`, `Data_Baru`, `updated_at`, `created_at`) VALUES
 	(917, 'Job', 36, 'Create', '2024-04-21 19:23:22', NULL, NULL, '{"nama_job":"Bartender","nama_perusahaan":"Coffe Shop Indi","negara_id":"2","nama_negara":"Slovakia","updated_at":"2024-04-22T02:23:21.000000Z","created_at":"2024-04-22T02:23:21.000000Z","id":36}', '2024-04-21 19:23:22', '2024-04-21 19:23:22'),
 	(918, 'Slider', 11, 'Create', '2024-04-21 20:16:15', NULL, NULL, '{"nama_slider":"Siap bantu proses kamu untuk kerja di luar negeri","keterangan":"Kami adalah Perusahaan yang memiliki lisensi resmi P3MI (Penempatan Pekerja Migran Indonesia) dibawah naungan Kementrian Tenaga Kerja","urutan":"2","gambar":"1713755774_image-header.png","updated_at":"2024-04-22T03:16:14.000000Z","created_at":"2024-04-22T03:16:14.000000Z","id":11}', '2024-04-21 20:16:15', '2024-04-21 20:16:15'),
@@ -429,8 +429,6 @@ CREATE TABLE IF NOT EXISTS `pendaftaran` (
   `nama_kategori_job` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nik` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nama_lengkap` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tempat_lahir` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tanggal_lahir` DATE COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `alasan_reject` text COLLATE utf8mb4_unicode_ci,
   `blacklist` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -564,7 +562,7 @@ CREATE TABLE IF NOT EXISTS `review` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table db_psi.review: ~1 rows (approximately)
+-- Dumping data for table db_psi.review: ~2 rows (approximately)
 INSERT INTO `review` (`id`, `nama_review`, `jabatan`, `keterangan`, `urutan`, `gambar`, `created_at`, `updated_at`) VALUES
 	(5, '~ Hellen Jummy -', NULL, 'Lacus vestibulum ultricies mi risus, duis non, volutpat nullam non. Magna\r\n                                    congue nisi maecenas elit aliquet eu sed consectetur. Vitae quis cras vitae\r\n                                    praesent morbi adipiscing purus consectetur mi', '3', '1713758901_image.png', '2024-04-21 21:08:21', '2024-04-21 21:08:21'),
 	(6, '~ Julaekha Aparta-', NULL, 'Lacus vestibulum ultricies mi risus, duis non, volutpat nullam non. Magna\r\n                                    congue nisi maecenas elit aliquet eu sed consectetur. Vitae quis cras vitae\r\n                                    praesent morbi adipiscing purus consectetur mi.', '2', '1713759131_image.png', '2024-04-21 21:12:11', '2024-04-21 21:12:11');
