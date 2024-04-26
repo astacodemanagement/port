@@ -4,7 +4,7 @@
     <script>
         initPhoneNumber()
         initPriceFormat()
-        initNumberFormat()
+        initIDCardFormat()
         
         function initPhoneNumber(){
             $('.phone-number').toArray().forEach(function(field){
@@ -24,13 +24,13 @@
             })
         }
 
-        function initNumberFormat(){
-            $('.number-format').toArray().forEach(function(field){
+        function initIDCardFormat(){
+            $('.id-card-format').toArray().forEach(function(field){
                 new Cleave(field, {
-                    // numeral: true,
-                    // delimiter: '',
-                    // numeralPositiveOnly: true,
-                    blocks: [16],
+                    numericOnly: true,
+                    delimiter: '',
+                    prefix: '',
+                    blocks: [16]
                 })
             })
         }

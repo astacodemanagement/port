@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -72,9 +73,21 @@ class RegisterController extends Controller
         return redirect(route('register'));
     }
 
+    public function stepValidation(Request $request)
+    {
+        if ($rules = $this->rules($request->step)) {
+            $request->validate($rules, $this->messages(), $this->attributes());
+        }
+
+        return response()->json(['success' => true]);
+    }
+
     public function register(Request $request)
     {
-            
+        $request->merge(['no_hp' => str_replace(' ', '', $request->no_hp)]);
+        $request->merge(['no_wa' => str_replace(' ', '', $request->no_hp)]);
+        $request->validate($this->rules(), $this->messages(), $this->attributes());
+
         $negara = Negara::find($request->negara_id);
         $kategoriJob = KategoriJob::find($request->kategori_job_id);
         $provinsi = Provinsi::find($request->provinsi_id);
@@ -136,9 +149,9 @@ class RegisterController extends Controller
                 'tanggal_lahir' => $request->tanggal_lahir,
                 'status' => 'Belum Verifikasi(Pending)'
             ];
-    
+
             $pendaftaran = Pendaftaran::create($pendaftaran);
-    
+
             /** INSERT KANDIDAT */
             $kandidat = [
                 'pendaftaran_id' => $pendaftaran->id,
@@ -218,20 +231,20 @@ class RegisterController extends Controller
             if ($uploadKK) {
                 $kandidat['kk'] = $filenameKK;
             }
-    
+
             Kandidat::create($kandidat);
-    
+
             /** INSERT PENGALAMAN KERJA */
             $pengalamanKerja = [];
-    
-            for($i = 0; $i < count($request->negara_tempat_kerja); $i++) {
+
+            for ($i = 0; $i < count($request->negara_tempat_kerja); $i++) {
                 $negaraTempatKerja = isset($request->negara_tempat_kerja[$i]) ? $request->negara_tempat_kerja[$i] : null;
                 $namaPerusahaan = isset($request->nama_perusahaan[$i]) ? $request->nama_perusahaan[$i] : null;
                 $tanggalMulaiKerja = isset($request->tanggal_mulai_kerja[$i]) ? $request->tanggal_mulai_kerja[$i] : null;
                 $tanggalSelesaiKerja = isset($request->tanggal_selesai_kerja[$i]) ? $request->tanggal_selesai_kerja[$i] : null;
                 $posisi = isset($request->posisi[$i]) ? $request->posisi[$i] : null;
-    
-                $pengalamanKerja [] = [
+
+                $pengalamanKerja[] = [
                     'pendaftaran_id' => $pendaftaran->id,
                     'negara_tempat_kerja' => $negaraTempatKerja,
                     'nama_perusahaan' => $namaPerusahaan,
@@ -242,7 +255,7 @@ class RegisterController extends Controller
                     'updated_at' => now()
                 ];
             }
-    
+
             if (count($pengalamanKerja) > 0) {
                 PengalamanKerja::insert($pengalamanKerja);
             }
@@ -287,5 +300,138 @@ class RegisterController extends Controller
         //     'email' => $data['email'],
         //     'password' => Hash::make($data['password']),
         // ]);
+    }
+
+    private function rules($step = null)
+    {
+        $rules = [
+            1 => [
+                'negara_id' => 'required|numeric',
+                'kategori_job_id' => 'required|numeric',
+                'nik' => 'required|numeric|max_digits:16|min_digits:16',
+                'nama_lengkap' => 'required',
+                'tempat_lahir' => 'required',
+                'tanggal_lahir' => 'required|date_format:Y-m-d',
+                'agama' => 'required|numeric',
+                'berat_badan' => 'required|numeric',
+                'tinggi_badan' => 'required|numeric',
+                'jenis_kelamin' => 'required|in:P,W',
+                'status_kawin' => 'required',
+                'nama_lengkap_ayah' => 'required',
+                'nama_lengkap_ibu' => 'required',
+                'alamat' => 'required|min:5',
+                'provinsi_id' => 'required|numeric',
+                'kota_id' => 'required|numeric',
+                'kecamatan_id' => 'required|numeric',
+                'referensi' => 'required|numeric',
+                'nama_referensi' => 'required_if:referensi,6',
+            ],
+            2 => [
+                'no_paspor' => 'required|numeric|max_digits:16|min_digits:16',
+                'tanggal_pengeluaran_paspor' => 'required|date_format:Y-m-d',
+                'masa_kadaluarsa' => 'required|date_format:Y-m-d',
+                'kantor_paspor' => 'required|min:3',
+                'kondisi_paspor' => 'required|numeric'
+            ],
+            3 => [
+                'negara_tempat_kerja.*' => 'required|min:3',
+                'nama_perusahaan.*' => 'required|min:3',
+                'tanggal_mulai_kerja.*' => 'required|date_format:Y-m-d',
+                'tanggal_selesai_kerja.*' => 'required|date_format:Y-m-d',
+                'posisi.*' => 'required|min:2',
+            ],
+            5 => [
+                'file_foto' => 'required|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                'file_paspor' => 'nullable|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                'file_ktp' => 'required|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                'file_kk' => 'required|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+            ],
+            6 => [
+                'email' => 'required|email|unique:users,email',
+                'no_hp' => 'required|numeric',
+                'no_wa' => 'required_if:check_whatsapp_number,on',
+                'password' =>  ['required', 'confirmed', Password::min(6)]
+            ]
+        ];
+
+        if ($step) {
+            return isset($rules[$step]) ? $rules[$step] : null;
+        }
+
+        $mergeRules = [];
+
+        foreach ($rules as $rule) {
+            foreach ($rule as $k => $v) {
+                $mergeRules[$k] = $v;
+            }
+        }
+
+        return $mergeRules;
+    }
+
+    private function attributes()
+    {
+        return [
+            'negara_id' => 'Negara yang diminati',
+            'kategori_job_id' => 'Kategori yang diminati',
+            'nik' => 'Nomor NIK',
+            'nama_lengkap' => 'Nama lengkap',
+            'tempat_lahir' => 'Tempat lahir',
+            'tanggal_lahir' => 'Tanggal lahir',
+            'agama' => 'Agama',
+            'berat_badan' => 'Berat badan',
+            'tinggi_badan' => 'Tinggi badan',
+            'jenis_kelamin' => 'Jenis kelamin',
+            'status_kawin' => 'Status kawin',
+            'nama_lengkap_ayah' => 'Nama lengkap ayah',
+            'nama_lengkap_ibu' => 'Nama lengkap ibu',
+            'alamat' => 'Alamat',
+            'provinsi_id' => 'Provinsi',
+            'kota_id' => 'Kota',
+            'kecamatan_id' => 'Kecamatan',
+            'referensi' => 'Referensi',
+            'nama_referensi' => 'Nama referensi',
+            'no_paspor' => 'Nomor paspor',
+            'tanggal_pengeluaran_paspor' => 'Tanggal pengeluaran paspor',
+            'masa_kadaluarsa' => 'Masa kadaluarsa',
+            'kantor_paspor' => 'Kantor yang mengeluarkan paspor',
+            'kondisi_paspor' => 'Kondisi paspor',
+            'negara_tempat_kerja.*' => 'Negara tempat bekerja',
+            'nama_perusahaan.*' => 'Nama perusahaan atau majikan',
+            'tanggal_mulai_kerja.*' => 'Tanggal mulai kerja',
+            'tanggal_selesai_kerja.*' => 'Tanggal selesai kerja',
+            'posisi.*' => 'Posisi',
+            'file_foto' => 'Foto',
+            'file_paspor' => 'Paspor',
+            'file_ktp' => 'KTP',
+            'file_kk' => 'Kartu keluarga'
+        ];
+    }
+
+    private function messages()
+    {
+        return  [
+            'required' => ':attribute belum diisi',
+            'negara_id.required' => ':attribute belum dipilih',
+            'kategori_job_id.required' => ':attribute belum dipilih',
+            'agama.required' => ':attribute belum dipilih',
+            'jenis_kelamin.required' => ':attribute belum dipilih',
+            'status_kawin.required' => ':attribute belum dipilih',
+            'provinsi_id.required' => ':attribute belum dipilih',
+            'kota_id.required' => ':attribute belum dipilih',
+            'kecamatan_id.required' => ':attribute belum dipilih',
+            'referensi.required' => ':attribute belum dipilih',
+            'tanggal_lahir.date_format' => ':attribute tidak valid',
+            'in' => ':attribute tidak valid',
+            'min_digits' => ':attribute minimal :min digit',
+            'max_digits' => ':attribute maksimal :max digit',
+            'min' => ':attribute minimal :min karakter',
+            'max' => ':attribute maksimal :max karakter',
+            'nama_referensi.required_if' => ':attribute belum diisi',
+            'kondisi_paspor.required' => ':attribute belum dipilih',
+            'file_foto.required' => 'File :attribute belum dipilih',
+            'file_ktp.required' => 'File :attribute belum dipilih',
+            'file_kk.required' => 'File :attribute belum dipilih',
+        ];
     }
 }

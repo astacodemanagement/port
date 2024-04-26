@@ -298,5 +298,6 @@ Route::prefix('ajax')->group(function () {
 });
 
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
+Route::post('register/step/validation', [RegisterController::class, 'stepValidation'])->name('register.step.validation');
 
 Auth::routes();

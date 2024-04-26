@@ -179,96 +179,120 @@
 
                                 <!--begin::Step 1-->
                                 <div class="flex-column current" data-kt-stepper-element="content">
+                                    <label class="form-label">Minat Pekerjaan</label>
                                     <div class="fv-row mb-10">
-                                        <label class="form-label">Minat Pekerjaan</label>
-                                        <select class="form-select mb-5" name="negara_id" aria-label="dropdownNegara">
-                                            <option value="">Negara Yang Diminat</option>
-                                            @foreach ($countries as $country)
-                                                <option value="{{ $country->id }}">{{ $country->nama_negara }}</option>
-                                            @endforeach
-                                        </select>
-                                        <select class="form-select" name="kategori_job_id"
-                                            aria-labelledby="dropdownKategori">
-                                            <option value="">Kategori Yang Diminati</option>
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->nama_kategori_job }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        <div class="form-group mb-5">
+                                            <select class="form-select" name="negara_id" aria-label="dropdownNegara">
+                                                <option value="">Negara Yang Diminat</option>
+                                                @foreach ($countries as $country)
+                                                    <option value="{{ $country->id }}">{{ $country->nama_negara }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select class="form-select" name="kategori_job_id"
+                                                aria-labelledby="dropdownKategori">
+                                                <option value="">Kategori Yang Diminati</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->nama_kategori_job }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
+
                                     <label class="form-label">Informasi Pribadi</label>
                                     <div class="fv-row mb-10">
-                                        <input type="text" class="form-control number-format mb-5" name="nik"
-                                            placeholder="Nomor E-KTP (NIK)" value="">
-                                        <input type="text" class="form-control mb-5" name="nama_lengkap"
-                                            placeholder="Nama Lengkap" value="">
-
-                                        <div class="input-group">
-                                            <input type="text" class="form-control mb-5" name="tempat_lahir"
-                                                placeholder="Tempat Lahir" value="">
-                                            <input type="text" class="form-control tanggal-lahir mb-5"
-                                                placeholder="Tanggal Lahir" value="">
-                                            <input type="hidden" class="d-none h-tanggal-lahir" name="tanggal_lahir">
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control id-card-format" name="nik" placeholder="Nomor E-KTP (NIK)" value="">
                                         </div>
-                                        <select type="text" class="form-control form-select mb-5" name="agama">
-                                            <option value="">Agama</option>
-                                            <option value="1">Islam</option>
-                                            <option value="2">Kristen</option>
-                                            <option value="3">Katolik</option>
-                                            <option value="4">Hindu</option>
-                                            <option value="5">Buddha</option>
-                                            <option value="6">Khonghucu</option>
-                                            <option value="7">Lainnya</option>
-                                        </select>
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap" value="">
+                                        </div>
+
+                                        <div class="form-group mb-5">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir" value="">
+                                                <input type="text" class="form-control tanggal-lahir" placeholder="Tanggal Lahir" value="">
+                                                <input type="hidden" class="d-none h-tanggal-lahir" name="tanggal_lahir">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-5">
+                                            <select type="text" class="form-control form-select" name="agama">
+                                                <option value="">Agama</option>
+                                                <option value="1">Islam</option>
+                                                <option value="2">Kristen</option>
+                                                <option value="3">Katolik</option>
+                                                <option value="4">Hindu</option>
+                                                <option value="5">Buddha</option>
+                                                <option value="6">Khonghucu</option>
+                                                <option value="7">Lainnya</option>
+                                            </select>
+                                        </div>
+
                                         <div class="input-group mb-5">
-                                            <input type="number" class="form-control" name="berat_badan"
-                                                placeholder="Berat Badan" value="">
-                                            <input type="number" class="form-control" name="tinggi_badan"
-                                                placeholder="Tinggi Badan" value="">
+                                            <input type="number" class="form-control" name="berat_badan" min="0" placeholder="Berat Badan" value="">
+                                            <input type="number" class="form-control" name="tinggi_badan" min="0" placeholder="Tinggi Badan" value="">
                                         </div>
-                                        <select name="jenis_kelamin" id="" class="form-select mb-5">
-                                            <option value="">Jenis Kelamin</option>
-                                            <option value="P">Pria</option>
-                                            <option value="W">Wanita</option>
-                                        </select>
-                                        <select name="status_kawin" id="" class="form-select mb-5">
-                                            <option value="">Status Kawin</option>
-                                            <option value="1">Belum Menikah</option>
-                                            <option value="2">Menikah</option>
-                                            <option value="3">Cerai</option>
-                                        </select>
-                                        <input type="text" class="form-control mb-5" name="nama_lengkap_ayah"
-                                            placeholder="Nama Lengkap Ayah" value="">
-                                        <input type="text" class="form-control mb-5" name="nama_lengkap_ibu"
-                                            placeholder="Nama Lengkap Ibu" value="">
-                                        <textarea class="form-control mb-5" rows="3" name="alamat" placeholder="Alamat"></textarea>
-
-                                        <select class="form-select mb-5 select2 provinsi" name="provinsi_id"
-                                            aria-labelledby="provinsi">
-                                            <option value="">Provinsi</option>
-                                            @foreach ($provinces as $province)
-                                                <option value="{{ $province->id }}">{{ $province->nama_provinsi }}</option>
-                                            @endforeach
-                                        </select>
-                                        <select class="form-select mb-5 select2 kota" name="kota_id"
-                                            aria-labelledby="kota" disabled>
-                                            <option value="">Kota/Kabupaten</option>
-                                        </select>
-                                        <select class="form-select mb-5 select2 kecamatan" name="kecamatan_id"
-                                            aria-labelledby="kecamatan" disabled>
-                                            <option value="">Kecamatan</option>
-                                        </select>
-                                        <select name="referensi" id="" class="form-select reference mb-5">
-                                            <option value="">Dari mana kamu mengetahui kami ?</option>
-                                            <option value="1">Google</option>
-                                            <option value="2">Instagram</option>
-                                            <option value="3">Facebook</option>
-                                            <option value="4">Tiktok</option>
-                                            <option value="5">Teman/Saudara/Keluarga</option>
-                                            <option value="6">Sponsor</option>
-                                        </select>
-                                        <input type="text" class="form-control sponsor d-none" name="nama_referensi"
-                                            placeholder="Siapa nama Sponsor kamu ?" value="">
+                                        <div class="form-group mb-5">
+                                            <select name="jenis_kelamin" class="form-select">
+                                                <option value="">Jenis Kelamin</option>
+                                                <option value="P">Pria</option>
+                                                <option value="W">Wanita</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <select name="status_kawin" class="form-select">
+                                                <option value="">Status Kawin</option>
+                                                <option value="1">Belum Menikah</option>
+                                                <option value="2">Menikah</option>
+                                                <option value="3">Cerai</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control" name="nama_lengkap_ayah" placeholder="Nama Lengkap Ayah" value="">
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control" name="nama_lengkap_ibu"  placeholder="Nama Lengkap Ibu" value="">
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <textarea class="form-control" rows="3" name="alamat" placeholder="Alamat"></textarea>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <select class="form-select select2 provinsi" name="provinsi_id" aria-labelledby="provinsi">
+                                                <option value="">Provinsi</option>
+                                                @foreach ($provinces as $province)
+                                                    <option value="{{ $province->id }}">{{ $province->nama_provinsi }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <select class="form-select select2 kota" name="kota_id"
+                                                aria-labelledby="kota" disabled>
+                                                <option value="">Kota/Kabupaten</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <select class="form-select select2 kecamatan" name="kecamatan_id" aria-labelledby="kecamatan" disabled>
+                                                <option value="">Kecamatan</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <select name="referensi" class="form-select reference">
+                                                <option value="">Dari mana kamu mengetahui kami ?</option>
+                                                <option value="1">Google</option>
+                                                <option value="2">Instagram</option>
+                                                <option value="3">Facebook</option>
+                                                <option value="4">Tiktok</option>
+                                                <option value="5">Teman/Saudara/Keluarga</option>
+                                                <option value="6">Sponsor</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control sponsor d-none" name="nama_referensi" placeholder="Siapa nama Sponsor kamu ?" value="">
+                                        </div>
                                     </div>
                                 </div>
                                 <!--end::Step 1-->
@@ -276,35 +300,36 @@
 
                                 <!--begin::Step 2-->
                                 <div class="flex-column" data-kt-stepper-element="content">
+                                    <label class="form-label">Dokumen Perjalanan Luar Negeri</label>
                                     <div class="fv-row mb-10">
-                                        <label class="form-label">Dokumen Perjalanan Luar Negeri</label>
-                                        <input type="text" class="form-control mb-5" name="no_paspor"
-                                            placeholder="Nomor Paspor" value="">
-                                        <div class="input-group">
-                                            <input type="text"
-                                                class="form-control tanggal-pengeluaran-paspor mb-5"placeholder="Tanggal Pengeluaran Paspor / Date of Issue">
-                                            <input type="text" class="form-control h-tanggal-pengeluaran-paspor d-none"
-                                                name="tanggal_pengeluaran_paspor">
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control id-card-format" name="no_paspor" placeholder="Nomor Paspor" value="">
                                         </div>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control masa-kadaluarsa mb-5"
-                                                placeholder="Masa Kadaluarsa Paspor / Date of Expiry" value="">
-                                            <input type="text" class="form-control h-masa-kadaluarsa d-none"
-                                                name="masa_kadaluarsa">
+                                        <div class="form-group mb-5">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control tanggal-pengeluaran-paspor" placeholder="Tanggal Pengeluaran Paspor / Date of Issue">
+                                                <input type="text" class="form-control h-tanggal-pengeluaran-paspor d-none" name="tanggal_pengeluaran_paspor">
+                                            </div>
                                         </div>
-                                        <input type="text" class="form-control mb-5" name="kantor_paspor"
-                                            placeholder="Kantor Yang Mengeluarkan Paspor / Issuing Office" value="">
-                                        <select class="form-select mb-5" name="kondisi_paspor"
-                                            aria-labelledby="dropdownPaspor">
-                                            <option value="">Pilihlah Pertanyaan dibawah ini jika kamu memiliki
-                                                Paspor
-                                            </option>
-                                            <option value="1">Paspor saya fisiknya masih ada</option>
-                                            <option value="2">Paspor saya hilang</option>
-                                            <option value="3">Paspor saya rusak</option>
-                                            <option value="4">Paspor saya ditahan agency sebelumnya</option>
-                                            <option value="5">Paspor saya terdapat data yang berbeda</option>
-                                        </select>
+                                        <div class="form-group mb-5">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control masa-kadaluarsa" placeholder="Masa Kadaluarsa Paspor / Date of Expiry" value="">
+                                                <input type="text" class="form-control h-masa-kadaluarsa d-none" name="masa_kadaluarsa">
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control" name="kantor_paspor" placeholder="Kantor Yang Mengeluarkan Paspor / Issuing Office" value="">
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <select class="form-select" name="kondisi_paspor" aria-labelledby="dropdownPaspor">
+                                                <option value="">Pilihlah Pertanyaan dibawah ini jika kamu memiliki Paspor</option>
+                                                <option value="1">Paspor saya fisiknya masih ada</option>
+                                                <option value="2">Paspor saya hilang</option>
+                                                <option value="3">Paspor saya rusak</option>
+                                                <option value="4">Paspor saya ditahan agency sebelumnya</option>
+                                                <option value="5">Paspor saya terdapat data yang berbeda</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <!--end::Step 2-->
@@ -317,29 +342,26 @@
                                     </div>
                                     <div class="fv-row row-list-experience"></div>
                                     <div class="fv-row mb-10 row-add-experience">
-                                        <input type="text"
-                                            class="form-control mb-5 input-add-experience experience-country"
-                                            placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
-                                        <input type="text"
-                                            class="form-control mb-5 input-add-experience experience-company"
-                                            placeholder="Nama Perusahaan atau Majikan" name="nama_perusahaan[]">
-                                        <div class="input-group">
-                                            <input type="text"
-                                                class="form-control datetimepicker mb-5 input-add-experience experience-start-work-date"
-                                                placeholder="Tanggal mulai bekerja">
-                                            <input type="text"
-                                                class="form-control datetimepicker mb-5 input-add-experience experience-end-work-date"
-                                                placeholder="Tanggal selesai bekerja">
-                                            <input type="hidden"
-                                                class="d-none tanggal-mulai-bekerja input-add-experience h-experience-start-work-date"
-                                                name="tanggal_mulai_kerja[]">
-                                            <input type="hidden"
-                                                class="d-none tanggal-selesai-bekerja input-add-experience h-experience-end-work-date"
-                                                name="tanggal_selesai_kerja[]">
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control input-add-experience experience-country" data-name="negara_tempat_kerja.0" placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
                                         </div>
-                                        <input type="text"
-                                            class="form-control mb-5 input-add-experience experience-position"
-                                            placeholder="Posisi" name="posisi[]">
+
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control input-add-experience experience-company" data-name="nama_perusahaan.0" placeholder="Nama Perusahaan atau Majikan" name="nama_perusahaan[]">
+                                        </div>
+
+                                        <div class="form-group mb-5">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control datetimepicker input-add-experience experience-start-work-date" placeholder="Tanggal mulai bekerja">
+                                                <input type="text" class="form-control datetimepicker input-add-experience experience-end-work-date" placeholder="Tanggal selesai bekerja">
+                                                <input type="hidden" class="d-none tanggal-mulai-bekerja input-add-experience h-experience-start-work-date" data-name="tanggal_mulai_kerja.0" name="tanggal_mulai_kerja[]">
+                                                <input type="hidden" class="d-none tanggal-selesai-bekerja input-add-experience h-experience-end-work-date" data-name="tanggal_selesai_kerja.0" name="tanggal_selesai_kerja[]">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control input-add-experience experience-position" placeholder="Posisi" data-name="posisi.0" name="posisi[]">
+                                        </div>
                                         <button type="button" class="btn btn-add-experience btn-primary w-100"><i
                                                 class="fas fa-plus"></i> Tambahkan
                                             Pengalaman Kerja Lainnya</button>
@@ -393,7 +415,7 @@
                                                 </div>
                                                 <div class="form-input mt-3">
                                                     <label for=""><i>Jelaskan jika kelengkapan berkas anda terdapat perbedaan nama/alamat/tempat tanggal lahir/hilang/rusak/lainnya:</i></label>
-                                                    <textarea name="penjelasan_dokumen" id="" cols="30" rows="2" class="form-control" placeholder=""></textarea>
+                                                    <textarea name="penjelasan_dokumen" cols="30" rows="2" class="form-control" placeholder=""></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -411,28 +433,28 @@
                                                 <div class="form-input">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="foto" style="width: 150px">Foto</label>
-                                                        <input type="file" class="form-control" id="foto" name="file_foto" accept="image/*">
+                                                        <input type="file" class="form-control" id="foto" name="file_foto" accept="image/*,application/pdf">
                                                     </div>
                                                     <label class="text-muted"><small>Foto formal background putih/biru/merah</small></label>
                                                 </div>
                                                 <div class="form-input mt-2">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="paspor" style="width: 150px">Paspor</label>
-                                                        <input type="file" class="form-control" id="paspor" name="file_paspor">
+                                                        <input type="file" class="form-control" id="paspor" name="file_paspor" accept="image/*,application/pdf">
                                                     </div>
                                                     <label class="text-muted"><small>Jika ada</small></label>
                                                 </div>
                                                 <div class="form-input mt-2">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="ktp" style="width: 150px">KTP</label>
-                                                        <input type="file" class="form-control" id="ktp" name="file_ktp">
+                                                        <input type="file" class="form-control" id="ktp" name="file_ktp" accept="image/*,application/pdf">
                                                     </div>
                                                     <label class="text-muted"><small>Mohon di Scan</small></label>
                                                 </div>
                                                 <div class="form-input mt-2">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="kk" style="width: 150px">Kartu Keluarga</label>
-                                                        <input type="file" class="form-control" id="kk" name="file_kk">
+                                                        <input type="file" class="form-control" id="kk" name="file_kk" accept="image/*,application/pdf">
                                                     </div>
                                                     <label class="text-muted"><small>Mohon di Scan</small></label>
                                                 </div>
@@ -466,14 +488,14 @@
                                                 </div>
                                                 <div class="form-input mb-3">
                                                     <div class="input-group">
-                                                        <input type="password" class="form-control" placeholder="Password">
-                                                        <button class="btn btn-show-password text-white" name="password" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
+                                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                                        <button class="btn btn-show-password text-white" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
                                                     </div>
                                                 </div>
                                                 <div class="form-input mb-3">
                                                     <div class="input-group">
-                                                        <input type="password" class="form-control" name="" placeholder="Konfirmasi Password">
-                                                        <button class="btn btn-show-password text-white" name="password_confirmation" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
+                                                        <input type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password">
+                                                        <button class="btn btn-show-password text-white" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -489,7 +511,7 @@
                                 data-kt-stepper-action="previous">
                                 Back
                             </button>
-                            <button type="button" class="btn btn-primary float-end mt-5" data-kt-stepper-action="next">
+                            <button type="button" class="btn btn-primary float-end mt-5 btn-next" data-kt-stepper-action="next">
                                 Continue
                             </button>
                             <button type="button" class="btn btn-primary float-end mt-5 btn-submit"
@@ -518,10 +540,6 @@
         .stepper.stepper-pills.stepper-column .stepper-line {
             position: unset !important;
             transform: unset !important;
-        }
-
-        .select2-container {
-            margin-bottom: 1.25rem
         }
 
         .select2-container--bootstrap .select2-selection--single .select2-selection__arrow b {
@@ -585,6 +603,7 @@
 
 @push('script')
     @include('vendors.cleave-js')
+    <script src="{{ asset('frontend/js/ajax-setup.js') }}"></script>
     <script src="{{ asset('frontend') }}/js/validate.js"></script>
     <script src="{{ asset('frontend') }}/js/scripts.bundle.js"></script>
     <script src="{{ asset('frontend') }}/js/core.js"></script>
@@ -636,7 +655,61 @@
         var stepper = new KTStepper(element);
 
         stepper.on("kt.stepper.next", function(stepper) {
-            stepper.goNext(); // go next step
+            const nextBtn = stepper.btnNext.classList[4]
+
+            var formData = new FormData($('.form-register')[0]);
+            formData.append('step',stepper.currentStepIndex)
+
+            $.ajax({
+                url: `{{ route('register.step.validation') }}`,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $('form').find('.error-message').remove()
+                    $(`.${nextBtn}`).prop('disabled', true).prepend('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>')
+                },
+                success: function(response) {
+                    if (response.success) {
+                        stepper.goNext()
+                    }
+                },
+                complete: function() {
+                    $(`.${nextBtn}`).find('.spinner-border').remove()
+                    $(`.${nextBtn}`).prop('disabled', false)
+                },
+                error: function(xhr, status, error) {
+                    if (xhr.responseJSON) {
+                        if (xhr.responseJSON.errors) {
+                            $.each(xhr.responseJSON.errors, function(i, item) {
+                                let attribute = `input[name="${i}"],select[name="${i}"],textarea[name="${i}"]`
+
+                                if (i.match(/\./g)) {
+                                    attribute = `input[data-name="${i}"],select[data-name="${i}"],textarea[data-name="${i}"]`
+                                }
+
+                                $('form').find(attribute).closest('div').append(`<div class="w-100"><small class="error-message text-danger">${item}</small></div>`)
+                                
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Terjadi Kesalahan',
+                                text: xhr.responseJSON.message,
+                                confirmButtonText: 'OK'
+                            })
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Terjadi Kesalahan',
+                            text: '',
+                            confirmButtonText: 'OK'
+                        })
+                    }
+                }
+            })
         });
 
         // Handle previous step
@@ -714,19 +787,41 @@
             const el = $('.row-add-experience')
             const cloneEl = el.clone()
 
+            el.find('.error-message').remove()
             cloneEl.find('.btn-primary').removeClass('btn-primary').addClass('btn-danger btn-remove-experience')
                 .html('<i class="fas fa-times"></i> Hapus Pengalaman Kerja');
             cloneEl.find('.input-add-experience').removeClass('input-add-experience')
+            cloneEl.find('.error-message').remove()
             cloneEl.removeClass('row-add-experience fv-row mb-10').addClass(
                 'list-experience list-experience- mb-10')
             cloneEl.append('<hr>')
             cloneEl.appendTo('.row-list-experience')
 
             $('.input-add-experience').val('')
+
+            refreshExperienceList()
         })
+
+        function refreshExperienceList()
+        {
+            $.each($('.experience-country'), function(i, item){
+                const t = $(this)
+                const company = t.closest('div.fv-row').find('.experience-company')
+                const startWorkdate = t.closest('div.fv-row').find('.h-experience-start-work-date')
+                const endWorkdate = t.closest('div.fv-row').find('.h-experience-end-work-date')
+                const position = t.closest('div.fv-row').find('.experience-position')
+
+                t.attr('data-name', `negara_tempat_kerja.${i}`)
+                company.attr('data-name', `nama_perusahaan.${i}`)
+                startWorkdate.attr('data-name', `tanggal_mulai_kerja.${i}`)
+                endWorkdate.attr('data-name', `tanggal_selesai_kerja.${i}`)
+                position.attr('data-name', `posisi.${i}`)
+            })
+        }
 
         $('.row-list-experience').on('click', '.list-experience .btn-remove-experience', function() {
             $(this).closest('div.list-experience').remove()
+            refreshExperienceList()
         })
 
         $('#check_whatsapp_number').on('click', function(){
@@ -763,12 +858,13 @@
             var formData = new FormData($('.form-register')[0]);
 
             $.ajax({
-                url: `{{ route('register') }}/`,
+                url: `{{ route('register') }}`,
                 type: 'POST',
                 data: formData,
                 contentType: false,
                 processData: false,
                 beforeSend: function() {
+                    $('form').find('.error-message').remove()
                     t.prop('disabled', true).html(
                         '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Submitting'
                     )
@@ -783,12 +879,35 @@
                     t.prop('disabled', false).html('Submit')
                     $('.btn-prev').prop('disabled', false)
                 },
-                error: function() {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Oops...",
-                        text: "Something went wrong!",
-                    });
+                error: function(xhr, status, error) {
+                    if (xhr.responseJSON) {
+                        if (xhr.responseJSON.errors) {
+                            $.each(xhr.responseJSON.errors, function(i, item) {
+                                let attribute = `input[name="${i}"],select[name="${i}"],textarea[name="${i}"]`
+
+                                if (i.match(/\./g)) {
+                                    attribute = `input[data-name="${i}"],select[data-name="${i}"],textarea[data-name="${i}"]`
+                                }
+
+                                $('form').find(attribute).closest('div').append(`<div class="w-100"><small class="error-message text-danger">${item}</small></div>`)
+                                
+                            })
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Terjadi Kesalahan',
+                                text: xhr.responseJSON.message,
+                                confirmButtonText: 'OK'
+                            })
+                        }
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Terjadi Kesalahan',
+                            text: '',
+                            confirmButtonText: 'OK'
+                        })
+                    }
                 }
             })
         })
