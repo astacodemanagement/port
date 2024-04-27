@@ -85,7 +85,8 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $request->merge(['no_hp' => str_replace(' ', '', $request->no_hp)]);
-        $request->merge(['no_wa' => str_replace(' ', '', $request->no_hp)]);
+        $request->merge(['no_wa' => str_replace(' ', '', $request->has('check_whatsapp_number') ? $request->no_hp : $request->no_wa)]);
+
         $request->validate($this->rules(), $this->messages(), $this->attributes());
 
         $negara = Negara::find($request->negara_id);
@@ -93,8 +94,8 @@ class RegisterController extends Controller
         $provinsi = Provinsi::find($request->provinsi_id);
         $kota = Kota::find($request->kota_id);
         $kecamatan = Kecamatan::find($request->kecamatan_id);
-        $noHp = str_replace(' ', '', $request->no_hp);
-        $noWa = $request->has('check_whatsapp_number') ? $noHp : str_replace(' ', '', $request->no_wa);
+        $noHp = $request->no_hp;
+        $noWa = $request->no_wa;
 
         $agama = [
             0 => null,
@@ -348,9 +349,10 @@ class RegisterController extends Controller
             ],
             6 => [
                 'email' => 'required|email|unique:users,email',
-                'no_hp' => 'required|numeric',
-                'no_wa' => 'required_if:check_whatsapp_number,on',
-                'password' =>  ['required', 'confirmed', Password::min(6)]
+                'no_hp' => 'required|numeric|min_digits:6|max_digits:14',
+                'no_wa' => 'required|numeric|min_digits:6|max_digits:14',
+                'password' =>  ['required', 'confirmed', Password::min(6)],
+                'password_confirmation' => 'required'
             ]
         ];
 
@@ -404,7 +406,12 @@ class RegisterController extends Controller
             'file_foto' => 'Foto',
             'file_paspor' => 'Paspor',
             'file_ktp' => 'KTP',
-            'file_kk' => 'Kartu keluarga'
+            'file_kk' => 'Kartu keluarga',
+            'email' => 'Email',
+            'no_hp' => 'Nomor handphone',
+            'no_wa' => 'Nomor whatsapp',
+            'password' => 'Password',
+            'password_confirmation' => 'Konfirmasi password'
         ];
     }
 
@@ -432,6 +439,9 @@ class RegisterController extends Controller
             'file_foto.required' => 'File :attribute belum dipilih',
             'file_ktp.required' => 'File :attribute belum dipilih',
             'file_kk.required' => 'File :attribute belum dipilih',
+            'password.confirmed' => 'Konfirmasi password tidak sesuai',
+            'email' => 'Format email tidak valid',
+            'unique' => ':attribute sudah digunakan'
         ];
     }
 }

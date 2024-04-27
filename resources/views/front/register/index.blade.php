@@ -211,9 +211,11 @@
                                             <input type="text" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap" value="">
                                         </div>
 
-                                        <div class="form-group mb-5">
-                                            <div class="input-group">
+                                        <div class="form-group row mb-5">
+                                            <div class="col-6">
                                                 <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir" value="">
+                                            </div>
+                                            <div class="col-6">
                                                 <input type="text" class="form-control tanggal-lahir" placeholder="Tanggal Lahir" value="">
                                                 <input type="hidden" class="d-none h-tanggal-lahir" name="tanggal_lahir">
                                             </div>
@@ -232,9 +234,9 @@
                                             </select>
                                         </div>
 
-                                        <div class="input-group mb-5">
-                                            <input type="number" class="form-control" name="berat_badan" min="0" placeholder="Berat Badan" value="">
-                                            <input type="number" class="form-control" name="tinggi_badan" min="0" placeholder="Tinggi Badan" value="">
+                                        <div class="form-group row mb-5">
+                                            <div class="col-6"><input type="number" class="form-control" name="berat_badan" min="0" placeholder="Berat Badan" value=""></div>
+                                            <div class="col-6"><input type="number" class="form-control" name="tinggi_badan" min="0" placeholder="Tinggi Badan" value=""></div>
                                         </div>
                                         <div class="form-group mb-5">
                                             <select name="jenis_kelamin" class="form-select">
@@ -350,11 +352,13 @@
                                             <input type="text" class="form-control input-add-experience experience-company" data-name="nama_perusahaan.0" placeholder="Nama Perusahaan atau Majikan" name="nama_perusahaan[]">
                                         </div>
 
-                                        <div class="form-group mb-5">
-                                            <div class="input-group">
+                                        <div class="form-group row mb-5">
+                                            <div class="col-6">
                                                 <input type="text" class="form-control datetimepicker input-add-experience experience-start-work-date" placeholder="Tanggal mulai bekerja">
-                                                <input type="text" class="form-control datetimepicker input-add-experience experience-end-work-date" placeholder="Tanggal selesai bekerja">
                                                 <input type="hidden" class="d-none tanggal-mulai-bekerja input-add-experience h-experience-start-work-date" data-name="tanggal_mulai_kerja.0" name="tanggal_mulai_kerja[]">
+                                            </div>
+                                            <div class="col-6">
+                                                <input type="text" class="form-control datetimepicker input-add-experience experience-end-work-date" placeholder="Tanggal selesai bekerja">
                                                 <input type="hidden" class="d-none tanggal-selesai-bekerja input-add-experience h-experience-end-work-date" data-name="tanggal_selesai_kerja.0" name="tanggal_selesai_kerja[]">
                                             </div>
                                         </div>
@@ -474,13 +478,13 @@
                                                 <div class="form-input mb-3">
                                                     <input type="email" class="form-control" placeholder="Email" name="email">
                                                 </div>
-                                                <div class="form-input mb-3">
+                                                <div class="form-input">
                                                     <input type="text" class="form-control phone-number phone-number" name="no_hp" placeholder="Nomor HP Aktif">
-                                                    <div class="pt-3 pl-2 pb-0">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" name="check_whatsapp_number" id="check_whatsapp_number">
-                                                            <label class="form-check-label" for="check_whatsapp_number" style="padding-top:2px">Nomor whatsapp sama dengan nomor handphone aktif</label>
-                                                        </div>
+                                                </div>
+                                                <div class="form-input mb-3 pt-3 pl-2 pb-0">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" name="check_whatsapp_number" id="check_whatsapp_number">
+                                                        <label class="form-check-label" for="check_whatsapp_number" style="padding-top:2px">Nomor whatsapp sama dengan nomor handphone aktif</label>
                                                     </div>
                                                 </div>
                                                 <div class="form-input mb-3">
@@ -489,13 +493,13 @@
                                                 <div class="form-input mb-3">
                                                     <div class="input-group">
                                                         <input type="password" class="form-control" name="password" placeholder="Password">
-                                                        <button class="btn btn-show-password text-white" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
+                                                        <span class="btn btn-show-password text-white" style="padding-top: .8rem;" type="button" id="show-password"><i class="fas fa-eye-slash"></i></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-input mb-3">
                                                     <div class="input-group">
                                                         <input type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password">
-                                                        <button class="btn btn-show-password text-white" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
+                                                        <span class="btn btn-show-password text-white" style="padding-top: .8rem;" type="button" id="show-password"><i class="fas fa-eye-slash"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -527,78 +531,8 @@
 @endsection
 
 @push('css')
-    <link rel="stylesheet" href="{{ asset('frontend') }}/css/stepper.css">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css"
-        integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        .Element-nav-items .navbar {
-            z-index: 999999;
-        }
-
-        .stepper.stepper-pills.stepper-column .stepper-line {
-            position: unset !important;
-            transform: unset !important;
-        }
-
-        .select2-container--bootstrap .select2-selection--single .select2-selection__arrow b {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2378829D' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
-            background-color: transparent;
-            background-size: contain;
-            border: none !important;
-            height: 12px !important;
-            width: 12px !important;
-            margin: auto !important;
-            top: 16px !important;
-            left: -13px !important;
-        }
-
-        .select2-container--open .select2-selection__arrow b {
-            transform: rotate(180deg) !important;
-        }
-
-        .select2-container--bootstrap.select2-container--focus .select2-selection,
-        .select2-container--bootstrap.select2-container--open .select2-selection {
-            -webkit-box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
-            box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
-            border-color: #86b7fe;
-        }
-
-        .select2-container--bootstrap .select2-selection--single {
-            height: 43.83px !important;
-            line-height: 43.83px !important;
-        }
-
-        .select2-container--bootstrap .select2-selection--single .select2-selection__rendered {
-            color: var(--bs-gray-700);
-            font-weight: 500;
-        }
-
-        .select2-container--bootstrap .select2-selection {
-            -webkit-box-shadow: usnet;
-            box-shadow: unset;
-            background-color: #fff;
-            border: 1px solid var(--bs-gray-300);
-            ;
-            border-radius: .475rem;
-            color: var(--bs-gray-700);
-        }
-
-        .datepicker {
-            font-size: 14.5px;
-        }
-
-        .datepicker table tr td.active,
-        .datepicker table tr td.active.active {
-            background-image: unset;
-            background-color: #04f;
-        }
-
-        .btn-show-password {
-            background-color: var(--bs-primaray)
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('frontend/css/register.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endpush
 
 @push('script')
@@ -642,13 +576,17 @@
             $('.h-masa-kadaluarsa').val(e.format(0, "yyyy-mm-dd"))
         });
 
-        $('.experience-start-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
-            $('.h-experience-start-work-date').val(e.format(0, "yyyy-mm-dd"))
-        });
+        initExperienceDatepicker()
 
-        $('.experience-end-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
-            $('.h-experience-end-work-date').val(e.format(0, "yyyy-mm-dd"))
-        });
+        function initExperienceDatepicker() {
+            $('.experience-start-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
+                $(this).closest('div').find('.h-experience-start-work-date').val(e.format(0, "yyyy-mm-dd"))
+            });
+
+            $('.experience-end-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
+                $(this).closest('div').find('.h-experience-end-work-date').val(e.format(0, "yyyy-mm-dd"))
+            });
+        }
 
         var element = document.querySelector("#kt_stepper_example_vertical");
 
@@ -658,7 +596,7 @@
             const nextBtn = stepper.btnNext.classList[4]
 
             var formData = new FormData($('.form-register')[0]);
-            formData.append('step',stepper.currentStepIndex)
+            formData.append('step', stepper.currentStepIndex)
 
             $.ajax({
                 url: `{{ route('register.step.validation') }}`,
@@ -800,6 +738,7 @@
             $('.input-add-experience').val('')
 
             refreshExperienceList()
+            initExperienceDatepicker()
         })
 
         function refreshExperienceList()
@@ -872,14 +811,16 @@
                 },
                 success: function(response) {
                     if (response.success) {
+                        t.prop('disabled', true).html(
+                            '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Redirect'
+                        )
                         location.href = '{{ route('register.complete') }}'
                     }
                 },
-                complete: function() {
+                error: function(xhr, status, error) {
                     t.prop('disabled', false).html('Submit')
                     $('.btn-prev').prop('disabled', false)
-                },
-                error: function(xhr, status, error) {
+                    
                     if (xhr.responseJSON) {
                         if (xhr.responseJSON.errors) {
                             $.each(xhr.responseJSON.errors, function(i, item) {

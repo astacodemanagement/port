@@ -629,3 +629,68 @@ h6 {
 .btn {
     font-size: 0.85rem;
 }
+.Element-nav-items .navbar {
+    z-index: 999999;
+}
+
+.stepper.stepper-pills.stepper-column .stepper-line {
+    position: unset !important;
+    transform: unset !important;
+}
+
+.select2-container--bootstrap .select2-selection--single .select2-selection__arrow b {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%2378829D' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-color: transparent;
+    background-size: contain;
+    border: none !important;
+    height: 12px !important;
+    width: 12px !important;
+    margin: auto !important;
+    top: 16px !important;
+    left: -13px !important;
+}
+
+.select2-container--open .select2-selection__arrow b {
+    transform: rotate(180deg) !important;
+}
+
+.select2-container--bootstrap.select2-container--focus .select2-selection,
+.select2-container--bootstrap.select2-container--open .select2-selection {
+    -webkit-box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+    box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+    border-color: #86b7fe;
+}
+
+.select2-container--bootstrap .select2-selection--single {
+    height: 43.83px !important;
+    line-height: 43.83px !important;
+}
+
+.select2-container--bootstrap .select2-selection--single .select2-selection__rendered {
+    color: var(--bs-gray-700);
+    font-weight: 500;
+}
+
+.select2-container--bootstrap .select2-selection {
+    -webkit-box-shadow: usnet;
+    box-shadow: unset;
+    background-color: #fff;
+    border: 1px solid var(--bs-gray-300);
+    ;
+    border-radius: .475rem;
+    color: var(--bs-gray-700);
+}
+
+.datepicker {
+    font-size: 14.5px;
+}
+
+.datepicker table tr td.active,
+.datepicker table tr td.active.active {
+    background-image: unset;
+    background-color: #04f;
+}
+
+.btn-show-password {
+    background-color: var(--bs-primaray)
+}
