@@ -26,7 +26,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Job</a>
                             </li>
@@ -53,7 +53,7 @@
 
                                     </div>
                                     <div class="card-block">
-                                        <a href="/job/create" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add
+                                        <a href="{{ route('back-office.job.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add
                                             Data</a>
 
                                         <br><br>
@@ -120,7 +120,7 @@
             {{-- Modal Upload Gambar --}}
             <div class="modal fade" id="modal-gambar" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                    <form id="form-gambar" action="{{ route('upload-gambar') }}" method="POST"
+                    <form id="form-gambar" action="{{ route('back-office.job.upload-gambar') }}" method="POST"
                         enctype="multipart/form-data">
                         @csrf
                         <div class="modal-content">
@@ -188,7 +188,7 @@
                 var formData = new FormData($('#form-gambar')[0]);
 
                 $.ajax({
-                    url: '{{ route('upload-gambar') }}',
+                    url: '{{ route('back-office.job.upload-gambar') }}',
                     type: 'POST',
                     data: formData,
                     contentType: false,
@@ -246,7 +246,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
 
-                            url: '/job/' + id,
+                            url: `${baseUrl}/job/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {

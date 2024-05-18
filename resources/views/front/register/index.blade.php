@@ -263,6 +263,10 @@
                                             <textarea class="form-control" rows="3" name="alamat" placeholder="Alamat"></textarea>
                                         </div>
                                         <div class="form-group mb-5">
+                                            <select class="form-select wilayah" name="wilayah" aria-labelledby="wilayah">
+                                            </select>
+                                        </div>
+                                        {{-- <div class="form-group mb-5">
                                             <select class="form-select select2 provinsi" name="provinsi_id" aria-labelledby="provinsi">
                                                 <option value="">Provinsi</option>
                                                 @foreach ($provinces as $province)
@@ -280,7 +284,7 @@
                                             <select class="form-select select2 kecamatan" name="kecamatan_id" aria-labelledby="kecamatan" disabled>
                                                 <option value="">Kecamatan</option>
                                             </select>
-                                        </div>
+                                        </div> --}}
                                         <div class="form-group mb-5">
                                             <select name="referensi" class="form-select reference">
                                                 <option value="">Dari mana kamu mengetahui kami ?</option>
@@ -557,6 +561,31 @@
             $(".select2").select2({
                 theme: "bootstrap"
             });
+
+            $('.wilayah').select2({
+                theme: "bootstrap",
+                placeholder: "Cari Kecamatan, Kota atau Provinsi",
+                minimumInputLength: 1,
+                ajax: {
+                    url: `{{ route('ajax.wilayah.search') }}`,
+                    dataType: 'json',
+                    delay: 250,
+                    processResults: function(data) {
+                        return {
+                            results: $.map(data.data, function(item) {
+                                return {
+                                    text: `${item.nama_provinsi}, ${item.nama_kota}, ${item.nama_kecamatan}`,
+                                    id: item.id,
+                                }
+                            }),
+                            pagination: {
+                                more: data.more_pagination
+                            }
+                        }
+                    },
+                    cache: true
+                }
+            })
         })
 
         let datepickerOption = {

@@ -59,7 +59,7 @@
             <nav class="navbar header-navbar pcoded-header">
                 <div class="navbar-wrapper">
                     <div class="navbar-logo">
-                        <a href="/">
+                        <a href="{{ route('back-office.home') }}">
                             <img class="img-fluid" src="{{ asset('template') }}/files/assets/images/logo.png"
                                 alt="Theme-Logo" />
                         </a>
@@ -343,7 +343,7 @@
                                 
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class>
-                                        <a href="/" class="waves-effect waves-dark">
+                                        <a href="{{ route('back-office.home') }}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                                             <span class="pcoded-mtext">Dashboard</span>
                                         </a>
@@ -351,7 +351,7 @@
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class>
-                                        <a href="/job" class="waves-effect waves-dark">
+                                        <a href="{{ route('back-office.job.index') }}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-anchor"></i></span>
                                             <span class="pcoded-mtext">Job</span>
                                         </a>
@@ -368,7 +368,7 @@
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class>
-                                                <a href="{{ route('pengguna.index') }}" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.pengguna.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Pengguna</span>
                                                 </a>
                                             </li>
@@ -466,7 +466,7 @@
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/kandidat" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.kandidat.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Data Kandidat</span>
                                                 </a>
                                             </li>
@@ -567,7 +567,7 @@
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class>
-                                        <a href="/pemasukan" class="waves-effect waves-dark">
+                                        <a href="{{ route('back-office.pemasukan.index') }}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-corner-down-left"></i></span>
                                             <span class="pcoded-mtext">Pemasukan</span>
                                         </a>
@@ -656,11 +656,7 @@
     <script src="{{ asset('template') }}/files/assets/js/pcoded.min.js"></script>
     <script src="{{ asset('template') }}/files/assets/js/vertical/vertical-layout.min.js"></script>
     <script type="text/javascript" src="{{ asset('template') }}/files/assets/js/script.min.js"></script>
-  
-
-      
-
-
+    <script>const baseUrl='{{route('back-office.home')}}'</script>
 
     @stack('script')
 </body>

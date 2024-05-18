@@ -37,7 +37,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Job</a>
                             </li>
@@ -93,7 +93,7 @@
                                                                 <div class="slide"></div>
                                                             </li>
                                                         </ul>
-                                                        <form id="form_job" action="{{ route('simpan_job') }}"
+                                                        <form id="form_job" action="{{ route('back-office.job.simpan_job') }}"
                                                             method="POST" enctype="multipart/form-data">
                                                             @csrf <!-- Tambahkan token CSRF -->
                                                             <div class="tab-content card-block">
@@ -698,7 +698,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <a href="/job"
+                                                                <a href="{{ route('back-office.job.index') }}"
                                                                     class="btn btn-warning waves-effect waves-light mt-3"><i
                                                                         class="fas fa-undo"></i>
                                                                     Kembali
@@ -761,7 +761,7 @@
                 <script>
                     $(document).ready(function() {
                         $.ajax({
-                            url: '{{ route('getNegara') }}',
+                            url: '{{ route('back-office.job.getNegara') }}',
                             type: 'GET',
                             success: function(data) {
                                 var options = '';
@@ -787,7 +787,7 @@
                 <script>
                     $(document).ready(function() {
                         $.ajax({
-                            url: '{{ route('getKategoriJob') }}',
+                            url: '{{ route('back-office.job.getKategoriJob') }}',
                             type: 'GET',
                             success: function(response) {
                                 console.log(response);
@@ -800,9 +800,6 @@
                             }
 
                         });
-
-
-
                     });
                 </script>
 
