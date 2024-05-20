@@ -48,7 +48,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Belum Diverifikasi</a>
                             </li>
@@ -148,7 +148,8 @@
                                                         <div class="card-block">
 
 
-                                                            <a href="{{ route('verifikasi.detail', $p->id) }}">
+                                                            <a
+                                                                href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}">
                                                                 <h5 class="card-title">
                                                                     <b
                                                                         style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->kandidat->nama_lengkap }}</b>
@@ -188,7 +189,7 @@
                                                                         Ubah Status
 
                                                                     </a>
-                                                                    <a href="{{ route('verifikasi.detail', $p->id) }}"
+                                                                    <a href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}"
                                                                         class="form-control"
                                                                         style="background-color: transparent; color: #00324F; border-radius: 1rem; font-size: 12px;  border: 1px solid #00324F;"
                                                                         title="Detail"><i class="fa fa-arrow-right"></i>
@@ -223,19 +224,28 @@
                                                                 <!-- Add your form with combo box for status update -->
                                                                 <form id="ubahStatusForm{{ $p->id }}">
                                                                     <div class="form-group">
-                                                                        <label for="statusSelect{{ $p->id }}">Ubah Status:</label>
-                                                                        <select class="form-control" id="statusSelect{{ $p->id }}" name="status" onchange="handleStatusChange(this)">
+                                                                        <label for="statusSelect{{ $p->id }}">Ubah
+                                                                            Status:</label>
+                                                                        <select class="form-control"
+                                                                            id="statusSelect{{ $p->id }}"
+                                                                            name="status"
+                                                                            onchange="handleStatusChange(this)">
                                                                             <option value="Verifikasi">Verifikasi</option>
                                                                             <option value="Reject">Reject</option>
-                                                                            <option value="Reject-Blacklist">Reject-Blacklist</option>
+                                                                            <option value="Reject-Blacklist">
+                                                                                Reject-Blacklist</option>
                                                                             <!-- <option value="Pending">Pending</option> -->
                                                                             <!-- Add other status options if needed -->
                                                                         </select>
                                                                     </div>
-                                                                    <div id="alasan_reject_container{{ $p->id }}" style="display: none;">
+                                                                    <div id="alasan_reject_container{{ $p->id }}"
+                                                                        style="display: none;">
                                                                         <div class="form-group">
-                                                                            <label for="alasan_reject{{ $p->id }}">Alasan :</label>
-                                                                            <textarea name="alasan_reject" id="alasan_reject{{ $p->id }}" cols="30" rows="3" class="form-control"></textarea>
+                                                                            <label
+                                                                                for="alasan_reject{{ $p->id }}">Alasan
+                                                                                :</label>
+                                                                            <textarea name="alasan_reject" id="alasan_reject{{ $p->id }}" cols="30" rows="3"
+                                                                                class="form-control"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <script>
@@ -243,10 +253,10 @@
                                                                         document.addEventListener("DOMContentLoaded", function() {
                                                                             var statusSelect = document.getElementById("statusSelect{{ $p->id }}");
                                                                             var alasanRejectContainer = document.getElementById("alasan_reject_container{{ $p->id }}");
-                                                            
+
                                                                             // Sembunyikan div alasan_reject_container saat halaman dimuat
                                                                             alasanRejectContainer.style.display = "none";
-                                                            
+
                                                                             // Tambahkan event listener untuk setiap kali pilihan berubah
                                                                             statusSelect.addEventListener("change", function() {
                                                                                 // Jika status adalah Reject atau Reject-Blacklist, tampilkan div alasan_reject_container
@@ -259,12 +269,13 @@
                                                                             });
                                                                         });
                                                                     </script>
-                                                            
+
                                                                     <!-- Add hidden input for the Pendaftaran ID -->
-                                                                    <input type="hidden" name="pendaftaran_id" value="{{ $p->id }}">
+                                                                    <input type="hidden" name="pendaftaran_id"
+                                                                        value="{{ $p->id }}">
                                                                 </form>
                                                             </div>
-                                                            
+
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal"><i class="fas fa-undo"></i>
@@ -363,7 +374,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: '/update-status', // Sesuaikan dengan URL rute Anda
+                        url: '{{ route('back-office.pelamar.update.status') }}', // Sesuaikan dengan URL rute Anda
                         data: formData,
                         success: function(response) {
                             // Handle success, tampilkan SweetAlert untuk konfirmasi OK

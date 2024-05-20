@@ -25,7 +25,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Seleksi</a>
                             </li>
@@ -48,7 +48,9 @@
 
                                 <div class="card" id="tb1">
                                     <div class="card-header">
-                                        <h5>  <span class="badge badge-pill badge-success" style="color: #ecf1f3; display: inline-block;"> Data Lolos Interview</span> </h5>
+                                        <h5> <span class="badge badge-pill badge-success"
+                                                style="color: #ecf1f3; display: inline-block;"> Data Lolos Interview</span>
+                                        </h5>
 
                                     </div>
                                     <div class="card-block">
@@ -59,7 +61,7 @@
                                                     <tr>
                                                         <th width="5%">No</th>
                                                         <th width="15%">Posisi</th>
-                                                   
+
                                                         <th width="15%">Negara</th>
                                                         <th width="15%">Nama Perusahaan</th>
                                                         <th width="5%">Mitra</th>
@@ -74,15 +76,20 @@
                                                             <tr>
                                                                 <td>{{ $loop->iteration }}</td>
                                                                 <td><b>{{ $p->nama_job }}</b></td>
-                                                               
+
 
                                                                 <td>{{ $p->nama_negara }}</td>
                                                                 <td>{{ $p->nama_perusahaan }}</td>
                                                                 <td>{{ $p->mitra }}</td>
-                                                                <td style="text-align: center; font-size:23px;"><span class="label label-danger">{{ count($group) }}</span></td>
-                                                                <td style="text-align: center; font-size:18px;"><span class="label label-warning">{{ $p->nama_kategori_job }}</span></td>
+                                                                <td style="text-align: center; font-size:23px;"><span
+                                                                        class="label label-danger">{{ count($group) }}</span>
+                                                                </td>
+                                                                <td style="text-align: center; font-size:18px;"><span
+                                                                        class="label label-warning">{{ $p->nama_kategori_job }}</span>
+                                                                </td>
                                                                 <td class="text-center">
-                                                                    <a title="Detail" style="color: rgb(242, 236, 236)" href="#"
+                                                                    <a title="Detail" style="color: rgb(242, 236, 236)"
+                                                                        href="#"
                                                                         class="btn btn-sm btn-primary btn-detail"
                                                                         data-id="{{ $p->id }}" style="color: black">
                                                                         <i class="fas fa-eye"></i> Detail
@@ -105,7 +112,9 @@
 
                             <div class="card" id="tb2">
                                 <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h5>  <span class="badge badge-pill badge-success" style="color: #ecf1f3; display: inline-block;"> Data Lolos Interview</span> </h5>
+                                    <h5> <span class="badge badge-pill badge-success"
+                                            style="color: #ecf1f3; display: inline-block;"> Data Lolos Interview</span>
+                                    </h5>
                                     <div class="d-flex align-items-center">
                                         <!-- Select dropdown -->
                                         <div class="mr-2" style="width: 200px;">
@@ -123,10 +132,13 @@
                                         </div>
                                         <!-- Input keterangan_multiple -->
                                         <div class="mr-2" style="width: 300px;">
-                                            <input type="text" class="form-control" id="keterangan_multiple" name="keterangan_multiple" placeholder="Keterangan Dari Lolos Interview">
+                                            <input type="text" class="form-control" id="keterangan_multiple"
+                                                name="keterangan_multiple"
+                                                placeholder="Keterangan Dari Lolos Interview">
                                         </div>
                                         <!-- Tombol "Update Status" -->
-                                        <button id="updateStatusBtn" class="btn btn-primary">Multiple Update Status</button>
+                                        <button id="updateStatusBtn" class="btn btn-primary">Multiple Update
+                                            Status</button>
                                     </div>
                                 </div>
                                 <div class="card-block">
@@ -156,7 +168,7 @@
                                                             <td>{{ $p2->nama_kandidat }}</td>
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
-                                                                <a href="{{ route('seleksi.detail', $p2->id) }}"
+                                                                <a href="{{ route('back-office.seleksi.seleksi.detail', $p2->id) }}"
                                                                     class="form-control mr-2"
                                                                     style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
                                                                     title="Detail">
@@ -173,7 +185,7 @@
                                                                     Ubah Status
 
                                                                 </a>
-                                                                <a href="{{ route('seleksi.detail', $p2->id) }}"
+                                                                <a href="{{ route('back-office.seleksi.seleksi.detail', $p2->id) }}"
                                                                     class="form-control"
                                                                     style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
                                                                     title="Detail">
@@ -183,9 +195,10 @@
                                                             </td>
                                                         </tr>
                                                         <!-- Modal -->
-                                                        <div class="modal fade" id="ubahStatusModal{{ $p2->id }}"
-                                                            tabindex="-1" role="dialog"
-                                                            aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
+                                                        <div class="modal fade"
+                                                            id="ubahStatusModal{{ $p2->id }}" tabindex="-1"
+                                                            role="dialog" aria-labelledby="ubahStatusModalLabel"
+                                                            aria-hidden="true">
 
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
@@ -212,10 +225,11 @@
                                                                                         Proses</option>
                                                                                     <option value="Interview">
                                                                                         Interview</option>
-                                                                                        <option value="Cek Kualifikasi">Cek Kualifikasi</option>
+                                                                                    <option value="Cek Kualifikasi">Cek
+                                                                                        Kualifikasi</option>
                                                                                     <option value="Lolos Kualifikasi">
                                                                                         Lolos Kualifikasi</option>
-                                                                                    
+
                                                                                     <option value="Terbang">Terbang
                                                                                     </option>
                                                                                     <option value="Selesai Kontrak">
@@ -223,13 +237,16 @@
                                                                                     <option value="Batal">Batal
                                                                                     </option>
                                                                                     <!-- Add other status options if needed -->
-                                                                                             
+
                                                                                 </select>
                                                                                 <br>
                                                                                 <div class="form-group">
-                                                                                    <label for="keterangan_dari_lolos_interview">Keterangan Dari Lolos Interview :</label>
-                                                                                    <textarea name="keterangan_dari_lolos_interview" id="keterangan_dari_lolos_interview" cols="30" rows="3" class="form-control"></textarea>
-                                                                                    
+                                                                                    <label
+                                                                                        for="keterangan_dari_lolos_interview">Keterangan
+                                                                                        Dari Lolos Interview :</label>
+                                                                                    <textarea name="keterangan_dari_lolos_interview" id="keterangan_dari_lolos_interview" cols="30" rows="3"
+                                                                                        class="form-control"></textarea>
+
                                                                                 </div>
                                                                             </div>
                                                                             <!-- Add hidden input for the Pendaftaran ID -->
@@ -332,84 +349,85 @@
         });
     </script>
 
-<script>
-    $(document).ready(function() {
-        // Ketika tombol "Update Status" diklik
-        $('#updateStatusBtn').click(function() {
-            // Mendapatkan nilai status dari dropdown select
-            var status = $('#status_multiple').val();
+    <script>
+        $(document).ready(function() {
+            // Ketika tombol "Update Status" diklik
+            $('#updateStatusBtn').click(function() {
+                // Mendapatkan nilai status dari dropdown select
+                var status = $('#status_multiple').val();
 
-            // Memeriksa apakah status telah dipilih
-            if (status === '') {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Oops...',
-                    text: 'Harap pilih status sebelum memperbarui!',
-                });
-                return; // Menghentikan proses jika status belum dipilih
-            }
-
-            // Mendapatkan nilai keterangan_multiple
-            var keterangan = $('#keterangan_multiple').val();
-
-            // Array untuk menyimpan ID yang dicentang
-            var selectedIds = [];
-
-            // Mengambil ID dari setiap checkbox yang dicentang
-            $('input[name="selected_items[]"]:checked').each(function() {
-                selectedIds.push($(this).val());
-            });
-
-            // Memastikan minimal satu checkbox dicentang
-            if (selectedIds.length === 0) {
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Oops...',
-                    text: 'Pilih setidaknya satu baris untuk diperbarui!',
-                });
-                return;
-            }
-
-            // Mengumpulkan data untuk dikirim ke server
-            var formData = {
-                ids: selectedIds,
-                status: status,
-                keterangan: keterangan, // Menambahkan keterangan_multiple ke dalam objek formData
-                // Anda bisa menambahkan data lain yang diperlukan di sini
-            };
-
-            // Mengirim data ke server menggunakan AJAX
-            $.ajax({
-                type: 'POST',
-                url: '/update-status-multiple-lolos-interview', // Sesuaikan dengan URL rute Anda
-                data: formData,
-                dataType: 'json',
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function(response) {
-                    // Handle success
+                // Memeriksa apakah status telah dipilih
+                if (status === '') {
                     Swal.fire({
-                        icon: 'success',
-                        title: 'Status berhasil diperbarui!',
-                        showConfirmButton: true, // Tampilkan tombol OK
-                    }).then(function() {
-                        location.reload(); // Reload halaman setelah pengguna mengklik OK
-                    });
-                },
-                error: function(error) {
-                    // Handle error
-                    console.error(error);
-                    Swal.fire({
-                        icon: 'error',
+                        icon: 'warning',
                         title: 'Oops...',
-                        text: 'Terjadi kesalahan saat memperbarui status.',
+                        text: 'Harap pilih status sebelum memperbarui!',
                     });
+                    return; // Menghentikan proses jika status belum dipilih
                 }
+
+                // Mendapatkan nilai keterangan_multiple
+                var keterangan = $('#keterangan_multiple').val();
+
+                // Array untuk menyimpan ID yang dicentang
+                var selectedIds = [];
+
+                // Mengambil ID dari setiap checkbox yang dicentang
+                $('input[name="selected_items[]"]:checked').each(function() {
+                    selectedIds.push($(this).val());
+                });
+
+                // Memastikan minimal satu checkbox dicentang
+                if (selectedIds.length === 0) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Oops...',
+                        text: 'Pilih setidaknya satu baris untuk diperbarui!',
+                    });
+                    return;
+                }
+
+                // Mengumpulkan data untuk dikirim ke server
+                var formData = {
+                    ids: selectedIds,
+                    status: status,
+                    keterangan: keterangan, // Menambahkan keterangan_multiple ke dalam objek formData
+                    // Anda bisa menambahkan data lain yang diperlukan di sini
+                };
+
+                // Mengirim data ke server menggunakan AJAX
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('back-office.seleksi.update.statusMultipleLolosInterview') }}', // Sesuaikan dengan URL rute Anda
+                    data: formData,
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        // Handle success
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Status berhasil diperbarui!',
+                            showConfirmButton: true, // Tampilkan tombol OK
+                        }).then(function() {
+                            location
+                        .reload(); // Reload halaman setelah pengguna mengklik OK
+                        });
+                    },
+                    error: function(error) {
+                        // Handle error
+                        console.error(error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Terjadi kesalahan saat memperbarui status.',
+                        });
+                    }
+                });
             });
         });
-    });
-</script>
+    </script>
 
 
     <script>
@@ -424,7 +442,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/update-status-seleksi_lolos_interview', // Sesuaikan dengan URL rute Anda
+                url: '{{ route('back-office.seleksi.update_seleksi_lolos_interview.status') }}', // Sesuaikan dengan URL rute Anda
                 data: formData,
                 success: function(response) {
                     // Handle success, tampilkan SweetAlert untuk konfirmasi OK

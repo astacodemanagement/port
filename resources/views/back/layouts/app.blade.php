@@ -456,22 +456,22 @@
                                         <ul class="pcoded-submenu">
                                            
                                             <li class>
-                                                <a href="/belum_diverifikasi" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.pelamar.belum-verifikasi') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Belum Diverifikasi (Pending)</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/sudah_diverifikasi" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.pelamar.sudah-verifikasi') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Sudah Diverifikasi</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/reject_diverifikasi" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.pelamar.reject-verifikasi') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Reject Diverifikasi</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="{{ route('back-office.kandidat.index') }}" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.pelamar.kandidat.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Data Kandidat</span>
                                                 </a>
                                             </li>
@@ -486,47 +486,47 @@
                                         </a>
                                         <ul class="pcoded-submenu">
                                             <li class>
-                                                <a href="/semua_seleksi" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.seleksi.semua-seleksi') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">All Data</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/seleksi" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.seleksi.seleksi.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Cek Kualifikasi</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/seleksi_lolos_kualifikasi" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.seleksi.seleksi-lolos-kualifikasi') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Lolos Kualifikasi</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/seleksi_interview" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.seleksi.seleksi-interview') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Interview</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/seleksi_lolos_interview" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.seleksi.seleksi-lolos-interview') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Lolos Interview</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/seleksi_dalam_proses" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.seleksi.seleksi-dalam-proses') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Dalam Proses</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/seleksi_terbang" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.seleksi.seleksi-terbang') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Terbang</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/seleksi_selesai_kontrak" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.seleksi.seleksi-selesai-kontrak') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Selesai Kontrak</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/seleksi_batal" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.seleksi.seleksi-batal') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Batal</span>
                                                 </a>
                                             </li>
@@ -547,12 +547,12 @@
                                         <ul class="pcoded-submenu">
                                            
                                             <li class>
-                                                <a href="/penempatan" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.penempatan') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Biaya Penempatan</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/commitment_fee" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.commitment-fee') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Komitmen Fee</span>
                                                 </a>
                                             </li>
@@ -580,7 +580,7 @@
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class>
-                                        <a href="/pengeluaran" class="waves-effect waves-dark">
+                                        <a href="{{ route('back-office.pengeluaran.index') }}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-corner-down-right"></i></span>
                                             <span class="pcoded-mtext">Pengeluaran</span>
                                         </a>
@@ -588,7 +588,7 @@
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class>
-                                        <a href="/pengaduan" class="waves-effect waves-dark">
+                                        <a href="{{ route('back-office.pengaduan.index') }}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-phone-call"></i></span>
                                             <span class="pcoded-mtext">Pengaduan</span>
                                         </a>
@@ -596,7 +596,7 @@
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class>
-                                        <a href="/log_histori" class="waves-effect waves-dark">
+                                        <a href="{{ route('back-office.log-histori.index') }}" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-message-circle"></i></span>
                                             <span class="pcoded-mtext">Log Histori</span>
                                         </a>
