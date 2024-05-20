@@ -25,7 +25,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Log Histori</a>
                             </li>
@@ -54,7 +54,7 @@
                                     <div class="card-block">
 
 
-                                        <a href="{{ route('log-histori.delete-all') }}" class="btn btn-danger mb-3"
+                                        <a href="{{ route('back-office.log-histori.delete-all') }}" class="btn btn-danger mb-3"
                                             onclick="return confirm('Apakah Anda Yakin Akan Menghapus Semua Data, silahkan Back Up terlebih dahulu?')"><i
                                                 class="fas fa-trash"></i> Hapus Semua Data</a>
 
@@ -118,6 +118,6 @@
 
 
 @push('script')
-@include('back.layouts.js_datatables')
+    @include('back.layouts.js_datatables')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 @endpush

@@ -24,7 +24,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Pembayaran</a>
                             </li>
@@ -77,7 +77,7 @@
                                                             <td>{{ $p->nama_kategori_job }}</td>
                                                             <td>Rp. {{ number_format($p->bayar_cf, 0, ',', '.') }}</td>
                                                             <td>{{ $p->status_paid_cf }}</td>
-                                                 
+
 
                                                             <td class="text-center">
                                                                 <a style="color: rgb(242, 236, 236)" href="#"
@@ -86,7 +86,7 @@
                                                                     data-id="{{ $p->id }}" style="color: black">
                                                                     <i class="fas fa-eye"></i> Detail
                                                                 </a>
-                                                                
+
                                                             </td>
                                                         </tr>
                                                     @endforeach
@@ -139,8 +139,7 @@
                                             <label class="col-form-label" for="no_telp">No Telp </label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control " id="no_telp"
-                                                name="no_telp">
+                                            <input type="number" class="form-control " id="no_telp" name="no_telp">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -148,8 +147,7 @@
                                             <label class="col-form-label" for="email">Email </label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="email" class="form-control " id="email"
-                                                name="email">
+                                            <input type="email" class="form-control " id="email" name="email">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -157,7 +155,7 @@
                                             <label class="col-form-label" for="alamat">Alamat </label>
                                         </div>
                                         <div class="col-sm-12">
-                                           <textarea class="form-control" name="alamat" id="alamat" cols="30" rows="3"></textarea>
+                                            <textarea class="form-control" name="alamat" id="alamat" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -165,7 +163,7 @@
                                             <label class="col-form-label" for="keterangan">Keterangan </label>
                                         </div>
                                         <div class="col-sm-12">
-                                           <textarea class="form-control" name="keterangan" id="keterangan" cols="30" rows="3"></textarea>
+                                            <textarea class="form-control" name="keterangan" id="keterangan" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -209,8 +207,8 @@
                                                 Job</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control "
-                                                id="edit_nama_pembayaran" name="nama_pembayaran">
+                                            <input type="text" class="form-control " id="edit_nama_pembayaran"
+                                                name="nama_pembayaran">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -218,8 +216,8 @@
                                             <label class="col-form-label" for="edit_no_telp">No Telp</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control "
-                                                id="edit_no_telp" name="no_telp">
+                                            <input type="number" class="form-control " id="edit_no_telp"
+                                                name="no_telp">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -227,8 +225,7 @@
                                             <label class="col-form-label" for="edit_email">Email</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="email" class="form-control "
-                                                id="edit_email" name="email">
+                                            <input type="email" class="form-control " id="edit_email" name="email">
                                         </div>
                                     </div>
 
@@ -237,7 +234,7 @@
                                             <label class="col-form-label" for="edit_alamat">Alamat </label>
                                         </div>
                                         <div class="col-sm-12">
-                                           <textarea class="form-control" name="alamat" id="edit_alamat" cols="30" rows="3"></textarea>
+                                            <textarea class="form-control" name="alamat" id="edit_alamat" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -245,7 +242,7 @@
                                             <label class="col-form-label" for="edit_keterangan">Keterangan </label>
                                         </div>
                                         <div class="col-sm-12">
-                                           <textarea class="form-control" name="keterangan" id="edit_keterangan" cols="30" rows="3"></textarea>
+                                            <textarea class="form-control" name="keterangan" id="edit_keterangan" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
 

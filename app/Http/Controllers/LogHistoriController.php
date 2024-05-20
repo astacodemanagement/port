@@ -22,11 +22,11 @@ class LogHistoriController extends Controller
            DB::statement('DELETE FROM log_histori');
            
            // Redirect back with a success message
-           return redirect()->route('log_histori')->with('success', 'All data deleted successfully.');
+           return redirect()->route('back-office.log-histori.index')->with('success', 'All data deleted successfully.');
 
        } catch (\Exception $e) {
            // Redirect back with an error message if something goes wrong
-           return redirect()->route('log_histori')->with('success',  'Failed to delete data. Please try again.');
+           return redirect()->route('back-office.log-histori.index')->with('success',  'Failed to delete data. Please try again.');
 
        }
    }

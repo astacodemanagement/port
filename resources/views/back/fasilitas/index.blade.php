@@ -24,7 +24,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Fasilitas</a>
                             </li>
@@ -128,8 +128,8 @@
                                             <label class="col-form-label" for="nama_fasilitas">Nama Fasilitas</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success" id="nama_fasilitas"
-                                                name="nama_fasilitas">
+                                            <input type="text" class="form-control form-control-success"
+                                                id="nama_fasilitas" name="nama_fasilitas">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -188,7 +188,8 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_keterangan">Keterangan Fasilitas</label>
+                                            <label class="col-form-label" for="edit_keterangan">Keterangan
+                                                Fasilitas</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control form-control-success"

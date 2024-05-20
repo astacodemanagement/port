@@ -84,7 +84,7 @@
                                                                 </a>
                                                             </td>
                                                             <td class="text-center">
-                                                                <a title="Detail" style="color: rgb(242, 236, 236)" href="{{ route('back-office.kandidat.detail', $p->id) }}"
+                                                                <a title="Detail" style="color: rgb(242, 236, 236)" href="{{ route('back-office.pelamar.kandidat.detail', $p->id) }}"
                                                                     class="btn btn-sm btn-primary btn-detail"
                                                                      style="color: black">
                                                                     <i class="fas fa-eye"></i> Detail

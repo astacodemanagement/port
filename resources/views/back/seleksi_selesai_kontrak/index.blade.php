@@ -25,7 +25,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Seleksi</a>
                             </li>
@@ -154,7 +154,7 @@
                                                                     Ubah Status
 
                                                                 </a>
-                                                                <a href="{{ route('seleksi_dalam_proses.detail', $p2->id) }}"
+                                                                <a href="{{ route('back-office.seleksi.seleksi-dalam-proses.detail', $p2->id) }}"
                                                                     class="form-control"
                                                                     style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
                                                                     title="Detail">
@@ -205,14 +205,17 @@
                                                                                         Proses</option>
                                                                                     <option value="Terbang">Terbang
                                                                                     </option>
-                                                                                    
+
                                                                                     <!-- Add other status options if needed -->
                                                                                 </select>
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label for="keterangan_selesai_kontrak">Keterangan Dari Selesai Kontrak :</label>
-                                                                                <textarea name="keterangan_selesai_kontrak" id="keterangan_selesai_kontrak" cols="30" rows="3" class="form-control"></textarea>
-                                                                                
+                                                                                <label
+                                                                                    for="keterangan_selesai_kontrak">Keterangan
+                                                                                    Dari Selesai Kontrak :</label>
+                                                                                <textarea name="keterangan_selesai_kontrak" id="keterangan_selesai_kontrak" cols="30" rows="3"
+                                                                                    class="form-control"></textarea>
+
                                                                             </div>
                                                                             <!-- Add hidden input for the Pendaftaran ID -->
                                                                             <input type="hidden" name="id"
@@ -313,7 +316,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/update-status-seleksi_selesai_kontrak', // Sesuaikan dengan URL rute Anda
+                url: '{{ route('back-office.seleksi.update_seleksi_selesai_kontrak.status') }}', // Sesuaikan dengan URL rute Anda
                 data: formData,
                 success: function(response) {
                     // Handle success, tampilkan SweetAlert untuk konfirmasi OK
