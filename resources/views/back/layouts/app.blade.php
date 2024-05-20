@@ -383,6 +383,11 @@
                                                 </a>
                                             </li>
                                             <li class>
+                                                <a href="/fasilitas" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Fasilitas</span>
+                                                </a>
+                                            </li>
+                                            <li class>
                                                 <a href="/kategori_job" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Kategori Job</span>
                                                 </a>

@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailBayarController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\Front\JobController as FrontJobController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\JobController;
@@ -214,6 +215,12 @@ Route::get('/negara', [NegaraController::class, 'index']);
 Route::resource('negara', NegaraController::class);
 Route::get('/negara/{id}/edit', [NegaraController::class, 'edit']);
 Route::put('/negara/{id}', [NegaraController::class, 'update']);
+
+// Fasilitas
+Route::get('/fasilitas', [FasilitasController::class, 'index']);
+Route::resource('fasilitas', FasilitasController::class);
+Route::get('/fasilitas/{id}/edit', [FasilitasController::class, 'edit']);
+Route::put('/fasilitas/{id}', [FasilitasController::class, 'update']);
 
 
 // Slider

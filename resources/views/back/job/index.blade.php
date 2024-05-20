@@ -85,12 +85,12 @@
                                                                     <i class="fas fa-image"></i> Gambar
                                                                 </a>
 
-                                                                <a style="color: rgb(242, 236, 236)" href="#"
-                                                                    class="btn btn-sm btn-primary btn-edit"
-                                                                    data-toggle="modal" data-target="#modal-edit"
-                                                                    data-id="{{ $p->id }}" style="color: black">
+                                                                <a style="color: rgb(242, 236, 236)" href=""
+                                                                    class="btn btn-sm btn-primary btn-edit" data-id="{{ $p->id }}" style="color: black">
                                                                     <i class="fas fa-edit"></i> Edit
                                                                 </a>
+
+                                                                <a href="{{ route('job.edit',$p->id)}}" class="btn btn-sm btn-warning" style="color: black"><i class="fas fa-edit"></i> Edit</a>
                                                                 <button class="btn btn-sm btn-danger btn-hapus"
                                                                     data-id="{{ $p->id }}" style="color: white">
                                                                     <i class="fas fa-trash-alt"></i> Delete

@@ -128,10 +128,12 @@
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
-                                                                                            for="nama_perusahaan">Nama Perusahaan</label>
+                                                                                            for="nama_perusahaan">Nama
+                                                                                            Perusahaan</label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-success"
-                                                                                            id="nama_perusahaan" name="nama_perusahaan">
+                                                                                            id="nama_perusahaan"
+                                                                                            name="nama_perusahaan">
                                                                                     </div>
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
@@ -140,7 +142,7 @@
                                                                                             class="form-control form-control-success"
                                                                                             id="mitra" name="mitra">
                                                                                     </div>
-                                                                                    
+
                                                                                 </div>
 
                                                                                 <div class="form-group row">
@@ -243,10 +245,16 @@
                                                                                         <label class="col-form-label"
                                                                                             for="negara_id">Negara</label>
 
-                                                                                            <select id="negara_id" name="negara_id" class="form-control">
-                                                                                                <option value="" data-nama-negara="">Pilih Negara</option>
-                                                                                            </select>
-                                                                                            <input type="hidden" id="nama_negara" name="nama_negara">
+                                                                                        <select id="negara_id"
+                                                                                            name="negara_id"
+                                                                                            class="form-control">
+                                                                                            <option value=""
+                                                                                                data-nama-negara="">Pilih
+                                                                                                Negara</option>
+                                                                                        </select>
+                                                                                        <input type="hidden"
+                                                                                            id="nama_negara"
+                                                                                            name="nama_negara">
                                                                                     </div>
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
@@ -546,27 +554,32 @@
                                                                                 <div class="card-block">
                                                                                     <div class="form-group row">
                                                                                         <div class="col-sm-12">
-                                                                                            <h4 class="sub-title">Benefit
+                                                                                            <h4 class="sub-title">Fasilitas
                                                                                                 Pekerjaan</h4>
                                                                                             <div
                                                                                                 class="border-checkbox-section">
 
-                                                                                                <div
-                                                                                                    class="border-checkbox-group border-checkbox-group-success">
-                                                                                                    <input
-                                                                                                        class="border-checkbox"
-                                                                                                        type="checkbox"
-                                                                                                        id="dtt"
-                                                                                                        name="nama_benefit[]"
-                                                                                                        value="disediakan_tempat_tinggal">
-                                                                                                    <label
-                                                                                                        class="border-checkbox-label"
-                                                                                                        for="dtt">Disediakan
-                                                                                                        tempat tinggal
-                                                                                                    </label>
-                                                                                                </div>
+                                                                                                {{-- Looping untuk checkbox fasilitas --}}
+                                                                                                @foreach ($fasilitas as $item)
+                                                                                                    <div
+                                                                                                        class="border-checkbox-group border-checkbox-group-success">
+                                                                                                        <input
+                                                                                                            class="border-checkbox"
+                                                                                                            type="checkbox"
+                                                                                                            id="fasilitas-{{ $item->id }}"
+                                                                                                            name="fasilitas_id[]"
+                                                                                                            value="{{ $item->id }}">
+                                                                                                        {{-- Gunakan ID atau nama fasilitas --}}
+                                                                                                        <label
+                                                                                                            class="border-checkbox-label"
+                                                                                                            for="fasilitas-{{ $item->id }}">
+                                                                                                            {{ $item->nama_fasilitas }}
+                                                                                                            {{-- Nama dari fasilitas --}}
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                @endforeach
 
-                                                                                                <div
+                                                                                                {{-- <div
                                                                                                     class="border-checkbox-group border-checkbox-group-success">
                                                                                                     <input
                                                                                                         class="border-checkbox"
@@ -610,6 +623,7 @@
                                                                                                         asuransi kerja
                                                                                                     </label>
                                                                                                 </div>
+
                                                                                                 <div
                                                                                                     class="border-checkbox-group border-checkbox-group-success">
                                                                                                     <input
@@ -627,7 +641,7 @@
                                                                                                         kerja
 
                                                                                                     </label>
-                                                                                                </div>
+                                                                                                </div> --}}
 
                                                                                             </div>
                                                                                         </div>

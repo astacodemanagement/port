@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Benefit;
+use App\Models\Fasilitas;
 use App\Models\Galeri;
 use App\Models\Gambar;
 use App\Models\Job;
@@ -48,88 +49,18 @@ class JobController extends Controller
      */
     public function create()
     {
-        return view('back.job.create');
+        $fasilitas = Fasilitas::all();  // Mengambil semua data fasilitas dari tabel
+        return view('back.job.create', ['fasilitas' => $fasilitas]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    // public function store(Request $request)
-    // {
-    //     // Validasi request
-    //     $validator = Validator::make($request->all(), [
-    //         'nama_job' => 'required|unique:job,nama_job',
-    //         'nama_galeri.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validasi untuk setiap gambar
-    //     ], [
-    //         'nama_job.required' => 'Nama Job Wajib diisi',
-    //         'nama_job.unique' => 'Nama Job sudah digunakan',
-    //         'nama_galeri.*.image' => 'File harus berupa gambar',
-    //         'nama_galeri.*.mimes' => 'Format gambar tidak valid',
-    //         'nama_galeri.*.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return response()->json(['errors' => $validator->errors()], 422);
-    //     }
-
-    //     $input = $request->all();
-
-    //     // Simpan data job ke database menggunakan fill()
-    //     $job = new Job();
-    //     $job->fill($input);
-    //     $job->save();
-
-    //     $loggedInUserId = Auth::id();
-
-    //     // ...
-
-    //     // Dapatkan data checkbox yang dipilih
-    //     $benefits = $request->input('benefit', []);
-
-    //     // Simpan data benefit ke database
-    //     // foreach ($benefits as $benefit) {
-    //     //     Benefit::create([
-    //     //         'job_id' => $job->id,
-    //     //         'nama_benefit' => $benefit,
-    //     //     ]);
-    //     // }
-
-    //     // ...
-
-
-
-    //     // // Cek apakah ada file yang diunggah
-    //     // if ($request->hasFile('nama_galeri')) {
-    //     //     // Loop untuk menyimpan setiap gambar ke nama_galeri
-    //     //     foreach ($request->file('nama_galeri') as $image) {
-    //     //         $galeri = new Galeri();
-    //     //         $galeri->nama_galeri = $image->getClientOriginalName();
-    //     //         $galeri->job_id = $job->id;
-
-    //     //         $path = $image->store('galeri', 'public');
-    //     //         $galeri->path = $path;
-
-    //     //         $galeri->save();
-    //     //     }
-
-    //     // }
-
-    //     // Simpan log histori untuk operasi Create dengan user_id yang sedang login
-    //     $this->simpanLogHistori('Create', 'Job', $job->id, $loggedInUserId, null, json_encode($job));
-
-    //     return response()->json(['message' => 'Data Berhasil Disimpan']);
-    // }
-
+     
 
     public function store(Request $request)
     {
         $request->validate([
             'nama_job' => 'required',
             'nama_perusahaan' => 'required',
-            'nama_benefit' => 'required|array|min:1',
+            'fasilitas_id' => 'required|array|min:1',
             'negara_id' => 'required|exists:negara,id',
         ]);
 
@@ -149,10 +80,10 @@ class JobController extends Controller
             ]);
 
             // Simpan ke dalam tabel benefit
-            foreach ($request->nama_benefit as $benefit) {
+            foreach ($request->fasilitas_id as $benefit) {
                 Benefit::create([
                     'job_id' => $job->id,
-                    'nama_benefit' => $benefit,
+                    'fasilitas_id' => $benefit,
                 ]);
             }
 
@@ -226,9 +157,14 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        $job = Job::findOrFail($id);
-        return response()->json($job);
+        $data = Job::where('id', $id)->first();
+        $fasilitas = Fasilitas::all();
+        $negara = Negara::all();  // Daftar semua negara
+        $kategori_job = KategoriJob::all();  // Daftar semua kategori pekerjaan
+        
+        return view('back.job.edit', compact('data', 'fasilitas','negara','kategori_job'));
     }
+    
 
     /**
      * Update the specified resource in storage.
