@@ -24,7 +24,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Employer</a>
                             </li>
@@ -320,7 +320,7 @@
             $('.btn-edit').click(function() {
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/employer/' + id + '/edit',
+                    url: `${baseUrl}/employer/${id}/edit`,
                     type: 'GET',
                     success: function(response) {
                         $('#edit_nama_employer').val(response.nama_employer);
@@ -329,7 +329,7 @@
                         $('#edit_alamat').val(response.alamat);
                         $('#edit_keterangan').val(response.keterangan);
                         // Set action form untuk update
-                        $('#form-edit-employer').attr('action', '/employer/' + id);
+                        $('#form-edit-employer').attr('action', `${baseUrl}/employer/${id}`);
                         $('#modal-edit').modal('show');
                     },
                     error: function(xhr) {
@@ -397,7 +397,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
 
-                            url: '/employer/' + id,
+                            url: `${baseUrl}/employer/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {

@@ -24,7 +24,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Supplier</a>
                             </li>
@@ -302,7 +302,7 @@
             $('.btn-edit').click(function() {
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/supplier/' + id + '/edit',
+                    url: `${baseUrl}/supplier/${id}/edit`,
                     type: 'GET',
                     success: function(response) {
                         $('#edit_nama_supplier').val(response.nama_supplier);
@@ -378,7 +378,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
 
-                            url: '/supplier/' + id,
+                            url: `${baseUrl}/supplier/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {

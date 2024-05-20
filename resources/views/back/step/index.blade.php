@@ -25,7 +25,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Step</a>
                             </li>
@@ -344,7 +344,10 @@
 
                 $.ajax({
                     step: 'GET',
-                    url: '/step/' + id + '/edit',
+                    url: `${baseUrl}/step/${id}/edit`,
+                    beforeSend: function() {
+                        $('#gambar_edit_container').html('')
+                    },
                     success: function(data) {
                         // console.log(data); // Cek apakah data terisi dengan benar
                         // Mengisi data pada form modal
@@ -385,7 +388,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/step/update/' + id,
+                    url: `${baseUrl}/step/update/${id}`,
                     data: formData,
                     headers: {
                         'X-HTTP-Method-Override': 'PUT'
@@ -458,7 +461,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
 
-                            url: '/step/' + id,
+                            url: `${baseUrl}/step/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {

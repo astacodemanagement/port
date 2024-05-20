@@ -25,7 +25,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Galeri</a>
                             </li>
@@ -345,7 +345,10 @@
 
                 $.ajax({
                     galeri: 'GET',
-                    url: '/galeri/' + id + '/edit',
+                    url: `${baseUrl}/galeri/${id}/edit`,
+                    beforeSend: function() {
+                        $('#gambar_edit_container').html('')
+                    },
                     success: function(data) {
                         // console.log(data); // Cek apakah data terisi dengan benar
                         // Mengisi data pada form modal
@@ -386,7 +389,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/galeri/update/' + id,
+                    url: `${baseUrl}/galeri/update/${id}`,
                     data: formData,
                     headers: {
                         'X-HTTP-Method-Override': 'PUT'
@@ -459,7 +462,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
 
-                            url: '/galeri/' + id,
+                            url: `${baseUrl}/galeri/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {
