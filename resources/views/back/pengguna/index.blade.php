@@ -24,7 +24,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Pengguna</a>
                             </li>
@@ -74,7 +74,7 @@
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p->name }}</td>
                                                             <td>{{ $p->email }}</td>
-                                                            <td class="text-center"><span class="badge bg-success">{{ ucwords($p->roles[0]->name) }}</span></td>
+                                                            <td class="text-center"><span class="badge bg-success">{{ isset($p->roles[0]) ? ucwords($p->roles[0]->name) : null }}</span></td>
                                                             <td class="text-center">
                                                                 <a style="color: rgb(242, 236, 236)" href="#"
                                                                     class="btn btn-sm btn-primary btn-edit"
@@ -314,13 +314,13 @@
             $('.btn-edit').click(function() {
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/pengguna/' + id + '/edit',
+                    url: `${baseUrl}/pengguna/${id}/edit`,
                     type: 'GET',
                     success: function(response) {
                         $('#edit-name').val(response.name);
                         $('#edit-email').val(response.email);
                         $('#edit-role').val(response.role)
-                        $('#form-edit-pengguna').attr('action', '/pengguna/' + id);
+                        $('#form-edit-pengguna').attr('action', `${baseUrl}/pengguna/${id}`);
                         $('#modal-edit').modal('show');
                     },
                     error: function(xhr) {
@@ -388,7 +388,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
 
-                            url: '/pengguna/' + id,
+                            url: `${baseUrl}/pengguna/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {

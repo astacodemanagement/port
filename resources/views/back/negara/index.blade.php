@@ -6,8 +6,6 @@
 @endpush
 
 @section('content')
-
-
     <div class="pcoded-content">
         <div class="page-header card">
             <div class="row align-items-end">
@@ -24,7 +22,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Negara</a>
                             </li>
@@ -119,10 +117,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-
-
                                 <div class="card-block">
-
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <label class="col-form-label" for="nama_negara">Nama Negara</label>
@@ -141,13 +136,7 @@
                                                 name="kode_negara">
                                         </div>
                                     </div>
-
                                 </div>
-
-
-
-
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default waves-effect "
@@ -219,8 +208,6 @@
     @include('back.layouts.js_datatables')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-
-
     {{-- TAMBAH --}}
     <script>
         $(document).ready(function() {
@@ -268,13 +255,13 @@
             $('.btn-edit').click(function() {
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/negara/' + id + '/edit',
+                    url: `${baseUrl}/negara/${id}/edit`,
                     type: 'GET',
                     success: function(response) {
                         $('#edit_nama_negara').val(response.nama_negara);
                         $('#edit_kode_negara').val(response.kode_negara);
                         // Set action form untuk update
-                        $('#form-edit-negara').attr('action', '/negara/' + id);
+                        $('#form-edit-negara').attr('action', `${baseUrl}/negara/${id}`);
                         $('#modal-edit').modal('show');
                     },
                     error: function(xhr) {
@@ -341,8 +328,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-
-                            url: '/negara/' + id,
+                            url: `${baseUrl}/negara/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {

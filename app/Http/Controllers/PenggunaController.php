@@ -109,7 +109,7 @@ class PenggunaController extends Controller
     public function edit($id)
     {
         $pengguna = User::findOrFail($id);
-        $pengguna->role = $pengguna->roles[0]->id;
+        $pengguna->role = isset($pengguna->roles[0]) ? $pengguna->roles[0]->id : null;
 
         return response()->json($pengguna);
     }

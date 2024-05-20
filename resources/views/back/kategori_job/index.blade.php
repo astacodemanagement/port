@@ -25,7 +25,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Kategori Job</a>
                             </li>
@@ -273,13 +273,13 @@
             $('.btn-edit').click(function() {
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/kategori_job/' + id + '/edit',
+                    url: `${baseUrl}/kategori-job/${id}/edit`,
                     type: 'GET',
                     success: function(response) {
                         $('#edit_nama_kategori_job').val(response.nama_kategori_job);
                         $('#edit_urutan').val(response.urutan);
                         // Set action form untuk update
-                        $('#form-edit-kategori-job').attr('action', '/kategori_job/' + id);
+                        $('#form-edit-kategori-job').attr('action', `${baseUrl}/kategori-job/${id}`);
                         $('#modal-edit').modal('show');
                     },
                     error: function(xhr) {
@@ -347,7 +347,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
 
-                            url: '/kategori_job/' + id,
+                            url: `${baseUrl}/kategori-job/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {

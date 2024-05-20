@@ -372,64 +372,64 @@
                                                     <span class="pcoded-mtext">Pengguna</span>
                                                 </a>
                                             </li>
-                                            <li class>
-                                                <a href="/company" class="waves-effect waves-dark">
+                                            {{-- <li class>
+                                                <a href="" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Company</span>
                                                 </a>
-                                            </li>
+                                            </li> --}}
                                             <li class>
-                                                <a href="/negara" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.negara.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Negara</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/kategori_job" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.kategori-job.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Kategori Job</span>
                                                 </a>
                                             </li>
                                            
                                             <li class>
-                                                <a href="/slider" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.slider.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Slider</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/galeri" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.galeri.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Galeri</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/review" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.review.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Review</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/faq" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.faq.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">FAQ</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/alasan" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.alasan.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Alasan</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/step" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.step.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Step</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/supplier" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.supplier.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Supplier</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/agency" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.agency.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Agency</span>
                                                 </a>
                                             </li>
                                             <li class>
-                                                <a href="/employer" class="waves-effect waves-dark">
+                                                <a href="{{ route('back-office.employer.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Employer</span>
                                                 </a>
                                             </li>

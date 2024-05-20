@@ -25,7 +25,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.faq.index') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Faq</a>
                             </li>
@@ -291,7 +291,7 @@
             $('.btn-edit').click(function() {
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/faq/' + id + '/edit',
+                    url: `${baseUrl}/faq/${id}/edit`,
                     type: 'GET',
                     success: function(response) {
                         $('#edit_pertanyaan').val(response.pertanyaan);
@@ -366,7 +366,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
 
-                            url: '/faq/' + id,
+                            url: `${baseUrl}/faq/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {
