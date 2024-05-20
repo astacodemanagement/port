@@ -66,95 +66,95 @@ Route::prefix('administrator')->group(function () {
 
         Route::resource('pengguna', PenggunaController::class);
 
-        // Kandidat
-        Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
-        Route::resource('kandidat', KandidatController::class);
-        Route::get('/kandidat/{id}/detail', [KandidatController::class, 'detail'])->name('kandidat.detail');
+        // PELAMAR
+        Route::name('pelamar.')->group(function () {
+            // Kandidat
+            Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
+            Route::resource('kandidat', KandidatController::class);
+            Route::get('/kandidat/{id}/detail', [KandidatController::class, 'detail'])->name('kandidat.detail');
+
+
+            // Belum Verifikasi
+            Route::get('/belum-diverifikasi', [BelumVerifikasiController::class, 'index'])->name('belum-verifikasi');
+            Route::post('/update-status', [BelumVerifikasiController::class, 'updateStatus'])->name('update.status');
+            // Route::get('/belum_verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('belum_verifikasi.detail');
+            Route::get('/verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('verifikasi.detail');
+            Route::put('/verifikasi/update/{id}', [BelumVerifikasiController::class, 'updateDetail'])->name('updateDetail.update');
 
 
 
-        // Belum Verifikasi
-        Route::get('/belum_diverifikasi', [BelumVerifikasiController::class, 'index']);
-        Route::post('/update-status', [BelumVerifikasiController::class, 'updateStatus'])->name('update.status');
-        // Route::get('/belum_verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('belum_verifikasi.detail');
-        Route::get('/verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('verifikasi.detail');
-        Route::put('/verifikasi/update/{id}', [BelumVerifikasiController::class, 'updateDetail'])->name('updateDetail.update');
+            // Sudah Verifikasi
+            Route::get('/sudah-diverifikasi', [SudahVerifikasiController::class, 'index'])->name('sudah-verifikasi');
+            Route::post('/update-status-verifikasi', [SudahVerifikasiController::class, 'updateStatus'])->name('update.status-verifikasi');
 
 
-
-        // Sudah Verifikasi
-        Route::get('/sudah_diverifikasi', [SudahVerifikasiController::class, 'index']);
-        Route::post('/update-status-verifikasi', [SudahVerifikasiController::class, 'updateStatus'])->name('update.status');
-
-
-        // Reject Verifikasi
-        Route::get('/reject_diverifikasi', [RejectVerifikasiController::class, 'index']);
-        Route::post('/update-status-verifikasi-reject', [RejectVerifikasiController::class, 'updateStatus'])->name('update.status');
+            // Reject Verifikasi
+            Route::get('/reject-diverifikasi', [RejectVerifikasiController::class, 'index'])->name('reject-verifikasi');
+            Route::post('/update-status-verifikasi-reject', [RejectVerifikasiController::class, 'updateStatus'])->name('update.status-reject');
+        });
 
 
         // SELEKSI
-
-        //  Seleksi
-        Route::get('/semua_seleksi', [SemuaSeleksiController::class, 'index']);
-
+        Route::name('seleksi.')->group(function () { //  Seleksi
+            Route::get('/semua-seleksi', [SemuaSeleksiController::class, 'index'])->name('semua-seleksi');
 
 
-        //  Seleksi
-        Route::get('/seleksi', [SeleksiController::class, 'index']);
-        Route::post('/update-status-seleksi', [SeleksiController::class, 'updateStatus'])->name('update.status');
-        Route::post('/update-status-multiple', [SeleksiController::class, 'updateStatusMultiple'])->name('update.statusMultiple');
-        Route::get('/seleksi/{id}/detail', [SeleksiController::class, 'detail'])->name('seleksi.detail');
+            //  Seleksi
+            Route::get('/seleksi', [SeleksiController::class, 'index'])->name('seleksi.index');
+            Route::post('/update-status-seleksi', [SeleksiController::class, 'updateStatus'])->name('update.status');
+            Route::post('/update-status-multiple', [SeleksiController::class, 'updateStatusMultiple'])->name('update.statusMultiple');
+            Route::get('/seleksi/{id}/detail', [SeleksiController::class, 'detail'])->name('seleksi.detail');
 
 
 
-        //  Seleksi Dua Lolos Kualifikasi
-        Route::get('/seleksi_lolos_kualifikasi', [SeleksiLolosKualifikasiController::class, 'index']);
-        Route::post('/update-status-multiple-lolos-kualifikasi', [SeleksiLolosKualifikasiController::class, 'updateStatusMultiple'])->name('update.statusMultipleLolosKualifikasi');
-        Route::post('/update-status-seleksi_lolos_kualifikasi', [SeleksiLolosKualifikasiController::class, 'updateStatus'])->name('update_lolos_kualifikasi.status');
+            //  Seleksi Dua Lolos Kualifikasi
+            Route::get('/seleksi-lolos-kualifikasi', [SeleksiLolosKualifikasiController::class, 'index'])->name('seleksi-lolos-kualifikasi');
+            Route::post('/update-status-multiple-lolos-kualifikasi', [SeleksiLolosKualifikasiController::class, 'updateStatusMultiple'])->name('update.statusMultipleLolosKualifikasi');
+            Route::post('/update-status-seleksi_lolos_kualifikasi', [SeleksiLolosKualifikasiController::class, 'updateStatus'])->name('update_lolos_kualifikasi.status');
 
-        //  Seleksi Interview
-        Route::get('/seleksi_interview', [SeleksiInterviewController::class, 'index']);
-        Route::post('/update-status-multiple-interview', [SeleksiInterviewController::class, 'updateStatusMultiple'])->name('update.statusMultipleInterview');
-        Route::post('/update-status-seleksi_interview', [SeleksiInterviewController::class, 'updateStatus'])->name('update_seleksi_interview.status');
-
-
-        //  Seleksi Lolos Interview
-        Route::get('/seleksi_lolos_interview', [SeleksiLolosInterviewController::class, 'index']);
-        Route::post('/update-status-multiple-lolos-interview', [SeleksiLolosInterviewController::class, 'updateStatusMultiple'])->name('update.statusMultipleLolosInterview');
-        Route::post('/update-status-seleksi_lolos_interview', [SeleksiLolosInterviewController::class, 'updateStatus'])->name('update_seleksi_lolos_interview.status');
+            //  Seleksi Interview
+            Route::get('/seleksi-interview', [SeleksiInterviewController::class, 'index'])->name('seleksi-interview');
+            Route::post('/update-status-multiple-interview', [SeleksiInterviewController::class, 'updateStatusMultiple'])->name('update.statusMultipleInterview');
+            Route::post('/update-status-seleksi_interview', [SeleksiInterviewController::class, 'updateStatus'])->name('update_seleksi_interview.status');
 
 
-        //  Seleksi Dalam Proses
-        Route::get('/seleksi_dalam_proses', [SeleksiDalamProsesController::class, 'index']);
-        Route::get('/seleksi_dalam_proses/{id}/detail', [SeleksiDalamProsesController::class, 'detail'])->name('seleksi_dalam_proses.detail');
-        Route::post('/update-status-seleksi_dalam_proses', [SeleksiDalamProsesController::class, 'updateStatus'])->name('update_seleksi_dalam_proses.status');
-        Route::put('/seleksi_dalam_proses/update/{id}', [SeleksiDalamProsesController::class, 'updateDetail'])->name('updateDetail.update');
-        Route::post('/tambah-pembayaran', [SeleksiDalamProsesController::class, 'tambahPembayaran'])->name('tambahPembayaran');
-        Route::post('/tambah-pembayaran-refund', [SeleksiDalamProsesController::class, 'tambahPembayaranRefund'])->name('tambahPembayaranRefund');
-
-        Route::get('/hapus-detail-bayar/{id}', [DetailBayarController::class, 'hapusDetailBayar'])->name('detail_bayar.hapus');
-        Route::get('/hapus-detail-bayar-refund/{id}', [RefundDetailBayarController::class, 'hapusDetailBayarRefund'])->name('detail_bayar_refund.hapus');
-
-        Route::get('/getAgencyAlamat/{id}', [SeleksiDalamProsesController::class, 'getAgencyAlamat']);
-        Route::get('/getEmployerAlamat/{id}', [SeleksiDalamProsesController::class, 'getEmployerAlamat']);
+            //  Seleksi Lolos Interview
+            Route::get('/seleksi-lolos-interview', [SeleksiLolosInterviewController::class, 'index'])->name('seleksi-lolos-interview');
+            Route::post('/update-status-multiple-lolos-interview', [SeleksiLolosInterviewController::class, 'updateStatusMultiple'])->name('update.statusMultipleLolosInterview');
+            Route::post('/update-status-seleksi-lolos-interview', [SeleksiLolosInterviewController::class, 'updateStatus'])->name('update_seleksi_lolos_interview.status');
 
 
+            //  Seleksi Dalam Proses
+            Route::get('/seleksi-dalam-proses', [SeleksiDalamProsesController::class, 'index'])->name('seleksi-dalam-proses');
+            Route::get('/seleksi-dalam-proses/{id}/detail', [SeleksiDalamProsesController::class, 'detail'])->name('seleksi-dalam-proses.detail');
+            Route::post('/update-status-seleksi-dalam-proses', [SeleksiDalamProsesController::class, 'updateStatus'])->name('update_seleksi_dalam_proses.status');
+            Route::put('/seleksi-dalam-proses/update/{id}', [SeleksiDalamProsesController::class, 'updateDetail'])->name('updateDetail.update');
+            Route::post('/tambah-pembayaran', [SeleksiDalamProsesController::class, 'tambahPembayaran'])->name('tambahPembayaran');
+            Route::post('/tambah-pembayaran-refund', [SeleksiDalamProsesController::class, 'tambahPembayaranRefund'])->name('tambahPembayaranRefund');
 
-        //  Seleksi Terbang
-        Route::get('/seleksi_terbang', [SeleksiTerbangController::class, 'index']);
-        Route::post('/update-status-seleksi_terbang', [SeleksiTerbangController::class, 'updateStatus'])->name('update_seleksi_terbang.status');
+            Route::get('/hapus-detail-bayar/{id}', [DetailBayarController::class, 'hapusDetailBayar'])->name('detail_bayar.hapus');
+            Route::get('/hapus-detail-bayar-refund/{id}', [RefundDetailBayarController::class, 'hapusDetailBayarRefund'])->name('detail_bayar_refund.hapus');
 
-
-        //  Seleksi Selesai Kontrak
-        Route::get('/seleksi_selesai_kontrak', [SeleksiSelesaiKontrakController::class, 'index']);
-        Route::post('/update-status-seleksi_selesai_kontrak', [SeleksiSelesaiKontrakController::class, 'updateStatus'])->name('update_seleksi_selesai_kontrak.status');
+            Route::get('/getAgencyAlamat/{id}', [SeleksiDalamProsesController::class, 'getAgencyAlamat']);
+            Route::get('/getEmployerAlamat/{id}', [SeleksiDalamProsesController::class, 'getEmployerAlamat']);
 
 
 
-        // Seleksi Batal
-        Route::get('/seleksi_batal', [SeleksiBatalController::class, 'index']);
-        Route::post('/update-status-seleksi_batal', [SeleksiBatalController::class, 'updateStatus'])->name('update_seleksi_batal.status');
+            //  Seleksi Terbang
+            Route::get('/seleksi-terbang', [SeleksiTerbangController::class, 'index'])->name('seleksi-terbang');
+            Route::post('/update-status-seleksi-terbang', [SeleksiTerbangController::class, 'updateStatus'])->name('update_seleksi_terbang.status');
 
+
+            //  Seleksi Selesai Kontrak
+            Route::get('/seleksi-selesai-kontrak', [SeleksiSelesaiKontrakController::class, 'index'])->name('seleksi-selesai-kontrak');
+            Route::post('/update-status-seleksi-selesai-kontrak', [SeleksiSelesaiKontrakController::class, 'updateStatus'])->name('update_seleksi_selesai_kontrak.status');
+
+
+
+            // Seleksi Batal
+            Route::get('/seleksi-batal', [SeleksiBatalController::class, 'index'])->name('seleksi-batal');
+            Route::post('/update-status-seleksi-batal', [SeleksiBatalController::class, 'updateStatus'])->name('update_seleksi_batal.status');
+        });
 
 
         // Kategori Job
@@ -209,8 +209,8 @@ Route::prefix('administrator')->group(function () {
 
 
         // Pembayaran
-        Route::get('/penempatan', [PembayaranController::class, 'penempatan']);
-        Route::get('/commitment_fee', [PembayaranController::class, 'commitment_fee']);
+        Route::get('/penempatan', [PembayaranController::class, 'penempatan'])->name('penempatan');
+        Route::get('/commitment-fee', [PembayaranController::class, 'commitment_fee'])->name('commitment-fee');
 
 
         // Negara
@@ -276,8 +276,10 @@ Route::prefix('administrator')->group(function () {
 
 
         // Log Histori
-        Route::get('/log_histori', [LogHistoriController::class, 'index'])->name('log_histori');
-        Route::get('/log-histori/delete-all', [LogHistoriController::class, 'deleteAll'])->name('log-histori.delete-all');
+        Route::name('log-histori.')->group(function () {
+            Route::get('/log-histori', [LogHistoriController::class, 'index'])->name('index');
+            Route::get('/log-histori/delete-all', [LogHistoriController::class, 'deleteAll'])->name('delete-all');
+        });
 
         // Step
         Route::resource('step', StepController::class);
@@ -288,10 +290,12 @@ Route::prefix('administrator')->group(function () {
         });
 
         // Pengaduan
-        Route::get('/pengaduan', [PengaduanController::class, 'index']);
         Route::resource('pengaduan', PengaduanController::class);
-        Route::get('/pengaduan/{id}/edit', [PengaduanController::class, 'edit']);
-        Route::put('/pengaduan/update/{id}', [PengaduanController::class, 'update'])->name('pengaduan.update');
+        Route::name('pengaduan.')->group(function () {
+            Route::get('/pengaduan', [PengaduanController::class, 'index'])->name('index');
+            Route::get('/pengaduan/{id}/edit', [PengaduanController::class, 'edit'])->name('edit');
+            Route::put('/pengaduan/update/{id}', [PengaduanController::class, 'update'])->name('update');
+        });
 
 
         // Pemasukan
@@ -304,10 +308,12 @@ Route::prefix('administrator')->group(function () {
 
 
         // Pengeluaran
-        Route::get('/pengeluaran', [PengeluaranController::class, 'index']);
         Route::resource('pengeluaran', PengeluaranController::class);
-        Route::get('/pengeluaran/{id}/edit', [PengeluaranController::class, 'edit']);
-        Route::put('/pengeluaran/update/{id}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
+        Route::name('pengeluaran.')->group(function () {
+            Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('index');
+            Route::get('/pengeluaran/{id}/edit', [PengeluaranController::class, 'edit'])->name('edit');
+            Route::put('/pengeluaran/update/{id}', [PengeluaranController::class, 'update'])->name('update');
+        });
     });
 });
 

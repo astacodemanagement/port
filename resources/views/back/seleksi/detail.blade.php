@@ -37,7 +37,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Detail Seleksi</a>
                             </li>
@@ -99,10 +99,12 @@
                                                         </li>
                                                     </ul>
 
-                                                    <form id="form_verifikasi" action="" method="POST" enctype="multipart/form-data">
+                                                    <form id="form_verifikasi" action="" method="POST"
+                                                        enctype="multipart/form-data">
                                                         @csrf <!-- Tambahkan token CSRF -->
                                                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
-                                                        <input type="hidden" id="id" name="id" value="{{ $id }}">
+                                                        <input type="hidden" id="id" name="id"
+                                                            value="{{ $id }}">
 
                                                         <div class="tab-content card-block">
 
@@ -125,9 +127,9 @@
                                                                                         value="{{ $seleksi->nama_negara }}">
 
 
-                                                                                        <input type="hidden" readonly
-                                                                                        class="form-control"
-                                                                                        id="negara_id" name="negara_id"
+                                                                                    <input type="hidden" readonly
+                                                                                        class="form-control" id="negara_id"
+                                                                                        name="negara_id"
                                                                                         value="{{ $seleksi->negara_id }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
@@ -140,7 +142,7 @@
                                                                                         name="nama_kategori_job"
                                                                                         value="{{ $seleksi->nama_kategori_job }}">
 
-                                                                                        <input type="hidden" readonly
+                                                                                    <input type="hidden" readonly
                                                                                         class="form-control"
                                                                                         id="kategori_job_id"
                                                                                         name="kategori_job_id"
@@ -371,20 +373,37 @@
                                                                             <h4 class="sub-title"> > Kontak Darurat</h4>
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-4">
-                                                                                    <label class="col-form-label" for="nama_keluarga">Nama Keluarga</label>
-                                                                                    <input type="text" readonly class="form-control" id="nama_keluarga" name="nama_keluarga" value="{{ $seleksi->kandidat->nama_keluarga }}">
+                                                                                    <label class="col-form-label"
+                                                                                        for="nama_keluarga">Nama
+                                                                                        Keluarga</label>
+                                                                                    <input type="text" readonly
+                                                                                        class="form-control"
+                                                                                        id="nama_keluarga"
+                                                                                        name="nama_keluarga"
+                                                                                        value="{{ $seleksi->kandidat->nama_keluarga }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
-                                                                                    <label class="col-form-label" for="hubungan">Hubungan Keluarga</label>
-                                                                                    <input type="text" readonly class="form-control" id="hubungan" name="hubungan" value="{{ $seleksi->kandidat->hubungan }}">
+                                                                                    <label class="col-form-label"
+                                                                                        for="hubungan">Hubungan
+                                                                                        Keluarga</label>
+                                                                                    <input type="text" readonly
+                                                                                        class="form-control"
+                                                                                        id="hubungan" name="hubungan"
+                                                                                        value="{{ $seleksi->kandidat->hubungan }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
-                                                                                    <label class="col-form-label" for="no_telp_darurat">No Darurat</label>
-                                                                                    <input type="text" readonly class="form-control" id="no_telp_darurat" name="no_telp_darurat" value="{{ $seleksi->kandidat->no_telp_darurat }}">
+                                                                                    <label class="col-form-label"
+                                                                                        for="no_telp_darurat">No
+                                                                                        Darurat</label>
+                                                                                    <input type="text" readonly
+                                                                                        class="form-control"
+                                                                                        id="no_telp_darurat"
+                                                                                        name="no_telp_darurat"
+                                                                                        value="{{ $seleksi->kandidat->no_telp_darurat }}">
                                                                                 </div>
                                                                             </div>
-                                                                            
-                                                                            
+
+
 
 
 
@@ -810,27 +829,31 @@
                                                                                     <label class="col-form-label"
                                                                                         for="bayar_cf">Bayar Commitment
                                                                                         Fee</label>
-                                                                                        <input readonly type="text"  class="form-control" id="bayar_cf" name="bayar_cf" onkeyup="formatNumber(this)" value="{{ number_format($seleksi->bayar_cf, 0, ',', ',') }}">
+                                                                                    <input readonly type="text"
+                                                                                        class="form-control"
+                                                                                        id="bayar_cf" name="bayar_cf"
+                                                                                        onkeyup="formatNumber(this)"
+                                                                                        value="{{ number_format($seleksi->bayar_cf, 0, ',', ',') }}">
 
-                                                                                        <script>
+                                                                                    <script>
                                                                                         function formatNumber(input) {
                                                                                             // Menghapus semua karakter selain angka
                                                                                             var num = input.value.replace(/\D/g, '');
-                                                                                            
+
                                                                                             // Menambahkan separator ribuan setiap 3 digit
                                                                                             var formattedNum = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                                                                                            
+
                                                                                             // Memasukkan hasil format kembali ke input
                                                                                             input.value = formattedNum;
                                                                                         }
-                                                                                        </script>
-                                                                                        
+                                                                                    </script>
+
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="tanggal_tf_cf">Tanggal
                                                                                         Transfer</label>
-                                                                                    <input readonly type="date" 
+                                                                                    <input readonly type="date"
                                                                                         class="form-control"
                                                                                         id="tanggal_tf_cf"
                                                                                         name="tanggal_tf_cf"
@@ -865,12 +888,18 @@
                                                                                     <label class="col-form-label"
                                                                                         for="status_paid_cf">Status
                                                                                         Paid</label>
-                                                                                        <select readonly  name="status_paid_cf" id="status_paid_cf" class="form-control">
-                                                                                            <option value="Unpaid" {{ $seleksi->status_paid_cf == "Unpaid" ? 'selected' : '' }}>Unpaid</option>
-                                                                                            <option value="Paid" {{ $seleksi->status_paid_cf == "Paid" ? 'selected' : '' }}>Paid</option>
-                                                                                        </select>
-                                                                                        
-                                                                                   
+                                                                                    <select readonly name="status_paid_cf"
+                                                                                        id="status_paid_cf"
+                                                                                        class="form-control">
+                                                                                        <option value="Unpaid"
+                                                                                            {{ $seleksi->status_paid_cf == 'Unpaid' ? 'selected' : '' }}>
+                                                                                            Unpaid</option>
+                                                                                        <option value="Paid"
+                                                                                            {{ $seleksi->status_paid_cf == 'Paid' ? 'selected' : '' }}>
+                                                                                            Paid</option>
+                                                                                    </select>
+
+
                                                                                 </div>
                                                                             </div>
                                                                             <hr>
@@ -880,7 +909,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="tanggal_refund_cf">Tanggal
                                                                                         Refund</label>
-                                                                                    <input readonly type="date" 
+                                                                                    <input readonly type="date"
                                                                                         class="form-control"
                                                                                         id="tanggal_refund_cf"
                                                                                         name="tanggal_refund_cf"
@@ -891,10 +920,11 @@
                                                                                     <label class="col-form-label"
                                                                                         for="bayar_refund_cf">Jumlah
                                                                                         Refund</label>
-                                                                                    <input readonly type="text" 
+                                                                                    <input readonly type="text"
                                                                                         class="form-control"
                                                                                         id="bayar_refund_cf"
-                                                                                        name="bayar_refund_cf" onkeyup="formatNumber(this)" 
+                                                                                        name="bayar_refund_cf"
+                                                                                        onkeyup="formatNumber(this)"
                                                                                         value="{{ number_format($seleksi->bayar_refund_cf, 0, ',', ',') }}">
                                                                                 </div>
                                                                             </div>

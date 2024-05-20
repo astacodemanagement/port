@@ -37,7 +37,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Detail Dalam Proses</a>
                             </li>
@@ -777,10 +777,14 @@
                                                                                         value="{{ $seleksi_dalam_proses->nama_job }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
-                                                                                    <label class="col-form-label" for="gaji">Gaji</label>
-                                                                                    <input readonly type="text" class="form-control" id="gaji" name="gaji" value="{{ number_format($seleksi_dalam_proses->job->gaji) }}">
+                                                                                    <label class="col-form-label"
+                                                                                        for="gaji">Gaji</label>
+                                                                                    <input readonly type="text"
+                                                                                        class="form-control"
+                                                                                        id="gaji" name="gaji"
+                                                                                        value="{{ number_format($seleksi_dalam_proses->job->gaji) }}">
                                                                                 </div>
-                                                                                
+
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
                                                                                         for="tanggal_pengeluaran_paspor">Negara</label>
@@ -790,7 +794,7 @@
                                                                                         name="tanggal_pengeluaran_paspor"
                                                                                         value="{{ $seleksi_dalam_proses->nama_negara }}">
                                                                                 </div>
-                                                                                
+
                                                                             </div>
 
 
@@ -846,13 +850,15 @@
                                                                                         input.value = parseFloat(value).toLocaleString('en');
                                                                                     }
                                                                                 </script>
-                                                                                 <div class="col-sm-3">
+                                                                                <div class="col-sm-3">
                                                                                     <label class="col-form-label"
-                                                                                        for="durasi_kontrak">Durasi Kontrak (Hitungan Bulan) Contoh : 6</label>
+                                                                                        for="durasi_kontrak">Durasi Kontrak
+                                                                                        (Hitungan Bulan) Contoh : 6</label>
                                                                                     <input type="number"
                                                                                         class="form-control"
-                                                                                        id="durasi_kontrak" name="durasi_kontrak"
-                                                                                        value="{{ $seleksi_dalam_proses->durasi_kontrak}}"
+                                                                                        id="durasi_kontrak"
+                                                                                        name="durasi_kontrak"
+                                                                                        value="{{ $seleksi_dalam_proses->durasi_kontrak }}"
                                                                                         onkeyup="formatNumber4(this)">
                                                                                 </div>
 
@@ -863,14 +869,18 @@
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="employer_id">Employer</label>
-                                                                                        <select name="employer_id" id="employer_id" class="form-control">
-                                                                                            @foreach ($employer as $p)
-                                                                                                <option value="{{ $p->id }}" {{ $p->id == $seleksi_dalam_proses->employer_id ? 'selected' : '' }}>
-                                                                                                    {{ $p->nama_employer }}
-                                                                                                </option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                        
+                                                                                    <select name="employer_id"
+                                                                                        id="employer_id"
+                                                                                        class="form-control">
+                                                                                        @foreach ($employer as $p)
+                                                                                            <option
+                                                                                                value="{{ $p->id }}"
+                                                                                                {{ $p->id == $seleksi_dalam_proses->employer_id ? 'selected' : '' }}>
+                                                                                                {{ $p->nama_employer }}
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
+
                                                                                 </div>
 
 
@@ -893,15 +903,20 @@
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="agency_id">Agency</label>
-                                                                                        <select name="agency_id" id="agency_id" class="form-control">
-                                                                                            <option value="">--Pilih Agency--</option>
-                                                                                            @foreach ($agency as $p)
-                                                                                                <option value="{{ $p->id }}" {{ $p->id == $seleksi_dalam_proses->agency_id ? 'selected' : '' }}>
-                                                                                                    {{ $p->nama_agency }}
-                                                                                                </option>
-                                                                                            @endforeach
-                                                                                        </select>
-                                                                                        
+                                                                                    <select name="agency_id"
+                                                                                        id="agency_id"
+                                                                                        class="form-control">
+                                                                                        <option value="">--Pilih
+                                                                                            Agency--</option>
+                                                                                        @foreach ($agency as $p)
+                                                                                            <option
+                                                                                                value="{{ $p->id }}"
+                                                                                                {{ $p->id == $seleksi_dalam_proses->agency_id ? 'selected' : '' }}>
+                                                                                                {{ $p->nama_agency }}
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
+
                                                                                 </div>
 
 
@@ -1685,7 +1700,7 @@
                 <div class="modal fade" id="ubahStatusModal" tabindex="-1" role="dialog"
                     aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
                     <!-- Add your form with combo box for status update -->
-                    <form action="{{ route('tambahPembayaran') }}" id="form-pembayaran" method="post"
+                    <form action="{{ route('back-office.seleksi.tambahPembayaran') }}" id="form-pembayaran" method="post"
                         enctype="multipart/form-data">
                         @csrf <!-- Tambahkan token CSRF -->
                         <div class="modal-dialog" role="document">
@@ -1756,7 +1771,7 @@
                 <div class="modal fade" id="ubahStatusModalRefund" tabindex="-1" role="dialog"
                     aria-labelledby="ubahStatusModalLabelRefund" aria-hidden="true">
                     <!-- Add your form with combo box for status update -->
-                    <form action="{{ route('tambahPembayaranRefund') }}" id="form-pembayaran-refund" method="post"
+                    <form action="{{ route('back-office.seleksi.tambahPembayaranRefund') }}" id="form-pembayaran-refund" method="post"
                         enctype="multipart/form-data">
                         @csrf <!-- Tambahkan token CSRF -->
                         <div class="modal-dialog" role="document">
@@ -1842,7 +1857,7 @@
                         var employerSelect = document.getElementById('employer_id');
                         var alamatAgencyInput = document.getElementById('alamat_agency');
                         var alamatEmployerInput = document.getElementById('alamat_employer');
-                
+
                         // Fungsi untuk mengambil alamat dari server
                         function getAlamat(url, id, targetInput) {
                             var xhr = new XMLHttpRequest();
@@ -1859,33 +1874,33 @@
                             xhr.open('GET', url + id);
                             xhr.send();
                         }
-                
+
                         // Memanggil fungsi saat halaman dimuat
-                        getAlamat('/getAgencyAlamat/', agencySelect.value, alamatAgencyInput);
-                        getAlamat('/getEmployerAlamat/', employerSelect.value, alamatEmployerInput);
-                
+                        getAlamat(`${baseUrl}/getAgencyAlamat/`, agencySelect.value, alamatAgencyInput);
+                        getAlamat(`${baseUrl}/getEmployerAlamat/`, employerSelect.value, alamatEmployerInput);
+
                         // Event listener untuk select agency
                         agencySelect.addEventListener('change', function() {
                             var agencyId = this.value;
                             if (agencyId !== '') {
-                                getAlamat('/getAgencyAlamat/', agencyId, alamatAgencyInput);
+                                getAlamat(`${baseUrl}/getAgencyAlamat/`, agencyId, alamatAgencyInput);
                             } else {
                                 alamatAgencyInput.value = '';
                             }
                         });
-                
+
                         // Event listener untuk select employer
                         employerSelect.addEventListener('change', function() {
                             var employerId = this.value;
                             if (employerId !== '') {
-                                getAlamat('/getEmployerAlamat/', employerId, alamatEmployerInput);
+                                getAlamat(`${baseUrl}/getEmployerAlamat/`, employerId, alamatEmployerInput);
                             } else {
                                 alamatEmployerInput.value = '';
                             }
                         });
                     });
                 </script>
-                
+
 
 
 
@@ -2059,7 +2074,7 @@
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     $.ajax({
-                                        url: '/hapus-detail-bayar/' + id,
+                                        url: `${baseUrl}/hapus-detail-bayar/${id}`,
                                         type: 'GET',
                                         success: function(response) {
                                             Swal.fire({
@@ -2104,7 +2119,7 @@
                             }).then((result) => {
                                 if (result.isConfirmed) {
                                     $.ajax({
-                                        url: '/hapus-detail-bayar-refund/' + id,
+                                        url: `${baseUrl}/hapus-detail-bayar-refund/${id}`,
                                         type: 'GET',
                                         success: function(response) {
                                             Swal.fire({
@@ -2170,7 +2185,7 @@
 
                             $.ajax({
                                 type: 'POST',
-                                url: '/seleksi_dalam_proses/update/' + id,
+                                url: `${baseUrl}/seleksi-dalam-proses/update/${id}`,
                                 data: formData,
                                 headers: {
                                     'X-HTTP-Method-Override': 'PUT'

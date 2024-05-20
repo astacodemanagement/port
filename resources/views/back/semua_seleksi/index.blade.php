@@ -25,7 +25,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Semua Seleksi</a>
                             </li>
@@ -119,7 +119,8 @@
                                 <div class="card-block">
 
                                     <div class="dt-responsive table-responsive">
-                                        <table id="order-table2" class="table table-striped table-bordered nowrap w-100">
+                                        <table id="order-table2"
+                                            class="table table-striped table-bordered nowrap w-100">
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
@@ -154,7 +155,7 @@
                                                                     Ubah Status
 
                                                                 </a>
-                                                                <a href="{{ route('seleksi_dalam_proses.detail', $p2->id) }}"
+                                                                <a href="{{ route('back-office.seleksi.seleksi-dalam-proses.detail', $p2->id) }}"
                                                                     class="form-control"
                                                                     style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
                                                                     title="Detail">
@@ -200,7 +201,7 @@
                                                                                         Interview</option>
                                                                                     <option value="Lolos Interview">
                                                                                         Lolos Interview</option>
-                                                                                   
+
                                                                                     <option value="Selesai Kontrak">
                                                                                         Selesai Kontrak</option>
                                                                                     <option value="Batal">Batal
@@ -269,13 +270,13 @@
     <script>
         $(document).ready(function() {
             let datatable = $('#order-table2').DataTable({
-                initComplete: function (settings, json) {
+                initComplete: function(settings, json) {
                     const tableId = $(this).prop('id')
                     addDatatableDropdown(tableId, $(this))
                 }
             })
 
-            $('.card').on('click', '.dropdown-menu li label input', function(){
+            $('.card').on('click', '.dropdown-menu li label input', function() {
                 let col = $(this).data('col')
                 let isChecked = $(this).is(':checked')
                 let name = $(this).data('name')
@@ -288,10 +289,11 @@
                 let col = ''
                 let i = 0
 
-                $.each($(`#${tableId} thead tr th`), function(){
+                $.each($(`#${tableId} thead tr th`), function() {
                     if ($(this).text() !== '') {
                         let name = $(this).text()
-                        let isChecked = localStorage.getItem(`show_${tableId}_${name}`) ? localStorage.getItem(`show_${tableId}_${name}`) === 'true' ? 'checked' : '' : 'checked'
+                        let isChecked = localStorage.getItem(`show_${tableId}_${name}`) ? localStorage
+                            .getItem(`show_${tableId}_${name}`) === 'true' ? 'checked' : '' : 'checked'
                         col += `<li >
                                     <label>
                                         <input type="checkbox" data-col="${i}" data-name="${name}" ${isChecked}> ${name}
@@ -363,7 +365,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/update-status-seleksi_dalam_proses', // Sesuaikan dengan URL rute Anda
+                url: '{{ route('back-office.seleksi.update_seleksi_dalam_proses.status') }}', // Sesuaikan dengan URL rute Anda
                 data: formData,
                 success: function(response) {
                     // Handle success, tampilkan SweetAlert untuk konfirmasi OK

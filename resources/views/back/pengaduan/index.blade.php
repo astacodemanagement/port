@@ -25,7 +25,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Pengaduan</a>
                             </li>
@@ -138,8 +138,8 @@
                                             <label class="col-form-label" for="nama_pengaduan">Nama Pengaduan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success" id="nama_pengaduan"
-                                                name="nama_pengaduan">
+                                            <input type="text" class="form-control form-control-success"
+                                                id="nama_pengaduan" name="nama_pengaduan">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -155,8 +155,8 @@
                                             <label class="col-form-label" for="urutan">Urutan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success"
-                                                id="urutan" name="urutan">
+                                            <input type="number" class="form-control form-control-success" id="urutan"
+                                                name="urutan">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -386,7 +386,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/pengaduan/update/' + id,
+                    url: `${baseUrl}/pengaduan/update/${id}`,
                     data: formData,
                     headers: {
                         'X-HTTP-Method-Override': 'PUT'
@@ -459,7 +459,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
 
-                            url: '/pengaduan/' + id,
+                            url: `${baseUrl}/pengaduan/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {

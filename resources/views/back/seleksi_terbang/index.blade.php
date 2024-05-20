@@ -34,7 +34,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Seleksi</a>
                             </li>
@@ -176,7 +176,7 @@
                                                                     Ubah Status
 
                                                                 </a>
-                                                                <a href="{{ route('seleksi_dalam_proses.detail', $p2->id) }}"
+                                                                <a href="{{ route('back-office.seleksi.seleksi-dalam-proses.detail', $p2->id) }}"
                                                                     class="form-control"
                                                                     style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
                                                                     title="Detail">
@@ -430,7 +430,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/update-status-seleksi_terbang', // Sesuaikan dengan URL rute Anda
+                url: '{{ route('back-office.seleksi.update_seleksi_terbang.status') }}', // Sesuaikan dengan URL rute Anda
                 data: formData,
                 success: function(response) {
                     // Handle success, tampilkan SweetAlert untuk konfirmasi OK

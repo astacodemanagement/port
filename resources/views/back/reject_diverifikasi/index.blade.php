@@ -48,7 +48,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Reject Diverifikasi</a>
                             </li>
@@ -70,7 +70,9 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Data Pendaftaran Kandidat <span class="badge badge-pill badge-danger" style="color: #f9fbfc; display: inline-block;"> <i class="fa fa-ban"></i> REJECT VERIFIKASI</span> </h5>
+                                        <h5>Data Pendaftaran Kandidat <span class="badge badge-pill badge-danger"
+                                                style="color: #f9fbfc; display: inline-block;"> <i class="fa fa-ban"></i>
+                                                REJECT VERIFIKASI</span> </h5>
 
                                     </div>
 
@@ -147,16 +149,17 @@
                                                         <div class="card-block">
 
 
-                                                            <a href="{{ route('verifikasi.detail', $p->id) }}">
+                                                            <a
+                                                                href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}">
                                                                 <h5 class="card-title">
                                                                     <b
                                                                         style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->nama_lengkap }}</b>
                                                                 </h5>
                                                             </a>
-    
-    
-    
-    
+
+
+
+
                                                             <p class="mb-1">No Paspor: <b style="font-weight: bold;">
                                                                     {{ $p->kandidat->no_paspor }}
                                                                 </b></p>
@@ -164,7 +167,7 @@
                                                                 <span class="badge badge-pill badge-warning"
                                                                     style="color: #00324F; font-size:12px;">{{ $p->nama_kategori_job }}</span>
                                                             </h5>
-    
+
                                                             <div class="text-left">
                                                                 <!-- Adjusted alignment to the left -->
                                                                 <small class="text-muted">
@@ -179,16 +182,16 @@
                                                                         </span>
                                                                     </small>
                                                                 @endif
-    
+
                                                             </div>
                                                             <br>
-                                                             
+
                                                             <br>
-    
-    
+
+
                                                             <div class="text-left">
                                                                 <!-- Icon mata untuk detail -->
-    
+
                                                                 <div class="d-flex">
                                                                     <a href="" data-toggle="modal"
                                                                         data-target="#ubahStatusModal{{ $p->id }}"
@@ -197,22 +200,22 @@
                                                                         title="Detail">
                                                                         <i class="fa fa-edit"></i>
                                                                         Ubah Status
-    
+
                                                                     </a>
-                                                                    <a href="{{ route('verifikasi.detail', $p->id) }}"
+                                                                    <a href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}"
                                                                         class="form-control"
                                                                         style="background-color: transparent; color: #00324F; border-radius: 1rem; font-size: 12px;  border: 1px solid #00324F;"
                                                                         title="Detail"><i class="fa fa-arrow-right"></i>
                                                                         Lihat Detail</a>
-    
+
                                                                 </div>
-    
-    
-    
-    
-    
+
+
+
+
+
                                                             </div>
-    
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -240,7 +243,8 @@
                                                                             id="statusSelect{{ $p->id }}"
                                                                             name="status"
                                                                             onchange="handleStatusChange(this)">
-                                                                            <option value="Belum Verifikasi(Pending)">Belum Verifikasi(Pending)</option>
+                                                                            <option value="Belum Verifikasi(Pending)">Belum
+                                                                                Verifikasi(Pending)</option>
                                                                             <option value="Verifikasi">Verifikasi</option>
                                                                             <option value="Reject">Reject</option>
                                                                             <option value="Reject-Blacklist">
@@ -376,7 +380,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: '/update-status-verifikasi-reject', // Sesuaikan dengan URL rute Anda
+                        url: '{{ route('back-office.pelamar.update.status-reject') }}', // Sesuaikan dengan URL rute Anda
                         data: formData,
                         success: function(response) {
                             // Handle success, tampilkan SweetAlert untuk konfirmasi OK

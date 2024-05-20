@@ -25,7 +25,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Pengeluaran</a>
                             </li>
@@ -134,7 +134,8 @@
                                 <div class="card-block">
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="tanggal_pengeluaran">Tanggal Pengeluaran</label>
+                                            <label class="col-form-label" for="tanggal_pengeluaran">Tanggal
+                                                Pengeluaran</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="date" class="form-control form-control-success"
@@ -156,8 +157,10 @@
                                             <label class="col-form-label" for="nama_pengeluaran">Jumlah Pengeluaran</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success jumlah_pengeluaran" name="jumlah_pengeluaran" id="jumlah_pengeluaran">
-                                  
+                                            <input type="text"
+                                                class="form-control form-control-success jumlah_pengeluaran"
+                                                name="jumlah_pengeluaran" id="jumlah_pengeluaran">
+
                                         </div>
                                     </div>
 
@@ -248,7 +251,8 @@
                                 <div class="card-block">
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_tanggal_pengeluaran">Tanggal Pengeluaran</label>
+                                            <label class="col-form-label" for="edit_tanggal_pengeluaran">Tanggal
+                                                Pengeluaran</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="date" class="form-control form-control-success"
@@ -257,7 +261,8 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_nama_pengeluaran">Nama Pengeluaran</label>
+                                            <label class="col-form-label" for="edit_nama_pengeluaran">Nama
+                                                Pengeluaran</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control form-control-success"
@@ -267,11 +272,14 @@
 
                                     <div class="form-group row" id="jumlah_pengeluaran_container">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="jumlah_pengeluaran">Jumlah Pengeluaran</label>
+                                            <label class="col-form-label" for="jumlah_pengeluaran">Jumlah
+                                                Pengeluaran</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success jumlah_pengeluaran" name="jumlah_pengeluaran" id="edit_jumlah_pengeluaran">
-                                  
+                                            <input type="text"
+                                                class="form-control form-control-success jumlah_pengeluaran"
+                                                name="jumlah_pengeluaran" id="edit_jumlah_pengeluaran">
+
                                         </div>
                                     </div>
 
@@ -424,7 +432,10 @@
 
                 $.ajax({
                     pengeluaran: 'GET',
-                    url: '/pengeluaran/' + id + '/edit',
+                    url: `${baseUrl}/pengeluaran/${id}/edit`,
+                    beforeSend: function() {
+                        $('#gambar_edit_container').html('')
+                    },
                     success: function(data) {
                         // console.log(data); // Cek apakah data terisi dengan benar
                         // Mengisi data pada form modal
@@ -467,7 +478,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/pengeluaran/update/' + id,
+                    url: `${baseUrl}/pengeluaran/${id}`,
                     data: formData,
                     headers: {
                         'X-HTTP-Method-Override': 'PUT'
@@ -540,7 +551,7 @@
                     if (result.isConfirmed) {
                         $.ajax({
 
-                            url: '/pengeluaran/' + id,
+                            url: `${baseUrl}/pengeluaran/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {
