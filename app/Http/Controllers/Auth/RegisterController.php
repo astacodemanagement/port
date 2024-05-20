@@ -12,6 +12,7 @@ use App\Models\Pendaftaran;
 use App\Models\PengalamanKerja;
 use App\Models\Provinsi;
 use App\Models\User;
+use App\Models\Wilayah;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -89,11 +90,11 @@ class RegisterController extends Controller
 
         $request->validate($this->rules(), $this->messages(), $this->attributes());
 
+        $wilayah = Kecamatan::find($request->wilayah);
         $negara = Negara::find($request->negara_id);
         $kategoriJob = KategoriJob::find($request->kategori_job_id);
-        $provinsi = Provinsi::find($request->provinsi_id);
-        $kota = Kota::find($request->kota_id);
-        $kecamatan = Kecamatan::find($request->kecamatan_id);
+        $provinsi = Provinsi::find($wilayah?->kota?->provinsi_id);
+        $kota = Kota::find($wilayah?->kota_id);
         $noHp = $request->no_hp;
         $noWa = $request->no_wa;
 
@@ -172,7 +173,7 @@ class RegisterController extends Controller
                 'alamat' => $request->alamat,
                 'provinsi' => $provinsi?->nama_provinsi,
                 'kota' => $kota?->nama_kota,
-                'kecamatan' => $kecamatan?->nama_kecamatan,
+                'kecamatan' => $wilayah?->nama_kecamatan,
                 'referensi' => isset($referensi[$request->referensi]) ? $referensi[$request->referensi] : null,
                 'nama_referensi' => $request->referensi == 6 ? $request->nama_referensi : null,
                 'no_paspor' => $request->no_paspor,
@@ -321,9 +322,10 @@ class RegisterController extends Controller
                 'nama_lengkap_ayah' => 'required',
                 'nama_lengkap_ibu' => 'required',
                 'alamat' => 'required|min:5',
-                'provinsi_id' => 'required|numeric',
-                'kota_id' => 'required|numeric',
-                'kecamatan_id' => 'required|numeric',
+                'wilayah' => 'required|numeric',
+                // 'provinsi_id' => 'required|numeric',
+                // 'kota_id' => 'required|numeric',
+                // 'kecamatan_id' => 'required|numeric',
                 'referensi' => 'required|numeric',
                 'nama_referensi' => 'required_if:referensi,6',
             ],

@@ -119,7 +119,7 @@
                                 <div class="card-block">
 
                                     <div class="dt-responsive table-responsive">
-                                        <table id="order-table2" class="table table-striped table-bordered nowrap">
+                                        <table id="order-table2" class="table table-striped table-bordered nowrap w-100">
                                             <thead>
                                                 <tr>
                                                     <th width="5%">No</th>
@@ -268,7 +268,55 @@
 
     <script>
         $(document).ready(function() {
-            $('#order-table2').DataTable();
+            let datatable = $('#order-table2').DataTable({
+                initComplete: function (settings, json) {
+                    const tableId = $(this).prop('id')
+                    addDatatableDropdown(tableId, $(this))
+                }
+            })
+
+            $('.card').on('click', '.dropdown-menu li label input', function(){
+                let col = $(this).data('col')
+                let isChecked = $(this).is(':checked')
+                let name = $(this).data('name')
+
+                localStorage.setItem(`show_order-table2_${name}`, isChecked ? true : false);
+                datatable.column(col).visible(isChecked ? true : false)
+            })
+
+            function addDatatableDropdown(tableId, dt) {
+                let col = ''
+                let i = 0
+
+                $.each($(`#${tableId} thead tr th`), function(){
+                    if ($(this).text() !== '') {
+                        let name = $(this).text()
+                        let isChecked = localStorage.getItem(`show_${tableId}_${name}`) ? localStorage.getItem(`show_${tableId}_${name}`) === 'true' ? 'checked' : '' : 'checked'
+                        col += `<li >
+                                    <label>
+                                        <input type="checkbox" data-col="${i}" data-name="${name}" ${isChecked}> ${name}
+                                    </label>
+                                </li>`
+
+                        $(`#${tableId}`).DataTable().column(i).visible(isChecked ? true : false)
+                    }
+
+                    i++
+                })
+
+                $(`#${tableId}_wrapper`).find('.row .col-xs-12:first').prepend(`<div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle mr-2 float-left" type="button" 
+                            id="dropdownMenu1" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true" data-auto-close="false">
+                        <i class="fa fa-cog"></i>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu checkbox-menu allow-focus p-2" aria-labelledby="dropdownMenu1">
+                        ${col}
+                    </ul>
+                </div>`)
+            }
+
             // Sembunyikan tabel kedua saat halaman dimuat
             $("#tb1").hide();
 

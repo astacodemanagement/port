@@ -5,14 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Kecamatan extends Model
+class Kelurahan extends Model
 {
     use HasFactory;
+    protected $table = 'kelurahan';
 
-    protected $table = 'kecamatan';
-
-    public function kota()
+    public function kecamatan()
     {
-        return $this->belongsTo(Kota::class);
+        return $this->belongsTo(Kecamatan::class);
     }
 }

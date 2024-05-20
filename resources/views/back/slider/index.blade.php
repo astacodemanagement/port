@@ -25,7 +25,7 @@
                     <div class="page-header-breadcrumb">
                         <ul class=" breadcrumb breadcrumb-title">
                             <li class="breadcrumb-item">
-                                <a href="/"><i class="feather icon-home"></i></a>
+                                <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
                             <li class="breadcrumb-item"><a href="#!">Halaman Slider</a>
                             </li>
@@ -44,18 +44,14 @@
                     <div class="page-body">
                         <div class="row">
                             <div class="col-sm-12">
-
-
                                 <div class="card">
                                     <div class="card-header">
                                         <h5>Data Slider</h5>
-
                                     </div>
                                     <div class="card-block">
                                         <button type="button" class="btn btn-primary mobtn" data-toggle="modal"
                                             data-target="#modal-slider"><i class="fas fa-plus-circle"></i> Add
                                             Data</button>
-
                                         <br><br>
 
                                         <div class="dt-responsive table-responsive">
@@ -98,21 +94,14 @@
                                                             </td>
                                                         </tr>
                                                     @endforeach
-
                                                 </tbody>
-
                                             </table>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
@@ -129,8 +118,6 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-
-
                                 <div class="card-block">
 
                                     <div class="form-group row">
@@ -345,7 +332,10 @@
 
                 $.ajax({
                     slider: 'GET',
-                    url: '/slider/' + id + '/edit',
+                    url: `${baseUrl}/slider/${id}/edit`,
+                    beforeSend: function() {
+                        $('#gambar_edit_container').html('')
+                    },
                     success: function(data) {
                         // console.log(data); // Cek apakah data terisi dengan benar
                         // Mengisi data pada form modal
@@ -386,7 +376,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/slider/update/' + id,
+                    url: `${baseUrl}/slider/update/${id}`,
                     data: formData,
                     headers: {
                         'X-HTTP-Method-Override': 'PUT'
@@ -458,8 +448,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-
-                            url: '/slider/' + id,
+                            url: `${baseUrl}/slider/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {
