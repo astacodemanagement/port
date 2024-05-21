@@ -1,4 +1,4 @@
-@extends('front.layouts.app')
+@extends('front.compro-1.layouts.app')
 
 @section('title', 'Register')
 
@@ -7,7 +7,7 @@
     <!-- Navbar -->
     <section class="Element-nav-items">
         <div class="container">
-            @include('front.layouts.navbar')
+            @include('front.compro-1.layouts.navbar')
         </div>
     </section>
     <!-- #End -->

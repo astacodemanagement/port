@@ -16,6 +16,7 @@ class HomeController extends Controller
       $review = Review::all();
       $job = Job::all();
       $alasan = Alasan::all();
-      return view('front.home', compact('slider','alasan','job','review'));
+      
+      return viewCompro('home', compact('slider','alasan','job','review'));
    }
 }

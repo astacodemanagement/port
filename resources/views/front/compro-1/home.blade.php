@@ -1,11 +1,11 @@
-@extends('front.layouts.app')
+@extends('front.compro-1.layouts.app')
 @section('title', 'Halaman Awal')
 @section('subtitle', 'Menu Awal')
 
 @section('content')
     <section class="Element-nav-items">
         <div class="container">
-            @include('front.layouts.navbar')
+            @include('front.compro-1.layouts.navbar')
             <!-- Caraousel Section -->
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">

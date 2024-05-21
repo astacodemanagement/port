@@ -90,7 +90,7 @@
                                                                     <i class="fas fa-edit"></i> Edit
                                                                 </a>
 
-                                                                <a href="{{ route('job.edit',$p->id)}}" class="btn btn-sm btn-warning" style="color: black"><i class="fas fa-edit"></i> Edit</a>
+                                                                <a href="{{ route('back-office.job.edit',$p->id)}}" class="btn btn-sm btn-warning" style="color: black"><i class="fas fa-edit"></i> Edit</a>
                                                                 <button class="btn btn-sm btn-danger btn-hapus"
                                                                     data-id="{{ $p->id }}" style="color: white">
                                                                     <i class="fas fa-trash-alt"></i> Delete

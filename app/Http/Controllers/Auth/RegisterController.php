@@ -60,14 +60,14 @@ class RegisterController extends Controller
         $categories = KategoriJob::all();
         $provinces = Provinsi::all();
 
-        return view('front.register.index', compact('countries', 'categories', 'provinces'));
+        return viewCompro('register.index', compact('countries', 'categories', 'provinces'));
     }
 
     public function completeRegistration()
     {
         if (session()->has('is_register')) {
             if (session('is_register')) {
-                return view('front.register.complete');
+                return viewCompro('register.complete');
             }
         }
 

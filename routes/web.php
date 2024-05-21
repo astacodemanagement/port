@@ -11,6 +11,7 @@ use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\Front\JobController as FrontJobController;
+use App\Http\Controllers\Front\LoginController as FrontLoginController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\KategoriJobController;
@@ -61,6 +62,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::prefix('administrator')->group(function () {
+    Auth::routes();
+
     Route::name('back-office.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('home');
 
@@ -327,10 +330,13 @@ Route::prefix('ajax')->group(function () {
     });
 });
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/jobs', [FrontJobController::class, 'index'])->name('front.jobs.index');
+Route::get('/login', [FrontLoginController::class, 'showLoginForm'])->name('front.jobs.login');
+Route::post('/login', [FrontLoginController::class, 'login'])->name('front.jobs.login.store');
+Route::get('/logout', [FrontLoginController::class, 'logout'])->name('front.jobs.logout');
+
+Auth::routes(['login' => false, 'logout' => false]);
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
 Route::post('register/step/validation', [RegisterController::class, 'stepValidation'])->name('register.step.validation');
-
-Auth::routes();

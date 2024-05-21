@@ -93,7 +93,7 @@
                                                                 <div class="slide"></div>
                                                             </li>
                                                         </ul>
-                                                        <form id="form_job" action="{{ route('simpan_job') }}"
+                                                        <form id="form_job" action="{{ route('back-office.job.simpan_job') }}"
                                                             method="POST" enctype="multipart/form-data">
                                                             @csrf <!-- Tambahkan token CSRF -->
                                                             <div class="tab-content card-block">
