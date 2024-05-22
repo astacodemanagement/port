@@ -62,7 +62,7 @@ class LoginController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect(route('front.jobs.index'));
+            : redirect(route('member.index'));
         // redirect()->intended($this->redirectPath());
     }
 
