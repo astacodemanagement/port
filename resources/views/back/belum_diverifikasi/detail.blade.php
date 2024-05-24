@@ -102,6 +102,11 @@
                                                                 role="tab"><i class="fas fa-info"></i>Alasan</a>
                                                             <div class="slide"></div>
                                                         </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#akun"
+                                                                role="tab"><i class="fas fa-user"></i>Akun</a>
+                                                            <div class="slide"></div>
+                                                        </li>
                                                     </ul>
 
                                                     <form id="form_verifikasi" action="" method="POST"
@@ -986,6 +991,41 @@
 
                                                             </div>
 
+                                                            {{-- akun --}}
+                                                            <div class="tab-pane" id="akun" role="tabpanel">
+
+                                                                <div class="modal-content">
+
+                                                                    <div class="modal-body
+                                                                        ">
+                                                                        <div class="card-block
+                                                                            ">
+                                                                            <h5>AKUN</h5>
+                                                                        {{-- update account email & password --}}
+                                                                    
+                                                                            <div class="form-group 
+                                                                                ">
+                                                                                <div class="col-sm-6
+                                                                                    ">
+                                                                                    <label class="col-form-label
+                                                                                        " for="email">Email</label>
+                                                                                    <input type="email" class="form-control
+                                                                                        " id="email" name="email" value="{{ $user_info->email }}">
+                                                                                </div>
+                                                                                <div class="col-sm-6
+                                                                                    ">
+                                                                                    <label class="col-form-label
+                                                                                        " for="password">Password</label>
+                                                                                    <input type="text" class="form-control
+                                                                                        " id="password" name="password" placeholder="kosongkan jika tidak ingin mengubah password" >
+                                                                                </div>
+                                                                            </div>
+                                                                          
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
 
                                                             <a href="javascript:history.back()"
@@ -1085,7 +1125,7 @@
 
                             $.ajax({
                                 type: 'POST',
-                                url: '/verifikasi/update/' + id,
+                                url:  `{{ route('back-office.pelamar.updateDetail.update', $belum_diverifikasi->id) }}`,
                                 data: formData,
                                 headers: {
                                     'X-HTTP-Method-Override': 'PUT'

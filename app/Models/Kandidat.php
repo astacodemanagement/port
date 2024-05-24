@@ -20,4 +20,5 @@ class Kandidat extends Model
     {
         return $this->belongsTo(Seleksi::class, 'kandidat_id');
     }
+
 }
