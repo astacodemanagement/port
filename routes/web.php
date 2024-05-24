@@ -351,3 +351,7 @@ Route::prefix('member')->group(function () {
         });
     });
 });
+
+Route::get('/compro2', function () {
+    return view('front.compro2.index');
+})->name('compro2.index');

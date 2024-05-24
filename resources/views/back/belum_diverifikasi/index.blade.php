@@ -20,9 +20,51 @@
 
         .card-img-container img {
             width: 100%;
+            min-width: 150px;
             object-fit: cover;
             object-position: center;
             height: 100%;
+        }
+
+        .card-sub {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card-sub:hover {
+            transform: scale(1.05);
+        }
+
+        .card-img-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        @media (min-width: 150px) {
+            .card-sub {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card-img-container {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .card-content {
+                width: 100%;
+                text-align: center;
+            }
         }
     </style>
 @endpush
@@ -77,20 +119,54 @@
 
 
                                     <div class="card-block">
-                                        <div class="col-lg-12 col-xl-3">
+                                        <div class="col-lg-12 col-xl-6">
                                             <!-- Add this inside your HTML body -->
-                                            <div class="search-container">
-                                                <div style="display: inline-block;">
-                                                    <input type="text" class="form-control" id="searchInput"
-                                                        placeholder="Search...">
-                                                </div>
-                                                <div style="display: inline-block;">
-                                                    <button class="btn btn-primary waves-effect waves-light"
-                                                        onclick="searchCards()">Search</button>
-                                                </div>
-                                            </div>
+                                            <div class="row mb-5">
+                                                <div class="search-container col-md-6">
+                                                    {{-- send request --}}
 
-                                            <br><br>
+                                                    {{-- form --}}
+                                                    <form action="{{ url('/administrator/belum-diverifikasi') }}"
+                                                        method="GET">
+
+                                                        <div style="display: inline-block;">
+                                                            <input type="text" class="form-control" id="searchInput"
+                                                                placeholder="Search..." name="search"
+                                                                value="{{ $search ?? '' }}">
+                                                        </div>
+                                                        <div style="display: inline-block;">
+                                                            <button class="btn btn-primary waves-effect waves-light"
+                                                                type="submit">Search</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                {{-- filter container --}}
+                                                <div class="filter-container col-md-6">
+
+                                                    <form action="{{ url('/administrator/belum-diverifikasi') }}"
+                                                        method="get">
+                                                        <div
+                                                            class="form-group d-flex 
+                                                     @if ($filter_job == 'kategori_job') active @endif">
+                                                            <label for="" class="py-2 text-dark mx-3">Filter</label>
+
+                                                            <select name="filter_job" id="filter" class="form-control"
+                                                                onchange="this.form.submit()">
+                                                                <option value="kategori_job">--Cari Kategori Job--</option>
+                                                                @foreach ($kategori_job as $item)
+                                                                    <option value="{{ $item->id }}"
+                                                                        @if ($filter_job == $item->id) selected @endif>
+                                                                        {{ $item->nama_kategori_job }}</option>
+                                                                @endforeach
+                                                            </select>
+
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+
+                                                <br><br>
+                                            </div>
                                         </div>
 
                                         <div class="row" id="draggablePanelList">
@@ -115,7 +191,8 @@
                                                                             src="/upload/foto/foto.png" alt="Default Image">
                                                                     @endif
                                                                 </div>
-                                                                <div style="flex: 1; text-align: left; padding-left:9px;">
+                                                                <div
+                                                                    style="flex: 1; text-align: left; padding-left:9px; word-wrap: break-word; ">
                                                                     <br>
                                                                     <h5 class="card-title">
                                                                         <a href="">
@@ -125,18 +202,21 @@
                                                                         </a>
                                                                     </h5>
 
-                                                                    <p class="mb-1">Pendidikan : <b
+                                                                    <p class="mb-1 text-muted" > <i class="fas fa-graduation-cap"></i> <b
                                                                             style="font-weight: bold;">{{ $p->kandidat->pendidikan }}</b>
                                                                     </p>
-                                                                    <p class="mb-1">Tinggi & Berat Badan : <b
+                                                                    <p class="mb-1 text-muted">
+                                                                        <i class="fas fa-weight-scale"></i>
+                                                                        <b
                                                                             style="font-weight: bold; margin:0%">{{ $p->kandidat->tinggi_badan }}
-                                                                            cm - {{ $p->kandidat->berat_badan }} Kg</b> </p>
-                                                                    <p class="mb-1">Usia: <b style="font-weight: bold;">
+                                                                            cm - {{ $p->kandidat->berat_badan }} Kg</b>
+                                                                    </p>
+                                                                    <p class="mb-1 text-muted"><i class="fa fa-user"></i> <b style="font-weight: bold;">
                                                                             {{ $p->kandidat->usia }}
                                                                             Tahun</b></p>
-                                                                    <p class="card-text mb-1"
+                                                                    <p class="card-text mb-1 text-muted"
                                                                         style="font-family: 'Poppins', sans-serif; ">
-                                                                        Domisili Provinsi : <b style="font-weight: bold;">
+                                                                        <i class="fa fa-globe"></i><b style="font-weight: bold;">
                                                                             {{ $p->kandidat->provinsi }}</b></p>
 
                                                                 </div>
@@ -144,65 +224,67 @@
                                                         </div>
 
 
+                                                        <div class="col-lg-12 col-xl-12">
 
-                                                        <div class="card-block">
-
-
-                                                            <a
-                                                                href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}">
+                                                            <div class="card-block">
+    
+    
+                                                                <a
+                                                                    href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}">
+                                                                    <h5 class="card-title">
+                                                                        <b
+                                                                            style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->kandidat->nama_lengkap }}</b>
+                                                                    </h5>
+                                                                </a>
+    
+    
+    
+    
+                                                                <p class="mb-1 text-muted"><i class="fas fa-location-dot"></i><b style="font-weight: bold;">
+                                                                        {{ $p->kandidat->provinsi }}, {{ $p->kandidat->kota }}, {{$p->kandidat->kecamatan}}</b></p>  
+                                                                    </b></p>
                                                                 <h5 class="card-title">
-                                                                    <b
-                                                                        style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->kandidat->nama_lengkap }}</b>
+                                                                    <span class="badge badge-pill badge-warning"
+                                                                        style="color: #00324F; font-size:12px;">{{ $p->nama_kategori_job }}</span>
                                                                 </h5>
-                                                            </a>
-
-
-
-
-                                                            <p class="mb-1">No Paspor: <b style="font-weight: bold;">
-                                                                    {{ $p->kandidat->no_paspor }}
-                                                                </b></p>
-                                                            <h5 class="card-title">
-                                                                <span class="badge badge-pill badge-warning"
-                                                                    style="color: #00324F; font-size:12px;">{{ $p->nama_kategori_job }}</span>
-                                                            </h5>
-                                                            <div class="text-left">
-                                                                <!-- Adjusted alignment to the left -->
-                                                                <small class="text-muted">
-                                                                    <i class="fa fa-calendar"></i>
-                                                                    <b>{{ $p->created_at->format('l, j F Y') }}</b>
-                                                                </small>
-                                                            </div>
-                                                            <br>
-
-
-                                                            <div class="text-left">
-                                                                <!-- Icon mata untuk detail -->
-
-                                                                <div class="d-flex">
-                                                                    <a href="" data-toggle="modal"
-                                                                        data-target="#ubahStatusModal{{ $p->id }}"
-                                                                        class="form-control mr-2"
-                                                                        style="background-color: #00324F; color: #fff; border-radius: 1rem; font-size: 12px; "
-                                                                        title="Detail">
-                                                                        <i class="fa fa-edit"></i>
-                                                                        Ubah Status
-
-                                                                    </a>
-                                                                    <a href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}"
-                                                                        class="form-control"
-                                                                        style="background-color: transparent; color: #00324F; border-radius: 1rem; font-size: 12px;  border: 1px solid #00324F;"
-                                                                        title="Detail"><i class="fa fa-arrow-right"></i>
-                                                                        Lihat Detail</a>
-
+                                                                <div class="text-left">
+                                                                    <!-- Adjusted alignment to the left -->
+                                                                    <small class="text-muted">
+                                                                        <i class="fa fa-calendar"></i>
+                                                                        <b>{{ $p->created_at->format('l, j F Y') }}</b>
+                                                                    </small>
                                                                 </div>
-
-
-
-
-
+                                                                <br>
+    
+    
+                                                                <div class="text-left">
+                                                                    <!-- Icon mata untuk detail -->
+    
+                                                                    <div class="d-flex">
+                                                                        <a href="" data-toggle="modal"
+                                                                            data-target="#ubahStatusModal{{ $p->id }}"
+                                                                            class="form-control mr-2"
+                                                                            style="background-color: #00324F; color: #fff; border-radius: 1rem; font-size: 12px; "
+                                                                            title="Detail">
+                                                                            <i class="fa fa-edit"></i>
+                                                                            Ubah Status
+    
+                                                                        </a>
+                                                                        <a href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}"
+                                                                            class="form-control"
+                                                                            style="background-color: transparent; color: #00324F; border-radius: 1rem; font-size: 12px;  border: 1px solid #00324F;"
+                                                                            title="Detail"><i class="fa fa-arrow-right"></i>
+                                                                            Lihat Detail</a>
+    
+                                                                    </div>
+    
+    
+    
+    
+    
+                                                                </div>
+    
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
@@ -325,7 +407,25 @@
         @push('script')
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-
+            <script>
+                function SearchName() {
+                    var search = $("input[name='search']").val();
+                    // snd with ajax
+                    $.ajax({
+                        url: "/administrator/belum-diverifikasi",
+                        type: "GET",
+                        data: {
+                            search: search
+                        },
+                        success: function(response) {
+                            $('#draggablePanelList').html(response);
+                        },
+                        error: function(error) {
+                            console.error(error);
+                        }
+                    });
+                }
+            </script>
             {{-- <script>
                 function handleStatusChange(selectElement) {
                     var pendaftaranId = selectElement.id.replace('statusSelect', '');
@@ -341,25 +441,6 @@
             </script> --}}
 
             <!-- Add this inside your HTML body, after the card layout code -->
-            <script>
-                function searchCards() {
-                    var input, filter, cards, card, i, txtValue;
-                    input = document.getElementById("searchInput");
-                    filter = input.value.toUpperCase();
-                    cards = document.getElementById("draggablePanelList").getElementsByClassName("card-sub");
-
-                    for (i = 0; i < cards.length; i++) {
-                        card = cards[i];
-                        txtValue = card.textContent || card.innerText;
-
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            card.style.display = "";
-                        } else {
-                            card.style.display = "none";
-                        }
-                    }
-                }
-            </script>
 
 
             <script>

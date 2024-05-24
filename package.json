@@ -11,11 +11,16 @@
     },
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
+        "autoprefixer": "^10.4.19",
         "axios": "^0.25",
         "bootstrap": "^5.2.3",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14",
-        "sass": "^1.56.1"
+        "mix-tailwindcss": "^1.3.0",
+        "postcss": "^8.4.38",
+        "resolve-url-loader": "^5.0.0",
+        "sass": "^1.56.1",
+        "sass-loader": "^12.6.0",
+        "tailwindcss": "^3.4.3"
     }
 }
