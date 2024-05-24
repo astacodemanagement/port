@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\KategoriJob;
 use App\Models\Pendaftaran;
 use App\Models\LogHistori;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,10 +33,32 @@ class BelumVerifikasiController extends Controller
         $log->save();
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $belum_diverifikasi = Pendaftaran::where('status', 'Belum Verifikasi(Pending)')->orderBy('id', 'desc')->paginate(4);  
-        return view('back.belum_diverifikasi.index', compact('belum_diverifikasi'));
+        // search jika ada
+        $search = $request->input('search');
+        if($search){
+            $belum_diverifikasi = Pendaftaran::where('status', 'Belum Verifikasi(Pending)')->with('kandidat')
+            ->whereHas('kandidat', function($query) use ($search){
+                $query->where('provinsi', 'like', '%'.$search.'%');
+            })
+            ->orWhere('nama_lengkap', 'like', '%'.$search.'%')
+            ->orderBy('id', 'desc')->paginate(4);
+        }else{
+            $belum_diverifikasi = Pendaftaran::where('status', 'Belum Verifikasi(Pending)')->orderBy('id', 'desc')->paginate(4);  
+        }
+        
+        $filter_job = $request->input('filter_job');
+        if($filter_job){
+            $belum_diverifikasi = Pendaftaran::where('status', 'Belum Verifikasi(Pending)')
+            ->where('kategori_job_id', $filter_job)
+            
+            ->orderBy('id', 'desc')->paginate(4);
+        }
+        $kategori_job = KategoriJob::all();
+        
+        return view('back.belum_diverifikasi.index', compact('belum_diverifikasi','search','kategori_job','filter_job'));
+      
     }
 
 
@@ -120,7 +144,17 @@ class BelumVerifikasiController extends Controller
         $verifikasi->update($input);
     
         $loggedInUserId = Auth::id();
-    
+        
+      
+        $user = User::where('id', $verifikasi->kandidat->user_id)->first();
+        if($request->has("email")){
+            $user->email = $request->email;
+            $user->save();
+        }
+        if($request->has("password")){
+            $user->password = bcrypt($request->password);
+            $user->save();
+        }
         // Simpan log histori untuk operasi Update dengan user_id yang sedang login
         $this->simpanLogHistori('Update', 'Update Detail Verifikasi', $verifikasi->id, $loggedInUserId, json_encode($verifikasi->getOriginal()), json_encode($verifikasi));
     
@@ -168,10 +202,11 @@ class BelumVerifikasiController extends Controller
      */
     public function detail($id)
     {
-        $belum_diverifikasi = Pendaftaran::where('id', $id)->first();
+        $data['belum_diverifikasi'] = Pendaftaran::where('id', $id)->with('kandidat')->first();
+        $data["user_id"] =   $data['belum_diverifikasi']->kandidat->user_id;
+        $data['user_info'] = User::where('id',   $data["user_id"] )->first();
 
-
-        return view('back.belum_diverifikasi.detail', compact('belum_diverifikasi'));
+      return view('back.belum_diverifikasi.detail', $data );
     }
 
     public function edit($id)
