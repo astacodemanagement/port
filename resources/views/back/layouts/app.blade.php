@@ -177,7 +177,8 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="/logout">
+                                            <form action="{{ route('logout') }}" method="POST" id="form-logout">@csrf</form>
+                                            <a href="javascript:void(0)" class="logout" onclick="document.getElementById('form-logout').submit()">
                                                 <i class="feather icon-log-out"></i> Logout
                                             </a>
                                         </li>
@@ -663,10 +664,7 @@
     <script src="{{ asset('template') }}/files/assets/js/vertical/vertical-layout.min.js"></script>
     <script type="text/javascript" src="{{ asset('template') }}/files/assets/js/script.min.js"></script>
     <script>const baseUrl='{{route('back-office.home')}}'</script>
-
     @stack('script')
 </body>
-
-<!-- Mirrored from demo.dashboardpack.com/admindek-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 31 Jan 2024 00:18:16 GMT -->
 
 </html>

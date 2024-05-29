@@ -15,4 +15,14 @@ class Job extends Model
     {
         return $this->hasMany(Benefit::class, 'job_id');  // Sesuaikan dengan skema relasi Anda
     }
+
+    public function negara()
+    {
+        return $this->belongsTo(Negara::class);
+    }
+
+    public function gambar()
+    {
+        return $this->belongsTo(Gambar::class, 'id', 'job_id');
+    }
 }

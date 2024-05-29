@@ -336,9 +336,10 @@ Route::prefix('ajax')->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/jobs', [FrontJobController::class, 'index'])->name('front.jobs.index');
+Route::get('/jobs/{slug}', [FrontJobController::class, 'show'])->name('front.jobs.show');
 Route::get('/login', [FrontLoginController::class, 'showLoginForm'])->name('front.jobs.login');
 Route::post('/login', [FrontLoginController::class, 'login'])->name('front.jobs.login.store');
-Route::get('/logout', [FrontLoginController::class, 'logout'])->name('front.jobs.logout');
+Route::post('/logout', [FrontLoginController::class, 'logout'])->name('front.jobs.logout');
 
 Auth::routes(['login' => false, 'logout' => false]);
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');

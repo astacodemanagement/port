@@ -1,5 +1,7 @@
 @extends('front.compro-1.layouts.app')
 
+@section('title', 'Job List')
+
 @section('content')
     <!-- Navbar -->
     <section class="Element-nav-items-search">
@@ -21,15 +23,15 @@
                 </div>
                 <div class="col-lg-3 mb-3">
                     <select class="form-select form-select-lg" aria-label="Select example">
-                        <option>Semua Klasifikasi</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option>Semua Kategori</option>
+                        @foreach ($kategori as $kat)
+                            <option>{{ $kat->nama_kategori_job }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-lg-3 mb-3">
                     <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="Masukan Pinggiran Kota"
+                        <input type="text" class="form-control" placeholder="Masukan Negara"
                             aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" />
                     </div>
                 </div>
@@ -81,7 +83,74 @@
         <div class="container">
             <div class="element-items-card mt-5 p-0 ">
                 <div class="row m-0">
-                    <div class="col-6 col-md-3 p-0">
+                    @forelse ($jobs as $job)
+                        <div class="col-6 col-md-3 p-0">
+                            <div class="card p-0">
+                                <div class="card-body">
+                                    <div class="job-image-container">
+                                        <img src="{{ asset('upload/gambar/' . $job->gambar?->gambar) }}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}" class="w-100">
+                                    </div>
+                                    <div class="card-items-bagde gap-1">
+                                        <img src="{{ asset('frontend/assets/icons/stop-circle.svg') }}" alt="">
+                                        <span>Tersedia</span>
+                                    </div>
+                                    <div class="card-title-heading-card">
+                                        <h5 class="col-10 text-truncate">{{ $job->nama_job }}
+                                        </h5>
+                                        <span>{{ $job->nama_perusahaan }}</span>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="row m-0">
+                                            <div class="col-1 mt-1">
+                                                <img src="{{ asset('frontend/assets/image/location.png') }}" alt="">
+                                            </div>
+                                            <div class="col-10 mt-2">
+                                                <h6 class="title-heading fw-bold">Negara</h6>
+                                                <p>{{ $job->negara?->nama_negara }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-1 mt-1">
+                                                <img src="{{ asset('frontend/assets/icons/document-text.svg') }}" alt="">
+                                            </div>
+                                            <div class="col-10 mt-2">
+                                                <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
+                                                <p>{{ $job->kontrak_kerja ?? '-' }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-1 mt-1">
+                                                <img src="{{ asset('frontend/assets/icons/Component 1.svg') }}" alt="">
+                                            </div>
+                                            <div class="col-10 mt-2">
+                                                <h6 class="title-heading fw-bold">Gaji</h6>
+                                                <p>{{ $job->gaji ? 'Rp ' . number_format($job->gaji) : '-' }}</p>
+                                            </div>
+                                        </div>
+                                        <div class="row m-0">
+                                            <div class="col-12">
+                                                <h6>Berakhir pada {{ $job->tanggal_tutup ? \Carbon\Carbon::parse($job->tanggal_tutup)->format('d F Y') : '-' }}</h6>
+                                            </div>
+                                            <div class="col-12 d-flex align-self-center mt-2">
+                                                <a href="{{ route('front.jobs.show', $job->id) }}">Lihat Detail
+                                                    <span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z">
+                                                            </path>
+                                                        </svg>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        
+                    @endforelse
+                    {{-- <div class="col-6 col-md-3 p-0">
                         <div class="card p-0">
                             <div class="card-body">
                                 <div class="">
@@ -202,7 +271,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- <div class="col-3">
                         <div class="card-body">
                             <div class="card-image">
@@ -565,18 +634,7 @@
     <!-- Pagination -->
     <section class="element-pagination">
         <div class="container">
-            <ul class="pagination">
-                <li class="page-item previous disabled">
-                    <span class="page-link page-text">Previous</span></span>
-                </li>
-                <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                <li class="page-item "><a href="#" class="page-link">2</a></li>
-                <li class="page-item "><a href="#" class="page-link">3</a></li>
-                <li class="page-item "><a href="#" class="page-link">4</a></li>
-                <li class="page-item "><a href="#" class="page-link">5</a></li>
-                <li class="page-item next">
-                    <a class="page-link page-text" href="#">Next</span></a>
-                </li>
+            {{ $jobs->links('vendor.pagination.compro-1') }}
             </ul>
         </div>
     </section>
@@ -598,6 +656,16 @@
 
         .element-items-card {
             display: block !important;
+        }
+        .job-image-container img{
+            height:130px;
+            object-position:center;
+            object-fit:cover
+        }
+        @media (min-width:1200px) {
+            .job-image-container img{
+                height:217px;
+            }
         }
     </style>
 @endpush
