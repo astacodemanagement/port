@@ -386,7 +386,7 @@
                                             <h6>Berakhir pada {{ $job->tanggal_tutup ? \Carbon\Carbon::parse($job->tanggal_tutup)->format('d F Y') : '-' }}</h6>
                                         </div>
                                         <div class="col-12 d-flex align-self-center mt-2">
-                                            <a href="{{ route('front.jobs.show', $job->id) }}">Lihat Detail
+                                            <a href="{{ route('front.jobs.show', hashId($job->id)) }}">Lihat Detail
                                                 <span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                                         <path
