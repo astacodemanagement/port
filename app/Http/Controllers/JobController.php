@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Imagick\Driver;
+use Illuminate\Support\Facades\File;
+
 
 class JobController extends Controller
 {
@@ -119,10 +123,26 @@ class JobController extends Controller
         $nama_gambar = $request->nama_gambar;
         $job_id = $request->job_id;
 
+        $gambarJob = Gambar::where('job_id', $job_id)->first();
+
         // Simpan gambar di dalam direktori 'public/upload/galeri/'
         $destinationPath = 'upload/gambar/';
         $imageName = time() . '_' . $gambar->getClientOriginalName();
-        $gambar->move(public_path($destinationPath), $imageName);
+        // $gambar->move(public_path($destinationPath), $imageName);
+
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($gambar);
+        $image->save($destinationPath . $imageName);
+        $image->cover(300, 300)->save($destinationPath . 'thumb_300_' . $imageName);
+        $image->cover(280, 220)->save($destinationPath . 'thumb_' . $imageName);
+
+        if ($gambarJob && $image) {
+            if (File::exists(public_path($destinationPath . $gambarJob->gambar))) {
+                File::delete(public_path($destinationPath . $gambarJob->gambar));
+            }
+
+            $gambarJob->delete();
+        }
 
 
         // Simpan informasi gambar ke tabel gambar

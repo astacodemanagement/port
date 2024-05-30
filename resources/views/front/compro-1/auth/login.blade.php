@@ -114,19 +114,19 @@
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}" placeholder="name@example.com" required>
                                     <label for="email" class="form-label">Email</label>
+                                    @error('email')
+                                        <small class="text-danger" role="alert">{{ $message }}</small>
+                                    @enderror
                                 </div>
-                                @error('email')
-                                    <small class="invalid-feedback text-danger" role="alert">{{ $message }}</small>
-                                @enderror
                             </div>
                             <div class="col-12">
                                 <div class="form-floating mb-3">
                                     <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" required>
                                     <label for="password" class="form-label">Password</label>
+                                    @error('password')
+                                        <small class="text-danger" role="alert">{{ $message }}</small>
+                                    @enderror
                                 </div>
-                                @error('password')
-                                    <small class="invalid-feedback text-danger" role="alert">{{ $message }}</small>
-                                @enderror
                             </div>
                             <div class="col-12">
                                 <div class="form-check">

@@ -35,21 +35,21 @@ function hero() {
 
 window.addEventListener("scroll", hero);
 
-const swiper = new Swiper(".MySwiper", {
-  // Optional parameters
-  direction: "vertical",
-  loop: true,
+// const swiper = new Swiper(".MySwiper", {
+//   // Optional parameters
+//   direction: "vertical",
+//   loop: true,
 
-  // If we need pagination
-  pagination: {
-    el: ".swiper-pagination",
-  },
+//   // If we need pagination
+//   pagination: {
+//     el: ".swiper-pagination",
+//   },
 
-  // Navigation arrows
-  navigation: {},
+//   // Navigation arrows
+//   navigation: {},
 
-  // And if we need scrollbar
-  scrollbar: {
-    el: ".swiper-scrollbar",
-  },
-});
+//   // And if we need scrollbar
+//   scrollbar: {
+//     el: ".swiper-scrollbar",
+//   },
+// });

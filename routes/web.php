@@ -10,6 +10,7 @@ use App\Http\Controllers\DetailBayarController;
 use App\Http\Controllers\EmployerController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\FeCompanyprofile2;
 use App\Http\Controllers\Front\JobController as FrontJobController;
 use App\Http\Controllers\Front\LoginController as FrontLoginController;
 use App\Http\Controllers\GaleriController;
@@ -336,9 +337,10 @@ Route::prefix('ajax')->group(function () {
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/jobs', [FrontJobController::class, 'index'])->name('front.jobs.index');
+Route::get('/jobs/{slug}', [FrontJobController::class, 'show'])->name('front.jobs.show');
 Route::get('/login', [FrontLoginController::class, 'showLoginForm'])->name('front.jobs.login');
 Route::post('/login', [FrontLoginController::class, 'login'])->name('front.jobs.login.store');
-Route::get('/logout', [FrontLoginController::class, 'logout'])->name('front.jobs.logout');
+Route::post('/logout', [FrontLoginController::class, 'logout'])->name('front.jobs.logout');
 
 Auth::routes(['login' => false, 'logout' => false]);
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
@@ -352,6 +354,8 @@ Route::prefix('member')->group(function () {
     });
 });
 
-Route::get('/compro2', function () {
-    return view('front.compro2.index');
-})->name('compro2.index');
+Route::get('/compro2', [FeCompanyprofile2::class,'compro2'])->name('compro-2.index');
+Route::get('/compro2/job', [FeCompanyprofile2::class,'job'])->name('compro-2.job');
+Route::get('/compro2/job-detail', [FeCompanyprofile2::class,'jobdetail'])->name('compro-2.job-detail');
+Route::get('/compro2/employe', [FeCompanyprofile2::class,'employe'])->name('compro-2.employe');
+Route::get('/compro2/daftar', [FeCompanyprofile2::class,'daftar'])->name('compro-2.daftar');

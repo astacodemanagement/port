@@ -146,14 +146,15 @@ class BelumVerifikasiController extends Controller
         $loggedInUserId = Auth::id();
         
       
-        $user = User::where('id', $verifikasi->kandidat->user_id)->first();
         if($request->has("email")){
-            $user->email = $request->email;
-            $user->save();
+          User::where('id', $verifikasi->kandidat->user_id)::update([
+            'email' => $request->email
+          ]);
         }
         if($request->has("password")){
-            $user->password = bcrypt($request->password);
-            $user->save();
+            User::where('id', $verifikasi->kandidat->user_id)::update([
+                'password' => bcrypt($request->password)
+            ]);
         }
         // Simpan log histori untuk operasi Update dengan user_id yang sedang login
         $this->simpanLogHistori('Update', 'Update Detail Verifikasi', $verifikasi->id, $loggedInUserId, json_encode($verifikasi->getOriginal()), json_encode($verifikasi));
@@ -205,7 +206,7 @@ class BelumVerifikasiController extends Controller
         $data['belum_diverifikasi'] = Pendaftaran::where('id', $id)->with('kandidat')->first();
         $data["user_id"] =   $data['belum_diverifikasi']->kandidat->user_id;
         $data['user_info'] = User::where('id',   $data["user_id"] )->first();
-
+        // return $data;
       return view('back.belum_diverifikasi.detail', $data );
     }
 
