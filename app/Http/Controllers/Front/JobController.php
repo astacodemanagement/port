@@ -19,7 +19,7 @@ class JobController extends Controller
 
     public function show($id)
     {
-        $job = Job::where('id', $id)->firstOrFail();
+        $job = Job::where('id', hashId($id, 'decode'))->firstOrFail();
 
         return view('front.compro-1.jobs.detail', compact('job'));
     }

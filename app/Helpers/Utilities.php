@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Vinkla\Hashids\Facades\Hashids;
 
 if (!function_exists('viewCompro')) {
     function viewCompro($view, $data = [])
@@ -42,5 +43,12 @@ if (!function_exists('memberProfile')) {
         }
 
         return $profileImg;
+    }
+}
+
+if (!function_exists('hashId')) {
+    function hashId($string, $type = 'encode')
+    {
+        return $type == 'encode' ? Hashids::encode($string) : Hashids::decode($string);
     }
 }

@@ -340,7 +340,7 @@
                         <div class="col-3">
                             <div class="card-body">
                                 <div class="card-image job-image-container">
-                                    <img src="{{ asset('upload/gambar/' . $job->gambar?->gambar) }}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}">
+                                    <img src="{{ asset('upload/gambar/thumb_' . $job->gambar?->gambar) }}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}">
                                 </div>
                                 <div class="card-items-bagde gap-1">
                                     <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
@@ -442,7 +442,7 @@
     </section>
     <!-- #End -->
 @endsection
-@push('css')
+{{-- @push('css')
     <style>
         .job-image-container img{
             height:130px;
@@ -455,4 +455,4 @@
             }
         }
     </style>
-@endpush
+@endpush --}}
