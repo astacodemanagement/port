@@ -9,6 +9,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return viewCompro('member.home');
+        return view('front.member.home');
     }
 }

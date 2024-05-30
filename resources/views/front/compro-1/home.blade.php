@@ -1,5 +1,5 @@
 @extends('front.compro-1.layouts.app')
-@section('title', 'Halaman Awal')
+@section('title', 'Home')
 @section('subtitle', 'Menu Awal')
 
 @section('content')
@@ -72,7 +72,7 @@
                         </div>
                     </div> --}}
                     @foreach ($slider as $p)
-                        <div class="carousel-item" data-bs-interval="1000">
+                        <div class="carousel-item" data-bs-interval="10000" >
                             <div class="carousel-items">
                                 <div class="carousel-items-left">
                                     <div class="items-left-text">
@@ -336,20 +336,20 @@
             </div>
             <div class="element-items-card mt-5">
                 <div class="row">
-                    @foreach ($job as $p)
+                    @foreach ($jobs as $job)
                         <div class="col-3">
                             <div class="card-body">
-                                <div class="card-image">
-                                    <img src="{{ asset('frontend') }}/assets/image/Picture.png" alt="">
+                                <div class="card-image job-image-container">
+                                    <img src="{{ asset('upload/gambar/thumb_' . $job->gambar?->gambar) }}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}">
                                 </div>
                                 <div class="card-items-bagde gap-1">
                                     <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
                                     <span>Tersedia</span>
                                 </div>
                                 <div class="card-title-heading-card">
-                                    <h5 class="col-10 text-truncate">{{ $p->nama_job }}
+                                    <h5 class="col-10 text-truncate">{{ $job->nama_job }}
                                     </h5>
-                                    <span>{{ $p->nama_perusahaan }}</span>
+                                    <span>{{ $job->nama_perusahaan }}</span>
                                 </div>
                                 <div class="card-content">
                                     <div class="row">
@@ -358,7 +358,7 @@
                                         </div>
                                         <div class="col-10 mt-2">
                                             <h6 class="title-heading fw-bold">Negara</h6>
-                                            <p>Kalimantan Timur, Indonesia</p>
+                                            <p>{{ $job->negara?->nama_negara }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -368,7 +368,7 @@
                                         </div>
                                         <div class="col-10 mt-2">
                                             <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
-                                            <p>Full Time</p>
+                                            <p>{{ $job->kontrak_kerja ?? '-' }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -378,197 +378,29 @@
                                         </div>
                                         <div class="col-10 mt-2">
                                             <h6 class="title-heading fw-bold">Gaji</h6>
-                                            <p>Rp 3.000.000</p>
+                                            <p>{{ $job->gaji ? 'Rp ' . number_format($job->gaji) : '-' }}</p>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
-                                            <h6>Berakhir pada tanggal 1 Februari 2024</h6>
+                                            <h6>Berakhir pada {{ $job->tanggal_tutup ? \Carbon\Carbon::parse($job->tanggal_tutup)->format('d F Y') : '-' }}</h6>
                                         </div>
                                         <div class="col-12 d-flex align-self-center mt-2">
-                                            <a href="">Lihat Detail <span><svg xmlns="http://www.w3.org/2000/svg"
-                                                        clas width="16" height="16" fill="currentColor"
-                                                        class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                            <a href="{{ route('front.jobs.show', $job->id) }}">Lihat Detail
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                                         <path
-                                                            d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
-                                                    </svg></a>
+                                                            d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z">
+                                                        </path>
+                                                    </svg>
+                                                </span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @endforeach
-                    {{-- <div class="col-3">
-                        <div class="card-body">
-                            <div class="card-image">
-                                <img src="{{ asset('frontend') }}/assets/image/Picture (1).png" alt="">
-                            </div>
-                            <div class="card-items-bagde gap-1">
-                                <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
-                                <span>Tersedia</span>
-                            </div>
-                            <div class="card-title-heading-card">
-                                <h5 class="col-10 text-truncate">General Manager Operation</h5>
-                                <span>ALDI</span>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/image/location.png" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Negara</h6>
-                                        <p>New York, NY</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/icons/document-text.svg" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
-                                        <p>Full Time</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/icons/Component 1.svg" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Gaji</h6>
-                                        <p>$19.50 - $30.00 per jam</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h6>Berakhir pada tanggal 1 Februari 2024</h6>
-                                    </div>
-                                    <div class="col-12 d-flex align-self-center mt-2">
-                                        <a href="">Lihat Detail <span><svg xmlns="http://www.w3.org/2000/svg" clas
-                                                    width="16" height="16" fill="currentColor"
-                                                    class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
-                                                </svg></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card-body">
-                            <div class="card-image">
-                                <img src="{{ asset('frontend') }}/assets/image/Picture (2).png" alt="">
-                            </div>
-                            <div class="card-items-bagde gap-1">
-                                <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
-                                <span>Tersedia</span>
-                            </div>
-                            <div class="card-title-heading-card">
-                                <h5 class="col-10 text-truncate">Customer Service Representative</h5>
-                                <span>New York University</span>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/image/location.png" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Negara</h6>
-                                        <p>New York, NY</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/icons/document-text.svg" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
-                                        <p>Full time & Internship</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/icons/Component 1.svg" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Gaji</h6>
-                                        <p>$30.00 per jam</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h6>Berakhir pada tanggal 1 Februari 2024</h6>
-                                    </div>
-                                    <div class="col-12 d-flex align-self-center mt-2">
-                                        <a href="">Lihat Detail <span><svg xmlns="http://www.w3.org/2000/svg" clas
-                                                    width="16" height="16" fill="currentColor"
-                                                    class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
-                                                </svg></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card-body">
-                            <div class="card-image">
-                                <img src="{{ asset('frontend') }}/assets/image/Picture (3).png" alt="">
-                            </div>
-                            <div class="card-items-bagde gap-1">
-                                <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
-                                <span>Tersedia</span>
-                            </div>
-                            <div class="card-title-heading-card">
-                                <h5 class="col-10 text-truncate">Budtender/Cashier</h5>
-                                <span>ALDI</span>
-                            </div>
-                            <div class="card-content">
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/image/location.png" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Negara</h6>
-                                        <p>New York, NY</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/icons/document-text.svg" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
-                                        <p>Full Time</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-1 mt-1">
-                                        <img src="{{ asset('frontend') }}/assets/icons/Component 1.svg" alt="">
-                                    </div>
-                                    <div class="col-10 mt-2">
-                                        <h6 class="title-heading fw-bold">Gaji</h6>
-                                        <p>$31.26 per jam</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h6>Berakhir pada tanggal 1 Februari 2024</h6>
-                                    </div>
-                                    <div class="col-12 d-flex align-self-center mt-2">
-                                        <a href="">Lihat Detail <span><svg xmlns="http://www.w3.org/2000/svg" clas
-                                                    width="16" height="16" fill="currentColor"
-                                                    class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
-                                                </svg></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                     <div class="element-next mt-5 text-center">
                         <a href="{{ route('front.jobs.index') }}">Lihat lebih lanjut
                             <svg xmlns=" http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -605,38 +437,22 @@
                         </div>
                     </swiper-slide>
                 @endforeach
-                {{-- <swiper-slide>
-                    <div class="swiper-items">
-                        <div class="swiper-image">
-                            <img src="{{ asset('frontend') }}/assets/slider/image.png" alt="">
-                        </div>
-                        <div class="swiper-text">
-                            <div class="swiper-heading">
-                                <span>Lacus vestibulum ultricies mi risus, duis non, volutpat nullam non. Magna
-                                    congue nisi maecenas elit aliquet eu sed consectetur. Vitae quis cras vitae
-                                    praesent morbi adipiscing purus consectetur mi.</span>
-                                <p>~ Hellen Jummy - <span class="fw-semibold">Financial Counselor</span>~</p>
-                            </div>
-                        </div>
-                    </div>
-                </swiper-slide>
-                <swiper-slide>
-                    <div class="swiper-items">
-                        <div class="swiper-image">
-                            <img src="{{ asset('frontend') }}/assets/slider/image.png" alt="">
-                        </div>
-                        <di class="swiper-text">
-                            <div class="swiper-heading">
-                                <span>Lacus vestibulum ultricies mi risus, duis non, volutpat nullam non. Magna
-                                    congue nisi maecenas elit aliquet eu sed consectetur. Vitae quis cras vitae
-                                    praesent morbi adipiscing purus consectetur mi.</span>
-                                <p>~ Hellen Jummy - <span class="fw-semibold">Financial Counselor</span>~</p>
-                            </div>
-                    </div>
-                </swiper-slide> --}}
-
             </swiper-container>
         </div>
     </section>
     <!-- #End -->
 @endsection
+{{-- @push('css')
+    <style>
+        .job-image-container img{
+            height:130px;
+            object-position:center;
+            object-fit:cover
+        }
+        @media (min-width:1200px) {
+            .job-image-container img{
+                height:217px;
+            }
+        }
+    </style>
+@endpush --}}

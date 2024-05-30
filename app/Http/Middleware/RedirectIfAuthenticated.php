@@ -23,7 +23,8 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                // return redirect(RouteServiceProvider::HOME);
+                return Auth::user()->is_candidate ? redirect(route('front.jobs.index')) : redirect(route('back-office.home'));
             }
         }
 

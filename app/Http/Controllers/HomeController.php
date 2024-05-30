@@ -14,9 +14,9 @@ class HomeController extends Controller
    {
       $slider = Slider::all();
       $review = Review::all();
-      $job = Job::all();
+      $jobs = Job::orderBy('id', 'desc')->limit(4)->get();
       $alasan = Alasan::all();
       
-      return viewCompro('home', compact('slider','alasan','job','review'));
+      return viewCompro('home', compact('slider','alasan', 'jobs','review'));
    }
 }
