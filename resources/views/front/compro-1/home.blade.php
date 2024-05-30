@@ -72,7 +72,7 @@
                         </div>
                     </div> --}}
                     @foreach ($slider as $p)
-                        <div class="carousel-item" data-bs-interval="1000">
+                        <div class="carousel-item" data-bs-interval="10000" >
                             <div class="carousel-items">
                                 <div class="carousel-items-left">
                                     <div class="items-left-text">
