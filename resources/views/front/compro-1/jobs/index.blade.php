@@ -95,8 +95,7 @@
                                         <span>Tersedia</span>
                                     </div>
                                     <div class="card-title-heading-card">
-                                        <h5 class="col-10 text-truncate">{{ $job->nama_job }}
-                                        </h5>
+                                        <h5 class="col-10 text-truncate">{{ $job->nama_job }}</h5>
                                         <span>{{ $job->nama_perusahaan }}</span>
                                     </div>
                                     <div class="card-content">
@@ -657,7 +656,7 @@
         .element-items-card {
             display: block !important;
         }
-        .job-image-container img{
+        /* .job-image-container img{
             height:130px;
             object-position:center;
             object-fit:cover
@@ -666,6 +665,6 @@
             .job-image-container img{
                 height:217px;
             }
-        }
+        } */
     </style>
 @endpush
