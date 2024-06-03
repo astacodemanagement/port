@@ -128,6 +128,13 @@ class RegisterController extends Controller
             6 => 'Sponsor'
         ];
 
+        $statusKawin = [
+            0 => null,
+            1 => 'Belum Menikah',
+            2 => 'Menikah',
+            3 => 'Cerai'
+        ];
+
         DB::beginTransaction();
 
         try {
@@ -141,7 +148,8 @@ class RegisterController extends Controller
 
             /** INSERT PENDAFTARAN */
             $pendaftaran = [
-                'negara_id' => $request->negara_id,
+                // 'negara_id' => $request->negara_id,
+                'negara_id' => 0,
                 'nama_negara' => $negara?->nama_negara,
                 'kategori_job_id' => $request->kategori_job_id,
                 'nama_kategori_job' => $kategoriJob?->nama_kategori_job,
@@ -167,7 +175,7 @@ class RegisterController extends Controller
                 'berat_badan' => $request->berat_badan,
                 'tinggi_badan' => $request->tinggi_badan,
                 'jenis_kelamin' => $request->jenis_kelamin == 'P' ? 'Laki-laki' : 'Perempuan',
-                'status_kawin' => $request->status_kawin,
+                'status_kawin' => $statusKawin[$request->status_kawin],
                 'nama_lengkap_ayah' => $request->nama_lengkap_ayah,
                 'nama_lengkap_ibu' => $request->nama_lengkap_ibu,
                 'alamat' => $request->alamat,
@@ -195,43 +203,51 @@ class RegisterController extends Controller
             ];
 
             /** UPLOAD FOTO */
-            $filenameFoto = $request->file_foto->hashName();
-            $dirFoto = 'upload/foto/';
+            if ($request->hasFile('file_foto')) {
+                $filenameFoto = $request->file_foto->hashName();
+                $dirFoto = 'upload/foto/';
 
-            $uploadFoto = Storage::disk('public_uploads')->putFileAs($dirFoto, $request->file_foto, $filenameFoto, 'public');
+                $uploadFoto = Storage::disk('public_uploads')->putFileAs($dirFoto, $request->file_foto, $filenameFoto, 'public');
 
-            if ($uploadFoto) {
-                $kandidat['foto'] = $filenameFoto;
+                if ($uploadFoto) {
+                    $kandidat['foto'] = $filenameFoto;
+                }
             }
 
             /** UPLOAD PASPOR */
-            $filenamePaspor = $request->file_paspor->hashName();
-            $dirPaspor = 'upload/paspor/';
+            if ($request->hasFile('file_paspor')) {
+                $filenamePaspor = $request->file_paspor->hashName();
+                $dirPaspor = 'upload/paspor/';
 
-            $uploadPaspor = Storage::disk('public_uploads')->putFileAs($dirPaspor, $request->file_paspor, $filenamePaspor, 'public');
+                $uploadPaspor = Storage::disk('public_uploads')->putFileAs($dirPaspor, $request->file_paspor, $filenamePaspor, 'public');
 
-            if ($uploadPaspor) {
-                $kandidat['paspor'] = $filenamePaspor;
+                if ($uploadPaspor) {
+                    $kandidat['paspor'] = $filenamePaspor;
+                }
             }
 
             /** UPLOAD KTP */
-            $filenameKTP = $request->file_ktp->hashName();
-            $dirKTP = 'upload/ktp/';
+            if ($request->hasFile('file_ktp')) {
+                $filenameKTP = $request->file_ktp->hashName();
+                $dirKTP = 'upload/ktp/';
 
-            $uploadKTP = Storage::disk('public_uploads')->putFileAs($dirKTP, $request->file_ktp, $filenameKTP, 'public');
+                $uploadKTP = Storage::disk('public_uploads')->putFileAs($dirKTP, $request->file_ktp, $filenameKTP, 'public');
 
-            if ($uploadKTP) {
-                $kandidat['ktp'] = $filenameKTP;
+                if ($uploadKTP) {
+                    $kandidat['ktp'] = $filenameKTP;
+                }
             }
 
             /** UPLOAD KK */
-            $filenameKK = $request->file_kk->hashName();
-            $dirKK = 'upload/kartu-keluarga/';
+            if ($request->hasFile('file_kk')) {
+                $filenameKK = $request->file_kk->hashName();
+                $dirKK = 'upload/kartu-keluarga/';
 
-            $uploadKK = Storage::disk('public_uploads')->putFileAs($dirKK, $request->file_kk, $filenameKK, 'public');
+                $uploadKK = Storage::disk('public_uploads')->putFileAs($dirKK, $request->file_kk, $filenameKK, 'public');
 
-            if ($uploadKK) {
-                $kandidat['kk'] = $filenameKK;
+                if ($uploadKK) {
+                    $kandidat['kk'] = $filenameKK;
+                }
             }
 
             Kandidat::create($kandidat);
@@ -308,9 +324,9 @@ class RegisterController extends Controller
     {
         $rules = [
             1 => [
-                'negara_id' => 'required|numeric',
+                // 'negara_id' => 'required|numeric',
                 'kategori_job_id' => 'required|numeric',
-                'nik' => 'required|numeric|max_digits:16|min_digits:16',
+                'nik' => 'required|numeric|max_digits:16|min_digits:16|unique:kandidat,nik',
                 'nama_lengkap' => 'required',
                 'tempat_lahir' => 'required',
                 'tanggal_lahir' => 'required|date_format:Y-m-d',
