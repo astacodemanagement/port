@@ -202,26 +202,11 @@
                             <div class="tab-pane" id="tab-panel-job-gallery" role="tabpanel" aria-labelledby="tab-job-gallery">
                                 <h5 class="fw-bold">Galeri</h5>
                                 <div class="row m-0">
-                                    {{-- <div class="col-3 border-rounded">
-                                        <img src="{{ asset('frontend/assets/image/fpkdl.com_960_images_fpkdl 1.png') }}" width="160" alt="">
-                                    </div>
-                                    <div class="col-3 border-rounded">
-                                        <img src="assets/image/fpkdl.com_960_images_fpkdl 1.png" width="160" alt="">
-                                    </div>
-                                    <div class="col-3 border-rounded">
-                                        <img src="assets/image/fpkdl.com_960_images_fpkdl 1.png" width="160" alt="">
-                                    </div>
-                                    <div class="col-2">
-                                        <img src="assets/image/fpkdl.com_960_images_fpkdl 1.png" width="160" alt="">
-                                    </div>
-                                    <div class="col-3 mt-2 border-rounded"><img
-                                            src="assets/image/fpkdl.com_960_images_fpkdl 1.png" width="160"
-                                            alt="">
-                                    </div>
-                                    <div class="col-3 mt-2 border-rounded"><img
-                                            src="assets/image/fpkdl.com_960_images_fpkdl 1.png" width="160"
-                                            alt="">
-                                    </div> --}}
+                                    @foreach ($job->galeri as $galeri)
+                                        <div class="col-3 border-rounded">
+                                            <img src="{{ asset('upload/gambar/thumb_300_' . $galeri->gambar) }}" width="160" alt="">
+                                        </div>
+                                    @endforeach
                                 </div>
                                 <hr>
                                 <div class="row">
@@ -241,7 +226,7 @@
                 <div class="col-4 d-block">
                     <div class="wrapper-content-right">
                         <div class="wrapper-image">
-                            <img src="{{ asset('frontend/assets/image/wrapper (1).png') }}" alt="">
+                            <img src="{{ asset('upload/gambar/thumb_wrapper_' . $job->gambar?->gambar) }}" alt="{{ $job->nama_job }}">
                         </div>
                         <div class="wrapper-salary">
                             <div class="wrapper-icon">
@@ -518,8 +503,8 @@
                             </div>
                         </div>
                     @endforeach
-                    <div class="element-next mt-5 text-center">
-                        <a href="#">Lihat lebih lanjut
+                    <div class="element-next mt-5 text-center mb-5">
+                        <a href="{{ route('front.jobs.index', ['category' => hashId($job->kategori_job_id)]) }}">Lihat lebih lanjut
                             <svg xmlns=" http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-arrow-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -533,6 +518,15 @@
     </section>
     <!-- #End -->
 @endsection
+
+@push('css')
+    <style>
+        .Element-application-jobs {
+            background-image: url('{{ asset('frontend/assets/image/image-background.png') }}') !important;
+            min-height: unset
+        }
+    </style>
+@endpush
 
 @push('script')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/19.1.3/lazyload.min.js" integrity="sha512-VMl48m6saA54JWGUPVnSqp9gDFdJ1XPIKHAI+SP05D93n+Ma5T8osuxhTnxNvFfc5zVF+bWbxmCCj4EbsWUVyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

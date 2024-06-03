@@ -123,7 +123,7 @@ class JobController extends Controller
         $nama_gambar = $request->nama_gambar;
         $job_id = $request->job_id;
 
-        $gambarJob = Gambar::where('job_id', $job_id)->first();
+        // $gambarJob = Gambar::where('job_id', $job_id)->first();
 
         // Simpan gambar di dalam direktori 'public/upload/galeri/'
         $destinationPath = 'upload/gambar/';
@@ -132,23 +132,24 @@ class JobController extends Controller
 
         $manager = new ImageManager(new Driver());
         // $image = $manager->read($gambar);
-        $saveImg = $manager->read($gambar)->save($destinationPath . $imageName);
-        $saveImgThumb300 = $manager->read($gambar)->cover(300, 300)->save($destinationPath . 'thumb_300_' . $imageName);
-        $saveImgThumb = $manager->read($gambar)->cover(580, 500)->save($destinationPath . 'thumb_' . $imageName);
+        $manager->read($gambar)->save($destinationPath . $imageName);
+        $manager->read($gambar)->cover(300, 300)->save($destinationPath . 'thumb_300_' . $imageName);
+        $manager->read($gambar)->cover(432, 132)->save($destinationPath . 'thumb_wrapper_' . $imageName);
+        $manager->read($gambar)->cover(580, 500)->save($destinationPath . 'thumb_' . $imageName);
 
-        if ($gambarJob && $saveImg) {
-            if (File::exists(public_path($destinationPath . $gambarJob->gambar))) {
-                File::delete(public_path($destinationPath . $gambarJob->gambar));
-            }
-            if (File::exists(public_path($destinationPath .'thumb_300_' . $gambarJob->gambar))) {
-                File::delete(public_path($destinationPath .'thumb_300_' . $gambarJob->gambar));
-            }
-            if (File::exists(public_path($destinationPath .'thumb_' . $gambarJob->gambar))) {
-                File::delete(public_path($destinationPath .'thumb_' . $gambarJob->gambar));
-            }
+        // if ($gambarJob && $saveImg) {
+        //     if (File::exists(public_path($destinationPath . $gambarJob->gambar))) {
+        //         File::delete(public_path($destinationPath . $gambarJob->gambar));
+        //     }
+        //     if (File::exists(public_path($destinationPath .'thumb_300_' . $gambarJob->gambar))) {
+        //         File::delete(public_path($destinationPath .'thumb_300_' . $gambarJob->gambar));
+        //     }
+        //     if (File::exists(public_path($destinationPath .'thumb_' . $gambarJob->gambar))) {
+        //         File::delete(public_path($destinationPath .'thumb_' . $gambarJob->gambar));
+        //     }
 
-            $gambarJob->delete();
-        }
+        //     $gambarJob->delete();
+        // }
 
 
         // Simpan informasi gambar ke tabel gambar
