@@ -89,9 +89,7 @@ Route::prefix('administrator')->group(function () {
                 // Route::get('/belum_verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('belum_verifikasi.detail');
                 Route::get('/verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('verifikasi.detail');
                 Route::put('/verifikasi/update/{id}', [BelumVerifikasiController::class, 'updateDetail'])->name('updateDetail.update');
-
-
-
+ 
                 // Sudah Verifikasi
                 Route::get('/sudah-diverifikasi', [SudahVerifikasiController::class, 'index'])->name('sudah-verifikasi');
                 Route::post('/update-status-verifikasi', [SudahVerifikasiController::class, 'updateStatus'])->name('update.status-verifikasi');

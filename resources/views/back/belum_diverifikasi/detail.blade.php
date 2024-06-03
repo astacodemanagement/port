@@ -57,12 +57,6 @@
                         <div class="row">
                             <div class="col-sm-12">
 
-
-
-                                {{-- <div class="card-header">
-                                        <h5>Data Detail Pendaftaran Belum Verifikasi : {{ $belum_diverifikasi->kandidat->nama_lengkap }}</h5>
-
-                                    </div> --}}
                                 <div class="card-block">
                                     <div class="card">
                                         <div class="card-block tab-icon">
@@ -70,24 +64,24 @@
                                                 <div class="col-lg-12 col-xl-12">
                                                     <ul class="nav nav-tabs md-tabs " role="tablist">
                                                         <li class="nav-item">
-                                                            <a class="nav-link active" data-toggle="tab" href="#home7"
+                                                            <a class="nav-link active" data-toggle="tab" href="#data_diri"
                                                                 role="tab"><i class="fas fa-users"></i>Data Diri</a>
                                                             <div class="slide"></div>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#profile7"
+                                                            <a class="nav-link" data-toggle="tab" href="#dokumen_ln"
                                                                 role="tab"><i class="fas fa-bookmark"></i>Dokumen
                                                                 Perjalanan Luar Negeri</a>
                                                             <div class="slide"></div>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#messages7"
+                                                            <a class="nav-link" data-toggle="tab" href="#pengalaman_kerja"
                                                                 role="tab"><i class="fas fa-handshake-o"></i>Pengalaman
                                                                 Kerja</a>
                                                             <div class="slide"></div>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#settings7"
+                                                            <a class="nav-link" data-toggle="tab" href="#dokumen"
                                                                 role="tab"><i class="fas fa-server"></i>Dokumen</a>
                                                             <div class="slide"></div>
                                                         </li>
@@ -98,7 +92,7 @@
                                                             <div class="slide"></div>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#reason"
+                                                            <a class="nav-link" data-toggle="tab" href="#alasan"
                                                                 role="tab"><i class="fas fa-info"></i>Alasan</a>
                                                             <div class="slide"></div>
                                                         </li>
@@ -117,9 +111,7 @@
                                                             value="{{ $belum_diverifikasi->id }}">
                                                         <div class="tab-content card-block">
 
-                                                            <div class="tab-pane active" id="home7" role="tabpanel">
-
-
+                                                            <div class="tab-pane active" id="data_diri" role="tabpanel">
 
                                                                 <div class="modal-content">
 
@@ -430,13 +422,11 @@
 
 
                                                             </div>
-                                                            <div class="tab-pane" id="profile7" role="tabpanel">
 
+                                                            <div class="tab-pane" id="dokumen_ln" role="tabpanel">
                                                                 <div class="modal-content">
-
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
-
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -502,12 +492,10 @@
 
 
                                                                 </div>
-
                                                             </div>
-                                                            <div class="tab-pane" id="messages7" role="tabpanel">
 
+                                                            <div class="tab-pane" id="pengalaman_kerja" role="tabpanel">
                                                                 <div class="modal-content">
-
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
                                                                             <h4 class="sub-title">(Pengalaman Pekerjaan 1)
@@ -628,17 +616,13 @@
 
                                                                         </div>
                                                                     </div>
-
-
                                                                 </div>
-
                                                             </div>
-                                                            <div class="tab-pane" id="settings7" role="tabpanel">
-                                                                <div class="modal-content">
 
+                                                            <div class="tab-pane" id="dokumen" role="tabpanel">
+                                                                <div class="modal-content">
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
-
                                                                             <div class="card-block">
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-12">
@@ -867,13 +851,10 @@
                                                             </div>
 
                                                             <div class="tab-pane" id="cf" role="tabpanel">
-
                                                                 <div class="modal-content">
-
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
                                                                             <h5>COMMITMENT FEE</h5>
-
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -926,12 +907,13 @@
                                                                                         for="bukti_tf_cf">Bukti
                                                                                         Transfer</label>
                                                                                     <br>
-                                                                                    <a href="/upload/bukti_tf_cf/{{ $belum_diverifikasi->bukti_tf_cf }}"
-                                                                                        target="_blank"><img
-                                                                                            title="Bukti Transfer"
-                                                                                            src="/upload/bukti_tf_cf/{{ $belum_diverifikasi->bukti_tf_cf }}"
-                                                                                            alt="" width="30px"
-                                                                                            height="30px"></a>
+                                                                                    <a href="{{ $belum_diverifikasi->bukti_tf_cf ? '/upload/bukti_tf_cf/'.$belum_diverifikasi->bukti_tf_cf : 'https://st.depositphotos.com/34584522/57984/v/1600/depositphotos_579841244-stock-illustration-unpaid-red-rubber-stamp-vector.jpg' }}"
+                                                                                        target="_blank">
+                                                                                         <img title="Bukti Transfer"
+                                                                                              src="{{ $belum_diverifikasi->bukti_tf_cf ? '/upload/bukti_tf_cf/'.$belum_diverifikasi->bukti_tf_cf : 'https://st.depositphotos.com/34584522/57984/v/1600/depositphotos_579841244-stock-illustration-unpaid-red-rubber-stamp-vector.jpg' }}"
+                                                                                              alt="" width="60px" height="30px">
+                                                                                     </a>
+                                                                                     
 
                                                                                 </div>
                                                                                 <div class="col-sm-6">
@@ -948,6 +930,14 @@
                                                                                             {{ $belum_diverifikasi->status_paid_cf == 'Paid' ? 'selected' : '' }}>
                                                                                             Paid</option>
                                                                                     </select>
+
+
+                                                                                </div>
+
+                                                                                <div class="col-sm-12">
+                                                                                    <label class="col-form-label"
+                                                                                        for="catatan_pembayaran_cf">Catatan Pembayaran</label>
+                                                                                     <textarea class="form-control" name="catatan_pembayaran_cf" id="catatan_pembayaran_cf" cols="30" rows="3">{{ $belum_diverifikasi->catatan_pembayaran_cf }}</textarea>
 
 
                                                                                 </div>
@@ -988,10 +978,8 @@
 
                                                             </div>
 
-                                                            <div class="tab-pane" id="reason" role="tabpanel">
-
+                                                            <div class="tab-pane" id="alasan" role="tabpanel">
                                                                 <div class="modal-content">
-
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
                                                                             <h5>REASON</h5>
@@ -1033,15 +1021,11 @@
 
                                                             {{-- akun --}}
                                                             <div class="tab-pane" id="akun" role="tabpanel">
-
                                                                 <div class="modal-content">
-
                                                                     <div
-                                                                        class="modal-body
-                                                                        ">
+                                                                        class="modal-body">
                                                                         <div
-                                                                            class="card-block
-                                                                            ">
+                                                                            class="card-block">
                                                                             <h5>AKUN</h5>
                                                                             {{-- update account email & password --}}
 
@@ -1094,11 +1078,7 @@
                                                                 id="btn-update-verifikasi" style="float: right;">
                                                                 <i class="fas fa-save"></i> Update
                                                             </button>
-                                                            {{-- <button type="button"
-                                                                class="btn btn-danger waves-effect waves-light mt-3 m-3"
-                                                                id="btn-reject" style="float: right;">
-                                                                <i class="fas fa-ban"></i>Reject
-                                                            </button> --}}
+                                                             
 
 
                                                         </div>
@@ -1177,14 +1157,11 @@
                             const tombolUpdate = $('#btn-update-verifikasi');
                             var id = $('#id').val();
                             var formData = new FormData($('#form_verifikasi')[0]);
-
+                
                             $.ajax({
-                                type: 'POST',
+                                type: 'POST', // Tetap gunakan 'POST'
                                 url: `{{ route('back-office.pelamar.updateDetail.update', $belum_diverifikasi->id) }}`,
                                 data: formData,
-                                headers: {
-                                    'X-HTTP-Method-Override': 'PUT'
-                                },
                                 contentType: false,
                                 processData: false,
                                 beforeSend: function() {
@@ -1192,7 +1169,6 @@
                                     tombolUpdate.prop('disabled', true);
                                 },
                                 success: function(response) {
-
                                     Swal.fire({
                                         title: 'Sukses!',
                                         text: response.message,
@@ -1209,22 +1185,25 @@
                                 },
                                 error: function(xhr) {
                                     if (xhr.status !== 422) {
-
+                                        var errorMessages = xhr.responseJSON.errors;
+                                        var errorMessage = '';
+                                        $.each(errorMessages, function(key, value) {
+                                            errorMessage += value + '<br>';
+                                        });
+                                        Swal.fire({
+                                            title: 'Error!',
+                                            html: errorMessage,
+                                            icon: 'error',
+                                            confirmButtonText: 'OK'
+                                        });
                                     }
-                                    var errorMessages = xhr.responseJSON.errors;
-                                    var errorMessage = '';
-                                    $.each(errorMessages, function(key, value) {
-                                        errorMessage += value + '<br>';
-                                    });
-                                    Swal.fire({
-                                        title: 'Error!',
-                                        html: errorMessage,
-                                        icon: 'error',
-                                        confirmButtonText: 'OK'
-                                    });
+                                },
+                                headers: {
+                                    'X-HTTP-Method-Override': 'PUT' // Tetap gunakan header ini
                                 }
                             });
                         });
                     });
                 </script>
+                
             @endpush

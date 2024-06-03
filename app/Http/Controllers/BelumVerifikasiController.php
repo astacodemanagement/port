@@ -20,7 +20,6 @@ class BelumVerifikasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     private function simpanLogHistori($aksi, $tabelAsal, $idEntitas, $pengguna, $dataLama, $dataBaru)
     {
         $log = new LogHistori();
@@ -33,7 +32,6 @@ class BelumVerifikasiController extends Controller
         $log->data_baru = $dataBaru;
         $log->save();
     }
-
     public function index(Request $request)
     {
         // search jika ada
@@ -61,7 +59,6 @@ class BelumVerifikasiController extends Controller
         return view('back.belum_diverifikasi.index', compact('belum_diverifikasi','search','kategori_job','filter_job'));
       
     }
-
 
     public function updateStatus(Request $request)
     {
@@ -97,27 +94,13 @@ class BelumVerifikasiController extends Controller
     public function updateDetail(Request $request, $id)
     {
         
-        // Validasi request
-        $validator = Validator::make($request->all(), [
-            'nama_negara' => 'required',
-            'bukti_tf_cf' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
-        ], [
-            'nama_negara.required' => 'Nama negara Wajib diisi',
-            'bukti_tf_cf.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
-            'bukti_tf_cf.max' => 'Ukuran bukti_tf_cf tidak boleh lebih dari 2 MB',
-        ]);
-    
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
     
         $verifikasi = Pendaftaran::findOrFail($id);
     
         // Ambil hanya bidang-bidang yang ditentukan dari permintaan
         $input = $request->only([
-            'negara_id', 'nama_negara', 'kategori_job_id', 'nama_kategori_job',
-            'nik', 'nama_lengkap', 'bayar_cf', 'bukti_tf_cf', 'tanggal_tf_cf',
-            'status_paid_cf', 'tanggal_refund_cf', 'bayar_refund_cf'
+            'bayar_cf', 'bukti_tf_cf', 'tanggal_tf_cf',
+            'status_paid_cf', 'tanggal_refund_cf', 'bayar_refund_cf','catatan_pembayaran_cf'
         ]);
     
         if ($request->has('bayar_cf')) {
@@ -144,20 +127,26 @@ class BelumVerifikasiController extends Controller
     
         // Update verifikasi data di database
         $verifikasi->update($input);
+
+
+
+        if($request->has("email")){
+            User::where('id', $verifikasi->kandidat->user_id)::update([
+              'email' => $request->email
+            ]);
+          }
+          if(request("password") != null){
+              User::where('id', $verifikasi->kandidat->user_id)::update([
+                  'password' => Hash::make($request->password)
+              ]);
+          }
+
+          
+
     
         $loggedInUserId = Auth::id();
         
       
-        if($request->has("email")){
-          User::where('id', $verifikasi->kandidat->user_id)::update([
-            'email' => $request->email
-          ]);
-        }
-        if(request("password") != null){
-            User::where('id', $verifikasi->kandidat->user_id)::update([
-                'password' => Hash::make($request->password)
-            ]);
-        }
         // Simpan log histori untuk operasi Update dengan user_id yang sedang login
         $this->simpanLogHistori('Update', 'Update Detail Verifikasi', $verifikasi->id, $loggedInUserId, json_encode($verifikasi->getOriginal()), json_encode($verifikasi));
     
