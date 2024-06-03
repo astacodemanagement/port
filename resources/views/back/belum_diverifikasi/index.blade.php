@@ -182,6 +182,7 @@
                                                                             target="_blank">
                                                                             <img class="card-img-top img-fluid"
                                                                                 src="/upload/foto/{{ $p->kandidat->foto }}"
+                                                                                onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
                                                                                 alt="Card image cap"
                                                                                 style="border-radius:1rem;">
                                                                         </a>
@@ -220,7 +221,7 @@
                                                                         style="font-family: 'Poppins', sans-serif; ">
                                                                         <i class="fa fa-globe"></i><b
                                                                             style="font-weight: bold;">
-                                                                            {{ $p->kandidat->provinsi }}</b>
+                                                                            {{ $p->kandidat->provinsi?->nama_provinsi }}</b>
                                                                     </p>
 
                                                                 </div>
@@ -247,9 +248,9 @@
                                                                 <p class="mb-1 text-muted"><i
                                                                         class="fas fa-location-dot"></i><b
                                                                         style="font-weight: bold;">
-                                                                        {{ $p->kandidat->provinsi }},
-                                                                        {{ $p->kandidat->kota }},
-                                                                        {{ $p->kandidat->kecamatan }}</b></p>
+                                                                        {{ $p->kandidat->provinsi?->nama_provinsi }},
+                                                                        {{ $p->kandidat->kota?->nama_kota }},
+                                                                        {{ $p->kandidat->kecamatan?->nama_kecamatan }}</b></p>
                                                                 </b></p>
                                                                 <h5 class="card-title">
                                                                     <span class="badge badge-pill badge-warning"

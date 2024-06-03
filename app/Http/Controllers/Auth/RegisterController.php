@@ -135,6 +135,15 @@ class RegisterController extends Controller
             3 => 'Cerai'
         ];
 
+        $pendidikanTerakhir = [
+            1 => 'Tidak/Belum Sekolah',
+            2 => 'SD',
+            3 => 'SMP/Sederajat',
+            4 => 'SMA/SMK/Sederajat',
+            5 => 'Diploma',
+            6 => 'Sarjana'
+        ];
+
         DB::beginTransaction();
 
         try {
@@ -150,13 +159,7 @@ class RegisterController extends Controller
             $pendaftaran = [
                 // 'negara_id' => $request->negara_id,
                 'negara_id' => 0,
-                'nama_negara' => $negara?->nama_negara,
                 'kategori_job_id' => $request->kategori_job_id,
-                'nama_kategori_job' => $kategoriJob?->nama_kategori_job,
-                'nik' => $request->nik,
-                'nama_lengkap' => $request->nama_lengkap,
-                'tempat_lahir' => $request->tempat_lahir,
-                'tanggal_lahir' => $request->tanggal_lahir,
                 'status' => 'Belum Verifikasi(Pending)'
             ];
 
@@ -176,12 +179,13 @@ class RegisterController extends Controller
                 'tinggi_badan' => $request->tinggi_badan,
                 'jenis_kelamin' => $request->jenis_kelamin == 'P' ? 'Laki-laki' : 'Perempuan',
                 'status_kawin' => $statusKawin[$request->status_kawin],
+                'pendidikan' => $pendidikanTerakhir[$request->pendidikan],
                 'nama_lengkap_ayah' => $request->nama_lengkap_ayah,
                 'nama_lengkap_ibu' => $request->nama_lengkap_ibu,
                 'alamat' => $request->alamat,
-                'provinsi' => $provinsi?->nama_provinsi,
-                'kota' => $kota?->nama_kota,
-                'kecamatan' => $wilayah?->nama_kecamatan,
+                'provinsi_id' => $provinsi?->id,
+                'kota_id' => $kota?->id,
+                'kecamatan_id' => $wilayah?->id,
                 'referensi' => isset($referensi[$request->referensi]) ? $referensi[$request->referensi] : null,
                 'nama_referensi' => $request->referensi == 6 ? $request->nama_referensi : null,
                 'no_paspor' => $request->no_paspor,
@@ -335,6 +339,7 @@ class RegisterController extends Controller
                 'tinggi_badan' => 'required|numeric',
                 'jenis_kelamin' => 'required|in:P,W',
                 'status_kawin' => 'required',
+                'pendidikan' => 'required',
                 'nama_lengkap_ayah' => 'required',
                 'nama_lengkap_ibu' => 'required',
                 'alamat' => 'required|min:5',
@@ -360,7 +365,7 @@ class RegisterController extends Controller
                 'posisi.*' => 'required|min:2',
             ],
             5 => [
-                'file_foto' => 'required|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                'file_foto' => 'required|max:10240|mimes:jpeg,jpg,bmp,png,webp',
                 'file_paspor' => 'nullable|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
                 'file_ktp' => 'required|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
                 'file_kk' => 'required|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
@@ -393,7 +398,7 @@ class RegisterController extends Controller
     {
         return [
             'negara_id' => 'Negara yang diminati',
-            'kategori_job_id' => 'Kategori yang diminati',
+            'kategori_job_id' => 'Industri yang diminati',
             'nik' => 'Nomor NIK',
             'nama_lengkap' => 'Nama lengkap',
             'tempat_lahir' => 'Tempat lahir',
@@ -429,7 +434,9 @@ class RegisterController extends Controller
             'no_hp' => 'Nomor handphone',
             'no_wa' => 'Nomor whatsapp',
             'password' => 'Password',
-            'password_confirmation' => 'Konfirmasi password'
+            'password_confirmation' => 'Konfirmasi password',
+            'wilayah' => 'Wilayah',
+            'pendidikan' => 'Pendidikan',
         ];
     }
 
@@ -459,7 +466,8 @@ class RegisterController extends Controller
             'file_kk.required' => 'File :attribute belum dipilih',
             'password.confirmed' => 'Konfirmasi password tidak sesuai',
             'email' => 'Format email tidak valid',
-            'unique' => ':attribute sudah digunakan'
+            'unique' => ':attribute sudah digunakan',
+            'pendidikan.required' => ':attribute belum dipilih',
         ];
     }
 }
