@@ -71,8 +71,7 @@
                 </ul>
                 <ul class="navbar-nav quick-links d-none d-xl-flex ms-5">
                     <li class="nav-item dropdown hover-dd d-none d-xl-block ms-5">
-                        <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown"><i
-                                class="ti ti-user me-3 text-primary fs-5"></i> Profile</a>
+                        <a class="nav-link" href="{{ route('member.index') }}" data-bs-toggle="dropdown"><i class="ti ti-user me-3 text-primary fs-5"></i> Profile</a>
                     </li>
                     <li class="nav-item dropdown hover-dd d-none d-xl-block">
                         <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown"><i

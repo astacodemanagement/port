@@ -25,4 +25,9 @@ class Job extends Model
     {
         return $this->belongsTo(Gambar::class, 'id', 'job_id');
     }
+
+    public function jobKategori()
+    {
+        return $this->belongsTo(KategoriJob::class, 'kategori_job_id', 'id');
+    }
 }
