@@ -634,8 +634,9 @@
 
         stepper.on("kt.stepper.next", function(stepper) {
             const nextBtn = stepper.btnNext.classList[4]
-
+            
             var formData = new FormData($('.form-register')[0]);
+
             formData.append('step', stepper.currentStepIndex)
 
             $.ajax({
@@ -652,6 +653,7 @@
                     if (response.success) {
                         stepper.goNext()
                     }
+                    console.log(response)
                 },
                 complete: function() {
                     $(`.${nextBtn}`).find('.spinner-border').remove()
@@ -687,8 +689,8 @@
                         })
                     }
                 }
-            })
-        });
+            });
+        })
 
         // Handle previous step
         stepper.on("kt.stepper.previous", function(stepper) {

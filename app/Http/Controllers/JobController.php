@@ -70,7 +70,7 @@ class JobController extends Controller
 
         // Dapatkan nama_negara dari input hidden
         $namaNegara = $request->input('nama_negara');
-
+        dd($request->all());
         // Mulai transaksi database
         DB::beginTransaction();
 
@@ -105,6 +105,7 @@ class JobController extends Controller
             // Rollback transaksi jika terjadi kesalahan
             DB::rollback();
 
+            
             return response()->json(['message' => 'Terjadi kesalahan saat menyimpan data'], 500);
         }
     }
