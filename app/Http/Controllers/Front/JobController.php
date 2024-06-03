@@ -20,7 +20,8 @@ class JobController extends Controller
     public function show($id)
     {
         $job = Job::where('id', hashId($id, 'decode'))->firstOrFail();
+        $relateJobs = Job::where('kategori_job_id', $job->kategori_job_id)->orderBy('id', 'desc')->limit(4)->get();
 
-        return view('front.compro-1.jobs.detail', compact('job'));
+        return view('front.compro-1.jobs.detail', compact('job', 'relateJobs'));
     }
 }

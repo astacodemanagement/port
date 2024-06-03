@@ -26,6 +26,9 @@ use App\Http\Controllers\StepController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\Member\HomeController as MemberHomeController;
+use App\Http\Controllers\Member\JobController as MemberJobController;
+use App\Http\Controllers\Member\ProfileController as MemberProfileController;
+use App\Http\Controllers\Member\WorkExperienceController as MemberWorkExperienceController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PengaduanController;
@@ -346,10 +349,34 @@ Auth::routes(['login' => false, 'logout' => false]);
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
 Route::post('register/step/validation', [RegisterController::class, 'stepValidation'])->name('register.step.validation');
 
+/** MEMBER ROUTE */
 Route::prefix('member')->group(function () {
     Route::middleware('member.auth')->group(function () {
         Route::name('member.')->group(function () {
             Route::get('/', [MemberHomeController::class, 'index'])->name('index');
+            
+            /** WORK EXPERIENCE */
+            Route::prefix('work-experience')->group(function () {
+                Route::name('work-experience.')->group(function () {
+                    Route::get('/edit', [MemberWorkExperienceController::class, 'edit'])->name('edit');
+                    Route::put('/edit', [MemberWorkExperienceController::class, 'update'])->name('update');
+                });
+            });
+
+            /** PROFILE */
+            Route::prefix('profile')->group(function () {
+                Route::name('profile.')->group(function () {
+                    Route::get('/edit', [MemberProfileController::class, 'edit'])->name('edit');
+                    Route::put('/edit', [MemberProfileController::class, 'update'])->name('update');
+                });
+            });
+
+            /** JOB */
+            Route::prefix('jobs')->group(function () {
+                Route::name('jobs.')->group(function () {
+                    Route::get('/', [MemberJobController::class, 'index'])->name('index');
+                });
+            });
         });
     });
 });

@@ -3,7 +3,6 @@
 :root {
     --orange: #F97316;
     --biru-d: #00314F;
-    --biru-bg: #0F5078;
     --biru-n: #00314fb4;
     --bg-gray: #F5F5F5;
     --bg-src: #ECF7FF;
@@ -18,7 +17,6 @@
     --text-danger: #EF4444;
     --text-green: #22C55E;
     --text-paraf: #BBBBBB;
-    --border-sl: #D4D4D4;
 }
 
 * {
@@ -383,21 +381,16 @@
 .Element-application-jobs {
     padding: 56px 0;
     min-height: 964px;
-    background-image: url('../assets/image/image-background.png');
-    background-size: cover;
 }
 
 .Element-application-jobs .title-heading h1 {
-    color: var(--biru-d);
     font-size: 40px;
 }
 
 .Element-application-jobs .element-items-card .row .card-body {
     padding: 12px;
-    background: var(--text-w);
-    border: 2px solid var(--biru-b);
+    border: 1px solid var(--biru-b);
     border-radius: 16px;
-    box-shadow: 0px 10px 10px -3px rgba(0, 0, 0, 0.055);
 }
 
 .Element-application-jobs .element-items-card .row .card-body .card-image img {
@@ -561,12 +554,11 @@
 /* Section they said */
 .Elemenet-they-said {
     margin: auto;
-    background-color: var(--biru-b);
+    width: 70%;
 }
 
 .Elemenet-they-said .container .mySwiper {
     padding: 56px 0;
-    width: 70%;
 }
 
 .Elemenet-they-said .container .mySwiper .swiper-items {
@@ -576,11 +568,7 @@
 }
 
 .Elemenet-they-said .container .mySwiper .swiper-items .swiper-image img {
-    padding: 0 20px;
-}
-
-.Elemenet-they-said .container .mySwiper .swiper-button-prev {
-    display: none;
+    padding: 0 24px;
 }
 
 .Elemenet-they-said .swiper-container {
@@ -614,11 +602,6 @@
 
 .wrapper-content .row .deskripsi-pekerjaan span {
     font-size: 14px;
-}
-
-.wrapper-content .nav-item.show .nav-tabs .nav-link::after,
-.nav-tabs .nav-link.active::after {
-    background-color: var(--orange);
 }
 
 .wrapper-content .row .wrapper-content-left {
@@ -674,7 +657,7 @@
 }
 
 .wrapper-content .row .col-4 .wrapper-content-right {
-    background-color: var(--biru-bg);
+    background-color: var(--biru-d);
     min-height: 765px;
     border-radius: 16px;
 }
@@ -761,14 +744,9 @@
 }
 
 .wrapper-content .col-4 .wrapper-content-right .salary-items h6 {
-    font-size: 14px;
+    font-size: 15px;
     align-items: center;
     margin-top: 5px;
-}
-
-.hr {
-    margin: 20px 0;
-    border: 1px dashed var(--border-sl);
 }
 
 .wrapper-content .col-4 .wrapper-content-right .salary-items span {
@@ -802,7 +780,6 @@
 .wrapper-detail-pekerjaan .wrapper-content-detail h2 {
     font-size: 40px;
     font-weight: 700;
-    color: var(--biru-d);
 }
 
 .wrapper-detail-pekerjaan .wrapper-content-detail img {
@@ -1008,7 +985,7 @@
 
 .Element-information-jobs .row .card-items-bagde {
     display: flex;
-    padding: 5px;
+    padding: 8px;
     align-items: center;
     margin: 0 12px;
     background-color: var(--hijau-b);
@@ -1020,11 +997,11 @@
     align-items: center;
 }
 
-.Element-information-jobs .row .col-6 .element-detail-share {
+.Element-information-jobs .row .col-4 .element-detail-share {
     display: flex;
     align-items: center;
     align-content: center;
-    gap: 5px;
+    gap: 10px;
     float: right;
 }
 
@@ -1033,21 +1010,21 @@
     align-items: center;
 }
 
-.Element-information-jobs .row .col-6 .element-detail-share input {
+.Element-information-jobs .row .col-4 .element-detail-share input {
     border: none;
 }
 
-.Element-information-jobs .row .col-6 .element-detail-share input:focus {
+.Element-information-jobs .row .col-4 .element-detail-share input:focus {
     outline: none;
 }
 
 
-.Element-information-jobs .row .col-6 .element-detail-share button {
+.Element-information-jobs .row .col-4 .element-detail-share button {
     border: none;
     background: none;
 }
 
-.Element-information-jobs .row .col-6 .element-detail-share .clipboard-copy {
+.Element-information-jobs .row .col-4 .element-detail-share .clipboard-copy {
     padding: 8px;
     background: var(--text-w);
     border-radius: 8px;
@@ -1069,7 +1046,7 @@
 
 /* Footer */
 .Element-footer {
-    min-height: 300px;
+    /* min-height: 300px; */
     background-color: var(--biru-d);
 }
 
@@ -1243,30 +1220,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: auto;
-    }
-
-    .Element-application-jobs .element-search-items .col-2 {
-        width: 100%;
-    }
-
-    .Element-application-jobs .element-search-items .col-2 button {
-        padding: 10px 30px;
-        background-color: var(--orange);
-        font-weight: 600;
-        width: 100%;
-        text-decoration: none;
-        border-radius: 8px;
-        color: var(--text-w);
-        border: none;
-    }
-
-    .Element-application-jobs .element-search-items .col-2 button:hover {
-        font-weight: 600;
-        background: none;
-        border: 1px solid var(--orange);
-        color: var(--orange);
-        transition: 1s;
     }
 
     .Element-application-jobs .container .row {
@@ -1615,7 +1568,7 @@
 
     /* Element Footer */
     .Element-footer {
-        min-height: 100%;
+        /* min-height: 100%; */
         margin: 0;
         padding: 0;
     }

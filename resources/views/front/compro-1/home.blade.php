@@ -340,7 +340,7 @@
                         <div class="col-3">
                             <div class="card-body">
                                 <div class="card-image job-image-container">
-                                    <img src="{{ asset('upload/gambar/thumb_' . $job->gambar?->gambar) }}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}">
+                                    <img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/thumb_' . $job->gambar?->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}">
                                 </div>
                                 <div class="card-items-bagde gap-1">
                                     <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
@@ -386,7 +386,7 @@
                                             <h6>Berakhir pada {{ $job->tanggal_tutup ? \Carbon\Carbon::parse($job->tanggal_tutup)->format('d F Y') : '-' }}</h6>
                                         </div>
                                         <div class="col-12 d-flex align-self-center mt-2">
-                                            <a href="{{ route('front.jobs.show', $job->id) }}">Lihat Detail
+                                            <a href="{{ route('front.jobs.show', hashId($job->id)) }}">Lihat Detail
                                                 <span>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
                                                         <path
@@ -410,6 +410,9 @@
                             </svg>
                         </a>
                     </div>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- #End -->
 
@@ -442,17 +445,10 @@
     </section>
     <!-- #End -->
 @endsection
-{{-- @push('css')
-    <style>
-        .job-image-container img{
-            height:130px;
-            object-position:center;
-            object-fit:cover
-        }
-        @media (min-width:1200px) {
-            .job-image-container img{
-                height:217px;
-            }
-        }
-    </style>
-@endpush --}}
+
+@push('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/19.1.3/lazyload.min.js" integrity="sha512-VMl48m6saA54JWGUPVnSqp9gDFdJ1XPIKHAI+SP05D93n+Ma5T8osuxhTnxNvFfc5zVF+bWbxmCCj4EbsWUVyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var lazyLoadInstance = new LazyLoad({});
+    </script>
+@endpush
