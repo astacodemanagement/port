@@ -182,15 +182,13 @@
                                                                             target="_blank">
                                                                             <img class="card-img-top img-fluid"
                                                                                 src="/upload/foto/{{ $p->kandidat->foto }}"
-                                                                                onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
                                                                                 alt="Card image cap"
                                                                                 style="border-radius:1rem;">
                                                                         </a>
                                                                     @else
                                                                         <!-- Default Image if no foto -->
                                                                         <img class="card-img-top img-fluid"
-                                                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGThxD2scluEhl1Ea8rzz5J9ew7I3NEBUq2g&s"
-                                                                            alt="Default Image">
+                                                                            src="/upload/foto/foto.png" alt="Default Image">
                                                                     @endif
                                                                 </div>
                                                                 <div
@@ -204,25 +202,22 @@
                                                                         </a>
                                                                     </h5>
 
-                                                                    <p class="mb-1 text-muted"> <i
-                                                                            class="fas fa-graduation-cap"></i> <b
+                                                                    <p class="mb-1 text-muted" > <i class="fas fa-graduation-cap"></i> <b
                                                                             style="font-weight: bold;">{{ $p->kandidat->pendidikan }}</b>
                                                                     </p>
                                                                     <p class="mb-1 text-muted">
                                                                         <i class="fas fa-weight-scale"></i>
-                                                                        <b style="font-weight: bold; margin:0%">{{ $p->kandidat->tinggi_badan }}
+                                                                        <b
+                                                                            style="font-weight: bold; margin:0%">{{ $p->kandidat->tinggi_badan }}
                                                                             cm - {{ $p->kandidat->berat_badan }} Kg</b>
                                                                     </p>
-                                                                    <p class="mb-1 text-muted"><i class="fa fa-user"></i> <b
-                                                                            style="font-weight: bold;">
+                                                                    <p class="mb-1 text-muted"><i class="fa fa-user"></i> <b style="font-weight: bold;">
                                                                             {{ $p->kandidat->usia }}
                                                                             Tahun</b></p>
                                                                     <p class="card-text mb-1 text-muted"
                                                                         style="font-family: 'Poppins', sans-serif; ">
-                                                                        <i class="fa fa-globe"></i><b
-                                                                            style="font-weight: bold;">
-                                                                            {{ $p->kandidat->provinsi?->nama_provinsi }}</b>
-                                                                    </p>
+                                                                        <i class="fa fa-globe"></i><b style="font-weight: bold;">
+                                                                            {{ $p->kandidat->provinsi }}</b></p>
 
                                                                 </div>
                                                             </div>
@@ -232,8 +227,8 @@
                                                         <div class="col-lg-12 col-xl-12">
 
                                                             <div class="card-block">
-
-
+    
+    
                                                                 <a
                                                                     href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}">
                                                                     <h5 class="card-title">
@@ -241,17 +236,13 @@
                                                                             style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->kandidat->nama_lengkap }}</b>
                                                                     </h5>
                                                                 </a>
-
-
-
-
-                                                                <p class="mb-1 text-muted"><i
-                                                                        class="fas fa-location-dot"></i><b
-                                                                        style="font-weight: bold;">
-                                                                        {{ $p->kandidat->provinsi?->nama_provinsi }},
-                                                                        {{ $p->kandidat->kota?->nama_kota }},
-                                                                        {{ $p->kandidat->kecamatan?->nama_kecamatan }}</b></p>
-                                                                </b></p>
+    
+    
+    
+    
+                                                                <p class="mb-1 text-muted"><i class="fas fa-location-dot"></i><b style="font-weight: bold;">
+                                                                        {{ $p->kandidat->provinsi }}, {{ $p->kandidat->kota }}, {{$p->kandidat->kecamatan}}</b></p>  
+                                                                    </b></p>
                                                                 <h5 class="card-title">
                                                                     <span class="badge badge-pill badge-warning"
                                                                         style="color: #00324F; font-size:12px;">{{ $p->nama_kategori_job }}</span>
@@ -264,11 +255,11 @@
                                                                     </small>
                                                                 </div>
                                                                 <br>
-
-
+    
+    
                                                                 <div class="text-left">
                                                                     <!-- Icon mata untuk detail -->
-
+    
                                                                     <div class="d-flex">
                                                                         <a href="" data-toggle="modal"
                                                                             data-target="#ubahStatusModal{{ $p->id }}"
@@ -277,23 +268,22 @@
                                                                             title="Detail">
                                                                             <i class="fa fa-edit"></i>
                                                                             Ubah Status
-
+    
                                                                         </a>
                                                                         <a href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}"
                                                                             class="form-control"
                                                                             style="background-color: transparent; color: #00324F; border-radius: 1rem; font-size: 12px;  border: 1px solid #00324F;"
-                                                                            title="Detail"><i
-                                                                                class="fa fa-arrow-right"></i>
+                                                                            title="Detail"><i class="fa fa-arrow-right"></i>
                                                                             Lihat Detail</a>
-
+    
                                                                     </div>
-
-
-
-
-
+    
+    
+    
+    
+    
                                                                 </div>
-
+    
                                                             </div>
                                                         </div>
                                                     </div>

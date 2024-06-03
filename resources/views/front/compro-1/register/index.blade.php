@@ -254,6 +254,17 @@
                                             </select>
                                         </div>
                                         <div class="form-group mb-5">
+                                            <select name="pendidikan" class="form-select">
+                                                <option value="">Pendidikan Terakhir</option>
+                                                <option value="1">Tidak/Belum Sekolah</option>
+                                                <option value="2">SD</option>
+                                                <option value="3">SMP/Sederajat</option>
+                                                <option value="4">SMA/SMK/Sederajat</option>
+                                                <option value="5">Diploma</option>
+                                                <option value="6">Sarjana</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group mb-5">
                                             <input type="text" class="form-control" name="nama_lengkap_ayah" placeholder="Nama Lengkap Ayah" value="">
                                         </div>
                                         <div class="form-group mb-5">
@@ -441,7 +452,7 @@
                                                 <div class="form-input">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="foto" style="width: 150px">Foto</label>
-                                                        <input type="file" class="form-control" id="foto" name="file_foto" accept="image/*,application/pdf">
+                                                        <input type="file" class="form-control" id="foto" name="file_foto" accept="image/*">
                                                     </div>
                                                     <label class="text-muted"><small>Foto formal background putih/biru/merah</small></label>
                                                 </div>
@@ -623,8 +634,9 @@
 
         stepper.on("kt.stepper.next", function(stepper) {
             const nextBtn = stepper.btnNext.classList[4]
-
+            
             var formData = new FormData($('.form-register')[0]);
+
             formData.append('step', stepper.currentStepIndex)
 
             $.ajax({
@@ -641,6 +653,7 @@
                     if (response.success) {
                         stepper.goNext()
                     }
+                    console.log(response)
                 },
                 complete: function() {
                     $(`.${nextBtn}`).find('.spinner-border').remove()
@@ -676,8 +689,8 @@
                         })
                     }
                 }
-            })
-        });
+            });
+        })
 
         // Handle previous step
         stepper.on("kt.stepper.previous", function(stepper) {

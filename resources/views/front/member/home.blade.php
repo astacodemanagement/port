@@ -78,11 +78,11 @@
                             <div class="row mt-lg-4 mt-3">
                                 <div class="col-lg-3 mb-3 mb-lg-0">
                                     <h6 class="fw-7">City</h6>
-                                    <span>{{ auth()->user()->kandidat->kota ?? '-' }}</span>
+                                    <span>{{ auth()->user()->kandidat->kota->nama_kota ?? '-' }}</span>
                                 </div>
                                 <div class="col-lg-3 mb-3 mb-lg-0">
                                     <h6 class="fw-7">Province</h6>
-                                    <span>{{ auth()->user()->kandidat->provinsi ?? '-' }}</span>
+                                    <span>{{ auth()->user()->kandidat->provinsi->nama_provinsi ?? '-' }}</span>
                                 </div>
                                 <div class="col-lg-3 mb-3 mb-lg-0">
                                     <h6 class="fw-7">Zip / Postal Code</h6>

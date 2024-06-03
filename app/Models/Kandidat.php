@@ -21,4 +21,19 @@ class Kandidat extends Model
         return $this->belongsTo(Seleksi::class, 'kandidat_id');
     }
 
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class, 'provinsi_id', 'id');
+    }
+
+    public function kota()
+    {
+        return $this->belongsTo(Kota::class, 'kota_id', 'id');
+    }
+
+    public function kecamatan()
+    {
+        return  $this->belongsTo(Kecamatan::class, 'kecamatan_id', 'id');
+    }
+
 }
