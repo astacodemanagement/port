@@ -88,7 +88,7 @@
                             <div class="card p-0">
                                 <div class="card-body">
                                     <div class="job-image-container">
-                                        <img src="{{ asset('upload/gambar/thumb_' . $job->gambar?->gambar) }}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}" class="w-100">
+                                        <img src="{{ asset('upload/gambar/thumb_' . $job->gambar?->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}" class="w-100">
                                     </div>
                                     <div class="card-items-bagde gap-1">
                                         <img src="{{ asset('frontend/assets/icons/stop-circle.svg') }}" alt="">

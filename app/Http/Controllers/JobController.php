@@ -134,7 +134,7 @@ class JobController extends Controller
         // $image = $manager->read($gambar);
         $saveImg = $manager->read($gambar)->save($destinationPath . $imageName);
         $saveImgThumb300 = $manager->read($gambar)->cover(300, 300)->save($destinationPath . 'thumb_300_' . $imageName);
-        $saveImgThumb = $manager->read($gambar)->cover(580, 520)->save($destinationPath . 'thumb_' . $imageName);
+        $saveImgThumb = $manager->read($gambar)->cover(580, 500)->save($destinationPath . 'thumb_' . $imageName);
 
         if ($gambarJob && $saveImg) {
             if (File::exists(public_path($destinationPath . $gambarJob->gambar))) {
