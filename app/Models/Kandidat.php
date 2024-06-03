@@ -13,7 +13,7 @@ class Kandidat extends Model
     
     public function pendaftaran()
     {
-        return $this->hasOne(Pendaftaran::class, 'id', 'pendaftaran_id');
+        return $this->belongsTo(Pendaftaran::class, 'pendaftaran_id', 'id');
     }
 
     public function seleksi()

@@ -149,7 +149,7 @@
                                                                                         class="form-control"
                                                                                         id="nama_kategori_job"
                                                                                         name="nama_kategori_job"
-                                                                                        value="{{ $belum_diverifikasi->nama_kategori_job }}">
+                                                                                        value="{{ $belum_diverifikasi?->kategoriJob?->nama_kategori_job }}">
 
                                                                                     <input type="hidden" readonly
                                                                                         class="form-control"
