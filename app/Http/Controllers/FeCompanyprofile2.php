@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
+use App\Models\KategoriJob;
+use App\Models\Negara;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
 class FeCompanyprofile2 extends Controller
 {
     public function compro2(){
+
+        $data['job'] =  Job::orderBy('id', 'desc')->with('benefits','negara','gambar')->limit(4)->get();
+        
         return view('front.compro-2.home');
     }
 
@@ -22,6 +29,10 @@ class FeCompanyprofile2 extends Controller
     }
     
     public function daftar(){
-        return view('front.compro-2.daftar');
+        $data['countries'] = Negara::all();
+        $data['categories'] = KategoriJob::all();
+        $data['provinces'] = Provinsi::all();
+
+        return view('front.compro-2.register.index',$data);
     }
 }
