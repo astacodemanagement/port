@@ -12,15 +12,16 @@ class JobController extends Controller
     public function index()
     {
         $kategori = KategoriJob::all();
-        $jobs = Job::paginate(12);
+        $jobs = Job::active()->paginate(12);
 
         return viewCompro('jobs.index', compact('kategori', 'jobs'));
     }
 
     public function show($id)
     {
-        $job = Job::where('id', hashId($id, 'decode'))->firstOrFail();
-        $relateJobs = Job::where('kategori_job_id', $job->kategori_job_id)->orderBy('id', 'desc')->limit(4)->get();
+        $id = hashId($id, 'decode');
+        $job = Job::active()->where('id', $id)->firstOrFail();
+        $relateJobs = Job::active()->where('kategori_job_id', $job->kategori_job_id)->where('id', '!=', $id)->orderBy('id', 'desc')->limit(4)->get();
 
         return view('front.compro-1.jobs.detail', compact('job', 'relateJobs'));
     }

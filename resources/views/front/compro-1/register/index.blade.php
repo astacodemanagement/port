@@ -181,19 +181,19 @@
                                 <div class="flex-column current" data-kt-stepper-element="content">
                                     <label class="form-label">Minat Pekerjaan</label>
                                     <div class="fv-row mb-10">
-                                        <div class="form-group mb-5">
+                                        {{-- <div class="form-group mb-5">
                                             <select class="form-select" name="negara_id" aria-label="dropdownNegara">
                                                 <option value="">Negara Yang Diminat</option>
                                                 @foreach ($countries as $country)
                                                     <option value="{{ $country->id }}">{{ $country->nama_negara }}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="form-group">
                                             <select class="form-select" name="kategori_job_id"
                                                 aria-labelledby="dropdownKategori">
-                                                <option value="">Kategori Yang Diminati</option>
+                                                <option value="">Industri Yang Diminati</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->nama_kategori_job }}
                                                     </option>

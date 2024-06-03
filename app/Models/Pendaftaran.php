@@ -13,6 +13,6 @@ class Pendaftaran extends Model
 
     public function kandidat()
     {
-        return $this->hasOne(Kandidat::class, 'nik', 'nik');
+        return $this->hasOne(Kandidat::class, 'pendaftaran_id', 'id');
     }
 }
