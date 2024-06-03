@@ -5,10 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
- 
-
- 
-
 class Pendaftaran extends Model
 {
     use HasFactory;
@@ -19,5 +15,4 @@ class Pendaftaran extends Model
     {
         return $this->hasOne(Kandidat::class, 'nik', 'nik');
     }
-    
 }

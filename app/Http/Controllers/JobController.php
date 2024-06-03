@@ -131,14 +131,20 @@ class JobController extends Controller
         // $gambar->move(public_path($destinationPath), $imageName);
 
         $manager = new ImageManager(new Driver());
-        $image = $manager->read($gambar);
-        $image->save($destinationPath . $imageName);
-        $image->cover(300, 300)->save($destinationPath . 'thumb_300_' . $imageName);
-        $image->cover(280, 220)->save($destinationPath . 'thumb_' . $imageName);
+        // $image = $manager->read($gambar);
+        $saveImg = $manager->read($gambar)->save($destinationPath . $imageName);
+        $saveImgThumb300 = $manager->read($gambar)->cover(300, 300)->save($destinationPath . 'thumb_300_' . $imageName);
+        $saveImgThumb = $manager->read($gambar)->cover(580, 500)->save($destinationPath . 'thumb_' . $imageName);
 
-        if ($gambarJob && $image) {
+        if ($gambarJob && $saveImg) {
             if (File::exists(public_path($destinationPath . $gambarJob->gambar))) {
                 File::delete(public_path($destinationPath . $gambarJob->gambar));
+            }
+            if (File::exists(public_path($destinationPath .'thumb_300_' . $gambarJob->gambar))) {
+                File::delete(public_path($destinationPath .'thumb_300_' . $gambarJob->gambar));
+            }
+            if (File::exists(public_path($destinationPath .'thumb_' . $gambarJob->gambar))) {
+                File::delete(public_path($destinationPath .'thumb_' . $gambarJob->gambar));
             }
 
             $gambarJob->delete();
