@@ -92,66 +92,60 @@ class BelumVerifikasiController extends Controller
     }
 
     public function updateDetail(Request $request, $id)
-    {
-        
-    
-        $verifikasi = Pendaftaran::findOrFail($id);
-    
-        // Ambil hanya bidang-bidang yang ditentukan dari permintaan
-        $input = $request->only([
-            'bayar_cf', 'bukti_tf_cf', 'tanggal_tf_cf',
-            'status_paid_cf', 'tanggal_refund_cf', 'bayar_refund_cf','catatan_pembayaran_cf'
-        ]);
-    
-        if ($request->has('bayar_cf')) {
-            $input['bayar_cf'] = str_replace(',', '', $request->input('bayar_cf'));
-        }
-    
-        if ($request->has('bayar_refund_cf')) {
-            $input['bayar_refund_cf'] = str_replace(',', '', $request->input('bayar_refund_cf'));
-        }
-    
-        if ($request->hasFile('bukti_tf_cf')) {
-            $image = $request->file('bukti_tf_cf');
-            $destinationPath = 'upload/bukti_tf_cf/';
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move($destinationPath, $imageName);
-    
-            // Hapus file bukti_tf_cf lama jika ada
-            if ($verifikasi->bukti_tf_cf && file_exists(public_path('upload/verifikasi/' . $verifikasi->bukti_tf_cf))) {
-                unlink(public_path('upload/bukti_tf_cf/' . $verifikasi->bukti_tf_cf));
-            }
-    
-            $input['bukti_tf_cf'] = $imageName;
-        }
-    
-        // Update verifikasi data di database
-        $verifikasi->update($input);
+{
+    $verifikasi = Pendaftaran::findOrFail($id);
 
+    // Ambil hanya bidang-bidang yang ditentukan dari permintaan
+    $input = $request->only([
+        'bayar_cf', 'bukti_tf_cf', 'tanggal_tf_cf',
+        'status_paid_cf', 'tanggal_refund_cf', 'bayar_refund_cf','catatan_pembayaran_cf'
+    ]);
 
-
-        if($request->has("email")){
-            User::where('id', $verifikasi->kandidat->user_id)::update([
-              'email' => $request->email
-            ]);
-          }
-          if(request("password") != null){
-              User::where('id', $verifikasi->kandidat->user_id)::update([
-                  'password' => Hash::make($request->password)
-              ]);
-          }
-
-          
-
-    
-        $loggedInUserId = Auth::id();
-        
-      
-        // Simpan log histori untuk operasi Update dengan user_id yang sedang login
-        $this->simpanLogHistori('Update', 'Update Detail Verifikasi', $verifikasi->id, $loggedInUserId, json_encode($verifikasi->getOriginal()), json_encode($verifikasi));
-    
-        return response()->json(['message' => 'Data Berhasil Diupdate']);
+    if ($request->has('bayar_cf')) {
+        $input['bayar_cf'] = str_replace(',', '', $request->input('bayar_cf'));
     }
+
+    if ($request->has('bayar_refund_cf')) {
+        $input['bayar_refund_cf'] = str_replace(',', '', $request->input('bayar_refund_cf'));
+    }
+
+    if ($request->hasFile('bukti_tf_cf')) {
+        $image = $request->file('bukti_tf_cf');
+        $destinationPath = 'upload/bukti_tf_cf/';
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move($destinationPath, $imageName);
+
+        // Hapus file bukti_tf_cf lama jika ada
+        if ($verifikasi->bukti_tf_cf && file_exists(public_path('upload/bukti_tf_cf/' . $verifikasi->bukti_tf_cf))) {
+            unlink(public_path('upload/bukti_tf_cf/' . $verifikasi->bukti_tf_cf));
+        }
+
+        $input['bukti_tf_cf'] = $imageName;
+    }
+
+    // Update verifikasi data di database
+    $verifikasi->update($input);
+
+    if ($request->has('email')) {
+        User::where('id', $verifikasi->kandidat->user_id)->update([
+            'email' => $request->email
+        ]);
+    }
+
+    if ($request->has('password') && $request->password != null) {
+        User::where('id', $verifikasi->kandidat->user_id)->update([
+            'password' => Hash::make($request->password)
+        ]);
+    }
+
+    $loggedInUserId = Auth::id();
+
+    // Simpan log histori untuk operasi Update dengan user_id yang sedang login
+    $this->simpanLogHistori('Update', 'Update Detail Verifikasi', $verifikasi->id, $loggedInUserId, json_encode($verifikasi->getOriginal()), json_encode($verifikasi));
+
+    return response()->json(['message' => 'Data Berhasil Diupdate']);
+}
+
     
 
 

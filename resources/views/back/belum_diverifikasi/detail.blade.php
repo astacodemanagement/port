@@ -103,10 +103,9 @@
                                                         </li>
                                                     </ul>
 
-                                                    <form id="form_verifikasi" action="" method="POST"
-                                                        enctype="multipart/form-data">
-                                                        @csrf <!-- Tambahkan token CSRF -->
-                                                        @method('PUT') <!-- Tambahkan method PUT untuk update -->
+                                                    <form id="form_verifikasi" method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('PUT')
                                                         <input type="hidden" id="id" name="id"
                                                             value="{{ $belum_diverifikasi->id }}">
                                                         <div class="tab-content card-block">
@@ -1205,5 +1204,6 @@
                         });
                     });
                 </script>
+                
                 
             @endpush
