@@ -297,7 +297,7 @@
                                                                                             name="kategori_job_id"
                                                                                             class="form-control">
                                                                                             <option value="">Pilih
-                                                                                                Industri Pekerjaan</option>
+                                                                                                Industri Minat Pekerjaan</option>
 
                                                                                             <!-- Loop untuk kategori job -->
                                                                                             @foreach ($kategori_job as $k)

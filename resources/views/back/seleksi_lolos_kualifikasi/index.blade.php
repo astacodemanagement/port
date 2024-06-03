@@ -65,7 +65,7 @@
                                                         <th width="15%">Nama Perusahaan</th>
                                                         <th width="5%">Mitra</th>
                                                         <th width="5%">Total Employe</th>
-                                                        <th width="5%">Kategori Industri Pekerjaan</th>
+                                                        <th width="5%">Kategori Industri Minat Pekerjaan</th>
                                                         <th width="5%">Detail</th>
                                                     </tr>
                                                 </thead>
