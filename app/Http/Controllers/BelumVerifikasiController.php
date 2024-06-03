@@ -9,6 +9,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -134,9 +135,9 @@ class BelumVerifikasiController extends Controller
               'email' => $request->email
             ]);
           }
-          if($request->has("password")){
+          if(request("password") != null){
               User::where('id', $verifikasi->kandidat->user_id)::update([
-                  'password' => bcrypt($request->password)
+                  'password' => Hash::make($request->password)
               ]);
           }
 

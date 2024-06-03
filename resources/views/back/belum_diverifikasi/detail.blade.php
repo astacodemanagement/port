@@ -302,7 +302,7 @@
                                                                                     <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="kota" name="kota"
-                                                                                        value="{{ $belum_diverifikasi->kandidat->kota }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->kota?->nama_kota }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -310,7 +310,7 @@
                                                                                     <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="kecamatan" name="kecamatan"
-                                                                                        value="{{ $belum_diverifikasi->kandidat->kecamatan }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->kecamatan?->nama_kecamatan }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -318,7 +318,7 @@
                                                                                     <input type="text" readonly
                                                                                         class="form-control" idprovinsi
                                                                                         name="provinsi"
-                                                                                        value="{{ $belum_diverifikasi->kandidat->provinsi }}">
+                                                                                        value="{{ $belum_diverifikasi->kandidat->provinsi?->nama_provinsi }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
