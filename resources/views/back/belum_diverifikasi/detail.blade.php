@@ -126,7 +126,7 @@
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
                                                                             <div class="form-group row">
-                                                                                <div class="col-sm-6">
+                                                                                {{-- <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="nama_negara">Nama
                                                                                         Negara</label>
@@ -141,11 +141,10 @@
                                                                                         class="form-control"
                                                                                         id="negara_id" name="negara_id"
                                                                                         value="{{ $belum_diverifikasi->negara_id }}">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
+                                                                                </div> --}}
+                                                                                <div class="col-sm-12">
                                                                                     <label class="col-form-label"
-                                                                                        for="nama_kategori_job">Industri
-                                                                                        Pekerjaan</label>
+                                                                                        for="nama_kategori_job">Industri Minat Pekerjaan</label>
                                                                                     <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="nama_kategori_job"
@@ -787,7 +786,7 @@
                                                                                 </div>
                                                                                 <div class="container">
                                                                                     <div class="row">
-                                                                                        <div class="col-sm-6">
+                                                                                        <div class="col-sm-4">
                                                                                             <div class="form-group">
                                                                                                 <label
                                                                                                     class="col-form-label"
@@ -797,11 +796,52 @@
                                                                                                     alt="">
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-sm-6">
+                                                                                        <div class="col-sm-4">
                                                                                             <div class="form-group">
                                                                                                 <label
                                                                                                     class="col-form-label"
                                                                                                     for="nama_galeri">Paklaring</label>
+                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
+                                                                                                    alt="">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group">
+                                                                                                <label
+                                                                                                    class="col-form-label"
+                                                                                                    for="kk">KK</label>
+                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
+                                                                                                    alt="">
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="container">
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group">
+                                                                                                <label
+                                                                                                    class="col-form-label"
+                                                                                                    for="nama_galeri">Akta Lahir</label>
+                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
+                                                                                                    alt="">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group">
+                                                                                                <label
+                                                                                                    class="col-form-label"
+                                                                                                    for="nama_galeri">Ijazah</label>
+                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
+                                                                                                    alt="">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group">
+                                                                                                <label
+                                                                                                    class="col-form-label"
+                                                                                                    for="kk">Buku Nikah</label>
                                                                                                 <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
                                                                                                     alt="">
                                                                                             </div>
@@ -996,31 +1036,46 @@
 
                                                                 <div class="modal-content">
 
-                                                                    <div class="modal-body
+                                                                    <div
+                                                                        class="modal-body
                                                                         ">
-                                                                        <div class="card-block
+                                                                        <div
+                                                                            class="card-block
                                                                             ">
                                                                             <h5>AKUN</h5>
-                                                                        {{-- update account email & password --}}
-                                                                    
-                                                                            <div class="form-group 
+                                                                            {{-- update account email & password --}}
+
+                                                                            <div
+                                                                                class="form-group 
                                                                                 ">
-                                                                                <div class="col-sm-6
+                                                                                <div
+                                                                                    class="col-sm-6
                                                                                     ">
-                                                                                    <label class="col-form-label
-                                                                                        " for="email">Email</label>
-                                                                                    <input type="email" class="form-control
-                                                                                        " id="email" name="email" value="{{ $user_info->email }}">
+                                                                                    <label
+                                                                                        class="col-form-label
+                                                                                        "
+                                                                                        for="email">Email</label>
+                                                                                    <input type="email"
+                                                                                        class="form-control
+                                                                                        "
+                                                                                        id="email" name="email"
+                                                                                        value="{{ $user_info->email }}">
                                                                                 </div>
-                                                                                <div class="col-sm-6
+                                                                                <div
+                                                                                    class="col-sm-6
                                                                                     ">
-                                                                                    <label class="col-form-label
-                                                                                        " for="password">Password</label>
-                                                                                    <input type="text" class="form-control
-                                                                                        " id="password" name="password" placeholder="kosongkan jika tidak ingin mengubah password" >
+                                                                                    <label
+                                                                                        class="col-form-label
+                                                                                        "
+                                                                                        for="password">Password</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control
+                                                                                        "
+                                                                                        id="password" name="password"
+                                                                                        placeholder="kosongkan jika tidak ingin mengubah password">
                                                                                 </div>
                                                                             </div>
-                                                                          
+
                                                                         </div>
 
                                                                     </div>
@@ -1125,7 +1180,7 @@
 
                             $.ajax({
                                 type: 'POST',
-                                url:  `{{ route('back-office.pelamar.updateDetail.update', $belum_diverifikasi->id) }}`,
+                                url: `{{ route('back-office.pelamar.updateDetail.update', $belum_diverifikasi->id) }}`,
                                 data: formData,
                                 headers: {
                                     'X-HTTP-Method-Override': 'PUT'

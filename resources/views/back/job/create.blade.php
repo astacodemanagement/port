@@ -827,7 +827,7 @@
                             var kategoriJobList = response.kategoriJobList;
                             var options = '';
 
-                            options += '<option value="">Pilih Industri Pekerjaan</option>';
+                            options += '<option value="">Pilih Industri Minat Pekerjaan</option>';
 
                             $.each(kategoriJobList, function(id, nama_kategori_job) {
                                 options += '<option value="' + id + '">' + nama_kategori_job +

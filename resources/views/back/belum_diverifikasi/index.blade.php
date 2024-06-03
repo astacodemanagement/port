@@ -188,7 +188,7 @@
                                                                     @else
                                                                         <!-- Default Image if no foto -->
                                                                         <img class="card-img-top img-fluid"
-                                                                            src="/upload/foto/foto.png" alt="Default Image">
+                                                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGThxD2scluEhl1Ea8rzz5J9ew7I3NEBUq2g&s" alt="Default Image">
                                                                     @endif
                                                                 </div>
                                                                 <div
