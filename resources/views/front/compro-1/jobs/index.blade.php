@@ -88,7 +88,7 @@
                             <div class="card p-0">
                                 <div class="card-body">
                                     <div class="job-image-container">
-                                        <img src="{{ asset('upload/gambar/thumb_' . $job->gambar?->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}" class="w-100">
+                                        <img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/thumb_' . $job->gambar?->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}" width="100%">
                                     </div>
                                     <div class="card-items-bagde gap-1">
                                         <img src="{{ asset('frontend/assets/icons/stop-circle.svg') }}" alt="">
@@ -639,6 +639,13 @@
     </section>
 @endsection
 
+@push('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/19.1.3/lazyload.min.js" integrity="sha512-VMl48m6saA54JWGUPVnSqp9gDFdJ1XPIKHAI+SP05D93n+Ma5T8osuxhTnxNvFfc5zVF+bWbxmCCj4EbsWUVyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var lazyLoadInstance = new LazyLoad({});
+    </script>
+@endpush
+
 @push('css')
     <link rel="stylesheet" href="{{ asset('frontend/css/style.bundle.css') }}">
     <style>
@@ -656,15 +663,5 @@
         .element-items-card {
             display: block !important;
         }
-        /* .job-image-container img{
-            height:130px;
-            object-position:center;
-            object-fit:cover
-        }
-        @media (min-width:1200px) {
-            .job-image-container img{
-                height:217px;
-            }
-        } */
     </style>
 @endpush

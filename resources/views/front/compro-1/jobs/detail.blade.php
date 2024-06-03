@@ -18,7 +18,7 @@
                             |
                         </div>
                         <div class="card-items-bagde gap-1">
-                            <img src="./assets/icons/stop-circle.svg" alt="">
+                            <img src="{{ asset('frontend/assets/icons/stop-circle.svg') }}" alt="">
                             <span>Tersedia</span>
                         </div>
                         <span class="text-small">Berakhir pada {{ $job->tanggal_tutup ? 'tanggal ' . \Carbon\Carbon::parse($job->tanggal_tutup)->format('d F Y') : '-' }}</span>
@@ -241,7 +241,7 @@
                 <div class="col-4 d-block">
                     <div class="wrapper-content-right">
                         <div class="wrapper-image">
-                            <img src="./assets/image/wrapper (1).png" alt="">
+                            <img src="{{ asset('frontend/assets/image/wrapper (1).png') }}" alt="">
                         </div>
                         <div class="wrapper-salary">
                             <div class="wrapper-icon">
@@ -527,6 +527,16 @@
                             </svg>
                         </a>
                     </div>
+                </div>
+            </div>
+        </div>
     </section>
     <!-- #End -->
 @endsection
+
+@push('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/19.1.3/lazyload.min.js" integrity="sha512-VMl48m6saA54JWGUPVnSqp9gDFdJ1XPIKHAI+SP05D93n+Ma5T8osuxhTnxNvFfc5zVF+bWbxmCCj4EbsWUVyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var lazyLoadInstance = new LazyLoad({});
+    </script>
+@endpush

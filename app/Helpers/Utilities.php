@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Vinkla\Hashids\Facades\Hashids;
@@ -50,5 +51,12 @@ if (!function_exists('hashId')) {
     function hashId($string, $type = 'encode')
     {
         return $type == 'encode' ? Hashids::encode($string) : Hashids::decode($string);
+    }
+}
+
+if (!function_exists('isJobAvialable')) {
+    function isJobAvialable($endDate)
+    {
+        return Carbon::parse($endDate)->diffInDays(today());
     }
 }
