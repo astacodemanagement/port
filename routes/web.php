@@ -26,6 +26,7 @@ use App\Http\Controllers\StepController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KandidatController;
 use App\Http\Controllers\Member\HomeController as MemberHomeController;
+use App\Http\Controllers\PelamarController;
 use App\Http\Controllers\Member\JobController as MemberJobController;
 use App\Http\Controllers\Member\ProfileController as MemberProfileController;
 use App\Http\Controllers\Member\WorkExperienceController as MemberWorkExperienceController;
@@ -77,12 +78,13 @@ Route::prefix('administrator')->group(function () {
 
             // PELAMAR
             Route::name('pelamar.')->group(function () {
+                Route::get('/pelamar/{status}', [PelamarController::class, 'index'])->name('index');
                 // Kandidat
                 Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
                 Route::resource('kandidat', KandidatController::class);
                 Route::get('/kandidat/{id}/detail', [KandidatController::class, 'detail'])->name('kandidat.detail');
 
-
+                
                 // Belum Verifikasi
                 Route::get('/belum-diverifikasi', [BelumVerifikasiController::class, 'index'])->name('belum-verifikasi');
                 Route::post('/update-status', [BelumVerifikasiController::class, 'updateStatus'])->name('update.status');
@@ -385,3 +387,4 @@ Route::get('/compro2/job', [FeCompanyprofile2::class,'job'])->name('compro-2.job
 Route::get('/compro2/job-detail', [FeCompanyprofile2::class,'jobdetail'])->name('compro-2.job-detail');
 Route::get('/compro2/employe', [FeCompanyprofile2::class,'employe'])->name('compro-2.employe');
 Route::get('/compro2/daftar', [FeCompanyprofile2::class,'daftar'])->name('compro-2.daftar');
+Route::get('/compro2/complete', [FeCompanyprofile2::class,'complete'])->name('compro-2.complete');

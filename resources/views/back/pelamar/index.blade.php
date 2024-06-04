@@ -114,7 +114,7 @@
                                     <div class="card-header">
                                         <h5>Data Pendaftaran Kandidat <span class="badge badge-pill badge-warning"
                                                 style="color: #2c2f30; display: inline-block;"> <i
-                                                    class="fa fa-spinner"></i> BELUM VERIFIKASI (PENDING)</span> </h5>
+                                                    class="fa fa-spinner"></i> {{$status}}</span> </h5>
                                     </div>
 
 
@@ -126,7 +126,7 @@
                                                     {{-- send request --}}
 
                                                     {{-- form --}}
-                                                    <form action="{{ url('/administrator/belum-diverifikasi') }}"
+                                                    <form action="{{ route('back-office.pelamar.index',['status'=>$status]) }}"
                                                         method="GET">
 
                                                         <div style="display: inline-block;">
@@ -143,11 +143,11 @@
                                                 {{-- filter container --}}
                                                 <div class="filter-container col-md-6">
 
-                                                    <form action="{{ url('/administrator/belum-diverifikasi') }}"
+                                                    <form action="{{ route('back-office.pelamar.index',['status'=>$status])}}"
                                                         method="get">
                                                         <div
                                                             class="form-group d-flex 
-                                                     @if ($filter_job == 'kategori_job') active @endif">
+                                                     @if($filter_job == 'kategori_job') active @endif">
                                                             <label for="" class="py-2 text-dark mx-3">Filter</label>
 
                                                             <select name="filter_job" id="filter" class="form-control"
@@ -170,7 +170,7 @@
                                         </div>
 
                                         <div class="row" id="draggablePanelList">
-                                            @forelse ($belum_diverifikasi as $p)
+                                            @forelse ($pelamar as $p)
                                                 <div class="col-lg-12 col-xl-3">
                                                     <div class="card-sub shadow p-3 mb-5 bg-white rounded">
                                                         <div class="col-lg-12 col-xl-12">
@@ -263,18 +263,18 @@
                                                                     <div class="d-flex">
                                                                         <a href="" data-toggle="modal"
                                                                             data-target="#ubahStatusModal{{ $p->id }}"
-                                                                            class="form-control mr-2"
+                                                                            class="text-center form-control mr-2"
                                                                             style="background-color: #00324F; color: #fff; border-radius: 1rem; font-size: 12px; "
                                                                             title="Detail">
                                                                             <i class="fa fa-edit"></i>
-                                                                            Ubah Status
+                                                                            Status
     
                                                                         </a>
                                                                         <a href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}"
-                                                                            class="form-control"
+                                                                            class="form-control text-center"
                                                                             style="background-color: transparent; color: #00324F; border-radius: 1rem; font-size: 12px;  border: 1px solid #00324F;"
                                                                             title="Detail"><i class="fa fa-arrow-right"></i>
-                                                                            Lihat Detail</a>
+                                                                            Detail</a>
     
                                                                     </div>
     
@@ -382,7 +382,7 @@
                                         <!-- Add this inside your HTML body, after the card layout code -->
                                         <!-- Tambahkan ini untuk menampilkan pagination links -->
                                         <div class="pagination-container d-flex justify-content-center">
-                                            {{ $belum_diverifikasi->links('pagination::bootstrap-4') }}
+                                            {{ $pelamar->links('pagination::bootstrap-4') }}
                                         </div>
 
                                     </div>
@@ -412,7 +412,7 @@
                     var search = $("input[name='search']").val();
                     // snd with ajax
                     $.ajax({
-                        url: "/administrator/belum-diverifikasi",
+                        url: `{{ route('back-office.pelamar.index', ['status' => $status]) }}`,
                         type: "GET",
                         data: {
                             search: search
