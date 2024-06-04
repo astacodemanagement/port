@@ -333,28 +333,60 @@
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
-                                                                                        for="kota">Kota</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="kota" name="kota"
-                                                                                        value="{{ $detail_kandidat->kota?->nama_kota }}">
-                                                                                </div>
-                                                                                <div class="col-sm-4">
-                                                                                    <label class="col-form-label"
-                                                                                        for="kecamatan">Kecamatan</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="kecamatan" name="kecamatan"
-                                                                                        value="{{ $detail_kandidat->kecamatan?->nama_kecamatan }}">
-                                                                                </div>
-                                                                                <div class="col-sm-4">
-                                                                                    <label class="col-form-label"
                                                                                         for="provinsi">Provinsi</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control" idprovinsi
-                                                                                        name="provinsi"
-                                                                                        value="{{ $detail_kandidat->provinsi?->nama_provinsi }}">
+                                                                                    <select name="provinsi_id"
+                                                                                        class="form-control"
+                                                                                        id="">
+
+                                                                                        <option
+                                                                                            value="{{ $detail_kandidat->provinsi_id }}">
+                                                                                            {{ $detail_kandidat->provinsi?->nama_provinsi }}
+                                                                                        </option>
+                                                                                        @foreach ($provinsi as $item)
+                                                                                            <option
+                                                                                                value="{{ $item->id }}"
+                                                                                                {{ $detail_kandidat->provinsi_id == $item->id ? 'selected' : '' }}>
+                                                                                                {{ $item->nama_provinsi }}
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
                                                                                 </div>
+                                                                                <div class="col-sm-4">
+                                                                                    <label class="col-form-label"
+                                                                                        for="kota_id">Kota</label>
+                                                                                    <select name="kota_id" id=""
+                                                                                        class="form-control">
+                                                                                        <option
+                                                                                            value="{{ $detail_kandidat->kota_id }}">
+                                                                                            {{ $detail_kandidat->kota?->nama_kota }}
+                                                                                        </option>
+                                                                                        @foreach ($kota as $item)
+                                                                                            <option
+                                                                                                value="{{ $item->id }}">
+                                                                                                {{ $item->nama_kota }}
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="col-sm-4">
+                                                                                    <label class="col-form-label"
+                                                                                        for="kecamatan_id">Kecamatan</label>
+                                                                                    <select name="kecamatan_id"
+                                                                                        id=""
+                                                                                        class="form-control">
+                                                                                        <option
+                                                                                            value="{{ $detail_kandidat->kecamatan_id }}">
+                                                                                            {{ $detail_kandidat->kecamatan?->nama_kecamatan }}
+                                                                                        </option>
+                                                                                        @foreach ($kecamatan as $item)
+                                                                                            <option
+                                                                                                value="{{ $item->id }}">
+                                                                                                {{ $item->nama_kecamatan }}
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                </div>
+
                                                                             </div>
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-6">
@@ -722,12 +754,23 @@
                                                                                                 <br>
                                                                                                 <a href="/upload/foto/{{ $detail_kandidat->foto }}"
                                                                                                     target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/foto/{{ $detail_kandidat->foto }}"
-                                                                                                        alt="">
+                                                                                                    <img src="/upload/foto/{{ $detail_kandidat->foto }}"
+                                                                                                        alt=""
+                                                                                                        class="previewImg"
+                                                                                                        style="max-width: 100%; max-height: 100%;">
+
                                                                                                 </a>
 
+
                                                                                             </div>
+
+                                                                                            <button type="button"
+                                                                                                class="btn btn-primary"
+                                                                                                data-toggle="modal"
+                                                                                                data-target="#modal-foto">
+                                                                                                update
+                                                                                                foto </button>
+                                                                                          
                                                                                         </div>
                                                                                         <div class="col-sm-4">
                                                                                             <div class="form-group"
@@ -737,12 +780,23 @@
                                                                                                     for="">Paspor</label>
                                                                                                 <a href="/upload/paspor/{{ $detail_kandidat->paspor }}"
                                                                                                     target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
+                                                                                                    <img src="/upload/paspor/{{ $detail_kandidat->paspor }}"
+                                                                                                    alt=""
+                                                                                                    class="previewPaspor"
+                                                                                                    style="max-width: 100%; max-height: 100%;">
+
                                                                                                 </a>
 
                                                                                             </div>
+                                                                                            {{-- badge --}}
+                                                                                            <button type="button"
+                                                                                                class="btn btn-primary"
+                                                                                                data-toggle="modal"
+                                                                                                data-target="#modal-paspor">
+                                                                                                update
+                                                                                                paspor </button>
+                                                                                            
+
                                                                                         </div>
                                                                                         <div class="col-sm-4">
                                                                                             <div class="form-group"
@@ -971,6 +1025,9 @@
                                                                 </div>
                                                             </div>
 
+                                                            {{-- button modal  for foto  --}}
+
+
                                                             <a href="javascript:history.back()"
                                                                 class="btn btn-warning waves-effect waves-light mt-3">
                                                                 <i class="fas fa-undo"></i> Kembali
@@ -1011,6 +1068,7 @@
 
                     </div>
                 </div>
+
 
 
 
@@ -1068,7 +1126,7 @@
 
                             $.ajax({
                                 type: 'POST',
-                                url: '/verifikasi/update/' + id,
+                                url: `{{ route('back-office.pelamar.kandidat.update', ['id' => $detail_kandidat->id]) }}`,
                                 data: formData,
                                 headers: {
                                     'X-HTTP-Method-Override': 'PUT'

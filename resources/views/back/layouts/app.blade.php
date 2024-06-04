@@ -482,32 +482,32 @@
                                             <span class="pcoded-mtext">Pelamar</span>
                                         </a>
                                         <ul class="pcoded-submenu" style="{{ request()->routeIs([
-                                            'back-office.pelamar.belum-verifikasi',
-                                            'back-office.pelamar.sudah-verifikasi',
-                                            'back-office.pelamar.reject-verifikasi',
+                                            'back-office.pelamar.index',
                                             'back-office.pelamar.kandidat.index'
                                         ]) ? 'display: block' : 'display: none' }}">
-                                            <li class="{{ request()->routeIs('back-office.pelamar.belum-verifikasi') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.pelamar.belum-verifikasi') }}" class="waves-effect waves-dark">
+                                        
+                                            <li class="{{ request()->fullUrlIs(route('back-office.pelamar.index', ['status' => 'Belum Verifikasi(Pending)'])) ? 'active' : '' }}">
+                                                <a data-toggle="tab" href="{{ route('back-office.pelamar.index', ['status' => 'Belum Verifikasi(Pending)']) }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Belum Diverifikasi (Pending)</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.pelamar.sudah-verifikasi') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.pelamar.sudah-verifikasi') }}" class="waves-effect waves-dark">
+                                            <li class="{{ request()->fullUrlIs(route('back-office.pelamar.index', ['status' => 'Verifikasi'])) ? 'active' : '' }}">
+                                                <a data-toggle="tab" href="{{ route('back-office.pelamar.index', ['status' => 'Verifikasi']) }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Sudah Diverifikasi</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.pelamar.reject-verifikasi') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.pelamar.reject-verifikasi') }}" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Reject Diverifikasi</span>
+                                            <li class="{{ request()->fullUrlIs(route('back-office.pelamar.index', ['status' => 'Reject'])) ? 'active' : '' }}">
+                                                <a data-toggle="tab" href="{{ route('back-office.pelamar.index', ['status' => 'Reject']) }}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Reject Verifikasi</span>
                                                 </a>
                                             </li>
                                             <li class="{{ request()->routeIs('back-office.pelamar.kandidat.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.pelamar.kandidat.index') }}" class="waves-effect waves-dark">
+                                                <a data-toggle="tab" href="{{ route('back-office.pelamar.kandidat.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Data Kandidat</span>
                                                 </a>
                                             </li>
                                         </ul>
+                                        
                                     </li>
                                     
                                     <li class="pcoded-hasmenu">
@@ -670,12 +670,7 @@
                             </div>
                         </div>
                     </nav>
-
-
                     @yield('content')
-
-
-
                     <div id="styleSelector">
                     </div>
 
@@ -710,6 +705,7 @@
     <script type="text/javascript" src="{{ asset('template') }}/files/assets/js/script.min.js"></script>
     <script>const baseUrl='{{route('back-office.home')}}'</script>
     @stack('script')
+    
 </body>
 
 </html>

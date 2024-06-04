@@ -35,4 +35,7 @@ class FeCompanyprofile2 extends Controller
 
         return view('front.compro-2.register.index',$data);
     }
+    public function complete(){
+        return view('front.compro-2.register.complete');
+    }
 }
