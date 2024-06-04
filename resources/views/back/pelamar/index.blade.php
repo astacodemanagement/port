@@ -161,6 +161,8 @@
                                                             </select>
 
                                                         </div>
+
+                                                      
                                                     </form>
 
                                                 </div>
@@ -171,204 +173,225 @@
 
                                         <div class="row" id="draggablePanelList">
                                             @forelse ($pelamar as $p)
-                                                <div class="col-lg-12 col-xl-3">
-                                                    <div class="card-sub shadow p-3 mb-5 bg-white rounded">
-                                                        <div class="col-lg-12 col-xl-12">
-                                                            <div class="card-img-container d-flex justify-content-between">
-                                                                <div style="flex: 1;">
-                                                                    <!-- Image -->
-                                                                    @if ($p->kandidat->foto)
-                                                                        <a href="/upload/foto/{{ $p->kandidat->foto }}"
-                                                                            target="_blank">
-                                                                            <img class="card-img-top img-fluid"
-                                                                                src="/upload/foto/{{ $p->kandidat->foto }}"
-                                                                                alt="Card image cap"
-                                                                                style="border-radius:1rem;">
-                                                                        </a>
-                                                                    @else
-                                                                        <!-- Default Image if no foto -->
+                                            <div class="col-lg-12 col-xl-3">
+                                                <div class="card-sub shadow p-3 mb-5 bg-white rounded">
+                                                    <div class="col-lg-12 col-xl-12">
+                                                        <div class="card-img-container d-flex justify-content-between">
+                                                            <div style="flex: 1;">
+                                                                <!-- Image -->
+                                                                @if ($p->kandidat)
+                                                                    <a href="/upload/foto/{{ $p->kandidat->foto }}"
+                                                                        target="_blank">
                                                                         <img class="card-img-top img-fluid"
-                                                                            src="/upload/foto/foto.png" alt="Default Image">
-                                                                    @endif
-                                                                </div>
-                                                                <div
-                                                                    style="flex: 1; text-align: left; padding-left:9px; word-wrap: break-word; ">
-                                                                    <br>
-                                                                    <h5 class="card-title">
-                                                                        <a href="">
-                                                                            <span class="badge badge-pill badge-primary"
-                                                                                style="color: #ebeff1;"><i
-                                                                                    class="fa fa-eye"></i> Preview</span>
-                                                                        </a>
-                                                                    </h5>
-
-                                                                    <p class="mb-1 text-muted" > <i class="fas fa-graduation-cap"></i> <b
-                                                                            style="font-weight: bold;">{{ $p->kandidat->pendidikan }}</b>
-                                                                    </p>
-                                                                    <p class="mb-1 text-muted">
-                                                                        <i class="fas fa-weight-scale"></i>
-                                                                        <b
-                                                                            style="font-weight: bold; margin:0%">{{ $p->kandidat->tinggi_badan }}
-                                                                            cm - {{ $p->kandidat->berat_badan }} Kg</b>
-                                                                    </p>
-                                                                    <p class="mb-1 text-muted"><i class="fa fa-user"></i> <b style="font-weight: bold;">
-                                                                            {{ $p->kandidat->usia }}
-                                                                            Tahun</b></p>
-                                                                    <p class="card-text mb-1 text-muted"
-                                                                        style="font-family: 'Poppins', sans-serif; ">
-                                                                        <i class="fa fa-globe"></i><b style="font-weight: bold;">
-                                                                            {{ $p->kandidat->provinsi }}</b></p>
-
-                                                                </div>
+                                                                            src="/upload/foto/{{ $p->kandidat->foto }}"
+                                                                            onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
+                                                                            alt="Card image cap"
+                                                                            style="border-radius:1rem;">
+                                                                    </a>
+                                                                @else
+                                                                    <!-- Default Image if no foto -->
+                                                                    <img class="card-img-top img-fluid"
+                                                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGThxD2scluEhl1Ea8rzz5J9ew7I3NEBUq2g&s"
+                                                                        alt="Default Image">
+                                                                @endif
                                                             </div>
-                                                        </div>
-
-
-                                                        <div class="col-lg-12 col-xl-12">
-
-                                                            <div class="card-block">
-    
-    
-                                                                <a
-                                                                    href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}">
-                                                                    <h5 class="card-title">
-                                                                        <b
-                                                                            style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->kandidat->nama_lengkap }}</b>
-                                                                    </h5>
-                                                                </a>
-    
-    
-    
-    
-                                                                <p class="mb-1 text-muted"><i class="fas fa-location-dot"></i><b style="font-weight: bold;">
-                                                                        {{ $p->kandidat->provinsi }}, {{ $p->kandidat->kota }}, {{$p->kandidat->kecamatan}}</b></p>  
-                                                                    </b></p>
-                                                                <h5 class="card-title">
-                                                                    <span class="badge badge-pill badge-warning"
-                                                                        style="color: #00324F; font-size:12px;">{{ $p->nama_kategori_job }}</span>
-                                                                </h5>
-                                                                <div class="text-left">
-                                                                    <!-- Adjusted alignment to the left -->
-                                                                    <small class="text-muted">
-                                                                        <i class="fa fa-calendar"></i>
-                                                                        <b>{{ $p->created_at->format('l, j F Y') }}</b>
-                                                                    </small>
-                                                                </div>
+                                                            <div
+                                                                style="flex: 1; text-align: left; padding-left:9px; word-wrap: break-word; ">
                                                                 <br>
-    
-    
-                                                                <div class="text-left">
-                                                                    <!-- Icon mata untuk detail -->
-    
-                                                                    <div class="d-flex">
-                                                                        <a href="" data-toggle="modal"
-                                                                            data-target="#ubahStatusModal{{ $p->id }}"
-                                                                            class="text-center form-control mr-2"
-                                                                            style="background-color: #00324F; color: #fff; border-radius: 1rem; font-size: 12px; "
-                                                                            title="Detail">
-                                                                            <i class="fa fa-edit"></i>
-                                                                            Status
-    
-                                                                        </a>
-                                                                        <a href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}"
-                                                                            class="form-control text-center"
-                                                                            style="background-color: transparent; color: #00324F; border-radius: 1rem; font-size: 12px;  border: 1px solid #00324F;"
-                                                                            title="Detail"><i class="fa fa-arrow-right"></i>
-                                                                            Detail</a>
-    
-                                                                    </div>
-    
-    
-    
-    
-    
+                                                                <h5 class="card-title">
+                                                                    <a href="">
+                                                                        <span class="badge badge-pill badge-primary"
+                                                                            style="color: #ebeff1;"><i
+                                                                                class="fa fa-eye"></i> Preview</span>
+                                                                    </a>
+                                                                </h5>
+
+                                                                <p class="mb-1 text-muted"> <i
+                                                                        class="fas fa-graduation-cap"></i> <b
+                                                                        style="font-weight: bold;">{{ $p->kandidat?->pendidikan }}</b>
+                                                                </p>
+                                                                <p class="mb-1 text-muted">
+                                                                    <i class="fas fa-weight-scale"></i>
+                                                                    <b style="font-weight: bold; margin:0%">{{ $p->kandidat?->tinggi_badan }}
+                                                                        cm - {{ $p->kandidat?->berat_badan }} Kg</b>
+                                                                </p>
+                                                                <p class="mb-1 text-muted"><i class="fa fa-user"></i> <b
+                                                                        style="font-weight: bold;">
+                                                                        {{ $p->kandidat?->usia }}
+                                                                        Tahun</b></p>
+                                                                <p class="card-text mb-1 text-muted"
+                                                                    style="font-family: 'Poppins', sans-serif; ">
+                                                                    <i class="fa fa-globe"></i><b
+                                                                        style="font-weight: bold;">
+                                                                        {{ $p->kandidat?->provinsi }}</b>
+                                                                </p>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-lg-12 col-xl-12">
+
+                                                        <div class="card-block">
+
+
+                                                            <a
+                                                                href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}">
+                                                                <h5 class="card-title">
+                                                                    <b
+                                                                        style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->kandidat?->nama_lengkap }}</b>
+                                                                </h5>
+                                                            </a>
+
+
+
+
+                                                            <p class="mb-1 text-muted"><i
+                                                                    class="fas fa-location-dot"></i><b
+                                                                    style="font-weight: bold;">
+                                                                    {{ $p->kandidat?->provinsi }},
+                                                                    {{ $p->kandidat?->kota }},
+                                                                    {{ $p->kandidat?->kecamatan }}</b>
+                                                            </p>
+                                                            </b></p>
+                                                            <div style="display: flex; align-items: center;">
+                                                                <h5 class="card-title" style="margin-right: 10px;">
+                                                                    <span class="badge badge-pill badge-warning" style="color: #00324F; font-size:12px;">
+                                                                        {{ $p?->kategoriJob?->nama_kategori_job }}
+                                                                    </span>
+                                                                </h5>
+                                                                <h5 class="card-title">
+                                                                    <span class="badge badge-pill badge-primary" style="color: #e9ecee; font-size:12px;">
+                                                                        {{ $p->kandidat?->level_bahasa_inggris }}
+                                                                    </span>
+                                                                </h5>
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="text-left">
+                                                                <!-- Adjusted alignment to the left -->
+                                                                <small class="text-muted">
+                                                                    <i class="fa fa-calendar"></i>
+                                                                    <b>{{ $p->created_at->format('l, j F Y') }}</b>
+                                                                </small>
+                                                            </div>
+                                                            <br>
+
+
+                                                            <div class="text-left">
+                                                                <!-- Icon mata untuk detail -->
+
+                                                                <div class="d-flex">
+                                                                    <a href="" data-toggle="modal"
+                                                                        data-target="#ubahStatusModal{{ $p->id }}"
+                                                                        class="form-control mr-2"
+                                                                        style="background-color: #00324F; color: #fff; border-radius: 1rem; font-size: 12px; "
+                                                                        title="Detail">
+                                                                        <i class="fa fa-edit"></i>
+                                                                        Ubah Status
+
+                                                                    </a>
+                                                                    <a href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}"
+                                                                        class="form-control"
+                                                                        style="background-color: transparent; color: #00324F; border-radius: 1rem; font-size: 12px;  border: 1px solid #00324F;"
+                                                                        title="Detail"><i
+                                                                            class="fa fa-arrow-right"></i>
+                                                                        Lihat Detail</a>
+
                                                                 </div>
-    
+
+
+
+
+
                                                             </div>
+
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="ubahStatusModal{{ $p->id }}"
-                                                    tabindex="-1" role="dialog" aria-labelledby="ubahStatusModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="ubahStatusModalLabel">Ubah
-                                                                    Status - {{ $p->kandidat->nama_lengkap }}</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <!-- Add your form with combo box for status update -->
-                                                                <form id="ubahStatusForm{{ $p->id }}">
+                                            </div>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="ubahStatusModal{{ $p->id }}"
+                                                tabindex="-1" role="dialog" aria-labelledby="ubahStatusModalLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="ubahStatusModalLabel">Ubah
+                                                                Status - {{ $p->kandidat?->nama_lengkap }}</h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Add your form with combo box for status update -->
+                                                            <form id="ubahStatusForm{{ $p->id }}">
+                                                                <div class="form-group">
+                                                                    <label for="statusSelect{{ $p->id }}">Ubah
+                                                                        Status:</label>
+                                                                    <select class="form-control"
+                                                                        id="statusSelect{{ $p->id }}"
+                                                                        name="status"
+                                                                        onchange="handleStatusChange(this)">
+                                                                        <option value="Verifikasi">Verifikasi</option>
+                                                                        <option value="Reject">Reject</option>
+                                                                        <option value="Reject-Blacklist">
+                                                                            Reject-Blacklist</option>
+                                                                        <!-- <option value="Pending">Pending</option> -->
+                                                                        <!-- Add other status options if needed -->
+                                                                    </select>
+                                                                </div>
+                                                                <div id="alasan_reject_container{{ $p->id }}"
+                                                                    style="display: none;">
                                                                     <div class="form-group">
-                                                                        <label for="statusSelect{{ $p->id }}">Ubah
-                                                                            Status:</label>
-                                                                        <select class="form-control"
-                                                                            id="statusSelect{{ $p->id }}"
-                                                                            name="status"
-                                                                            onchange="handleStatusChange(this)">
-                                                                            <option value="Verifikasi">Verifikasi</option>
-                                                                            <option value="Reject">Reject</option>
-                                                                            <option value="Reject-Blacklist">
-                                                                                Reject-Blacklist</option>
-                                                                            <!-- <option value="Pending">Pending</option> -->
-                                                                            <!-- Add other status options if needed -->
-                                                                        </select>
+                                                                        <label
+                                                                            for="alasan_reject{{ $p->id }}">Alasan
+                                                                            :</label>
+                                                                        <textarea name="alasan_reject" id="alasan_reject{{ $p->id }}" cols="30" rows="3"
+                                                                            class="form-control"></textarea>
                                                                     </div>
-                                                                    <div id="alasan_reject_container{{ $p->id }}"
-                                                                        style="display: none;">
-                                                                        <div class="form-group">
-                                                                            <label
-                                                                                for="alasan_reject{{ $p->id }}">Alasan
-                                                                                :</label>
-                                                                            <textarea name="alasan_reject" id="alasan_reject{{ $p->id }}" cols="30" rows="3"
-                                                                                class="form-control"></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                    <script>
-                                                                        // Mendengarkan perubahan pada setiap elemen select dengan id yang sesuai
-                                                                        document.addEventListener("DOMContentLoaded", function() {
-                                                                            var statusSelect = document.getElementById("statusSelect{{ $p->id }}");
-                                                                            var alasanRejectContainer = document.getElementById("alasan_reject_container{{ $p->id }}");
+                                                                </div>
+                                                                <script>
+                                                                    // Mendengarkan perubahan pada setiap elemen select dengan id yang sesuai
+                                                                    document.addEventListener("DOMContentLoaded", function() {
+                                                                        var statusSelect = document.getElementById("statusSelect{{ $p->id }}");
+                                                                        var alasanRejectContainer = document.getElementById("alasan_reject_container{{ $p->id }}");
 
-                                                                            // Sembunyikan div alasan_reject_container saat halaman dimuat
-                                                                            alasanRejectContainer.style.display = "none";
+                                                                        // Sembunyikan div alasan_reject_container saat halaman dimuat
+                                                                        alasanRejectContainer.style.display = "none";
 
-                                                                            // Tambahkan event listener untuk setiap kali pilihan berubah
-                                                                            statusSelect.addEventListener("change", function() {
-                                                                                // Jika status adalah Reject atau Reject-Blacklist, tampilkan div alasan_reject_container
-                                                                                if (statusSelect.value === "Reject" || statusSelect.value === "Reject-Blacklist") {
-                                                                                    alasanRejectContainer.style.display = "block";
-                                                                                } else {
-                                                                                    // Jika tidak, sembunyikan div alasan_reject_container
-                                                                                    alasanRejectContainer.style.display = "none";
-                                                                                }
-                                                                            });
+                                                                        // Tambahkan event listener untuk setiap kali pilihan berubah
+                                                                        statusSelect.addEventListener("change", function() {
+                                                                            // Jika status adalah Reject atau Reject-Blacklist, tampilkan div alasan_reject_container
+                                                                            if (statusSelect.value === "Reject" || statusSelect.value === "Reject-Blacklist") {
+                                                                                alasanRejectContainer.style.display = "block";
+                                                                            } else {
+                                                                                // Jika tidak, sembunyikan div alasan_reject_container
+                                                                                alasanRejectContainer.style.display = "none";
+                                                                            }
                                                                         });
-                                                                    </script>
+                                                                    });
+                                                                </script>
 
-                                                                    <!-- Add hidden input for the Pendaftaran ID -->
-                                                                    <input type="hidden" name="pendaftaran_id"
-                                                                        value="{{ $p->id }}">
-                                                                </form>
-                                                            </div>
+                                                                <!-- Add hidden input for the Pendaftaran ID -->
+                                                                <input type="hidden" name="pendaftaran_id"
+                                                                    value="{{ $p->id }}">
+                                                            </form>
+                                                        </div>
 
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal"><i class="fas fa-undo"></i>
-                                                                    Tutup</button>
-                                                                <button type="button" class="btn btn-primary"
-                                                                    onclick="submitUbahStatus({{ $p->id }})"><i
-                                                                        class="fas fa-save"></i> Simpan</button>
-                                                            </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal"><i class="fas fa-undo"></i>
+                                                                Tutup</button>
+                                                            <button type="button" class="btn btn-primary"
+                                                                onclick="submitUbahStatus({{ $p->id }})"><i
+                                                                    class="fas fa-save"></i> Simpan</button>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
                                             @empty
                                                 <div class="alert alert-warning" role="alert">
                                                     Ooops.... Data Kosong !
