@@ -20,4 +20,9 @@ class Pendaftaran extends Model
     {
         return $this->belongsTo(KategoriJob::class, 'kategori_job_id', 'id');
     }
+
+    public function pengalamanKerja()
+    {
+        return $this->hasMany(PengalamanKerja::class, 'pendaftaran_id', 'id');
+    }
 }

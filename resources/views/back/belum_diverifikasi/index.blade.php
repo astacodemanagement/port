@@ -121,52 +121,46 @@
                                     <div class="card-block">
                                         <div class="col-lg-12 col-xl-6">
                                             <!-- Add this inside your HTML body -->
+                                           
                                             <div class="row mb-5">
-                                                <div class="search-container col-md-6">
-                                                    {{-- send request --}}
-
-                                                    {{-- form --}}
-                                                    <form action="{{ url('/administrator/belum-diverifikasi') }}"
-                                                        method="GET">
-
-                                                        <div style="display: inline-block;">
-                                                            <input type="text" class="form-control" id="searchInput"
-                                                                placeholder="Search..." name="search"
-                                                                value="{{ $search ?? '' }}">
-                                                        </div>
-                                                        <div style="display: inline-block;">
-                                                            <button class="btn btn-primary waves-effect waves-light"
-                                                                type="submit">Search</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                {{-- filter container --}}
-                                                <div class="filter-container col-md-6">
-
-                                                    <form action="{{ url('/administrator/belum-diverifikasi') }}"
-                                                        method="get">
-                                                        <div
-                                                            class="form-group d-flex 
-                                                     @if ($filter_job == 'kategori_job') active @endif">
-                                                            <label for="" class="py-2 text-dark mx-3">Filter</label>
-
-                                                            <select name="filter_job" id="filter" class="form-control"
-                                                                onchange="this.form.submit()">
-                                                                <option value="kategori_job">--Cari Kategori Job--</option>
+                                                <div class="filter-container col-md-12">
+                                                    <form action="{{ url('/administrator/belum-diverifikasi') }}" method="GET">
+                                                        <div class="form-group d-flex">
+                                                            <select name="filter_job" class="form-control" onchange="this.form.submit()">
+                                                                <option value="">-- Cari Kategori Job --</option>
                                                                 @foreach ($kategori_job as $item)
-                                                                    <option value="{{ $item->id }}"
-                                                                        @if ($filter_job == $item->id) selected @endif>
-                                                                        {{ $item->nama_kategori_job }}</option>
+                                                                    <option value="{{ $item->id }}" {{ $filter_job == $item->id ? 'selected' : '' }}>
+                                                                        {{ $item->nama_kategori_job }}
+                                                                    </option>
                                                                 @endforeach
                                                             </select>
-
+                                            
+                                                            <select name="filter_gender" class="form-control" onchange="this.form.submit()">
+                                                                <option value="">-- Cari Jenis Kelamin --</option>
+                                                                <option value="Laki-laki" {{ $filter_gender == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                                                <option value="Perempuan" {{ $filter_gender == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                            </select>
+                                            
+                                                            <input type="text" class="form-control" name="filter_height" placeholder="-- Masukkan Tinggi Badan --" value="{{ $filter_height ?? '' }}" onchange="this.form.submit()">
                                                         </div>
                                                     </form>
-
                                                 </div>
-
-                                                <br><br>
+                                            
+                                                <div class="search-container col-md-6">
+                                                    <form action="{{ url('/administrator/belum-diverifikasi') }}" method="GET">
+                                                        <input type="hidden" name="filter_job" value="{{ $filter_job }}">
+                                                        <input type="hidden" name="filter_gender" value="{{ $filter_gender }}">
+                                                        <input type="hidden" name="filter_height" value="{{ $filter_height }}">
+                                                        <div style="display: inline-block;">
+                                                            <input type="text" class="form-control" id="searchInput" placeholder="Cari Nama" name="search" value="{{ $search ?? '' }}">
+                                                        </div>
+                                                        <div style="display: inline-block;">
+                                                            <button class="btn btn-primary waves-effect waves-light" type="submit">Search</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
+
                                         </div>
 
                                         <div class="row" id="draggablePanelList">
@@ -250,12 +244,23 @@
                                                                         style="font-weight: bold;">
                                                                         {{ $p->kandidat->provinsi?->nama_provinsi }},
                                                                         {{ $p->kandidat->kota?->nama_kota }},
-                                                                        {{ $p->kandidat->kecamatan?->nama_kecamatan }}</b></p>
+                                                                        {{ $p->kandidat->kecamatan?->nama_kecamatan }}</b>
+                                                                </p>
                                                                 </b></p>
-                                                                <h5 class="card-title">
-                                                                    <span class="badge badge-pill badge-warning"
-                                                                        style="color: #00324F; font-size:12px;">{{ $p->nama_kategori_job }}</span>
-                                                                </h5>
+                                                                <div style="display: flex; align-items: center;">
+                                                                    <h5 class="card-title" style="margin-right: 10px;">
+                                                                        <span class="badge badge-pill badge-warning" style="color: #00324F; font-size:12px;">
+                                                                            {{ $p?->kategoriJob?->nama_kategori_job }}
+                                                                        </span>
+                                                                    </h5>
+                                                                    <h5 class="card-title">
+                                                                        <span class="badge badge-pill badge-primary" style="color: #e9ecee; font-size:12px;">
+                                                                            {{ $p?->kandidat?->level_bahasa_inggris }}
+                                                                        </span>
+                                                                    </h5>
+                                                                </div>
+                                                                
+                                                                
                                                                 <div class="text-left">
                                                                     <!-- Adjusted alignment to the left -->
                                                                     <small class="text-muted">
@@ -416,41 +421,6 @@
 
         @push('script')
             <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-            <script>
-                function SearchName() {
-                    var search = $("input[name='search']").val();
-                    // snd with ajax
-                    $.ajax({
-                        url: "/administrator/belum-diverifikasi",
-                        type: "GET",
-                        data: {
-                            search: search
-                        },
-                        success: function(response) {
-                            $('#draggablePanelList').html(response);
-                        },
-                        error: function(error) {
-                            console.error(error);
-                        }
-                    });
-                }
-            </script>
-            {{-- <script>
-                function handleStatusChange(selectElement) {
-                    var pendaftaranId = selectElement.id.replace('statusSelect', '');
-                    var statusBlacklistGroup = document.getElementById("statusBlacklistGroup" + pendaftaranId);
-
-                    // Tampilkan atau sembunyikan group radio berdasarkan pilihan select
-                    if (selectElement.value === "Reject") {
-                        statusBlacklistGroup.style.display = "block";
-                    } else {
-                        statusBlacklistGroup.style.display = "none";
-                    }
-                }
-            </script> --}}
-
-            <!-- Add this inside your HTML body, after the card layout code -->
 
 
             <script>
