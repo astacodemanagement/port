@@ -66,6 +66,8 @@
 
                                                         <th width="10%">NIK</th>
                                                         <th width="15%">Nama Kandidat</th>
+                                                        <th width="15%">Usia</th>
+                                                        <th width="15%">Pendidikan</th>
                                                         <th width="5%">Gambar</th>
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
@@ -76,6 +78,8 @@
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p->nik }}</td>
                                                             <td>{{ $p->nama_lengkap }}</td>
+                                                            <td>{{ $p->usia }}</td>
+                                                            <td>{{ $p->pendidikan }}</td>
                                                             <td>
                                                                 <a href="/upload/foto/{{ $p->foto }}" target="_blank">
                                                                     <img style="max-width:50px; max-height:50px"

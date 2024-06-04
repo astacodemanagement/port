@@ -6,8 +6,10 @@ use App\Models\Kandidat;
 use App\Models\LogHistori;
 use App\Models\Pendaftaran;
 use App\Models\Seleksi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class KandidatController extends Controller
@@ -38,11 +40,13 @@ class KandidatController extends Controller
 
     public function detail($id)
     {
-        $detail_kandidat = Kandidat::where('id', $id)->first();
-
+         
+        // Ambil detail kandidat beserta relasi yang diperlukan
+        $detail_kandidat = Kandidat::with(['pendaftaran', 'pengalamanKerja', 'user'])->where('id', $id)->first();
 
         return view('back.kandidat.detail', compact('detail_kandidat'));
     }
+
 
 
     /**
@@ -63,43 +67,7 @@ class KandidatController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi request
-        $validator = Validator::make($request->all(), [
-            'nama_kandidat' => 'required|unique:kandidat,nama_kandidat',
-            'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
-        ], [
-            'nama_kandidat.required' => 'Nama Kandidat Wajib diisi',
-            'gambar.required' => 'Gambar Kandidat Wajib diisi',
-            'nama_kandidat.unique' => 'Nama Kandidat sudah digunakan',
-            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
-            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
-        $input = $request->all();  // Pindahkan ini ke bawah validasi
-
-        if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $destinationPath = 'upload/foto/';
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move($destinationPath, $imageName);
-            $input['gambar'] = $imageName;
-        }
-
-        // Simpan data spp ke database menggunakan fill()
-        $kandidat = new Kandidat();
-        $kandidat->fill($input);
-        $kandidat->save();
-
-        $loggedInUserId = Auth::id();
-
-        // Simpan log histori untuk operasi Create dengan user_id yang sedang login
-        $this->simpanLogHistori('Create', 'Kandidat', $kandidat->id, $loggedInUserId, null, json_encode($kandidat));
-
-        return response()->json(['message' => 'Data Berhasil Disimpan']);
+      
     }
 
 
@@ -133,47 +101,34 @@ class KandidatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request, $id)
     {
-        // Validasi request
-        $validator = Validator::make($request->all(), [
-            'nama_kandidat' => 'required|unique:kandidat,nama_kandidat,' . $id,
-            'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
-        ], [
-            'nama_kandidat.required' => 'Nama Kandidat Wajib diisi',
-            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
-            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
         $kandidat = Kandidat::findOrFail($id);
 
-        $input = $request->except(['_token', '_method']); // Exclude unnecessary fields
-
-        if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $destinationPath = 'upload/foto/';
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move($destinationPath, $imageName);
-
-            // Hapus file gambar lama jika ada
-            if ($kandidat->gambar && file_exists(public_path('upload/foto/' . $kandidat->gambar))) {
-                unlink(public_path('upload/foto/' . $kandidat->gambar));
-            }
-
-            $input['gambar'] = $imageName;
-        }
+        // Ambil hanya bidang-bidang yang ditentukan dari permintaan
+        $input = $request->all();
+       
 
         // Update kandidat data di database
         $kandidat->update($input);
 
+        if ($request->has('email')) {
+            User::where('id', $kandidat->kandidat->user_id)->update([
+                'email' => $request->email
+            ]);
+        }
+
+        if ($request->has('password') && $request->password != null) {
+            User::where('id', $kandidat->kandidat->user_id)->update([
+                'password' => Hash::make($request->password)
+            ]);
+        }
+
         $loggedInUserId = Auth::id();
 
         // Simpan log histori untuk operasi Update dengan user_id yang sedang login
-        $this->simpanLogHistori('Update', 'Kandidat', $kandidat->id, $loggedInUserId, json_encode($kandidat->getOriginal()), json_encode($kandidat));
+        $this->simpanLogHistori('Update', 'Update Detail Verifikasi', $kandidat->id, $loggedInUserId, json_encode($kandidat->getOriginal()), json_encode($kandidat));
 
         return response()->json(['message' => 'Data Berhasil Diupdate']);
     }

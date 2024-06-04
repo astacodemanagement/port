@@ -1064,22 +1064,28 @@
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="level_bahasa_inggris">Level</label>
-                                                                                        <select class="form-control" id="level_bahasa_inggris" name="level_bahasa_inggris">
-                                                                                            <option value="">--Pilih Level--</option>
-                                                                                            <option value="Beginner English" {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Beginner English' ? 'selected' : '' }}>
-                                                                                                Beginner English
-                                                                                            </option>
-                                                                                            <option value="⁠Medium English" {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == '⁠Medium English' ? 'selected' : '' }}>
-                                                                                                ⁠Medium English
-                                                                                            </option>
-                                                                                            <option value="Advance English" {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Advance English' ? 'selected' : '' }}>
-                                                                                                Advance English
-                                                                                            </option>
-                                                                                        </select>
-                                                                                        
+                                                                                    <select class="form-control"
+                                                                                        id="level_bahasa_inggris"
+                                                                                        name="level_bahasa_inggris">
+                                                                                        <option value="">--Pilih
+                                                                                            Level--</option>
+                                                                                        <option value="Beginner English"
+                                                                                            {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Beginner English' ? 'selected' : '' }}>
+                                                                                            Beginner English
+                                                                                        </option>
+                                                                                        <option value="⁠Medium English"
+                                                                                            {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == '⁠Medium English' ? 'selected' : '' }}>
+                                                                                            ⁠Medium English
+                                                                                        </option>
+                                                                                        <option value="Advance English"
+                                                                                            {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Advance English' ? 'selected' : '' }}>
+                                                                                            Advance English
+                                                                                        </option>
+                                                                                    </select>
 
 
-                                                                                     
+
+
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -1087,7 +1093,8 @@
                                                                                     <input type="text"
                                                                                         class="form-control
                                                                                         "
-                                                                                        id="pic_level" name="pic_level" value="{{ $belum_diverifikasi->kandidat->pic_level }}">
+                                                                                        id="pic_level" name="pic_level"
+                                                                                        value="{{ $belum_diverifikasi->kandidat->pic_level }}">
                                                                                 </div>
                                                                                 <div class="col-sm-12">
                                                                                     <label class="col-form-label"
