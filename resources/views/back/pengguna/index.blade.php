@@ -74,7 +74,18 @@
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p->name }}</td>
                                                             <td>{{ $p->email }}</td>
-                                                            <td class="text-center"><span class="badge bg-success">{{ isset($p->roles[0]) ? ucwords($p->roles[0]->name) : null }}</span></td>
+                                                            <td class="text-center">
+                                                                @if(isset($p->roles[0]))
+                                                                    @if(ucwords($p->roles[0]->name) == 'SpecificRoleName') <!-- Ganti SpecificRoleName dengan nama role spesifik yang ingin Anda cek -->
+                                                                        <span class="badge bg-success">{{ ucwords($p->roles[0]->name) }}</span>
+                                                                    @else
+                                                                        <span class="badge bg-warning">{{ ucwords($p->roles[0]->name) }}</span>
+                                                                    @endif
+                                                                @else
+                                                                    <span class="badge bg-danger">No Role</span> <!-- Jika tidak ada role -->
+                                                                @endif
+                                                            </td>
+                                                            
                                                             <td class="text-center">
                                                                 <a style="color: rgb(242, 236, 236)" href="#"
                                                                     class="btn btn-sm btn-primary btn-edit"

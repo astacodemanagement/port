@@ -93,7 +93,8 @@
                                                                 <div class="slide"></div>
                                                             </li>
                                                         </ul>
-                                                        <form id="form_job" action="{{ route('back-office.job.simpan_job') }}"
+                                                        <form id="form_job"
+                                                            action="{{ route('back-office.job.simpan_job') }}"
                                                             method="POST" enctype="multipart/form-data">
                                                             @csrf <!-- Tambahkan token CSRF -->
                                                             <div class="tab-content card-block">
@@ -111,7 +112,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="nama_job">Nama Job</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="nama_job" name="nama_job"
                                                                                             value="{{ $data->nama_job }}">
 
@@ -122,7 +123,7 @@
                                                                                             Lowongan
                                                                                             Ditutup</label>
                                                                                         <input type="date"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="tanggal_tutup"
                                                                                             name="tanggal_tutup"
                                                                                             value="{{ $data->tanggal_tutup }}">
@@ -134,7 +135,7 @@
                                                                                             for="nama_perusahaan">Nama
                                                                                             Perusahaan</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="nama_perusahaan"
                                                                                             name="nama_perusahaan"
                                                                                             value="{{ $data->nama_perusahaan }}">
@@ -143,7 +144,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="mitra">Mitra</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="mitra" name="mitra"
                                                                                             value="{{ $data->mitra }}">
                                                                                     </div>
@@ -155,7 +156,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="gaji">Gaji</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="gaji" name="gaji"
                                                                                             value="{{ $data->gaji }}">
                                                                                     </div>
@@ -163,8 +164,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="jenis_pembayaran">Jenis
                                                                                             Pembayaran</label>
-                                                                                        <select
-                                                                                            class="form-control form-control-success"
+                                                                                        <select class="form-control "
                                                                                             id="jenis_pembayaran"
                                                                                             name="jenis_pembayaran"
                                                                                             required>
@@ -190,7 +190,7 @@
                                                                                             IDR
                                                                                             Min</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="estimasi_minimal"
                                                                                             name="estimasi_minimal"
                                                                                             value="{{ $data->estimasi_minimal }}">
@@ -201,7 +201,7 @@
                                                                                             IDR
                                                                                             Mak</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="estimasi_maksimal"
                                                                                             name="estimasi_maksimal"
                                                                                             value="{{ $data->estimasi_maksimal }}">
@@ -213,8 +213,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="gaji_diterima">Gaji Yang
                                                                                             Diterima</label>
-                                                                                        <select
-                                                                                            class="form-control form-control-success"
+                                                                                        <select class="form-control "
                                                                                             id="gaji_diterima"
                                                                                             name="gaji_diterima" required>
                                                                                             <option value="">--Pilih
@@ -241,7 +240,7 @@
                                                                                             for="tanggal_kurs">Tanggal
                                                                                             Kurs</label>
                                                                                         <input type="date"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="tanggal_kurs"
                                                                                             name="tanggal_kurs"
                                                                                             value="{{ $data->tanggal_kurs }}">
@@ -251,7 +250,7 @@
                                                                                             for="nominal_kurs">Nominal
                                                                                             Kurs</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="nominal_kurs"
                                                                                             name="nominal_kurs"
                                                                                             value="{{ $data->nominal_kurs }}">
@@ -297,7 +296,8 @@
                                                                                             name="kategori_job_id"
                                                                                             class="form-control">
                                                                                             <option value="">Pilih
-                                                                                                Industri Minat Pekerjaan</option>
+                                                                                                Industri Minat Pekerjaan
+                                                                                            </option>
 
                                                                                             <!-- Loop untuk kategori job -->
                                                                                             @foreach ($kategori_job as $k)
@@ -336,18 +336,20 @@
                                                                                             for="kontrak_kerja">Kontrak
                                                                                             Kerja</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="kontrak_kerja"
-                                                                                            name="kontrak_kerja">
+                                                                                            name="kontrak_kerja"
+                                                                                            value="{{ $data->kontrak_kerja }}">
                                                                                     </div>
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
                                                                                             for="jam_kerja">Jam
                                                                                             Kerja</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="jam_kerja"
-                                                                                            name="jam_kerja">
+                                                                                            name="jam_kerja"
+                                                                                            value="{{ $data->jam_kerja }}">
                                                                                     </div>
                                                                                 </div>
 
@@ -356,19 +358,25 @@
                                                                                         <label class="col-form-label"
                                                                                             for="hari_kerja">Hari
                                                                                             Kerja</label>
-                                                                                        <select
-                                                                                            class="form-control form-control-success"
+                                                                                        <select class="form-control "
                                                                                             id="hari_kerja"
                                                                                             name="hari_kerja" required>
                                                                                             <option value="">--Pilih
                                                                                                 hari
                                                                                                 kerja--</option>
-                                                                                            <option value="5">5 Hari
-                                                                                                Per
-                                                                                                Minggu</option>
-                                                                                            <option value="6">6 Hari
-                                                                                                Per
-                                                                                                Minggu</option>
+
+
+                                                                                            <!-- Cek apakah nilai yang sedang diedit adalah '5' -->
+                                                                                            <option value="5"
+                                                                                                {{ $data->hari_kerja == '5' ? 'selected' : '' }}>
+                                                                                                5 Hari Kerja</option>
+
+                                                                                            <!-- Cek apakah nilai yang sedang diedit adalah '6' -->
+                                                                                            <option value="6"
+                                                                                                {{ $data->hari_kerja == '6' ? 'selected' : '' }}>
+                                                                                                6 Hari Kerja</option>
+
+
                                                                                         </select>
 
                                                                                     </div>
@@ -377,9 +385,10 @@
                                                                                             for="cuti_kerja">Cuti
                                                                                             Kerja</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="cuti_kerja"
-                                                                                            name="cuti_kerja">
+                                                                                            name="cuti_kerja"
+                                                                                            value="{{ $data->cuti_kerja }}">
                                                                                     </div>
 
                                                                                 </div>
@@ -389,20 +398,12 @@
                                                                                         <label class="col-form-label"
                                                                                             for="masa_percobaan">Masa
                                                                                             Percobaan</label>
-                                                                                        <select
-                                                                                            class="form-control form-control-success"
+                                                                                        <input type="text"
+                                                                                            class="form-control "
                                                                                             id="masa_percobaan"
-                                                                                            name="masa_percobaan" required>
-                                                                                            <option value="">--Pilih
-                                                                                                hari
-                                                                                                kerja--</option>
-                                                                                            <option value="5">5 Hari
-                                                                                                Per
-                                                                                                Minggu</option>
-                                                                                            <option value="6">6 Hari
-                                                                                                Per
-                                                                                                Minggu</option>
-                                                                                        </select>
+                                                                                            name="masa_percobaan"
+                                                                                            value="{{ $data->masa_percobaan }}">
+
 
                                                                                     </div>
                                                                                     <div class="col-sm-6">
@@ -410,9 +411,10 @@
                                                                                             for="mata_uang_gaji">Mata Uang
                                                                                             Gaji</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="mata_uang_gaji"
-                                                                                            name="mata_uang_gaji">
+                                                                                            name="mata_uang_gaji"
+                                                                                            value="{{ $data->mata_uang_gaji }}">
                                                                                     </div>
                                                                                 </div>
 
@@ -422,18 +424,20 @@
                                                                                         <label class="col-form-label"
                                                                                             for="kerja_lembur">Kerja
                                                                                             Lembur</label>
-                                                                                        <input type="date"
-                                                                                            class="form-control form-control-success"
+                                                                                        <input type="text"
+                                                                                            class="form-control "
                                                                                             id="kerja_lembur"
-                                                                                            name="kerja_lembur">
+                                                                                            name="kerja_lembur"
+                                                                                            value="{{ $data->kerja_lembur }}">
                                                                                     </div>
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
                                                                                             for="bahasa">Bahasa Yang
                                                                                             Digunakan</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
-                                                                                            id="bahasa" name="bahasa">
+                                                                                            class="form-control "
+                                                                                            id="bahasa" name="bahasa"
+                                                                                            value="{{ $data->bahasa }}">
                                                                                     </div>
                                                                                 </div>
 
@@ -441,7 +445,7 @@
                                                                                     <div class="col-sm-12">
                                                                                         <label class="col-form-label"
                                                                                             for="deskripsi">Deksripsi</label>
-                                                                                        <textarea class="form-control form-control-success" name="deskripsi" id="deskripsi" cols="30" rows="4"></textarea>
+                                                                                        <textarea class="form-control " name="deskripsi" id="deskripsi" cols="30" rows="4">{{ $data->deskripsi }}</textarea>
                                                                                     </div>
 
 
@@ -467,18 +471,23 @@
                                                                                         <label class="col-form-label"
                                                                                             for="jenis_kelamin">Jenis
                                                                                             Kelamin</label>
-                                                                                        <select
-                                                                                            class="form-control form-control-success"
+                                                                                        <select class="form-control "
                                                                                             id="jenis_kelamin"
                                                                                             name="jenis_kelamin" required>
                                                                                             <option value="">--Pilih
                                                                                                 jenis kelamin--</option>
-                                                                                            <option value="Laki-laki">
-                                                                                                Laki-laki
-                                                                                            </option>
-                                                                                            <option value="Perempuan">
-                                                                                                Perempuan
-                                                                                            </option>
+
+                                                                                            <!-- Cek apakah nilai yang sedang diedit adalah '5' -->
+                                                                                            <option value="Laki-laki"
+                                                                                                {{ $data->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>
+                                                                                                Laki-laki</option>
+
+                                                                                            <!-- Cek apakah nilai yang sedang diedit adalah '6' -->
+                                                                                            <option value="Perempuan"
+                                                                                                {{ $data->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
+                                                                                                Perempuan </option>
+
+
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-sm-4">
@@ -486,18 +495,20 @@
                                                                                             for="tinggi_badan">Tinggi
                                                                                             Badan</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="tinggi_badan"
-                                                                                            name="tinggi_badan">
+                                                                                            name="tinggi_badan"
+                                                                                            value="{{ $data->tinggi_badan }}">
                                                                                     </div>
                                                                                     <div class="col-sm-4">
                                                                                         <label class="col-form-label"
                                                                                             for="berat_badan">Berat
                                                                                             Badan</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="berat_badan"
-                                                                                            name="berat_badan">
+                                                                                            name="berat_badan"
+                                                                                            value="{{ $data->berat_badan }}">
                                                                                     </div>
                                                                                 </div>
 
@@ -507,71 +518,83 @@
                                                                                             for="rentang_usia">Rentang
                                                                                             Usia</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="rentang_usia"
-                                                                                            name="rentang_usia">
+                                                                                            name="rentang_usia"
+                                                                                            value="{{ $data->rentang_usia }}">
                                                                                     </div>
                                                                                     <div class="col-sm-4">
                                                                                         <label class="col-form-label"
                                                                                             for="level_bahasa">Level
                                                                                             Bahasa</label>
-                                                                                        <select
-                                                                                            class="form-control form-control-success"
+                                                                                        <select class="form-control "
                                                                                             id="level_bahasa"
                                                                                             name="level_bahasa" required>
                                                                                             <option value="">--Pilih
-                                                                                                jenis kelamin--</option>
-                                                                                            <option value="Basic">Basic
-                                                                                            </option>
-                                                                                            <option value="Intermediate">
-                                                                                                Intermediate</option>
-                                                                                            <option value="Advanced">
-                                                                                                Advanced
-                                                                                            </option>
+                                                                                                Level Bahasa --</option>
+
+                                                                                            <!-- Cek apakah nilai yang sedang diedit adalah '5' -->
+                                                                                            <option value="Basic"
+                                                                                                {{ $data->level_bahasa == 'Basic' ? 'selected' : '' }}>
+                                                                                                Basic</option>
+
+                                                                                            <!-- Cek apakah nilai yang sedang diedit adalah '6' -->
+                                                                                            <option value="Intermediate"
+                                                                                                {{ $data->level_bahasa == 'Intermediate' ? 'selected' : '' }}>
+                                                                                                Intermediate </option>
+
+                                                                                            <!-- Cek apakah nilai yang sedang diedit adalah '6' -->
+                                                                                            <option value="Advanced"
+                                                                                                {{ $data->level_bahasa == 'Advanced' ? 'selected' : '' }}>
+                                                                                                Advanced </option>
+
+
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-sm-4">
                                                                                         <label class="col-form-label"
                                                                                             for="pengalaman_kerja">Pengalaman
                                                                                             Kerja</label>
-                                                                                        <select
-                                                                                            class="form-control form-control-success"
+                                                                                        <select class="form-control"
                                                                                             id="pengalaman_kerja"
                                                                                             name="pengalaman_kerja"
                                                                                             required>
                                                                                             <option value="">--Pilih
                                                                                                 pengalaman kerja--</option>
                                                                                             <option
-                                                                                                value="Tidak diperlukan pengalaman kerja">
+                                                                                                value="Tidak diperlukan pengalaman kerja"
+                                                                                                {{ $data->pengalaman_kerja == 'Tidak diperlukan pengalaman kerja' ? 'selected' : '' }}>
                                                                                                 Tidak diperlukan pengalaman
                                                                                                 kerja
                                                                                             </option>
                                                                                             <option
-                                                                                                value="Min. 6 bulan bekerja pada posisi yang sama">
+                                                                                                value="Min. 6 bulan bekerja pada posisi yang sama"
+                                                                                                {{ $data->pengalaman_kerja == 'Min. 6 bulan bekerja pada posisi yang sama' ? 'selected' : '' }}>
                                                                                                 Min. 6 bulan bekerja pada
-                                                                                                posisi
-                                                                                                yang sama
-                                                                                            </option>
-                                                                                            <option
-                                                                                                value="Min. 1 Tahun bekerja pada posisi yang sama">
-                                                                                                Min. 1 Tahun bekerja pada
-                                                                                                posisi
-                                                                                                yang sama
-                                                                                            </option>
-                                                                                            <option
-                                                                                                value="Min. 2 - 5 Tahun bekerja pada posisi yang sama">
-                                                                                                Min. 2 - 5 Tahun bekerja
-                                                                                                pada
                                                                                                 posisi yang sama
                                                                                             </option>
                                                                                             <option
-                                                                                                value="Diperlukan pengalaman kerja atau lulusan pendidikan dengan jurusan yang berkaitan">
+                                                                                                value="Min. 1 Tahun bekerja pada posisi yang sama"
+                                                                                                {{ $data->pengalaman_kerja == 'Min. 1 Tahun bekerja pada posisi yang sama' ? 'selected' : '' }}>
+                                                                                                Min. 1 Tahun bekerja pada
+                                                                                                posisi yang sama
+                                                                                            </option>
+                                                                                            <option
+                                                                                                value="Min. 2 - 5 Tahun bekerja pada posisi yang sama"
+                                                                                                {{ $data->pengalaman_kerja == 'Min. 2 - 5 Tahun bekerja pada posisi yang sama' ? 'selected' : '' }}>
+                                                                                                Min. 2 - 5 Tahun bekerja
+                                                                                                pada posisi yang sama
+                                                                                            </option>
+                                                                                            <option
+                                                                                                value="Diperlukan pengalaman kerja atau lulusan pendidikan dengan jurusan yang berkaitan"
+                                                                                                {{ $data->pengalaman_kerja == 'Diperlukan pengalaman kerja atau lulusan pendidikan dengan jurusan yang berkaitan' ? 'selected' : '' }}>
                                                                                                 Diperlukan pengalaman kerja
-                                                                                                atau
-                                                                                                lulusan pendidikan dengan
-                                                                                                jurusan yang berkaitan
+                                                                                                atau lulusan pendidikan
+                                                                                                dengan jurusan yang
+                                                                                                berkaitan
                                                                                             </option>
                                                                                         </select>
+
                                                                                     </div>
                                                                                 </div>
 
@@ -609,16 +632,16 @@
                                                                                                             type="checkbox"
                                                                                                             id="fasilitas-{{ $item->id }}"
                                                                                                             name="fasilitas_id[]"
-                                                                                                            value="{{ $item->id }}">
-                                                                                                        {{-- Gunakan ID atau nama fasilitas --}}
+                                                                                                            value="{{ $item->id }}"
+                                                                                                            {{ in_array($item->id, $data->benefits->pluck('fasilitas_id')->toArray()) ? 'checked' : '' }}>
                                                                                                         <label
                                                                                                             class="border-checkbox-label"
                                                                                                             for="fasilitas-{{ $item->id }}">
                                                                                                             {{ $item->nama_fasilitas }}
-                                                                                                            {{-- Nama dari fasilitas --}}
                                                                                                         </label>
                                                                                                     </div>
                                                                                                 @endforeach
+
 
 
 
@@ -631,32 +654,20 @@
                                                                                             <label class="col-form-label"
                                                                                                 for="paragraf_galeri">Paragraf
                                                                                                 Galeri</label>
-                                                                                            <textarea class="form-control form-control-success" name="paragraf_galeri" id="paragraf_galeri" cols="30"
-                                                                                                rows="4"></textarea>
+                                                                                            <textarea class="form-control " name="paragraf_galeri" id="paragraf_galeri" cols="30" rows="4">{{ $data->paragraf_galeri }}</textarea>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="form-group row">
-                                                                                        <div class="col-sm-12">
-                                                                                            <label class="col-form-label"
-                                                                                                for="nama_galeri">Upload
-                                                                                                Galeri</label>
-                                                                                            <input type="file"
-                                                                                                class="form-control form-control-success"
-                                                                                                id="nama_galeri"
-                                                                                                name="nama_galeri[]"
-                                                                                                multiple>
 
-                                                                                        </div>
-                                                                                    </div>
                                                                                     <div class="form-group row">
                                                                                         <div class="col-sm-12">
                                                                                             <label class="col-form-label"
                                                                                                 for="link_video">Link
                                                                                                 Video</label>
                                                                                             <input type="text"
-                                                                                                class="form-control form-control-success"
+                                                                                                class="form-control "
                                                                                                 id="link_video"
-                                                                                                name="link_video">
+                                                                                                name="link_video"
+                                                                                                value="{{ $data->link_video }}">
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="form-group row">
@@ -664,7 +675,7 @@
                                                                                             <label class="col-form-label"
                                                                                                 for="info_lain">Informasi
                                                                                                 Lainnya</label>
-                                                                                            <textarea class="form-control form-control-success" name="info_lain" id="info_lain" cols="30" rows="4"></textarea>
+                                                                                            <textarea class="form-control " name="info_lain" id="info_lain" cols="30" rows="4">{{ $data->info_lain }}</textarea>
                                                                                         </div>
                                                                                     </div>
 
@@ -673,8 +684,7 @@
                                                                                         <div class="col-sm-12">
                                                                                             <label class="col-form-label"
                                                                                                 for="disclaimer">Disclaimer</label>
-                                                                                            <textarea class="form-control form-control-success" name="disclaimer" id="disclaimer" cols="30"
-                                                                                                rows="4"></textarea>
+                                                                                            <textarea class="form-control " name="disclaimer" id="disclaimer" cols="30" rows="4">{{ $data->disclaimer }}</textarea>
                                                                                         </div>
                                                                                     </div>
 
@@ -749,214 +759,5 @@
                 <script type="text/javascript"
                     src="{{ asset('template') }}/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
 
-
-                {{-- <script>
-                    $(document).ready(function() {
-                        // Dapatkan data negara dan tambahkan ke dropdown
-                        $.ajax({
-                            url: '{{ route('getNegara') }}',
-                            type: 'GET',
-                            success: function(data) {
-                                var options = '';
-                                data.forEach(function(negara) {
-                                    // Tambahkan opsi ke dropdown
-                                    var selected = ''; // Variabel untuk menandai opsi terpilih
-                                    if ({{ $data->negara_id }} == negara.id) {
-                                        selected = 'selected'; // Jika sesuai dengan negara_id
-                                    }
-                                    options += '<option value="' + negara.id + '" data-nama-negara="' +
-                                        negara.nama_negara + '" ' + selected + '>' + negara.nama_negara +
-                                        '</option>';
-                                });
-                                $('#negara_id').append(options);
-
-                                // Set hidden field untuk nama negara jika diperlukan
-                                var selectedOption = $('#negara_id').find('option:selected');
-                                $('#nama_negara').val(selectedOption.data('nama-negara'));
-                            }
-                        });
-
-                        // Event saat dropdown negara diubah
-                        $('#negara_id').change(function() {
-                            var selectedOption = $(this).find('option:selected');
-                            var namaNegara = selectedOption.data('nama-negara');
-                            $('#nama_negara').val(namaNegara);
-                        });
-
-                        // AJAX untuk kategori pekerjaan
-                        $.ajax({
-                            url: '{{ route('getKategoriJob') }}',
-                            type: 'GET',
-                            success: function(data) {
-                                var options = '';
-                                data.forEach(function(kategori_job) {
-                                    // Variabel untuk menandai opsi terpilih
-                                    var selected = '';
-                                    if ({{ $data->kategori_job_id }} == kategori_job.id) {
-                                        selected = 'selected'; // Jika sesuai dengan kategori_job_id
-                                    }
-                                    options += '<option value="' + kategori_job.id + '" ' + selected + '>' +
-                                        kategori_job.nama_kategori_job + '</option>';
-                                });
-                                $('#kategori_job_id').append(options);
-                            }
-                        });
-                    });
-                </script>
-
-
-                --}}
-
-
-
-
-
-                {{-- TAMBAH --}}
-                <script>
-                    $(document).ready(function() {
-                        $('#btn-save-job').click(function() {
-                            var form = $('#form_job');
-                            $.ajax({
-                                url: form.attr('action'),
-                                type: 'POST',
-                                data: form.serialize(),
-                                success: function(response) {
-
-                                    Swal.fire({
-                                        title: 'Sukses!',
-                                        text: response.message,
-                                        icon: 'success',
-                                        confirmButtonText: 'OK'
-                                    }).then(function() {
-                                        location.reload();
-                                    });
-                                },
-                                error: function(xhr) {
-                                    var errorMessages = xhr.responseJSON.errors;
-                                    var errorMessage = '';
-                                    $.each(errorMessages, function(key, value) {
-                                        errorMessage += value + '<br>';
-                                    });
-                                    Swal.fire({
-                                        title: 'Error!',
-                                        html: errorMessage,
-                                        icon: 'error',
-                                        confirmButtonText: 'OK'
-                                    });
-                                }
-                            });
-                        });
-                    });
-                </script>
-
-                {{-- EDIT dan UPDATE --}}
-                <script>
-                    $(document).ready(function() {
-                        // Tampilkan data di modal edit
-                        $('.btn-edit').click(function() {
-                            var id = $(this).data('id');
-                            $.ajax({
-                                url: '/job/' + id + '/edit',
-                                type: 'GET',
-                                success: function(response) {
-                                    $('#edit_nama_job').val(response.nama_job);
-                                    $('#edit_urutan').val(response.urutan);
-                                    // Set action form untuk update
-                                    $('#form-edit-kategori-job').attr('action', '/job/' + id);
-                                    $('#modal-edit').modal('show');
-                                },
-                                error: function(xhr) {
-                                    // Handle error
-                                }
-                            });
-                        });
-
-                        // AJAX untuk update data
-                        $('#btn-update-kategori-job').click(function() {
-                            var form = $('#form-edit-kategori-job');
-                            $.ajax({
-                                url: form.attr('action'),
-                                type: 'POST',
-                                data: form.serialize() + '&_method=PUT',
-                                success: function(response) {
-                                    $('#modal-edit').modal('hide');
-                                    Swal.fire({
-                                        title: 'Sukses!',
-                                        text: response.message,
-                                        icon: 'success',
-                                        confirmButtonText: 'OK'
-                                    }).then(function() {
-                                        location.reload();
-                                    });
-                                },
-                                error: function(xhr) {
-                                    var errorMessages = xhr.responseJSON.errors;
-                                    var errorMessage = '';
-                                    $.each(errorMessages, function(key, value) {
-                                        errorMessage += value + '<br>';
-                                    });
-                                    Swal.fire({
-                                        title: 'Error!',
-                                        html: errorMessage,
-                                        icon: 'error',
-                                        confirmButtonText: 'OK'
-                                    });
-                                }
-                            });
-                        });
-                    });
-                </script>
-
-                {{-- DELET --}}
-                <script>
-                    $(document).ready(function() {
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
-
-                        $('.btn-hapus').click(function() {
-                            var id = $(this).data('id');
-
-                            Swal.fire({
-                                title: 'Apakah Anda yakin?',
-                                text: 'Data akan dihapus permanen!',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Ya, hapus!',
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    $.ajax({
-
-                                        url: '/job/' + id,
-                                        type: 'DELETE',
-
-                                        success: function(response) {
-                                            Swal.fire({
-                                                title: 'Sukses!',
-                                                text: response.message,
-                                                icon: 'success',
-                                                confirmButtonText: 'OK',
-                                            }).then(function() {
-                                                location.reload();
-                                            });
-                                        },
-                                        error: function(xhr) {
-                                            // Handle error
-                                            Swal.fire({
-                                                title: 'Error!',
-                                                text: 'Gagal menghapus data.',
-                                                icon: 'error',
-                                                confirmButtonText: 'OK',
-                                            });
-                                        },
-                                    });
-                                }
-                            });
-                        });
-                    });
-                </script>
+  
             @endpush
