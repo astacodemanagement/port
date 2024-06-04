@@ -81,8 +81,8 @@ Route::prefix('administrator')->group(function () {
                 Route::get('/pelamar/{status}', [PelamarController::class, 'index'])->name('index');
                 // Kandidat
                 Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
-                Route::resource('kandidat', KandidatController::class);
                 Route::get('/kandidat/{id}/detail', [KandidatController::class, 'detail'])->name('kandidat.detail');
+                Route::put('/kandidat/update/{id}', [KandidatController::class, 'update'])->name('kandidat.update');
 
                 
                 // Belum Verifikasi
