@@ -118,7 +118,7 @@ class BelumVerifikasiController extends Controller
         // Ambil hanya bidang-bidang yang ditentukan dari permintaan
         $input = $request->only([
             'bayar_cf', 'bukti_tf_cf', 'tanggal_tf_cf',
-            'status_paid_cf', 'tanggal_refund_cf', 'bayar_refund_cf', 'catatan_pembayaran_cf'
+            'status_paid_cf', 'tanggal_refund_cf', 'bayar_refund_cf', 'catatan_pembayaran_cf','level_bahasa_inggris','pic_level','catatan_level'
         ]);
 
         if ($request->has('bayar_cf')) {
