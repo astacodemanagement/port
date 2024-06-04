@@ -16,6 +16,16 @@ class Kandidat extends Model
         return $this->belongsTo(Pendaftaran::class, 'pendaftaran_id', 'id');
     }
 
+    public function pengalamanKerja()
+    {
+        return $this->hasMany(PengalamanKerja::class, 'pendaftaran_id', 'pendaftaran_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
     public function seleksi()
     {
         return $this->belongsTo(Seleksi::class, 'kandidat_id');

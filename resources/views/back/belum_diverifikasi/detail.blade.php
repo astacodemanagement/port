@@ -71,7 +71,7 @@
                                                         <li class="nav-item">
                                                             <a class="nav-link" data-toggle="tab" href="#dokumen_ln"
                                                                 role="tab"><i class="fas fa-bookmark"></i>Dokumen
-                                                                Perjalanan Luar Negeri</a>
+                                                                Luar Negeri</a>
                                                             <div class="slide"></div>
                                                         </li>
                                                         <li class="nav-item">
@@ -101,12 +101,17 @@
                                                                 role="tab"><i class="fas fa-user"></i>Akun</a>
                                                             <div class="slide"></div>
                                                         </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#level"
+                                                                role="tab"><i class="fa-solid fa-layer-group"></i>Level
+                                                                Bahasa Inggris</a>
+                                                            <div class="slide"></div>
+                                                        </li>
                                                     </ul>
 
-                                                    <form id="form_verifikasi" action="" method="POST"
-                                                        enctype="multipart/form-data">
-                                                        @csrf <!-- Tambahkan token CSRF -->
-                                                        @method('PUT') <!-- Tambahkan method PUT untuk update -->
+                                                    <form id="form_verifikasi" method="POST" enctype="multipart/form-data">
+                                                        @csrf
+                                                        @method('PUT')
                                                         <input type="hidden" id="id" name="id"
                                                             value="{{ $belum_diverifikasi->id }}">
                                                         <div class="tab-content card-block">
@@ -136,7 +141,8 @@
                                                                                 </div> --}}
                                                                                 <div class="col-sm-12">
                                                                                     <label class="col-form-label"
-                                                                                        for="nama_kategori_job">Industri Minat Pekerjaan</label>
+                                                                                        for="nama_kategori_job">Industri
+                                                                                        Minat Pekerjaan</label>
                                                                                     <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="nama_kategori_job"
@@ -497,124 +503,64 @@
                                                             <div class="tab-pane" id="pengalaman_kerja" role="tabpanel">
                                                                 <div class="modal-content">
                                                                     <div class="modal-body">
-                                                                        <div class="card-block">
-                                                                            <h4 class="sub-title">(Pengalaman Pekerjaan 1)
-                                                                            </h4>
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Negara
-                                                                                        Tempat Bekerja</label>
-                                                                                    <input type="text" readonly
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
+                                                                        @foreach ($belum_diverifikasi->pengalamanKerja as $pengalaman)
+                                                                            <div class="card-block">
+                                                                                <h4 class="sub-title">Pengalaman Pekerjaan
+                                                                                    {{ $loop->iteration }}
+                                                                                </h4>
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="estimasi_maksimal">Negara
+                                                                                            Tempat Bekerja</label>
+                                                                                        <input type="text" readonly
+                                                                                            class="form-control"
+                                                                                            value="{{ $pengalaman->negara_tempat_kerja }}">
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="estimasi_maksimal">Nama
+                                                                                            Perusahaan</label>
+                                                                                        <input type="text" readonly
+                                                                                            class="form-control"
+                                                                                            value="{{ $pengalaman->nama_perusahaan }}">
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Nama
-                                                                                        Perusahaan</label>
-                                                                                    <input type="text" readonly
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="estimasi_maksimal">Tanggal
+                                                                                            Mulai Bekerja</label>
+                                                                                        <input type="text" readonly
+                                                                                            class="form-control"
+                                                                                            value="{{ $pengalaman->tanggal_mulai_kerja }}">
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="estimasi_maksimal">Tanggal
+                                                                                            Selesai Bekerja</label>
+                                                                                        <input type="text" readonly
+                                                                                            class="form-control"
+                                                                                            value="{{ $pengalaman->tanggal_selesai_kerja }}">
+                                                                                    </div>
                                                                                 </div>
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <label class="col-form-label"
+                                                                                            for="estimasi_maksimal">Posisi</label>
+                                                                                        <input type="text" readonly
+                                                                                            class="form-control"
+                                                                                            value="{{ $pengalaman->posisi }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <hr>
                                                                             </div>
-
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Tanggal
-                                                                                        Mulai Bekerja</label>
-                                                                                    <input type="text" readonly
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Tanggal
-                                                                                        Akhir Bekerja</label>
-                                                                                    <input type="text" readonly
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-12">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Posisi</label>
-                                                                                    <input type="text" readonly
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <hr>
-                                                                            <h4 class="sub-title">(Pengalaman Pekerjaan 2)
-                                                                            </h4>
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Negara
-                                                                                        Tempat Bekerja</label>
-                                                                                    <input type="text" readonly
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Nama
-                                                                                        Perusahaan</label>
-                                                                                    <input type="text" readonly
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Tanggal
-                                                                                        Mulai Bekerja</label>
-                                                                                    <input type="text" readonly
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Tanggal
-                                                                                        Akhir Bekerja</label>
-                                                                                    <input type="text" readonly
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-12">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Posisi</label>
-                                                                                    <input type="text" readonly
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <hr>
+                                                                        @endforeach
 
 
 
 
 
-
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -740,30 +686,48 @@
                                                                                 <div class="container">
                                                                                     <div class="row">
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">Foto</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                    for="">Foto</label>
+                                                                                                <br>
+                                                                                                <a href="/upload/foto/{{ $belum_diverifikasi->kandidat->foto }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/foto/{{ $belum_diverifikasi->kandidat->foto }}"
+                                                                                                        alt="">
+                                                                                                </a>
+
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">Paspor</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                    for="">Paspor</label>
+                                                                                                <a href="/upload/paspor/{{ $belum_diverifikasi->kandidat->paspor }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
+
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">KTP</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                    for="">KTP</label>
+                                                                                                <a href="/upload/ktp/{{ $belum_diverifikasi->kandidat->ktp }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -771,31 +735,46 @@
                                                                                 <div class="container">
                                                                                     <div class="row">
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">Sertifikat
+                                                                                                    for="">Sertifikat
                                                                                                     Kompetensi</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                <a href="/upload/sertifikat-kompetensi/{{ $belum_diverifikasi->kandidat->sertifikat_kompetensi }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">Paklaring</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                    for="">Paklaring</label>
+                                                                                                <a href="/upload/paspor/{{ $belum_diverifikasi->kandidat->paklaring }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
                                                                                                     for="kk">KK</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                <a href="/upload/kartu-keluarga/{{ $belum_diverifikasi->kandidat->kk }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
                                                                                             </div>
                                                                                         </div>
 
@@ -804,30 +783,47 @@
                                                                                 <div class="container">
                                                                                     <div class="row">
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">Akta Lahir</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                    for="">Akta
+                                                                                                    Lahir</label>
+                                                                                                <a href="/upload/akta-lahir/{{ $belum_diverifikasi->kandidat->akta_lahir }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">Ijazah</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                    for="">Ijazah</label>
+                                                                                                <a href="/upload/ijazah/{{ $belum_diverifikasi->kandidat->ijazah }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="kk">Buku Nikah</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                    for="kk">Buku
+                                                                                                    Nikah</label>
+                                                                                                <a href="/upload/buku-nikah/{{ $belum_diverifikasi->kandidat->buku_nikah }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
                                                                                             </div>
                                                                                         </div>
 
@@ -907,13 +903,14 @@
                                                                                         for="bukti_tf_cf">Bukti
                                                                                         Transfer</label>
                                                                                     <br>
-                                                                                    <a href="{{ $belum_diverifikasi->bukti_tf_cf ? '/upload/bukti_tf_cf/'.$belum_diverifikasi->bukti_tf_cf : 'https://st.depositphotos.com/34584522/57984/v/1600/depositphotos_579841244-stock-illustration-unpaid-red-rubber-stamp-vector.jpg' }}"
+                                                                                    <a href="{{ $belum_diverifikasi->bukti_tf_cf ? '/upload/bukti_tf_cf/' . $belum_diverifikasi->bukti_tf_cf : 'https://st.depositphotos.com/34584522/57984/v/1600/depositphotos_579841244-stock-illustration-unpaid-red-rubber-stamp-vector.jpg' }}"
                                                                                         target="_blank">
-                                                                                         <img title="Bukti Transfer"
-                                                                                              src="{{ $belum_diverifikasi->bukti_tf_cf ? '/upload/bukti_tf_cf/'.$belum_diverifikasi->bukti_tf_cf : 'https://st.depositphotos.com/34584522/57984/v/1600/depositphotos_579841244-stock-illustration-unpaid-red-rubber-stamp-vector.jpg' }}"
-                                                                                              alt="" width="60px" height="30px">
-                                                                                     </a>
-                                                                                     
+                                                                                        <img title="Bukti Transfer"
+                                                                                            src="{{ $belum_diverifikasi->bukti_tf_cf ? '/upload/bukti_tf_cf/' . $belum_diverifikasi->bukti_tf_cf : 'https://st.depositphotos.com/34584522/57984/v/1600/depositphotos_579841244-stock-illustration-unpaid-red-rubber-stamp-vector.jpg' }}"
+                                                                                            alt="" width="60px"
+                                                                                            height="30px">
+                                                                                    </a>
+
 
                                                                                 </div>
                                                                                 <div class="col-sm-6">
@@ -936,8 +933,10 @@
 
                                                                                 <div class="col-sm-12">
                                                                                     <label class="col-form-label"
-                                                                                        for="catatan_pembayaran_cf">Catatan Pembayaran</label>
-                                                                                     <textarea class="form-control" name="catatan_pembayaran_cf" id="catatan_pembayaran_cf" cols="30" rows="3">{{ $belum_diverifikasi->catatan_pembayaran_cf }}</textarea>
+                                                                                        for="catatan_pembayaran_cf">Catatan
+                                                                                        Pembayaran</label>
+                                                                                    <textarea class="form-control" name="catatan_pembayaran_cf" id="catatan_pembayaran_cf" cols="30"
+                                                                                        rows="3">{{ $belum_diverifikasi->catatan_pembayaran_cf }}</textarea>
 
 
                                                                                 </div>
@@ -1019,38 +1018,23 @@
 
                                                             </div>
 
-                                                            {{-- akun --}}
                                                             <div class="tab-pane" id="akun" role="tabpanel">
                                                                 <div class="modal-content">
-                                                                    <div
-                                                                        class="modal-body">
-                                                                        <div
-                                                                            class="card-block">
-                                                                            <h5>AKUN</h5>
-                                                                            {{-- update account email & password --}}
+                                                                    <div class="modal-body">
+                                                                        <div class="card-block">
+                                                                            <h5>Akun</h5>
 
-                                                                            <div
-                                                                                class="form-group 
-                                                                                ">
-                                                                                <div
-                                                                                    class="col-sm-6
-                                                                                    ">
-                                                                                    <label
-                                                                                        class="col-form-label
-                                                                                        "
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
                                                                                         for="email">Email</label>
                                                                                     <input type="email"
-                                                                                        class="form-control
-                                                                                        "
+                                                                                        class="form-control"
                                                                                         id="email" name="email"
                                                                                         value="{{ $user_info->email }}">
                                                                                 </div>
-                                                                                <div
-                                                                                    class="col-sm-6
-                                                                                    ">
-                                                                                    <label
-                                                                                        class="col-form-label
-                                                                                        "
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
                                                                                         for="password">Password</label>
                                                                                     <input type="text"
                                                                                         class="form-control
@@ -1060,7 +1044,70 @@
                                                                                 </div>
                                                                             </div>
 
+
+
+
                                                                         </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="tab-pane" id="level" role="tabpanel">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                        <div class="card-block">
+                                                                            <h5>Level Bahasa Inggris</h5>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="level_bahasa_inggris">Level</label>
+                                                                                    <select class="form-control"
+                                                                                        id="level_bahasa_inggris"
+                                                                                        name="level_bahasa_inggris">
+                                                                                        <option value="">--Pilih
+                                                                                            Level--</option>
+                                                                                        <option value="Beginner English"
+                                                                                            {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Beginner English' ? 'selected' : '' }}>
+                                                                                            Beginner English
+                                                                                        </option>
+                                                                                        <option value="⁠Medium English"
+                                                                                            {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == '⁠Medium English' ? 'selected' : '' }}>
+                                                                                            ⁠Medium English
+                                                                                        </option>
+                                                                                        <option value="Advance English"
+                                                                                            {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Advance English' ? 'selected' : '' }}>
+                                                                                            Advance English
+                                                                                        </option>
+                                                                                    </select>
+
+
+
+
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="pic_level">PIC</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control
+                                                                                        "
+                                                                                        id="pic_level" name="pic_level"
+                                                                                        value="{{ $belum_diverifikasi->kandidat->pic_level }}">
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <label class="col-form-label"
+                                                                                        for="catatan_level">Catatan</label>
+                                                                                    <textarea class="form-control" name="catatan_level" id="catatan_level" cols="30" rows="3">{{ $belum_diverifikasi->kandidat->catatan_level }}</textarea>
+                                                                                </div>
+                                                                            </div>
+
+
+
+
+                                                                        </div>
+
 
                                                                     </div>
                                                                 </div>
@@ -1078,7 +1125,7 @@
                                                                 id="btn-update-verifikasi" style="float: right;">
                                                                 <i class="fas fa-save"></i> Update
                                                             </button>
-                                                             
+
 
 
                                                         </div>
@@ -1157,7 +1204,7 @@
                             const tombolUpdate = $('#btn-update-verifikasi');
                             var id = $('#id').val();
                             var formData = new FormData($('#form_verifikasi')[0]);
-                
+
                             $.ajax({
                                 type: 'POST', // Tetap gunakan 'POST'
                                 url: `{{ route('back-office.pelamar.updateDetail.update', $belum_diverifikasi->id) }}`,
@@ -1205,5 +1252,4 @@
                         });
                     });
                 </script>
-                
             @endpush

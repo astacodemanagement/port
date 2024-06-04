@@ -70,69 +70,88 @@
                                                 <div class="col-lg-12 col-xl-12">
                                                     <ul class="nav nav-tabs md-tabs " role="tablist">
                                                         <li class="nav-item">
-                                                            <a class="nav-link active" data-toggle="tab" href="#home7"
+                                                            <a class="nav-link active" data-toggle="tab" href="#data_diri"
                                                                 role="tab"><i class="fas fa-users"></i>Data Diri</a>
                                                             <div class="slide"></div>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#profile7"
+                                                            <a class="nav-link" data-toggle="tab" href="#dokumen_ln"
                                                                 role="tab"><i class="fas fa-bookmark"></i>Dokumen
-                                                                Perjalanan Luar Negeri</a>
+                                                                Luar Negeri</a>
                                                             <div class="slide"></div>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#messages7"
+                                                            <a class="nav-link" data-toggle="tab" href="#pengalaman_kerja"
                                                                 role="tab"><i class="fas fa-handshake-o"></i>Pengalaman
                                                                 Kerja</a>
                                                             <div class="slide"></div>
                                                         </li>
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#settings7"
+                                                            <a class="nav-link" data-toggle="tab" href="#dokumen"
                                                                 role="tab"><i class="fas fa-server"></i>Dokumen</a>
                                                             <div class="slide"></div>
                                                         </li>
+
                                                         <li class="nav-item">
-                                                            <a class="nav-link" data-toggle="tab" href="#cf"
-                                                                role="tab"><i class="fas fa-dollar-sign"></i>Commitment
-                                                                Fee</a>
+                                                            <a class="nav-link" data-toggle="tab" href="#akun"
+                                                                role="tab"><i class="fas fa-user"></i>Akun</a>
+                                                            <div class="slide"></div>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#level"
+                                                                role="tab"><i class="fa-solid fa-layer-group"></i>Level
+                                                                Bahasa Inggris</a>
                                                             <div class="slide"></div>
                                                         </li>
                                                     </ul>
 
-                                                    <form id="form_verifikasi" action="" method="POST" enctype="multipart/form-data">
+                                                    <form id="form_verifikasi" action="" method="POST"
+                                                        enctype="multipart/form-data">
                                                         @csrf <!-- Tambahkan token CSRF -->
                                                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
-                                                        <input type="hidden" id="id" name="id" value="{{ $detail_kandidat->id }}">
+                                                        <input type="hidden" id="id" name="id"
+                                                            value="{{ $detail_kandidat->id }}">
                                                         <div class="tab-content card-block">
 
-                                                            <div class="tab-pane active" id="home7" role="tabpanel">
-
-
+                                                            <div class="tab-pane active" id="data_diri" role="tabpanel">
 
                                                                 <div class="modal-content">
 
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
                                                                             <div class="form-group row">
-                                                                                <div class="col-sm-6">
+                                                                                {{-- <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="nama_negara">Nama
                                                                                         Negara</label>
-                                                                                    <input type="text"
+                                                                                    <input type="text" 
                                                                                         class="form-control"
-                                                                                        id="nama_negara" name="nama_negara"
-                                                                                        value="{{ $detail_kandidat->nama_negara }}">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
+                                                                                        id="nama_negara"
+                                                                                        name="nama_negara"
+                                                                                        value="{{ $belum_diverifikasi->nama_negara }}">
+
+
+                                                                                    <input type="hidden" 
+                                                                                        class="form-control"
+                                                                                        id="negara_id" name="negara_id"
+                                                                                        value="{{ $belum_diverifikasi->negara_id }}">
+                                                                                </div> --}}
+                                                                                {{-- <div class="col-sm-12">
                                                                                     <label class="col-form-label"
                                                                                         for="nama_kategori_job">Industri
-                                                                                        Pekerjaan</label>
-                                                                                    <input type="text"
+                                                                                        Minat Pekerjaan</label>
+                                                                                    <input type="text" 
                                                                                         class="form-control"
                                                                                         id="nama_kategori_job"
                                                                                         name="nama_kategori_job"
-                                                                                        value="{{ $detail_kandidat->nama_kategori_job }}">
-                                                                                </div>
+                                                                                        value="{{ $belum_diverifikasi?->kategoriJob?->nama_kategori_job }}">
+
+                                                                                    <input type="hidden" 
+                                                                                        class="form-control"
+                                                                                        id="kategori_job_id"
+                                                                                        name="kategori_job_id"
+                                                                                        value="{{ $belum_diverifikasi->kategori_job_id }}">
+                                                                                </div> --}}
                                                                             </div>
 
                                                                             <div class="form-group row">
@@ -192,10 +211,42 @@
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="agama">Agama</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="agama" name="agama"
-                                                                                        value="{{ $detail_kandidat->agama }}">
+
+                                                                                    <select class="form-control"
+                                                                                        id="agama" name="agama">
+                                                                                        <option value="">--Pilih
+                                                                                            Agama--</option>
+                                                                                        <option value="Islam"
+                                                                                            {{ $detail_kandidat->agama == 'Islam' ? 'selected' : '' }}>
+                                                                                            Islam
+                                                                                        </option>
+                                                                                        <option value="Kristen"
+                                                                                            {{ $detail_kandidat->agama == 'Kristen' ? 'selected' : '' }}>
+                                                                                            Kristen
+                                                                                        </option>
+                                                                                        <option value="Katolik"
+                                                                                            {{ $detail_kandidat->agama == 'Katolik' ? 'selected' : '' }}>
+                                                                                            Katolik
+                                                                                        </option>
+                                                                                        <option value="Hindu"
+                                                                                            {{ $detail_kandidat->agama == 'Hindu' ? 'selected' : '' }}>
+                                                                                            Hindu
+                                                                                        </option>
+                                                                                        <option value="Buddha"
+                                                                                            {{ $detail_kandidat->agama == 'Buddha' ? 'selected' : '' }}>
+                                                                                            Katolik
+                                                                                        </option>
+                                                                                        <option value="Khonghucu"
+                                                                                            {{ $detail_kandidat->agama == 'Khonghucu' ? 'selected' : '' }}>
+                                                                                            Khonghucu
+                                                                                        </option>
+                                                                                        <option value="Lainnya"
+                                                                                            {{ $detail_kandidat->agama == 'Lainnya' ? 'selected' : '' }}>
+                                                                                            Katolik
+                                                                                        </option>
+                                                                                    </select>
+
+
                                                                                 </div>
                                                                             </div>
 
@@ -286,7 +337,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="kota" name="kota"
-                                                                                        value="{{ $detail_kandidat->kota }}">
+                                                                                        value="{{ $detail_kandidat->kota?->nama_kota }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -294,7 +345,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control"
                                                                                         id="kecamatan" name="kecamatan"
-                                                                                        value="{{ $detail_kandidat->kecamatan }}">
+                                                                                        value="{{ $detail_kandidat->kecamatan?->nama_kecamatan }}">
                                                                                 </div>
                                                                                 <div class="col-sm-4">
                                                                                     <label class="col-form-label"
@@ -302,7 +353,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control" idprovinsi
                                                                                         name="provinsi"
-                                                                                        value="{{ $detail_kandidat->provinsi }}">
+                                                                                        value="{{ $detail_kandidat->provinsi?->nama_provinsi }}">
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group row">
@@ -354,6 +405,41 @@
                                                                                         value="{{ $detail_kandidat->no_wa }}">
                                                                                 </div>
                                                                             </div>
+                                                                            <br><br>
+                                                                            <h4 class="sub-title"> > Kontak Darurat</h4>
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-4">
+                                                                                    <label class="col-form-label"
+                                                                                        for="nama_keluarga">Nama
+                                                                                        Keluarga</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="nama_keluarga"
+                                                                                        name="nama_keluarga"
+                                                                                        value="{{ $detail_kandidat->nama_keluarga }}">
+                                                                                </div>
+                                                                                <div class="col-sm-4">
+                                                                                    <label class="col-form-label"
+                                                                                        for="hubungan">Hubungan
+                                                                                        Keluarga</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="hubungan" name="hubungan"
+                                                                                        value="{{ $detail_kandidat->hubungan }}">
+                                                                                </div>
+                                                                                <div class="col-sm-4">
+                                                                                    <label class="col-form-label"
+                                                                                        for="no_telp_darurat">No
+                                                                                        Darurat</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control"
+                                                                                        id="no_telp_darurat"
+                                                                                        name="no_telp_darurat"
+                                                                                        value="{{ $detail_kandidat->no_telp_darurat }}">
+                                                                                </div>
+                                                                            </div>
+
+
 
 
 
@@ -371,13 +457,11 @@
 
 
                                                             </div>
-                                                            <div class="tab-pane" id="profile7" role="tabpanel">
 
+                                                            <div class="tab-pane" id="dokumen_ln" role="tabpanel">
                                                                 <div class="modal-content">
-
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
-
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
@@ -405,7 +489,7 @@
                                                                                     <label class="col-form-label"
                                                                                         for="masa_kadaluarsa">Masa
                                                                                         Kadaluarsa Paspor</label>
-                                                                                    <input type="text"
+                                                                                    <input type="date"
                                                                                         class="form-control"
                                                                                         id="masa_kadaluarsa"
                                                                                         name="masa_kadaluarsa"
@@ -443,143 +527,76 @@
 
 
                                                                 </div>
-
                                                             </div>
-                                                            <div class="tab-pane" id="messages7" role="tabpanel">
-
+                                                            <div class="tab-pane" id="pengalaman_kerja" role="tabpanel">
                                                                 <div class="modal-content">
-
                                                                     <div class="modal-body">
-                                                                        <div class="card-block">
-                                                                            <h4 class="sub-title">(Pengalaman Pekerjaan 1)
-                                                                            </h4>
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Negara
-                                                                                        Tempat Bekerja</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
+                                                                        @foreach ($detail_kandidat->pengalamanKerja as $pengalaman)
+                                                                            <div class="card-block">
+                                                                                <h4 class="sub-title">Pengalaman Pekerjaan
+                                                                                    {{ $loop->iteration }}
+                                                                                </h4>
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="estimasi_maksimal">Negara
+                                                                                            Tempat Bekerja</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $pengalaman->negara_tempat_kerja }}">
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="estimasi_maksimal">Nama
+                                                                                            Perusahaan</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $pengalaman->nama_perusahaan }}">
+                                                                                    </div>
                                                                                 </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Nama
-                                                                                        Perusahaan</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="estimasi_maksimal">Tanggal
+                                                                                            Mulai Bekerja</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $pengalaman->tanggal_mulai_kerja }}">
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="estimasi_maksimal">Tanggal
+                                                                                            Selesai Bekerja</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $pengalaman->tanggal_selesai_kerja }}">
+                                                                                    </div>
                                                                                 </div>
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <label class="col-form-label"
+                                                                                            for="estimasi_maksimal">Posisi</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            value="{{ $pengalaman->posisi }}">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <hr>
                                                                             </div>
-
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Tanggal
-                                                                                        Mulai Bekerja</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Tanggal
-                                                                                        Akhir Bekerja</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-12">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Posisi</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <hr>
-                                                                            <h4 class="sub-title">(Pengalaman Pekerjaan 2)
-                                                                            </h4>
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Negara
-                                                                                        Tempat Bekerja</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Nama
-                                                                                        Perusahaan</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Tanggal
-                                                                                        Mulai Bekerja</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Tanggal
-                                                                                        Akhir Bekerja</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-12">
-                                                                                    <label class="col-form-label"
-                                                                                        for="estimasi_maksimal">Posisi</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="" name=""
-                                                                                        value="">
-                                                                                </div>
-                                                                            </div>
-                                                                            <hr>
+                                                                        @endforeach
 
 
 
 
 
-
-                                                                        </div>
                                                                     </div>
-
-
                                                                 </div>
-
                                                             </div>
-                                                            <div class="tab-pane" id="settings7" role="tabpanel">
-                                                                <div class="modal-content">
 
+                                                            <div class="tab-pane" id="dokumen" role="tabpanel">
+                                                                <div class="modal-content">
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
-
                                                                             <div class="card-block">
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-12">
@@ -697,53 +714,144 @@
                                                                                 <div class="container">
                                                                                     <div class="row">
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">Foto</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                    for="">Foto</label>
+                                                                                                <br>
+                                                                                                <a href="/upload/foto/{{ $detail_kandidat->foto }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/foto/{{ $detail_kandidat->foto }}"
+                                                                                                        alt="">
+                                                                                                </a>
+
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">Paspor</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                    for="">Paspor</label>
+                                                                                                <a href="/upload/paspor/{{ $detail_kandidat->paspor }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
+
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="col-sm-4">
-                                                                                            <div class="form-group">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">KTP</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                    for="">KTP</label>
+                                                                                                <a href="/upload/ktp/{{ $detail_kandidat->ktp }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="container">
                                                                                     <div class="row">
-                                                                                        <div class="col-sm-6">
-                                                                                            <div class="form-group">
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">Sertifikat
+                                                                                                    for="">Sertifikat
                                                                                                     Kompetensi</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                <a href="/upload/sertifikat-kompetensi/{{ $detail_kandidat->sertifikat_kompetensi }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-sm-6">
-                                                                                            <div class="form-group">
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
                                                                                                 <label
                                                                                                     class="col-form-label"
-                                                                                                    for="nama_galeri">Paklaring</label>
-                                                                                                <img src="https://png.pngtree.com/png-vector/20190623/ourmid/pngtree-documentfilepagepenresume-flat-color-icon-vector-png-image_1491048.jpg"
-                                                                                                    alt="">
+                                                                                                    for="">Paklaring</label>
+                                                                                                <a href="/upload/paspor/{{ $detail_kandidat->paklaring }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
+                                                                                                <label
+                                                                                                    class="col-form-label"
+                                                                                                    for="kk">KK</label>
+                                                                                                <a href="/upload/kartu-keluarga/{{ $detail_kandidat->kk }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="container">
+                                                                                    <div class="row">
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
+                                                                                                <label
+                                                                                                    class="col-form-label"
+                                                                                                    for="">Akta
+                                                                                                    Lahir</label>
+                                                                                                <a href="/upload/akta-lahir/{{ $detail_kandidat->akta_lahir }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
+                                                                                                <label
+                                                                                                    class="col-form-label"
+                                                                                                    for="">Ijazah</label>
+                                                                                                <a href="/upload/ijazah/{{ $detail_kandidat->ijazah }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-4">
+                                                                                            <div class="form-group"
+                                                                                                style="text-align: center;">
+                                                                                                <label
+                                                                                                    class="col-form-label"
+                                                                                                    for="kk">Buku
+                                                                                                    Nikah</label>
+                                                                                                <a href="/upload/buku-nikah/{{ $detail_kandidat->buku_nikah }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:100%; max-height:100%"
+                                                                                                        src="/upload/preview.png"
+                                                                                                        alt="Preview">
+                                                                                                </a>
                                                                                             </div>
                                                                                         </div>
 
@@ -766,103 +874,101 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="tab-pane" id="cf" role="tabpanel">
 
+
+                                                            <div class="tab-pane" id="akun" role="tabpanel">
                                                                 <div class="modal-content">
-
                                                                     <div class="modal-body">
                                                                         <div class="card-block">
-                                                                            <h5>COMMITMENT FEE</h5>
+                                                                            <h5>Akun</h5>
 
                                                                             <div class="form-group row">
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
-                                                                                        for="bayar_cf">Bayar Commitment
-                                                                                        Fee</label>
-                                                                                    <input type="text"
+                                                                                        for="email">Email</label>
+                                                                                    <input type="email"
                                                                                         class="form-control"
-                                                                                        id="bayar_cf" name="bayar_cf"
-                                                                                        value="{{ number_format($detail_kandidat->bayar_cf, 0, ',', ',') }}">
+                                                                                        id="email" name="email"
+                                                                                        value="{{ $detail_kandidat->user->email }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
-                                                                                        for="tanggal_tf_cf">Tanggal
-                                                                                        Transfer</label>
-                                                                                    <input type="date"
-                                                                                        class="form-control"
-                                                                                        id="tanggal_tf_cf"
-                                                                                        name="tanggal_tf_cf"
-                                                                                        value="{{ $detail_kandidat->tanggal_tf_cf }}">
+                                                                                        for="password">Password</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control
+                                                                                        "
+                                                                                        id="password" name="password"
+                                                                                        placeholder="kosongkan jika tidak ingin mengubah password">
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-3">
-                                                                                    <label class="col-form-label"
-                                                                                        for="bukti_tf_cf">Upload
-                                                                                        Transfer</label>
-                                                                                    <input type="file"
-                                                                                        class="form-control"
-                                                                                        id="bukti_tf_cf"
-                                                                                        name="bukti_tf_cf">
-                                                                                </div>
-                                                                                <div class="col-sm-3">
-                                                                                    <label class="col-form-label"
-                                                                                        for="bukti_tf_cf">Bukti
-                                                                                        Transfer</label>
-                                                                                    <br>
-                                                                                    <a href="/upload/bukti_tf_cf/{{ $detail_kandidat->bukti_tf_cf }}"
-                                                                                        target="_blank"><img
-                                                                                            title="Bukti Transfer"
-                                                                                            src="/upload/bukti_tf_cf/{{ $detail_kandidat->bukti_tf_cf }}"
-                                                                                            alt="" width="30px"
-                                                                                            height="30px"></a>
 
-                                                                                </div>
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="status_paid_cf">Status
-                                                                                        Paid</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="status_paid_cf"
-                                                                                        name="status_paid_cf"
-                                                                                        value="{{ $detail_kandidat->status_paid_cf }}">
-                                                                                </div>
-                                                                            </div>
-                                                                            <hr>
-                                                                            <h5>REFUND COMMITMENT FEE</h5>
-                                                                            <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="tanggal_refund_cf">Tanggal
-                                                                                        Refund</label>
-                                                                                    <input type="date"
-                                                                                        class="form-control"
-                                                                                        id="tanggal_refund_cf"
-                                                                                        name="tanggal_refund_cf"
-                                                                                        value="{{ $detail_kandidat->tanggal_refund_cf }}">
-                                                                                </div>
 
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="bayar_refund_cf">Jumlah
-                                                                                        Refund</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="bayar_refund_cf"
-                                                                                        name="bayar_refund_cf"
-                                                                                        value="{{ number_format($detail_kandidat->bayar_refund_cf, 0, ',', ',') }}">
-                                                                                </div>
-                                                                            </div>
 
                                                                         </div>
+
+
                                                                     </div>
-
-
-
                                                                 </div>
+                                                            </div>
 
+                                                            <div class="tab-pane" id="level" role="tabpanel">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-body">
+                                                                        <div class="card-block">
+                                                                            <h5>Level Bahasa Inggris</h5>
+
+                                                                            <div class="form-group row">
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="level_bahasa_inggris">Level</label>
+                                                                                    <select class="form-control"
+                                                                                        id="level_bahasa_inggris"
+                                                                                        name="level_bahasa_inggris">
+                                                                                        <option value="">--Pilih
+                                                                                            Level--</option>
+                                                                                        <option value="Beginner English"
+                                                                                            {{ $detail_kandidat->level_bahasa_inggris == 'Beginner English' ? 'selected' : '' }}>
+                                                                                            Beginner English
+                                                                                        </option>
+                                                                                        <option value="⁠Medium English"
+                                                                                            {{ $detail_kandidat->level_bahasa_inggris == '⁠Medium English' ? 'selected' : '' }}>
+                                                                                            ⁠Medium English
+                                                                                        </option>
+                                                                                        <option value="Advance English"
+                                                                                            {{ $detail_kandidat->level_bahasa_inggris == 'Advance English' ? 'selected' : '' }}>
+                                                                                            Advance English
+                                                                                        </option>
+                                                                                    </select>
+
+
+
+
+                                                                                </div>
+                                                                                <div class="col-sm-6">
+                                                                                    <label class="col-form-label"
+                                                                                        for="pic_level">PIC</label>
+                                                                                    <input type="text"
+                                                                                        class="form-control
+                                                                                        "
+                                                                                        id="pic_level" name="pic_level"
+                                                                                        value="{{ $detail_kandidat->pic_level }}">
+                                                                                </div>
+                                                                                <div class="col-sm-12">
+                                                                                    <label class="col-form-label"
+                                                                                        for="catatan_level">Catatan</label>
+                                                                                    <textarea class="form-control" name="catatan_level" id="catatan_level" cols="30" rows="3">{{ $detail_kandidat->catatan_level }}</textarea>
+                                                                                </div>
+                                                                            </div>
+
+
+
+
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
                                                             </div>
 
                                                             <a href="javascript:history.back()"
