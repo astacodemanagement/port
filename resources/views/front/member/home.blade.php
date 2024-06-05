@@ -134,7 +134,7 @@
                             <hr class="my-3 my-lg-5">
 
                             <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Kontak Darurat</h3>
-                            <div class="row mt-4 mt-lg-0">
+                            <div class="row mt-lg-4 mt-3">
                                 <div class="col-lg-4 mb-3 mb-lg-0">
                                     <h6 class="fw-7">Nama Keluarga</h6>
                                     <span>{{ auth()->user()->kandidat->nama_keluarga ?? '-' }}</span>
@@ -179,9 +179,12 @@
                         </div>
 
                         <div class="tab-pane fade" id="pills-work-experience" role="tabpanel" aria-labelledby="pills-work-experience-tab" tabindex="0">
+                            @php
+                                $i = 0;
+                            @endphp
                             @foreach (auth()->user()->kandidat->pengalamanKerja as $pengalamanKerja)
                                 <h5 class="fw-7 text-primary">{{ $pengalamanKerja->nama_perusahaan . ' - ' . $pengalamanKerja->posisi }}</h3>
-                                <div class="row mt-4">
+                                <div class="row mt-lg-4 mt-3">
                                     <div class="col-lg-4 mb-3 mb-lg-0">
                                         <h6 class="fw-7">Negara Tempat Bekerja</h6>
                                         <span>{{ $pengalamanKerja->negara_tempat_kerja ?? '-' }}</span>
@@ -206,19 +209,121 @@
                                     </div>
                                 </div>
 
-                                <hr class="my-3 my-lg-5">
+                                @if ($i > 0)
+                                    <hr class="my-3 my-lg-5">
+                                @endif
+                                @php
+                                    $i++;
+                                @endphp
                             @endforeach
                         </div>
 
                         <div class="tab-pane fade" id="pills-document" role="tabpanel" aria-labelledby="pills-document-tab" tabindex="0">
-                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Dokumen Persyaratan Jati Diri yang dimiliki</h3>
-                            <div class="row mt-4 mt-lg-0">
-                                <div class="col-lg-12 mb-3 mb-lg-0">
+                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Dokumen Persyaratan Jati Diri yang Dimiliki</h3>
+                            <div class="row mt-lg-4 mt-3">
+                                <div class="col-lg-12 mb-3">
+                                    <h6 class="fw-7">Kelengkapan Dokumen</h6>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="ktp" {{ auth()->user()->kandidat->ada_ktp == 'Ya' ? 'checked' : '' }} disabled>
+                                        <label class="form-check-label" for="ktp">KTP</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="kk" {{ auth()->user()->kandidat->ada_kk == 'Ya' ? 'checked' : '' }} disabled>
+                                        <label class="form-check-label" for="kk">KK</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="akta-lahir" {{ auth()->user()->kandidat->ada_akta_lahir == 'Ya' ? 'checked' : '' }} disabled>
+                                        <label class="form-check-label" for="akta-lahir">Akta Lahir</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="ijazah" {{ auth()->user()->kandidat->ada_ijazah == 'Ya' ? 'checked' : '' }} disabled>
+                                        <label class="form-check-label" for="ijazah">Ijazah</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="buku-nikah" {{ auth()->user()->kandidat->ada_buku_nikah == 'Ya' ? 'checked' : '' }} disabled>
+                                        <label class="form-check-label" for="buku-nikah">Buku Nikah</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" id="paspor" {{ auth()->user()->kandidat->ada_paspo == 'Ya' ? 'checked' : '' }} disabled>
+                                        <label class="form-check-label" for="paspor">Paspor</label>
+                                    </div>
                                 </div>
                                 <div class="col-lg-12">
-                                    <h6 class="fw-7">Penjelasan Dokumen kelengkapan berkas anda terdapat perbedaan nama/alamat/tempat tanggal lahir/hilang/rusak/lainnya</h6>
-                                    <span>{{ auth()->user()->kandidat->hubungan ?? '-' }}</span>
+                                    <h6 class="fw-7">Penjelasan Dokumen kelengkapan berkas terdapat perbedaan nama/alamat/tempat tanggal lahir/hilang/rusak/lainnya</h6>
+                                    <span>{{ auth()->user()->kandidat->penjelasan_dokumen ?? '-' }}</span>
                                 </div>
+                            </div>
+
+                            <hr class="my-3 my-lg-5">
+                            
+                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Berkas Dokumen Persyaratan Jati Diri yang Dimiliki</h3>
+                            <div class="row mt-lg-4 mt-3">
+                                @php
+                                    $arrDocument = [
+                                            [
+                                                'key' => 'foto',
+                                                'path' => 'foto',
+                                                'name' => 'Foto'
+                                            ],
+                                            [
+                                                'key' => 'paspor',
+                                                'path' => 'paspor',
+                                                'name' => 'Paspor'
+                                            ],
+                                            [
+                                                'key' => 'ktp',
+                                                'path' => 'ktp',
+                                                'name' => 'KTP'
+                                            ],
+                                            [
+                                                'key' => 'sertifikat_kompetensi',
+                                                'path' => 'sertifikat-kompetensi',
+                                                'name' => 'Sertifikat Kompetensi'
+                                            ],
+                                            [
+                                                'key' => 'paklaring',
+                                                'path' => 'paklaring',
+                                                'name' => 'Paklaring'
+                                            ],
+                                            [
+                                                'key' => 'kk',
+                                                'path' => 'kartu-keluarga',
+                                                'name' => 'Kartu Keluarga'
+                                            ],
+                                            [
+                                                'key' => 'akta_lahir',
+                                                'path' => 'akta-lahir',
+                                                'name' => 'Akta Lahir'
+                                            ],
+                                            [
+                                                'key' => 'ijazah',
+                                                'path' => 'jazah',
+                                                'name' => 'Ijazah'
+                                            ],
+                                            [
+                                                'key' => 'buku_nikah',
+                                                'path' => 'buku-nikah',
+                                                'name' => 'Buku Nikah'
+                                            ],
+                                        ];
+                                @endphp
+
+                                @foreach ($arrDocument as $doc)
+                                    <div class="col-6 col-md-4">
+                                        @php
+                                            $memberFile = memberDocumentImage('upload/' . $doc['path'] . '/' . auth()->user()->kandidat->{$doc['key']});
+                                        @endphp
+                                        @if ($memberFile['is_uploaded'])
+                                            <a href="{{ asset('upload/' . $doc['path'] . '/' . auth()->user()->kandidat->{$doc['key']}) }}" target="_blank">
+                                                <img src="{{ asset($memberFile['file_image']) }}" alt="{{ $doc['name'] }}" class="rounded-2 img-fluid mb-3">
+                                                <div class="fw-7 text-center mb-4 {{ $memberFile['is_uploaded'] ? '' : 'text-muted' }}">{{ $doc['name'] }}</div>
+                                            </a>
+                                        @else
+                                            <img src="{{ asset($memberFile['file_image']) }}" alt="{{ $doc['name'] }}" class="rounded-2 img-fluid mb-3">
+                                            <div class="fw-7 text-center mb-4 {{ $memberFile['is_uploaded'] ? '' : 'text-muted' }}">{{ $doc['name'] }}</div>
+                                        @endif
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
