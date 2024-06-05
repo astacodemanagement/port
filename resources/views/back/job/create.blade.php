@@ -93,17 +93,14 @@
                                                                 <div class="slide"></div>
                                                             </li>
                                                         </ul>
+
                                                         <form id="form_job" action="{{ route('back-office.job.simpan_job') }}"
                                                             method="POST" enctype="multipart/form-data">
                                                             @csrf <!-- Tambahkan token CSRF -->
                                                             <div class="tab-content card-block">
 
                                                                 <div class="tab-pane active" id="home7" role="tabpanel">
-
-
-
                                                                     <div class="modal-content">
-
                                                                         <div class="modal-body">
                                                                             <div class="card-block">
                                                                                 <div class="form-group row">
@@ -111,7 +108,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="nama_job">Nama Job</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="nama_job" name="nama_job">
                                                                                     </div>
                                                                                     <div class="col-sm-6">
@@ -120,7 +117,7 @@
                                                                                             Lowongan
                                                                                             Ditutup</label>
                                                                                         <input type="date"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="tanggal_tutup"
                                                                                             name="tanggal_tutup">
                                                                                     </div>
@@ -131,7 +128,7 @@
                                                                                             for="nama_perusahaan">Nama
                                                                                             Perusahaan</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="nama_perusahaan"
                                                                                             name="nama_perusahaan">
                                                                                     </div>
@@ -139,7 +136,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="mitra">Mitra</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="mitra" name="mitra">
                                                                                     </div>
 
@@ -150,7 +147,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="gaji">Gaji</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="gaji" name="gaji">
                                                                                     </div>
                                                                                     <div class="col-sm-6">
@@ -158,7 +155,7 @@
                                                                                             for="jenis_pembayaran">Jenis
                                                                                             Pembayaran</label>
                                                                                         <select
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="jenis_pembayaran"
                                                                                             name="jenis_pembayaran"
                                                                                             required>
@@ -181,7 +178,7 @@
                                                                                             IDR
                                                                                             Min</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="estimasi_minimal"
                                                                                             name="estimasi_minimal">
                                                                                     </div>
@@ -191,7 +188,7 @@
                                                                                             IDR
                                                                                             Mak</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="estimasi_maksimal"
                                                                                             name="estimasi_maksimal">
                                                                                     </div>
@@ -203,7 +200,7 @@
                                                                                             for="gaji_diterima">Gaji Yang
                                                                                             Diterima</label>
                                                                                         <select
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="gaji_diterima"
                                                                                             name="gaji_diterima" required>
                                                                                             <option value="">--Pilih
@@ -225,7 +222,7 @@
                                                                                             for="tanggal_kurs">Tanggal
                                                                                             Kurs</label>
                                                                                         <input type="date"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="tanggal_kurs"
                                                                                             name="tanggal_kurs">
                                                                                     </div>
@@ -234,7 +231,7 @@
                                                                                             for="nominal_kurs">Nominal
                                                                                             Kurs</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="nominal_kurs"
                                                                                             name="nominal_kurs">
                                                                                     </div>
@@ -252,9 +249,9 @@
                                                                                                 data-nama-negara="">Pilih
                                                                                                 Negara</option>
                                                                                         </select>
-                                                                                        <input type="hidden"
+                                                                                        {{-- <input type="hidden"
                                                                                             id="nama_negara"
-                                                                                            name="nama_negara">
+                                                                                            name="nama_negara"> --}}
                                                                                     </div>
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
@@ -283,10 +280,9 @@
 
 
                                                                 </div>
+
                                                                 <div class="tab-pane" id="profile7" role="tabpanel">
-
                                                                     <div class="modal-content">
-
                                                                         <div class="modal-body">
                                                                             <div class="card-block">
                                                                                 <div class="form-group row">
@@ -295,7 +291,7 @@
                                                                                             for="kontrak_kerja">Kontrak
                                                                                             Kerja</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="kontrak_kerja"
                                                                                             name="kontrak_kerja">
                                                                                     </div>
@@ -304,7 +300,7 @@
                                                                                             for="jam_kerja">Jam
                                                                                             Kerja</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="jam_kerja"
                                                                                             name="jam_kerja">
                                                                                     </div>
@@ -316,7 +312,7 @@
                                                                                             for="hari_kerja">Hari
                                                                                             Kerja</label>
                                                                                         <select
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="hari_kerja"
                                                                                             name="hari_kerja" required>
                                                                                             <option value="">--Pilih
@@ -336,7 +332,7 @@
                                                                                             for="cuti_kerja">Cuti
                                                                                             Kerja</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="cuti_kerja"
                                                                                             name="cuti_kerja">
                                                                                     </div>
@@ -348,20 +344,10 @@
                                                                                         <label class="col-form-label"
                                                                                             for="masa_percobaan">Masa
                                                                                             Percobaan</label>
-                                                                                        <select
-                                                                                            class="form-control form-control-success"
+                                                                                            <input type="text"
+                                                                                            class="form-control "
                                                                                             id="masa_percobaan"
-                                                                                            name="masa_percobaan" required>
-                                                                                            <option value="">--Pilih
-                                                                                                hari
-                                                                                                kerja--</option>
-                                                                                            <option value="5">5 Hari
-                                                                                                Per
-                                                                                                Minggu</option>
-                                                                                            <option value="6">6 Hari
-                                                                                                Per
-                                                                                                Minggu</option>
-                                                                                        </select>
+                                                                                            name="masa_percobaan">
 
                                                                                     </div>
                                                                                     <div class="col-sm-6">
@@ -369,7 +355,7 @@
                                                                                             for="mata_uang_gaji">Mata Uang
                                                                                             Gaji</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="mata_uang_gaji"
                                                                                             name="mata_uang_gaji">
                                                                                     </div>
@@ -382,7 +368,7 @@
                                                                                             for="kerja_lembur">Kerja
                                                                                             Lembur</label>
                                                                                         <input type="date"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="kerja_lembur"
                                                                                             name="kerja_lembur">
                                                                                     </div>
@@ -391,7 +377,7 @@
                                                                                             for="bahasa">Bahasa Yang
                                                                                             Digunakan</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="bahasa" name="bahasa">
                                                                                     </div>
                                                                                 </div>
@@ -400,7 +386,7 @@
                                                                                     <div class="col-sm-12">
                                                                                         <label class="col-form-label"
                                                                                             for="deskripsi">Deksripsi</label>
-                                                                                        <textarea class="form-control form-control-success" name="deskripsi" id="deskripsi" cols="30" rows="4"></textarea>
+                                                                                        <textarea class="form-control " name="deskripsi" id="deskripsi" cols="30" rows="4"></textarea>
                                                                                     </div>
 
 
@@ -415,10 +401,9 @@
                                                                     </div>
 
                                                                 </div>
+
                                                                 <div class="tab-pane" id="messages7" role="tabpanel">
-
                                                                     <div class="modal-content">
-
                                                                         <div class="modal-body">
                                                                             <div class="card-block">
                                                                                 <div class="form-group row">
@@ -427,7 +412,7 @@
                                                                                             for="jenis_kelamin">Jenis
                                                                                             Kelamin</label>
                                                                                         <select
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="jenis_kelamin"
                                                                                             name="jenis_kelamin" required>
                                                                                             <option value="">--Pilih
@@ -445,7 +430,7 @@
                                                                                             for="tinggi_badan">Tinggi
                                                                                             Badan</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="tinggi_badan"
                                                                                             name="tinggi_badan">
                                                                                     </div>
@@ -454,7 +439,7 @@
                                                                                             for="berat_badan">Berat
                                                                                             Badan</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="berat_badan"
                                                                                             name="berat_badan">
                                                                                     </div>
@@ -466,7 +451,7 @@
                                                                                             for="rentang_usia">Rentang
                                                                                             Usia</label>
                                                                                         <input type="text"
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="rentang_usia"
                                                                                             name="rentang_usia">
                                                                                     </div>
@@ -475,11 +460,11 @@
                                                                                             for="level_bahasa">Level
                                                                                             Bahasa</label>
                                                                                         <select
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="level_bahasa"
                                                                                             name="level_bahasa" required>
                                                                                             <option value="">--Pilih
-                                                                                                jenis kelamin--</option>
+                                                                                                level bahasa--</option>
                                                                                             <option value="Basic">Basic
                                                                                             </option>
                                                                                             <option value="Intermediate">
@@ -494,7 +479,7 @@
                                                                                             for="pengalaman_kerja">Pengalaman
                                                                                             Kerja</label>
                                                                                         <select
-                                                                                            class="form-control form-control-success"
+                                                                                            class="form-control "
                                                                                             id="pengalaman_kerja"
                                                                                             name="pengalaman_kerja"
                                                                                             required>
@@ -545,12 +530,11 @@
                                                                     </div>
 
                                                                 </div>
+
                                                                 <div class="tab-pane" id="settings7" role="tabpanel">
                                                                     <div class="modal-content">
-
                                                                         <div class="modal-body">
                                                                             <div class="card-block">
-
                                                                                 <div class="card-block">
                                                                                     <div class="form-group row">
                                                                                         <div class="col-sm-12">
@@ -652,30 +636,30 @@
                                                                                             <label class="col-form-label"
                                                                                                 for="paragraf_galeri">Paragraf
                                                                                                 Galeri</label>
-                                                                                            <textarea class="form-control form-control-success" name="paragraf_galeri" id="paragraf_galeri" cols="30"
+                                                                                            <textarea class="form-control " name="paragraf_galeri" id="paragraf_galeri" cols="30"
                                                                                                 rows="4"></textarea>
                                                                                         </div>
                                                                                     </div>
-                                                                                    <div class="form-group row">
+                                                                                    {{-- <div class="form-group row">
                                                                                         <div class="col-sm-12">
                                                                                             <label class="col-form-label"
                                                                                                 for="nama_galeri">Upload
                                                                                                 Galeri</label>
                                                                                             <input type="file"
-                                                                                                class="form-control form-control-success"
+                                                                                                class="form-control "
                                                                                                 id="nama_galeri"
                                                                                                 name="nama_galeri[]"
                                                                                                 multiple>
 
                                                                                         </div>
-                                                                                    </div>
+                                                                                    </div> --}}
                                                                                     <div class="form-group row">
                                                                                         <div class="col-sm-12">
                                                                                             <label class="col-form-label"
                                                                                                 for="link_video">Link
                                                                                                 Video</label>
                                                                                             <input type="text"
-                                                                                                class="form-control form-control-success"
+                                                                                                class="form-control "
                                                                                                 id="link_video"
                                                                                                 name="link_video">
                                                                                         </div>
@@ -685,7 +669,7 @@
                                                                                             <label class="col-form-label"
                                                                                                 for="info_lain">Informasi
                                                                                                 Lainnya</label>
-                                                                                            <textarea class="form-control form-control-success" name="info_lain" id="info_lain" cols="30" rows="4"></textarea>
+                                                                                            <textarea class="form-control " name="info_lain" id="info_lain" cols="30" rows="4"></textarea>
                                                                                         </div>
                                                                                     </div>
 
@@ -694,7 +678,7 @@
                                                                                         <div class="col-sm-12">
                                                                                             <label class="col-form-label"
                                                                                                 for="disclaimer">Disclaimer</label>
-                                                                                            <textarea class="form-control form-control-success" name="disclaimer" id="disclaimer" cols="30"
+                                                                                            <textarea class="form-control " name="disclaimer" id="disclaimer" cols="30"
                                                                                                 rows="4"></textarea>
                                                                                         </div>
                                                                                     </div>
@@ -817,35 +801,7 @@
                     });
                 </script>
 
-
-                {{-- <script>
-                $(document).ready(function() {
-                    $.ajax({
-                        url: '{{ route('getKategoriJob') }}',
-                        type: 'GET',
-                        success: function(response) {
-                            var kategoriJobList = response.kategoriJobList;
-                            var options = '';
-
-                            options += '<option value="">Pilih Industri Minat Pekerjaan</option>';
-
-                            $.each(kategoriJobList, function(id, nama_kategori_job) {
-                                options += '<option value="' + id + '">' + nama_kategori_job +
-                                    '</option>';
-                            });
-
-                            $('#kategori_job_id').html(options);
-                        },
-                        error: function(error) {
-                            console.error("Error fetching kategori job data:", error);
-                        }
-                    });
-                });
-            </script> --}}
-
-
-
-
+ 
 
                 {{-- TAMBAH --}}
                 <script>
@@ -885,114 +841,5 @@
                     });
                 </script>
 
-                {{-- EDIT dan UPDATE --}}
-                <script>
-                    $(document).ready(function() {
-                        // Tampilkan data di modal edit
-                        $('.btn-edit').click(function() {
-                            var id = $(this).data('id');
-                            $.ajax({
-                                url: '/job/' + id + '/edit',
-                                type: 'GET',
-                                success: function(response) {
-                                    $('#edit_nama_job').val(response.nama_job);
-                                    $('#edit_urutan').val(response.urutan);
-                                    // Set action form untuk update
-                                    $('#form-edit-kategori-job').attr('action', '/job/' + id);
-                                    $('#modal-edit').modal('show');
-                                },
-                                error: function(xhr) {
-                                    // Handle error
-                                }
-                            });
-                        });
-
-                        // AJAX untuk update data
-                        $('#btn-update-kategori-job').click(function() {
-                            var form = $('#form-edit-kategori-job');
-                            $.ajax({
-                                url: form.attr('action'),
-                                type: 'POST',
-                                data: form.serialize() + '&_method=PUT',
-                                success: function(response) {
-                                    $('#modal-edit').modal('hide');
-                                    Swal.fire({
-                                        title: 'Sukses!',
-                                        text: response.message,
-                                        icon: 'success',
-                                        confirmButtonText: 'OK'
-                                    }).then(function() {
-                                        location.reload();
-                                    });
-                                },
-                                error: function(xhr) {
-                                    var errorMessages = xhr.responseJSON.errors;
-                                    var errorMessage = '';
-                                    $.each(errorMessages, function(key, value) {
-                                        errorMessage += value + '<br>';
-                                    });
-                                    Swal.fire({
-                                        title: 'Error!',
-                                        html: errorMessage,
-                                        icon: 'error',
-                                        confirmButtonText: 'OK'
-                                    });
-                                }
-                            });
-                        });
-                    });
-                </script>
-
-                {{-- DELET --}}
-                <script>
-                    $(document).ready(function() {
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
-
-                        $('.btn-hapus').click(function() {
-                            var id = $(this).data('id');
-
-                            Swal.fire({
-                                title: 'Apakah Anda yakin?',
-                                text: 'Data akan dihapus permanen!',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Ya, hapus!',
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    $.ajax({
-
-                                        url: '/job/' + id,
-                                        type: 'DELETE',
-
-                                        success: function(response) {
-                                            Swal.fire({
-                                                title: 'Sukses!',
-                                                text: response.message,
-                                                icon: 'success',
-                                                confirmButtonText: 'OK',
-                                            }).then(function() {
-                                                location.reload();
-                                            });
-                                        },
-                                        error: function(xhr) {
-                                            // Handle error
-                                            Swal.fire({
-                                                title: 'Error!',
-                                                text: 'Gagal menghapus data.',
-                                                icon: 'error',
-                                                confirmButtonText: 'OK',
-                                            });
-                                        },
-                                    });
-                                }
-                            });
-                        });
-                    });
-                </script>
+                
             @endpush

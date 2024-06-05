@@ -66,6 +66,9 @@
 
                                                         <th width="15%">Nama Job</th>
                                                         <th width="5%">Negara</th>
+                                                        <th width="5%">Tanggal Tutup</th>
+                                                        <th width="5%">Nama Perusahaan</th>
+                                                        <th width="5%">Status</th>
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -74,7 +77,17 @@
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p->nama_job }}</td>
-                                                            <td>{{ $p->nama_negara }}</td>
+                                                            <td>{{ $p->negara->nama_negara }}</td>
+                                                            <td>{{ $p->tanggal_tutup }}</td>
+                                                            <td>{{ $p->nama_perusahaan }}</td>
+                                                            <td>
+                                                                @if ($p->status === 'publish')
+                                                                    <span class="badge bg-success">{{ $p->status }}</span>
+                                                                @else
+                                                                    <span class="badge bg-warning">{{ $p->status }}</span>
+                                                                @endif
+                                                            </td>
+                                                            
                                                             <td class="text-center">
                                                                 <a style="color: rgb(242, 236, 236)" href="#"
                                                                     class="btn btn-sm btn-secondary btn-gambar"
@@ -87,7 +100,7 @@
 
                                                                 <a style="color: rgb(242, 236, 236)" href=""
                                                                     class="btn btn-sm btn-primary btn-edit" data-id="{{ $p->id }}" style="color: black">
-                                                                    <i class="fas fa-edit"></i> Edit
+                                                                    <i class="fas fa-edit"></i> Ubah Status
                                                                 </a>
 
                                                                 <a href="{{ route('back-office.job.edit',$p->id)}}" class="btn btn-sm btn-warning" style="color: black"><i class="fas fa-edit"></i> Edit</a>

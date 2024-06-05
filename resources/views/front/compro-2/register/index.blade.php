@@ -216,89 +216,93 @@
                 </select>   
                 <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
             </form>  
-        {{-- form 2 --}}
-        <form data-step="2" method="POST" id="step-form-2" class="tw-flex tw-flex-col tw-w-2/3 step-form">
-            @csrf
-            <label for="no_paspor" class="tw-text-gray-800 tw-font-medium tw-mb-3 tw-font-work-sans">Nomor Paspor</label>
-            <input type="text" name="no_paspor" id="no_paspor" placeholder="Nomor Paspor" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
-            <p class="tw-text-red-500 error-no_paspor" style="display: none"></p>
-            
-            <div class="form-group mt-3">
-                <div class="input-group">
-                    <input type="text" class="form-control tanggal-pengeluaran-paspor" placeholder="Tanggal Pengeluaran Paspor / Date of Issue">
-                    <input type="text" class="form-control h-tanggal-pengeluaran-paspor d-none" name="tanggal_pengeluaran_paspor">
-                </div>
-            </div> <p class="tw-text-red-500 error-tanggal_pengeluaran_paspor" style="display: none"></p>
-          {{--masa kadaluarsa  --}}
-            <div class="form-group mt-3">
-                <div class="input-group">
-                    <input type="text" class="form-control masa-kadaluarsa" placeholder="Masa Kadaluarsa Paspor / Date of Expiry">
-                    <input type="text" class="form-control h-masa-kadaluarsa d-none" name="masa_kadaluarsa">
-                </div>
-            </div>
-            <p class="tw-text-red-500 error-masa_kadaluarsa" style="display: none"></p>
-           {{-- kantor yang mengeluarkan passpor input text --}}
-            <input type="text" name="kantor_paspor" id="kantor_paspor" placeholder="Kantor Yang Mengeluarkan Paspor" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
-            
-            <label for="kondisi_paspor" class="tw-text-gray-800 tw-font-medium tw-mt-3 tw-font-work-sans">Negara Paspor</label>
-            <select name="kondisi_paspor" id="kondisi_paspor" class="tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
-               
-                <option value="">Pilihlah Pertanyaan dibawah ini jika kamu memiliki Paspor</option>
-                <option value="1">Paspor saya fisiknya masih ada</option>
-                <option value="2">Paspor saya hilang</option>
-                <option value="3">Paspor saya rusak</option>
-                <option value="4">Paspor saya ditahan agency sebelumnya</option>
-                <option value="5">Paspor saya terdapat data yang berbeda</option>
-            </select>
-            <p class="tw-text-red-500 error-kondisi_paspor" style="display: none"></p>
-
-        <div class="tw-flex tw-gap-5">
-            <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-32 tw-bg-sky-500 tw-rounded-md tw-mt-4 prev-step">Previous</button>
-            <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
-
-        </div>
-        </form>
-        {{-- form 3 --}}
+    <!-- form 2 -->
+<form data-step="2" method="POST" id="step-form-2" class="tw-flex tw-flex-col tw-w-2/3 step-form" style="display: none">
+    @csrf
+    <label for="no_paspor" class="tw-text-gray-800 tw-font-medium tw-mb-3 tw-font-work-sans">Nomor Paspor</label>
+    <input type="text" name="no_paspor" id="no_paspor" placeholder="Nomor Paspor" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
+    <p class="tw-text-red-500 error-no_paspor" style="display: none"></p>
     
-        <form data-step="3" method="POST" id="step-form-3" class="tw-flex tw-flex-col tw-w-2/3 step-form" style="display: none">
-            @csrf
-            <div class="fv-row">
-                <label class="form-label">Pengalaman Kerja</label>
-            </div>
-            <div class="fv-row row-list-experience"></div>
-            <div class="fv-row mb-10 row-add-experience">
-                <div class="form-group mb-5">
-                    <input type="text" class="form-control input-add-experience experience-country tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" data-name="negara_tempat_kerja.0" placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
-                </div>
-        
-                <div class="form-group mb-5">
-                    <input type="text" class="form-control input-add-experience experience-company tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" data-name="nama_perusahaan.0" placeholder="Nama Perusahaan atau Majikan" name="nama_perusahaan[]">
-                </div>
-        
-                <div class="form-group row mb-5">
-                    <div class="col-6">
-                        <input type="text" class="form-control datetimepicker input-add-experience experience-start-work-date tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" placeholder="Tanggal mulai bekerja">
-                        <input type="hidden" class="d-none tanggal-mulai-bekerja input-add-experience h-experience-start-work-date" data-name="tanggal_mulai_kerja.0" name="tanggal_mulai_kerja[]">
-                    </div>
-                    <div class="col-6">
-                        <input type="text" class="form-control datetimepicker input-add-experience experience-end-work-date tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" placeholder="Tanggal selesai bekerja">
-                        <input type="hidden" class="d-none tanggal-selesai-bekerja input-add-experience h-experience-end-work-date" data-name="tanggal_selesai_kerja.0" name="tanggal_selesai_kerja[]">
-                    </div>
-                </div>
-        
-                <div class="form-group mb-5">
-                    <input type="text" class="form-control input-add-experience experience-position tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" placeholder="Posisi" data-name="posisi.0" name="posisi[]">
-                </div>
-                <button type="button" class="button-experience w-100 tw-py-2 tw-px-5 tw-text-white tw-bg-sky-500 tw-rounded-md tw-mt-4"><i class="fas fa-plus"></i> Tambahkan Pengalaman Kerja Lainnya</button>
+    <div class="tw-mt-3">
+        <div class="tw-flex tw-gap-2">
+            <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md tanggal-pengeluaran-paspor" placeholder="Tanggal Pengeluaran Paspor / Date of Issue">
+            <input type="text" class="tw-hidden h-tanggal-pengeluaran-paspor" name="tanggal_pengeluaran_paspor">
+        </div>
+    </div>
+    <p class="tw-text-red-500 error-tanggal_pengeluaran_paspor" style="display: none"></p>
+    
+    <div class="tw-mt-3">
+        <div class="tw-flex tw-gap-2">
+            <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md masa-kadaluarsa" placeholder="Masa Kadaluarsa Paspor / Date of Expiry">
+            <input type="text" class="tw-hidden h-masa-kadaluarsa" name="masa_kadaluarsa">
+        </div>
+    </div>
+    <p class="tw-text-red-500 error-masa_kadaluarsa" style="display: none"></p>
+    
+    <input type="text" name="kantor_paspor" id="kantor_paspor" placeholder="Kantor Yang Mengeluarkan Paspor" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
+    <p class="tw-text-red-500 error-kantor_paspor" style="display: none"></p>
+    
+    <label for="kondisi_paspor" class="tw-text-gray-800 tw-font-medium tw-mt-3 tw-font-work-sans">Negara Paspor</label>
+    <select name="kondisi_paspor" id="kondisi_paspor" class="tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" required>
+        <option value="">Pilihlah Pertanyaan dibawah ini jika kamu memiliki Paspor</option>
+        <option value="1">Paspor saya fisiknya masih ada</option>
+        <option value="2">Paspor saya hilang</option>
+        <option value="3">Paspor saya rusak</option>
+        <option value="4">Paspor saya ditahan agency sebelumnya</option>
+        <option value="5">Paspor saya terdapat data yang berbeda</option>
+    </select>
+    <p class="tw-text-red-500 error-kondisi_paspor" style="display: none"></p>
 
-                {{-- prev next --}}
+    <div class="tw-flex tw-gap-5">
+        <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-32 tw-bg-sky-500 tw-rounded-md tw-mt-4 prev-step">Previous</button>
+        <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
+    </div>
+</form>
+
+<!-- form 3 -->
+<form data-step="3" method="POST" id="step-form-3" class="tw-flex tw-flex-col tw-w-2/3 step-form" style="display: none">
+    @csrf
+    <div class="fv-row">
+        <label class="tw-font-medium tw-mb-3">Pengalaman Kerja</label>
+    </div>
+    <div class="fv-row row-list-experience"></div>
+    <div class="fv-row mb-10 row-add-experience">
+        <div class="tw-mb-5">
+            <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-country" data-name="negara_tempat_kerja.0" placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
+            <p class="tw-text-red-500 error-negara_tempat_kerja" style="display: none"></p>
+        </div>
+
+        <div class="tw-mb-5">
+            <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-company" data-name="nama_perusahaan.0" placeholder="Nama Perusahaan atau Majikan" name="nama_perusahaan[]">
+            <p class="tw-text-red-500 error-nama_perusahaan" style="display: none"></p>
+        </div>
+
+        <div class="tw-flex tw-gap-5 mb-5">
+            <div class="tw-w-1/2">
+                <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-start-work-date" placeholder="Tanggal mulai bekerja">
+                <input type="hidden" class="tw-hidden h-experience-start-work-date" data-name="tanggal_mulai_kerja.0" name="tanggal_mulai_kerja[]">
+                <p class="tw-text-red-500 error-tanggal_mulai_kerja" style="display: none"></p>
             </div>
-            <div class="tw-flex tw-gap-5">
-                <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-32 tw-bg-sky-500 tw-rounded-md tw-mt-4 prev-step">Previous</button>
-                <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
+            <div class="tw-w-1/2">
+                <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-end-work-date" placeholder="Tanggal selesai bekerja">
+                <input type="hidden" class="tw-hidden h-experience-end-work-date" data-name="tanggal_selesai_kerja.0" name="tanggal_selesai_kerja[]">
+                <p class="tw-text-red-500 error-tanggal_selesai_kerja" style="display: none"></p>
             </div>
-        
-        </form>
+        </div>
+
+        <div class="tw-mb-5">
+            <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-position" data-name="posisi.0" placeholder="Posisi" name="posisi[]">
+            <p class="tw-text-red-500 error-posisi" style="display: none"></p>
+        </div>
+        <button type="button" class="tw-w-full tw-py-2 tw-bg-sky-500 tw-rounded-md tw-text-white tw-mt-4 button-experience"><i class="fas fa-plus"></i> Tambahkan Pengalaman Kerja Lainnya</button>
+    </div>
+
+    <div class="tw-flex tw-gap-5">
+        <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-32 tw-bg-sky-500 tw-rounded-md tw-mt-4 prev-step">Previous</button>
+        <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
+    </div>
+</form>
+
 
         {{-- form 4 --}}
         <form data-step="4" method="POST" id="step-form-4" class="tw-flex tw-flex-col tw-w-2/3 step-form" style="display: none">
@@ -394,6 +398,12 @@
                             </div>
                         </div>
                     </div>
+
+                </div>
+                {{-- button next/prev --}}
+                <div class="tw-flex tw-gap-5">
+                    <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-32 tw-bg-sky-500 tw-rounded-md tw-mt-4 prev-step">Previous</button>
+                    <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
                 </div>
             </div>
             
@@ -579,17 +589,21 @@
                 showStep(currentStep);
             }
         });
-    
         $('.finish-step').click(function(event) {
             event.preventDefault();
             let allFormData = new FormData();
-    
-            $('.step-form form').each(function() {
-                const formData = new FormData(this);
-                formData.forEach((value, key) => {
-                    allFormData.append(key, value);
-                });
+            $('.step-form').each(function() {
+                const step = $(this).data('step');
+                const formData = new FormData($(this)[0]);
+                formData.append('step', step);
+                for (var pair of formData.entries()) {
+                    allFormData.append(pair[0], pair[1]);
+                }
             });
+            console.log(allFormData)
+            // add csrf token
+            allFormData.append('_token', '{{ csrf_token() }}');
+
             
     
             $.ajax({
@@ -608,6 +622,7 @@
                 }
             });
         });
+     
     
         showStep(currentStep);
         // dynamic experience
