@@ -49,7 +49,7 @@
                     </ul>
                     <div class="tab-content mt-5" id="pills-tabContent">
                         <div class="tab-pane fade active show" id="pills-personal-detail" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-                            <h5 class="fw-7 text-primary">Informasi Dasar</h3>
+                            <h5 class="fw-7 text-primary">Informasi Dasar</h5>
                             <div class="row mt-4">
                                 <div class="col-lg-4 mb-3 mb-lg-0">
                                     <h6 class="fw-7">NIK</h6>
@@ -86,6 +86,16 @@
                                     <span>{{ auth()->user()->kandidat->agama ?? '-' }}</span>
                                 </div>
                                 <div class="col-lg-4 mb-3 mb-lg-0">
+                                    <h6 class="fw-7">Status Kawin</h6>
+                                    <span>{{ auth()->user()->kandidat->status_kawin ?? '-' }}</span>
+                                </div>
+                                <div class="col-lg-4">
+                                    <h6 class="fw-7">Pendidikan</h6>
+                                    <span>{{ auth()->user()->kandidat->pendidikan ?? '-' }}</span>
+                                </div>
+                            </div>
+                            <div class="row mt-lg-4 mt-3">
+                                <div class="col-lg-4 mb-3 mb-lg-0">
                                     <h6 class="fw-7">Berat Badan</h6>
                                     <span>{{ auth()->user()->kandidat->berat_badan . ' Kg' ?? '-' }}</span>
                                 </div>
@@ -108,7 +118,7 @@
 
                             <hr class="my-3 my-lg-5">
 
-                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Alamat</h3>
+                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Alamat</h5>
                             <div class="row mt-lg-4 mt-3">
                                 <div class="col-lg-12">
                                     <h6 class="fw-7">Alamat Lengkap</h6>
@@ -133,7 +143,25 @@
 
                             <hr class="my-3 my-lg-5">
 
-                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Kontak Darurat</h3>
+                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Kontak</h5>
+                            <div class="row mt-lg-4 mt-3">
+                                <div class="col-lg-4 mb-3 mb-lg-0">
+                                    <h6 class="fw-7">Email</h6>
+                                    <span>{{ auth()->user()->kandidat->email ?? '-' }}</span>
+                                </div>
+                                <div class="col-lg-4 mb-3 mb-lg-0">
+                                    <h6 class="fw-7">No. Telepon</h6>
+                                    <span>{{ auth()->user()->kandidat->no_hp ?? '-' }}</span>
+                                </div>
+                                <div class="col-lg-4">
+                                    <h6 class="fw-7">No Whatsapp</h6>
+                                    <span>{{ auth()->user()->kandidat->no_wa ?? '-' }}</span>
+                                </div>
+                            </div>
+
+                            <hr class="my-3 my-lg-5">
+
+                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Kontak Darurat</h5>
                             <div class="row mt-lg-4 mt-3">
                                 <div class="col-lg-4 mb-3 mb-lg-0">
                                     <h6 class="fw-7">Nama Keluarga</h6>
@@ -183,7 +211,7 @@
                                 $i = 0;
                             @endphp
                             @foreach (auth()->user()->kandidat->pengalamanKerja as $pengalamanKerja)
-                                <h5 class="fw-7 text-primary">{{ $pengalamanKerja->nama_perusahaan . ' - ' . $pengalamanKerja->posisi }}</h3>
+                                <h5 class="fw-7 text-primary">{{ $pengalamanKerja->nama_perusahaan . ' - ' . $pengalamanKerja->posisi }}</h5>
                                 <div class="row mt-lg-4 mt-3">
                                     <div class="col-lg-4 mb-3 mb-lg-0">
                                         <h6 class="fw-7">Negara Tempat Bekerja</h6>
@@ -219,7 +247,7 @@
                         </div>
 
                         <div class="tab-pane fade" id="pills-document" role="tabpanel" aria-labelledby="pills-document-tab" tabindex="0">
-                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Dokumen Persyaratan Jati Diri yang Dimiliki</h3>
+                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Dokumen Persyaratan Jati Diri yang Dimiliki</h5>
                             <div class="row mt-lg-4 mt-3">
                                 <div class="col-lg-12 mb-3">
                                     <h6 class="fw-7">Kelengkapan Dokumen</h6>
@@ -244,7 +272,7 @@
                                         <label class="form-check-label" for="buku-nikah">Buku Nikah</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="paspor" {{ auth()->user()->kandidat->ada_paspo == 'Ya' ? 'checked' : '' }} disabled>
+                                        <input class="form-check-input" type="checkbox" id="paspor" {{ auth()->user()->kandidat->ada_paspor == 'Ya' ? 'checked' : '' }} disabled>
                                         <label class="form-check-label" for="paspor">Paspor</label>
                                     </div>
                                 </div>
@@ -256,70 +284,75 @@
 
                             <hr class="my-3 my-lg-5">
                             
-                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Berkas Dokumen Persyaratan Jati Diri yang Dimiliki</h3>
+                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Berkas Dokumen Persyaratan Jati Diri yang Dimiliki</h5>
                             <div class="row mt-lg-4 mt-3">
                                 @php
                                     $arrDocument = [
-                                            [
-                                                'key' => 'foto',
-                                                'path' => 'foto',
-                                                'name' => 'Foto'
-                                            ],
-                                            [
-                                                'key' => 'paspor',
-                                                'path' => 'paspor',
-                                                'name' => 'Paspor'
-                                            ],
-                                            [
-                                                'key' => 'ktp',
-                                                'path' => 'ktp',
-                                                'name' => 'KTP'
-                                            ],
-                                            [
-                                                'key' => 'sertifikat_kompetensi',
-                                                'path' => 'sertifikat-kompetensi',
-                                                'name' => 'Sertifikat Kompetensi'
-                                            ],
-                                            [
-                                                'key' => 'paklaring',
-                                                'path' => 'paklaring',
-                                                'name' => 'Paklaring'
-                                            ],
-                                            [
-                                                'key' => 'kk',
-                                                'path' => 'kartu-keluarga',
-                                                'name' => 'Kartu Keluarga'
-                                            ],
-                                            [
-                                                'key' => 'akta_lahir',
-                                                'path' => 'akta-lahir',
-                                                'name' => 'Akta Lahir'
-                                            ],
-                                            [
-                                                'key' => 'ijazah',
-                                                'path' => 'jazah',
-                                                'name' => 'Ijazah'
-                                            ],
-                                            [
-                                                'key' => 'buku_nikah',
-                                                'path' => 'buku-nikah',
-                                                'name' => 'Buku Nikah'
-                                            ],
-                                        ];
+                                        [
+                                            'key' => 'foto',
+                                            'path' => 'foto',
+                                            'name' => 'Foto'
+                                        ],
+                                        [
+                                            'key' => 'paspor',
+                                            'path' => 'paspor',
+                                            'name' => 'Paspor'
+                                        ],
+                                        [
+                                            'key' => 'ktp',
+                                            'path' => 'ktp',
+                                            'name' => 'KTP'
+                                        ],
+                                        [
+                                            'key' => 'sertifikat_kompetensi',
+                                            'path' => 'sertifikat-kompetensi',
+                                            'name' => 'Sertifikat Kompetensi'
+                                        ],
+                                        [
+                                            'key' => 'sertifikat_bahasa_inggris',
+                                            'path' => 'sertifikat-bahasa-inggris',
+                                            'name' => 'Sertifikat Bahasa Inggris'
+                                        ],
+                                        [
+                                            'key' => 'paklaring',
+                                            'path' => 'paklaring',
+                                            'name' => 'Paklaring'
+                                        ],
+                                        [
+                                            'key' => 'kk',
+                                            'path' => 'kartu-keluarga',
+                                            'name' => 'Kartu Keluarga'
+                                        ],
+                                        [
+                                            'key' => 'akta_lahir',
+                                            'path' => 'akta-lahir',
+                                            'name' => 'Akta Lahir'
+                                        ],
+                                        [
+                                            'key' => 'ijazah',
+                                            'path' => 'ijazah',
+                                            'name' => 'Ijazah'
+                                        ],
+                                        [
+                                            'key' => 'buku_nikah',
+                                            'path' => 'buku-nikah',
+                                            'name' => 'Buku Nikah'
+                                        ],
+                                    ];
                                 @endphp
 
                                 @foreach ($arrDocument as $doc)
-                                    <div class="col-6 col-md-4">
+                                    <div class="col-6 col-md-2">
                                         @php
                                             $memberFile = memberDocumentImage('upload/' . $doc['path'] . '/' . auth()->user()->kandidat->{$doc['key']});
                                         @endphp
                                         @if ($memberFile['is_uploaded'])
                                             <a href="{{ asset('upload/' . $doc['path'] . '/' . auth()->user()->kandidat->{$doc['key']}) }}" target="_blank">
-                                                <img src="{{ asset($memberFile['file_image']) }}" alt="{{ $doc['name'] }}" class="rounded-2 img-fluid mb-3">
+                                                <img src="{{ asset('member-template/images/transparent.png') }}" alt="{{ $doc['name'] }}" class="rounded-2 img-fluid mb-3 img-preview-doc" style="background-image: url('{{ asset($memberFile['file_image']) }}');">
                                                 <div class="fw-7 text-center mb-4 {{ $memberFile['is_uploaded'] ? '' : 'text-muted' }}">{{ $doc['name'] }}</div>
                                             </a>
                                         @else
-                                            <img src="{{ asset($memberFile['file_image']) }}" alt="{{ $doc['name'] }}" class="rounded-2 img-fluid mb-3">
+                                            <img src="{{ asset('member-template/images/transparent.png') }}" alt="{{ $doc['name'] }}" class="rounded-2 img-fluid mb-3 img-preview-doc" style="background-image: url('{{ asset($memberFile['file_image']) }}');">
                                             <div class="fw-7 text-center mb-4 {{ $memberFile['is_uploaded'] ? '' : 'text-muted' }}">{{ $doc['name'] }}</div>
                                         @endif
                                     </div>
@@ -332,3 +365,12 @@
         </div>
     </div>
 @endsection
+@push('css')
+    <style>
+        .img-preview-doc {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+    </style>
+@endpush

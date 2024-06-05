@@ -85,7 +85,6 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-    
         $request->merge(['no_hp' => str_replace(' ', '', $request->no_hp)]);
         $request->merge(['no_wa' => str_replace(' ', '', $request->has('check_whatsapp_number') ? $request->no_hp : $request->no_wa)]);
 
