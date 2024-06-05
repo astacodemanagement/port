@@ -61,7 +61,7 @@ if (!function_exists('memberDocumentImage')) {
                 $fileImage = 'member-template/images/pdf.png';
                 $fileType = 'pdf';
             } else {
-                $fileImage = 'member-template/images/image.png';
+                $fileImage = $filePath;
                 $fileType = pathinfo($filePath, PATHINFO_EXTENSION);
             }
         }
