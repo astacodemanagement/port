@@ -728,7 +728,7 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-
+                                                                                
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-12">
                                                                                         <label class="col-form-label"
@@ -743,177 +743,412 @@
                                                                                 </div>
                                                                                 <h4 class="sub-title">Upload Dokumen
                                                                                     Persyaratan Jati Diri yang dimiliki</h4>
-                                                                                <div class="container">
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Foto</label>
-                                                                                                <br>
-                                                                                                <a href="/upload/foto/{{ $detail_kandidat->foto }}"
-                                                                                                    target="_blank">
-                                                                                                    <img src="/upload/foto/{{ $detail_kandidat->foto }}"
-                                                                                                        alt=""
-                                                                                                        class="previewImg"
-                                                                                                        style="max-width: 100%; max-height: 100%;">
-
-                                                                                                </a>
-
-
+                                                                                    <div class="container">
+                                                                                        <div class="row">
+                                                                                            <!-- Foto -->
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="form-group" style="text-align: center;">
+                                                                                                    <label class="col-form-label" for="">Foto</label>
+                                                                                                    <br>
+                                                                                                    <a href="/upload/foto/{{ $detail_kandidat->foto }}" target="_blank">
+                                                                                                        <img src="/upload/foto/{{ $detail_kandidat->foto }}" alt="" class="previewFoto" style="max-width: 100%; max-height: 100%;">
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-foto">
+                                                                                                    <i class="fa-solid fa-download"></i> update
+                                                                                                </button>
                                                                                             </div>
-
-                                                                                            <button type="button"
-                                                                                                class="btn btn-primary"
-                                                                                                data-toggle="modal"
-                                                                                                data-target="#modal-foto">
-                                                                                                update
-                                                                                                foto </button>
-                                                                                          
-                                                                                        </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Paspor</label>
-                                                                                                <a href="/upload/paspor/{{ $detail_kandidat->paspor }}"
-                                                                                                    target="_blank">
-                                                                                                    <img src="/upload/paspor/{{ $detail_kandidat->paspor }}"
-                                                                                                    alt=""
-                                                                                                    class="previewPaspor"
-                                                                                                    style="max-width: 100%; max-height: 100%;">
-
-                                                                                                </a>
-
+                                                                                    
+                                                                                            <!-- Paspor -->
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="form-group" style="text-align: center;">
+                                                                                                    <label class="col-form-label" for="">Paspor</label>
+                                                                                                    <a href="/upload/paspor/{{ $detail_kandidat->paspor }}" target="_blank">
+                                                                                                        <img src="/upload/paspor/{{ $detail_kandidat->paspor }}" alt="" class="previewPaspor" style="max-width: 100%; max-height: 100%;">
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-paspor">
+                                                                                                    <i class="fa-solid fa-download"></i> update
+                                                                                                </button>
                                                                                             </div>
-                                                                                            {{-- badge --}}
-                                                                                            <button type="button"
-                                                                                                class="btn btn-primary"
-                                                                                                data-toggle="modal"
-                                                                                                data-target="#modal-paspor">
-                                                                                                update
-                                                                                                paspor </button>
+                                                                                    
+                                                                                            <!-- KTP -->
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="form-group" style="text-align: center;">
+                                                                                                    <label class="col-form-label" for="">KTP</label>
+                                                                                                    <a href="/upload/ktp/{{ $detail_kandidat->ktp }}" target="_blank">
+                                                                                                        <img src="/upload/ktp/{{ $detail_kandidat->ktp }}" alt="Preview" class="previewKtp" style="max-width: 100%; max-height: 100%;">
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-ktp">
+                                                                                                    <i class="fa-solid fa-download"></i> update
+                                                                                                </button>
+                                                                                            </div>
+                                                                                    
                                                                                             
-
                                                                                         </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">KTP</label>
-                                                                                                <a href="/upload/ktp/{{ $detail_kandidat->ktp }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
+                                                                                    </div>
+                                                                                  
+
+
+                                                                                    <!-- Modal untuk Update Foto -->
+                                                                                    <div class="modal fade" id="modal-foto" tabindex="-1" role="dialog" aria-labelledby="modal-fotoLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                
+                                                                                                  
+                                                                                                    <div class="modal-header">
+                                                                                                        <h5 class="modal-title" id="modal-fotoLabel">Update Foto</h5>
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                        <img src="/upload/foto/{{ $detail_kandidat->foto }}" alt="" class="previewFoto" style="max-width: 100%; max-height: 100%;">
+                                                                                                   
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="foto">Pilih Foto</label>
+                                                                                                            <input type="file" class="form-control-file" id="foto" name="foto" required>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                        
+                                                                                                    </div>
+                                                                                              
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="container">
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Sertifikat
-                                                                                                    Kompetensi</label>
-                                                                                                <a href="/upload/sertifikat-kompetensi/{{ $detail_kandidat->sertifikat_kompetensi }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
+                                                                                    
+                                                                                    <!-- Modal untuk Update Paspor -->
+                                                                                    <div class="modal fade" id="modal-paspor" tabindex="-1" role="dialog" aria-labelledby="modal-pasporLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                    <div class="modal-header">
+                                                                                                        <h5 class="modal-title" id="modal-pasporLabel">Update Paspor</h5>
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                        <img src="/upload/paspor/{{ $detail_kandidat->paspor }}" alt="" class="previewPaspor" style="max-width: 100%; max-height: 100%;">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="paspor">Pilih Paspor</label>
+                                                                                                            <input type="file" class="form-control-file" id="paspor" name="paspor" required>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                        
+                                                                                                    </div>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Paklaring</label>
-                                                                                                <a href="/upload/paspor/{{ $detail_kandidat->paklaring }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="kk">KK</label>
-                                                                                                <a href="/upload/kartu-keluarga/{{ $detail_kandidat->kk }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-
                                                                                     </div>
-                                                                                </div>
-                                                                                <div class="container">
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Akta
-                                                                                                    Lahir</label>
-                                                                                                <a href="/upload/akta-lahir/{{ $detail_kandidat->akta_lahir }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
+                                                                                    
+                                                                                    <!-- Modal untuk Update KTP -->
+                                                                                    <div class="modal fade" id="modal-ktp" tabindex="-1" role="dialog" aria-labelledby="modal-ktpLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                          
+                                                                                                    <div class="modal-header">
+                                                                                                        <h5 class="modal-title" id="modal-ktpLabel">Update KTP</h5>
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                        <img src="/upload/ktp/{{ $detail_kandidat->ktp }}" alt="" class="previewKtp" style="max-width: 100%; max-height: 100%;">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="ktp">Pilih KTP</label>
+                                                                                                            <input type="file" class="form-control-file" id="ktp" name="ktp" required>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                        
+                                                                                                    </div>
+                                                                                                
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Ijazah</label>
-                                                                                                <a href="/upload/ijazah/{{ $detail_kandidat->ijazah }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="kk">Buku
-                                                                                                    Nikah</label>
-                                                                                                <a href="/upload/buku-nikah/{{ $detail_kandidat->buku_nikah }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-
                                                                                     </div>
-                                                                                </div>
+                                                                                    
+                                                                                    <!-- Modal untuk Update Sertifikat -->
+                                                                                    <div class="modal fade" id="modal-sertifikat" tabindex="-1" role="dialog" aria-labelledby="modal-sertifikatLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                              
+                                                                                                    <div class="modal-header">
+                                                                                                        <h5 class="modal-title" id="modal-sertifikatLabel">Update Sertifikat</h5>
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                            <span aria-hidden="true">&times;</span>
+                                                                                                        </button>
+                                                                                                    </div>
+                                                                                                    <div class="modal-body">
+                                                                                                        <img src="/upload/sertifikat-bahasa-ingris/{{ $detail_kandidat->sertifikat_bahasa_inggris }}" alt="" class="previewSertifikat" style="max-width: 100%; max-height: 100%;">
+                                                                                                        <div class="form-group">
+                                                                                                            <label for="sertifikat">Pilih Sertifikat</label>
+                                                                                                            <input type="file" class="form-control-file" id="sertifikat" name="sertifikat_bahasa_inggris" required>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="modal-footer">
+                                                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                        
+                                                                                                    </div>
+                                                                                              
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="container">
+                                                                                        <div class="row">
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="form-group" style="text-align: center;">
+                                                                                                    <label class="col-form-label" for="">Sertifikat Kompetensi</label>
+                                                                                                    <a href="/upload/sertifikat-kompetensi/{{ $detail_kandidat->sertifikat_kompetensi }}" target="_blank">
+                                                                                                        <img src="/upload/sertifikat-kompetensi/{{ $detail_kandidat->sertifikat_kompetensi }}" alt="Preview" class="previewSertifikatKompetensi" style="max-width: 100%; max-height: 100%;">
+                                                                                                   </a>
+                                                                                                </div>
+                                                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sertifikat-kompetensi">
+                                                                                                    <i class="fa-solid fa-download"></i> update
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="form-group" style="text-align: center;">
+                                                                                                    <label class="col-form-label" for="">Paklaring</label>
+                                                                                                    <a href="/upload/paklaring/{{ $detail_kandidat->paklaring }}" target="_blank">
+                                                                                                        <img src="/upload/paklaring/{{ $detail_kandidat->paklaring }}" alt="Preview" class="previewPaklaring" style="max-width: 100%; max-height: 100%;">
+                                                                                                 </a>
+                                                                                                </div>
+                                                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-paklaring">
+                                                                                                    <i class="fa-solid fa-download"></i> update
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="form-group" style="text-align: center;">
+                                                                                                    <label class="col-form-label" for="kk">KK</label>
+                                                                                                    <a href="/upload/kartu-keluarga/{{ $detail_kandidat->kk }}" target="_blank">
+                                                                                                        <img src="/upload/kartu-keluarga/{{ $detail_kandidat->kk }}" alt="Preview" class="previewKk" style="max-width: 100%; max-height: 100%;">
+                                                                                                   </a>
+                                                                                                </div>
+                                                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-kk">
+                                                                                                    <i class="fa-solid fa-download"></i> update
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <div class="container">
+                                                                                        <div class="row">
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="form-group" style="text-align: center;">
+                                                                                                    <label class="col-form-label" for="">Akta Lahir</label>
+                                                                                                    <a href="/upload/akta/{{ $detail_kandidat->akta }}" target="_blank">
+                                                                                                        <img src="/upload/akta/{{ $detail_kandidat->akta }}" alt="Preview" class="previewAkta" style="max-width: 100%; max-height: 100%;
+                                                                                                        ">
 
-
-
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-akta-lahir">
+                                                                                                    <i class="fa-solid fa-download"></i> update
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="form-group" style="text-align: center;">
+                                                                                                    <label class="col-form-label" for="">Ijazah</label>
+                                                                                                    <a href="/upload/ijazah/{{ $detail_kandidat->ijazah }}" target="_blank">
+                                                                                                        <img src="/upload/ijazah/{{ $detail_kandidat->ijazah }}" alt="Preview" class="previewIjazah" style="max-width: 100%; max-height: 100%;">
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-ijazah">
+                                                                                                    <i class="fa-solid fa-download"></i> update
+                                                                                                </button>
+                                                                                            </div>
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="form-group" style="text-align: center;">
+                                                                                                    <label class="col-form-label" for="kk">Buku Nikah</label>
+                                                                                                    <a href="/upload/buku-nikah/{{ $detail_kandidat->buku_nikah }}" target="_blank">
+                                                                                                        <img src="/upload/buku-nikah/{{ $detail_kandidat->buku_nikah }}" alt="Preview" class="previewBukuNikah" style="max-width: 100%; max-height: 100%;">
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-buku-nikah">
+                                                                                                    <i class="fa-solid fa-download"></i> update
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="container">
+                                                                                        <div class="row">
+                                                                                            <!-- Sertifikat -->
+                                                                                            <div class="col-sm-4">
+                                                                                                <div class="form-group" style="text-align: center;">
+                                                                                                    <label class="col-form-label" for="">Sertifikat</label>
+                                                                                                    <a href="/upload/sertifikat-bahasa-inggris/{{ $detail_kandidat->sertifikat_bahasa_inggris }}" target="_blank">
+                                                                                                        <img src="/upload/sertifikat-bahasa-inggris/{{ $detail_kandidat->sertifikat_bahasa_inggris }}" alt="Preview" class="previewSertifikat" style="max-width: 100%; max-height: 100%;">
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sertifikat">
+                                                                                                    <i class="fa-solid fa-download"></i> update
+                                                                                                </button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- Modal untuk Update Buku Nikah -->
+                                                                                    <div class="modal fade
+                                                                                    " id="modal-buku-nikah" tabindex="-1" role="dialog" aria-labelledby="modal-buku-nikahLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="modal-buku-nikahLabel">Update Buku Nikah</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body
+                                                                                                ">
+                                                                                                <img src="/upload/buku-nikah/{{ $detail_kandidat->buku_nikah }}" alt="" class="previewBukuNikah" style="max-width: 100%; max-height: 100%;">
+                                                                                                <div class="form-group
+                                                                                                ">
+                                                                                                <label for="buku_nikah">Pilih Buku Nikah</label>
+                                                                                                <input type="file" class="form-control-file" id="buku_nikah" name="buku_nikah" required>
+                                                                                                </div>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <!-- Modal untuk Update Sertifikat Kompetensi -->
+                                                                                    <div class="modal fade" id="modal-sertifikat-kompetensi" tabindex="-1" role="dialog" aria-labelledby="modal-sertifikat-kompetensiLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="modal-sertifikat-kompetensiLabel">Update Sertifikat Kompetensi</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    <img src="/upload/sertifikat-kompetensi/{{ $detail_kandidat->sertifikat_kompetensi }}" alt="" class="previewSertifikatKompetensi" style="max-width: 100%; max-height: 100%;">
+                                                                                                    <div class="form-group
+                                                                                                    ">
+                                                                                                    <label for="sertifikat_kompetensi">Pilih Sertifikat Kompetensi</label>
+                                                                                                    <input type="file" class="form-control-file" id="sertifikat_kompetensi" name="sertifikat_kompetensi" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                              
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <!-- Modal untuk Update Paklaring -->
+                                                                                    <div class="modal fade" id="modal-paklaring" tabindex="-1" role="dialog" aria-labelledby="modal-paklaringLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="modal-paklaringLabel">Update Paklaring</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    <img src="/upload/paklaring/{{ $detail_kandidat->paklaring }}" alt="" class="previewPaklaring" style="max-width: 100%; max-height: 100%;">
+                                                                                                    <div class="form-group">
+                                                                                                        <label for="paklaring">Pilih paklaring</label>
+                                                                                                        <input type="file" class="form-control-file" id="paklaring" name="paklaring" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                              
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <!-- Modal untuk Update KK -->
+                                                                                    <div class="modal fade" id="modal-kk" tabindex="-1" role="dialog" aria-labelledby="modal-kkLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="modal-kkLabel">Update KK</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    <img src="/upload/kartu-keluarga/{{ $detail_kandidat->kk }}" alt="" class="previewKk" style="max-width: 100%; max-height: 100%;">
+                                                                                                    <div class="form-group
+                                                                                                    ">
+                                                                                                    <label for="kk">Pilih KK</label>
+                                                                                                    <input type="file" class="form-control-file" id="kk" name="kk" required>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                              
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <!-- Modal untuk Update Akta Lahir -->
+                                                                                    <div class="modal fade" id="modal-akta-lahir" tabindex="-1" role="dialog" aria-labelledby="modal-akta-lahirLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="modal-akta-lahirLabel">Update Akta Lahir</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                     <img src="/upload/akta-lahir/{{ $detail_kandidat->akta }}" alt="" class="previewAkta" style="max-width: 100%; max-height: 100%;">
+                                                                                                    <div class="form-group
+                                                                                                    ">
+                                                                                                    <label for="akta_lahir">Pilih Akta Lahir</label>
+                                                                                                    <input type="file" class="form-control-file" id="akta" name="akta" required>
+                                                                                                    </div>
+                                                                                                  
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                              
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    
+                                                                                    <!-- Modal untuk Update Ijazah -->
+                                                                                    <div class="modal fade" id="modal-ijazah" tabindex="-1" role="dialog" aria-labelledby="modal-ijazahLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog" role="document">
+                                                                                            <div class="modal-content">
+                                                                                                <div class="modal-header">
+                                                                                                    <h5 class="modal-title" id="modal-ijazahLabel">Update Ijazah</h5>
+                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                                        <span aria-hidden="true">&times;</span>
+                                                                                                    </button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                    <img src="/upload/ijazah/{{ $detail_kandidat->ijazah }}" alt="" class="previewIjazah" style="max-width: 100%; max-height: 100%;">
+                                                                                                    <div class="form-group
+                                                                                                    ">
+                                                                                                    <label for="ijazah">Pilih Ijazah</label>
+                                                                                                    <input type="file" class="form-control-file" id="ijazah" name="ijazah" required>
+                                                                                                </div>
+                                                                                                <div class="modal-footer">
+                                                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                              
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                                                                                                        
+                                                                                    
+                                                                                  
 
 
 
@@ -921,12 +1156,13 @@
 
                                                                             </div>
                                                                         </div>
-
+                                                                        </div>
 
                                                                     </div>
 
                                                                 </div>
                                                             </div>
+                                                           
 
 
 
@@ -1025,8 +1261,7 @@
                                                                 </div>
                                                             </div>
 
-                                                            {{-- button modal  for foto  --}}
-
+                                                           
 
                                                             <a href="javascript:history.back()"
                                                                 class="btn btn-warning waves-effect waves-light mt-3">
@@ -1084,6 +1319,94 @@
 
 
             @push('script')
+            <script>
+                //handle preview foto,ktp,paspor
+               $(document).ready(function(){
+                   $('#foto').change(function(e){
+                       let reader = new FileReader();
+                       reader.onload = (e) => {
+                           $('.previewFoto').attr('src', e.target.result);
+                       }
+                       reader.readAsDataURL(this.files[0]);
+
+                   });
+
+                   $('#ktp').change(function(e){
+                       let reader = new FileReader();
+                       reader.onload = (e) => {
+                           $('.previewKtp').attr('src', e.target.result);
+                       }
+                       reader.readAsDataURL(this.files[0]);
+                   });
+
+                   $('#paspor').change(function(e){
+                       let reader = new FileReader();
+                       reader.onload = (e) => {
+                           $('.previewPaspor').attr('src', e.target.result);
+                       }
+                       reader.readAsDataURL(this.files[0]);
+                   });
+
+                   $('#sertifikat').change(function(e){
+                       let reader = new FileReader();
+                       reader.onload = (e) => {
+                           $('.previewSertifikat').attr('src', e.target.result);
+                       }
+                       reader.readAsDataURL(this.files[0]);
+                   }); 
+                // buat untuk lainnya
+                     $('#sertifikat_kompetensi').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewSertifikatKompetensi').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+    
+                     $('#paklaring').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewPaklaring').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+    
+                     $('#kk').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewKk').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+    
+                     $('#akta').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewAkta').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+    
+                     $('#ijazah').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewIjazah').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+    
+                     $('#buku_nikah').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewBukuNikah').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+                }
+
+            );
+
+            </script>
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         // Ambil semua input dengan kelas border-checkbox
