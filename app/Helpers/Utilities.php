@@ -21,7 +21,7 @@ if (!function_exists('memberProfile')) {
     {
         $profileImg = asset('member-template/images/profile/user-1.jpg');
 
-        if ($img = $data->profile_image) {
+        if ($img = $data->kandidat->foto) {
             $profileImg = asset('upload/foto/' . $img);
 
             if (!File::exists(public_path('upload/foto/' . $img))) {
@@ -47,16 +47,32 @@ if (!function_exists('memberProfile')) {
     }
 }
 
+if (!function_exists('memberDocumentImage')) {
+    function memberDocumentImage($filePath)
+    {
+        $isUploaded = false;
+        $fileImage = 'member-template/images/unknown-file.png';
+        $fileType = null;
+
+        if (File::exists($filePath)) {
+            $isUploaded = true;
+
+            if ( pathinfo($filePath,  PATHINFO_EXTENSION) == 'pdf' ) {
+                $fileImage = 'member-template/images/pdf.png';
+                $fileType = 'pdf';
+            } else {
+                $fileImage = 'member-template/images/image.png';
+                $fileType = pathinfo($filePath, PATHINFO_EXTENSION);
+            }
+        }
+
+        return ['is_uploaded' => $isUploaded, 'file_image' => $fileImage, 'filetype' => $fileType];
+    }
+}
+
 if (!function_exists('hashId')) {
     function hashId($string, $type = 'encode')
     {
         return $type == 'encode' ? Hashids::encode($string) : Hashids::decode($string);
-    }
-}
-
-if (!function_exists('isJobAvialable')) {
-    function isJobAvialable($endDate)
-    {
-        return Carbon::parse($endDate)->diffInDays(today());
     }
 }
