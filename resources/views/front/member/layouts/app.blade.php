@@ -70,11 +70,11 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav quick-links d-none d-xl-flex ms-5">
-                    <li class="nav-item dropdown hover-dd d-none d-xl-block ms-5">
-                        <a class="nav-link" href="{{ route('member.index') }}" data-bs-toggle="dropdown"><i class="ti ti-user me-3 text-primary fs-5"></i> Profile</a>
+                    <li class="nav-item hover-dd d-none d-xl-block ms-5">
+                        <a class="nav-link" href="{{ route('member.index') }}"><i class="ti ti-user me-3 text-primary fs-5"></i> Profile</a>
                     </li>
-                    <li class="nav-item dropdown hover-dd d-none d-xl-block">
-                        <a class="nav-link" href="javascript:void(0)" data-bs-toggle="dropdown"><i
+                    <li class="nav-item hover-dd d-none d-xl-block">
+                        <a class="nav-link" href="javascript:void(0)"><i
                                 class="ti ti-briefcase me-3 text-primary fs-5"></i> Jobs</a>
                         {{-- <a href="./app-invoice.html" class="d-flex align-items-center pb-9 position-relative    ">
                                                 <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
