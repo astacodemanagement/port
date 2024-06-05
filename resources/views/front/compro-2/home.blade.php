@@ -51,15 +51,24 @@
             
                      <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-8">
                         {{-- job card --}}
+                        @foreach ($job as $item)
+                            
+                        
                         <div class="tw-relative tw-flex tw-flex-col tw-mt-6 tw-text-gray-700 tw-bg-[#18191C08] tw-border tw-border-[#E4E5E8] tw-rounded-xl tw-w-full">
                             <div class="tw-relative tw-h-[300px] tw-bg-cover tw-bg-fixed tw-overflow-hidden tw-text-white tw-rounded-xl tw-bg-blue-gray-500" style="background-position:center;">
-                                <img src="https://s3-alpha-sig.figma.com/img/ef94/5651/de35d8ed78dfdfcb603b26e763f562b6?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mvf3msVZVItgBbqpQ-3fhmr-Oy6XkCQhpZmAcXKg8cmCqom8sbdr0h4KyDZNcXPk-FJgsShOR0tur9AQ4bknllsgMH89p1VfsXd~9zdwDu8fXs5TIg0VI2oOZQ7laixl7ey2SmPRgOKTBv3vAoRNswBTe0nR1gqzvRkgwKKF07sF8DCR0weewiMLhcq~3rcUlz30TBzlfxyOJBnmnKnIB4ioFpxn7gPINsWGQbXLEuZp0fZ9v4-3NhRBGhpO5y77EzKitK4hH1W249mmFqwNIN25cfKMPKdQErmR4roni3O1c1igTjKws1gM6yekmFmy7190xPswRECZdYgKU6Rs9Q__" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
+                              @if ($item->gambar)
+                              <img src="/upload/gambar/{{$item->gambar->gambar}}" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
+                           
+                              @else
+                              <img src="/images/no-image.png" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
+                                  
+                              @endif
                             </div>
                             <div class="tw-p-6">
                                
                                 <div class="tw-flex">
                                     <h5 class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C]">
-                                        Technical Support Specialist
+                                        {{$item->nama_job}}
                                     </h5>
                                     <div class="tw-ml-auto tw-flex tw-items-center tw-justify-center tw-w-8 tw-h-8 tw-rounded-full tw-bg-[#F1F9FE]">
                                         <i class="fa-regular fa-bookmark tw-text-sky-500 tw-text-2xl"></i>
@@ -74,28 +83,28 @@
                                 </button>
                                 <p class="tw-mt-5 tw-text-lg tw-font-semibold tw-leading-5 tw-text-[#11181C]">Gaji</p>
                                 <p class="tw-block tw-font-sans tw-text-base tw-antialiased tw-font-light tw-leading-relaxed tw-text-inherit">
-                                    <span class="tw-text-[#2B9FDC] tw-text-2xl tw-font-semibold tw-font-clash-display tw-mt-1">Rp 3.4 - 4.5 jt/</span> <span class="tw-text-lg tw-font-normal tw-text-[#2B9FDC]">bulan</span>
+                                    <span class="tw-text-[#2B9FDC] tw-text-2xl tw-font-semibold tw-font-clash-display tw-mt-1">Rp {{$item->estimasi_minimal}} - {{$item->estimasi_maksimal}} jt/</span> <span class="tw-text-lg tw-font-normal tw-text-[#2B9FDC]">bulan</span>
                                 </p>
                                 <div class="tw-grid tw-grid-cols-2 tw-gap-4 tw-mt-4">
                                     <div class="tw-flex tw-items-start">
                                         <i class="fa-solid fa-location-dot tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
                                         <div>
                                             <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Negara</p>
-                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">Indonesia</p>
+                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">{{$item->nama_negara}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start">
                                         <i class="fa-solid fa-briefcase tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
                                         <div>
                                             <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Kontrak Kerja</p>
-                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">Full-Time</p>
+                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">{{$item->kontrak_kerja}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start">
                                         <i class="fa-solid fa-language tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
                                         <div>
                                             <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Level Bahasa</p>
-                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">Intermediate</p>
+                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">{{$item->level_bahasa}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start">
@@ -117,7 +126,7 @@
                             
                             </div>
                         </div>
-                       
+                        @endforeach
                     </div>
                     {{-- lihat semua lowongan button --}}
                     <div class="tw-flex tw-justify-center tw-mt-6">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kandidat;
 use App\Models\KategoriJob;
 use App\Models\Pendaftaran;
 use App\Models\LogHistori;
@@ -112,13 +113,17 @@ class BelumVerifikasiController extends Controller
     }
 
     public function updateDetail(Request $request, $id)
-    {
+    { 
         $verifikasi = Pendaftaran::findOrFail($id);
-
-        // Ambil hanya bidang-bidang yang ditentukan dari permintaan
+        // update level bahasa inggris di tabel kandidat
+         Kandidat::where('pendaftaran_id', $id)->first()->update([
+            'level_bahasa_inggris' => $request->level_bahasa_inggris,
+            'pic_level' => $request->pic_level,
+            'catatan_level' => $request->catatan_level
+            ]);
         $input = $request->only([
             'bayar_cf', 'bukti_tf_cf', 'tanggal_tf_cf',
-            'status_paid_cf', 'tanggal_refund_cf', 'bayar_refund_cf', 'catatan_pembayaran_cf','level_bahasa_inggris','pic_level','catatan_level'
+            'status_paid_cf', 'tanggal_refund_cf', 'bayar_refund_cf'
         ]);
 
         if ($request->has('bayar_cf')) {
@@ -145,7 +150,7 @@ class BelumVerifikasiController extends Controller
 
         // Update verifikasi data di database
         $verifikasi->update($input);
-
+        
         if ($request->has('email')) {
             User::where('id', $verifikasi->kandidat->user_id)->update([
                 'email' => $request->email
