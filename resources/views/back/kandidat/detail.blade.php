@@ -755,7 +755,7 @@
                                                                                                     </a>
                                                                                                 </div>
                                                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-foto">
-                                                                                                    Update Foto
+                                                                                                    <i class="fa-solid fa-download"></i> update
                                                                                                 </button>
                                                                                             </div>
                                                                                     
@@ -768,7 +768,7 @@
                                                                                                     </a>
                                                                                                 </div>
                                                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-paspor">
-                                                                                                    Update Paspor
+                                                                                                    <i class="fa-solid fa-download"></i> update
                                                                                                 </button>
                                                                                             </div>
                                                                                     
@@ -781,7 +781,7 @@
                                                                                                     </a>
                                                                                                 </div>
                                                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-ktp">
-                                                                                                    Update KTP
+                                                                                                    <i class="fa-solid fa-download"></i> update
                                                                                                 </button>
                                                                                             </div>
                                                                                     
@@ -908,7 +908,7 @@
                                                                                                         <img src="/upload/sertifikat-kompetensi/{{ $detail_kandidat->sertifikat_kompetensi }}" alt="Preview" class="previewSertifikatKompetensi" style="max-width: 100%; max-height: 100%;">
                                                                                                    </a>
                                                                                                 </div>
-                                                                                                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-sertifikat-kompetensi">
+                                                                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sertifikat-kompetensi">
                                                                                                     <i class="fa-solid fa-download"></i> update
                                                                                                 </button>
                                                                                             </div>
@@ -920,7 +920,7 @@
                                                                                                  </a>
                                                                                                 </div>
                                                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-paklaring">
-                                                                                                    Update Paklaring
+                                                                                                    <i class="fa-solid fa-download"></i> update
                                                                                                 </button>
                                                                                             </div>
                                                                                             <div class="col-sm-4">
@@ -931,7 +931,7 @@
                                                                                                    </a>
                                                                                                 </div>
                                                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-kk">
-                                                                                                    Update KK
+                                                                                                    <i class="fa-solid fa-download"></i> update
                                                                                                 </button>
                                                                                             </div>
                                                                                         </div>
@@ -949,7 +949,7 @@
                                                                                                     </a>
                                                                                                 </div>
                                                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-akta-lahir">
-                                                                                                    Update Akta Lahir
+                                                                                                    <i class="fa-solid fa-download"></i> update
                                                                                                 </button>
                                                                                             </div>
                                                                                             <div class="col-sm-4">
@@ -960,7 +960,7 @@
                                                                                                     </a>
                                                                                                 </div>
                                                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-ijazah">
-                                                                                                    Update Ijazah
+                                                                                                    <i class="fa-solid fa-download"></i> update
                                                                                                 </button>
                                                                                             </div>
                                                                                             <div class="col-sm-4">
@@ -971,7 +971,7 @@
                                                                                                     </a>
                                                                                                 </div>
                                                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-buku-nikah">
-                                                                                                    Update Buku Nikah
+                                                                                                    <i class="fa-solid fa-download"></i> update
                                                                                                 </button>
                                                                                             </div>
                                                                                         </div>
@@ -987,7 +987,7 @@
                                                                                                     </a>
                                                                                                 </div>
                                                                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sertifikat">
-                                                                                                    Update Sertifikat Bahasa Ingris
+                                                                                                    <i class="fa-solid fa-download"></i> update
                                                                                                 </button>
                                                                                             </div>
                                                                                         </div>
