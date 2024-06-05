@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class KandidatController extends Controller
@@ -110,103 +111,241 @@ class KandidatController extends Controller
     
     public function update(Request $request, $id)
     {
-       $validate = Validator::make($request->all(), [
-            'nik' => 'required|min:16|max:16',
+        // dd($request->foto);
+       $validate = $request->validate([
+            'nik' => 'required|numeric|max_digits:16|min_digits:16',
             'nama_lengkap' => 'required',
             'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
-            'jenis_kelamin' => 'required',
+            'tanggal_lahir' => 'required|date_format:Y-m-d',
+            'jenis_kelamin' => 'required|in:P,W',
             'usia' => 'required',
             'berat_badan' => 'required',
             'tinggi_badan' => 'required',
             'jenis_kelamin' => 'required',
             'agama' => 'required',
-          
-            'alamat' => 'required',
+            'status_kawin' => 'required',
+            'alamat' => 'required|min:5',
             'provinsi_id' => 'required',
             'kota_id' => 'required',
             'kecamatan_id' => 'required',
-            'referensi' => 'required',
-            'no_hp' => 'required',
+            'referensi' => 'nullable',
+            'nama_referensi' => 'nullable',
+            'nama_keluarga' => 'nullable',
+            'hubungan' => 'nullable',
+            'no_telp_darurat' => 'nullable|numeric|min_digits:6|max_digits:14',
+            'no_paspor' => 'required|numeric|max_digits:16|min_digits:16',
+            'tanggal_pengeluaran_paspor' => 'required|date_format:Y-m-d',
+            'masa_kadaluarsa' => 'required|date_format:Y-m-d',
+            'kantor_paspor' => 'required|min:3',
+            'kondisi_paspor' => 'required',
+            'no_hp' => 'required|numeric|min_digits:6|max_digits:14',
             'email' => 'required',
-            
-            'foto' => 'required',
-        ]);
-        Kandidat::find($id)->update([
-            'nik' => $request->nik,
-            'nama_lengkap' => $request->nama_lengkap,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'usia' => $request->usia,
-            'berat_badan' => $request->berat_badan,
-            'tinggi_badan' => $request->tinggi_badan,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'agama' => $request->agama,
-            'status_kawin' => $request->status_kawin,
-            'alamat' => $request->alamat,
-            'provinsi_id' => $request->provinsi_id,
-            'kota_id' => $request->kota_id,
-            'kecamatan_id' => $request->kecamatan_id,
-            'referensi' => $request->referensi,
-            'nama_referensi' => $request->nama_referensi,
-            'nama_keluarga' => $request->nama_keluarga,
-            'hubungan' => $request->hubungan,
-            'no_telp_darurat' => $request->no_telp_darurat,
-            'no_paspor' => $request->no_paspor,
-            'tanggal_pengeluaran_paspor' => $request->tanggal_pengeluaran_paspor,
-            'masa_kadaluarsa' => $request->masa_kadaluarsa,
-            'kantor_paspor' => $request->kantor_paspor,
-            'kondisi_paspor' => $request->kondisi_paspor,
-            'no_hp' => $request->no_hp,
-            'email' => $request->email,
-     
-            'foto' => $request->foto,
-            'level_bahasa_inggris' => $request->level_bahasa_inggris,
-            'sertifikat_bahasa_inggris' => $request->sertifikat_bahasa_inggris,
-            'memiliki_anak' => $request->memiliki_anak,
-            'jumlah_anak' => $request->jumlah_anak,
-            'usia_anak' => $request->usia_anak,
-            'yakin_kerja_diluar_negeri' => $request->yakin_kerja_diluar_negeri,
-            'patuh_peraturan' => $request->patuh_peraturan,
-            'motivasi' => $request->motivasi,
-            'apa_anda_sehat' => $request->apa_anda_sehat,
-            'keterbatasan_fisik' => $request->keterbatasan_fisik,
-            'keterangan_keterbatasan_fisik' => $request->keterangan_keterbatasan_fisik,
-            'pernah_operasi' => $request->pernah_operasi,
-            'keterangan_pernah_operasi' => $request->keterangan_pernah_operasi,
-            'riwayat_penyakit_rawat' => $request->riwayat_penyakit_rawat,
-            'keterangan_riwayat_penyakit_rawat' => $request->keterangan_riwayat_penyakit_rawat,
-            'apa_anda_hamil' => $request->apa_anda_hamil,
-            'ada_ktp' => $request->ada_ktp,
-            'ada_kk' => $request->ada_kk,
-            'ada_akta_lahir' => $request->ada_akta_lahir,
-            'ada_ijazah' => $request->ada_ijazah,
-            'ada_buku_nikah' => $request->ada_buku_nikah,
-            'ada_paspor' => $request->ada_paspor,
-            'penjelasan_dokumen' => $request->penjelasan_dokumen,
-            'paspor' => $request->paspor,
-            'ktp' => $request->ktp,
-            'sertifikat_kompetensi' => $request->sertifikat_kompetensi,
-            'paklaring' => $request->paklaring,
-            'video_diri' => $request->video_diri,
-            'video_skill' => $request->video_skill,
-            'email' => $request->email,
-            'no_hp' => $request->no_hp,
-            'no_wa' => $request->no_wa,
-            
+            'level_bahasa_inggris' => 'nullable',
+            'memiliki_anak' => 'nullable',
+            'usia_anak' => 'nullable|numeric',
+            'yakin_kerja_diluar_negeri' => 'nullable',
+            'jumlah_anak' => 'numeric|nullable',
+            'patuh_peraturan' => 'nullable',
+            'motivasi' => 'nullable',
+            'apa_anda_sehat' => 'nullable',
+            'keterbatasan_fisik' => 'nullable',
+            'keterangan_keterbatasan_fisik' => 'nullable',
+            'pernah_operasi' => 'nullable',
+            'keterangan_pernah_operasi' => 'nullable',
+            'riwayat_penyakit_rawat' => 'nullable',
+            'keterangan_riwayat_penyakit_rawat' => 'nullable',
+            'apa_anda_hamil' => 'nullable',
+            'ada_ktp' => 'nullable',
+            'ada_kk' => 'nullable',
+            'ada_akta_lahir' => 'nullable',
+            'ada_ijazah' => 'nullable',
+            'ada_buku_nikah' => 'nullable',
+            'ada_paspor' => 'nullable',
+            'penjelasan_dokumen' => 'nullable',
+            'video_diri' => 'nullable',
+            'video_skill' => 'nullable',
+            'email' => 'required',
+            'password' => 'nullable|min:8',
+            'no_hp' => 'nullable|numeric|min_digits:6|max_digits:14',
+            'no_wa' => 'nullable|numeric|min_digits:6|max_digits:14',
+            'foto' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp',
+            'paspor' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+            'ktp' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+            'sertifikat_kompetensi' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+            'paklaring' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+            'kk' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+            'akta' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+            'ijazah' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+            'buku_nikah' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+            'sertifikat_bahasa_inggris' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
 
-        ]);
-        $kandidat = Kandidat::find($id);
+       ]);
+
+       $kandidat = [
+        'nik' =>$validate["nik"],
+        'nama_lengkap' =>$validate["nama_lengkap"],
+        'tempat_lahir' =>$validate["tempat_lahir"],
+        'tanggal_lahir' =>$validate["tanggal_lahir"],
+        'jenis_kelamin' =>$validate["jenis_kelamin"],
+        'usia' =>$validate["usia"],
+        'berat_badan' =>$validate["berat_badan"],
+        'tinggi_badan' =>$validate["tinggi_badan"],
+        'jenis_kelamin' =>$validate["jenis_kelamin"],
+        'agama' =>$validate["agama"],
+        'status_kawin' =>$validate["status_kawin"],
+        'alamat' =>$validate["alamat"],
+        'provinsi_id' =>$validate["provinsi_id"],
+        'kota_id' =>$validate["kota_id"],
+        'kecamatan_id' =>$validate["kecamatan_id"],
+        'referensi' =>$validate["referensi"],
+        'nama_referensi' =>$validate["nama_referensi"],
+        'nama_keluarga' =>$validate["nama_keluarga"],
+        'hubungan' =>$validate["hubungan"],
+        'no_telp_darurat' =>$validate["no_telp_darurat"],
+        'no_paspor' =>$validate["no_paspor"],
+        'tanggal_pengeluaran_paspor' =>$validate["tanggal_pengeluaran_paspor"],
+        'masa_kadaluarsa' =>$validate["masa_kadaluarsa"],
+        'kantor_paspor' =>$validate["kantor_paspor"],
+        'kondisi_paspor' =>$validate["kondisi_paspor"],
+        'no_hp' =>$validate["no_hp"],
+        'email' =>$validate["email"],
+        'level_bahasa_inggris' =>$validate["level_bahasa_inggris"],
+        'memiliki_anak' =>$validate["memiliki_anak"],
+        'jumlah_anak' =>$validate["jumlah_anak"],
+        'usia_anak' =>$validate["usia_anak"],
+        'yakin_kerja_diluar_negeri' =>$validate["yakin_kerja_diluar_negeri"],
+        'patuh_peraturan' =>$validate["patuh_peraturan"],
+        'motivasi' =>$validate["motivasi"],
+        'apa_anda_sehat' =>$validate["apa_anda_sehat"],
+        'keterbatasan_fisik' =>$validate["keterbatasan_fisik"],
+        'keterangan_keterbatasan_fisik' =>$validate["keterangan_keterbatasan_fisik"],
+        'pernah_operasi' =>$validate["pernah_operasi"],
+        'keterangan_pernah_operasi' =>$validate["keterangan_pernah_operasi"],
+        'riwayat_penyakit_rawat' =>$validate["riwayat_penyakit_rawat"],
+        'keterangan_riwayat_penyakit_rawat' =>$validate["keterangan_riwayat_penyakit_rawat"],
+        'apa_anda_hamil' =>$validate["apa_anda_hamil"],
+        'ada_ktp' =>$validate["ada_ktp"],
+        'ada_kk' =>$validate["ada_kk"],
+        'ada_akta_lahir' =>$validate["ada_akta_lahir"],
+        'ada_ijazah' =>$validate["ada_ijazah"],
+        'ada_buku_nikah' =>$validate["ada_buku_nikah"],
+        'ada_paspor' =>$validate["ada_paspor"],
+        'penjelasan_dokumen' =>$validate["penjelasan_dokumen"],
+        'video_diri' =>$validate["video_diri"],
+        'video_skill' =>$validate["video_skill"],
+        'email' =>$validate["email"],
+        'no_hp' =>$validate["no_hp"],
+        'no_wa' =>$validate["no_wa"],
+     ];
+        // handle foto
+        if ($request->hasFile('foto')) {
+            $realpathFoto = $request->file('foto')->getRealPath();
+            $filenameFoto = 'foto-' . time() . '.' . $request->file('foto')->getClientOriginalExtension();
+            $dirFoto = 'upload/foto/';
+            $uploadFoto = Storage::disk('public_uploads')->put($dirFoto . $filenameFoto, file_get_contents($realpathFoto));
+            if ($uploadFoto) {
+                $kandidat['foto'] = $filenameFoto;
+            }
+            
+        }
+        if($request->has('paspor')){
+            $realpathPaspor = $request->file('paspor')->getRealPath();
+            $filenamePaspor = 'paspor-' . time() . '.' . $request->file('paspor')->getClientOriginalExtension();
+            $dirPaspor = 'upload/paspor/';
+            $uploadPaspor = Storage::disk('public_uploads')->put($dirPaspor . $filenamePaspor, file_get_contents($realpathPaspor));
+            if ($uploadPaspor) {
+                $kandidat['paspor'] = $filenamePaspor;
+            }
+        }
+        if($request->has('ktp')){
+            $realpathKtp = $request->file('ktp')->getRealPath();
+            $filenameKtp = 'ktp-' . time() . '.' . $request->file('ktp')->getClientOriginalExtension();
+            $dirKtp = 'upload/ktp/';
+            $uploadKtp = Storage::disk('public_uploads')->put($dirKtp . $filenameKtp, file_get_contents($realpathKtp));
+            if ($uploadKtp) {
+                $kandidat['ktp'] = $filenameKtp;
+            }
+        }
+        if($request->has('sertifikat_kompetensi')){
+            $realpathSertifikatKompetensi = $request->file('sertifikat_kompetensi')->getRealPath();
+            $filenameSertifikatKompetensi = 'sertifikat-kompetensi-' . time() . '.' . $request->file('sertifikat_kompetensi')->getClientOriginalExtension();
+            $dirSertifikatKompetensi = 'upload/sertifikat-kompetensi/';
+            $uploadSertifikatKompetensi = Storage::disk('public_uploads')->put($dirSertifikatKompetensi . $filenameSertifikatKompetensi, file_get_contents($realpathSertifikatKompetensi));
+            if ($uploadSertifikatKompetensi) {
+                $kandidat['sertifikat_kompetensi'] = $filenameSertifikatKompetensi;
+            }
+        }
+        if($request->has('paklaring')){
+            $realpathPaklaring = $request->file('paklaring')->getRealPath();
+            $filenamePaklaring = 'paklaring-' . time() . '.' . $request->file('paklaring')->getClientOriginalExtension();
+            $dirPaklaring = 'upload/paklaring/';
+            $uploadPaklaring = Storage::disk('public_uploads')->put($dirPaklaring . $filenamePaklaring, file_get_contents($realpathPaklaring));
+            if ($uploadPaklaring) {
+                $kandidat['paklaring'] = $filenamePaklaring;
+            }
+        }
+        // kk
+        if($request->has('kk')){
+            $realpathKk = $request->file('kk')->getRealPath();
+            $filenameKk = 'kk-' . time() . '.' . $request->file('kk')->getClientOriginalExtension();
+            $dirKk = 'upload/kartu-keluarga/';
+            $uploadKk = Storage::disk('public_uploads')->put($dirKk . $filenameKk, file_get_contents($realpathKk));
+            if ($uploadKk) {
+                $kandidat['kk'] = $filenameKk;
+            }
+        }
+        // akta
+        if($request->has('akta')){
+            $realpathAkta = $request->file('akta')->getRealPath();
+            $filenameAkta = 'akta-' . time() . '.' . $request->file('akta')->getClientOriginalExtension();
+            $dirAkta = 'upload/akta/';
+            $uploadAkta = Storage::disk('public_uploads')->put($dirAkta . $filenameAkta, file_get_contents($realpathAkta));
+            if ($uploadAkta) {
+                $kandidat['akta'] = $filenameAkta;
+            }
+        }
+        // ijazah
+        if($request->has('ijazah')){
+            $realpathIjazah = $request->file('ijazah')->getRealPath();
+            $filenameIjazah = 'ijazah-' . time() . '.' . $request->file('ijazah')->getClientOriginalExtension();
+            $dirIjazah = 'upload/ijazah/';
+            $uploadIjazah = Storage::disk('public_uploads')->put($dirIjazah . $filenameIjazah, file_get_contents($realpathIjazah));
+            if ($uploadIjazah) {
+                $kandidat['ijazah'] = $filenameIjazah;
+            }
+        }
+        // buku nikah
+        if($request->has('buku_nikah')){
+            $realpathBukuNikah = $request->file('buku_nikah')->getRealPath();
+            $filenameBukuNikah = 'buku-nikah-' . time() . '.' . $request->file('buku_nikah')->getClientOriginalExtension();
+            $dirBukuNikah = 'upload/buku-nikah/';
+            $uploadBukuNikah = Storage::disk('public_uploads')->put($dirBukuNikah . $filenameBukuNikah, file_get_contents($realpathBukuNikah));
+            if ($uploadBukuNikah) {
+                $kandidat['buku_nikah'] = $filenameBukuNikah;
+            }
+        }
+        //  sertifikat_bahasa_inggris
+        if($request->has('sertifikat_bahasa_inggris')){
+            $realpathSertifikatBahasaInggris = $request->file('sertifikat_bahasa_inggris')->getRealPath();
+            $filenameSertifikatBahasaInggris = 'sertifikat-bahasa-inggris-' . time() . '.' . $request->file('sertifikat_bahasa_inggris')->getClientOriginalExtension();
+            $dirSertifikatBahasaInggris = 'upload/sertifikat-bahasa-inggris/';
+            $uploadSertifikatBahasaInggris = Storage::disk('public_uploads')->put($dirSertifikatBahasaInggris . $filenameSertifikatBahasaInggris, file_get_contents($realpathSertifikatBahasaInggris));
+            if ($uploadSertifikatBahasaInggris) {
+                $kandidat['sertifikat_bahasa_inggris'] = $filenameSertifikatBahasaInggris;
+            }
+        }
+        // dd($kandidat['paklaring']);
+        Kandidat::find($id)->update($kandidat);
+        $user_id = Kandidat::find($id)->user_id;
 
         if ($request->has('email')) {
-            User::where('id',$kandidat->user_id)->update([
+            User::where('id',$user_id)->update([
                 'email' => $request->email
             ]);
         }
 
         if ($request->has('password') && $request->password != null) {
-            User::where('id',$kandidat->user_id)->update([
+            User::where('id',$user_id)->update([
                 'password' => Hash::make($request->password)
             ]);
         }
@@ -214,10 +353,10 @@ class KandidatController extends Controller
         $loggedInUserId = Auth::id();
 
         // Simpan log histori untuk operasi Update dengan user_id yang sedang login
-        $this->simpanLogHistori('Update', 'Update Detail Verifikasi', $kandidat->id, $loggedInUserId, json_encode($kandidat->getOriginal()), json_encode($kandidat));
-
+        $this->simpanLogHistori('Update', 'kandidat', $id, $loggedInUserId, null, json_encode($kandidat));
         return response()->json(['message' => 'Data Berhasil Diupdate']);
-    }
+    
+}
 
 
 
