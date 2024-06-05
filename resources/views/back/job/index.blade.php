@@ -53,7 +53,8 @@
 
                                     </div>
                                     <div class="card-block">
-                                        <a href="{{ route('back-office.job.create') }}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Add
+                                        <a href="{{ route('back-office.job.create') }}" class="btn btn-primary"><i
+                                                class="fas fa-plus-circle"></i> Add
                                             Data</a>
 
                                         <br><br>
@@ -82,12 +83,14 @@
                                                             <td>{{ $p->nama_perusahaan }}</td>
                                                             <td>
                                                                 @if ($p->status === 'publish')
-                                                                    <span class="badge bg-success">{{ $p->status }}</span>
+                                                                    <span
+                                                                        class="badge bg-success">{{ $p->status }}</span>
                                                                 @else
-                                                                    <span class="badge bg-warning">{{ $p->status }}</span>
+                                                                    <span
+                                                                        class="badge bg-warning">{{ $p->status }}</span>
                                                                 @endif
                                                             </td>
-                                                            
+
                                                             <td class="text-center">
                                                                 <a style="color: rgb(242, 236, 236)" href="#"
                                                                     class="btn btn-sm btn-secondary btn-gambar"
@@ -98,12 +101,20 @@
                                                                     <i class="fas fa-image"></i> Gambar
                                                                 </a>
 
-                                                                <a style="color: rgb(242, 236, 236)" href=""
-                                                                    class="btn btn-sm btn-primary btn-edit" data-id="{{ $p->id }}" style="color: black">
+                                                                <a style="color: rgb(242, 236, 236)" href="#"
+                                                                    class="btn btn-sm btn-primary btn-status"
+                                                                    data-toggle="modal" data-target="#modal-status"
+                                                                    data-id="{{ $p->id }}"
+                                                                    data-nama-job="{{ $p->nama_job }}"
+                                                                    style="color: black">
                                                                     <i class="fas fa-edit"></i> Ubah Status
                                                                 </a>
 
-                                                                <a href="{{ route('back-office.job.edit',$p->id)}}" class="btn btn-sm btn-warning" style="color: black"><i class="fas fa-edit"></i> Edit</a>
+
+
+                                                                <a href="{{ route('back-office.job.edit', $p->id) }}"
+                                                                    class="btn btn-sm btn-warning" style="color: black"><i
+                                                                        class="fas fa-edit"></i> Edit</a>
                                                                 <button class="btn btn-sm btn-danger btn-hapus"
                                                                     data-id="{{ $p->id }}" style="color: white">
                                                                     <i class="fas fa-trash-alt"></i> Delete
@@ -166,6 +177,56 @@
                     </form>
                 </div>
             </div>
+
+
+            {{-- Modal Ubah Status --}}
+            <div class="modal fade" id="modal-status" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <form id="form-status" action="" method="POST">
+                        @csrf
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Ubah Status Job: <span id="nama-job-info-status"></span></h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Input Nama Gambar dan File -->
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select class="form-control" name="status" id="status">
+                                        <option value="">--Pilih Status--</option>
+
+                                       
+                                            {{-- <!-- Cek apakah nilai yang sedang diedit adalah '6' -->
+                                            <option value="publish" {{ $job->status == 'publish' ? 'selected' : '' }}>
+                                                publish </option>
+
+                                            <!-- Cek apakah nilai yang sedang diedit adalah '6' -->
+                                            <option value="draft" {{ $job->status == 'draft' ? 'selected' : '' }}>
+                                                draft </option> --}}
+                                  
+
+
+
+                                    </select>
+
+                                </div>
+
+
+                                <!-- Input Hidden untuk Menyimpan ID Job -->
+                                <input type="hidden" id="job_id" name="job_id">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Kembali</button>
+                                <button type="button" id="btn-simpan-status" class="btn btn-primary">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -181,6 +242,8 @@
     @include('back.layouts.js_datatables')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
+   
+
 
     <script>
         $(document).ready(function() {
@@ -194,6 +257,19 @@
                 $('#job_id').val(job_id);
                 $('#nama-job-info').text(namaJob);
                 $('#modal-gambar').modal('show');
+            });
+
+
+            $('.btn-status').on('click', function() {
+                var job_id = $(this).data('id');
+                namaJob = $(this).closest('tr').find('td:eq(1)')
+                    .text(); // Mendapatkan nama_job dari kolom kedua
+                statusJob = $(this).closest('tr').find('td:eq(5)')
+                    .text(); // Mendapatkan nama_job dari kolom kedua
+                $('#job_id').val(job_id);
+                $('#nama-job-info-status').text(namaJob);
+                $('#status-job').text(statusJob);
+                $('#modal-status').modal('show');
             });
 
             // Event klik tombol upload gambar

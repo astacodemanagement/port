@@ -367,7 +367,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="kerja_lembur">Kerja
                                                                                             Lembur</label>
-                                                                                        <input type="date"
+                                                                                        <input type="text"
                                                                                             class="form-control "
                                                                                             id="kerja_lembur"
                                                                                             name="kerja_lembur">

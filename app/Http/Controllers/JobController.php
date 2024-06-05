@@ -46,6 +46,7 @@ class JobController extends Controller
         return view('back.job.index', compact('job'));
     }
     
+    
 
     /**
      * Show the form for creating a new resource.

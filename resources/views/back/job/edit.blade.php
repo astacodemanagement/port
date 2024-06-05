@@ -701,7 +701,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                                <a href="/job"
+                                                                <a href="/administrator/job"
                                                                     class="btn btn-warning waves-effect waves-light mt-3"><i
                                                                         class="fas fa-undo"></i>
                                                                     Kembali
