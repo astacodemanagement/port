@@ -15,7 +15,7 @@
     <div class="card mb-4">
         <div class="card-body py-4 px-3">
             <h6 class="text-primary fw-7">
-                Work Experience
+                Pengalaman Kerja
                 <a href="{{ route('member.work-experience.edit') }}" class="btn btn-primary btn-sm btn-light-secondary float-end text-primary mt-n2"><i class="ti ti-pencil-minus fs-4"></i></a>
             </h6>
             <div class="list-group mt-3">
@@ -42,7 +42,7 @@
     <div class="card mb-4">
         <div class="card-body py-4 px-3">
             <h6 class="text-primary fw-7">
-                Recent Applied Jobs
+                Pekerjaan yg Dilamar
                 <a href="{{ route('member.jobs.index') }}" class="btn btn-primary btn-sm btn-light-secondary float-end text-primary mt-n2"><i class="ti ti-external-link fs-4"></i></a>
             </h6>
             <div class="list-group mt-3">
