@@ -251,29 +251,43 @@
                             <div class="row mt-lg-4 mt-3">
                                 <div class="col-lg-12 mb-3">
                                     <h6 class="fw-7">Kelengkapan Dokumen</h6>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="ktp" {{ auth()->user()->kandidat->ada_ktp == 'Ya' ? 'checked' : '' }} disabled>
-                                        <label class="form-check-label" for="ktp">KTP</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="kk" {{ auth()->user()->kandidat->ada_kk == 'Ya' ? 'checked' : '' }} disabled>
-                                        <label class="form-check-label" for="kk">KK</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="akta-lahir" {{ auth()->user()->kandidat->ada_akta_lahir == 'Ya' ? 'checked' : '' }} disabled>
-                                        <label class="form-check-label" for="akta-lahir">Akta Lahir</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="ijazah" {{ auth()->user()->kandidat->ada_ijazah == 'Ya' ? 'checked' : '' }} disabled>
-                                        <label class="form-check-label" for="ijazah">Ijazah</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="buku-nikah" {{ auth()->user()->kandidat->ada_buku_nikah == 'Ya' ? 'checked' : '' }} disabled>
-                                        <label class="form-check-label" for="buku-nikah">Buku Nikah</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="checkbox" id="paspor" {{ auth()->user()->kandidat->ada_paspor == 'Ya' ? 'checked' : '' }} disabled>
-                                        <label class="form-check-label" for="paspor">Paspor</label>
+                                    <div class="row">
+                                        <div class="col-md-auto col-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="ktp" {{ auth()->user()->kandidat->ada_ktp == 'Ya' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label" for="ktp">KTP</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-auto col-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="kk" {{ auth()->user()->kandidat->ada_kk == 'Ya' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label" for="kk">KK</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-auto col-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="akta-lahir" {{ auth()->user()->kandidat->ada_akta_lahir == 'Ya' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label" for="akta-lahir">Akta Lahir</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-auto col-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="ijazah" {{ auth()->user()->kandidat->ada_ijazah == 'Ya' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label" for="ijazah">Ijazah</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-auto col-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="buku-nikah" {{ auth()->user()->kandidat->ada_buku_nikah == 'Ya' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label" for="buku-nikah">Buku Nikah</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-auto col-12">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="paspor" {{ auth()->user()->kandidat->ada_paspor == 'Ya' ? 'checked' : '' }} disabled>
+                                                <label class="form-check-label" for="paspor">Paspor</label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">

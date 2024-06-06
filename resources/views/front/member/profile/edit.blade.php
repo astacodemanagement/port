@@ -301,34 +301,51 @@
                                 <div class="row mt-lg-4 mt-3">
                                     <div class="col-lg-12 mb-3">
                                         <h6 class="fw-7">Kelengkapan Dokumen</h6>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="ada-ktp" {{ auth()->user()->kandidat->ada_ktp == 'Ya' ? 'checked' : '' }} name="ada_ktp">
-                                            <label class="form-check-label" for="ada-ktp">KTP</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="ada-kk" {{ auth()->user()->kandidat->ada_kk == 'Ya' ? 'checked' : '' }} name="ada_kk">
-                                            <label class="form-check-label" for="ada-kk">KK</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="ada-akta-lahir" {{ auth()->user()->kandidat->ada_akta_lahir == 'Ya' ? 'checked' : '' }} name="ada_akta_lahir">
-                                            <label class="form-check-label" for="ada-akta-lahir">Akta Lahir</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="ada-ijazah" {{ auth()->user()->kandidat->ada_ijazah == 'Ya' ? 'checked' : '' }} name="ada_ijazah">
-                                            <label class="form-check-label" for="ada-ijazah">Ijazah</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="ada-buku-nikah" {{ auth()->user()->kandidat->ada_buku_nikah == 'Ya' ? 'checked' : '' }} name="ada_buku_nikah">
-                                            <label class="form-check-label" for="ada-buku-nikah">Buku Nikah</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="ada-paspor" {{ auth()->user()->kandidat->ada_paspor == 'Ya' ? 'checked' : '' }} name="ada_paspor">
-                                            <label class="form-check-label" for="ada-paspor">Paspor</label>
+                                        <div class="row">
+                                            <div class="col-md-auto col-12">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="ada-ktp" {{ auth()->user()->kandidat->ada_ktp == 'Ya' ? 'checked' : '' }} name="ada_ktp">
+                                                    <label class="form-check-label" for="ada-ktp">KTP</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-auto col-12">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="ada-kk" {{ auth()->user()->kandidat->ada_kk == 'Ya' ? 'checked' : '' }} name="ada_kk">
+                                                    <label class="form-check-label" for="ada-kk">KK</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-auto col-12">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="ada-akta-lahir" {{ auth()->user()->kandidat->ada_akta_lahir == 'Ya' ? 'checked' : '' }} name="ada_akta_lahir">
+                                                    <label class="form-check-label" for="ada-akta-lahir">Akta Lahir</label>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-auto col-12">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="ada-ijazah" {{ auth()->user()->kandidat->ada_ijazah == 'Ya' ? 'checked' : '' }} name="ada_ijazah">
+                                                    <label class="form-check-label" for="ada-ijazah">Ijazah</label>
+                                                </div>
+                                            </div>
+                                                
+                                            <div class="col-md-auto col-12">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="ada-buku-nikah" {{ auth()->user()->kandidat->ada_buku_nikah == 'Ya' ? 'checked' : '' }} name="ada_buku_nikah">
+                                                    <label class="form-check-label" for="ada-buku-nikah">Buku Nikah</label>
+                                                </div>
+                                            </div>
+                                                
+                                            <div class="col-md-auto col-12">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="checkbox" id="ada-paspor" {{ auth()->user()->kandidat->ada_paspor == 'Ya' ? 'checked' : '' }} name="ada_paspor">
+                                                    <label class="form-check-label" for="ada-paspor">Paspor</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12">
                                         <h6 class="fw-7">Penjelasan Dokumen kelengkapan berkas terdapat perbedaan nama/alamat/tempat tanggal lahir/hilang/rusak/lainnya</h6>
-                                        <span>{{ auth()->user()->kandidat->penjelasan_dokumen ?? '-' }}</span>
+                                        <textarea name="penjelasan_dokumen" class="form-control">{{ auth()->user()->kandidat->penjelasan_dokumen }}</textarea></span>
                                     </div>
                                 </div>
 
@@ -553,7 +570,7 @@
             })
 
             $('.file-image').on('change', function() {
-                readURL(this)
+                readURL(this, $(this))
             })
 
             function formSubmit(form, type)
@@ -623,7 +640,7 @@
                 })
             }
 
-            function readURL(input) {
+            function readURL(input, el) {
                 var url = input.value;
                 var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
 
@@ -632,14 +649,21 @@
             
                     reader.onload = function(e) {
                         let filename = ext === "pdf" ? '{{ asset('member-template/images/pdf.png') }}' : e.target.result
-                        input.closest('div').find('img.image-preview-doc').attr('style', `background-image: url('${filename}')`)
+                        el.closest('div').find('img.img-preview-doc').attr('style', `background-image: url('${filename}')`)
                     }
+
+                    reader.readAsDataURL(input.files[0]);
             
                 } else if (!url) {
-                    $('.img-profile').attr('src', '{{ asset('users-area-template/images/profile/user-1.jpg') }}')
+                    el.closest('div').find('img.img-preview-doc').attr('style', `background-image: url('{{ asset('member-template/images/upload.png') }}')`)
                 } else {
-                    $('.img-profile-error-container').html('<small class="text-danger">Invalid image format</small>')
-                    $('.img-profile').attr('src', '{{ asset('users-area-template/images/profile/user-1.jpg') }}')
+                    el.closest('div').find('img.img-preview-doc').attr('style', `background-image: url('{{ asset('member-template/images/upload.png') }}')`)
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Terjadi kesalahan',
+                        text: 'Jenis file tidak didukung',
+                        confirmButtonText: 'OK'
+                    })
                 }
             }
         })
