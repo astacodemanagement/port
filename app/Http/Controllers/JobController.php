@@ -276,10 +276,10 @@ class JobController extends Controller
             
             $benefit = Benefit::where('job_id', $id)->get();
             foreach ($request->fasilitas_id as $fasilitasId) {
-                $benefit = new Benefit();
-                $benefit->job_id = $id;
-                $benefit->nama_benefit = Fasilitas::find($fasilitasId)->nama_fasilitas;
-                $benefit->save();
+                Benefit::updateOrCreate(
+                    ['job_id' => $id, 'fasilitas_id' => $fasilitasId],
+                    ['job_id' => $id, 'fasilitas_id' => $fasilitasId]
+                );
             }
             $loggedInUserId = Auth::id();
             $this->simpanLogHistori('Update', 'Job', $kategoriJob->id, $loggedInUserId, json_encode($oldData), json_encode($kategoriJob));
