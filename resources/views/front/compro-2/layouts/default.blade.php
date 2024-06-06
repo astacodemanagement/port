@@ -10,7 +10,8 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('frontend') }}/css/bootstrap-datepicker.min.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -54,6 +55,13 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
   border-radius: 10px;
   margin-top: 4rem;
 }
+/*remove padding in mobile  */
+@media (max-width: 767px) {
+  .splide__slide img {
+    padding: 1rem;
+  }
+}
+
 .carousel-image {
     display: block;
     margin: 0 auto;
@@ -126,6 +134,36 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
   border: none;
   cursor: pointer;
 }
+.tw-bg-custom {
+            background-color: #FAFAFA;
+        }
+        .tw-text-custom {
+            color: #52525B;
+        }
+        .tw-border-custom {
+            border-color: #38BDF8;
+        }
+        <style>
+    @media (max-width: 767px) {
+
+        .tw-right-0.sm\:tw-flex {
+            display: none;
+        }
+
+        .tw-hidden.sm\:tw-block {
+            display: block;
+        }
+
+
+        #mobile-menu {
+            transition: all 3s ease;
+        }
+    }
+    #mobile-menu{
+      transition:1s,
+    }
+</style>
+
   </style>
 </head>
 <body>

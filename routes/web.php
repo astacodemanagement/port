@@ -393,9 +393,11 @@ Route::prefix('member')->group(function () {
     });
 });
 
-Route::get('/compro2', [FeCompanyprofile2::class,'compro2'])->name('compro-2.index');
-Route::get('/compro2/job', [FeCompanyprofile2::class,'job'])->name('compro-2.job');
-Route::get('/compro2/job-detail', [FeCompanyprofile2::class,'jobdetail'])->name('compro-2.job-detail');
-Route::get('/compro2/employe', [FeCompanyprofile2::class,'employe'])->name('compro-2.employe');
-Route::get('/compro2/daftar', [FeCompanyprofile2::class,'daftar'])->name('compro-2.daftar');
-Route::get('/compro2/complete', [FeCompanyprofile2::class,'complete'])->name('compro-2.complete');
+Route::group(['prefix' => 'compro2'], function () {
+    Route::get('/', [FeCompanyprofile2::class,'compro2'])->name('compro-2.index');
+    Route::get('/job', [FeCompanyprofile2::class,'job'])->name('compro-2.job');
+    Route::get('/job/detail/{id}', [FeCompanyprofile2::class,'jobdetail'])->name('compro-2.job.detail');
+    Route::get('/employe', [FeCompanyprofile2::class,'employe'])->name('compro-2.employe');
+    Route::get('/daftar', [FeCompanyprofile2::class,'daftar'])->name('compro-2.daftar');
+    Route::get('/complete', [FeCompanyprofile2::class,'complete'])->name('compro-2.complete');
+});

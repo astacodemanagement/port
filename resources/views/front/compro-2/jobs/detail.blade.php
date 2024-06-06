@@ -52,12 +52,13 @@
             <div class="tw-grid tw-grid-cols-12 tw-gap-5">
           
                 <div class="tw-col-span-7  tw-pb-10">
-                    <div class="tw-flex tw-flex-wrap tw-justify-start tw-w-full tw-gap-10 tw-pt-5 tw-px-5 tw-border-b-gray-300 tw-border-b">
-                        <p class="tw-text-sky-500 tw-font-work-sans tw-font-medium text-lg tw-leading-snug tw-pb-2  tw-border-b-4 tw-border-sky-500">Detail Pekerjaan</p>
-                        <p class="tw-text-[#71717A] tw-font-medium tw-font-work-sans ">Gelari Pekerjaan</p>
-                        <p class="tw-text-[#71717A] tw-font-medium tw-font-work-sans ">Informasi Lainnya</p>
-                    </div>
-                    {{-- kualifikasi --}}
+                    <div class="tw-flex tw-space-x-4 tw-border-b tw-border-gray-200">
+                        <button id="tab1" class="tab-button tw-text-sky-500 tw-font-work-sans tw-font-medium tw-text-lg tw-leading-snug tw-pb-2 tw-border-b-4 tw-border-sky-500" data-content="content1">Detail Pekerjaan</button>
+                        <button id="tab2" class="tab-button tw-text-[#71717A] tw-font-medium tw-font-work-sans tw-text-lg tw-leading-snug tw-pb-2" data-content="content2">Gelari Pekerjaan</button>
+                        <button id="tab3" class="tab-button tw-text-[#71717A] tw-font-medium tw-font-work-sans tw-text-lg tw-leading-snug tw-pb-2" data-content="content3">Informasi Lainnya</button>
+                    </div> 
+                    {{-- tab 1--}}
+                 <div class="tw-w-full tab-content " id="content1">
                     <div class="tw-w-full">
 
                         <h3 class="tw-font-semibold tw-text-xl tw-text-[#18191C] tw-font-work-sans tw-mt-8">Kualifikasi</h3>
@@ -146,9 +147,13 @@
                             </a>
                         </div>
                     </div>
+
+                 </div>
+                 {{-- tab 2 --}}
+                 
                 </div>
         
-                <div class="tw-col-span-5 pb-5">
+                <div class="tw-col-span-5 pb-5" id="content1">
                     <div class="tw-w-full tw-p-5 tw-border   tw-border-slate-200 tw-shadow-sm tw-shadow-slate-200 tw-rounded-lg py-5">
                         <img src="https://s3-alpha-sig.figma.com/img/ef94/5651/de35d8ed78dfdfcb603b26e763f562b6?Expires=1717372800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mvf3msVZVItgBbqpQ-3fhmr-Oy6XkCQhpZmAcXKg8cmCqom8sbdr0h4KyDZNcXPk-FJgsShOR0tur9AQ4bknllsgMH89p1VfsXd~9zdwDu8fXs5TIg0VI2oOZQ7laixl7ey2SmPRgOKTBv3vAoRNswBTe0nR1gqzvRkgwKKF07sF8DCR0weewiMLhcq~3rcUlz30TBzlfxyOJBnmnKnIB4ioFpxn7gPINsWGQbXLEuZp0fZ9v4-3NhRBGhpO5y77EzKitK4hH1W249mmFqwNIN25cfKMPKdQErmR4roni3O1c1igTjKws1gM6yekmFmy7190xPswRECZdYgKU6Rs9Q__" class="tw-w-full tw-h-[200px] tw-object-cover tw-rounded-lg"  alt="">
                         <h3 class="tw-text-center tw-mt-5 tw-font-semibold tw-font-work-sans tw-text-xl">Gaji</h3>
@@ -533,4 +538,20 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function showTab(contentId, tabElement) {
+            document.getElementById('content1').classList.add('tw-hidden');
+            document.getElementById('content2').classList.add('tw-hidden');
+            document.getElementById('content3').classList.add('tw-hidden');
+
+            document.getElementById(contentId).classList.remove('tw-hidden');
+
+            document.getElementById('tab1').classList.remove('tw-border-b-4', 'tw-border-sky-500', 'tw-text-sky-500');
+            document.getElementById('tab2').classList.remove('tw-border-b-4', 'tw-border-sky-500', 'tw-text-sky-500');
+            document.getElementById('tab3').classList.remove('tw-border-b-4', 'tw-border-sky-500', 'tw-text-sky-500');
+            // handle active nav
+            
+        }
+    </script>
 @endsection
