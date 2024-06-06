@@ -274,14 +274,24 @@ class JobController extends Controller
             $kategoriJob->update($requestData);
             // send ke tabel benefit
             
-            $benefit = Benefit::where('job_id', $id)->get();
-            foreach ($request->fasilitas_id as $fasilitasId) {
-                $benefit = new Benefit();
-                $benefit->job_id = $id;
-                $benefit->nama_benefit = Fasilitas::find($fasilitasId)->nama_fasilitas;
-                $benefit->save();
-            }
             $loggedInUserId = Auth::id();
+            // kasih percabangan kalo checked di update kalo unckechk delete
+            $benefit = Benefit::where('job_id', $id)->get();
+            $benefitId = $benefit->pluck('id')->toArray();
+            $requestBenefitId = $request->fasilitas_id;
+            $deleteBenefit = array_diff($benefitId, $requestBenefitId);
+            $addBenefit = array_diff($requestBenefitId, $benefitId);
+            if ($deleteBenefit) {
+                Benefit::whereIn('id', $deleteBenefit)->delete();
+            }
+            if ($addBenefit) {
+                foreach ($addBenefit as $benefit) {
+                    Benefit::create([
+                        'job_id' => $kategoriJob->id,
+                        'fasilitas_id' => $benefit,
+                    ]);
+                }
+            }
             $this->simpanLogHistori('Update', 'Job', $kategoriJob->id, $loggedInUserId, json_encode($oldData), json_encode($kategoriJob));
     
             return response()->json(['message' => 'Data berhasil diupdate.']);
