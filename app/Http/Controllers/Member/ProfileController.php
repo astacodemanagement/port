@@ -9,9 +9,18 @@ use App\Models\Kota;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use App\Traits\UploadFile;
 
 class ProfileController extends Controller
 {
+    use UploadFile;
+
+    public function index()
+    {
+        
+    }
+
     public function edit()
     {
         return view('front.member.profile.edit');
@@ -97,6 +106,7 @@ class ProfileController extends Controller
             return response()->json(['success' => true, 'message' => 'Profil berhasil diperbarui', '_token' => csrf_token()]);
         }
 
+        /** PASSPORT */
         else if ($request->type == 2) {
             $kondisiPaspor = [
                 0 => null,
@@ -124,7 +134,38 @@ class ProfileController extends Controller
             return response()->json(['success' => true, 'message' => 'Profil berhasil diperbarui', '_token' => csrf_token()]);
         }
 
+        /** UPLOAD DOCUMENET */
         else if ($request->type == 4) {
+            $request->validate([
+                    'file_foto' => 'nullable|max:10240|mimes:jpeg,jpg,bmp,png,webp',
+                    'file_paspor' => 'nullable|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                    'file_ktp' => 'nullable|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                    'file_kk' => 'nullable|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                    'file_sertifikat_kompetensi' => 'nullable|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                    'file_sertifikat_bahasa_inggris' => 'nullable|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                    'file_paklaring' => 'nullable|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                    'file_akta_lahir' => 'nullable|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                    'file_ijazah' => 'nullable|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                    'file_buku_nikah' => 'nullable|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+                ],
+                [
+                    'max' => 'Ukuran file :attribute maksimal 10MB',
+                    'mimes' => 'Jenis file :attribute tidak didukung'
+                ],
+                [
+                    'file_foto' => 'Foto',
+                    'file_paspor' => 'Paspor',
+                    'file_ktp' => 'KTP',
+                    'file_kk' => 'Kartu Keluarga',
+                    'file_sertifikat_kompetensi' => 'Sertifikat Kompetensi',
+                    'file_sertifikat_bahasa_inggris' => 'Sertifikat Bahasa Inggris',
+                    'file_paklaring' => 'Paklaring',
+                    'file_akta_lahir' => 'Akta Lahir',
+                    'file_ijazah' => 'Ijazah',
+                    'file_buku_nikah' => 'Buku Nikah'
+                ]
+            );
+
             $request->merge([
                 'ada_ktp' => $request->has('ada_ktp') ? 'Ya' : null,
                 'ada_kk' => $request->has('ada_kk') ? 'Ya' : null,
@@ -134,123 +175,84 @@ class ProfileController extends Controller
                 'ada_paspor' => $request->has('ada_paspor') ? 'Ya' : null
             ]);
 
-            /** UPLOAD FOTO */
-            if ($request->hasFile('file_foto')) {
-                $filenameFoto = $request->file_foto->hashName();
-                $dirFoto = 'upload/foto/';
+            $arrDoc = [
+                [
+                    'input' => 'file_foto',
+                    'field' => 'foto',
+                    'dir' => 'foto',
+                ],
+                [
+                    'input' => 'file_paspor',
+                    'field' => 'paspor',
+                    'dir' => 'paspor',
+                ],
+                [
+                    'input' => 'file_ktp',
+                    'field' => 'ktp',
+                    'dir' => 'ktp',
+                ],
+                [
+                    'input' => 'file_kk',
+                    'field' => 'kk',
+                    'dir' => 'kartu-keluarga',
+                ],
+                [
+                    'input' => 'file_sertifikat_kompetensi',
+                    'field' => 'sertifikat_kompetensi',
+                    'dir' => 'sertifikat-kompetensi',
+                ],
+                [
+                    'input' => 'file_sertifikat_bahasa_inggris',
+                    'field' => 'sertifikat_bahasa_inggris',
+                    'dir' => 'sertifikat-bahasa-inggris',
+                ],
+                [
+                    'input' => 'file_paklaring',
+                    'field' => 'paklaring',
+                    'dir' => 'paklaring',
+                ],
+                [
+                    'input' => 'file_akta_lahir',
+                    'field' => 'akta_lahir',
+                    'dir' => 'akta-lahir',
+                ],
+                [
+                    'input' => 'file_ijazah',
+                    'field' => 'ijazah',
+                    'dir' => 'ijazah',
+                ],
+                [
+                    'input' => 'file_buku_nikah',
+                    'field' => 'buku_nikah',
+                    'dir' => 'buku-nikah',
+                ],
+            ];
+            
+            foreach ($arrDoc as $doc) {
+                /** UPLOAD */
+                if ($request->hasFile($doc['input'])) {
+                    $file = $request->{$doc['input']};
+                    $filename = $file->hashName();
+                    $fileExtention = $file->extension();
+                    $dir = 'upload/' . $doc['dir'] . '/';
+                    
+                    if ($fileExtention === 'pdf') {
+                        $upload = $this->uploadFile($file, $dir, $filename);
+                    } else {
+                        $upload = $this->uploadImage($file, $dir, $filename, [['width' => '400', 'height' => '400']]);
+                    }
 
-                $uploadFoto = Storage::disk('public_uploads')->putFileAs($dirFoto, $request->file_foto, $filenameFoto, 'public');
+                    if ($upload) {
+                        if (File::exists(public_path($dir . $kandidat->{$doc['field']}))) {
+                            File::delete(public_path($dir . $kandidat->{$doc['field']}));
+                        }
 
-                if ($uploadFoto) {
-                    $request->merge(['foto' => $filenameFoto]);
-                }
-            }
+                        if (File::exists(public_path($dir . 'thumb_' . $kandidat->{$doc['field']}))) {
+                            File::delete(public_path($dir . 'thumb_' . $kandidat->{$doc['field']}));
+                        }
 
-            /** UPLOAD PASPOR */
-            if ($request->hasFile('file_paspor')) {
-                $filenamePaspor = $request->file_paspor->hashName();
-                $dirPaspor = 'upload/paspor/';
-
-                $uploadPaspor = Storage::disk('public_uploads')->putFileAs($dirPaspor, $request->file_paspor, $filenamePaspor, 'public');
-
-                if ($uploadPaspor) {
-                    $request->merge(['paspor' => $filenamePaspor]);
-                }
-            }
-
-            /** UPLOAD KTP */
-            if ($request->hasFile('file_ktp')) {
-                $filenameKTP = $request->file_ktp->hashName();
-                $dirKTP = 'upload/ktp/';
-
-                $uploadKTP = Storage::disk('public_uploads')->putFileAs($dirKTP, $request->file_ktp, $filenameKTP, 'public');
-
-                if ($uploadKTP) {
-                    $request->merge(['ktp' => $filenameKTP]);
-                }
-            }
-
-            /** UPLOAD KK */
-            if ($request->hasFile('file_kk')) {
-                $filenameKK = $request->file_kk->hashName();
-                $dirKK = 'upload/kartu-keluarga/';
-
-                $uploadKK = Storage::disk('public_uploads')->putFileAs($dirKK, $request->file_kk, $filenameKK, 'public');
-
-                if ($uploadKK) {
-                    $request->merge(['ktp' => $filenameKK]);
-                }
-            }
-
-            /** UPLOAD SERTIFIKAT KOMPETENSI */
-            if ($request->hasFile('file_sertifikat_kompetensi')) {
-                $filenameSK = $request->file_sertifikat_kompetensi->hashName();
-                $dirSK = 'upload/sertifikat-kompetensi/';
-
-                $uploadSK = Storage::disk('public_uploads')->putFileAs($dirSK, $request->file_sertifikat_kompetensi, $filenameSK, 'public');
-
-                if ($uploadSK) {
-                    $request->merge(['sertifikat_kompetensi' => $filenameSK]);
-                }
-            }
-
-            /** UPLOAD SERTIFIKAT BAHASA INGGRIS */
-            if ($request->hasFile('file_sertifikat_bahasa_inggris')) {
-                $filenameSK = $request->file_sertifikat_bahasa_inggris->hashName();
-                $dirSertifikat = 'upload/sertifikat-bahasa-inggris/';
-
-                $uploadSK = Storage::disk('public_uploads')->putFileAs($dirSertifikat, $request->file_sertifikat_bahasa_inggris, $filenameSK, 'public');
-
-                if ($uploadSK) {
-                    $request->merge(['sertifikat_bahasa_inggris' => $filenameSK]);
-                }
-            }
-
-            /** UPLOAD PAKLARING */
-            if ($request->hasFile('file_paklaring')) {
-                $filenamePaklaring = $request->file_paklaring->hashName();
-                $dirPK = 'upload/paklaring/';
-
-                $uploadSK = Storage::disk('public_uploads')->putFileAs($dirPK, $request->file_paklaring, $filenamePaklaring, 'public');
-
-                if ($uploadSK) {
-                    $request->merge(['paklaring' => $filenamePaklaring]);
-                }
-            }
-
-            /** UPLOAD AKTA LAHIR */
-            if ($request->hasFile('file_akta_lahir')) {
-                $filenameAkta = $request->file_akta_lahir->hashName();
-                $dirAkta = 'upload/akta-lahir/';
-
-                $uploadSK = Storage::disk('public_uploads')->putFileAs($dirAkta, $request->file_akta_lahir, $filenameAkta, 'public');
-
-                if ($uploadSK) {
-                    $request->merge(['akta_lahir' => $filenameAkta]);
-                }
-            }
-
-            /** UPLOAD IJAZAH */
-            if ($request->hasFile('file_ijazah')) {
-                $filenameIjazah = $request->file_ijazah->hashName();
-                $dirIjazah = 'upload/ijazah/';
-
-                $uploadSK = Storage::disk('public_uploads')->putFileAs($dirIjazah, $request->file_ijazah, $filenameIjazah, 'public');
-
-                if ($uploadSK) {
-                    $request->merge(['ijazah' => $filenameIjazah]);
-                }
-            }
-
-            /** UPLOAD BUKU NIKAH */
-            if ($request->hasFile('file_buku_nikah')) {
-                $filenameBN = $request->file_buku_nikah->hashName();
-                $dirBN = 'upload/buku-nikah/';
-
-                $uploadSK = Storage::disk('public_uploads')->putFileAs($dirBN, $request->file_buku_nikah, $filenameBN, 'public');
-
-                if ($uploadSK) {
-                    $request->merge(['buku_nikah' => $filenameBN]);
+                        $request->merge([$doc['field'] => $filename]);
+                    }
                 }
             }
 

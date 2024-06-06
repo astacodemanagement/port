@@ -359,16 +359,22 @@ Route::prefix('member')->group(function () {
             /** WORK EXPERIENCE */
             Route::prefix('work-experience')->group(function () {
                 Route::name('work-experience.')->group(function () {
-                    Route::get('/edit', [MemberWorkExperienceController::class, 'edit'])->name('edit');
-                    Route::put('/edit', [MemberWorkExperienceController::class, 'update'])->name('update');
+                    Route::controller(MemberWorkExperienceController::class)->group(function () {
+                        Route::get('/', 'index')->name('index');
+                        Route::get('/edit', 'edit')->name('edit');
+                        Route::put('/edit', 'update')->name('update');
+                    });
                 });
             });
 
             /** PROFILE */
             Route::prefix('profile')->group(function () {
                 Route::name('profile.')->group(function () {
-                    Route::get('/edit', [MemberProfileController::class, 'edit'])->name('edit');
-                    Route::put('/edit', [MemberProfileController::class, 'update'])->name('update');
+                    Route::controller(MemberProfileController::class)->group(function () {
+                        Route::get('/', 'edit')->name('edit');
+                        Route::get('/edit', 'edit')->name('edit');
+                        Route::put('/edit', 'update')->name('update');
+                    });
                 });
             });
 
