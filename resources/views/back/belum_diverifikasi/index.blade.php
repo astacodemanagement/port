@@ -327,6 +327,7 @@
                                                                             id="statusSelect{{ $p->id }}"
                                                                             name="status"
                                                                             onchange="handleStatusChange(this)">
+                                                                            <option value="Belum Verifikasi(Pending)">Belum Verifikasi(Pending)</option>
                                                                             <option value="Verifikasi">Verifikasi</option>
                                                                             <option value="Reject">Reject</option>
                                                                             <option value="Reject-Blacklist">

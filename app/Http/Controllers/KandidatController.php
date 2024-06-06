@@ -131,7 +131,7 @@ class KandidatController extends Controller
             'nama_keluarga' => 'nullable',
             'hubungan' => 'nullable',
             'no_telp_darurat' => 'nullable|numeric|min_digits:6|max_digits:14',
-            'no_paspor' => 'required|numeric|max_digits:16|min_digits:16',
+            'no_paspor' => 'required|numeric|max_digits:16',
             'tanggal_pengeluaran_paspor' => 'required|date_format:Y-m-d',
             'masa_kadaluarsa' => 'required|date_format:Y-m-d',
             'kantor_paspor' => 'required|min:3',
