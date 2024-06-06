@@ -7,12 +7,12 @@
         <div class="tw-h-full" style="background: url('{{ asset('frontend') }}/assets/image/carousel.png'); background-position: center; background-size: cover;">
             <section id="image-carousel" class="splide tw-max-w-7xl tw-mx-auto" aria-label="Beautiful Images">
                 <div class="splide__track">
-                    <ul class="splide__list">
+                    <ul class="splide__list sm:tw-p-0">
                         <li class="splide__slide">
-                            <img src="{{ asset('frontend') }}/assets/image/slider1.jpeg" alt="" class="tw-rounded-lg">
+                            <img src="{{ asset('frontend') }}/assets/image/slider1.jpeg" alt="" class="tw-rounded-lg ">
                         </li>
                         <li class="splide__slide">
-                            <img src="{{ asset('frontend') }}/assets/image/slider2.jpeg" alt="" class="tw-rounded-lg">
+                            <img src="{{ asset('frontend') }}/assets/image/slider2.jpeg" alt="" class="tw-rounded-lg ">
                         </li>
                     </ul>
                 </div>
@@ -67,9 +67,10 @@
                             <div class="tw-p-6">
                                
                                 <div class="tw-flex">
-                                    <h5 class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C]">
-                                        {{$item->nama_job}}
-                                    </h5>
+                                    <a href="{{ route('compro-2.job.detail', $item->id) }}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C]">
+                                      {{$item->nama_job}}
+                                    </a>
+                                    </a>
                                     <div class="tw-ml-auto tw-flex tw-items-center tw-justify-center tw-w-8 tw-h-8 tw-rounded-full tw-bg-[#F1F9FE]">
                                         <i class="fa-regular fa-bookmark tw-text-sky-500 tw-text-2xl"></i>
                                     </div>
@@ -119,10 +120,11 @@
                                 
                             </div>
                             <div class="tw-p-6 tw-pt-0">
-                             <button class="tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
-                                Detail
-                                <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
-                            </button>
+                             <a href="{{ route('compro-2.job.detail', $item->id) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                              Detail
+                              <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
+                            </a>
+                          
                             
                             </div>
                         </div>
@@ -179,70 +181,71 @@
                       </div>
                 {{-- count end --}}
                 {{-- hero section --}}
-                <section class=" tw-py-12 sm:tw-py-20">
-                    <div class="tw-max-w-screen-xl tw-mx-auto tw-flex tw-flex-col-reverse lg:tw-flex-row tw-items-center tw-px-4 sm:tw-px-6 lg:tw-px-8">
-                      <!-- Right Side - Text -->
-                      <div class="tw-w-full lg:tw-w-1/2 tw-text-center lg:tw-text-left">
-                        <p class="tw-mt-4 tw-text-xl tw-text-sky-500 sm:tw-mt-6 tw-font-bold lg:tw-text-4xl tw-w-3/4 tw-font-caveat">Mulai</p>
-                        <p class=" tw-text-xl tw-text-[#11181C] tw-font-semibold lg:tw-text-4xl tw-w-3/4 tw-font-clash-display">
-                            Karir Resmi Anda Di Luar Negeri Dari Sini
-                        </p>
-                        <p class="tw-mt-4 tw-text-base tw-text-[#52525B] tw-font-base lg:tw-text-lg tw-w-full tw-font-work-sans">
-                            Rasakan manfaat dari sebuah proses yang sangat efisien dan transparan yang kami tawarkan melalui layanan kami yang unggul dan terpercaya   </div>
-                      <div class="tw-w-full lg:tw-w-1/2 tw-flex tw-justify-center lg:tw-justify-start tw-mt-8 lg:tw-mt-0">
-                        <img src="{{ asset('frontend') }}/assets/component/hero1.png" alt="Hero Icon" class="tw-w-full">
+                <section class="tw-py-12 sm:tw-py-20">
+                  <div class="tw-max-w-screen-xl tw-mx-auto tw-flex tw-flex-col-reverse lg:tw-flex-row tw-items-center tw-px-4 sm:tw-px-6 lg:tw-px-8">
+                    <!-- Right Side - Text -->
+                    <div class="tw-w-full lg:tw-w-1/2 tw-text-center lg:tw-text-left">
+                      <p class="tw-mt-4 tw-text-4xl tw-text-sky-500  sm:tw-mt-6 tw-font-bold lg:tw-text-4xl md:tw-w-3/4 tw-w-full tw-font-caveat">Mulai</p>
+                      <p class="tw-text-2xl tw-text-[#11181C] tw-font-semibold lg:tw-text-4xl md:-w-3/4 tw-font-clash-display tw-w-full">
+                        Karir Resmi Anda Di Luar Negeri Dari Sini
+                      </p>
+                      <p class="tw-mt-4 tw-text-base tw-text-[#52525B] tw-font-base lg:tw-text-lg tw-w-full tw-font-work-sans">
+                        Rasakan manfaat dari sebuah proses yang sangat efisien dan transparan yang kami tawarkan melalui layanan kami yang unggul dan terpercaya
+                      </p>
+                    </div>
+                    <div class="tw-w-full lg:tw-w-1/2 tw-flex tw-justify-center lg:tw-justify-start tw-mt-8 lg:tw-mt-0">
+                      <img src="{{ asset('frontend') }}/assets/component/hero1.png" alt="Hero Icon" class="tw-w-full">
+                    </div>
+                  </div>
+                </section>
+                <section class="tw-bg-gradient-to-r tw-py-12">
+                  <div class="tw-container tw-mx-auto">
+                    <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 tw-gap-8">
+                      <div>
+                        <img src="{{ asset('frontend') }}/assets/component/candidat1.jpg" class="tw-w-full" alt="">
                       </div>
-                  
-                      
+                      <div>
+                        <img src="{{ asset('frontend') }}/assets/component/candidat2.jpg" class="tw-w-full" alt="">
+                      </div>
+                      <div>
+                        <img src="{{ asset('frontend') }}/assets/component/candidat3.jpg" class="tw-w-full" alt="">
+                      </div>
+                      <div>
+                        <img src="{{ asset('frontend') }}/assets/component/candidat4.jpg" class="tw-w-full" alt="">
+                      </div>
                     </div>
-                  </section>
-                  <section class="tw-bg-gradient-to-r tw-py-12">
-                    <div class="tw-container tw-mx-auto">
-                        <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-2 tw-gap-8">
-                          <div>
-                            <img src="{{ asset('frontend') }}/assets/component/candidat1.jpg" class="tw-w-full" alt="">
-                          </div>
-                          <div>
-                            <img src="{{ asset('frontend') }}/assets/component/candidat2.jpg" class="tw-w-full" alt="">
-                          </div>
-                          <div>
-                            <img src="{{ asset('frontend') }}/assets/component/candidat3.jpg" class="tw-w-full" alt="">
-                          </div>
-                          <div>
-                            <img src="{{ asset('frontend') }}/assets/component/candidat4.jpg" class="tw-w-full" alt="">
-                          </div>
-                        </div>
-                    </div>
+                  </div>
                 </section>
                 
-                <section class=" tw-py-12">
-                    <p class="tw-text-sky-500 tw-text-center tw-font-caveat tw-text-4xl tw-font-bold">Kenapa?</p>
-                    <p class="tw-text-[#11181C] tw-text-center tw-text-4xl tw-font-semibold tw-mb-16 tw-font-clash-display">Pilih Kami Untuk Karier <br> Internasional Anda</p>
-                    <div class="tw-container tw-mx-auto tw-grid tw-grid-cols-12 tw-gap-8">
-                        <div class="tw-col-span-4">
-                            <img src="{{ asset('frontend') }}/assets/component/hero2.png" alt="Vector Image" class="tw-w-full tw-h-full">
-                        </div>
-                        <div class="tw-col-span-4  tw-pt-10 tw-flex tw-flex-col tw-justify-between">
-                            <div>
-                                <h2 class="tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display">Jaminan mendapat Job Internasional</h2>
-                                <p class="tw-text-gray-600 tw-w-full tw-font-work-sans tw-font-medium">Kami akan menghubungi Anda secara langsung untuk merekomendasikan Pekerjaan yang sesuai dengan kualifikasi Anda. Cukup standby sampai kami menghubungi Anda</p>
-                            </div>
-                            <div>
-                                <h2 class="tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display tw-mt-10">Pengalaman</h2>
-                                <p class="tw-text-gray-600 tw-w-full tw-font-work-sans tw-font-medium">Kami bagian dari Assalam Group yang telah berpengalaman lebih dari 25 tahun di Industri Tenaga Kerja untuk ditempatkan di Luar Negeri secara resmi dan prosedural</p>
-                            </div>
-                        </div>
-                        <div class="tw-col-span-4 tw-flex tw-flex-col tw-justify-between tw-pt-10">
-                            <div>
-                                <h2 class="tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display">Jaminan Transparansi</h2>
-                                <p class="tw-text-gray-600 tw-w-full tw-font-work-sans tw-font-medium   ">Secara terbuka kami akan menjelaskan kepada Anda mulai dari Pekerjaan yang Anda lamar, Biaya Proses yang dibutuhkan, dan Langkah Proses sampai tiba di Negara tujuan</p>
-                            </div>
-                            <div>
-                                <h2 class="tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display tw-mt-10">Jaminan Keamanan</h2>
-                                <p class="tw-text-gray-600 tw-w-full tw-font-work-sans tw-font-medium">Kami akan memberikan jaminan keamanan bagi Anda selama proses perjalanan ke luar negeri, mulai dari keberangkatan sampai tiba di Negara tujuan</p>
-                            </div>
-                        </div>
+                
+                <section class="tw-py-12">
+                  <p class="tw-text-sky-500 tw-text-center tw-font-caveat tw-text-4xl tw-font-bold">Kenapa?</p>
+                  <p class="tw-text-[#11181C] tw-text-center tw-text-2xl lg:tw-text-4xl tw-font-semibold tw-mb-8 lg:tw-mb-16 tw-font-clash-display">Pilih Kami Untuk Karier <br> Internasional Anda</p>
+                  <div class="tw-container tw-mx-auto tw-grid tw-grid-cols-1 lg:tw-grid-cols-12 tw-gap-8">
+                    <div class="tw-col-span-1 lg:tw-col-span-4">
+                      <img src="{{ asset('frontend') }}/assets/component/hero2.png" alt="Vector Image" class="tw-w-full tw-h-full">
                     </div>
+                    <div class="tw-col-span-1 lg:tw-col-span-4 tw-pt-10 lg:tw-pt-0 tw-flex tw-flex-col tw-justify-between">
+                      <div>
+                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display">Jaminan mendapat Job Internasional</h2>
+                        <p class="tw-text-gray-600 tw-font-work-sans tw-font-medium">Kami akan menghubungi Anda secara langsung untuk merekomendasikan Pekerjaan yang sesuai dengan kualifikasi Anda. Cukup standby sampai kami menghubungi Anda</p>
+                      </div>
+                      <div class="tw-mt-10 lg:tw-mt-0">
+                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display ">Pengalaman</h2>
+                        <p class="tw-text-gray-600 tw-font-work-sans tw-font-medium">Kami bagian dari Assalam Group yang telah berpengalaman lebih dari 25 tahun di Industri Tenaga Kerja untuk ditempatkan di Luar Negeri secara resmi dan prosedural</p>
+                      </div>
+                    </div>
+                    <div class="tw-col-span-1 lg:tw-col-span-4 tw-flex tw-flex-col tw-justify-between ">
+                      <div>
+                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display">Jaminan Transparansi</h2>
+                        <p class="tw-text-gray-600 tw-font-work-sans tw-font-medium">Secara terbuka kami akan menjelaskan kepada Anda mulai dari Pekerjaan yang Anda lamar, Biaya Proses yang dibutuhkan, dan Langkah Proses sampai tiba di Negara tujuan</p>
+                      </div>
+                      <div class="tw-mt-10 lg:tw-mt-0">
+                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display">Jaminan Keamanan</h2>
+                        <p class="tw-text-gray-600 tw-font-work-sans tw-font-medium">Kami akan memberikan jaminan keamanan bagi Anda selama proses perjalanan ke luar negeri, mulai dari keberangkatan sampai tiba di Negara tujuan</p>
+                      </div>
+                    </div>
+                  </div>
                 </section>
                 
                 
@@ -252,52 +255,47 @@
             </div>
         </div>
         <div class="tw-bg-sky-500 tw-py-12 tw-relative">
-            <div class="tw-max-w-7xl tw-mx-auto">
-                <div class="tw-p-10">
-                    <h2 class="tw-text-white tw-text-center tw-font-caveat tw-text-5xl tw-font-bold">Saatnya Bergabung</h2> 
-                    <p class="tw-text-white tw-text-center tw-text-6xl tw-mt-5 tw-font-semibold tw-mb-16 tw-font-clash-display">Buat Akun Dan Lamar Pekerjaan Impianmu</p>
-                    {{-- button kuning bergabung sekarang --}}
-                    <div class="tw-flex tw-justify-center">
-                        <button class="tw-bg-[#FDD003] tw-text-gray-900 tw-font-bold tw-rounded-lg tw-py-3 tw-px-6 tw-cursor-pointer tw-flex tw-items-center tw-justify-center">
-                            Bergabung Sekarang
-                            <i class="fa-solid fa-arrow-right tw-ml-2" style="position: relative; top: -1px;"></i>
-                        </button>
-                    </div>
-                </div>
+          <div class="tw-max-w-7xl tw-mx-auto">
+            <div class="tw-p-5 sm:tw-p-10"> 
+              <h2 class="tw-text-white tw-text-center tw-font-caveat tw-text-3xl sm:tw-text-5xl tw-font-bold">Saatnya Bergabung</h2> <!-- Sesuaikan ukuran teks untuk perangkat mobile -->
+              <p class="tw-text-white tw-text-center tw-text-4xl sm:tw-text-6xl tw-mt-3 sm:tw-mt-5 tw-font-semibold tw-mb-8 tw-font-clash-display">Buat Akun Dan Lamar Pekerjaan Impianmu</p> <!-- Sesuaikan ukuran teks dan margin untuk perangkat mobile -->
+             
+              <div class="tw-flex tw-justify-center">
+                <button class="tw-bg-[#FDD003] tw-text-gray-900 tw-font-bold tw-rounded-lg tw-py-3 tw-px-6 tw-cursor-pointer tw-flex tw-items-center tw-justify-center">
+                  Bergabung Sekarang
+                  <i class="fa-solid fa-arrow-right tw-ml-2" style="position: relative; top: -1px;"></i>
+                </button>
+              </div>
             </div>
+          </div>
         
-            <svg class="tw-absolute tw-top-1/2 tw-left-40 tw-transform tw--translate-y-1/2" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 0L61.18 36.06H100L69.1 57.94L80.29 94L50 74.12L19.71 94L30.9 57.94L0 36.06H38.82L50 0Z" fill="#EDBF3E"/>
-            </svg>
-    
-            <svg class="tw-absolute tw-top-1/2 tw-right-40 tw-transform tw--translate-y-1/2" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 0L61.18 36.06H100L69.1 57.94L80.29 94L50 74.12L19.71 94L30.9 57.94L0 36.06H38.82L50 0Z" fill="#EDBF3E"/>
-            </svg>
+          <svg class="tw-hidden sm:tw-block tw-absolute tw-top-1/2 tw-left-0 sm:tw-left-40 tw-transform tw--translate-y-1/2" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"> <!-- Tambahkan kelas 'tw-hidden' untuk menyembunyikan elemen di perangkat mobile -->
+            <path d="M50 0L61.18 36.06H100L69.1 57.94L80.29 94L50 74.12L19.71 94L30.9 57.94L0 36.06H38.82L50 0Z" fill="#EDBF3E"/>
+          </svg>
+        
+          <svg class="tw-hidden sm:tw-block tw-absolute tw-top-1/2 tw-right-0 sm:tw-right-40 tw-transform tw--translate-y-1/2" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"> <!-- Tambahkan kelas 'tw-hidden' untuk menyembunyikan elemen di perangkat mobile -->
+            <path d="M50 0L61.18 36.06H100L69.1 57.94L80.29 94L50 74.12L19.71 94L30.9 57.94L0 36.06H38.82L50 0Z" fill="#EDBF3E"/>
+          </svg>
         </div>
+        
             {{-- testi section --}}
-            <section class="tw-py-12">
-                <div class="tw-max-w-7xl tw-mx-auto">
-                 
-                    {{-- make a section text --}}
-                    <div class="tw-max-w-5xl tw-mt-16 tw-p-10 tw-min-h-[300px] tw-rounded-md tw-mb-10 tw-mx-auto tw-text-center tw-bg-[#F1F9FE]">
-                        <!-- Nama -->
-                        <h2 class="tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">John Doe</h2>
-                        <!-- Deskripsi Testimoni -->
-                        <p class="tw-text-lg tw-text-[#52525B] tw-mt-10">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
-                    </div>
-                    <!-- Avatar Container -->
-                    <div class="tw-flex tw-justify-center tw-gap-5 tw-mt-4">
-                        <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-16 tw-h-16 tw-text-sm tw-rounded-full" />
-                        <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-16 tw-h-16 tw-text-sm tw-rounded-full" />
-                        <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-16 tw-h-16 tw-text-sm tw-rounded-full  tw-scale-125" />
-                        <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-16 tw-h-16 tw-text-sm tw-rounded-full" />
-                        <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-16 tw-h-16 tw-text-sm tw-rounded-full" />
-                    </div>
-                    
+            <section class="tw-py-8 sm:tw-py-12">
+              <div class="tw-max-w-7xl tw-mx-auto">
+                <!-- Testimoni -->
+                <div class="tw-max-w-5xl tw-mx-auto tw-p-6 sm:tw-p-10 tw-rounded-md tw-mb-8 sm:tw-mb-10 tw-text-center tw-bg-[#F1F9FE]">
+                  <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">John Doe</h2>
+               <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
                 </div>
+                <div class="tw-flex tw-flex-wrap tw-justify-center tw-gap-3">
+                  <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+                  <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+                  <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full tw-scale-125" />
+                  <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+                  <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+                </div>
+              </div>
             </section>
             
-          
                    
             
     </div>
