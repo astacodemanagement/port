@@ -2,9 +2,7 @@
 @section('title', 'Halaman Job')
 @section('subtitle', 'Menu Job')
 @push('css')
-    {{-- <link rel="stylesheet" href="{{ asset('template') }}/files/bower_components/select2/css/select2.min.css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/bower_components/multiselect/css/multi-select.css" /> --}}
+ 
 
 
     <link rel="stylesheet" type="text/css"
@@ -29,7 +27,7 @@
                         <i class="feather icon-list bg-c-blue"></i>
                         <div class="d-inline">
                             <h5>Job</h5>
-                            <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                            <span>Silahkan kelola inputan data secara bijak !</span>
                         </div>
                     </div>
                 </div>
@@ -94,7 +92,8 @@
                                                             </li>
                                                         </ul>
 
-                                                        <form id="form_job" action="{{ route('back-office.job.simpan_job') }}"
+                                                        <form id="form_job"
+                                                            action="{{ route('back-office.job.simpan_job') }}"
                                                             method="POST" enctype="multipart/form-data">
                                                             @csrf <!-- Tambahkan token CSRF -->
                                                             <div class="tab-content card-block">
@@ -154,8 +153,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="jenis_pembayaran">Jenis
                                                                                             Pembayaran</label>
-                                                                                        <select
-                                                                                            class="form-control "
+                                                                                        <select class="form-control "
                                                                                             id="jenis_pembayaran"
                                                                                             name="jenis_pembayaran"
                                                                                             required>
@@ -199,8 +197,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="gaji_diterima">Gaji Yang
                                                                                             Diterima</label>
-                                                                                        <select
-                                                                                            class="form-control "
+                                                                                        <select class="form-control "
                                                                                             id="gaji_diterima"
                                                                                             name="gaji_diterima" required>
                                                                                             <option value="">--Pilih
@@ -311,8 +308,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="hari_kerja">Hari
                                                                                             Kerja</label>
-                                                                                        <select
-                                                                                            class="form-control "
+                                                                                        <select class="form-control "
                                                                                             id="hari_kerja"
                                                                                             name="hari_kerja" required>
                                                                                             <option value="">--Pilih
@@ -344,7 +340,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="masa_percobaan">Masa
                                                                                             Percobaan</label>
-                                                                                            <input type="text"
+                                                                                        <input type="text"
                                                                                             class="form-control "
                                                                                             id="masa_percobaan"
                                                                                             name="masa_percobaan">
@@ -411,8 +407,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="jenis_kelamin">Jenis
                                                                                             Kelamin</label>
-                                                                                        <select
-                                                                                            class="form-control "
+                                                                                        <select class="form-control "
                                                                                             id="jenis_kelamin"
                                                                                             name="jenis_kelamin" required>
                                                                                             <option value="">--Pilih
@@ -459,8 +454,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="level_bahasa">Level
                                                                                             Bahasa</label>
-                                                                                        <select
-                                                                                            class="form-control "
+                                                                                        <select class="form-control "
                                                                                             id="level_bahasa"
                                                                                             name="level_bahasa" required>
                                                                                             <option value="">--Pilih
@@ -478,8 +472,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="pengalaman_kerja">Pengalaman
                                                                                             Kerja</label>
-                                                                                        <select
-                                                                                            class="form-control "
+                                                                                        <select class="form-control "
                                                                                             id="pengalaman_kerja"
                                                                                             name="pengalaman_kerja"
                                                                                             required>
@@ -563,69 +556,7 @@
                                                                                                     </div>
                                                                                                 @endforeach
 
-                                                                                                {{-- <div
-                                                                                                    class="border-checkbox-group border-checkbox-group-success">
-                                                                                                    <input
-                                                                                                        class="border-checkbox"
-                                                                                                        type="checkbox"
-                                                                                                        name="nama_benefit[]"
-                                                                                                        value="disediakan_makan"
-                                                                                                        id="dm">
-                                                                                                    <label
-                                                                                                        class="border-checkbox-label"
-                                                                                                        for="dm">Disediakan
-                                                                                                        makan
-                                                                                                    </label>
-                                                                                                </div>
-
-                                                                                                <div
-                                                                                                    class="border-checkbox-group border-checkbox-group-success">
-                                                                                                    <input
-                                                                                                        class="border-checkbox"
-                                                                                                        type="checkbox"
-                                                                                                        name="nama_benefit[]"
-                                                                                                        value="disediakan_tunjangan_makan"
-                                                                                                        id="dtm">
-                                                                                                    <label
-                                                                                                        class="border-checkbox-label"
-                                                                                                        for="dtm">Disediakan
-                                                                                                        tunjangan makan
-                                                                                                    </label>
-                                                                                                </div>
-
-                                                                                                <div
-                                                                                                    class="border-checkbox-group border-checkbox-group-success">
-                                                                                                    <input
-                                                                                                        class="border-checkbox"
-                                                                                                        type="checkbox"
-                                                                                                        name="nama_benefit[]"
-                                                                                                        value="disediakan_asuransi_kerja"
-                                                                                                        id="dak">
-                                                                                                    <label
-                                                                                                        class="border-checkbox-label"
-                                                                                                        for="dak">Disediakan
-                                                                                                        asuransi kerja
-                                                                                                    </label>
-                                                                                                </div>
-
-                                                                                                <div
-                                                                                                    class="border-checkbox-group border-checkbox-group-success">
-                                                                                                    <input
-                                                                                                        class="border-checkbox"
-                                                                                                        type="checkbox"
-                                                                                                        name="nama_benefit[]"
-                                                                                                        value="disediakan_transportasi_dari_tempat_tinggal_ke_tempat_kerja"
-                                                                                                        id="dttk">
-                                                                                                    <label
-                                                                                                        class="border-checkbox-label"
-                                                                                                        for="dttk">Disediakan
-                                                                                                        transportasi dari
-                                                                                                        tempat
-                                                                                                        tinggal ke tempat
-                                                                                                        kerja
-
-                                                                                                    </label>
-                                                                                                </div> --}}
+                                                                                              
 
                                                                                             </div>
                                                                                         </div>
@@ -636,23 +567,10 @@
                                                                                             <label class="col-form-label"
                                                                                                 for="paragraf_galeri">Paragraf
                                                                                                 Galeri</label>
-                                                                                            <textarea class="form-control " name="paragraf_galeri" id="paragraf_galeri" cols="30"
-                                                                                                rows="4"></textarea>
+                                                                                            <textarea class="form-control " name="paragraf_galeri" id="paragraf_galeri" cols="30" rows="4"></textarea>
                                                                                         </div>
                                                                                     </div>
-                                                                                    {{-- <div class="form-group row">
-                                                                                        <div class="col-sm-12">
-                                                                                            <label class="col-form-label"
-                                                                                                for="nama_galeri">Upload
-                                                                                                Galeri</label>
-                                                                                            <input type="file"
-                                                                                                class="form-control "
-                                                                                                id="nama_galeri"
-                                                                                                name="nama_galeri[]"
-                                                                                                multiple>
-
-                                                                                        </div>
-                                                                                    </div> --}}
+                                                                                    
                                                                                     <div class="form-group row">
                                                                                         <div class="col-sm-12">
                                                                                             <label class="col-form-label"
@@ -678,8 +596,7 @@
                                                                                         <div class="col-sm-12">
                                                                                             <label class="col-form-label"
                                                                                                 for="disclaimer">Disclaimer</label>
-                                                                                            <textarea class="form-control " name="disclaimer" id="disclaimer" cols="30"
-                                                                                                rows="4"></textarea>
+                                                                                            <textarea class="form-control " name="disclaimer" id="disclaimer" cols="30" rows="4"></textarea>
                                                                                         </div>
                                                                                     </div>
 
@@ -754,6 +671,31 @@
                 <script type="text/javascript"
                     src="{{ asset('template') }}/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
 
+                <script>
+                    $(document).ready(function() {
+                        $('#gaji').on('input', function() {
+                            let value = $(this).val().replace(/\D/g, '');
+                            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                            $(this).val(value);
+                        });
+                        $('#estimasi_minimal').on('input', function() {
+                            let value = $(this).val().replace(/\D/g, '');
+                            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                            $(this).val(value);
+                        });
+                        $('#estimasi_maksimal').on('input', function() {
+                            let value = $(this).val().replace(/\D/g, '');
+                            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                            $(this).val(value);
+                        });
+                        $('#nominal_kurs').on('input', function() {
+                            let value = $(this).val().replace(/\D/g, '');
+                            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                            $(this).val(value);
+                        });
+                    });
+                </script>
+
 
                 {{-- PERINTAH CARI NEGARA --}}
                 <script>
@@ -801,7 +743,7 @@
                     });
                 </script>
 
- 
+
 
                 {{-- TAMBAH --}}
                 <script>
@@ -840,6 +782,4 @@
                         });
                     });
                 </script>
-
-                
             @endpush

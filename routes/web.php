@@ -188,6 +188,8 @@ Route::prefix('administrator')->group(function () {
                 // Route::get('/getKategoriJob', [JobController::class, 'getKategoriJob'])->name('getKategoriJob');
 
                 Route::post('/upload-gambar', [JobController::class, 'uploadGambar'])->name('upload-gambar');
+                Route::post('/update-status', [JobController::class, 'updateStatus'])->name('update-status');
+
                 
             });
 

@@ -2,11 +2,6 @@
 @section('title', 'Halaman Job')
 @section('subtitle', 'Menu Job')
 @push('css')
-    {{-- <link rel="stylesheet" href="{{ asset('template') }}/files/bower_components/select2/css/select2.min.css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/bower_components/bootstrap-multiselect/css/bootstrap-multiselect.css" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/bower_components/multiselect/css/multi-select.css" /> --}}
-
-
     <link rel="stylesheet" type="text/css"
         href="{{ asset('template') }}/files/assets/icon/font-awesome/css/font-awesome.min.css">
 
@@ -29,7 +24,7 @@
                         <i class="feather icon-list bg-c-blue"></i>
                         <div class="d-inline">
                             <h5>Job</h5>
-                            <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                            <span>Silahkan kelola inputan data secara bijak !</span>
                         </div>
                     </div>
                 </div>
@@ -93,9 +88,10 @@
                                                                 <div class="slide"></div>
                                                             </li>
                                                         </ul>
-                                                        <form id="form_job" action="{{ route('back-office.job.update', $data->id) }}"
+                                                        <form id="form_job"
+                                                            action="{{ route('back-office.job.update', $data->id) }}"
                                                             method="POST" enctype="multipart/form-data">
-                                                            @csrf 
+                                                            @csrf
                                                             @method('PUT')
                                                             <div class="tab-content card-block">
 
@@ -626,20 +622,23 @@
                                                                                                 {{-- Looping untuk checkbox fasilitas --}}
 
                                                                                                 @foreach ($fasilitas as $item)
-                                                                                                <div class="border-checkbox-group border-checkbox-group-success">
-                                                                                                    <input
-                                                                                                        class="border-checkbox"
-                                                                                                        type="checkbox"
-                                                                                                        id="fasilitas-{{ $item->id }}"
-                                                                                                        name="fasilitas_id[]"
-                                                                                                        value="{{ $item->id }}"
-                                                                                                        {{ $data->benefits->pluck('fasilitas_id')->contains($item->id) ? 'checked' : '' }}>
-                                                                                                    <label class="border-checkbox-label" for="fasilitas-{{ $item->id }}">
-                                                                                                        {{ $item->nama_fasilitas }}
-                                                                                                    </label>
-                                                                                                </div>
-                                                                                            @endforeach
-                                                                                            
+                                                                                                    <div
+                                                                                                        class="border-checkbox-group border-checkbox-group-success">
+                                                                                                        <input
+                                                                                                            class="border-checkbox"
+                                                                                                            type="checkbox"
+                                                                                                            id="fasilitas-{{ $item->id }}"
+                                                                                                            name="fasilitas_id[]"
+                                                                                                            value="{{ $item->id }}"
+                                                                                                            {{ $data->benefits->pluck('fasilitas_id')->contains($item->id) ? 'checked' : '' }}>
+                                                                                                        <label
+                                                                                                            class="border-checkbox-label"
+                                                                                                            for="fasilitas-{{ $item->id }}">
+                                                                                                            {{ $item->nama_fasilitas }}
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                @endforeach
+
 
 
 
@@ -707,7 +706,6 @@
                                                                 </a>
 
                                                                 <button type="submit"
-
                                                                     class="btn btn-primary waves-effect waves-light mt-3"
                                                                     id="btn-save-job" style="float: right;">
                                                                     <i class="fas fa-save"></i> Simpan
@@ -737,14 +735,6 @@
                     </div>
                 </div>
 
-
-
-
-
-
-
-
-
             @endsection
 
 
@@ -752,10 +742,71 @@
 
             @push('script')
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+                <script>
+                    // Fungsi untuk menambahkan separator titik
+                    function addThousandSeparator(number) {
+                        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    }
+
+                    // Fungsi untuk menghapus semua karakter selain angka
+                    function stripNonNumeric(str) {
+                        return str.replace(/[^0-9]/g, '');
+                    }
+
+                    $(document).ready(function() {
+                        // Tambahkan separator saat halaman dimuat
+                        $('#gaji').val(addThousandSeparator($('#gaji').val()));
+
+                        // Tambahkan separator saat pengguna mengetik
+                        $('#gaji').on('input', function() {
+                            let value = stripNonNumeric($(this).val());
+                            $(this).val(addThousandSeparator(value));
+                        });
+
+
+
+                        // Tambahkan separator saat halaman dimuat
+                        $('#estimasi_minimal').val(addThousandSeparator($('#estimasi_minimal').val()));
+
+                        // Tambahkan separator saat pengguna mengetik
+                        $('#estimasi_minimal').on('input', function() {
+                            let value = stripNonNumeric($(this).val());
+                            $(this).val(addThousandSeparator(value));
+                        });
+
+
+                        // Tambahkan separator saat halaman dimuat
+                        $('#estimasi_maksimal').val(addThousandSeparator($('#estimasi_maksimal').val()));
+
+                        // Tambahkan separator saat pengguna mengetik
+                        $('#estimasi_maksimal').on('input', function() {
+                            let value = stripNonNumeric($(this).val());
+                            $(this).val(addThousandSeparator(value));
+                        });
+
+
+                        // Tambahkan separator saat halaman dimuat
+                        $('#nominal_kurs').val(addThousandSeparator($('#nominal_kurs').val()));
+
+                        // Tambahkan separator saat pengguna mengetik
+                        $('#nominal_kurs').on('input', function() {
+                            let value = stripNonNumeric($(this).val());
+                            $(this).val(addThousandSeparator(value));
+                        });
+
+
+
+
+
+                    });
+                </script>
+
+
                 {{-- handle update ajax --}}
                 <script>
                     $(document).ready(function() {
-                    //    lewat button btn-save-job
+                        //    lewat button btn-save-job
                         $('#btn-save-job').click(function(e) {
                             e.preventDefault();
                             var form = $('#form_job')[0];
@@ -791,14 +842,11 @@
                                     }
                                 }
                             });
-                        }); 
+                        });
                     });
-                    </script>
+                </script>
                 <script type="text/javascript" src="{{ asset('template') }}/files/bower_components/switchery/js/switchery.min.js">
-                
-
-                <script type="text/javascript"
-                    src="{{ asset('template') }}/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
-
-  
+                    < script type = "text/javascript"
+                    src = "{{ asset('template') }}/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js" >
+                </script>
             @endpush
