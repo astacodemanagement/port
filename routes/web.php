@@ -79,28 +79,30 @@ Route::prefix('administrator')->group(function () {
             // PELAMAR
             Route::name('pelamar.')->group(function () {
                 Route::get('/pelamar/{status}', [PelamarController::class, 'index'])->name('index');
+                Route::post('/update.status', [PelamarController::class, 'updateStatus'])->name('update.status');
+                Route::get('/verifikasi/{id2}/detail', [PelamarController::class, 'detail'])->name('verifikasi.detail');
+                Route::put('/verifikasi/update/{id}', [PelamarController::class, 'updateDetail'])->name('updateDetail.update');
+
                 // Kandidat
                 Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
                 Route::get('/kandidat/{id}/detail', [KandidatController::class, 'detail'])->name('kandidat.detail');
                 Route::put('/kandidat/update/{id}', [KandidatController::class, 'update'])->name('kandidat.update');
 
                 
-                // Belum Verifikasi
-                Route::get('/belum-diverifikasi', [BelumVerifikasiController::class, 'index'])->name('belum-verifikasi');
-                Route::post('/update-status', [BelumVerifikasiController::class, 'updateStatus'])->name('update.status');
-                // Route::get('/belum_verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('belum_verifikasi.detail');
-                Route::get('/verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('verifikasi.detail');
-                Route::put('/verifikasi/update/{id}', [BelumVerifikasiController::class, 'updateDetail'])->name('updateDetail.update');
+                // // Belum Verifikasi
+                // Route::get('/belum-diverifikasi', [BelumVerifikasiController::class, 'index'])->name('belum-verifikasi');
+                // Route::post('/update-status', [BelumVerifikasiController::class, 'updateStatus'])->name('update.status');
+                // // Route::get('/belum_verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('belum_verifikasi.detail');
 
  
-                // Sudah Verifikasi
-                Route::get('/sudah-diverifikasi', [SudahVerifikasiController::class, 'index'])->name('sudah-verifikasi');
-                Route::post('/update-status-verifikasi', [SudahVerifikasiController::class, 'updateStatus'])->name('update.status-verifikasi');
+                // // Sudah Verifikasi
+                // Route::get('/sudah-diverifikasi', [SudahVerifikasiController::class, 'index'])->name('sudah-verifikasi');
+                // Route::post('/update-status-verifikasi', [SudahVerifikasiController::class, 'updateStatus'])->name('update.status-verifikasi');
 
 
-                // Reject Verifikasi
-                Route::get('/reject-diverifikasi', [RejectVerifikasiController::class, 'index'])->name('reject-verifikasi');
-                Route::post('/update-status-verifikasi-reject', [RejectVerifikasiController::class, 'updateStatus'])->name('update.status-reject');
+                // // Reject Verifikasi
+                // Route::get('/reject-diverifikasi', [RejectVerifikasiController::class, 'index'])->name('reject-verifikasi');
+                // Route::post('/update-status-verifikasi-reject', [RejectVerifikasiController::class, 'updateStatus'])->name('update.status-reject');
             });
 
 
