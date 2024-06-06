@@ -21,9 +21,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
+use App\Traits\UploadFile;
 
 class RegisterController extends Controller
 {
+    use UploadFile;
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -172,7 +175,7 @@ class RegisterController extends Controller
                 'nama_lengkap' => $request->nama_lengkap,
                 'tempat_lahir' => $request->tempat_lahir,
                 'tanggal_lahir' => $request->tanggal_lahir,
-                'status' => 'Pending',
+                // 'status' => 'Pending',
                 'usia' => Carbon::parse($request->tanggal_lahir)->age ?? 0,
                 'agama' => isset($agama[$request->agama]) ? $agama[$request->agama] : null,
                 'berat_badan' => $request->berat_badan,
@@ -206,53 +209,99 @@ class RegisterController extends Controller
                 'user_id' => $user->id
             ];
 
-            /** UPLOAD FOTO */
-            if ($request->hasFile('file_foto')) {
-                $filenameFoto = $request->file_foto->hashName();
-                $dirFoto = 'upload/foto/';
+            /** UPLOAD DOCUMENTS */
+            $arrDoc = [
+                [
+                    'input' => 'file_foto',
+                    'field' => 'foto',
+                    'dir' => 'foto',
+                ],
+                [
+                    'input' => 'file_paspor',
+                    'field' => 'paspor',
+                    'dir' => 'paspor',
+                ],
+                [
+                    'input' => 'file_ktp',
+                    'field' => 'ktp',
+                    'dir' => 'ktp',
+                ],
+                [
+                    'input' => 'file_kk',
+                    'field' => 'kk',
+                    'dir' => 'kartu-keluarga',
+                ]
+            ];
 
-                $uploadFoto = Storage::disk('public_uploads')->putFileAs($dirFoto, $request->file_foto, $filenameFoto, 'public');
+            foreach ($arrDoc as $doc) {
+                if ($request->hasFile($doc['input'])) {
+                    $file = $request->{$doc['input']};
+                    $filename = $file->hashName();
+                    $fileExtention = $file->extension();
+                    $dir = 'upload/' . $doc['dir'] . '/';
 
-                if ($uploadFoto) {
-                    $kandidat['foto'] = $filenameFoto;
+                    if ($fileExtention === 'pdf') {
+                        $upload = $this->uploadFile($file, $dir, $filename);
+                    } else {
+                        $upload = $this->uploadImage($file, $dir, $filename, [['width' => '400', 'height' => '400']]);
+                    }
+
+                    if ($upload) {
+                        $kandidat[$doc['field']] = $filename;
+                    }
                 }
             }
 
-            /** UPLOAD PASPOR */
-            if ($request->hasFile('file_paspor')) {
-                $filenamePaspor = $request->file_paspor->hashName();
-                $dirPaspor = 'upload/paspor/';
+            /** END UPLOAD DOCUMENTS */
 
-                $uploadPaspor = Storage::disk('public_uploads')->putFileAs($dirPaspor, $request->file_paspor, $filenamePaspor, 'public');
 
-                if ($uploadPaspor) {
-                    $kandidat['paspor'] = $filenamePaspor;
-                }
-            }
+            // /** UPLOAD FOTO */
+            // if ($request->hasFile('file_foto')) {
+            //     $filenameFoto = $request->file_foto->hashName();
+            //     $dirFoto = 'upload/foto/';
 
-            /** UPLOAD KTP */
-            if ($request->hasFile('file_ktp')) {
-                $filenameKTP = $request->file_ktp->hashName();
-                $dirKTP = 'upload/ktp/';
+            //     $uploadFoto = Storage::disk('public_uploads')->putFileAs($dirFoto, $request->file_foto, $filenameFoto, 'public');
 
-                $uploadKTP = Storage::disk('public_uploads')->putFileAs($dirKTP, $request->file_ktp, $filenameKTP, 'public');
+            //     if ($uploadFoto) {
+            //         $kandidat['foto'] = $filenameFoto;
+            //     }
+            // }
 
-                if ($uploadKTP) {
-                    $kandidat['ktp'] = $filenameKTP;
-                }
-            }
+            // /** UPLOAD PASPOR */
+            // if ($request->hasFile('file_paspor')) {
+            //     $filenamePaspor = $request->file_paspor->hashName();
+            //     $dirPaspor = 'upload/paspor/';
 
-            /** UPLOAD KK */
-            if ($request->hasFile('file_kk')) {
-                $filenameKK = $request->file_kk->hashName();
-                $dirKK = 'upload/kartu-keluarga/';
+            //     $uploadPaspor = Storage::disk('public_uploads')->putFileAs($dirPaspor, $request->file_paspor, $filenamePaspor, 'public');
 
-                $uploadKK = Storage::disk('public_uploads')->putFileAs($dirKK, $request->file_kk, $filenameKK, 'public');
+            //     if ($uploadPaspor) {
+            //         $kandidat['paspor'] = $filenamePaspor;
+            //     }
+            // }
 
-                if ($uploadKK) {
-                    $kandidat['kk'] = $filenameKK;
-                }
-            }
+            // /** UPLOAD KTP */
+            // if ($request->hasFile('file_ktp')) {
+            //     $filenameKTP = $request->file_ktp->hashName();
+            //     $dirKTP = 'upload/ktp/';
+
+            //     $uploadKTP = Storage::disk('public_uploads')->putFileAs($dirKTP, $request->file_ktp, $filenameKTP, 'public');
+
+            //     if ($uploadKTP) {
+            //         $kandidat['ktp'] = $filenameKTP;
+            //     }
+            // }
+
+            // /** UPLOAD KK */
+            // if ($request->hasFile('file_kk')) {
+            //     $filenameKK = $request->file_kk->hashName();
+            //     $dirKK = 'upload/kartu-keluarga/';
+
+            //     $uploadKK = Storage::disk('public_uploads')->putFileAs($dirKK, $request->file_kk, $filenameKK, 'public');
+
+            //     if ($uploadKK) {
+            //         $kandidat['kk'] = $filenameKK;
+            //     }
+            // }
 
             Kandidat::create($kandidat);
 
@@ -464,6 +513,10 @@ class RegisterController extends Controller
             'file_foto.required' => 'File :attribute belum dipilih',
             'file_ktp.required' => 'File :attribute belum dipilih',
             'file_kk.required' => 'File :attribute belum dipilih',
+            'file_foto.max' => 'Ukuran file :attribute maksimal 10MB',
+            'file_ktp.max' => 'Ukuran file :attribute maksimal 10MB',
+            'file_kk.max' => 'Ukuran file :attribute maksimal 10MB',
+            'file_paspor.max' => 'Ukuran file :attribute maksimal 10MB',
             'password.confirmed' => 'Konfirmasi password tidak sesuai',
             'email' => 'Format email tidak valid',
             'unique' => ':attribute sudah digunakan',

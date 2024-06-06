@@ -12,8 +12,7 @@ class FeCompanyprofile2 extends Controller
 {
     public function compro2(){
 
-        $data['job'] =  Job::orderBy('id', 'desc')->with('benefits','negara','gambar')->limit(8)->get();
-        // conver pattern 3500000 to 3.5 in estimasi minimal field
+        $data['job'] =  Job::orderBy('id', 'desc')->limit(8)->get();
         foreach ($data['job'] as $key => $value) {
             $value->estimasi_minimal = $value->estimasi_minimal / 1000000;
             $value->estimasi_maksimal = $value->estimasi_maksimal / 1000000;
@@ -25,7 +24,8 @@ class FeCompanyprofile2 extends Controller
     public function job(){
         return view('front.compro-2.job');
     }
-    public function jobdetail(){
+    public function jobdetail($id){
+        $data["job"] =  Job::find($id);
         return view('front.compro-2.job-detail');
     }
 

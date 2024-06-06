@@ -22,9 +22,9 @@ if (!function_exists('memberProfile')) {
         $profileImg = asset('member-template/images/profile/user-1.jpg');
 
         if ($img = $data->kandidat->foto) {
-            $profileImg = asset('upload/foto/' . $img);
+            $profileImg = asset('upload/foto/thumb_' . $img);
 
-            if (!File::exists(public_path('upload/foto/' . $img))) {
+            if (!File::exists(public_path('upload/foto/thumb_' . $img))) {
                 if ($data->kandidat->jenis_kelamin == 'Perempuan') {
                     $profileImg = asset('member-template/images/profile/user-9.jpg');
 
@@ -48,21 +48,28 @@ if (!function_exists('memberProfile')) {
 }
 
 if (!function_exists('memberDocumentImage')) {
-    function memberDocumentImage($filePath)
+    function memberDocumentImage($filePath = null, $fileThumbPath = null)
     {
         $isUploaded = false;
         $fileImage = 'member-template/images/unknown-file.png';
         $fileType = null;
 
-        if (File::exists($filePath)) {
-            $isUploaded = true;
+        if ($filePath) {
+            if (File::exists($filePath)) {
+                $isUploaded = true;
 
-            if ( pathinfo($filePath,  PATHINFO_EXTENSION) == 'pdf' ) {
-                $fileImage = 'member-template/images/pdf.png';
-                $fileType = 'pdf';
-            } else {
-                $fileImage = $filePath;
-                $fileType = pathinfo($filePath, PATHINFO_EXTENSION);
+                if ( pathinfo($filePath,  PATHINFO_EXTENSION) == 'pdf' ) {
+                    $fileImage = 'member-template/images/pdf.png';
+                    $fileType = 'pdf';
+                } else {
+                    $fileImage = $filePath;
+
+                    if (File::exists($fileThumbPath)) {
+                        $fileImage = $fileThumbPath;
+                    }
+
+                    $fileType = pathinfo($filePath, PATHINFO_EXTENSION);
+                }
             }
         }
 
