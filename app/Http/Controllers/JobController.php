@@ -42,9 +42,11 @@ class JobController extends Controller
 
     public function index()
     {
-        $job = Job::orderBy('id', 'desc')->get();
+        $job = Job::with('negara')->orderBy('id', 'desc')->get();
         return view('back.job.index', compact('job'));
     }
+    
+    
 
     /**
      * Show the form for creating a new resource.
@@ -57,7 +59,7 @@ class JobController extends Controller
         return view('back.job.create', ['fasilitas' => $fasilitas]);
     }
 
-     
+
 
     public function store(Request $request)
     {
@@ -65,24 +67,16 @@ class JobController extends Controller
             'nama_job' => 'required',
             'nama_perusahaan' => 'required',
             'fasilitas_id' => 'required|array|min:1',
-            'negara_id' => 'required|exists:negara,id',
+            // tambahkan validasi lain sesuai kebutuhan
         ]);
-
-        // Dapatkan nama_negara dari input hidden
-        $namaNegara = $request->input('nama_negara');
-        dd($request->all());
+    
         // Mulai transaksi database
         DB::beginTransaction();
-
         try {
-            // Simpan uke dalam tabel job
-            $job = Job::create([
-                'nama_job' => $request->nama_job,
-                'nama_perusahaan' => $request->nama_perusahaan,
-                'negara_id' => $request->negara_id,
-                'nama_negara' => $namaNegara,
-            ]);
-
+            // Simpan ke dalam tabel job dengan semua input yang diterima
+            $jobData = $request->except('fasilitas_id'); // kecualikan fasilitas_id jika tidak ada dalam tabel job
+            $job = Job::create($jobData);
+    
             // Simpan ke dalam tabel benefit
             foreach ($request->fasilitas_id as $benefit) {
                 Benefit::create([
@@ -90,25 +84,22 @@ class JobController extends Controller
                     'fasilitas_id' => $benefit,
                 ]);
             }
-
+    
             // Commit transaksi jika tidak ada kesalahan
             DB::commit();
-
+    
             // Mendapatkan ID pengguna yang sedang login
             $loggedInUserId = Auth::id();
-
             // Simpan log histori untuk operasi Create dengan ruangan_id yang sedang login
             $this->simpanLogHistori('Create', 'Job', $job->id, $loggedInUserId, null, json_encode($job));
-
             return response()->json(['message' => 'Data berhasil disimpan'], 200);
         } catch (\Exception $e) {
             // Rollback transaksi jika terjadi kesalahan
             DB::rollback();
-
-            
-            return response()->json(['message' => 'Terjadi kesalahan saat menyimpan data'], 500);
+            return response()->json(['message' => 'Terjadi kesalahan saat menyimpan data' . $e->getMessage()], 500);
         }
     }
+    
 
 
 
@@ -185,14 +176,16 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        $data = Job::where('id', $id)->first();
+        // Muat relasi 'benefits' pada model 'Job'
+        $data = Job::with('benefits')->where('id', $id)->first();
         $fasilitas = Fasilitas::all();
-        $negara = Negara::all();  // Daftar semua negara
-        $kategori_job = KategoriJob::all();  // Daftar semua kategori pekerjaan
-        
-        return view('back.job.edit', compact('data', 'fasilitas','negara','kategori_job'));
+        $negara = Negara::all();
+        $kategori_job = KategoriJob::all();
+    
+        return view('back.job.edit', compact('data', 'fasilitas', 'negara', 'kategori_job'));
     }
     
+
 
     /**
      * Update the specified resource in storage.
@@ -206,31 +199,92 @@ class JobController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_job' => 'required',
             'nama_perusahaan' => 'required',
+            'mitra' => 'nullable',
+            'tanggal_tutup' => 'nullable|date',
+            'gaji' => 'required|numeric|min:6',
+            'jenis_pembayaran' => 'required|in:Bulan,Jam',
+            'estimasi_minimal' => 'required|numeric|min:6',
+            'estimasi_maksimal' => 'required|numeric|min:6',
+            'gaji_diterima' => 'required|in:Bersih,Kotor',
+            'tanggal_kurs' => 'nullable|date',
+            'nomimal_kurs' => 'nullable|numeric',
+            'negara_id' => 'required|exists:negara,id',
+            'kategori_job_id' => 'required|exists:kategori_job,id',
+            'kontrak_kerja' => 'required',
+            'jam_kerja' => 'required',
+            'hari_kerja' => 'required',
+            'cuti_kerja' => 'required',
+            'masa_percobaan' => 'nullable',
+            'mata_uang_gaji' => 'nullable',
+            'kerja_lembur' => 'nullable',
+            'bahasa' => 'nullable',
+            'deskripsi' => 'nullable',
+            'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
+            'tinggi_badan' => 'nullable|numeric',
+            'berat_badan' => 'nullable|numeric',
+            'rentang_usia' => 'nullable',
+            'level_bahasa' => 'nullable',
+            'pengalaman_kerja' => 'nullable',
+            'paragraf_galeri' => 'nullable',
+            'link_video' => 'nullable|url',
+            'info_lain' => 'nullable',
+            'disclaimer' => 'nullable',
         ], [
             'nama_job.required' => 'Nama Job Wajib diisi',
-            'urutan.required' => 'Urutan Wajib diisi',
-            'urutan.numeric' => 'Urutan harus berupa angka',
+            'nama_perusahaan.required' => 'Nama Perusahaan Wajib diisi',
+            'hari_kerja.required' => 'Hari kerja wajib diisi',
+            'cuti_kerja.required' => 'Cuti kerja wajib diisi',
+            'masa_percobaan.required' => 'Masa percobaan wajib diisi',
+            'mata_uang_gaji.required' => 'Mata uang gaji wajib diisi',
+            'kerja_lembur.required' => 'Kerja lembur wajib diisi',
+            'bahasa.required' => 'Bahasa wajib diisi',
+            'deskripsi.required' => 'Deskripsi wajib diisi',
+            'jenis_kelamin.required' => 'Jenis kelamin wajib diisi',
+            'tinggi_badan.required' => 'Tinggi badan wajib diisi',
+            'tinggi_badan.numeric' => 'Tinggi badan harus berupa angka',
+            'berat_badan.required' => 'Berat badan wajib diisi',
+            'berat_badan.numeric' => 'Berat badan harus berupa angka',
+            'rentang_usia.required' => 'Rentang usia wajib diisi',
+            'level_bahasa.required' => 'Level bahasa wajib diisi',
+            'pengalaman_kerja.required' => 'Pengalaman kerja wajib diisi',
+            'disclaimer.required' => 'Disclaimer wajib diisi',
         ]);
-
+    
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-
-        $kategoriJob = Job::findOrFail($id);
-        $oldData = $kategoriJob->getOriginal();
-
-        // Update data
-        $kategoriJob->update([
-            'nama_job' => $request->nama_job,
-            'urutan' => $request->urutan,
-        ]);
-
-
-        $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Update', 'Job', $kategoriJob->id, $loggedInUserId, json_encode($oldData), json_encode($kategoriJob));
-
-        return response()->json(['message' => 'Data berhasil diupdate.']);
+    
+        try {
+            $kategoriJob = Job::findOrFail($id);
+            $oldData = $kategoriJob->getOriginal();
+    
+            // Update data
+            $nama_negara = Negara::where('id', $request->negara_id)->pluck('nama_negara')->first();
+            $nama_kategori_job = KategoriJob::where('id', $request->kategori_job_id)->pluck('nama_kategori_job')->first();
+    
+            $request->merge(['nama_kategori_job' => $nama_kategori_job]);
+            $request->merge(['nama_negara' => $nama_negara]);
+    
+            $requestData = $request->only([
+                'nama_job', 'nama_perusahaan', 'mitra', 'tanggal_tutup', 'gaji', 'jenis_pembayaran',
+                'estimasi_minimal', 'estimasi_maksimal', 'gaji_diterima', 'tanggal_kurs', 'nomimal_kurs',
+                'negara_id', 'kategori_job_id', 'kontrak_kerja', 'jam_kerja', 'hari_kerja', 'cuti_kerja',
+                'masa_percobaan', 'mata_uang_gaji', 'kerja_lembur', 'bahasa', 'deskripsi', 'jenis_kelamin',
+                'tinggi_badan', 'berat_badan', 'rentang_usia', 'level_bahasa', 'pengalaman_kerja', 'paragraf_galeri',
+                'link_video', 'info_lain', 'disclaimer','nama_kategori_job','nama_negara'
+            ]);
+    
+            $kategoriJob->update($requestData);
+    
+            $loggedInUserId = Auth::id();
+            $this->simpanLogHistori('Update', 'Job', $kategoriJob->id, $loggedInUserId, json_encode($oldData), json_encode($kategoriJob));
+    
+            return response()->json(['message' => 'Data berhasil diupdate.']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Terjadi kesalahan saat mengupdate data: ' . $e->getMessage()], 500);
+        }
     }
+    
 
     /**
      * Remove the specified resource from storage.

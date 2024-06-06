@@ -93,8 +93,7 @@
                                                                 <div class="slide"></div>
                                                             </li>
                                                         </ul>
-                                                        <form id="form_job"
-                                                            action="{{ route('back-office.job.update',['id'=>$data->id]) }}"
+                                                        <form id="form_job" action="{{ route('back-office.job.update', $data->id) }}"
                                                             method="POST" enctype="multipart/form-data">
                                                             @csrf 
                                                             @method('PUT')
@@ -708,7 +707,8 @@
                                                                     Kembali
                                                                 </a>
 
-                                                                <button type="button"
+                                                                <button type="submit"
+
                                                                     class="btn btn-primary waves-effect waves-light mt-3"
                                                                     id="btn-save-job" style="float: right;">
                                                                     <i class="fas fa-save"></i> Simpan
@@ -753,9 +753,50 @@
 
             @push('script')
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
+                {{-- handle update ajax --}}
+                <script>
+                    $(document).ready(function() {
+                    //    lewat button btn-save-job
+                        $('#btn-save-job').click(function(e) {
+                            e.preventDefault();
+                            var form = $('#form_job')[0];
+                            var formData = new FormData(form);
+                            $.ajax({
+                                type: "POST",
+                                url: "{{ route('back-office.job.update', $data->id) }}",
+                                data: formData,
+                                contentType: false,
+                                processData: false,
+                                success: function(response) {
+                                    Swal.fire({
+                                        title: 'Sukses!',
+                                        text: response.message,
+                                        icon: 'success',
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.isConfirmed || result.isDismissed) {
+                                            location.reload();
+                                        }
+                                    });
+                                },
+                                error: function(xhr) {
+                                    var res = xhr.responseJSON;
+                                    if ($.isEmptyObject(res) == false) {
+                                        $.each(res.errors, function(key, value) {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Gagal',
+                                                text: value,
+                                            });
+                                        });
+                                    }
+                                }
+                            });
+                        }); 
+                    });
+                    </script>
                 <script type="text/javascript" src="{{ asset('template') }}/files/bower_components/switchery/js/switchery.min.js">
-                </script>
+                
 
                 <script type="text/javascript"
                     src="{{ asset('template') }}/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
