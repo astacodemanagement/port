@@ -42,11 +42,9 @@ class JobController extends Controller
 
     public function index()
     {
-        $job = Job::with('negara')->orderBy('id', 'desc')->get();
+        $job = Job::orderBy('id', 'desc')->get();
         return view('back.job.index', compact('job'));
     }
-    
-    
 
     /**
      * Show the form for creating a new resource.
@@ -59,7 +57,7 @@ class JobController extends Controller
         return view('back.job.create', ['fasilitas' => $fasilitas]);
     }
 
-
+     
 
     public function store(Request $request)
     {
@@ -67,16 +65,24 @@ class JobController extends Controller
             'nama_job' => 'required',
             'nama_perusahaan' => 'required',
             'fasilitas_id' => 'required|array|min:1',
-            // tambahkan validasi lain sesuai kebutuhan
+            'negara_id' => 'required|exists:negara,id',
         ]);
-    
+
+        // Dapatkan nama_negara dari input hidden
+        $namaNegara = $request->input('nama_negara');
+        dd($request->all());
         // Mulai transaksi database
         DB::beginTransaction();
+
         try {
-            // Simpan ke dalam tabel job dengan semua input yang diterima
-            $jobData = $request->except('fasilitas_id'); // kecualikan fasilitas_id jika tidak ada dalam tabel job
-            $job = Job::create($jobData);
-    
+            // Simpan uke dalam tabel job
+            $job = Job::create([
+                'nama_job' => $request->nama_job,
+                'nama_perusahaan' => $request->nama_perusahaan,
+                'negara_id' => $request->negara_id,
+                'nama_negara' => $namaNegara,
+            ]);
+
             // Simpan ke dalam tabel benefit
             foreach ($request->fasilitas_id as $benefit) {
                 Benefit::create([
@@ -84,22 +90,25 @@ class JobController extends Controller
                     'fasilitas_id' => $benefit,
                 ]);
             }
-    
+
             // Commit transaksi jika tidak ada kesalahan
             DB::commit();
-    
+
             // Mendapatkan ID pengguna yang sedang login
             $loggedInUserId = Auth::id();
+
             // Simpan log histori untuk operasi Create dengan ruangan_id yang sedang login
             $this->simpanLogHistori('Create', 'Job', $job->id, $loggedInUserId, null, json_encode($job));
+
             return response()->json(['message' => 'Data berhasil disimpan'], 200);
         } catch (\Exception $e) {
             // Rollback transaksi jika terjadi kesalahan
             DB::rollback();
-            return response()->json(['message' => 'Terjadi kesalahan saat menyimpan data' . $e->getMessage()], 500);
+
+            
+            return response()->json(['message' => 'Terjadi kesalahan saat menyimpan data'], 500);
         }
     }
-    
 
 
 
@@ -176,16 +185,14 @@ class JobController extends Controller
      */
     public function edit($id)
     {
-        // Muat relasi 'benefits' pada model 'Job'
-        $data = Job::with('benefits')->where('id', $id)->first();
+        $data = Job::where('id', $id)->first();
         $fasilitas = Fasilitas::all();
-        $negara = Negara::all();
-        $kategori_job = KategoriJob::all();
-    
-        return view('back.job.edit', compact('data', 'fasilitas', 'negara', 'kategori_job'));
+        $negara = Negara::all();  // Daftar semua negara
+        $kategori_job = KategoriJob::all();  // Daftar semua kategori pekerjaan
+        
+        return view('back.job.edit', compact('data', 'fasilitas','negara','kategori_job'));
     }
     
-
 
     /**
      * Update the specified resource in storage.
@@ -198,7 +205,7 @@ class JobController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama_job' => 'required',
-            'urutan' => 'required|numeric',
+            'nama_perusahaan' => 'required',
         ], [
             'nama_job.required' => 'Nama Job Wajib diisi',
             'urutan.required' => 'Urutan Wajib diisi',

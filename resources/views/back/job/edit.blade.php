@@ -94,9 +94,10 @@
                                                             </li>
                                                         </ul>
                                                         <form id="form_job"
-                                                            action="{{ route('back-office.job.simpan_job') }}"
+                                                            action="{{ route('back-office.job.update',['id'=>$data->id]) }}"
                                                             method="POST" enctype="multipart/form-data">
-                                                            @csrf <!-- Tambahkan token CSRF -->
+                                                            @csrf 
+                                                            @method('PUT')
                                                             <div class="tab-content card-block">
 
                                                                 <div class="tab-pane active" id="home7" role="tabpanel">
