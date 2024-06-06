@@ -7,7 +7,7 @@
                 <a href="mailto:{{ auth()->user()->email }}">{{ auth()->user()->email }}</a>
                 <a href="{{ route('member.profile.edit') }}" class="w-75 btn btn-rounded btn-light-secondary text-primary btn-lg mt-4">
                     <i class="ti ti-pencil-minus ms-2 fs-5"></i>
-                    Edit Profile
+                    Edit Profil
                 </a>
             </div>
         </div>

@@ -1,6 +1,6 @@
 @extends('front.member.layouts.app')
 
-@section('title', 'Edit Work Experience')
+@section('title', 'Edit Pengalaman kerja')
 
 @section('content')
     <div class="row">
@@ -8,7 +8,7 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title fw-semibold">Edit Work Experience</h5>
+                    <h5 class="card-title fw-semibold">Edit Pengalaman kerja</h5>
                 </div>
             </div>
         </div>

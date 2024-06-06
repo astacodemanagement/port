@@ -358,7 +358,9 @@
                                 @foreach ($arrDocument as $doc)
                                     <div class="col-6 col-md-2">
                                         @php
-                                            $memberFile = memberDocumentImage('upload/' . $doc['path'] . '/' . auth()->user()->kandidat->{$doc['key']});
+                                            $originalFile = auth()->user()->kandidat->{$doc['key']} ? 'upload/' . $doc['path'] . '/' . auth()->user()->kandidat->{$doc['key']} : null;
+                                            $thumbnailFile = auth()->user()->kandidat->{$doc['key']} ? 'upload/' . $doc['path'] . '/thumb_' . auth()->user()->kandidat->{$doc['key']} : null;
+                                            $memberFile = memberDocumentImage($originalFile, $thumbnailFile);
                                         @endphp
                                         @if ($memberFile['is_uploaded'])
                                             <a href="{{ asset('upload/' . $doc['path'] . '/' . auth()->user()->kandidat->{$doc['key']}) }}" target="_blank">
