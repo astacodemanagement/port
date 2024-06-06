@@ -263,8 +263,7 @@ class JobController extends Controller
             $nama_negara = Negara::where('id', $request->negara_id)->pluck('nama_negara')->first();
             $nama_kategori_job = KategoriJob::where('id', $request->kategori_job_id)->pluck('nama_kategori_job')->first();
     
-            $request->merge(['nama_kategori_job' => $nama_kategori_job]);
-            $request->merge(['nama_negara' => $nama_negara]);
+           
     
             $requestData = $request->only([
                 'nama_job', 'nama_perusahaan', 'mitra', 'tanggal_tutup', 'gaji', 'jenis_pembayaran',
@@ -272,7 +271,7 @@ class JobController extends Controller
                 'negara_id', 'kategori_job_id', 'kontrak_kerja', 'jam_kerja', 'hari_kerja', 'cuti_kerja',
                 'masa_percobaan', 'mata_uang_gaji', 'kerja_lembur', 'bahasa', 'deskripsi', 'jenis_kelamin',
                 'tinggi_badan', 'berat_badan', 'rentang_usia', 'level_bahasa', 'pengalaman_kerja', 'paragraf_galeri',
-                'link_video', 'info_lain', 'disclaimer','nama_kategori_job','nama_negara'
+                'link_video', 'info_lain', 'disclaimer'
             ]);
             
             $kategoriJob->update($requestData);
