@@ -260,9 +260,6 @@ class JobController extends Controller
             $oldData = $kategoriJob->getOriginal();
     
             // Update data
-            $nama_negara = Negara::where('id', $request->negara_id)->pluck('nama_negara')->first();
-            $nama_kategori_job = KategoriJob::where('id', $request->kategori_job_id)->pluck('nama_kategori_job')->first();
-    
            
     
             $requestData = $request->only([
