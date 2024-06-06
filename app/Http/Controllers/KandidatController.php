@@ -172,7 +172,7 @@ class KandidatController extends Controller
             'sertifikat_kompetensi' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
             'paklaring' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
             'kk' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
-            'akta' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+            'akta_lahir' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
             'ijazah' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
             'buku_nikah' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
             'sertifikat_bahasa_inggris' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
@@ -261,6 +261,7 @@ class KandidatController extends Controller
                 $kandidat['ktp'] = $filenameKtp;
             }
         }
+
         if($request->has('sertifikat_kompetensi')){
             $realpathSertifikatKompetensi = $request->file('sertifikat_kompetensi')->getRealPath();
             $filenameSertifikatKompetensi = 'sertifikat-kompetensi-' . time() . '.' . $request->file('sertifikat_kompetensi')->getClientOriginalExtension();
@@ -296,7 +297,7 @@ class KandidatController extends Controller
             $dirAkta = 'upload/akta/';
             $uploadAkta = Storage::disk('public_uploads')->put($dirAkta . $filenameAkta, file_get_contents($realpathAkta));
             if ($uploadAkta) {
-                $kandidat['akta'] = $filenameAkta;
+                $kandidat['akta_lahir'] = $filenameAkta;
             }
         }
         // ijazah
