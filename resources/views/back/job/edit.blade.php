@@ -624,23 +624,25 @@
                                                                                                 class="border-checkbox-section">
 
                                                                                                 {{-- Looping untuk checkbox fasilitas --}}
+                                                                                               
                                                                                                 @foreach ($fasilitas as $item)
-                                                                                                    <div
-                                                                                                        class="border-checkbox-group border-checkbox-group-success">
-                                                                                                        <input
-                                                                                                            class="border-checkbox"
-                                                                                                            type="checkbox"
-                                                                                                            id="fasilitas-{{ $item->id }}"
-                                                                                                            name="fasilitas_id[]"
-                                                                                                            value="{{ $item->id }}"
-                                                                                                            {{ in_array($item->id, $data->benefits->pluck('fasilitas_id')->toArray()) ? 'checked' : '' }}>
-                                                                                                        <label
-                                                                                                            class="border-checkbox-label"
-                                                                                                            for="fasilitas-{{ $item->id }}">
-                                                                                                            {{ $item->nama_fasilitas }}
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                @endforeach
+                                                                                                <div class="border-checkbox-group border-checkbox-group-success">
+                                                                                                    <input
+                                                                                                        class="border-checkbox"
+                                                                                                        type="checkbox"
+                                                                                                        id="fasilitas-{{ $item->id }}"
+                                                                                                        name="fasilitas_id[]"
+                                                                                                        value="{{ $item->id }}"
+                                                                                                        {{ in_array($item->nama_fasilitas, $data->benefits->pluck('nama_benefit')->toArray()) ? 'checked' : '' }}>
+                                                                                                    <label
+                                                                                                        class="border-checkbox-label"
+                                                                                                        for="fasilitas-{{ $item->id }}">
+                                                                                                        {{ $item->nama_fasilitas }}
+
+                                                                                                    </label>
+                                                                                                </div>
+                                                                                            @endforeach
+                                                                                            
 
 
 

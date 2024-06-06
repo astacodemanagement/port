@@ -229,6 +229,7 @@ class JobController extends Controller
             'link_video' => 'nullable|url',
             'info_lain' => 'nullable',
             'disclaimer' => 'nullable',
+            'fasilitas_id' => 'required|array|min:1',
         ], [
             'nama_job.required' => 'Nama Job Wajib diisi',
             'nama_perusahaan.required' => 'Nama Perusahaan Wajib diisi',
@@ -273,9 +274,17 @@ class JobController extends Controller
                 'tinggi_badan', 'berat_badan', 'rentang_usia', 'level_bahasa', 'pengalaman_kerja', 'paragraf_galeri',
                 'link_video', 'info_lain', 'disclaimer','nama_kategori_job','nama_negara'
             ]);
-    
+            
             $kategoriJob->update($requestData);
-    
+            // send ke tabel benefit
+            
+            $benefit = Benefit::where('job_id', $id)->get();
+            foreach ($request->fasilitas_id as $fasilitasId) {
+                $benefit = new Benefit();
+                $benefit->job_id = $id;
+                $benefit->nama_benefit = Fasilitas::find($fasilitasId)->nama_fasilitas;
+                $benefit->save();
+            }
             $loggedInUserId = Auth::id();
             $this->simpanLogHistori('Update', 'Job', $kategoriJob->id, $loggedInUserId, json_encode($oldData), json_encode($kategoriJob));
     
