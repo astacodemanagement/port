@@ -191,21 +191,28 @@ class JobController extends Controller
     
         try {
             $job = Job::findOrFail($request->job_id);
-            $oldData = $job->getOriginal();
+            
+            // Ambil status sebelum diupdate
+            $oldStatus = $job->status;
     
+            // Update status
             $job->status = $request->status;
             $job->save();
     
-            // Simpan log histori
+            // Ambil status setelah diupdate
+            $newStatus = $job->status;
+    
+            // Simpan log histori dengan data lama dan data baru hanya untuk status
             $loggedInUserId = Auth::id();
-            $this->simpanLogHistori('Update Status', 'Job', $job->id, $loggedInUserId, json_encode($oldData), json_encode($job));
+            $this->simpanLogHistori('Update', 'Job', $job->id, $loggedInUserId, json_encode(['status' => $oldStatus]), json_encode(['status' => $newStatus]));
     
             return response()->json(['message' => 'Status berhasil diupdate'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat mengupdate status job: ' . $e->getMessage()], 500);
         }
     }
-    
+         
+
 
 
     public function uploadGambar(Request $request)
