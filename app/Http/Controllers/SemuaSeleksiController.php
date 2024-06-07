@@ -42,9 +42,9 @@ class SemuaSeleksiController extends Controller
                 'seleksi.*',
                 'kandidat.nama_lengkap',
                 'job.nama_job',
-                'job.nama_negara',
+                // 'job.nama_negara',
                 'job.nama_perusahaan',
-                'job.nama_kategori_job',
+                // 'job.nama_kategori_job',
                 'job.mitra',
                 'kategori_job.urutan as kategori_urutan'
             )

@@ -83,14 +83,20 @@
                                                             <td>{{ $p->tanggal_tutup }}</td>
                                                             <td>{{ $p->nama_perusahaan }}</td>
                                                             <td>
-                                                                @if ($p->status === 'publish')
-                                                                    <span
-                                                                        class="badge bg-success">{{ $p->status }}</span>
-                                                                @else
-                                                                    <span
-                                                                        class="badge bg-warning">{{ $p->status }}</span>
-                                                                @endif
+                                                            <a href="#" class="btn-status" data-toggle="modal" data-target="#modal-status"
+                                                            data-id="{{ $p->id }}"
+                                                            data-nama-job="{{ $p->nama_job }}">
+                                                               
+                                                                    @if ($p->status === 'publish')
+                                                                        <span
+                                                                            class="badge bg-success">{{ $p->status }}</span>
+                                                                    @else
+                                                                        <span
+                                                                            class="badge bg-warning">{{ $p->status }}</span>
+                                                                    @endif
+                                                                </a>
                                                             </td>
+                                                           
                                                             <td>
                                                                 <a href="/upload/gambar/{{ $p->gambar }}"
                                                                     target="_blank">
@@ -110,13 +116,13 @@
                                                                     <i class="fas fa-image"></i> Gambar
                                                                 </a>
 
-                                                                <a style="color: rgb(242, 236, 236)" href="#"
+                                                                {{-- <a style="color: rgb(242, 236, 236)" href="#"
                                                                     class="btn btn-sm btn-primary btn-status"
                                                                     data-toggle="modal" data-target="#modal-status"
                                                                     data-id="{{ $p->id }}"
                                                                     data-nama-job="{{ $p->nama_job }}">
                                                                     <i class="fas fa-edit"></i> Ubah Status
-                                                                </a>
+                                                                </a> --}}
 
 
 

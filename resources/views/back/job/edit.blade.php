@@ -686,6 +686,24 @@
                                                                                         </div>
                                                                                     </div>
 
+                                                                                    <div class="form-group row">
+                                                                                        <div class="col-sm-12">
+                                                                                            <label class="col-form-label"
+                                                                                                for="gambar">Gambar</label>
+                                                                                            <input type="file"
+                                                                                                class="form-control"
+                                                                                                id="gambar"
+                                                                                                name="gambar">
+                                                                                                <br>
+                                                                                                <a href="/upload/gambar/{{ $data->gambar }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:150px; max-height:150px"
+                                                                                                        src="/upload/gambar/{{ $data->gambar }}"
+                                                                                                        alt="">
+                                                                                                </a>
+                                                                                        </div>
+                                                                                    </div>
+
 
 
 

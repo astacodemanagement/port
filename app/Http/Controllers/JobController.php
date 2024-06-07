@@ -153,11 +153,11 @@ class JobController extends Controller
             if ($request->hasFile('gambar')) {
                 $file = $request->gambar;
                 $filename = $file->hashName();
-                
+
                 $dir = 'upload/gambar/';
-               
-                    $upload = $this->uploadImage($file, $dir, $filename, [['width' => '300', 'height' => '300'],['width' => '432', 'height' => '132'],['width' => '580', 'height' => '500']]);
-               
+
+                $upload = $this->uploadImage($file, $dir, $filename, [['width' => '300', 'height' => '300'], ['width' => '432', 'height' => '132'], ['width' => '580', 'height' => '500']]);
+
                 if ($upload) {
                     $jobData['gambar'] = $filename;
                 }
@@ -201,34 +201,34 @@ class JobController extends Controller
             'status.required' => 'Status wajib diisi',
             'status.in' => 'Status tidak valid',
         ]);
-    
+
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-    
+
         try {
             $job = Job::findOrFail($request->job_id);
-            
+
             // Ambil status sebelum diupdate
             $oldStatus = $job->status;
-    
+
             // Update status
             $job->status = $request->status;
             $job->save();
-    
+
             // Ambil status setelah diupdate
             $newStatus = $job->status;
-    
+
             // Simpan log histori dengan data lama dan data baru hanya untuk status
             $loggedInUserId = Auth::id();
             $this->simpanLogHistori('Update', 'Job', $job->id, $loggedInUserId, json_encode(['status' => $oldStatus]), json_encode(['status' => $newStatus]));
-    
+
             return response()->json(['message' => 'Status berhasil diupdate'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat mengupdate status job: ' . $e->getMessage()], 500);
         }
     }
-         
+
 
 
 
@@ -258,7 +258,7 @@ class JobController extends Controller
         $manager->read($gambar)->cover(432, 132)->save($destinationPath . 'thumb_wrapper_' . $imageName);
         $manager->read($gambar)->cover(580, 500)->save($destinationPath . 'thumb_' . $imageName);
 
- 
+
 
 
         // Simpan informasi gambar ke tabel gambar
@@ -408,6 +408,30 @@ class JobController extends Controller
                     $requestData[$field] = str_replace('.', '', $requestData[$field]);
                 }
             }
+
+            // Handle gambar
+            if ($request->hasFile('gambar')) {
+                // Unlink gambar lama
+                if ($kategoriJob->gambar) {
+                    $oldImagePath = public_path('upload/gambar/' . $kategoriJob->gambar);
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
+                }
+
+                // Upload gambar baru
+                $file = $request->gambar;
+                $filename = $file->hashName();
+                $dir = 'upload/gambar/';
+                $upload = $this->uploadImage($file, $dir, $filename, [['width' => '300', 'height' => '300'], ['width' => '432', 'height' => '132'], ['width' => '580', 'height' => '500']]);
+
+                if ($upload) {
+                    $requestData['gambar'] = $filename;
+                }
+            }
+
+
+
             $kategoriJob->update($requestData);
 
             // Update tabel benefit
