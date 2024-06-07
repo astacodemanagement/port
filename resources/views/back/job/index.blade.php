@@ -70,6 +70,7 @@
                                                         <th width="5%">Tanggal Tutup</th>
                                                         <th width="5%">Nama Perusahaan</th>
                                                         <th width="5%">Status</th>
+                                                        <th width="5%">Gambar</th>
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -89,6 +90,14 @@
                                                                     <span
                                                                         class="badge bg-warning">{{ $p->status }}</span>
                                                                 @endif
+                                                            </td>
+                                                            <td>
+                                                                <a href="/upload/gambar/{{ $p->gambar }}"
+                                                                    target="_blank">
+                                                                    <img style="max-width:50px; max-height:50px"
+                                                                        src="/upload/gambar/{{ $p->gambar }}"
+                                                                        alt="">
+                                                                </a>
                                                             </td>
 
                                                             <td class="text-center">

@@ -18,10 +18,13 @@ use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Imagick\Driver;
 use Illuminate\Support\Facades\File;
+use App\Traits\UploadFile;
 
 
 class JobController extends Controller
 {
+
+    use UploadFile;
     /**
      * Display a listing of the resource.
      *
@@ -146,7 +149,21 @@ class JobController extends Controller
                 }
             }
 
-            // Simpan ke dalam tabel job dengan semua input yang diterima
+
+            if ($request->hasFile('gambar')) {
+                $file = $request->gambar;
+                $filename = $file->hashName();
+                
+                $dir = 'upload/gambar/';
+               
+                    $upload = $this->uploadImage($file, $dir, $filename, [['width' => '300', 'height' => '300'],['width' => '432', 'height' => '132'],['width' => '580', 'height' => '500']]);
+               
+                if ($upload) {
+                    $jobData['gambar'] = $filename;
+                }
+            }
+
+            // Simpan ke dalam tabel job dengan semua gambar yang diterima
             $job = Job::create($jobData);
 
             // Simpan ke dalam tabel benefit

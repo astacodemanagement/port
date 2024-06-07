@@ -599,6 +599,13 @@
                                                                                             <textarea class="form-control " name="disclaimer" id="disclaimer" cols="30" rows="4"></textarea>
                                                                                         </div>
                                                                                     </div>
+                                                                                    <div class="form-group row">
+                                                                                        <div class="col-sm-12">
+                                                                                            <label class="col-form-label"
+                                                                                                for="gambar">Gambar</label>
+                                                                                            <input type="file" class="form-control" id="gambar" name="gambar">
+                                                                                            </div>
+                                                                                    </div>
 
 
 
@@ -749,11 +756,13 @@
                 <script>
                     $(document).ready(function() {
                         $('#btn-save-job').click(function() {
-                            var form = $('#form_job');
+                            var formData = new FormData($('#form_job')[0]);
                             $.ajax({
-                                url: form.attr('action'),
+                                url: $('#form_job').attr('action'),
                                 type: 'POST',
-                                data: form.serialize(),
+                                data: formData,
+                                contentType: false,
+                                processData: false,
                                 success: function(response) {
 
                                     Swal.fire({
