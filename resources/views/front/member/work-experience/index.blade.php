@@ -17,6 +17,10 @@
                         $i = 0;
                     @endphp
                     @foreach (auth()->user()->kandidat->pengalamanKerja as $pengalamanKerja)
+                        @if ($i > 0)
+                            <hr class="my-3 my-lg-5">
+                        @endif
+
                         <h5 class="fw-7 text-primary">{{ $pengalamanKerja->nama_perusahaan . ' - ' . $pengalamanKerja->posisi }}</h5>
                         <div class="row mt-lg-4 mt-3">
                             <div class="col-lg-4 mb-3 mb-lg-0">
@@ -42,10 +46,6 @@
                                 <span>{{ $pengalamanKerja->tanggal_selesai_kerja ? Carbon\Carbon::parse($pengalamanKerja->tanggal_selesai_kerja)->format('d F Y') : '-' }}</span>
                             </div>
                         </div>
-
-                        @if ($i > 0)
-                            <hr class="my-3 my-lg-5">
-                        @endif
                         @php
                             $i++;
                         @endphp

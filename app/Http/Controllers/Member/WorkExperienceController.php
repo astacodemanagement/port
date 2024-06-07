@@ -23,11 +23,24 @@ class WorkExperienceController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'negara_tempat_kerja.*' => 'required',
-            'nama_perusahaan.*' => 'required',
-            'tahun_mulai_kerja.*' => 'required',
-            'tahun_selesai_kerja.*' => 'required',
-            'posisi.*' => 'required',
+            'negara_tempat_kerja.*' => 'required|min:3|max:50',
+            'nama_perusahaan.*' => 'required|min:3|max:100',
+            'tanggal_mulai_kerja.*' => 'required|date_format:Y-m-d',
+            'tanggal_selesai_kerja.*' => 'required|date_format:Y-m-d',
+            'posisi.*' => 'required|min:3|max:100',
+        ],
+        [
+            'required' => ':attribute harus diisi',
+            'min' => ':attribute minimal :min karakter',
+            'max' => ':attribute maksimal :max karakter',
+            'date_format' => 'Format :attribute tidak valid'
+        ],
+        [
+            'negara_tempat_kerja.*' => 'Negara tempat bekerja',
+            'nama_perusahaan.*' => 'Nama perusahaan',
+            'tanggal_mulai_kerja.*' => 'Tanggal mulai kerja',
+            'tanggal_selesai_kerja.*' => 'Tanggal selesai kerja',
+            'posisi.*' => 'Posisi',
         ]);
 
         DB::beginTransaction();
@@ -47,6 +60,8 @@ class WorkExperienceController extends Controller
                     'tanggal_mulai_kerja' => $request->tanggal_mulai_kerja[$i],
                     'tanggal_selesai_kerja' => $request->tanggal_selesai_kerja[$i],
                     'posisi' => $request->posisi[$i],
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ];
             }
 
@@ -58,7 +73,17 @@ class WorkExperienceController extends Controller
             PengalamanKerja::insert($pengalamanKerja);
             DB::commit();
 
-            return response()->json(['success' => true, 'message' => 'Pengalaman kerja berhasil diperbarui', '_token' => csrf_token()]);
+            $workExperiences = PengalamanKerja::where('pendaftaran_id', auth()->user()->kandidat->pendaftaran_id)->limit(3)->orderBy('id', 'desc')->get();
+            $i = 0;
+            foreach ($workExperiences as $pengalamanKerja) {
+                unset($workExperiences[$i]->id);
+                unset($workExperiences[$i]->pendaftaran_id);
+                unset($workExperiences[$i]->created_at);
+                unset($workExperiences[$i]->updated_at);
+                $i++;
+            }
+
+            return response()->json(['success' => true, 'message' => 'Pengalaman kerja berhasil diperbarui', '_token' => csrf_token(), 'data' => auth()->user()->kandidat->pengalamanKerja]);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => $e->getMessage(), '_token' => csrf_token()], 400);
