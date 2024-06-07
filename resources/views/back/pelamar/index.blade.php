@@ -229,9 +229,9 @@
                                                                             Tahun</b></p>
                                                                     <p class="card-text mb-1 text-muted"
                                                                         style="font-family: 'Poppins', sans-serif; ">
-                                                                        <i class="fa fa-globe"></i><b
+                                                                        <i class="fa fa-book"></i><b
                                                                             style="font-weight: bold;">
-                                                                            {{ $p->kandidat->provinsi?->nama_provinsi }}</b>
+                                                                            {{ $p->kandidat->no_paspor }}</b>
                                                                     </p>
 
                                                                 </div>
@@ -343,6 +343,7 @@
                                                                             id="statusSelect{{ $p->id }}"
                                                                             name="status"
                                                                             onchange="handleStatusChange(this)">
+                                                                            <option value="Belum Verifikasi(Pending)">Belum Verifikasi(Pending)</option>
                                                                             <option value="Verifikasi">Verifikasi</option>
                                                                             <option value="Reject">Reject</option>
                                                                             <option value="Reject-Blacklist">

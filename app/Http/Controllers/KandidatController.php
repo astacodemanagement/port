@@ -37,18 +37,18 @@ class KandidatController extends Controller
     }
 
     public function index()
-    {   
+    {
         $data['kandidat'] = Kandidat::orderBy('id', 'desc')->get();
-      
+
         return view('back.kandidat.index', $data);
     }
 
     public function detail($id)
     {
-         
+
         $data['provinsi'] = Provinsi::all();
         $data['kota'] = Kota::all();
-        $data['kecamatan'] = Kecamatan::all(); 
+        $data['kecamatan'] = Kecamatan::all();
         $data['detail_kandidat'] = Kandidat::with(['pendaftaran', 'pengalamanKerja', 'user'])->where('id', $id)->first();
 
         return view('back.kandidat.detail', $data);
@@ -74,7 +74,6 @@ class KandidatController extends Controller
      */
     public function store(Request $request)
     {
-      
     }
 
 
@@ -108,7 +107,7 @@ class KandidatController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
+
     public function update(Request $request, $id)
     {
         // dd($request->foto);
@@ -131,7 +130,7 @@ class KandidatController extends Controller
             'nama_keluarga' => 'nullable',
             'hubungan' => 'nullable',
             'no_telp_darurat' => 'nullable|numeric|min_digits:6|max_digits:14',
-            'no_paspor' => 'required|numeric|max_digits:16|min_digits:16',
+            'no_paspor' => 'required|numeric|max_digits:16',
             'tanggal_pengeluaran_paspor' => 'required|date_format:Y-m-d',
             'masa_kadaluarsa' => 'required|date_format:Y-m-d',
             'kantor_paspor' => 'required|min:3',
@@ -177,7 +176,7 @@ class KandidatController extends Controller
             'buku_nikah' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
             'sertifikat_bahasa_inggris' => 'max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
         ]);
-        
+
         $kandidat = [
             'nik' => $request->nik,
             'nama_lengkap' => $request->nama_lengkap,
@@ -220,18 +219,18 @@ class KandidatController extends Controller
             'riwayat_penyakit_rawat' => $request->riwayat_penyakit_rawat,
             'keterangan_riwayat_penyakit_rawat' => $request->keterangan_riwayat_penyakit_rawat,
             'apa_anda_hamil' => $request->apa_anda_hamil,
-            'ada_ktp' => $request->ada_ktp,
-            'ada_kk' => $request->ada_kk,
-            'ada_akta_lahir' => $request->ada_akta_lahir,
-            'ada_ijazah' => $request->ada_ijazah,
-            'ada_buku_nikah' => $request->ada_buku_nikah,
-            'ada_paspor' => $request->ada_paspor,
+            'ada_ktp' => $request->has('ada_ktp') ? 'Ya' : 'Tidak',
+            'ada_kk' => $request->has('ada_kk') ? 'Ya' : 'Tidak',
+            'ada_akta_lahir' => $request->has('ada_akta_lahir') ? 'Ya' : 'Tidak',
+            'ada_ijazah' => $request->has('ada_ijazah') ? 'Ya' : 'Tidak',
+            'ada_buku_nikah' => $request->has('ada_buku_nikah') ? 'Ya' : 'Tidak',
+            'ada_paspor' => $request->has('ada_paspor') ? 'Ya' : 'Tidak',
             'penjelasan_dokumen' => $request->penjelasan_dokumen,
             'video_diri' => $request->video_diri,
             'video_skill' => $request->video_skill,
             'no_wa' => $request->no_wa,
-     ];
-        
+        ];
+
         // handle foto
         if ($request->has('foto')) {
             $realpathFoto = $request->file('foto')->getRealPath();
@@ -241,9 +240,8 @@ class KandidatController extends Controller
             if ($uploadFoto) {
                 $kandidat['foto'] = $filenameFoto;
             }
-            
         }
-        if($request->has('paspor')){
+        if ($request->has('paspor')) {
             $realpathPaspor = $request->file('paspor')->getRealPath();
             $filenamePaspor = 'paspor-' . time() . '.' . $request->file('paspor')->getClientOriginalExtension();
             $dirPaspor = 'upload/paspor/';
@@ -252,7 +250,7 @@ class KandidatController extends Controller
                 $kandidat['paspor'] = $filenamePaspor;
             }
         }
-        if($request->has('ktp')){
+        if ($request->has('ktp')) {
             $realpathKtp = $request->file('ktp')->getRealPath();
             $filenameKtp = 'ktp-' . time() . '.' . $request->file('ktp')->getClientOriginalExtension();
             $dirKtp = 'upload/ktp/';
@@ -262,7 +260,7 @@ class KandidatController extends Controller
             }
         }
 
-        if($request->has('sertifikat_kompetensi')){
+        if ($request->has('sertifikat_kompetensi')) {
             $realpathSertifikatKompetensi = $request->file('sertifikat_kompetensi')->getRealPath();
             $filenameSertifikatKompetensi = 'sertifikat-kompetensi-' . time() . '.' . $request->file('sertifikat_kompetensi')->getClientOriginalExtension();
             $dirSertifikatKompetensi = 'upload/sertifikat-kompetensi/';
@@ -271,7 +269,7 @@ class KandidatController extends Controller
                 $kandidat['sertifikat_kompetensi'] = $filenameSertifikatKompetensi;
             }
         }
-        if($request->has('paklaring')){
+        if ($request->has('paklaring')) {
             $realpathPaklaring = $request->file('paklaring')->getRealPath();
             $filenamePaklaring = 'paklaring-' . time() . '.' . $request->file('paklaring')->getClientOriginalExtension();
             $dirPaklaring = 'upload/paklaring/';
@@ -281,7 +279,7 @@ class KandidatController extends Controller
             }
         }
         // kk
-        if($request->has('kk')){
+        if ($request->has('kk')) {
             $realpathKk = $request->file('kk')->getRealPath();
             $filenameKk = 'kk-' . time() . '.' . $request->file('kk')->getClientOriginalExtension();
             $dirKk = 'upload/kartu-keluarga/';
@@ -291,17 +289,17 @@ class KandidatController extends Controller
             }
         }
         // akta
-        if($request->has('akta')){
+        if ($request->has('akta')) {
             $realpathAkta = $request->file('akta')->getRealPath();
             $filenameAkta = 'akta-' . time() . '.' . $request->file('akta')->getClientOriginalExtension();
-            $dirAkta = 'upload/akta/';
+            $dirAkta = 'upload/akta-lahir/';
             $uploadAkta = Storage::disk('public_uploads')->put($dirAkta . $filenameAkta, file_get_contents($realpathAkta));
             if ($uploadAkta) {
                 $kandidat['akta_lahir'] = $filenameAkta;
             }
         }
         // ijazah
-        if($request->has('ijazah')){
+        if ($request->has('ijazah')) {
             $realpathIjazah = $request->file('ijazah')->getRealPath();
             $filenameIjazah = 'ijazah-' . time() . '.' . $request->file('ijazah')->getClientOriginalExtension();
             $dirIjazah = 'upload/ijazah/';
@@ -311,7 +309,7 @@ class KandidatController extends Controller
             }
         }
         // buku nikah
-        if($request->has('buku_nikah')){
+        if ($request->has('buku_nikah')) {
             $realpathBukuNikah = $request->file('buku_nikah')->getRealPath();
             $filenameBukuNikah = 'buku-nikah-' . time() . '.' . $request->file('buku_nikah')->getClientOriginalExtension();
             $dirBukuNikah = 'upload/buku-nikah/';
@@ -321,7 +319,7 @@ class KandidatController extends Controller
             }
         }
         //  sertifikat_bahasa_inggris
-        if($request->has('sertifikat_bahasa_inggris')){
+        if ($request->has('sertifikat_bahasa_inggris')) {
             $realpathSertifikatBahasaInggris = $request->file('sertifikat_bahasa_inggris')->getRealPath();
             $filenameSertifikatBahasaInggris = 'sertifikat-bahasa-inggris-' . time() . '.' . $request->file('sertifikat_bahasa_inggris')->getClientOriginalExtension();
             $dirSertifikatBahasaInggris = 'upload/sertifikat-bahasa-inggris/';
@@ -335,13 +333,13 @@ class KandidatController extends Controller
         $user_id = Kandidat::find($id)->user_id;
 
         if ($request->has('email')) {
-            User::where('id',$user_id)->update([
+            User::where('id', $user_id)->update([
                 'email' => $request->email
             ]);
         }
 
         if ($request->has('password') && $request->password != null) {
-            User::where('id',$user_id)->update([
+            User::where('id', $user_id)->update([
                 'password' => Hash::make($request->password)
             ]);
         }
@@ -351,8 +349,7 @@ class KandidatController extends Controller
         // Simpan log histori untuk operasi Update dengan user_id yang sedang login
         $this->simpanLogHistori('Update', 'kandidat', $id, $loggedInUserId, null, json_encode($kandidat));
         return response()->json(['message' => 'Data Berhasil Diupdate']);
-    
-}
+    }
 
 
 

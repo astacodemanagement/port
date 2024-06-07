@@ -79,28 +79,30 @@ Route::prefix('administrator')->group(function () {
             // PELAMAR
             Route::name('pelamar.')->group(function () {
                 Route::get('/pelamar/{status}', [PelamarController::class, 'index'])->name('index');
+                Route::post('/update.status', [PelamarController::class, 'updateStatus'])->name('update.status');
+                Route::get('/verifikasi/{id2}/detail', [PelamarController::class, 'detail'])->name('verifikasi.detail');
+                Route::put('/verifikasi/update/{id}', [PelamarController::class, 'updateDetail'])->name('updateDetail.update');
+
                 // Kandidat
                 Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
                 Route::get('/kandidat/{id}/detail', [KandidatController::class, 'detail'])->name('kandidat.detail');
                 Route::put('/kandidat/update/{id}', [KandidatController::class, 'update'])->name('kandidat.update');
 
                 
-                // Belum Verifikasi
-                Route::get('/belum-diverifikasi', [BelumVerifikasiController::class, 'index'])->name('belum-verifikasi');
-                Route::post('/update-status', [BelumVerifikasiController::class, 'updateStatus'])->name('update.status');
-                // Route::get('/belum_verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('belum_verifikasi.detail');
-                Route::get('/verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('verifikasi.detail');
-                Route::put('/verifikasi/update/{id}', [BelumVerifikasiController::class, 'updateDetail'])->name('updateDetail.update');
+                // // Belum Verifikasi
+                // Route::get('/belum-diverifikasi', [BelumVerifikasiController::class, 'index'])->name('belum-verifikasi');
+                // Route::post('/update-status', [BelumVerifikasiController::class, 'updateStatus'])->name('update.status');
+                // // Route::get('/belum_verifikasi/{id2}/detail', [BelumVerifikasiController::class, 'detail'])->name('belum_verifikasi.detail');
 
  
-                // Sudah Verifikasi
-                Route::get('/sudah-diverifikasi', [SudahVerifikasiController::class, 'index'])->name('sudah-verifikasi');
-                Route::post('/update-status-verifikasi', [SudahVerifikasiController::class, 'updateStatus'])->name('update.status-verifikasi');
+                // // Sudah Verifikasi
+                // Route::get('/sudah-diverifikasi', [SudahVerifikasiController::class, 'index'])->name('sudah-verifikasi');
+                // Route::post('/update-status-verifikasi', [SudahVerifikasiController::class, 'updateStatus'])->name('update.status-verifikasi');
 
 
-                // Reject Verifikasi
-                Route::get('/reject-diverifikasi', [RejectVerifikasiController::class, 'index'])->name('reject-verifikasi');
-                Route::post('/update-status-verifikasi-reject', [RejectVerifikasiController::class, 'updateStatus'])->name('update.status-reject');
+                // // Reject Verifikasi
+                // Route::get('/reject-diverifikasi', [RejectVerifikasiController::class, 'index'])->name('reject-verifikasi');
+                // Route::post('/update-status-verifikasi-reject', [RejectVerifikasiController::class, 'updateStatus'])->name('update.status-reject');
             });
 
 
@@ -188,6 +190,8 @@ Route::prefix('administrator')->group(function () {
                 // Route::get('/getKategoriJob', [JobController::class, 'getKategoriJob'])->name('getKategoriJob');
 
                 Route::post('/upload-gambar', [JobController::class, 'uploadGambar'])->name('upload-gambar');
+                Route::post('/update-status', [JobController::class, 'updateStatus'])->name('update-status');
+
                 
             });
 
@@ -389,9 +393,11 @@ Route::prefix('member')->group(function () {
     });
 });
 
-Route::get('/compro2', [FeCompanyprofile2::class,'compro2'])->name('compro-2.index');
-Route::get('/compro2/job', [FeCompanyprofile2::class,'job'])->name('compro-2.job');
-Route::get('/compro2/job-detail', [FeCompanyprofile2::class,'jobdetail'])->name('compro-2.job-detail');
-Route::get('/compro2/employe', [FeCompanyprofile2::class,'employe'])->name('compro-2.employe');
-Route::get('/compro2/daftar', [FeCompanyprofile2::class,'daftar'])->name('compro-2.daftar');
-Route::get('/compro2/complete', [FeCompanyprofile2::class,'complete'])->name('compro-2.complete');
+Route::group(['prefix' => 'compro2'], function () {
+    Route::get('/', [FeCompanyprofile2::class,'compro2'])->name('compro-2.index');
+    Route::get('/job', [FeCompanyprofile2::class,'job'])->name('compro-2.job');
+    Route::get('/job/detail/{id}', [FeCompanyprofile2::class,'jobdetail'])->name('compro-2.job.detail');
+    Route::get('/employe', [FeCompanyprofile2::class,'employe'])->name('compro-2.employe');
+    Route::get('/daftar', [FeCompanyprofile2::class,'daftar'])->name('compro-2.daftar');
+    Route::get('/complete', [FeCompanyprofile2::class,'complete'])->name('compro-2.complete');
+});

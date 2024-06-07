@@ -14,8 +14,8 @@ class FeCompanyprofile2 extends Controller
 
         $data['job'] =  Job::orderBy('id', 'desc')->limit(8)->get();
         foreach ($data['job'] as $key => $value) {
-            $value->estimasi_minimal = $value->estimasi_minimal / 1000000;
-            $value->estimasi_maksimal = $value->estimasi_maksimal / 1000000;
+            $value->estimasi_minimal = $value->estimasi_minimal / 1000;
+            $value->estimasi_maksimal = $value->estimasi_maksimal / 1000;
         }
       
         return view('front.compro-2.home',$data);
@@ -26,7 +26,7 @@ class FeCompanyprofile2 extends Controller
     }
     public function jobdetail($id){
         $data["job"] =  Job::find($id);
-        return view('front.compro-2.job-detail');
+        return view('front.compro-2.jobs.detail',$data);
     }
 
     public function employe(){

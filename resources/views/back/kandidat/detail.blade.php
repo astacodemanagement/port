@@ -884,7 +884,7 @@
                                                                                                         </button>
                                                                                                     </div>
                                                                                                     <div class="modal-body">
-                                                                                                        <img src="/upload/sertifikat-bahasa-ingris/{{ $detail_kandidat->sertifikat_bahasa_inggris }}" alt="" class="previewSertifikat" style="max-width: 100%; max-height: 100%;">
+                                                                                                        <img src="/upload/sertifikat-bahasa-inggris/{{ $detail_kandidat->sertifikat_bahasa_inggris }}" alt="" class="previewSertifikat" style="max-width: 100%; max-height: 100%;">
                                                                                                         <div class="form-group">
                                                                                                             <label for="sertifikat">Pilih Sertifikat</label>
                                                                                                             <input type="file" class="form-control-file" id="sertifikat" name="sertifikat_bahasa_inggris" required>
@@ -942,8 +942,8 @@
                                                                                             <div class="col-sm-4">
                                                                                                 <div class="form-group" style="text-align: center;">
                                                                                                     <label class="col-form-label" for="">Akta Lahir</label>
-                                                                                                    <a href="/upload/akta/{{ $detail_kandidat->akta }}" target="_blank">
-                                                                                                        <img src="/upload/akta/{{ $detail_kandidat->akta }}" alt="Preview" class="previewAkta" style="max-width: 100%; max-height: 100%;
+                                                                                                    <a href="/upload/akta-lahir/{{ $detail_kandidat->akta_lahir }}" target="_blank">
+                                                                                                        <img src="/upload/akta-lahir/{{ $detail_kandidat->akta_lahir }}" alt="Preview" class="previewAkta" style="max-width: 100%; max-height: 100%;
                                                                                                         ">
 
                                                                                                     </a>
@@ -1106,11 +1106,11 @@
                                                                                                     </button>
                                                                                                 </div>
                                                                                                 <div class="modal-body">
-                                                                                                     <img src="/upload/akta-lahir/{{ $detail_kandidat->akta }}" alt="" class="previewAkta" style="max-width: 100%; max-height: 100%;">
+                                                                                                     <img src="/upload/akta-lahir/{{ $detail_kandidat->akta_lahir }}" alt="" class="previewAkta" style="max-width: 100%; max-height: 100%;">
                                                                                                     <div class="form-group
                                                                                                     ">
                                                                                                     <label for="akta_lahir">Pilih Akta Lahir</label>
-                                                                                                    <input type="file" class="form-control-file" id="akta" name="akta" required>
+                                                                                                    <input type="file" class="form-control-file" id="akta_lahir" name="akta_lahir" required>
                                                                                                     </div>
                                                                                                   
                                                                                                 </div>
@@ -1379,7 +1379,7 @@
                           reader.readAsDataURL(this.files[0]);
                      });
     
-                     $('#akta').change(function(e){
+                     $('#akta_lahir').change(function(e){
                           let reader = new FileReader();
                           reader.onload = (e) => {
                             $('.previewAkta').attr('src', e.target.result);
