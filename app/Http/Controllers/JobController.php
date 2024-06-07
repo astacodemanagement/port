@@ -173,8 +173,6 @@ class JobController extends Controller
     }
 
 
-
-
     public function updateStatus(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -186,23 +184,28 @@ class JobController extends Controller
             'status.required' => 'Status wajib diisi',
             'status.in' => 'Status tidak valid',
         ]);
-
+    
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-
+    
         try {
             $job = Job::findOrFail($request->job_id);
+            $oldData = $job->getOriginal();
+    
             $job->status = $request->status;
             $job->save();
-
-            return response()->json(['message' => 'Data berhasil disimpan'], 200);
-
+    
+            // Simpan log histori
+            $loggedInUserId = Auth::id();
+            $this->simpanLogHistori('Update Status', 'Job', $job->id, $loggedInUserId, json_encode($oldData), json_encode($job));
+    
+            return response()->json(['message' => 'Status berhasil diupdate'], 200);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Terjadi kesalahan saat mengupdate status job: ' . $e->getMessage()], 500);
         }
     }
-
+    
 
 
     public function uploadGambar(Request $request)
