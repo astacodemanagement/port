@@ -23,7 +23,7 @@ trait UploadFile
             if (count($crops) > 0) {
                 $i = 0;
                 foreach ($crops as $crop) {
-                    $prefixThumb = $i > 1 ? $prefixThumb . '_' . $crop['width'] : $prefixThumb;
+                    $prefixThumb = $i > 1 ? $prefixThumb . '_' . $crop['width'] . '_' : $prefixThumb;
                     $manager->read($request)->cover($crop['width'], $crop['height'])->save($path . $prefixThumb . $filename);
                     $i++;
                 }
