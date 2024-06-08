@@ -80,10 +80,14 @@ class WorkExperienceController extends Controller
                 unset($workExperiences[$i]->pendaftaran_id);
                 unset($workExperiences[$i]->created_at);
                 unset($workExperiences[$i]->updated_at);
+                
+                $dateDiffYear = \Carbon\Carbon::parse($pengalamanKerja->tanggal_mulai_kerja)->diffInYears($pengalamanKerja->tanggal_selesai_kerja);
+                $dateDiffMonth = \Carbon\Carbon::parse($pengalamanKerja->tanggal_mulai_kerja)->diffInMonths($pengalamanKerja->tanggal_selesai_kerja);
+                $workExperiences[$i]->time = $dateDiffYear > 0 ? $dateDiffYear . ' years' : $dateDiffMonth . ' months';
                 $i++;
             }
 
-            return response()->json(['success' => true, 'message' => 'Pengalaman kerja berhasil diperbarui', '_token' => csrf_token(), 'data' => auth()->user()->kandidat->pengalamanKerja]);
+            return response()->json(['success' => true, 'message' => 'Pengalaman kerja berhasil diperbarui', '_token' => csrf_token(), 'data' => $workExperiences]);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['success' => false, 'message' => $e->getMessage(), '_token' => csrf_token()], 400);

@@ -18,13 +18,13 @@
                 Pengalaman Kerja
                 <a href="{{ route('member.work-experience.edit') }}" class="btn btn-primary btn-sm btn-light-secondary float-end text-primary mt-n2"><i class="ti ti-pencil-minus fs-4"></i></a>
             </h6>
-            <div class="list-group mt-3">
+            <div class="list-group mt-3 sidebar-work-experience-list">
                 @forelse ($work_experiences as $we)
                     @php
                         $dateDiffYear = \Carbon\Carbon::parse($we->tanggal_mulai_kerja)->diffInYears($we->tanggal_selesai_kerja);
                         $dateDiffMonth = \Carbon\Carbon::parse($we->tanggal_mulai_kerja)->diffInMonths($we->tanggal_selesai_kerja);
                     @endphp
-                    <a href="#" class="list-group-item border-0 px-0" aria-current="true">
+                    <a href="javascript:void(0)" class="list-group-item border-0 px-0" aria-current="true">
                         <div class="d-flex w-100 justify-content-between">
                             <h6 class="mb-1 fw-7">{{ $we->posisi }}</h6>
                             <small class="text-muted">{{ $dateDiffYear > 0 ? $dateDiffYear . ' years' : $dateDiffMonth . ' months' }}</small>
