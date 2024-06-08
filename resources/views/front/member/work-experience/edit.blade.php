@@ -190,6 +190,22 @@
                     },
                     success: function(response) {
                         if (response.success) {
+                            if (response.data.length) {
+                                let workExperience = '';
+
+                                $(response.data).each(function(i, item){
+                                    workExperience += `<a href="javascript:void(0)" class="list-group-item border-0 px-0" aria-current="true">
+                                                            <div class="d-flex w-100 justify-content-between">
+                                                                <h6 class="mb-1 fw-7">${item.posisi}</h6>
+                                                                <small class="text-muted">${item.time}</small>
+                                                            </div>
+                                                            <p class="mb-1">${item.nama_perusahaan}</p>
+                                                        </a>`
+                                })
+                                
+                                $('.sidebar-work-experience-list').html(workExperience)
+                            }
+
                             t.find('.btn-save').text('Save')
                             
                             Swal.fire({
