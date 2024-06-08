@@ -72,7 +72,7 @@
     <section class="wrapper-content p-3">
         <div class="container">
             <div class="row m-0">
-                <div class="col-8 p-0">
+                <div class="col-8 mb-4">
                     <div class="wrapper-content-left bg-white ">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item" role="presentation">
@@ -194,9 +194,6 @@
                                             </div> --}}
                                         </div>
                                     </div>
-
-
-
                                 </div>
                             </div>
                             <div class="tab-pane" id="tab-panel-job-gallery" role="tabpanel" aria-labelledby="tab-job-gallery">
@@ -221,12 +218,34 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="content-warning d-none d-lg-block">
+                        <div class="row m-0">
+                            <div class="col-1 float-right">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                    fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                                </svg>
+                            </div>
+                            <div class="col-11">
+                                <span>“HATI-HATI DENGAN OKNUM YANG MENGATASNAMAKAN PERUSAHAAN. KAMI
+                                    TIDAK PERNAH
+                                    MELAKUKAN
+                                    PEMBAYARAN
+                                    DILUAR ATAS NAMA REKENING PERUSAHAAN”. Segala informasi pekerjaan di
+                                    atas
+                                    merupakan
+                                    informasi
+                                    sebenar-benarnya yang diperoleh dari Perusahaan Pemberi
+                                    Kerja.</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-4 d-block">
+                <div class="col-4 d-block mb-4">
                     <div class="wrapper-content-right">
                         <div class="wrapper-image">
-                            <img src="{{ asset('upload/gambar/thumb_wrapper_' . $job->gambar?->gambar) }}" alt="{{ $job->nama_job }}">
+                            <img src="{{ asset('upload/gambar/thumb_432_' . $job->gambar) }}" alt="{{ $job->nama_job }}">
                         </div>
                         <div class="wrapper-salary">
                             <div class="wrapper-icon">
@@ -264,7 +283,6 @@
                                         </div>
                                     </div>
                                 </div>
-
 
                                 <div class="items-negara mt-3">
                                     <div class="row d-flex">
@@ -385,11 +403,19 @@
                         </div>
 
                         <div class="row d-block">
+                            @if (auth()?->user()?->kandidat)
+                                <div class="col-12">
+                                    <button onclick="location.href='{{ route('front.jobs.apply', hashId($job->id)) }}'" class="element-button-action text-center d-block btn-apply" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
+                                        Lamar Pekerjaan
+                                    </button>
+                                </div>
+                            @else
                             <div class="col-12">
-                                <a href="" class="element-button-action text-center d-block" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
-                                    Lamar Pekerjaan
+                                <a href="{{ route('front.login', ['job' => hashId($job->id)]) }}" class="element-button-action text-center d-block" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
+                                    Masuk Untuk Melamar Pekerjaan
                                 </a>
                             </div>
+                            @endif
                             <div class="col">
                                 <div class="element-akun text-center mt-3">
                                     <h6 class="text-white">Belum Punya Akun? <a href="{{ route('register') }}" class="text-white fw-bold">Daftar SIPOL</a></h6>
@@ -402,8 +428,8 @@
 
             </div>
             <div class="row m-0">
-                <div class="col-8 m-0 p-0">
-                    <div class=" content-warning">
+                <div class="col-8 m-0">
+                    <div class="content-warning d-block d-lg-none">
                         <div class="row m-0">
                             <div class="col-1 float-right">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
@@ -425,7 +451,6 @@
                                     Kerja.</span>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -445,7 +470,7 @@
                         <div class="col-3">
                             <div class="card-body">
                                 <div class="card-image">
-                                    <img src="{{ asset('upload/gambar/thumb_' . $rJob->gambar?->gambar) }}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}" style="width:100%">
+                                    <img src="{{ asset('upload/gambar/thumb_' . $rJob->gambar) }}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}" style="width:100%">
                                 </div>
                                 <div class="card-items-bagde gap-1">
                                     <img src="{{ asset('frontend/assets/icons/stop-circle.svg') }}" alt="">
@@ -532,5 +557,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/19.1.3/lazyload.min.js" integrity="sha512-VMl48m6saA54JWGUPVnSqp9gDFdJ1XPIKHAI+SP05D93n+Ma5T8osuxhTnxNvFfc5zVF+bWbxmCCj4EbsWUVyg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         var lazyLoadInstance = new LazyLoad({});
+        $(function(){
+            $('.btn-apply').on('click', function(){
+                $(this).prop('disabled', true).prepend(`<div class="spinner-border spinner-border-sm" role="status"></div>`)
+            })
+        })
     </script>
 @endpush

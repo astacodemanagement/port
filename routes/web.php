@@ -345,13 +345,29 @@ Route::prefix('ajax')->group(function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/jobs', [FrontJobController::class, 'index'])->name('front.jobs.index');
-Route::get('/jobs/{slug}', [FrontJobController::class, 'show'])->name('front.jobs.show');
-Route::get('/login', [FrontLoginController::class, 'showLoginForm'])->name('front.jobs.login');
-Route::post('/login', [FrontLoginController::class, 'login'])->name('front.jobs.login.store');
-Route::post('/logout', [FrontLoginController::class, 'logout'])->name('front.jobs.logout');
 
-Auth::routes(['login' => false, 'logout' => false]);
+/** LANDING PAGE ROUTE */
+Route::name('front.')->group(function () {
+    /** JOB */
+    Route::name('jobs.')->group(function () {
+        Route::prefix('jobs')->group(function () {
+            Route::controller(FrontJobController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/{id}', 'show')->name('show');
+                Route::get('/{id}/apply', 'apply')->name('apply');
+            });
+        });
+    });
+    
+    /** AUTHENTICATION */
+    Auth::routes(['login' => false, 'logout' => false]);
+    Route::controller(FrontLoginController::class)->group(function () {
+        Route::get('/login', 'showLoginForm')->name('login');
+        Route::post('/login', 'login')->name('login.store');
+        Route::post('/logout', 'logout')->name('logout');
+    });
+});
+
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
 Route::post('register/step/validation', [RegisterController::class, 'stepValidation'])->name('register.step.validation');
 
@@ -386,7 +402,11 @@ Route::prefix('member')->group(function () {
             /** JOB */
             Route::prefix('jobs')->group(function () {
                 Route::name('jobs.')->group(function () {
-                    Route::get('/', [MemberJobController::class, 'index'])->name('index');
+                    Route::controller(MemberJobController::class)->group(function () {
+                        Route::get('/', 'index')->name('index');
+                        Route::get('/applied', 'applied')->name('applied');
+                        Route::get('/applied/{id}', 'showApplied')->name('applied.show');
+                    });
                 });
             });
         });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Job;
 use App\Models\KategoriJob;
+use App\Models\Seleksi;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
@@ -24,5 +25,24 @@ class JobController extends Controller
         $relateJobs = Job::active()->where('kategori_job_id', $job->kategori_job_id)->where('id', '!=', $id)->orderBy('id', 'desc')->limit(4)->get();
 
         return view('front.compro-1.jobs.detail', compact('job', 'relateJobs'));
+    }
+
+    public function apply($jobId)
+    {
+        $id = hashId($jobId, 'decode');
+        $job = Job::active()->where('id', $id)->firstOrFail();
+
+        if (!auth()->user()?->kandidat) {
+            return redirect(route('front.jobs.show', $jobId));
+        }
+        
+        $createSlection = Seleksi::create([
+            'kandidat_id' => auth()->user()->kandidat->id,
+            'job_id' => $job->id,
+            'tanggal_apply' => today()->format('Y-m-d'),
+            'status' => 'Dalam Proses'
+        ]);
+
+        return redirect(route('member.jobs.applied.show', hashId($createSlection->id)))->with('success', 'Pekerjaan berhasil dilamar');
     }
 }
