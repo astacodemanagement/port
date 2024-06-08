@@ -156,7 +156,7 @@ class JobController extends Controller
 
                 $dir = 'upload/gambar/';
 
-                $upload = $this->uploadImage($file, $dir, $filename, [['width' => '300', 'height' => '300'], ['width' => '432', 'height' => '132'], ['width' => '580', 'height' => '500']]);
+                $upload = $this->uploadImage($file, $dir, $filename, [['width' => '580', 'height' => '500'], ['width' => '300', 'height' => '300'], ['width' => '432', 'height' => '132']]);
 
                 if ($upload) {
                     $jobData['gambar'] = $filename;
