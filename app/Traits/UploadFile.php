@@ -8,7 +8,7 @@ use Intervention\Image\Drivers\Imagick\Driver;
 
 trait UploadFile
 {
-    public function uploadImage($request, $path, $filename = null, $crops = array(), $prefixThumb = 'thumb_')
+    public function uploadImage($request, $path, $filename = null, $crops = array(), $defaultPrefixThumb = 'thumb_')
     {
         if (!is_dir(public_path($path))) {
             mkdir(public_path($path, 0777, TRUE));
@@ -23,7 +23,7 @@ trait UploadFile
             if (count($crops) > 0) {
                 $i = 0;
                 foreach ($crops as $crop) {
-                    $prefixThumb = $i > 1 ? $prefixThumb . '_' . $crop['width'] . '_' : $prefixThumb;
+                    $prefixThumb = $i > 0 ? $defaultPrefixThumb . $crop['width'] . '_' : $defaultPrefixThumb;
                     $manager->read($request)->cover($crop['width'], $crop['height'])->save($path . $prefixThumb . $filename);
                     $i++;
                 }
