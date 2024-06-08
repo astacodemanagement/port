@@ -271,8 +271,9 @@
                                                                     </h5>
                                                                     <h5 class="card-title">
                                                                         <span class="badge badge-pill badge-primary" style="color: #e9ecee; font-size:12px;">
-                                                                            {{ $p?->kandidat?->level_bahasa_inggris }}
+                                                                            {{ $p?->kandidat?->level_bahasa_inggris ?? 'Level Kosong' }}
                                                                         </span>
+                                                                        
                                                                     </h5>
                                                                 </div>
                                                                 

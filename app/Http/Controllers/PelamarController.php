@@ -27,51 +27,59 @@ class PelamarController extends Controller
         $log->save();
     }
 
-    
-    public function index(Request $request,$status)  {
+
+    public function index(Request $request, $status)
+    {
         $data['status'] = $status;
         $search = $request->input('search');
 
-        if($search){
+        if ($search) {
             $data['pelamar'] = Pendaftaran::where('status', $status)->with('kandidat')
-            ->whereHas('kandidat', function($query) use ($search){
-                $query->where('provinsi', 'like', '%'.$search.'%');
-            })
-            ->orWhere('nama_lengkap', 'like', '%'.$search.'%')
-            ->orderBy('id', 'desc')->paginate(4);
-        }else{
-            $data['pelamar'] = Pendaftaran::where('status', $status)->orderBy('id', 'desc')->with('kandidat')->paginate(4);  
+                ->whereHas('kandidat', function ($query) use ($search) {
+                    $query->where('provinsi', 'like', '%' . $search . '%');
+                })
+                ->orWhere('nama_lengkap', 'like', '%' . $search . '%')
+                ->orderBy('id', 'desc')->paginate(4);
+        } else {
+            $data['pelamar'] = Pendaftaran::where('status', $status)->orderBy('id', 'desc')->with('kandidat')->paginate(4);
         }
         // dd($data['pelamar']);
         $data['filter_job'] = $request->input('filter_job');
-        if($data["filter_job"]){
+        if ($data["filter_job"]) {
             $data['pelamar'] = Pendaftaran::where('status', $status)
-            ->where('kategori_job_id', $data['filter_job'])
-            ->with('kandidat')
-            ->orderBy('id', 'desc')->paginate(4);
+                ->where('kategori_job_id', $data['filter_job'])
+                ->with('kandidat')
+                ->orderBy('id', 'desc')->paginate(4);
         }
         $data['filter_gender'] = $request->input('filter_gender');
-        if($data["filter_gender"]){
+        if ($data["filter_gender"]) {
             $data['pelamar'] = Pendaftaran::where('status', $status)
-            ->where('jenis_kelamin', $data['filter_gender'])
-            ->with('kandidat')
-            ->orderBy('id', 'desc')->paginate(4);
+                ->whereHas('kandidat', function ($query) use ($data) {
+                    $query->where('jenis_kelamin', $data['filter_gender']);
+                })
+                ->with('kandidat')
+                ->orderBy('id', 'desc')
+                ->paginate(4);
         }
         $data['filter_height'] = $request->input('filter_height');
-        if($data["filter_height"]){
+        if ($data["filter_height"]) {
             $data['pelamar'] = Pendaftaran::where('status', $status)
-            ->where('tinggi_badan', $data['filter_height'])
-            ->with('kandidat')
-            ->orderBy('id', 'desc')->paginate(4);
+                ->whereHas('kandidat', function ($query) use ($data) {
+                    $query->where('tinggi_badan', $data['filter_height']);
+                })
+                ->with('kandidat')
+                ->orderBy('id', 'desc')
+                ->paginate(4);
         }
+
         // dd($data);
         $data['kategori_job'] = KategoriJob::all();
 
-            return view('back.pelamar.index',$data);
+        return view('back.pelamar.index', $data);
     }
 
 
-    
+
     public function updateStatus(Request $request)
     {
         $pendaftaranId = $request->input('pendaftaran_id');
@@ -111,23 +119,23 @@ class PelamarController extends Controller
             ->first();
         $data["user_id"] = $data['belum_diverifikasi']->kandidat->user_id;
         $data['user_info'] = User::where('id', $data["user_id"])->first();
-    
+
         return view('back.belum_diverifikasi.detail', $data);
     }
-    
-    
+
+
     public function updateDetail(Request $request, $id)
-    { 
+    {
         $verifikasi = Pendaftaran::findOrFail($id);
         // update level bahasa inggris di tabel kandidat
-         Kandidat::where('pendaftaran_id', $id)->first()->update([
+        Kandidat::where('pendaftaran_id', $id)->first()->update([
             'level_bahasa_inggris' => $request->level_bahasa_inggris,
             'pic_level' => $request->pic_level,
             'catatan_level' => $request->catatan_level
-            ]);
+        ]);
         $input = $request->only([
             'bayar_cf', 'bukti_tf_cf', 'tanggal_tf_cf',
-            'status_paid_cf', 'tanggal_refund_cf', 'bayar_refund_cf','catatan_pembayaran_cf'
+            'status_paid_cf', 'tanggal_refund_cf', 'bayar_refund_cf', 'catatan_pembayaran_cf'
         ]);
 
         if ($request->has('bayar_cf')) {
@@ -154,7 +162,7 @@ class PelamarController extends Controller
 
         // Update verifikasi data di database
         $verifikasi->update($input);
-        
+
         if ($request->has('email')) {
             User::where('id', $verifikasi->kandidat->user_id)->update([
                 'email' => $request->email
@@ -174,6 +182,4 @@ class PelamarController extends Controller
 
         return response()->json(['message' => 'Data Berhasil Diupdate']);
     }
-
-
 }
