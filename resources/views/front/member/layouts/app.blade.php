@@ -317,7 +317,7 @@
                                             </a> --}}
                                         </div>
                                         <div class="d-grid py-4 px-7 pt-8">
-                                            <form action="{{ route('front.jobs.logout') }}" method="POST" id="form-logout">@csrf</form>
+                                            <form action="{{ route('front.logout') }}" method="POST" id="form-logout">@csrf</form>
                                             <a href="javascript:void(0)" class="btn btn-outline-primary" onclick="document.getElementById('form-logout').submit()">Log Out</a>
                                         </div>
                                     </div>

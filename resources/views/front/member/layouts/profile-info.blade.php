@@ -46,13 +46,13 @@
                 <a href="{{ route('member.jobs.index') }}" class="btn btn-primary btn-sm btn-light-secondary float-end text-primary mt-n2"><i class="ti ti-external-link fs-4"></i></a>
             </h6>
             <div class="list-group mt-3">
-                @forelse ($recent_applied_jobs as $raj)
+                @forelse ($recent_applied_jobs as $appliedJob)
                     <a href="#" class="list-group-item border-0 px-0" aria-current="true">
                         <div class="d-flex w-100 justify-content-between">
                             <h6 class="mb-1 fw-7">
-                                Senior Web Developer
+                                {{ $appliedJob->job?->nama_job }}
                             </h6>
-                            <small class="text-muted">View</small>
+                            <a href="{{ route('member.jobs.applied.show', hashId($appliedJob->id)) }}"><small class="text-muted">View</small></a>
                         </div>
                     </a>
                 @empty

@@ -39,8 +39,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function showLoginForm()
+    public function showLoginForm(Request $request)
     {
+        if ($request->has('job')) {
+            session(['redirect_to' => route('front.jobs.show', $request->job)]);
+            
+            return redirect(route('front.login'));
+        }
+
         return viewCompro('auth.login');
     }
 
@@ -60,9 +66,13 @@ class LoginController extends Controller
             return $response;
         }
 
+        $redirectTo = session()->has('redirect_to') ? session()->get('redirect_to') : route('member.index');
+
+        session()->forget('redirect_to');
+
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect(route('member.index'));
+            : redirect($redirectTo);
         // redirect()->intended($this->redirectPath());
     }
 
@@ -80,6 +90,6 @@ class LoginController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect(route('front.jobs.login'));
+            : redirect(route('front.login'));
     }
 }
