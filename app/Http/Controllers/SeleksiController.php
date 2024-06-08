@@ -132,9 +132,10 @@ class SeleksiController extends Controller
         )
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
-            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik')
+            ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id')  
             ->where('seleksi.id', $id)
             ->first();
+            
     
         // Kirim nilai ID ke tampilan menggunakan compact
         return view('back.seleksi.detail', compact('seleksi', 'id'));

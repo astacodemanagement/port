@@ -34,17 +34,20 @@ class SemuaSeleksiController extends Controller
     public function index()
     {
         $seleksi = DB::table('seleksi')
+
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
+            ->join('negara', 'job.negara_id', '=', 'negara.id')
             ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
+            ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id')  
            
             ->select(
                 'seleksi.*',
                 'kandidat.nama_lengkap',
                 'job.nama_job',
-                // 'job.nama_negara',
+                'negara.nama_negara',
                 'job.nama_perusahaan',
-                // 'job.nama_kategori_job',
+                'kategori_job.nama_kategori_job',
                 'job.mitra',
                 'kategori_job.urutan as kategori_urutan'
             )
