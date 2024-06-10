@@ -340,11 +340,7 @@
                         <div class="col-3">
                             <div class="card-body">
                                 <div class="card-image job-image-container">
-<<<<<<< HEAD
-                                    <img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/thumb__580' . $job->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}">
-=======
                                     <img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/thumb_' . $job->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}">
->>>>>>> 7dcd9ed2e987b9f3a4146bbcbfe7637016e822a1
                                 </div>
                                 <div class="card-items-bagde gap-1">
                                     <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
