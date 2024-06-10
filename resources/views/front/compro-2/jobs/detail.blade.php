@@ -53,7 +53,7 @@
                     <div class="tw-col-span-7  tw-pb-10">
                     <div class="tw-flex tw-space-x-4 tw-border-b tw-border-gray-200">
                         <button id="tab1" class="tab-link tw-text-sky-500 tw-font-work-sans tw-font-medium tw-text-lg tw-leading-snug tw-pb-2 " data-content="content1" onclick="showTab('content1', this)">Detail Pekerjaan</button>
-                        <button id="tab2" class="tab-link tw-text-[#71717A] tw-font-medium tw-font-work-sans tw-text-lg tw-leading-snug tw-pb-2" data-content="content2" onclick="showTab('content2', this)">Gelari Pekerjaan</button>
+                        <button id="tab2" class="tab-link tw-text-[#71717A] tw-font-medium tw-font-work-sans tw-text-lg tw-leading-snug tw-pb-2" data-content="content2" onclick="showTab('content2', this)">Galeri Pekerjaan</button>
                         <button id="tab3" class="tab-link tw-text-[#71717A] tw-font-medium tw-font-work-sans tw-text-lg tw-leading-snug tw-pb-2" data-content="content3" onclick="showTab('content3', this)">Informasi Lainnya</button>
                     </div>
                         {{-- detail pekerjaan--}}
@@ -172,10 +172,12 @@
                     <!-- geleri pekerjaan -->
                     <div class="tw-w-full tab-content" id="content2" style="display: none;">
                         <div class="tw-w-full">
-                       
-                            @if ($job->galeri->isEmpty())  
-                            <h3 class="tw-text-sky-500">Image Tidak Di Temukan</h3>
-                            @else
+                            <!-- video embed yt -->
+                            <div class="tw-relative tw-w-full tw-mt-8 tw-h-[300px] tw-bg-cover tw-bg-fixed tw-overflow-hidden tw-text-white tw-rounded-xl tw-bg-blue-gray-500" style="background-position:center;">
+                                <iframe class="tw-w-full tw-h-full" src="{{$job->link_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            @if ($job->galeri)  
+
                             @foreach ($job->galeri as $item)
                                 <div class="tw-relative tw-flex tw-flex-col tw-mt-6 tw-text-gray-700 tw-bg-[#18191C08] tw-border tw-border-[#E4E5E8] tw-rounded-xl tw-w-full">
                                     <div class="tw-relative tw-h-[300px] tw-bg-cover tw-bg-fixed tw-overflow-hidden tw-text-white tw-rounded-xl tw-bg-blue-gray-500" style="background-position:center;">
