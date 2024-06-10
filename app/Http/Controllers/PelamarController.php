@@ -92,7 +92,8 @@ class PelamarController extends Controller
         $oldData = $belum_diverifikasi->getOriginal();
 
         // Update the status in the database
-        Pendaftaran::where('id', $pendaftaranId)->update([
+        $pendaftar = Pendaftaran::where('id', $pendaftaranId)->first();
+        $pendaftar->update([
             'status' => $status,
             'tanggal_reject_verifikasi' => Carbon::now()->toDateString(),
             'tanggal_sudah_verifikasi' => Carbon::now()->toDateString(),
@@ -101,12 +102,16 @@ class PelamarController extends Controller
 
         ]);
 
+        $pendaftar->kandidat->update([
+            'status' => $status,
+        ]);
+
         // Get the updated data after the update
-        $updatedData = Pendaftaran::findOrFail($pendaftaranId)->getOriginal();
+        // $updatedData = Pendaftaran::findOrFail($pendaftaranId)->getOriginal();
 
         // Log the histori
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Update', 'Belum Verifikasi', $pendaftaranId, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
+        $this->simpanLogHistori('Update', 'Belum Verifikasi', $pendaftaranId, $loggedInUserId, json_encode($oldData), json_encode($pendaftar));
 
         return response()->json(['message' => 'Status updated successfully']);
     }
