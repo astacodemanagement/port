@@ -175,7 +175,7 @@ class RegisterController extends Controller
                 'nama_lengkap' => $request->nama_lengkap,
                 'tempat_lahir' => $request->tempat_lahir,
                 'tanggal_lahir' => $request->tanggal_lahir,
-                // 'status' => 'Pending',
+                'status' => 'Pending',
                 'usia' => Carbon::parse($request->tanggal_lahir)->age ?? 0,
                 'agama' => isset($agama[$request->agama]) ? $agama[$request->agama] : null,
                 'berat_badan' => $request->berat_badan,
