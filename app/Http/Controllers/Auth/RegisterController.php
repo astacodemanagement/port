@@ -400,7 +400,7 @@ class RegisterController extends Controller
                 'nama_referensi' => 'required_if:referensi,6',
             ],
             2 => [
-                'no_paspor' => 'required|numeric|max_digits:16|min_digits:16',
+                'no_paspor' => 'required|numeric|max_digits:16',
                 'tanggal_pengeluaran_paspor' => 'required|date_format:Y-m-d',
                 'masa_kadaluarsa' => 'required|date_format:Y-m-d',
                 'kantor_paspor' => 'required|min:3',

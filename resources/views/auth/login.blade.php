@@ -1,88 +1,8 @@
-{{-- @extends('back.layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection --}}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Admindek | Admin Template</title>
-
-
-    <!--[if lt IE 10]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
+    <title>Halaman Login - Job Portal</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -114,6 +34,37 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('template/files/assets/css/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('template/files/assets/css/pages.css') }}">
+
+    <!-- Custom CSS for Background Image -->
+    <style>
+        body {
+            background-image: url('https://static.vecteezy.com/system/resources/previews/015/649/139/non_2x/abstract-fingerprint-scanning-encryption-to-login-cyber-security-icons-on-blue-background-modern-futuristic-vector.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .auth-box.card {
+            background: rgba(255, 255, 255, 1); /* Make the card background solid */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body themebg-pattern="theme1">
@@ -170,11 +121,9 @@
     </div>
 
     <section class="login-block">
-
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
-
                     <form action="{{ route('login') }}" method="POST" class="md-float-material form-material">
                         @csrf
                         <div class="text-center">
@@ -184,10 +133,10 @@
                             <div class="card-block">
                                 <div class="row m-b-20">
                                     <div class="col-md-12">
-                                        <h3 class="text-center txt-primary">Sign In</h3>
+                                        <h3 class="text-center txt-primary">Halaman Log In</h3>
                                     </div>
                                 </div>
-                                <p class="text-muted text-center p-b-5">Sign in with your regular account</p>
+                                <p class="text-muted text-center p-b-5">Silahkan masuk dengan akun dan password yang benar!</p>
                                 <div class="form-group form-primary">
                                     <input type="text" name="email" value="{{ old('email') }}" class="form-control" required>
                                     <span class="form-bar"></span>
@@ -218,42 +167,30 @@
                                             </label>
                                         </div>
                                         <div class="forgot-phone text-right float-right">
-                                            {{-- <a href="auth-reset-password.html" class="text-right f-w-600"> Forgot
-                                                Password?</a> --}}
+                                            {{-- <a href="auth-reset-password.html" class="text-right f-w-600"> Forgot Password?</a> --}}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row m-t-30">
                                     <div class="col-md-12">
-                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20">LOGIN</button>
+                                        <button type="submit" class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"><i class="fa fa-check"></i>LOGIN</button>
                                     </div>
                                 </div>
-                                {{-- <p class="text-inverse text-left">Don't have an account?<a
-                                        href="auth-sign-up-social.html"> <b>Register here </b></a>for free!</p> --}}
+                                {{-- <p class="text-inverse text-left">Don't have an account?<a href="auth-sign-up-social.html"> <b>Register here </b></a>for free!</p> --}}
                             </div>
                         </div>
                     </form>
-
                 </div>
-
             </div>
-
         </div>
-
-        </div>
-
     </section>
-
 
     <script type="text/javascript" src="{{ asset('template/files/bower_components/jquery/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('template/files/bower_components/jquery-ui/js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('template/files/bower_components/popper.js/js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('template/files/bower_components/bootstrap/js/bootstrap.min.js') }}"></script>
-
     <script src="{{ asset('template/files/assets/pages/waves/js/waves.min.js') }}"></script>
-
     <script type="text/javascript" src="{{ asset('template/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js') }}"></script>
-
     <script type="text/javascript" src="{{ asset('template/files/bower_components/modernizr/js/modernizr.js') }}"></script>
     <script type="text/javascript" src="{{ asset('template/files/bower_components/modernizr/js/css-scrollbars.js') }}"></script>
     <script type="text/javascript" src="{{ asset('template/files/assets/js/common-pages.js') }}"></script>
