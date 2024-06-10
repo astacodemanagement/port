@@ -36,30 +36,31 @@ class SeleksiController extends Controller
         $seleksi = DB::table('seleksi')
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
+            ->join('negara', 'job.negara_id', '=', 'negara.id')
             ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
-            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik') // Join dengan tabel pendaftaran melalui tabel kandidat
-            ->where('seleksi.status', 'Cek Kualifikasi') // Menambahkan klausa where untuk status
+            ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id')  
+            ->where('seleksi.status', 'Cek Kualifikasi')  
             ->select(
                 'seleksi.*',
                 'kandidat.nama_lengkap',
                 'job.nama_job',
-                'job.nama_negara',
+                'negara.nama_negara', // Perbaiki bagian ini untuk mengambil nama_negara dari tabel negara
                 'job.nama_perusahaan',
-                'job.nama_kategori_job',
+                'kategori_job.nama_kategori_job',
                 'job.mitra',
                 'kategori_job.urutan as kategori_urutan',
                 'pendaftaran.bayar_cf' // Ambil kolom bayar_cf dari tabel pendaftaran
             )
             ->get();
-
+    
         // Cetak hasil query ke konsol untuk diinspeksi
         \Illuminate\Support\Facades\Log::info('Query Result:', ['seleksi' => $seleksi]);
-
+    
         $seleksi_group = $seleksi->groupBy('job_id');
-
+    
         return view('back.seleksi.index', compact('seleksi', 'seleksi_group'));
     }
-
+    
 
 
 
@@ -131,9 +132,10 @@ class SeleksiController extends Controller
         )
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
-            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik')
+            ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id')  
             ->where('seleksi.id', $id)
             ->first();
+            
     
         // Kirim nilai ID ke tampilan menggunakan compact
         return view('back.seleksi.detail', compact('seleksi', 'id'));

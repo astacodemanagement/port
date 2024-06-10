@@ -28,7 +28,7 @@
                     <div class="page-header-title">
                         <i class="feather icon-list bg-c-blue"></i>
                         <div class="d-inline">
-                            <h5>Detail Pendaftaran Verifikasi</h5>
+                            <h5>Detail KANDIDAT</h5>
                             {{-- <span>Silahkan isi dengan data yang sesuai dan valid !</span> --}}
                         </div>
                     </div>

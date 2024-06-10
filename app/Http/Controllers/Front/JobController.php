@@ -40,7 +40,7 @@ class JobController extends Controller
             'kandidat_id' => auth()->user()->kandidat->id,
             'job_id' => $job->id,
             'tanggal_apply' => today()->format('Y-m-d'),
-            'status' => 'Dalam Proses'
+            'status' => 'Cek Kualifikasi'
         ]);
 
         return redirect(route('member.jobs.applied.show', hashId($createSlection->id)))->with('success', 'Pekerjaan berhasil dilamar');

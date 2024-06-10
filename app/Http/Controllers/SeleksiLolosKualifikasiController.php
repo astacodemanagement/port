@@ -36,14 +36,18 @@ class SeleksiLolosKualifikasiController extends Controller
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
-            ->where('seleksi.status', 'Lolos Kualifikasi') // Menambahkan klausa where untuk status
+            ->join('negara', 'job.negara_id', '=', 'negara.id')
+            ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id') 
+            ->where('seleksi.status', 'Lolos Kualifikasi') 
+
+
             ->select(
                 'seleksi.*',
                 'kandidat.nama_lengkap',
                 'job.nama_job',
-                'job.nama_negara',
+                'negara.nama_negara',
                 'job.nama_perusahaan',
-                'job.nama_kategori_job',
+                'kategori_job.nama_kategori_job',
                 'job.mitra',
                 'kategori_job.urutan as kategori_urutan'
             )

@@ -43,6 +43,9 @@ class SeleksiDalamProsesController extends Controller
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
+            ->join('negara', 'job.negara_id', '=', 'negara.id')
+            ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id')
+
             ->where('seleksi.status', 'Dalam Proses') // Menambahkan klausa where untuk status
             ->select(
                 'seleksi.*',
@@ -50,23 +53,23 @@ class SeleksiDalamProsesController extends Controller
                 'kandidat.no_paspor',
                 'kandidat.referensi',
                 'job.nama_job',
-                'job.nama_negara',
+                'negara.nama_negara',
                 'job.nama_perusahaan',
-                'job.nama_kategori_job',
+                'kategori_job.nama_kategori_job',
                 'job.mitra',
                 'kategori_job.urutan as kategori_urutan'
             )
             ->get();
         $supplierList = Supplier::pluck('nama_supplier', 'id'); // Definisikan $supplierList di sini
-    
+
         // Cetak hasil query ke konsol untuk diinspeksi
         \Illuminate\Support\Facades\Log::info('Query Result:', ['seleksi' => $seleksi]);
-    
+
         $seleksi_group = $seleksi->groupBy('job_id');
-    
-        return view('back.seleksi_dalam_proses.index', compact('seleksi', 'seleksi_group','supplierList'));
+
+        return view('back.seleksi_dalam_proses.index', compact('seleksi', 'seleksi_group', 'supplierList'));
     }
-    
+
 
     public function detail($id)
     {
@@ -75,26 +78,26 @@ class SeleksiDalamProsesController extends Controller
         $detail_bayar = DetailBayar::orderBy('id', 'desc')->get();
         $refund_detail_bayar = RefundDetailBayar::orderBy('id', 'desc')->get();
         $seleksi_dalam_proses = Seleksi::select(
-                'seleksi.*',
-                'job.nama_job as nama_job',
-                'kandidat.nama_lengkap as nama_lengkap',
-                'pendaftaran.*',
-                'supplier.nama_supplier as nama_supplier' // tambahkan kolom nama_supplier
-            )
+            'seleksi.*',
+            'job.nama_job as nama_job',
+            'kandidat.nama_lengkap as nama_lengkap',
+            'pendaftaran.*',
+            'supplier.nama_supplier as nama_supplier' // tambahkan kolom nama_supplier
+        )
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik')
             ->leftJoin('supplier', 'seleksi.supplier_id', '=', 'supplier.id') // melakukan left join dengan tabel supplier
             ->where('seleksi.id', $id)
             ->first();
-    
+
         // Load daftar pekerjaan
         $jobList = Job::pluck('nama_job', 'id');
-    
+
         // Kirim nilai ID ke tampilan menggunakan compact
         return view('back.seleksi_dalam_proses.detail', compact('seleksi_dalam_proses', 'detail_bayar', 'refund_detail_bayar', 'id', 'jobList', 'agency', 'employer'));
     }
-    
+
     public function getAgencyAlamat($id)
     {
         $agency = Agency::find($id);

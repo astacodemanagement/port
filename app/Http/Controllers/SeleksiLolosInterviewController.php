@@ -36,35 +36,38 @@ class SeleksiLolosInterviewController extends Controller
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
+            ->join('negara', 'job.negara_id', '=', 'negara.id')
+            ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id')
+
             ->where('seleksi.status', 'Lolos Interview') // Menambahkan klausa where untuk status
             ->select(
                 'seleksi.*',
                 'kandidat.nama_lengkap',
                 'job.nama_job',
-                'job.nama_negara',
+                'negara.nama_negara',
                 'job.nama_perusahaan',
-                'job.nama_kategori_job',
+                'kategori_job.nama_kategori_job',
                 'job.mitra',
                 'kategori_job.urutan as kategori_urutan'
             )
             ->get();
-    
+
         // Cetak hasil query ke konsol untuk diinspeksi
         \Illuminate\Support\Facades\Log::info('Query Result:', ['seleksi' => $seleksi]);
-    
+
         $seleksi_group = $seleksi->groupBy('job_id');
-    
+
         return view('back.seleksi_lolos_interview.index', compact('seleksi', 'seleksi_group'));
     }
-    
 
-     
+
+
     public function updateStatus(Request $request)
     {
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
         $keterangan_dari_lolos_interview = $request->input('keterangan_dari_lolos_interview');
-       
+
 
         // Get the original data before the update
         $cek_kualifikasi = Seleksi::findOrFail($cek_kualifikasi_id);
@@ -75,7 +78,7 @@ class SeleksiLolosInterviewController extends Controller
             'status' => $status,
             'tanggal_dari_lolos_interview' => Carbon::now()->toDateString(),
             'keterangan_dari_lolos_interview' => $keterangan_dari_lolos_interview,
-             
+
         ]);
 
         // Get the updated data after the update
@@ -88,7 +91,7 @@ class SeleksiLolosInterviewController extends Controller
         return response()->json(['message' => 'Status updated successfully']);
     }
 
-    
+
     public function updateStatusMultiple(Request $request)
     {
         // Mengambil ID dari baris tabel yang dipilih
@@ -139,7 +142,6 @@ class SeleksiLolosInterviewController extends Controller
      */
     public function store(Request $request)
     {
-        
     }
 
     /**
@@ -161,7 +163,6 @@ class SeleksiLolosInterviewController extends Controller
      */
     public function edit($id)
     {
-         
     }
 
     /**
@@ -173,7 +174,6 @@ class SeleksiLolosInterviewController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
     }
 
     /**
@@ -184,7 +184,6 @@ class SeleksiLolosInterviewController extends Controller
      */
     public function destroy($id)
     {
-      
     }
 
 

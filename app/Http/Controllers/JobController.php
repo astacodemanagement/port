@@ -413,9 +413,29 @@ class JobController extends Controller
             if ($request->hasFile('gambar')) {
                 // Unlink gambar lama
                 if ($kategoriJob->gambar) {
-                    $oldImagePath = public_path('upload/gambar/' . $kategoriJob->gambar);
-                    if (file_exists($oldImagePath)) {
-                        unlink($oldImagePath);
+                    $dir = public_path('upload/gambar/');
+                    // if (file_exists($oldImagePath)) {
+                    //     unlink($oldImagePath);
+                    // }
+                    
+                    if (File::exists(public_path($dir . $kategoriJob->gambar))) {
+                        File::delete(public_path($dir . $kategoriJob->gambar));
+                    }
+                    
+                    if (File::exists(public_path($dir . 'thumb_' . $kategoriJob->gambar))) {
+                        File::delete(public_path($dir . 'thumb_' . $kategoriJob->gambar));
+                    }
+                    
+                    if (File::exists(public_path($dir . 'thumb_580_' . $kategoriJob->gambar))) {
+                        File::delete(public_path($dir . 'thumb_580_' . $kategoriJob->gambar));
+                    }
+                    
+                    if (File::exists(public_path($dir . 'thumb_300_' . $kategoriJob->gambar))) {
+                        File::delete(public_path($dir . 'thumb_300_' . $kategoriJob->gambar));
+                    }
+                    
+                    if (File::exists(public_path($dir . 'thumb_432_' . $kategoriJob->gambar))) {
+                        File::delete(public_path($dir . 'thumb_432_' . $kategoriJob->gambar));
                     }
                 }
 
@@ -423,7 +443,7 @@ class JobController extends Controller
                 $file = $request->gambar;
                 $filename = $file->hashName();
                 $dir = 'upload/gambar/';
-                $upload = $this->uploadImage($file, $dir, $filename, [['width' => '300', 'height' => '300'], ['width' => '432', 'height' => '132'], ['width' => '580', 'height' => '500']]);
+                $upload = $this->uploadImage($file, $dir, $filename, [['width' => '580', 'height' => '500'], ['width' => '300', 'height' => '300'], ['width' => '432', 'height' => '132']]);
 
                 if ($upload) {
                     $requestData['gambar'] = $filename;

@@ -196,7 +196,7 @@
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title"
                                                                             id="ubahStatusModalLabel">Ubah
-                                                                            Status - {{ $p2->nama_kandidat }}</h5>
+                                                                            Status - {{ $p2->nama_lengkap }}</h5>
                                                                         <button type="button" class="close"
                                                                             data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
