@@ -33,9 +33,11 @@ class SeleksiTerbangController extends Controller
     public function index()
     {
         $seleksi = DB::table('seleksi')
-            ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
-            ->join('job', 'seleksi.job_id', '=', 'job.id')
-            ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
+        ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
+        ->join('job', 'seleksi.job_id', '=', 'job.id')
+        ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
+        ->join('negara', 'job.negara_id', '=', 'negara.id')
+        ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id') 
             ->where('seleksi.status', 'Terbang') // Menambahkan klausa where untuk status
             ->select(
                 'seleksi.*',
@@ -49,9 +51,9 @@ class SeleksiTerbangController extends Controller
                 'kandidat.tanggal_lahir',
                 'kandidat.tanggal_lahir',
                 'job.nama_job',
-                'job.nama_negara',
+                'negara.nama_negara',
                 'job.nama_perusahaan',
-                'job.nama_kategori_job',
+                'kategori_job.nama_kategori_job',
                 'job.mitra',
                 'kategori_job.urutan as kategori_urutan'
             )

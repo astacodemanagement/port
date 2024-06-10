@@ -139,7 +139,7 @@
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p2->created_at }}</td>
                                                             <td> {{ $p2->tanggal_interview }} </td>
-                                                            <td>{{ $p2->nama_kandidat }}</td>
+                                                            <td>{{ $p2->nama_lengkap }}</td>
                                                             <td>{{ $p2->nama_job }}</td>
                                                             <td>{{ $p2->nama_perusahaan }}</td>
                                                             <td>{{ $p2->status }}</td>
@@ -174,7 +174,7 @@
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title"
                                                                             id="ubahStatusModalLabel">Ubah
-                                                                            Status - {{ $p2->nama_kandidat }}</h5>
+                                                                            Status - {{ $p2->nama_lengkap }}</h5>
                                                                         <button type="button" class="close"
                                                                             data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>

@@ -10,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -81,13 +82,17 @@ class BelumVerifikasiController extends Controller
 }
 
 
-    public function updateStatus(Request $request)
-    {
-        $pendaftaranId = $request->input('pendaftaran_id');
-        $status = $request->input('status');
-        // $blacklist = $request->input('blacklist');
-        $alasan_reject = $request->input('alasan_reject');
 
+public function updateStatus(Request $request)
+{
+    $pendaftaranId = $request->input('pendaftaran_id');
+    $status = $request->input('status');
+    $alasan_reject = $request->input('alasan_reject');
+
+    // Mulai transaksi database
+    DB::beginTransaction();
+
+    try {
         // Get the original data before the update
         $belum_diverifikasi = Pendaftaran::findOrFail($pendaftaranId);
         $oldData = $belum_diverifikasi->getOriginal();
@@ -99,7 +104,11 @@ class BelumVerifikasiController extends Controller
             'tanggal_sudah_verifikasi' => Carbon::now()->toDateString(),
             'tanggal_cek_verifikasi' => Carbon::now()->toDateString(),
             'alasan_reject' => $alasan_reject,
+        ]);
 
+        // Update the status in the kandidat table
+        Kandidat::where('pendaftaran_id', $pendaftaranId)->update([
+            'status' => $status,
         ]);
 
         // Get the updated data after the update
@@ -109,8 +118,18 @@ class BelumVerifikasiController extends Controller
         $loggedInUserId = Auth::id();
         $this->simpanLogHistori('Update', 'Belum Verifikasi', $pendaftaranId, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
 
+        // Commit transaksi
+        DB::commit();
+
         return response()->json(['message' => 'Status updated successfully']);
+    } catch (\Exception $e) {
+        // Jika ada kesalahan, rollback transaksi
+        DB::rollBack();
+
+        return response()->json(['message' => 'Failed to update status', 'error' => $e->getMessage()], 500);
     }
+}
+
 
     public function updateDetail(Request $request, $id)
     { 

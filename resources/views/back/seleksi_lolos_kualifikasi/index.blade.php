@@ -172,7 +172,7 @@
                                                             <!-- Checkbox for each row -->
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p2->tanggal_apply }}</td>
-                                                            <td>{{ $p2->nama_kandidat }}</td>
+                                                            <td>{{ $p2->nama_lengkap }}</td>
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
                                                                 <a href="{{ route('back-office.seleksi.seleksi.detail', $p2->id) }}"
@@ -212,7 +212,7 @@
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title"
                                                                             id="ubahStatusModalLabel">Ubah
-                                                                            Status - {{ $p2->nama_kandidat }}</h5>
+                                                                            Status - {{ $p2->nama_lengkap }}</h5>
                                                                         <button type="button" class="close"
                                                                             data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
