@@ -270,9 +270,15 @@
                                                                         </span>
                                                                     </h5>
                                                                     <h5 class="card-title">
-                                                                        <span class="badge badge-pill badge-primary" style="color: #e9ecee; font-size:12px;">
-                                                                            {{ $p?->kandidat?->level_bahasa_inggris ?? 'Level Kosong' }}
-                                                                        </span>
+                                                                        @php
+                                                                        $levelBahasaInggris = $p?->kandidat?->level_bahasa_inggris ?? 'Level Kosong';
+                                                                        $badgeClass = $levelBahasaInggris === 'Level Kosong' ? 'badge-danger' : 'badge-primary';
+                                                                    @endphp
+                                                                    
+                                                                    <span class="badge badge-pill {{ $badgeClass }}" style="color: #e9ecee; font-size:12px;">
+                                                                        {{ $levelBahasaInggris }}
+                                                                    </span>
+                                                                    
                                                                         
                                                                     </h5>
                                                                 </div>
