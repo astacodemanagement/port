@@ -320,7 +320,7 @@
                                     <label class="form-label">Dokumen Perjalanan Luar Negeri</label>
                                     <div class="fv-row mb-10">
                                         <div class="form-group mb-5">
-                                            <input type="text" class="form-control id-card-format" name="no_paspor" placeholder="Nomor Paspor" value="">
+                                            <input type="text" class="form-control" name="no_paspor" placeholder="Nomor Paspor" value="">
                                         </div>
                                         <div class="form-group mb-5">
                                             <div class="input-group">
