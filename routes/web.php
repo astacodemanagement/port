@@ -414,7 +414,7 @@ Route::prefix('member')->group(function () {
 });
 
 Route::group(['prefix' => 'compro2'], function () {
-    Route::get('/', [FeCompanyprofile2::class,'compro2'])->name('compro-2.index');
+    // Route::get('/', [FeCompanyprofile2::class,'compro2'])->name('compro-2.index');
     Route::get('/job', [FeCompanyprofile2::class,'job'])->name('compro-2.job');
     Route::get('/job/detail/{id}', [FeCompanyprofile2::class,'jobdetail'])->name('compro-2.job.detail');
     Route::get('/employe', [FeCompanyprofile2::class,'employe'])->name('compro-2.employe');
