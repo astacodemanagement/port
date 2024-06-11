@@ -161,7 +161,7 @@
                     @foreach ($alasan as $p)
                         <div class="col-sm-3 align-self-top">
                             <div class="element-image">
-                                <img src="/upload/alasan/{{ $p->gambar }}" alt="" width="100">
+                                <img src="/upload/alasan/{{ $p->gambar }}" alt="" width="100%">
                             </div>
                             <div class="title-heading">
                                 <h3 class="fw-bold">{{ $p->nama_alasan }}</h3>
@@ -427,7 +427,7 @@
                     <swiper-slide>
                         <div class="swiper-items">
                             <div class="swiper-image">
-                                <img src="{{ asset('upload/review/' . $p->gambar ) }}" alt="" width="100">
+                                <img src="{{ asset('upload/review/' . $p->gambar ) }}" alt="" width="100%">
                             </div>
                             <div class="swiper-text">
                                 <div class="swiper-heading">
