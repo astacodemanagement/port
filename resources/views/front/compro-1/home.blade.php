@@ -427,7 +427,7 @@
                     <swiper-slide>
                         <div class="swiper-items">
                             <div class="swiper-image">
-                                <img src="/upload/review/{{ $p->gambar }}" alt="">
+                                <img src="{{ asset('upload/review/' . $p->gambar ) }}" alt="" width="100">
                             </div>
                             <div class="swiper-text">
                                 <div class="swiper-heading">
