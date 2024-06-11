@@ -24,8 +24,8 @@
           <div class="tw-flex tw-flex-1 tw-items-center tw-justify-center sm:tw-items-stretch sm:tw-justify-start">
               <div class="tw-hidden sm:tw-ml-6 sm:tw-block">
                   <div class="tw-flex tw-space-x-4">
-                      <a href="{{route('compro-2.index')}}" class="t-font-wo tw-leading-5 tw-rounded-md tw-px-3 tw-py-2 tw-text-sm tw-font-medium {{ request()->routeIs('compro-2.index') ? 'tw-text-sky-500 tw-underline' : '' }}">Find Job</a>
-                      <a href="{{route('compro-2.employe')}}" class="tw-text-custom tw-rounded-md tw-px-3 tw-py-2 tw-leading-5 tw-text-sm tw-font-medium {{ request()->routeIs('compro-2.employe') ? 'tw-text-sky-500 tw-underline' : '' }}">Employers</a>
+                      <a href="{{route('compro-2.index')}}" class="t-font-wo tw-leading-5 tw-rounded-md tw-px-3 tw-py-2 tw-text-sm tw-font-medium {{ request()->routeIs('compro-2.index') ? 'tw-text-sky-500 tw-underline' : '' }} hover:tw-text-sky-400">Find Job</a>
+                      <a href="{{route('compro-2.employe')}}" class="tw-text-custom tw-rounded-md tw-px-3 tw-py-2 tw-leading-5 tw-text-sm tw-font-medium {{ request()->routeIs('compro-2.employe') ? 'tw-text-sky-500 tw-underline' : '' }} hover:tw-text-sky-400">Employers</a>
                   </div>
               </div>
           </div>
@@ -36,11 +36,10 @@
     {{-- logo --}}
     
       <div class="tw-space-y-1 tw-px-2 tw-pb-3 tw-pt-2">
-          <a href="#" class="tw-block tw-rounded-md tw-px-3 tw-py-2 tw-text-base tw-font-medium">Dashboard</a>
-          <a href="#" class="tw-text-custom hover:tw-bg-gray-200 tw-block tw-rounded-md tw-px-3 tw-py-2 tw-text-base tw-font-medium">Team</a>
-          <a href="#" class="tw-text-custom hover:tw-bg-gray-200 tw-block tw-rounded-md tw-px-3 tw-py-2 tw-text-base tw-font-medium">Projects</a>
-          <a href="#" class="tw-text-custom hover:tw-bg-gray-200 tw-block tw-rounded-md tw-px-3 tw-py-2 tw-text-base tw-font-medium">Calendar</a>
-      </div> 
+        <a href="{{route('compro-2.index')}}" class="t-font-work-sans tw-leading-5 tw-rounded-md tw-px-3 tw-py-2 tw-text-sm tw-font-medium hover:tw-text-sky-300 {{ request()->routeIs('compro-2.index') ? 'tw-text-sky-500 tw-underline' : '' }}  ">Find Job</a>
+        <a href="{{route('compro-2.employe')}}" class="tw-text-custom tw-rounded-md tw-px-3 tw-py-2 tw-leading-5 tw-text-sm tw-font-medium hover:tw-text-sky-300 {{ request()->routeIs('compro-2.employe') ? 'tw-text-sky-500 tw-underline' : '' }} ">Employers</a>
+                 
+    </div> 
   </div>
 </header>
 <nav class="tw-bg-custom md:tw-block tw-hidden">
@@ -68,18 +67,22 @@
               </div>
           </div>
           <div class="tw-absolute tw-inset-y-0 tw-right-0 tw-flex tw-items-center tw-pr-2 sm:tw-static sm:tw-inset-auto sm:tw-ml-6 sm:tw-pr-0 ">
-              <a href="#" class="tw-py-1 tw-px-5 tw-text-sky-500 tw-bg-white tw-border tw-border-sky-500 tw-rounded-md tw-mr-5">Sign in</a>
-              <a href="{{route('compro-2.daftar')}}" class="tw-py-1 tw-px-5 tw-text-white tw-bg-sky-500 tw-rounded-md">Sign up</a>
-          </div>
+       
+            @if (Auth::check())
+            <a href="{{route('member.index')}}" class="tw-py-1 tw-px-5 tw-text-white tw-bg-sky-500 tw-rounded-md hover:tw-text-white hover:tw-scale-105 animate__bounceIn animate__delay-s">Profile</a>
+            @else
+            <a href="#" class="tw-py-1 tw-px-5 tw-text-sky-500 tw-bg-white tw-border tw-border-sky-500 tw-rounded-md tw-mr-5 hover:tw-text-white hover:tw-scale-105">Sign in</a>
+              <a href="{{route('compro-2.daftar')}}" class="tw-py-1 tw-px-5 tw-text-white tw-bg-sky-500 tw-rounded-md hover:tw-text-white hover:tw-scale-105">Sign up</a>
+         
+                
+            @endif
+        </div>
       </div>
   </div>
   <div class="sm:tw-hidden tw-hidden" id="mobile-menu">
       <div class="tw-space-y-1 tw-px-2 tw-pb-3 tw-pt-2">
           <a href="#" class="tw-block tw-rounded-md tw-px-3 tw-py-2 tw-text-base tw-font-medium">Dashboard</a>
-          <a href="#" class="tw-text-custom hover:tw-bg-gray-200 tw-block tw-rounded-md tw-px-3 tw-py-2 tw-text-base tw-font-medium">Team</a>
-          <a href="#" class="tw-text-custom hover:tw-bg-gray-200 tw-block tw-rounded-md tw-px-3 tw-py-2 tw-text-base tw-font-medium">Projects</a>
-          <a href="#" class="tw-text-custom hover:tw-bg-gray-200 tw-block tw-rounded-md tw-px-3 tw-py-2 tw-text-base tw-font-medium">Calendar</a>
-      </div>
+     </div>
   </div>
 </nav>
 
@@ -90,8 +93,7 @@
     
     mobileMenu.classList.toggle('tw-hidden');
     mobileMenuButton.setAttribute('aria-expanded', mobileMenu.classList.contains('tw-hidden') ? 'false' : 'true');
-    
-    // Tambahkan kelas 'tw-scale-0' dan 'tw-scale-100' untuk animasi tombol menu
+  
     mobileMenuButton.classList.toggle('tw-scale-0');
     mobileMenuButton.classList.toggle('tw-scale-100');
   }
@@ -99,7 +101,7 @@
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   mobileMenuButton.addEventListener('click', toggleMenu);
 
-  // Tambahkan event mouseenter dan mouseleave untuk efek hover
+
   mobileMenuButton.addEventListener('mouseenter', function() {
     this.classList.add('tw-bg-gray-200');
   });

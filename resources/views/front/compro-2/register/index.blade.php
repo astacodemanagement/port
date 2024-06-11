@@ -183,6 +183,16 @@
                     <option value="3">Cerai</option>
                 </select>
                 <p class="tw-text-red-500 error-status_kawin" style="display: none"></p>
+                <select name="pendidikan" id="pendidikan" class="tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required">
+                    <option value="">Pendidikan Terakhir</option>
+                    <option value="1">Tidak/Belum Sekolah</option>
+                    <option value="2">SD</option>
+                    <option value="3">SMP/Sederajat</option>
+                    <option value="4">SMA/SMK/Sederajat</option>
+                    <option value="5">Diploma</option>
+                    <option value="6">Sarjana</option>
+                </select>
+                <p class="tw-text-red-500 error-pendidikan" style="display: none"></p>
                 
              {{-- flex setagnah setengah ayah ibu--}}
                 <div class="tw-flex tw-justify-between tw-gap-5">
@@ -416,30 +426,38 @@
                     <div class="tw-flex tw-flex-col tw-gap-3">
                         <div class="tw-mb-3">
                             <input type="email" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" placeholder="Email" name="email">
+                            <p class="tw-text-red-500 error-email" style="display: none"></p>
                         </div>
                         <div>
                             <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number" name="no_hp" placeholder="Nomor HP Aktif">
+                            <p class="tw-text-red-500 error-no_hp" style="display: none"></p>
                         </div>
                         <div class="tw-mb-3 tw-pt-3 tw-pl-2 tw-pb-0">
                             <div class="tw-flex tw-items-center">
                                 <input class="tw-mr-2" type="checkbox" name="check_whatsapp_number" id="check_whatsapp_number">
                                 <label class="tw-text-gray-700" for="check_whatsapp_number">Nomor whatsapp sama dengan nomor handphone aktif</label>
+                                <p class="tw-text-red-500 error-whatsapp_number" style="display: none"></p>
                             </div>
                         </div>
                         <div class="tw-mb-3">
                             <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number whatsapp-number" name="no_wa" placeholder="Nomor Whatsapp Aktif">
+                            <p class="tw-text-red-500 error-no_wa" style="display: none"></p>
                         </div>
                         <div class="tw-mb-3">
                             <div class="tw-relative tw-flex">
                                 <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password" placeholder="Password">
                                 <button class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
                             </div>
+                            <!-- err -->
+                            <p class="tw-text-red-500 error-password" style="display: none"></p>
                         </div>
                         <div class="tw-mb-3">
                             <div class="tw-relative tw-flex">
                                 <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password_confirmation" placeholder="Konfirmasi Password">
                                 <button class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
                             </div>
+                            <!-- err -->
+                            <p class="tw-text-red-500 error-password_confirmation" style="display: none"></p>
                         </div>
                     </div>
                 </div>
@@ -613,7 +631,10 @@
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    console.log(response);
+                   
+                    if(response.success){
+                        window.location.href = `{{ route('compro-2.complete') }}`;
+                    }
                 },
                 error: function(xhr,status,error) {
                     console.log(xhr.responseJSON);

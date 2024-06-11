@@ -23,7 +23,8 @@ class FeCompanyprofile2 extends Controller
     }
 
     public function job(){
-        return view('front.compro-2.job');
+        $data['job'] =  Job::orderBy('id', 'desc')->get();
+        return view('front.compro-2.jobs.index',$data);
     }
     public function jobdetail($id){
         $data["job"] =  Job::find($id);
