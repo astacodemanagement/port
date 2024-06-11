@@ -37,7 +37,7 @@ class SeleksiController extends Controller
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('negara', 'job.negara_id', '=', 'negara.id')
-            ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
+            ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id', 'left')
             ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id')  
             ->where('seleksi.status', 'Cek Kualifikasi')  
             ->select(

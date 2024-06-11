@@ -70,10 +70,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
+                                                    @php
+                                                        $no = 1;
+                                                    @endphp
                                                     @foreach ($seleksi_group as $jobId => $group)
                                                         @foreach ($group as $p)
                                                             <tr>
-                                                                <td>{{ $loop->iteration }}</td>
+                                                                <td>{{ $no }}</td>
                                                                 <td><b>{{ $p->nama_job }}</b></td>
 
                                                                 <td>{{ $p->nama_negara }}</td>
@@ -89,7 +92,7 @@
                                                                     <a title="Detail" style="color: rgb(242, 236, 236)"
                                                                         href="#"
                                                                         class="btn btn-sm btn-primary btn-detail"
-                                                                        data-id="{{ $p->id }}" style="color: black">
+                                                                        data-id="{{ $jobId }}" style="color: black">
                                                                         <i class="fas fa-eye"></i> Detail
                                                                     </a>
                                                                 </td>
@@ -97,6 +100,9 @@
 
                                                             </tr>
                                                             {{-- Break out of the inner loop after the first iteration --}}
+                                                            @php
+                                                                $no++;
+                                                            @endphp
                                                         @break
                                                     @endforeach
                                                 @endforeach
@@ -313,10 +319,10 @@
                 $("#tb1").hide();
 
                 // Sembunyikan semua baris pada tabel kedua
-                // $("#order-table2 tbody tr").hide();
+                $("#order-table2 tbody tr").hide();
 
                 // Tampilkan baris yang sesuai dengan job_id yang dipilih
-                $("#order-table2 tbody tr[data-job-id='" + jobId + "']").show();
+                $(`#order-table2 tbody tr[data-job-id=${jobId}]`).show();
 
                 // Tampilkan tabel kedua
                 $("#tb2").show();
