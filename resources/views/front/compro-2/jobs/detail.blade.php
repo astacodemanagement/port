@@ -389,7 +389,7 @@
                         <div class="tw-flex tw-justify-center tw-items-center tw-mt-10">
                             <div class="tw-flex tw-items-center tw-space-x-2">
                             
-                                <a href="#"
+                                <a href="{{route('compro-2.job')}}"
                                     class="tw-flex tw-items-center tw-space-x-2 tw-border tw-border-sky-500 tw-text-white tw-py-2 tw-px-4 tw-rounded-lg tw-transition tw-duration-500 tw-ease-in-out hover:tw-scale-105 ">
                                     <p class="tw-text-lg tw-font-work-sans tw-font-medium tw-text-sky-500">Lihat Semua Lowongan</p>
                                     <i class="fa-solid fa-arrow-right tw-text-sky-500"></i>

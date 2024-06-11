@@ -7,7 +7,7 @@
             <div class="tw-w-full tw-max-w-md">
                 <div class="tw-bg-white tw-shadow tw-rounded-lg tw-px-8 tw-py-8">
                     <h1 class="tw-text-2xl tw-font-semibold tw-text-center tw-mb-6">Login</h1>
-                    <form action="{{ route('front.jobs.login.store') }}" method="POST">
+                    <form action="{{ route('front.login.store') }}" method="POST">
                         @csrf
                         <div class="tw-mb-4">
                             <label for="email" class="tw-block tw-text-sm tw-font-medium tw-my-3 tw-text-gray-700">Email</label>
