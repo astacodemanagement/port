@@ -401,16 +401,17 @@
                 </div>
                 <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-8">
                     {{-- job card --}}
-                    @foreach ($related_job as $item)
+                    @foreach ($relateJobs as $item)
                             
                         
+                
                             <div class="tw-relative tw-flex tw-flex-col tw-mt-6 tw-text-gray-700 tw-bg-[#18191C08] tw-border tw-border-[#E4E5E8] tw-rounded-xl tw-w-full">
                                 <div class="tw-relative tw-h-[300px] tw-bg-cover tw-bg-fixed tw-overflow-hidden tw-text-white tw-rounded-xl tw-bg-blue-gray-500" style="background-position:center;">
                                   @if ($item->gambar)
-                                  <img src="/upload/gambar/{{$item->gambar->gambar}}" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
+                                     <img  src="/upload/gambar/{{$item->gambar}}" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
                                
                                   @else
-                                  <img src="/images/no-image.png" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
+                                     <img src="/images/no-image.png" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
                                       
                                   @endif
                                 </div>

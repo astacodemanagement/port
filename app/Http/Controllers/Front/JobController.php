@@ -24,7 +24,7 @@ class JobController extends Controller
         $job = Job::active()->where('id', $id)->firstOrFail();
         $relateJobs = Job::active()->where('kategori_job_id', $job->kategori_job_id)->where('id', '!=', $id)->orderBy('id', 'desc')->limit(4)->get();
 
-        return view('front.compro-1.jobs.detail', compact('job', 'relateJobs'));
+        return viewCompro('jobs.detail', compact('job', 'relateJobs'));
     }
 
     public function apply($jobId)
