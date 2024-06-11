@@ -429,7 +429,7 @@
                                         </div>
                                     @endforeach
                                 </div>
-
+                                
                                 <div class="row mt-5">
                                     <div class="col-12 text-end">
                                         <a href="{{ route('member.index') }}" class="btn btn-outline-danger">Cancel</a>

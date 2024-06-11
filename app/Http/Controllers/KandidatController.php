@@ -97,6 +97,7 @@ class KandidatController extends Controller
     public function edit($id)
     {
         $kandidat = Kandidat::findOrFail($id);
+      
         return response()->json($kandidat);
     }
 
