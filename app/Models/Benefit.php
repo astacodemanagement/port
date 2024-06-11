@@ -10,4 +10,10 @@ class Benefit extends Model
     use HasFactory;
     protected $table = 'benefit';
     protected $guarded = [];
+
+    // belong to fasilitas
+    public function fasilitas()
+    {
+        return $this->belongsTo(Fasilitas::class, 'fasilitas_id');
+    }
 }

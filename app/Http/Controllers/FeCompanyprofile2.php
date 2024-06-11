@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fasilitas;
 use App\Models\Job;
 use App\Models\KategoriJob;
 use App\Models\Negara;
@@ -26,6 +27,16 @@ class FeCompanyprofile2 extends Controller
     }
     public function jobdetail($id){
         $data["job"] =  Job::find($id);
+        $data['related_job'] = Job::limit(4)->get();
+        // number format for estimasi minimal and maksimal
+        $data["job"]->estimasi_minimal = number_format($data["job"]->estimasi_minimal , 0);
+        $data["job"]->estimasi_maksimal = number_format($data["job"]->estimasi_maksimal , 0);
+        $data["job"]->gaji = number_format($data["job"]->gaji , 0);
+        $data["job"]->nominal_kurs = number_format($data["job"]->nominal_kurs , 0);
+   //y-m-d in created at
+        $data["job"]->created_at = date('Y-m-d', strtotime($data["job"]->created_at));
+
+
         return view('front.compro-2.jobs.detail',$data);
     }
 
@@ -42,5 +53,8 @@ class FeCompanyprofile2 extends Controller
     }
     public function complete(){
         return view('front.compro-2.register.complete');
+    }
+    public function login(){
+        return view('front.compro-2.auth.login');
     }
 }
