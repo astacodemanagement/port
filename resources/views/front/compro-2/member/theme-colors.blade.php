@@ -1,0 +1,1 @@
+<link id="themeColors" rel="stylesheet" href="{{ asset('member-template/css/style-aqua.min.css') }}" />
