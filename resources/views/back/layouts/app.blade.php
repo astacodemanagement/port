@@ -659,7 +659,9 @@
                                 
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class>
-                                        <a href="/logout" class="waves-effect waves-dark">
+                                         
+                                       
+                                        <a href="javascript:void(0)" class="logout" onclick="document.getElementById('form-logout').submit()">
                                             <span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
                                             <span class="pcoded-mtext">Logout</span>
                                         </a>

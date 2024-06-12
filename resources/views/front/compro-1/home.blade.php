@@ -160,9 +160,8 @@
                 <div class="row">
                     @foreach ($alasan as $p)
                         <div class="col-sm-3 align-self-top">
-
                             <div class="element-image">
-                                <img src="/upload/alasan/{{ $p->gambar }}" alt="">
+                                <img src="/upload/alasan/{{ $p->gambar }}" alt="" width="100%">
                             </div>
                             <div class="title-heading">
                                 <h3 class="fw-bold">{{ $p->nama_alasan }}</h3>
@@ -340,15 +339,14 @@
                         <div class="col-3">
                             <div class="card-body">
                                 <div class="card-image job-image-container">
-                                    <img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/thumb_' . $job->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}">
+                                    <a href="{{ route('front.jobs.show', hashId($job->id)) }}"><img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/thumb_' . $job->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}"></a>
                                 </div>
                                 <div class="card-items-bagde gap-1">
                                     <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
                                     <span>Tersedia</span>
                                 </div>
                                 <div class="card-title-heading-card">
-                                    <h5 class="col-10 text-truncate">{{ $job->nama_job }}
-                                    </h5>
+                                    <h5 class="col-10 text-truncate"><a href="{{ route('front.jobs.show', hashId($job->id)) }}">{{ $job->nama_job }}</a></h5>
                                     <span>{{ $job->nama_perusahaan }}</span>
                                 </div>
                                 <div class="card-content">
@@ -429,7 +427,7 @@
                     <swiper-slide>
                         <div class="swiper-items">
                             <div class="swiper-image">
-                                <img src="/upload/review/{{ $p->gambar }}" alt="">
+                                <img src="{{ asset('upload/review/' . $p->gambar ) }}" alt="" width="100%">
                             </div>
                             <div class="swiper-text">
                                 <div class="swiper-heading">

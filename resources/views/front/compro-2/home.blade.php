@@ -51,13 +51,13 @@
             
                      <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-8">
                         {{-- job card --}}
-                        @foreach ($job as $item)
+                        @foreach ($jobs as $item)
                             
                         
                         <div class="tw-relative tw-flex tw-flex-col tw-mt-6 tw-text-gray-700 tw-bg-[#18191C08] tw-border tw-border-[#E4E5E8] tw-rounded-xl tw-w-full">
                             <div class="tw-relative tw-h-[300px] tw-bg-cover tw-bg-fixed tw-overflow-hidden tw-text-white tw-rounded-xl tw-bg-blue-gray-500" style="background-position:center;">
                               @if ($item->gambar)
-                              <img src="/upload/gambar/{{$item->gambar->gambar}}" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
+                              <img src="/upload/gambar/{{$item->gambar}}" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
                            
                               @else
                               <img src="/images/no-image.png" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
@@ -67,7 +67,7 @@
                             <div class="tw-p-6">
                                
                                 <div class="tw-flex">
-                                    <a href="{{ route('compro-2.job.detail', $item->id) }}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C]">
+                                    <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C] hover:tw-text-[#18191C] hover:tw-underline ">
                                       {{$item->nama_job}}
                                     </a>
                                     </a>
@@ -120,7 +120,7 @@
                                 
                             </div>
                             <div class="tw-p-6 tw-pt-0">
-                             <a href="{{ route('compro-2.job.detail', $item->id) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                             <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
                               Detail
                               <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
                             </a>
