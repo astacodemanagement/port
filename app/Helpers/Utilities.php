@@ -16,6 +16,15 @@ if (!function_exists('viewCompro')) {
     }
 }
 
+if (!function_exists('partialCompro')) {
+    function partialCompro($viewFile)
+    {
+        $compro = DB::table('compro')->where('domain', request()->host())->first();
+
+        return $compro->view_path.'.'.$viewFile;
+    }
+}
+
 if (!function_exists('memberProfile')) {
     function memberProfileImg($data)
     {
