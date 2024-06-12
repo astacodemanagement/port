@@ -131,11 +131,12 @@
                         @endforeach
                     </div>
                     {{-- lihat semua lowongan button --}}
+                    
                     <div class="tw-flex tw-justify-center tw-mt-6">
-                        <button class=" tw-border-2 tw-rounded-md tw-border-sky-400 tw-text-[#2B9FDC] tw-font-bold  tw-cursor-pointer tw-py-2 tw-px-4 tw-flex tw-items-center tw-justify-center">
+                        <a href="{{route('front.jobs.index')}}" class=" tw-border-2 tw-rounded-md tw-border-sky-400 tw-text-[#2B9FDC] tw-font-bold  tw-cursor-pointer tw-py-2 tw-px-4 tw-flex tw-items-center tw-justify-center">
                             Lihat Semua Lowongan
                             <i class="fa-solid fa-arrow-right tw-ml-2 " style="position: relative;  "></i>
-                        </button>
+                        </a>
                     </div>
                     {{-- end card section --}}
                  {{-- count star --}}

@@ -71,7 +71,7 @@
             @if (Auth::check())
             <a href="{{route('member.index')}}" class="tw-py-1 tw-px-5 tw-text-white tw-bg-sky-500 tw-rounded-md hover:tw-text-white hover:tw-scale-105 animate__bounceIn animate__delay-s">Profile</a>
             @else
-            <a href="#" class="tw-py-1 tw-px-5 tw-text-sky-500 tw-bg-white tw-border tw-border-sky-500 tw-rounded-md tw-mr-5 hover:tw-text-white hover:tw-scale-105">Sign in</a>
+            <a href="{{route('compro-2.login')}}" class="tw-py-1 tw-px-5 tw-text-sky-500 tw-bg-white tw-border tw-border-sky-500 tw-rounded-md tw-mr-5 hover:tw-text-sky-500 hover:tw-scale-105">Sign in</a>
               <a href="{{route('compro-2.daftar')}}" class="tw-py-1 tw-px-5 tw-text-white tw-bg-sky-500 tw-rounded-md hover:tw-text-white hover:tw-scale-105">Sign up</a>
          
                 
