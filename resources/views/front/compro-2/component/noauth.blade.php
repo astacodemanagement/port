@@ -26,8 +26,8 @@
         </div>
         <div class="tw-absolute tw-inset-y-0 tw-right-0 tw-flex tw-items-center tw-pr-2 sm:tw-static sm:tw-inset-auto sm:tw-ml-6 sm:tw-pr-0 ">
             {{-- button --}}
-            <a href="/compro2" class="tw-text-gray-800   tw-font-semibold tw-rounded-md tw-mr-5 tw-font-work-sans">Find Job</a>
-            <a href="" class="tw-text-gray-800   tw-font-semibold tw-rounded-md tw-mr-5 tw-font-work-sans">Employers</a>
+            <a href="/" class="tw-text-gray-800   tw-font-semibold tw-rounded-md tw-mr-5 tw-font-work-sans">Find Job</a>
+            <a href="{{route('compro2.employe')}}" class="tw-text-gray-800   tw-font-semibold tw-rounded-md tw-mr-5 tw-font-work-sans">Employers</a>
   
         
         </div>

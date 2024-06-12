@@ -28,20 +28,24 @@
                     </div>
                 </div>
             </div>
+            @if (auth()?->user()?->kandidat)
             <div class="">
                 {{-- icon button --}}
                 <div class="tw-flex tw-justify-center tw-items-center tw-mt-10">
                     <div class="tw-flex tw-items-center tw-space-x-2">
                         <i class="fa-regular fa-bookmark tw-text-sky-500 tw-text-3xl"></i>
                         {{-- lamar sekarang button using arrow right --}}
-                        <a href="#"
+                        <button onclick="location.href='{{ route('front.jobs.apply', hashId($job->id)) }}'"
                             class="tw-flex tw-items-center tw-space-x-2 tw-bg-sky-500 tw-text-white tw-py-2 tw-px-4 tw-rounded-lg tw-transition tw-duration-500 tw-ease-in-out hover:tw-bg-sky-600">
                             <p class="tw-text-lg tw-font-work-sans tw-font-medium">Lamar Sekarang</p>
                             <i class="fa-solid fa-arrow-right tw-text-white"></i>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
+            @else
+            <!-- masuk untuk melamar -->
+            @endif
 
         </div>
 
@@ -186,7 +190,7 @@
                                     <div class="tw-p-6">
                                         <div class="tw-flex">
                                             <a href="{{ route('compro-2.job.detail', $item->id) }}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C]">
-                                                {{$item->nama_galeri}}
+                                                {{$item->nama_gambar}}
                                             </a>
                                             </a>
                                             <div class="tw-ml-auto
@@ -218,7 +222,7 @@
                     <div class="tw-col-span-5 pb-5" >
                         <div class="tw-w-full tw-p-5 tw-border   tw-border-slate-200 tw-shadow-sm tw-shadow-slate-200 tw-rounded-lg py-5">
                             @if ($job->gambar)
-                                    <img src="/upload/gambar/thumb_432_{{$item->gambar}}" class="tw-w-full tw-h-[200px] tw-object-cover tw-rounded-lg"  alt="">    
+                                    <img src="/upload/gambar/{{$job->gambar}}" class="tw-w-full tw-h-[200px] tw-object-cover tw-rounded-lg"  alt="">    
                               @else
                               <img src="/images/no-image.png" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
                                 
@@ -389,7 +393,7 @@
                         <div class="tw-flex tw-justify-center tw-items-center tw-mt-10">
                             <div class="tw-flex tw-items-center tw-space-x-2">
                             
-                                <a href="{{route('compro-2.job')}}"
+                                <a href="{{route('front.jobs.index')}}"
                                     class="tw-flex tw-items-center tw-space-x-2 tw-border tw-border-sky-500 tw-text-white tw-py-2 tw-px-4 tw-rounded-lg tw-transition tw-duration-500 tw-ease-in-out hover:tw-scale-105 ">
                                     <p class="tw-text-lg tw-font-work-sans tw-font-medium tw-text-sky-500">Lihat Semua Lowongan</p>
                                     <i class="fa-solid fa-arrow-right tw-text-sky-500"></i>
@@ -418,7 +422,7 @@
                                 <div class="tw-p-6">
                                    
                                     <div class="tw-flex">
-                                        <a href="{{ route('compro-2.job.detail', $item->id) }}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C]">
+                                        <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C]">
                                           {{$item->nama_job}}
                                         </a>
                                         </a>
@@ -471,7 +475,7 @@
                                     
                                 </div>
                                 <div class="tw-p-6 tw-pt-0">
-                                 <a href="{{ route('compro-2.job.detail', $item->id) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                                 <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
                                   Detail
                                   <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
                                 </a>
