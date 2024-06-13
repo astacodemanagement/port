@@ -11,9 +11,9 @@
             </div>
         </div>
     </div>
-    <div class="tw-flex tw-flex-row tw-justify-between tw-max-w-7xl tw-mx-auto tw-py-20    ">
+    <div class="md:tw-flex tw-flex-row md:tw-justify-between tw-max-w-7xl tw-mx-auto tw-py-20  md:px-0 tw-px-5   ">
         <!-- Stepper -->
-        <div class="tw-w-1/4 tw-relative stepper" id="kt_stepper_example_vertical" data-kt-stepper="true">
+        <div class="md:tw-w-1/4 tw-w-full  tw-relative stepper" id="kt_stepper_example_vertical" data-kt-stepper="true">
             <div class="tw-flex tw-flex-col tw-items-center stepper-nav">
                 <div class="tw-relative tw-w-full stepper-item" data-step="1">
                     <div class="tw-h-16 tw-p-5 tw-w-16 tw-flex tw-items-center tw-justify-center tw-bg-sky-500 tw-rounded-xl">
@@ -23,7 +23,7 @@
                     <div class="tw-relative tw-mx-auto tw-mr-1">
                         <img src="{{ asset('frontend') }}/assets/image/framestriped.png" alt="" class="">
                     </div>
-                    <div class="tw-absolute tw-top-1 tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
+                    <div class="tw-absolute tw-top-1 tw-left-24 md:tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
                         <h3 class="stepper-title">Step 1</h3>
                         <p class="tw-text-sm tw-font-normal  tw-text-gray-500 stepper-desc">Minat Dan Informasi Pribadi</p>
                     </div>
@@ -37,7 +37,7 @@
                     <div class="tw-relative tw-mx-auto tw-mr-1">
                         <img src="{{ asset('frontend') }}/assets/image/framestriped.png" alt="" class="">
                     </div>
-                    <div class="tw-absolute tw-top-1 tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
+                    <div class="tw-absolute tw-top-1 tw-left-24 md:tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
                         <h3 class="stepper-title">Step 2</h3>
                         <p class="tw-text-sm tw-font-normal tw-text-gray-500 stepper-desc">Dokumen Perjalanan Luar Negeri</p>
                     </div>
@@ -50,7 +50,7 @@
                     <div class="tw-relative tw-mx-auto tw-mr-1">
                         <img src="{{ asset('frontend') }}/assets/image/framestriped.png" alt="" class="">
                     </div>
-                    <div class="tw-absolute tw-top-1 tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
+                    <div class="tw-absolute tw-top-1 tw-left-24 md:tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
                         <h3 class="stepper-title">Step 3</h3>
                         <p class="tw-text-sm tw-font-normal tw-text-gray-500 stepper-desc">Pengalaman Kerja</p>
                     </div>
@@ -66,7 +66,7 @@
                     <div class="tw-relative tw-mx-auto tw-mr-1">
                         <img src="{{ asset('frontend') }}/assets/image/framestriped.png" alt="" class="">
                     </div>
-                    <div class="tw-absolute tw-top-1 tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
+                    <div class="tw-absolute tw-top-1 tw-left-24 md:tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
                         <h3 class="stepper-title">Step 4</h3>
                         <p class="tw-text-sm tw-font-normal tw-text-gray-500 stepper-desc">Ceklis Dokumen Pribadi</p>
                     </div>
@@ -80,7 +80,7 @@
                     <div class="tw-relative tw-mx-auto tw-mr-1">
                         <img src="{{ asset('frontend') }}/assets/image/framestriped.png" alt="" class="">
                     </div>
-                    <div class="tw-absolute tw-top-1 tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
+                    <div class="tw-absolute tw-top-1 tw-left-24 md:tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
                         <h3 class="stepper-title">Step 5</h3>
                         <p class="tw-text-sm tw-font-normal tw-text-gray-500 stepper-desc">Upload Dokumen</p>
                     </div>
@@ -92,7 +92,7 @@
                         <i class="fas fa-check tw-text-white tw-text-2xl " style="display: none"></i>
                     </div>
               
-                    <div class="tw-absolute tw-top-1 tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
+                    <div class="tw-absolute tw-top-1 tw-left-24 md:tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
                         <h3 class="stepper-title">Step 6</h3>
                         <p class="tw-text-sm tw-font-normal tw-text-gray-500 stepper-desc">Kontak Akun</p>
                     </div>
@@ -106,7 +106,7 @@
         
         
             <!-- form 1 -->
-            <form data-step="1" method="POST" id="step-form-1" class="tw-flex tw-flex-col tw-w-2/3 step-form "  style="display: none">
+            <form data-step="1" method="POST" id="step-form-1" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form "  style="display: none">
                 @csrf  
                 
                 <label for="minat" class="tw-text-gray-800 tw-font-medium tw-mb-3 tw-font-work-sans">Minat</label>
@@ -133,7 +133,7 @@
                 <input type="text" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                 <p class="tw-text-red-500 error-nama_lengkap" style="display: none"></p>
                 
-                <div class="tw-flex tw-justify-around tw-flex-wrap tw-gap-5">
+                <div class="tw-flex tw-justify-around tw-flex-wrap md:tw-gap-5">
                     <div class="tw-w-[48%] tw-flex tw-flex-col">
                         <input type="text" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                         <p class="tw-text-red-500 error-tempat_lahir" style="display: none"></p>
@@ -157,12 +157,12 @@
                 </select>
                 <p class="tw-text-red-500 error-agama" style="display: none"></p>
                 
-                <div class="tw-flex tw-justify-between tw-gap-5">
-                    <div class="tw-w-1/2 tw-flex tw-flex-col">
+                <div class="tw-flex tw-justify-between md:tw-gap-5">
+                    <div class="tw-w-[49%] tw-flex tw-flex-col">
                         <input type="number" name="berat_badan" id="berat_badan" placeholder="Berat Badan" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                         <p class="tw-text-red-500 error-berat_badan" style="display: none"></p>
                     </div>
-                    <div class="tw-w-1/2 tw-flex tw-flex-col">
+                    <div class="tw-w-[49%] tw-flex tw-flex-col">
                         <input type="number" name="tinggi_badan" id="tinggi_badan" placeholder="Tinggi Badan" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                         <p class="tw-text-red-500 error-tinggi_badan" style="display: none"></p>
                     </div>
@@ -195,12 +195,12 @@
                 <p class="tw-text-red-500 error-pendidikan" style="display: none"></p>
                 
              {{-- flex setagnah setengah ayah ibu--}}
-                <div class="tw-flex tw-justify-between tw-gap-5">
-                    <div class="tw-w-1/2 tw-flex tw-flex-col">
+                <div class="tw-flex tw-justify-between md:tw-gap-5">
+                    <div class="tw-w-[49%] tw-flex tw-flex-col">
                         <input type="text" name="nama_lengkap_ayah" id="nama_lengkap_ayah" placeholder="Nama Ayah" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                         <p class="tw-text-red-500 error-nama_lengkap_ayah" style="display: none"></p>
                     </div>
-                    <div class="tw-w-1/2 tw-flex tw-flex-col">
+                    <div class="tw-w-[49%] tw-flex tw-flex-col">
                         <input type="text" name="nama_lengkap_ibu" id="nama_lengkap_ibu" placeholder="Nama Ibu" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                         <p class="tw-text-red-500 error-nama_lengkap_ibu" style="display: none"></p>
                     </div>
@@ -227,7 +227,7 @@
                 <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
             </form>  
     <!-- form 2 -->
-<form data-step="2" method="POST" id="step-form-2" class="tw-flex tw-flex-col tw-w-2/3 step-form" style="display: none">
+<form data-step="2" method="POST" id="step-form-2" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form " style="display: none">
     @csrf
     <label for="no_paspor" class="tw-text-gray-800 tw-font-medium tw-mb-3 tw-font-work-sans">Nomor Paspor</label>
     <input type="text" name="no_paspor" id="no_paspor" placeholder="Nomor Paspor" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
@@ -270,7 +270,7 @@
 </form>
 
 <!-- form 3 -->
-<form data-step="3" method="POST" id="step-form-3" class="tw-flex tw-flex-col tw-w-2/3 step-form" style="display: none">
+<form data-step="3" method="POST" id="step-form-3" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form " style="display: none">
     @csrf
     <div class="fv-row">
         <label class="tw-font-medium tw-mb-3">Pengalaman Kerja</label>
@@ -291,18 +291,18 @@
             <div class="tw-w-1/2">
                 <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-start-work-date" placeholder="Tanggal mulai bekerja">
                 <input type="hidden" class="tw-hidden h-experience-start-work-date" data-name="tanggal_mulai_kerja.0" name="tanggal_mulai_kerja[]">
-                <p class="tw-text-red-500 error-tanggal_mulai_kerja" style="display: none"></p>
+                <p class="tw-text-red-500 error-tanggal_mulai_kerja[]" style="display: none"></p>
             </div>
             <div class="tw-w-1/2">
                 <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-end-work-date" placeholder="Tanggal selesai bekerja">
                 <input type="hidden" class="tw-hidden h-experience-end-work-date" data-name="tanggal_selesai_kerja.0" name="tanggal_selesai_kerja[]">
-                <p class="tw-text-red-500 error-tanggal_selesai_kerja" style="display: none"></p>
+                <p class="tw-text-red-500 error-tanggal_selesai_kerja[]" style="display: none"></p>
             </div>
         </div>
 
         <div class="tw-mb-5">
             <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-position" data-name="posisi.0" placeholder="Posisi" name="posisi[]">
-            <p class="tw-text-red-500 error-posisi" style="display: none"></p>
+            <p class="tw-text-red-500 error-posisi[]" style="display: none"></p>
         </div>
         <button type="button" class="tw-w-full tw-py-2 tw-bg-sky-500 tw-rounded-md tw-text-white tw-mt-4 button-experience"><i class="fas fa-plus"></i> Tambahkan Pengalaman Kerja Lainnya</button>
     </div>
@@ -315,7 +315,7 @@
 
 
         {{-- form 4 --}}
-        <form data-step="4" method="POST" id="step-form-4" class="tw-flex tw-flex-col tw-w-2/3 step-form" style="display: none">
+        <form data-step="4" method="POST" id="step-form-4" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form " style="display: none">
             @csrf
             <div class="fv-row mb-10">
                 <label class="form-label">Dokumen Persyaratan Jati Diri yang dimiliki (ceklist
@@ -371,7 +371,7 @@
             </div>
         </form>
         {{-- form 5 --}}
-        <form data-step="5" method="POST" id="step-form-5" class="tw-flex tw-flex-col tw-w-2/3 step-form" style="display: none">
+        <form data-step="5" method="POST" id="step-form-5" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form " style="display: none">
             @csrf
             <div class="flex-column" data-kt-stepper-element="content">
                 <div class="fv-row mb-10">
@@ -384,6 +384,8 @@
                                     <input type="file" class="form-control tw-w-full" id="foto" name="file_foto" accept="image/*,application/pdf">
                                 </div>
                                 <label class="text-muted tw-block tw-text-sm"><small>Foto formal background putih/biru/merah</small></label>
+                                <!-- errr msg -->
+                                <p class="tw-text-red-500 error-file_foto" style="display: none"></p>
                             </div>
                             <div class="form-input mt-2">
                                 <div class="input-group">
@@ -391,6 +393,7 @@
                                     <input type="file" class="form-control tw-w-full" id="paspor" name="file_paspor" accept="image/*,application/pdf">
                                 </div>
                                 <label class="text-muted tw-block tw-text-sm"><small>Jika ada</small></label>
+                                <p class="tw-text-red-500 error-file_paspor" style="display: none"></p>
                             </div>
                             <div class="form-input mt-2">
                                 <div class="input-group">
@@ -398,6 +401,8 @@
                                     <input type="file" class="form-control tw-w-full" id="ktp" name="file_ktp" accept="image/*,application/pdf">
                                 </div>
                                 <label class="text-muted tw-block tw-text-sm"><small>Mohon di Scan</small></label>
+                                <p class="tw-text-red-500 error-file_ktp" style="display: none"></p>
+                                
                             </div>
                             <div class="form-input mt-2">
                                 <div class="input-group">
@@ -405,6 +410,7 @@
                                     <input type="file" class="form-control tw-w-full" id="kk" name="file_kk" accept="image/*,application/pdf">
                                 </div>
                                 <label class="text-muted tw-block tw-text-sm"><small>Mohon di Scan</small></label>
+                                <p class="tw-text-red-500 error-file_kk" style="display: none"></p>
                             </div>
                         </div>
                     </div>
@@ -419,7 +425,7 @@
             
         </form>
         {{-- form 6 --}}
-        <form data-step="6" method="POST" id="step-form-6" class="tw-flex tw-flex-col tw-w-2/3 step-form" style="display: none">
+        <form data-step="6" method="POST" id="step-form-6" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form " style="display: none">
             <div class="tw-flex tw-flex-col" data-kt-stepper-element="content">
                 <div class="tw-mb-10">
                     <label class="tw-block tw-font-medium tw-mb-3">Kontak &amp; Akun</label>

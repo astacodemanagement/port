@@ -44,34 +44,8 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
 " rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    .splide__slide{
-      display: flex;
-    justify-content: center;
-    align-items: center;
-    }
-        .splide__slide img {
-  width: 100%;
-  height: 400px;
-  background-position:center;
-  background-size: cover; 
-  padding: 2rem;
-  border-radius: 10px;
-  margin-top: 4rem;
-}
-/*remove padding in mobile  */
-@media (max-width: 767px) {
-  .splide__slide img {
-    padding: 1rem;
-  }
-}
-
-.carousel-image {
-    display: block;
-    margin: 0 auto;
-    border-radius: 15px; 
-    max-width: 100%;
-    height: auto;
-}
+   
+ 
 .job-section{
   padding: 56px, 120px, 56px, 120px;
   border-radius: 32px, 32px, 0px, 0px;
@@ -166,10 +140,10 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
       transition:1s,
     }
 </style>
-
+  @stack('css')
 
 </head>
-<body>
+<body class="tw-opacity-0 tw-transition-opacity tw-duration-500">
   {{-- navbar --}}
   
   
@@ -243,5 +217,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   AOS.init();
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  document.body.classList.remove('tw-opacity-0');
+});
+
+</script>
+@stack('js')
 </body>
 </html>
