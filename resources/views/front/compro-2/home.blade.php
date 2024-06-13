@@ -1,5 +1,6 @@
 @extends('front.compro-2.layouts.default')
 
+@section('title', 'Home Akama Job')
 @section('content')
 @include('front.compro-2.component.navdefault')
 {{-- Slider section --}}
@@ -259,14 +260,14 @@
         <div class="tw-bg-sky-500 tw-py-12 tw-relative">
           <div class="tw-max-w-7xl tw-mx-auto">
             <div class="tw-p-5 sm:tw-p-10"> 
-              <h2 class="tw-text-white tw-text-center tw-font-caveat tw-text-3xl sm:tw-text-5xl tw-font-bold" data-aos="fade-up" data-aos-duration="700">Saatnya Bergabung</h2> <!-- Sesuaikan ukuran teks untuk perangkat mobile -->
+              <h2 class="tw-text-white tw-text-center tw-font-caveat tw-text-3xl sm:tw-text-5xl tw-font-bold" data-aos="fade-up" data-aos-duration="700" >Saatnya Bergabung</h2> <!-- Sesuaikan ukuran teks untuk perangkat mobile -->
               <p class="tw-text-white tw-text-center tw-text-4xl sm:tw-text-6xl tw-mt-3 sm:tw-mt-5 tw-font-semibold tw-mb-8 tw-font-clash-display" data-aos="fade-up" data-aos-duration="700">Buat Akun Dan Lamar Pekerjaan Impianmu</p> <!-- Sesuaikan ukuran teks dan margin untuk perangkat mobile -->
              
               <div class="tw-flex tw-justify-center" data-aos="zoom-in" data-aos-duration="700">
-                <button class="tw-bg-[#FDD003] tw-text-gray-900 tw-font-bold tw-rounded-lg tw-py-3 tw-px-6 tw-cursor-pointer tw-flex tw-items-center tw-justify-center">
+                <a href="{{route('compro-2.daftar')}}" class="tw-bg-[#FDD003] tw-text-gray-900 tw-font-bold tw-rounded-lg tw-py-3 tw-px-6 tw-cursor-pointer tw-flex tw-items-center tw-justify-center hover:tw-scale-105 hover:tw-text-gray-900">
                   Bergabung Sekarang
                   <i class="fa-solid fa-arrow-right tw-ml-2" style="position: relative; top: -1px;"></i>
-                </button>
+                </a>
               </div>
             </div>
           </div>
