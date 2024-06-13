@@ -16,24 +16,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-   <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        prefix: 'tw-',
-        theme: {
-          extend: {
-            fontFamily: {
-        'clash-display': ['Clash Display', 'sans-serif'],
-        'caveat': ['Caveat', 'sans-serif'],
-        'work-sans': ['Work Sans', 'sans-serif'],
-      },
-            colors: {
-              clifford: '#da373d',
-            }
-          }
-        }
-      }
-    </script>
+  <!-- tialwind -->
+  <!-- import tailwind using laravel mix-->
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link

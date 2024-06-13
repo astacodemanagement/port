@@ -8,7 +8,16 @@ module.exports = {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+  'clash-display': ['Clash Display', 'sans-serif'],
+  'caveat': ['Caveat', 'sans-serif'],
+  'work-sans': ['Work Sans', 'sans-serif'],
+},
+      colors: {
+        clifford: '#da373d',
+      }
+    }
   },
   plugins: [],
 }
