@@ -3,9 +3,9 @@
     <div class="tw-relative tw-flex tw-h-16 tw-items-center tw-justify-between">
 
       <div class="tw-flex tw-flex-1 tw-items-center tw-justify-start">
-        <div class="tw-flex tw-flex-shrink-0 tw-items-center">
+        <a href="/" class="tw-flex tw-flex-shrink-0 tw-items-center">
           <img class="tw-h-8 tw-w-auto" src="{{ asset('frontend') }}/assets/image/akamalogo.png" alt="Your Company">
-        </div>
+        </a>
 
       </div>
       <div class="tw-gap-5 md:tw-block tw-hidden">

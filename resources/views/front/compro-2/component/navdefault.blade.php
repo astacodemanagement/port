@@ -58,10 +58,10 @@
       </div>
       <div class="tw-absolute tw-inset-y-0 tw-right-0 tw-flex tw-items-center tw-pr-2 sm:tw-static sm:tw-inset-auto sm:tw-ml-6 sm:tw-pr-0 ">
         @if (Auth::check())
-        <a href="{{route('member.index')}}" class="tw-py-1 tw-px-5 tw-text-white tw-bg-sky-500 tw-rounded-md hover:tw-text-white hover:tw-scale-105 animate__bounceIn animate__delay-s">Profile</a>
+        <a href="{{route('member.index')}}" class="tw-py-1 tw-px-5 tw-text-white tw-bg-sky-500 tw-rounded-md hover:tw-text-white hover:tw-scale-105 animate__bounceIn animate__delay-s" data-aos="zoom-in" data-aos-duration="700">Profile</a>
         @else
-        <a href="{{route('compro-2.login')}}" class="tw-py-1 tw-px-5 tw-text-sky-500 tw-bg-white tw-border tw-border-sky-500 tw-rounded-md tw-mr-5 hover:tw-text-sky-500 hover:tw-scale-105">Sign in</a>
-        <a href="{{route('compro-2.daftar')}}" class="tw-py-1 tw-px-5 tw-text-white tw-bg-sky-500 tw-rounded-md hover:tw-text-white hover:tw-scale-105">Sign up</a>
+        <a href="{{route('compro-2.login')}}" class="tw-py-1 tw-px-5 tw-text-sky-500 tw-bg-white tw-border tw-border-sky-500 tw-rounded-md tw-mr-5 hover:tw-text-sky-500 hover:tw-scale-105" data-aos="zoom-in" data-aos-duration="700">Sign in</a>
+        <a href="{{route('compro-2.daftar')}}" class="tw-py-1 tw-px-5 tw-text-white tw-bg-sky-500 tw-rounded-md hover:tw-text-white hover:tw-scale-105" data-aos="zoom-in" data-aos-duration="700">Sign up</a>
         @endif
       </div>
     </div>

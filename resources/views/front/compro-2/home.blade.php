@@ -25,26 +25,27 @@
     <div class="tw-relative tw-mt-[-20px]">
         <div class="tw-max-w-full tw-h-full  tw-bg-[#FFFFFF] tw-rounded-t-3xl tw-shadow-lg tw-px-4 tw-pt-6 tw-pb-4">
             <div class="tw-max-w-7xl tw-mx-auto">
-                <div class="tw-flex tw-items-center tw-gap-0 tw-p-2 tw-bg-[#F4F4F5]  tw-rounded-lg" data-aos-duration="1000" data-aos="zoom-in-up">
-                    <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4f4F5] tw-border-r tw-border-gray-300">
-                      <img src="{{ asset('frontend') }}/assets/image/indonesia.png" alt="Indonesia Flag" class="tw-w-8 tw-h-8" />
-                      <span>ID</span>
-                      <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 0L12 6H0L6 0Z" fill="#606060" />
-                      </svg>
-                    </div>
-                    <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4f4F5] tw-flex-1">
-                        <i class="fa-solid fa-magnifying-glass tw-text-sky-500"></i>
-                      <input type="text" placeholder="Job title, keyword, company" class="tw-border-none tw-outline-none tw-text-base tw-text-gray-600 tw-bg-[#F4F4F5] tw-w-full" />
-                    </div>
-                    <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-px-4 tw-mr-2 tw-bg-[#F1F9FE] tw-rounded-md tw-cursor-pointer">
-                        <i class="fa-solid fa-sliders tw-text-sky-500"></i>
-                      <span class="tw-text-sky-500">Filter</span>
-                    </div>
-                    <button class="tw-p-2 tw-px-4 tw-bg-sky-500 tw-text-white tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer">
-                      Search
-                    </button>
-                  </div>
+            <form action="{{route('index')}}" method="GET" class="tw-flex tw-items-center tw-gap-0 tw-p-2 tw-bg-[#F4F4F5] tw-rounded-lg" data-aos-duration="1000" data-aos="zoom-in-up">
+              <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-border-r tw-border-gray-300">
+                <img src="{{ asset('frontend') }}/assets/image/indonesia.png" alt="Indonesia Flag" class="tw-w-8 tw-h-8" />
+                <span>ID</span>
+                <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6 0L12 6H0L6 0Z" fill="#606060" />
+                </svg>
+              </div>
+              <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-flex-1">
+                <i class="fa-solid fa-magnifying-glass tw-text-sky-500"></i>
+                <input type="text" placeholder="Job title, keyword, company" name="search" class="tw-border-none tw-outline-none tw-text-base tw-text-gray-600 tw-bg-[#F4F4F5] tw-w-full"  />
+              </div>
+              <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-px-4 tw-mr-2 tw-bg-[#F1F9FE] tw-rounded-md tw-cursor-pointer">
+                <i class="fa-solid fa-sliders tw-text-sky-500"></i>
+                <span class="tw-text-sky-500">Filter</span>
+              </div>
+              <button type="submit" class="tw-p-2 tw-px-4 tw-bg-sky-500 tw-text-white tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer">
+                Search
+              </button>
+            </form>
+
                      <h3 class=" tw-font-clash-display tw-text-[30px] tw-text-[#11181C]  tw-font-bold tw-my-7 tw-mb-10 ">Lowongan Unggulan</h3>
 
                   {{-- card section --}}
@@ -220,29 +221,29 @@
                 
                 
                 <section class="tw-py-12">
-                  <p class="tw-text-sky-500 tw-text-center tw-font-caveat tw-text-4xl tw-font-bold">Kenapa?</p>
-                  <p class="tw-text-[#11181C] tw-text-center tw-text-2xl lg:tw-text-4xl tw-font-semibold tw-mb-8 lg:tw-mb-16 tw-font-clash-display">Pilih Kami Untuk Karier <br> Internasional Anda</p>
+                  <p class="tw-text-sky-500 tw-text-center tw-font-caveat tw-text-4xl tw-font-bold" data-aos="fade-up" data-aos-duration="700">Kenapa?</p>
+                  <p class="tw-text-[#11181C] tw-text-center tw-text-2xl lg:tw-text-4xl tw-font-semibold tw-mb-8 lg:tw-mb-16 tw-font-clash-display" data-aos="fade-up" data-aos-duration="700">Pilih Kami Untuk Karier <br> Internasional Anda</p>
                   <div class="tw-container tw-mx-auto tw-grid tw-grid-cols-1 lg:tw-grid-cols-12 tw-gap-8">
                     <div class="tw-col-span-1 lg:tw-col-span-4">
-                      <img src="{{ asset('frontend') }}/assets/component/hero2.png" alt="Vector Image" class="tw-w-full tw-h-full">
+                      <img src="{{ asset('frontend') }}/assets/component/hero2.png" alt="Vector Image" class="tw-w-full tw-h-full" data-aos="fade-right" data-aos-duration="700">
                     </div>
                     <div class="tw-col-span-1 lg:tw-col-span-4 tw-pt-10 lg:tw-pt-0 tw-flex tw-flex-col tw-justify-between">
                       <div>
-                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display">Jaminan mendapat Job Internasional</h2>
-                        <p class="tw-text-gray-600 tw-font-work-sans tw-font-medium">Kami akan menghubungi Anda secara langsung untuk merekomendasikan Pekerjaan yang sesuai dengan kualifikasi Anda. Cukup standby sampai kami menghubungi Anda</p>
+                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display" data-aos="fade-up" data-aos-duration="700">Jaminan mendapat Job Internasional</h2>
+                        <p class="tw-text-gray-600 tw-font-work-sans tw-font-medium" data-aos="fade-up" data-aos-duration="700">Kami akan menghubungi Anda secara langsung untuk merekomendasikan Pekerjaan yang sesuai dengan kualifikasi Anda. Cukup standby sampai kami menghubungi Anda</p>
                       </div>
                       <div class="tw-mt-10 lg:tw-mt-0">
-                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display ">Pengalaman</h2>
-                        <p class="tw-text-gray-600 tw-font-work-sans tw-font-medium">Kami bagian dari Assalam Group yang telah berpengalaman lebih dari 25 tahun di Industri Tenaga Kerja untuk ditempatkan di Luar Negeri secara resmi dan prosedural</p>
+                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display " data-aos="fade-up" data-aos-duration="700">Pengalaman</h2>
+                        <p class="tw-text-gray-600 tw-font-work-sans tw-font-medium" data-aos="fade-up" data-aos-duration="700">Kami bagian dari Assalam Group yang telah berpengalaman lebih dari 25 tahun di Industri Tenaga Kerja untuk ditempatkan di Luar Negeri secara resmi dan prosedural</p>
                       </div>
                     </div>
                     <div class="tw-col-span-1 lg:tw-col-span-4 tw-flex tw-flex-col tw-justify-between ">
                       <div>
-                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display">Jaminan Transparansi</h2>
-                        <p class="tw-text-gray-600 tw-font-work-sans tw-font-medium">Secara terbuka kami akan menjelaskan kepada Anda mulai dari Pekerjaan yang Anda lamar, Biaya Proses yang dibutuhkan, dan Langkah Proses sampai tiba di Negara tujuan</p>
+                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display" data-aos="fade-up" data-aos-duration="700">Jaminan Transparansi</h2>
+                        <p class="tw-text-gray-600 tw-font-work-sans tw-font-medium" data-aos="fade-up" data-aos-duration="700">Secara terbuka kami akan menjelaskan kepada Anda mulai dari Pekerjaan yang Anda lamar, Biaya Proses yang dibutuhkan, dan Langkah Proses sampai tiba di Negara tujuan</p>
                       </div>
                       <div class="tw-mt-10 lg:tw-mt-0">
-                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display">Jaminan Keamanan</h2>
+                        <h2 class="tw-text-xl lg:tw-text-2xl tw-font-bold tw-mb-2 tw-text-sky-500 tw-font-clash-display" data-aos="fade-up" data-aos-duration="700">Jaminan Keamanan</h2>
                         <p class="tw-text-gray-600 tw-font-work-sans tw-font-medium">Kami akan memberikan jaminan keamanan bagi Anda selama proses perjalanan ke luar negeri, mulai dari keberangkatan sampai tiba di Negara tujuan</p>
                       </div>
                     </div>
@@ -258,10 +259,10 @@
         <div class="tw-bg-sky-500 tw-py-12 tw-relative">
           <div class="tw-max-w-7xl tw-mx-auto">
             <div class="tw-p-5 sm:tw-p-10"> 
-              <h2 class="tw-text-white tw-text-center tw-font-caveat tw-text-3xl sm:tw-text-5xl tw-font-bold">Saatnya Bergabung</h2> <!-- Sesuaikan ukuran teks untuk perangkat mobile -->
-              <p class="tw-text-white tw-text-center tw-text-4xl sm:tw-text-6xl tw-mt-3 sm:tw-mt-5 tw-font-semibold tw-mb-8 tw-font-clash-display">Buat Akun Dan Lamar Pekerjaan Impianmu</p> <!-- Sesuaikan ukuran teks dan margin untuk perangkat mobile -->
+              <h2 class="tw-text-white tw-text-center tw-font-caveat tw-text-3xl sm:tw-text-5xl tw-font-bold" data-aos="fade-up" data-aos-duration="700">Saatnya Bergabung</h2> <!-- Sesuaikan ukuran teks untuk perangkat mobile -->
+              <p class="tw-text-white tw-text-center tw-text-4xl sm:tw-text-6xl tw-mt-3 sm:tw-mt-5 tw-font-semibold tw-mb-8 tw-font-clash-display" data-aos="fade-up" data-aos-duration="700">Buat Akun Dan Lamar Pekerjaan Impianmu</p> <!-- Sesuaikan ukuran teks dan margin untuk perangkat mobile -->
              
-              <div class="tw-flex tw-justify-center">
+              <div class="tw-flex tw-justify-center" data-aos="zoom-in" data-aos-duration="700">
                 <button class="tw-bg-[#FDD003] tw-text-gray-900 tw-font-bold tw-rounded-lg tw-py-3 tw-px-6 tw-cursor-pointer tw-flex tw-items-center tw-justify-center">
                   Bergabung Sekarang
                   <i class="fa-solid fa-arrow-right tw-ml-2" style="position: relative; top: -1px;"></i>
@@ -269,30 +270,36 @@
               </div>
             </div>
           </div>
-        
-          <svg class="tw-hidden sm:tw-block tw-absolute tw-top-1/2 tw-left-0 sm:tw-left-40 tw-transform tw--translate-y-1/2" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"> <!-- Tambahkan kelas 'tw-hidden' untuk menyembunyikan elemen di perangkat mobile -->
+         
+        <div class=" tw-absolute tw-top-1/2 tw-left-0 sm:tw-left-40 tw-transform tw--translate-y-1/2"  data-aos="zoom-in-up" data-aos-duration="700" >
+
+          <svg class="tw-hidden md:tw-block"  width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M50 0L61.18 36.06H100L69.1 57.94L80.29 94L50 74.12L19.71 94L30.9 57.94L0 36.06H38.82L50 0Z" fill="#EDBF3E"/>
           </svg>
+        </div>
         
-          <svg class="tw-hidden sm:tw-block tw-absolute tw-top-1/2 tw-right-0 sm:tw-right-40 tw-transform tw--translate-y-1/2" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"> <!-- Tambahkan kelas 'tw-hidden' untuk menyembunyikan elemen di perangkat mobile -->
+        <div class="tw-absolute tw-top-1/2 tw-right-0 sm:tw-right-40 tw-transform tw--translate-y-1/3" data-aos="zoom-in-up" data-aos-duration="700" >
+          
+          <svg class="tw-hidden md:tw-block"  width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M50 0L61.18 36.06H100L69.1 57.94L80.29 94L50 74.12L19.71 94L30.9 57.94L0 36.06H38.82L50 0Z" fill="#EDBF3E"/>
           </svg>
+        </div>
         </div>
         
             {{-- testi section --}}
             <section class="tw-py-8 sm:tw-py-12">
               <div class="tw-max-w-7xl tw-mx-auto">
                 <!-- Testimoni -->
-                <div class="tw-max-w-5xl tw-mx-auto tw-p-6 sm:tw-p-10 tw-rounded-md tw-mb-8 sm:tw-mb-10 tw-text-center tw-bg-[#F1F9FE]">
+                <div data-aos="zoom-in-up" data-aos-duration="700"  class="tw-max-w-5xl tw-mx-auto tw-p-6 sm:tw-p-10 tw-rounded-md tw-mb-8 sm:tw-mb-10 tw-text-center tw-bg-[#F1F9FE]">
                   <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">John Doe</h2>
                <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
                 </div>
                 <div class="tw-flex tw-flex-wrap tw-justify-center tw-gap-3">
-                  <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
-                  <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
-                  <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full tw-scale-125" />
-                  <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
-                  <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full tw-scale-125" />
+                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
                 </div>
               </div>
             </section>
@@ -379,4 +386,5 @@
     </script>
     
   @endpush
+ 
 @endsection
