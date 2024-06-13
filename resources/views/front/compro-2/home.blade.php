@@ -26,7 +26,7 @@
     <div class="tw-relative tw-mt-[-20px]">
         <div class="tw-max-w-full tw-h-full  tw-bg-[#FFFFFF] tw-rounded-t-3xl tw-shadow-lg tw-px-4 tw-pt-6 tw-pb-4">
             <div class="tw-max-w-7xl tw-mx-auto">
-            <form action="{{route('index')}}" method="GET" class="tw-flex tw-items-center tw-gap-0 tw-p-2 tw-bg-[#F4F4F5] tw-rounded-lg" data-aos-duration="1000" data-aos="zoom-in-up">
+            <form action="{{route('front.index')}}" method="GET" class="tw-flex tw-items-center tw-gap-0 tw-p-2 tw-bg-[#F4F4F5] tw-rounded-lg" data-aos-duration="1000" data-aos="zoom-in-up">
               <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-border-r tw-border-gray-300">
                 <img src="{{ asset('frontend') }}/assets/image/indonesia.png" alt="Indonesia Flag" class="tw-w-8 tw-h-8" />
                 <span>ID</span>
