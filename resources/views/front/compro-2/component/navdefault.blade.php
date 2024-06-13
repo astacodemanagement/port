@@ -19,7 +19,7 @@
         </button>
         <div class="tw-hidden md:tw-block">
           <div class="tw-flex tw-space-x-4">
-            <a href="{{route('index')}}" class="t-font-wo tw-leading-5 tw-rounded-md tw-px-3 tw-py-2 tw-text-sm tw-font-medium {{ request()->routeIs('index') ? 'tw-text-sky-500 tw-underline' : '' }} hover:tw-text-sky-400">Find Job</a>
+            <a href="{{route('front.index')}}" class="t-font-wo tw-leading-5 tw-rounded-md tw-px-3 tw-py-2 tw-text-sm tw-font-medium {{ request()->routeIs('index') ? 'tw-text-sky-500 tw-underline' : '' }} hover:tw-text-sky-400">Find Job</a>
             <a href="{{route('compro-2.employe')}}" class="tw-text-custom tw-rounded-md tw-px-3 tw-py-2 tw-leading-5 tw-text-sm tw-font-medium {{ request()->routeIs('compro-2.employe') ? 'tw-text-sky-500 tw-underline' : '' }} hover:tw-text-sky-400">Employers</a>
           </div>
         </div>
@@ -28,7 +28,7 @@
   </div>
   <div class="tw-hidden" id="mobile-menu">
     <div class="tw-space-y-1 tw-px-2 tw-pb-3 tw-pt-2">
-      <a href="{{route('index')}}" class="t-font-work-sans tw-leading-5 tw-rounded-md tw-px-3 tw-py-2 tw-text-sm tw-font-medium hover:tw-text-sky-300 {{ request()->routeIs('index') ? 'tw-text-sky-500 tw-underline' : '' }}">Find Job</a>
+      <a href="{{route('front.index')}}" class="t-font-work-sans tw-leading-5 tw-rounded-md tw-px-3 tw-py-2 tw-text-sm tw-font-medium hover:tw-text-sky-300 {{ request()->routeIs('index') ? 'tw-text-sky-500 tw-underline' : '' }}">Find Job</a>
       <a href="{{route('compro-2.employe')}}" class="tw-text-custom tw-rounded-md tw-px-3 tw-py-2 tw-leading-5 tw-text-sm tw-font-medium hover:tw-text-sky-300 {{ request()->routeIs('compro-2.employe') ? 'tw-text-sky-500 tw-underline' : '' }}">Employers</a>
     </div>
   </div>
