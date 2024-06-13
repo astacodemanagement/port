@@ -6,6 +6,12 @@
         <div class="tw-flex tw-flex-shrink-0 tw-items-center">
           <img class="tw-h-8 tw-w-auto" src="{{ asset('frontend') }}/assets/image/akamalogo.png" alt="Your Company">
         </div>
+
+      </div>
+      <div class="tw-gap-5 md:tw-block tw-hidden">
+      <a href="/" class="tw-text-gray-800 tw-font-semibold tw-rounded-md tw-font-work-sans">Find Job</a>
+      <a href="{{route('compro-2.employe')}}" class="tw-text-gray-800 tw-font-semibold tw-rounded-md tw-font-work-sans">Employers</a>
+   
       </div>
   
       <div class="tw-absolute tw-inset-y-0 tw-right-0 tw-flex tw-items-center sm:tw-static sm:tw-inset-auto sm:tw-ml-6 sm:tw-pr-0">
