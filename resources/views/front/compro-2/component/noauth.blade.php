@@ -8,9 +8,9 @@
         </a>
 
       </div>
-      <div class="tw-gap-5 md:tw-block tw-hidden">
-      <a href="/" class="tw-text-gray-800 tw-font-semibold tw-rounded-md tw-font-work-sans">Find Job</a>
-      <a href="{{route('compro-2.employe')}}" class="tw-text-gray-800 tw-font-semibold tw-rounded-md tw-font-work-sans">Employers</a>
+      <div class="  md:tw-block tw-hidden">
+      <a href="/" class="tw-text-gray-800 tw-font-semibold tw-rounded-md tw-font-work-sans hover:tw-text-sky-500 tw-mx-5">Find Job</a>
+      <a href="{{route('compro-2.employe')}}" class="tw-text-gray-800 tw-font-semibold tw-rounded-md tw-font-work-sans hover:tw-text-sky-500">Employers</a>
    
       </div>
   
@@ -31,8 +31,8 @@
  
   <div class="tw-hidden" id="mobile-menu">
     <div class="tw-space-y-1 tw-px-2 tw-pb-3 tw-pt-2">
-      <a href="/" class="tw-text-gray-800 tw-font-semibold tw-rounded-md tw-font-work-sans">Find Job</a>
-      <a href="{{route('compro-2.employe')}}" class="tw-text-gray-800 tw-font-semibold tw-rounded-md tw-font-work-sans">Employers</a>
+      <a href="/" class="tw-text-gray-800 tw-font-semibold tw-rounded-md tw-font-work-sans hover:tw-text-sky-500">Find Job</a>
+      <a href="{{route('compro-2.employe')}}" class="tw-text-gray-800 tw-font-semibold tw-rounded-md tw-font-work-sans hover:tw-text-sky-500">Employers</a>
     </div>
   </div>
 </nav>
