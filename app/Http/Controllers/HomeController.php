@@ -16,6 +16,9 @@ class HomeController extends Controller
       $review = Review::all();
       $jobs = Job::active()->orderBy('id', 'desc')->limit(4)->get();
       $alasan = Alasan::all();
+      if(request()->has('search')){
+         $jobs = Job::active()->where('nama_job', 'like', '%'.request('search').'%')->orderBy('id', 'desc')->paginate(12);
+      }
       
       return viewCompro('home', compact('slider','alasan', 'jobs','review'));
    }

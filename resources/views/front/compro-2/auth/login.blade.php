@@ -6,7 +6,11 @@
         <div class="tw-flex tw-justify-center tw-items-center">
             <div class="tw-w-full tw-max-w-md">
                 <div class="tw-bg-white tw-shadow tw-rounded-lg tw-px-8 tw-py-8">
-                    <h1 class="tw-text-2xl tw-font-semibold tw-text-center tw-mb-6">Login</h1>
+                    <!-- logo tengah -->
+                    <div class="tw-flex tw-justify-center tw-items-center tw-mb-3">
+                        <img src="{{ asset('frontend') }}/assets/image/akamalogo.png" alt="Logo" class="tw-w-40" />
+                    </div>  
+                    <h1 class="tw-text-sm tw-text-gray-700 tw-text-center tw-mb-6">Masuk ke dalam akun</h1>
                     <form action="{{ route('front.login.store') }}" method="POST">
                         @csrf
                         <div class="tw-mb-4">
@@ -22,6 +26,11 @@
                             @error('password')
                                 <small class="tw-text-red-500 tw-text-sm" role="alert">{{ $message }}</small>
                             @enderror
+                        </div>
+                        <!-- navogate to regis -->
+                        <div class="tw-flex tw-justify-between tw-items-center tw-mb-4">
+                            <a href="{{ route('front.register') }}" class="tw-text-sm tw-text-sky-500 hover:tw-underline">Belum punya akun?</a>
+                            <a href="{{ route('front.password.request') }}" class="tw-text-sm tw-text-sky-500 hover:tw-underline">Lupa password?</a>
                         </div>
                         <div class="tw-mb-4">
                             <button type="submit" class="tw-w-full tw-py-2 tw-bg-sky-500 tw-text-white tw-rounded-md tw-transition tw-duration-500 hover:tw-bg-[#1A237E]">Login</button>
