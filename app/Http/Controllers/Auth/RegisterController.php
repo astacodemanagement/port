@@ -155,8 +155,10 @@ class RegisterController extends Controller
                 'name' => $request->nama_lengkap,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'is_kandidat' => 1
+                // 'is_kandidat' => 1
             ]);
+
+            $user->assignRole('member');
 
             /** INSERT PENDAFTARAN */
             $pendaftaran = [

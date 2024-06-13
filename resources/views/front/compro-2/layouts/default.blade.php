@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>test</title>
+
+  <title>@yield('title')</title>
   <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,24 +16,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
 
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-   <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        prefix: 'tw-',
-        theme: {
-          extend: {
-            fontFamily: {
-        'clash-display': ['Clash Display', 'sans-serif'],
-        'caveat': ['Caveat', 'sans-serif'],
-        'work-sans': ['Work Sans', 'sans-serif'],
-      },
-            colors: {
-              clifford: '#da373d',
-            }
-          }
-        }
-      }
-    </script>
+  <!-- tialwind -->
+  <!-- import tailwind using laravel mix-->
+  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link
@@ -44,34 +30,8 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
 " rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
-    .splide__slide{
-      display: flex;
-    justify-content: center;
-    align-items: center;
-    }
-        .splide__slide img {
-  width: 100%;
-  height: 400px;
-  background-position:center;
-  background-size: cover; 
-  padding: 2rem;
-  border-radius: 10px;
-  margin-top: 4rem;
-}
-/*remove padding in mobile  */
-@media (max-width: 767px) {
-  .splide__slide img {
-    padding: 1rem;
-  }
-}
-
-.carousel-image {
-    display: block;
-    margin: 0 auto;
-    border-radius: 15px; 
-    max-width: 100%;
-    height: auto;
-}
+   
+ 
 .job-section{
   padding: 56px, 120px, 56px, 120px;
   border-radius: 32px, 32px, 0px, 0px;
@@ -166,10 +126,10 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
       transition:1s,
     }
 </style>
-
+  @stack('css')
 
 </head>
-<body>
+<body class="tw-opacity-0 tw-transition-opacity tw-duration-500">
   {{-- navbar --}}
   
   
@@ -243,5 +203,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   AOS.init();
 </script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+  document.body.classList.remove('tw-opacity-0');
+});
+
+</script>
+@stack('js')
 </body>
 </html>

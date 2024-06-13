@@ -1,4 +1,6 @@
 @extends('front.compro-2.layouts.default')
+<!-- title-->
+@section('title','Employers Akama Job')
 @section('content')
 @include('front.compro-2.component.navdefault')
 {{--make hero section avatar tulisan kiri --}}
@@ -13,10 +15,24 @@
                     {{-- desc --}}
                     <p class="tw-z-10 tw-mt-3 tw-text-gray-500 tw-text-lg tw-font-work-sans  animate__animated animate__fadeInLeft ">A simple recruitment system with the best Indonesian Talent Pool. We will help you find one that suits your qualifications</p>
 
-                    <button class="tw-z-10 animate__animated animate__fadeInLeft tw-w-full tw-px-5 tw-py-3 tw-mt-6 tw-text-sm tw-tracking-wider tw-text-white tw-uppercase tw-transition-colors tw-duration-300 tw-transform tw-bg-sky-500 tw-rounded-lg lg:tw-w-auto hover:tw-bg-sky-500 focus:tw-outline-none focus:tw-bg-sky-500">
+                <!-- kalo kandidat yang masuk -->
+                @if(auth()?->user()?->kandidat)
+                <div class="tw-mt-6" data-aos="zoom-in" data-aos-duration="1000">
+
+                    <a data-aos="fade-left" href="{{route('compro-2.job.index')}}" class="tw-z-10  tw-w-full tw-px-5 tw-py-3  tw-text-sm tw-tracking-wider tw-text-white tw-uppercase tw-transition-colors tw-duration-300 tw-transform tw-bg-sky-500 tw-rounded-lg lg:tw-w-auto hover:tw-bg-sky-500 focus:tw-outline-none focus:tw-bg-sky-500">
+                        Start To Found Job 
+                        <i class="fas fa-arrow-right tw-ml-2 -tw-rotate-45"></i>
+                    </a>
+                </div>
+                @else
+                <div class="tw-mt-6" data-aos="zoom-in" data-aos-duration="1000">
+                <a href="{{route('register')}}" class="tw-z-10  tw-w-full tw-px-5 tw-py-3 tw-mt-6 tw-text-sm tw-tracking-wider tw-text-white tw-uppercase tw-transition-colors tw-duration-300 tw-transform tw-bg-sky-500 tw-rounded-lg lg:tw-w-auto hover:tw-bg-sky-500 focus:tw-outline-none focus:tw-bg-sky-500">
                         Start To Found Worker 
                         <i class="fas fa-arrow-right tw-ml-2 -tw-rotate-45"></i>
-                    </button>
+                    </a>
+                    </div>
+                @endif
+                
                 </div>
             </div>
     

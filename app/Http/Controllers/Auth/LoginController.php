@@ -41,7 +41,7 @@ class LoginController extends Controller
 
     protected function credentials(Request $request)
     {
-        return array_merge($request->only($this->username(), 'password'), ['is_kandidat' => 0]);
+        return array_merge($request->only($this->username(), 'password'));
     }
 
     protected function sendLoginResponse(Request $request)
@@ -49,6 +49,16 @@ class LoginController extends Controller
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);
+
+        if ($this->guard()->user()->hasRole('member')) {
+            $this->guard()->logout();
+
+            $request->session()->invalidate();
+    
+            $request->session()->regenerateToken();
+
+            return redirect(route('login'))->withErrors(['email' => trans('auth.failed')]);
+        }
 
         if ($response = $this->authenticated($request, $this->guard()->user())) {
             return $response;
