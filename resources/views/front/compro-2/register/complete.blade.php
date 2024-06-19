@@ -7,7 +7,7 @@
             <h1 class="tw-text-2xl tw-font-bold tw-text-primary-color tw-mb-2 ">Pendaftaran Berhasil</h1>
             <img src="{{ asset('frontend') }}/assets/image/complete.gif" alt="" class="tw-w-60 tw-h-60">
             <p class="tw-text-md tw-text-gray-500 tw-mb-4">Terima kasih telah mendaftar di website kami. Silahkan cek email anda untuk verifikasi akun.</p>
-            <a href="{{ route('index') }}" class="tw-bg-sky-500 tw-text-white hover:tw-text-white hover:tw-scale-105 hover:tw-transition tw-duration-500   tw-py-2 tw-px-4 tw-rounded-md tw-inline-block">Kembali ke halaman utama</a>
+            <a href="/" class="tw-bg-sky-500 tw-text-white hover:tw-text-white hover:tw-scale-105 hover:tw-transition tw-duration-500   tw-py-2 tw-px-4 tw-rounded-md tw-inline-block">Kembali ke halaman utama</a>
         
        </div>
     </div>

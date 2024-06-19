@@ -335,7 +335,7 @@
     }
         .splide__slide img {
   width: 100%;
-  height: 350px;
+  height: 400px;
   background-position:center;
   background-size: cover; 
   padding: 2rem;

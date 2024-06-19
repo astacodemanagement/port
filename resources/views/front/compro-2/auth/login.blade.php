@@ -33,7 +33,7 @@
                             <a href="{{ route('front.password.request') }}" class="tw-text-sm tw-text-sky-500 hover:tw-underline">Lupa password?</a>
                         </div>
                         <div class="tw-mb-4">
-                            <button type="submit" class="tw-w-full tw-py-2 tw-bg-sky-500 tw-text-white tw-rounded-md tw-transition tw-duration-500 hover:tw-bg-[#1A237E]">Login</button>
+                            <button type="submit" class="tw-w-full tw-py-2 tw-bg-sky-500 tw-text-white tw-rounded-md tw-transition tw-duration-500 hover:tw-bg-sky-600 hover:tw-scale-105">Login</button>
                         </div>
                     </form>
                 </div>

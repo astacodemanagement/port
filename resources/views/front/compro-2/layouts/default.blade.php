@@ -186,7 +186,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
             <hr class="tw-h-px tw-my-6 tw-bg-gray-200 tw-border-none ">
     
             <div>
-                <p class="tw-text-start tw-text-[#D4D4D8]">© Brand 2020 - All rights reserved</p>
+                <p class="tw-text-start tw-text-[#D4D4D8]">© Brand 2024 - All rights reserved</p>
             </div>
         </div>
     </footer>
