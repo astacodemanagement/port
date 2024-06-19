@@ -12,16 +12,16 @@
                         <!-- change to real navigate -->
                     <div class="tw-flex tw-items-center tw-space-x-2 tw-pt-5">
                         <!-- home -->
-                        <a href="{{route('index')}}" class=" tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600">Home</a>
+                        <a href="/" class=" tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600">Home</a>
                         <i class="fa-solid fa-chevron-right tw-text-gray-500 tw-text-xs"></i>
                         <!-- find job -->
-                        <a href="{{route('index')}}" class="tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600 ">Find Job</a>
+                        <a href="/" class="tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600 ">Find Job</a>
                         <i class="fa-solid fa-chevron-right tw-text-gray-500 tw-text-xs"></i>
                         <!-- name job -->
-                        <a href="{{route('index')}}" class="tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600">{{$job->nama_job}}</a>
+                        <a href="/" class="tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600">{{$job->nama_job}}</a>
                         <i class="fa-solid fa-chevron-right tw-text-gray-500 tw-text-xs"></i>
                         <!-- job details -->
-                        <a href="{{route('index')}}" class="tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600">Job Details</a>
+                        <a href="/" class="tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600">Job Details</a>
 
                 </div>
 
