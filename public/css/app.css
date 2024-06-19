@@ -1378,6 +1378,10 @@ video {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
+.tw-text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
 .tw-font-bold {
   font-weight: 700;
 }
@@ -1606,6 +1610,10 @@ video {
 .hover\:tw-text-\[\#18191C\]:hover {
   --tw-text-opacity: 1;
   color: rgb(24 25 28 / var(--tw-text-opacity));
+}
+.hover\:tw-text-gray-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 .hover\:tw-text-gray-900:hover {
   --tw-text-opacity: 1;

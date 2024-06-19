@@ -6,18 +6,18 @@
 {{-- Slider section --}}
     <div class="md:tw-h-[500px] tw-h-[350px]">
         <div class="tw-h-full" style="background: url('{{ asset('frontend') }}/assets/image/carousel.png'); background-position: center; background-size: cover;">
-            <section id="image-carousel" class="splide tw-max-w-7xl tw-mx-auto" aria-label="Beautiful Images">
-                <div class="splide__track">
-                    <ul class="splide__list sm:tw-p-0">
-                        <li class="splide__slide">
-                            <img src="{{ asset('frontend') }}/assets/image/slider1.jpeg" alt="" class="tw-rounded-lg ">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('frontend') }}/assets/image/slider2.jpeg" alt="" class="tw-rounded-lg ">
-                        </li>
-                    </ul>
-                </div>
-            </section>
+        <section id="image-carousel" class="splide max-w-7xl mx-auto" aria-label="Beautiful Images">
+            <div class="splide__track">
+              <ul class="splide__list sm:p-0">
+                <li class="splide__slide relative overflow-hidden flex justify-center items-center">
+                  <img src="{{ asset('frontend/assets/image/slider1.jpeg') }}" alt="Slider Image 1" class="block mx-auto rounded-2xl max-w-full w-full h-full bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
+                </li>
+                <li class="splide__slide relative overflow-hidden flex justify-center items-center">
+                  <img src="{{ asset('frontend/assets/image/slider2.jpeg') }}" alt="Slider Image 2" class="block mx-auto rounded-2xl max-w-full w-full h-full bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
+                </li>
+              </ul>
+            </div>
+          </section>
         </div>
     </div>
     {{-- End of slider section --}}
@@ -288,22 +288,36 @@
         </div>
         
             {{-- testi section --}}
-            <section class="tw-py-8 sm:tw-py-12">
-              <div class="tw-max-w-7xl tw-mx-auto">
-                <!-- Testimoni -->
-                <div data-aos="zoom-in-up" data-aos-duration="700"  class="tw-max-w-5xl tw-mx-auto tw-p-6 sm:tw-p-10 tw-rounded-md tw-mb-8 sm:tw-mb-10 tw-text-center tw-bg-[#F1F9FE]">
-                  <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">John Doe</h2>
-               <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
-                </div>
-                <div class="tw-flex tw-flex-wrap tw-justify-center tw-gap-3">
-                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
-                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
-                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full tw-scale-125" />
-                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
-                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
-                </div>
-              </div>
-            </section>
+            <div class="tw-max-w-7xl tw-mx-auto tw-py-10" id="image-carousel2">
+        <!-- Testimonial Cards -->
+        <div class="tw-max-w-5xl tw-mx-auto tw-p-6 sm:tw-p-10 tw-rounded-md tw-mb-8 sm:tw-mb-10 tw-text-center tw-bg-[#F1F9FE]">
+            <div class="testimonial-card active">
+                <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">John Doe</h2>
+                <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+            </div>
+            <div class="testimonial-card">
+                <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">Jane Smith</h2>
+                <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+            </div>
+            <div class="testimonial-card">
+                <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">Alice Johnson</h2>
+                <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
+            </div>
+            <div class="testimonial-card">
+                <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">Michael Brown</h2>
+                <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            </div>
+        </div>
+
+        <!-- Avatar Images -->
+        <div class="tw-flex tw-flex-wrap tw-justify-center tw-gap-3">
+            <img data-aos="zoom-in" data-aos-duration="700" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="avatar-image tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full active" />
+            <img data-aos="zoom-in" data-aos-duration="700" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="avatar-image tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+            <img data-aos="zoom-in" data-aos-duration="700" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="avatar-image tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+            <img data-aos="zoom-in" data-aos-duration="700" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="avatar-image tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+            <img data-aos="zoom-in" data-aos-duration="700" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="avatar-image tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+        </div>
+    </div>
             
                    
             
@@ -342,8 +356,25 @@
     max-width: 100%;
     height: auto;
 }
+.testimonial-card {
+            display: none;
+            transition: opacity 1s ease;
+        }
+
+.active {
+            display: block;
+        }
+
+.avatar-image {
+            transform: scale(1);
+            transition: transform 1s ease;
+        }
+
+.avatar-image .active {
+            transform: scale(1.1);
+        }
      </style> 
-    @endpush
+@endpush
     <script>
         const targets = [
           { element: document.getElementById('starsCount'), count: 4670, suffix: '+' },
@@ -373,19 +404,53 @@
         });
       </script>
     
-  @push('js')
+@push('js')
   <script>
        document.addEventListener('DOMContentLoaded', function() {
   new Splide('#image-carousel', {
     type   : 'loop',
     perPage: 1,
     autoplay: true,
-    interval: 5000,
+    interval: 5000, 
   }).mount();
-});
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const avatarImages = document.querySelectorAll('.avatar-image');
 
+            let currentIndex = 0;
+            const intervalTime = 5000;
+
+            function resetCards() {
+                testimonialCards.forEach(card => {
+                    card.classList.remove('active');
+                });
+                avatarImages.forEach(image => {
+                    image.classList.remove('active');
+                });
+            }
+
+            function showCard(index) {
+                resetCards();
+                testimonialCards[index].classList.add('active');
+                avatarImages[index].classList.add('active');
+            }
+
+            function nextCard() {
+                currentIndex = (currentIndex + 1) % testimonialCards.length;
+                showCard(currentIndex);
+            }
+
+
+            showCard(currentIndex);
+            setInterval(nextCard, intervalTime);
+            avatarImages.forEach((image, index) => {
+                image.addEventListener('click', () => {
+                    currentIndex = index;
+                    showCard(currentIndex);
+                });
+            });
+       });
     </script>
     
-  @endpush
+@endpush
  
 @endsection

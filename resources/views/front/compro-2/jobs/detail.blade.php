@@ -8,8 +8,21 @@
 
                     <h3 class="tw-pt-5 tw-text-lg tw-text-gray-500 tw-font-work-sans tw-font-medium tw-leading-8">Job Details
                     </h3>
-                    <h3 class="tw-pt-5 tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm">Home / Find Job / Graphics &
-                        Design / <span class="tw-text-gray-900 tw-font-semibold">Job Details</span></h3>
+                  
+                        <!-- change to real navigate -->
+                    <div class="tw-flex tw-items-center tw-space-x-2 tw-pt-5">
+                        <!-- home -->
+                        <a href="{{route('index')}}" class=" tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600">Home</a>
+                        <i class="fa-solid fa-chevron-right tw-text-gray-500 tw-text-xs"></i>
+                        <!-- find job -->
+                        <a href="{{route('index')}}" class="tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600 ">Find Job</a>
+                        <i class="fa-solid fa-chevron-right tw-text-gray-500 tw-text-xs"></i>
+                        <!-- name job -->
+                        <a href="{{route('index')}}" class="tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600">{{$job->nama_job}}</a>
+                        <i class="fa-solid fa-chevron-right tw-text-gray-500 tw-text-xs"></i>
+                        <!-- job details -->
+                        <a href="{{route('index')}}" class="tw-text-gray-500 tw-font-work-sans tw-font-medium tw-text-sm hover:tw-text-gray-600">Job Details</a>
+
                 </div>
 
 
