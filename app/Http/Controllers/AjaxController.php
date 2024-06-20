@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\Kota;
@@ -82,5 +83,12 @@ class AjaxController extends Controller
         // dd($arr);
 
         // Wilayah::insert($arr);
+    }
+    public function getJob(Request $request)
+    {
+        $q = $request->get("query");
+        $jobs = Job::active()->where('nama_job', 'like', '%'.$q.'%')->orderBy('id', 'desc')->get();
+
+        return response()->json($jobs);
     }
 }

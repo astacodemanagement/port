@@ -342,6 +342,9 @@ Route::prefix('ajax')->group(function () {
         Route::get('village/{subdistrictId?}', [AjaxController::class, 'getVillage'])->name('village');
         Route::get('wilayah', [AjaxController::class, 'wilayah'])->name('wilayah');
         Route::get('wilayah/search', [AjaxController::class, 'searchWilayah'])->name('wilayah.search');
+        //ajax  job
+        Route::get('/ajax/job', [AjaxController::class, 'getjob'])->name('job');
+        
     });
 });
 
