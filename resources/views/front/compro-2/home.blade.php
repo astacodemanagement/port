@@ -6,18 +6,18 @@
 {{-- Slider section --}}
     <div class="md:tw-h-[500px] tw-h-[350px]">
         <div class="tw-h-full" style="background: url('{{ asset('frontend') }}/assets/image/carousel.png'); background-position: center; background-size: cover;">
-            <section id="image-carousel" class="splide tw-max-w-7xl tw-mx-auto" aria-label="Beautiful Images">
-                <div class="splide__track">
-                    <ul class="splide__list sm:tw-p-0">
-                        <li class="splide__slide">
-                            <img src="{{ asset('frontend') }}/assets/image/slider1.jpeg" alt="" class="tw-rounded-lg ">
-                        </li>
-                        <li class="splide__slide">
-                            <img src="{{ asset('frontend') }}/assets/image/slider2.jpeg" alt="" class="tw-rounded-lg ">
-                        </li>
-                    </ul>
-                </div>
-            </section>
+        <section id="image-carousel" class="splide max-w-7xl mx-auto" aria-label="Beautiful Images">
+            <div class="splide__track">
+              <ul class="splide__list sm:p-0">
+                <li class="splide__slide relative overflow-hidden flex justify-center items-center">
+                  <img src="{{ asset('frontend/assets/image/slider1.jpeg') }}" alt="Slider Image 1" class="block mx-auto rounded-2xl max-w-full w-full h-full bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
+                </li>
+                <li class="splide__slide relative overflow-hidden flex justify-center items-center">
+                  <img src="{{ asset('frontend/assets/image/slider2.jpeg') }}" alt="Slider Image 2" class="block mx-auto rounded-2xl max-w-full w-full h-full bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
+                </li>
+              </ul>
+            </div>
+          </section>
         </div>
     </div>
     {{-- End of slider section --}}
@@ -26,7 +26,7 @@
     <div class="tw-relative tw-mt-[-20px]">
         <div class="tw-max-w-full tw-h-full  tw-bg-[#FFFFFF] tw-rounded-t-3xl tw-shadow-lg tw-px-4 tw-pt-6 tw-pb-4">
             <div class="tw-max-w-7xl tw-mx-auto">
-            <form action="{{route('front.index')}}" method="GET" class="tw-flex tw-items-center tw-gap-0 tw-p-2 tw-bg-[#F4F4F5] tw-rounded-lg" data-aos-duration="1000" data-aos="zoom-in-up">
+            <form id="search-form" class="tw-flex tw-items-center tw-gap-0 tw-p-2 tw-bg-[#F4F4F5] tw-rounded-lg" data-aos-duration="1000" data-aos="zoom-in-up">
               <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-border-r tw-border-gray-300">
                 <img src="{{ asset('frontend') }}/assets/image/indonesia.png" alt="Indonesia Flag" class="tw-w-8 tw-h-8" />
                 <span>ID</span>
@@ -36,7 +36,7 @@
               </div>
               <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-flex-1">
                 <i class="fa-solid fa-magnifying-glass tw-text-sky-500"></i>
-                <input type="text" placeholder="Job title, keyword, company" name="search" class="tw-border-none tw-outline-none tw-text-base tw-text-gray-600 tw-bg-[#F4F4F5] tw-w-full"  />
+                <input id="search-input" type="text" placeholder="Job title, keyword, company" name="query" class="tw-border-none tw-outline-none tw-text-base tw-text-gray-600 tw-bg-[#F4F4F5] tw-w-full" />
               </div>
               <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-px-4 tw-mr-2 tw-bg-[#F1F9FE] tw-rounded-md tw-cursor-pointer">
                 <i class="fa-solid fa-sliders tw-text-sky-500"></i>
@@ -46,16 +46,14 @@
                 Search
               </button>
             </form>
-
                      <h3 class=" tw-font-clash-display tw-text-[30px] tw-text-[#11181C]  tw-font-bold tw-my-7 tw-mb-10 ">Lowongan Unggulan</h3>
 
                   {{-- card section --}}
             
-                     <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-8">
+                     <div id="jobs-container" class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-8">
                         {{-- job card --}}
                         @foreach ($jobs as $item)
                             
-                        
                         <div data-aos="zoom-in-up" data-aos-duration="1000" class="tw-relative tw-flex tw-flex-col tw-mt-6 tw-text-gray-700 tw-bg-[#18191C08] tw-border tw-border-[#E4E5E8] tw-rounded-xl tw-w-full">
                             <div class="tw-relative tw-h-[300px] tw-bg-cover tw-bg-fixed tw-overflow-hidden tw-text-white tw-rounded-xl tw-bg-blue-gray-500" style="background-position:center;">
                               @if ($item->gambar)
@@ -86,7 +84,7 @@
                                 </button>
                                 <p class="tw-mt-5 tw-text-lg tw-font-semibold tw-leading-5 tw-text-[#11181C]">Gaji</p>
                                 <p class="tw-block tw-font-sans tw-text-base tw-antialiased tw-font-light tw-leading-relaxed tw-text-inherit">
-                                    <span class="tw-text-[#2B9FDC] tw-text-2xl tw-font-semibold tw-font-clash-display tw-mt-1">Rp {{$item->estimasi_minimal}} - {{$item->estimasi_maksimal}} jt/</span> <span class="tw-text-lg tw-font-normal tw-text-[#2B9FDC]">bulan</span>
+                                    <span class="tw-text-[#2B9FDC] tw-text-lg tw-font-semibold tw-font-clash-display tw-mt-1">Rp {{'Rp'. number_format($item->estimasi_minimal)}} - {{'Rp'.number_format($item->estimasi_maksimal)}} jt/</span> <span class="tw-text-lg tw-font-normal tw-text-[#2B9FDC]">bulan</span>
                                 </p>
                                 <div class="tw-grid tw-grid-cols-2 tw-gap-4 tw-mt-4">
                                     <div class="tw-flex tw-items-start">
@@ -288,22 +286,36 @@
         </div>
         
             {{-- testi section --}}
-            <section class="tw-py-8 sm:tw-py-12">
-              <div class="tw-max-w-7xl tw-mx-auto">
-                <!-- Testimoni -->
-                <div data-aos="zoom-in-up" data-aos-duration="700"  class="tw-max-w-5xl tw-mx-auto tw-p-6 sm:tw-p-10 tw-rounded-md tw-mb-8 sm:tw-mb-10 tw-text-center tw-bg-[#F1F9FE]">
-                  <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">John Doe</h2>
-               <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
-                </div>
-                <div class="tw-flex tw-flex-wrap tw-justify-center tw-gap-3">
-                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
-                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
-                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full tw-scale-125" />
-                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
-                  <img data-aos="zoom-in" data-aos-duration="700"  src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
-                </div>
-              </div>
-            </section>
+            <div class="tw-max-w-7xl tw-mx-auto tw-py-10" id="image-carousel2">
+        <!-- Testimonial Cards -->
+        <div class="tw-max-w-5xl tw-mx-auto tw-p-6 sm:tw-p-10 tw-rounded-md tw-mb-8 sm:tw-mb-10 tw-text-center tw-bg-[#F1F9FE]">
+            <div class="testimonial-card active">
+                <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">John Doe</h2>
+                <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+            </div>
+            <div class="testimonial-card">
+                <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">Jane Smith</h2>
+                <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."</p>
+            </div>
+            <div class="testimonial-card">
+                <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">Alice Johnson</h2>
+                <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
+            </div>
+            <div class="testimonial-card">
+                <h2 class="tw-text-xl sm:tw-text-3xl tw-font-bold tw-text-[#11181C] tw-font-work-sans">Michael Brown</h2>
+                <p class="tw-text-base sm:tw-text-lg tw-text-[#52525B] tw-mt-4 sm:tw-mt-6">"Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            </div>
+        </div>
+
+        <!-- Avatar Images -->
+        <div class="tw-flex tw-flex-wrap tw-justify-center tw-gap-3">
+            <img data-aos="zoom-in" data-aos-duration="700" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="avatar-image tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full active" />
+            <img data-aos="zoom-in" data-aos-duration="700" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="avatar-image tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+            <img data-aos="zoom-in" data-aos-duration="700" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="avatar-image tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+            <img data-aos="zoom-in" data-aos-duration="700" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="avatar-image tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+            <img data-aos="zoom-in" data-aos-duration="700" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg" alt="avatar image" class="avatar-image tw-inline-flex tw-items-center tw-justify-center tw-mr-2 tw-text-white tw-transition-all tw-duration-200 tw-ease-in-out tw-w-12 h-12 sm:tw-w-16 sm:h-16 tw-text-sm sm:tw-text-base tw-rounded-full" />
+        </div>
+    </div>
             
                    
             
@@ -321,7 +333,7 @@
     }
         .splide__slide img {
   width: 100%;
-  height: 350px;
+  height: 400px;
   background-position:center;
   background-size: cover; 
   padding: 2rem;
@@ -342,8 +354,18 @@
     max-width: 100%;
     height: auto;
 }
+.testimonial-card {
+            display: none;
+            transition: opacity 1s ease;
+        }
+
+.active {
+            display: block;
+        }
+
+
      </style> 
-    @endpush
+@endpush
     <script>
         const targets = [
           { element: document.getElementById('starsCount'), count: 4670, suffix: '+' },
@@ -373,19 +395,152 @@
         });
       </script>
     
-  @push('js')
+@push('js')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
   <script>
        document.addEventListener('DOMContentLoaded', function() {
   new Splide('#image-carousel', {
     type   : 'loop',
     perPage: 1,
     autoplay: true,
-    interval: 5000,
+    interval: 5000, 
   }).mount();
-});
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const avatarImages = document.querySelectorAll('.avatar-image');
 
+            let currentIndex = 0;
+            const intervalTime = 5000;
+
+            function resetCards() {
+                testimonialCards.forEach(card => {
+                    card.classList.remove('active');
+                });
+                avatarImages.forEach(image => {
+                    image.classList.remove('active');
+                    image.style.transform = 'scale(1)';
+                });
+            }
+
+            function showCard(index) {
+                resetCards();
+                testimonialCards[index].classList.add('active');
+                avatarImages[index].classList.add('active');
+             
+                avatarImages[index].style.transform = 'scale(1.2)';
+            }
+
+            function nextCard() {
+                currentIndex = (currentIndex + 1) % testimonialCards.length;
+                showCard(currentIndex);
+            }
+
+
+            showCard(currentIndex);
+            setInterval(nextCard, intervalTime);
+            avatarImages.forEach((image, index) => {
+                image.addEventListener('click', () => {
+                    currentIndex = index;
+                    showCard(currentIndex);
+                });
+            });
+       });
     </script>
-    
-  @endpush
+   <script>
+$(document).ready(function() {
+    $('#search-form').on('submit', function(e) {
+        e.preventDefault();
+        let query = $('#search-input').val();
+        
+        $.ajax({
+            url: `{{route('ajax.job')}}`,
+            method: 'GET',
+            data: { query: query },
+            success: function(response) {
+                $('#jobs-container').empty();
+                if(response.length > 0) {
+                    response.forEach(function(job) {
+                        let jobHtml = `
+                         <div data-aos="zoom-in-up" data-aos-duration="1000" class="tw-relative tw-flex tw-flex-col tw-mt-6 tw-text-gray-700 tw-bg-[#18191C08] tw-border tw-border-[#E4E5E8] tw-rounded-xl tw-w-full">
+                            <div class="tw-relative tw-h-[300px] tw-bg-cover tw-bg-fixed tw-overflow-hidden tw-text-white tw-rounded-xl tw-bg-blue-gray-500" style="background-position:center;">
+                           
+                              <img src="/upload/gambar/${job.gambar}" alt="card-image" class="tw-object-cover tw-h-[300px] tw-w-full" />
+                            </div>
+                            <div class="tw-p-6">
+                               
+                                <div class="tw-flex">
+                                    <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C] hover:tw-text-[#18191C] hover:tw-underline ">
+                                    ${job.nama_job}
+                                    </a>
+                                    </a>
+                                    <div class="tw-ml-auto tw-flex tw-items-center tw-justify-center tw-w-8 tw-h-8 tw-rounded-full tw-bg-[#F1F9FE]">
+                                        <i class="fa-regular fa-bookmark tw-text-sky-500 tw-text-2xl"></i>
+                                    </div>
+                                </div>
+                                <!-- Button -->
+                                <button class="tw-bg-[#DCFCE7] tw-py-2 tw-px-4 tw-rounded-md">
+                                    <div class="tw-flex tw-items-center">
+                                      <span class="tw-w-4 tw-h-4 tw-rounded-full tw-bg-green-500 tw-border-4 tw-border-green-300 tw-mr-2"></span>
+                                        <span class="tw-text-green-700">Available</span>
+                                    </div>
+                                </button>
+                                <p class="tw-mt-5 tw-text-lg tw-font-semibold tw-leading-5 tw-text-[#11181C]">Gaji</p>
+                                <p class="tw-block tw-font-sans tw-text-base tw-antialiased tw-font-light tw-leading-relaxed tw-text-inherit">
+                                    <span class="tw-text-[#2B9FDC] tw-text-lg tw-font-semibold tw-font-clash-display tw-mt-1">Rp {{'Rp'. number_format($item->estimasi_minimal)}} - {{'Rp'.number_format($item->estimasi_maksimal)}} jt/</span> <span class="tw-text-lg tw-font-normal tw-text-[#2B9FDC]">bulan</span>
+                           
+                                </p>
+                                <div class="tw-grid tw-grid-cols-2 tw-gap-4 tw-mt-4">
+                                    <div class="tw-flex tw-items-start">
+                                        <i class="fa-solid fa-location-dot tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
+                                        <div>
+                                            <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Negara</p>
+                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">${job.nama_negara}</p>
+                                        </div>
+                                    </div>
+                                    <div class="tw-flex tw-items-start">
+                                        <i class="fa-solid fa-briefcase tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
+                                        <div>
+                                            <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Kontrak Kerja</p>
+                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">${job.kontrak_kerja}</p>
+                                        </div>
+                                    </div>
+                                    <div class="tw-flex tw-items-start">
+                                        <i class="fa-solid fa-language tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
+                                        <div>
+                                            <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Level Bahasa</p>
+                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">${job.level_bahasa}</p>
+                                        </div>
+                                    </div>
+                                    <div class="tw-flex tw-items-start">
+                                        <i class="fa-solid fa-calendar-alt tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
+                                        <div>
+                                            <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Tanggal Berakhir</p>
+                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">30 Juni 2024</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                            <div class="tw-p-6 tw-pt-0">
+                             <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                              Detail
+                              <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
+                            </a>
+                          
+                            
+                            </div>
+                        </div>`;
+                        $('#jobs-container').append(jobHtml);
+                    });
+                } else {
+                    $('#jobs-container').append('<p>No jobs found.</p>');
+                }
+            }
+          });
+    });
+});
+</script>
+@endpush
  
 @endsection

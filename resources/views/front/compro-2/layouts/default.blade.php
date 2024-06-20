@@ -18,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <!-- tialwind -->
   <!-- import tailwind using laravel mix-->
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/app1.css') }}" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css" integrity="sha512-34s5cpvaNG3BknEWSuOncX28vz97bRI59UnVtEEpFX536A7BtZSJHsDyFoCl8S7Dt2TPzcrCEoHBGeM4SUBDBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link
@@ -100,10 +100,10 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
 .tw-bg-custom {
             background-color: #FAFAFA;
         }
-        .tw-text-custom {
+.tw-text-custom {
             color: #52525B;
         }
-        .tw-border-custom {
+.tw-border-custom {
             border-color: #38BDF8;
         }
      
@@ -146,8 +146,8 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
                     <div class="tw-grid tw-grid-cols-1 tw-gap-6 sm:tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-5   ">
                         <div>
                             <a href="#" class="tw-bg-white">
-                                <div class="tw-bg-white tw-w-2/3 h-full tw-p-2 tw-rounded-md">
-                                    <img class="tw-w-full tw-h-10" src="{{ asset('frontend') }}/assets/image/akamalogo.png" alt="">
+                                <div class="tw-bg-white md:tw-w-2/3 tw-w-1/3 h-full tw-p-2 tw-rounded-md">
+                                    <img class="md:tw-w-full tw-w-2full tw-h-10" src="{{ asset('frontend') }}/assets/image/akamalogo.png" alt="">
                                 </div>
                             </a>
                         </div>
@@ -186,7 +186,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
             <hr class="tw-h-px tw-my-6 tw-bg-gray-200 tw-border-none ">
     
             <div>
-                <p class="tw-text-start tw-text-[#D4D4D8]">© Brand 2020 - All rights reserved</p>
+                <p class="tw-text-start tw-text-[#D4D4D8]">© Brand 2024 - All rights reserved</p>
             </div>
         </div>
     </footer>

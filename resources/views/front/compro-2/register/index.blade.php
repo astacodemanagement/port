@@ -109,15 +109,7 @@
             <form data-step="1" method="POST" id="step-form-1" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form "  style="display: none">
                 @csrf  
                 
-                <label for="minat" class="tw-text-gray-800 tw-font-medium tw-mb-3 tw-font-work-sans">Minat</label>
-                <select name="negara_id" id="negara_id" class="tw-font-work-sans tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-bg-white tw-text-gray-600 tw-rounded-md" required>
-                    <option value="" readonly>Negara Yang Diminati</option>
-                    @foreach ($countries as $country)
-                    <option value="{{ $country->id }}">{{ $country->nama_negara }}</option>
-                @endforeach
-                </select>
-                <p class="tw-text-red-500 error-minat" style="display: none"></p>
-                {{-- kategori yang diminati --}}
+               
                 <select name="kategori_job_id" id="kategori" class="tw-font-work-sans tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-bg-white tw-text-gray-600 tw-rounded-md" required>
                     <option value="" readonly>Kategori Yang Diminati</option>
                     @foreach ($categories as $category)

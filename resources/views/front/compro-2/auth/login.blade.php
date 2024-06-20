@@ -1,7 +1,7 @@
 @extends('front.compro-2.layouts.default')
 @section('content')
 @include('front.compro-2.component.noauth')
-<div class="tw-bg-[#F3F4F6] tw-h-[58vh] tw-flex tw-items-center ">
+<div class="tw-bg-[#F3F4F6] md:tw-h-[58vh] tw-py-20  tw-flex tw-items-center ">
     <div class="tw-w-full tw-mx-auto tw-px-4">
         <div class="tw-flex tw-justify-center tw-items-center">
             <div class="tw-w-full tw-max-w-md">
@@ -33,7 +33,7 @@
                             <a href="{{ route('front.password.request') }}" class="tw-text-sm tw-text-sky-500 hover:tw-underline">Lupa password?</a>
                         </div>
                         <div class="tw-mb-4">
-                            <button type="submit" class="tw-w-full tw-py-2 tw-bg-sky-500 tw-text-white tw-rounded-md tw-transition tw-duration-500 hover:tw-bg-[#1A237E]">Login</button>
+                            <button type="submit" class="tw-w-full tw-py-2 tw-bg-sky-500 tw-text-white tw-rounded-md tw-transition tw-duration-500 hover:tw-bg-sky-600 hover:tw-scale-105">Login</button>
                         </div>
                     </form>
                 </div>
