@@ -1,7 +1,7 @@
 @extends('front.compro-2.layouts.default')
 @section('content')
 @include('front.compro-2.component.noauth')
-<div class="tw-bg-[#F3F4F6] tw-h-[58vh] tw-flex tw-items-center ">
+<div class="tw-bg-[#F3F4F6] md:tw-h-[58vh] tw-py-20  tw-flex tw-items-center ">
     <div class="tw-w-full tw-mx-auto tw-px-4">
         <div class="tw-flex tw-justify-center tw-items-center">
             <div class="tw-w-full tw-max-w-md">

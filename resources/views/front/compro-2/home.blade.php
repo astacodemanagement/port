@@ -91,29 +91,29 @@
                                 <div class="tw-grid tw-grid-cols-2 tw-gap-4 tw-mt-4">
                                     <div class="tw-flex tw-items-start">
                                         <i class="fa-solid fa-location-dot tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
-                                        <div>
-                                            <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Negara</p>
+                                        <div class="tw-my-auto">
+                                            <p class="md:tw-text-base tw-text-sm tw-font-semibold " style="color: rgba(0, 49, 79, 1)">Negara</p>
                                             <p class="tw-text-sm tw-font-light tw-text-[#52525B]">{{$item->nama_negara}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start">
                                         <i class="fa-solid fa-briefcase tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
                                         <div>
-                                            <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Kontrak Kerja</p>
+                                            <p class="md:tw-text-base tw-text-sm tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Kontrak Kerja</p>
                                             <p class="tw-text-sm tw-font-light tw-text-[#52525B]">{{$item->kontrak_kerja}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start">
                                         <i class="fa-solid fa-language tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
                                         <div>
-                                            <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Level Bahasa</p>
+                                            <p class="md:tw-text-base tw-text-sm tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Level Bahasa</p>
                                             <p class="tw-text-sm tw-font-light tw-text-[#52525B]">{{$item->level_bahasa}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start">
                                         <i class="fa-solid fa-calendar-alt tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
                                         <div>
-                                            <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Tanggal Berakhir</p>
+                                            <p class="md:tw-text-base tw-text-sm tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Tanggal Berakhir</p>
                                             <p class="tw-text-sm tw-font-light tw-text-[#52525B]">30 Juni 2024</p>
                                         </div>
                                     </div>
@@ -122,7 +122,7 @@
                                 
                             </div>
                             <div class="tw-p-6 tw-pt-0">
-                             <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                             <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 hover:transition tw-duration-500 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
                               Detail
                               <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
                             </a>
@@ -365,14 +365,7 @@
             display: block;
         }
 
-.avatar-image {
-            transform: scale(1);
-            transition: transform 1s ease;
-        }
 
-.avatar-image .active {
-            transform: scale(1.1);
-        }
      </style> 
 @endpush
     <script>
@@ -425,6 +418,7 @@
                 });
                 avatarImages.forEach(image => {
                     image.classList.remove('active');
+                    image.style.transform = 'scale(1)';
                 });
             }
 
@@ -432,6 +426,8 @@
                 resetCards();
                 testimonialCards[index].classList.add('active');
                 avatarImages[index].classList.add('active');
+             
+                avatarImages[index].style.transform = 'scale(1.2)';
             }
 
             function nextCard() {
