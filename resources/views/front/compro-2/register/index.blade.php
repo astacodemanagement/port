@@ -1,4 +1,5 @@
 @extends('front.compro-2.layouts.default')
+
 @include('front.compro-2.component.noauth')
 @section('content')
     <div class="relative">
@@ -109,9 +110,9 @@
             <form data-step="1" method="POST" id="step-form-1" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form "  style="display: none">
                 @csrf  
                 
-               
+            <label for=""  class="tw-text-gray-800 tw-font-medium tw-mt-3 tw-font-work-sans">Minat Pekerjaan</label>
                 <select name="kategori_job_id" id="kategori" class="tw-font-work-sans tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-bg-white tw-text-gray-600 tw-rounded-md" required>
-                    <option value="" readonly>Kategori Yang Diminati</option>
+                    <option value="" readonly>Industri Yang Diminati</option>
                     @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->nama_kategori_job }}
                     </option>
@@ -119,7 +120,7 @@
                 </select>
                 <p class="tw-text-red-500 error-kategori" style="display: none"></p>
                 <label for="nik" class="tw-text-gray-800 tw-font-medium tw-mt-3 tw-font-work-sans">Informasi Pribadi</label>
-                <input type="text" name="nik" id="nik" placeholder="Nomor E-KTP (NIK)" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
+                <input type="text" name="nik" id="nik" placeholder="Nomor E-KTP (NIK)" class=" tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md id-card-format" required>
                 <p class="tw-text-red-500 error-nik" style="display: none"></p>
                 
                 <input type="text" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
@@ -131,7 +132,9 @@
                         <p class="tw-text-red-500 error-tempat_lahir" style="display: none"></p>
                     </div>
                     <div class="tw-w-[48%] tw-flex tw-flex-col">
-                        <input type="date" name="tanggal_lahir" id="tanggal_lahir" placeholder="Tanggal Lahir" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
+                        <input type="text"  placeholder="Tanggal Lahir" class="tanggal-lahir tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md">
+                        <!-- h_tanggal_lahir -->
+                        <input type="hidden" name="tanggal_lahir" class="h-tanggal-lahir  tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md">
                         <p class="tw-text-red-500 error-tanggal_lahir" style="display: none"></p>
                     </div>
                 </div>
@@ -176,13 +179,16 @@
                 </select>
                 <p class="tw-text-red-500 error-status_kawin" style="display: none"></p>
                 <select name="pendidikan" id="pendidikan" class="tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required">
-                    <option value="">Pendidikan Terakhir</option>
+                    <option value="" disabled>Pendidikan Terakhir</option>
                     <option value="1">Tidak/Belum Sekolah</option>
                     <option value="2">SD</option>
-                    <option value="3">SMP/Sederajat</option>
-                    <option value="4">SMA/SMK/Sederajat</option>
-                    <option value="5">Diploma</option>
-                    <option value="6">Sarjana</option>
+                    <option value="3">SMP</option>
+                    <option value="4">SMA</option>
+                    <option value="5">D3</option>
+                    <option value="6">D4</option>
+                    <option value="7">S1</option>
+                    <option value="8">S2</option>
+                    <option value="9">S3</option>
                 </select>
                 <p class="tw-text-red-500 error-pendidikan" style="display: none"></p>
                 
@@ -205,17 +211,28 @@
                 <select name="wilayah" id="wilayah" class="tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md wilayah" required>
                 </select>
                 <p class="tw-text-red-500 error-wilayah" style="display: none"></p>
+                  
+             
+                <select name="level_bahasa" id="level_bahasa" class="tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
+                    <option value="">Level Bahasa Inggris</option>
+                    <option value="1">Beginner English</option>
+                    <option value="2">⁠Medium English</option>
+                    <option value="3">Advance English</option>
+
+                </select>   
+                <p class="tw-text-red-500 error-level_bahasa" style="display: none"></p>
                 {{-- referensi --}}
                 <select name="referensi" id="referensi" class="tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
-                    <option value="">Referensi</option>
+                    <option value="">Dari mana kamu mengetahui kami ?</option>
                     <option value="1">Google</option>
                     <option value="2">Instagram</option>
                     <option value="3">Facebook</option>
                     <option value="4">Tiktok</option>
                     <option value="5">Teman/Saudara/Keluarga</option>
-                    <option value="6">Sponsor</option>
-                    <option value="7">Lainnya</option>
+                    <option value="6">Sponsor</option>                                     
                 </select>   
+               
+                <p class="tw-text-red-500 error-referensi" style="display: none"></p>
                 <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
             </form>  
     <!-- form 2 -->
@@ -270,34 +287,43 @@
     <div class="fv-row row-list-experience"></div>
     <div class="fv-row mb-10 row-add-experience">
         <div class="tw-mb-5">
-            <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-country" data-name="negara_tempat_kerja.0" placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
+            <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-country input-add-experience" data-name="negara_tempat_kerja.0" placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
             <p class="tw-text-red-500 error-negara_tempat_kerja" style="display: none"></p>
         </div>
 
         <div class="tw-mb-5">
-            <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-company" data-name="nama_perusahaan.0" placeholder="Nama Perusahaan atau Majikan" name="nama_perusahaan[]">
+            <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-company input-add-experience" data-name="nama_perusahaan.0" placeholder="Nama Perusahaan atau Majikan" name="nama_perusahaan[]">
             <p class="tw-text-red-500 error-nama_perusahaan" style="display: none"></p>
         </div>
 
         <div class="tw-flex tw-gap-5 mb-5">
             <div class="tw-w-1/2">
-                <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-start-work-date" placeholder="Tanggal mulai bekerja">
+                <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-start-work-date input-add-experience" placeholder="Tanggal mulai bekerja">
                 <input type="hidden" class="tw-hidden h-experience-start-work-date" data-name="tanggal_mulai_kerja.0" name="tanggal_mulai_kerja[]">
                 <p class="tw-text-red-500 error-tanggal_mulai_kerja[]" style="display: none"></p>
             </div>
             <div class="tw-w-1/2">
-                <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-end-work-date" placeholder="Tanggal selesai bekerja">
+                <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-end-work-date input-add-experience" placeholder="Tanggal selesai bekerja">
                 <input type="hidden" class="tw-hidden h-experience-end-work-date" data-name="tanggal_selesai_kerja.0" name="tanggal_selesai_kerja[]">
                 <p class="tw-text-red-500 error-tanggal_selesai_kerja[]" style="display: none"></p>
             </div>
         </div>
 
         <div class="tw-mb-5">
-            <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-position" data-name="posisi.0" placeholder="Posisi" name="posisi[]">
+            <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-position input-add-experience" data-name="posisi.0" placeholder="Posisi" name="posisi[]">
             <p class="tw-text-red-500 error-posisi[]" style="display: none"></p>
         </div>
         <button type="button" class="tw-w-full tw-py-2 tw-bg-sky-500 tw-rounded-md tw-text-white tw-mt-4 button-experience"><i class="fas fa-plus"></i> Tambahkan Pengalaman Kerja Lainnya</button>
     </div>
+    <!-- Ceklis Jika Belum Ada Pengalaman Kerja< -->
+ 
+   
+    <div class="form-check tw-mt-10">
+                            <input class="form-check-input" type="checkbox" name="keterangan_belum_kerja" id="keterangan_belum_kerja">
+                            <label class="form-check-label" for="keterangan_belum_kerja" style="padding-top:2px">
+                                <b>Ceklis Jika Belum Ada Pengalaman Kerja</b>
+                </label>
+        </div>
 
     <div class="tw-flex tw-gap-5">
         <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-32 tw-bg-sky-500 tw-rounded-md tw-mt-4 prev-step">Previous</button>
@@ -452,7 +478,7 @@
                         <div class="tw-mb-3">
                             <div class="tw-relative tw-flex">
                                 <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password_confirmation" placeholder="Konfirmasi Password">
-                                <button class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
+                                <button class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md btn-show-password" type="button" id="btn-show-password"><i class="fas fa-eye-slash"></i></button>
                             </div>
                             <!-- err -->
                             <p class="tw-text-red-500 error-password_confirmation" style="display: none"></p>
@@ -466,9 +492,17 @@
             </div>
         </form>            
     </div>
-    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"
+        integrity="sha512-LsnSViqQyaXpD4mBBdRYeP6sRwJiJveh2ZIbW41EBrNmKxgr/LFZIiWT6yr+nycvhvauz8c2nYMhrP80YhG7Cw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('frontend') }}/js/moment-duration-format.min.js"
+        integrity="sha512-ej3mVbjyGQoZGS3JkES4ewdpjD8UBxHRGW+MN5j7lg3aGQ0k170sFCj5QJVCFghZRCio7DEmyi+8/HAwmwWWiA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <script>
     $(document).ready(function() {
         let datepickerOption = {
@@ -527,7 +561,7 @@
                 }
             })
          
-        let currentStep = 1;
+        let currentStep = 3;
         function showStep(step) {
             $('.stepper-item').each(function() {
                 const stepNumber = $(this).data('step');
@@ -686,6 +720,28 @@
             $(this).closest('div.list-experience').remove()
             refreshExperienceList()
         })
+   
+        $('#nik').on('input', function() {
+            if ($(this).val().length > 16) {
+                $(this).val($(this).val().slice(0, 16))
+            }
+        }) 
+        $('#no_paspor').on('input', function() {
+            if ($(this).val().length > 16) {
+                $(this).val($(this).val().slice(0, 16))
+            }
+        })
+        $('#no_hp').on('input', function() {
+            if ($(this).val().length > 13) {
+                $(this).val($(this).val().slice(0, 13))
+            }
+        })
+        $('#no_wa').on('input', function() {
+            if ($(this).val().length > 13) {
+                $(this).val($(this).val().slice(0, 13))
+            }
+        })
+
         $('.btn-show-password').on('click', function(){
             const t = $(this)
 
@@ -698,8 +754,23 @@
             }
         })
     });
-   
+    $('#keterangan_belum_kerja').on('click', function(){
+            // 
+           if($(this).is(':checked')){
+            $('.input-add-experience').prop('disabled', true)
+            $('.btn-add-experience').prop('disabled', true)
+            $('.btn-remove-experience').prop('disabled', true)
+            $('.input-add-experience').val('')
+              }else{
+            $('.input-add-experience').prop('disabled', false)
+            $('.btn-add-experience').prop('disabled', false)
+            $('.btn-remove-experience').prop('disabled', false)
+            $('.input-add-experience').val('')
+              }
+        })
 
     </script>
     
-@endsection
+    
+    @endsection
+    

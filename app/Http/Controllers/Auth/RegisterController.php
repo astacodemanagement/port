@@ -88,6 +88,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        
         $request->merge(['no_hp' => str_replace(' ', '', $request->no_hp)]);
         $request->merge(['no_wa' => str_replace(' ', '', $request->has('check_whatsapp_number') ? $request->no_hp : $request->no_wa)]);
 
@@ -139,12 +140,20 @@ class RegisterController extends Controller
         ];
 
         $pendidikanTerakhir = [
-            1 => 'Tidak/Belum Sekolah',
+            1 => null,
             2 => 'SD',
-            3 => 'SMP/Sederajat',
-            4 => 'SMA/SMK/Sederajat',
-            5 => 'Diploma',
-            6 => 'Sarjana'
+            3 => 'SMP',
+            4 => 'SMA',
+            5 => 'D3',
+            6 => 'D4',
+            7 => 'S1',
+            8 => 'S2',
+            9 => 'S3'
+        ];
+        $levelBahasa = [
+            1 => 'Beginner English',
+            2 => '⁠Medium English',
+            3 => 'Advance English'
         ];
 
         DB::beginTransaction();
@@ -163,6 +172,7 @@ class RegisterController extends Controller
             /** INSERT PENDAFTARAN */
             $pendaftaran = [
                 // 'negara_id' => $request->negara_id,
+                'compro' => $request->compro,
                 'negara_id' => 0,
                 'kategori_job_id' => $request->kategori_job_id,
                 'status' => 'Belum Verifikasi(Pending)'
@@ -190,6 +200,8 @@ class RegisterController extends Controller
                 'alamat' => $request->alamat,
                 'provinsi_id' => $provinsi?->id,
                 'kota_id' => $kota?->id,
+                'level_bahasa_inggris' => $levelBahasa[$request->level_bahasa],
+                'keterangan_belum_kerja' => $request->has('keterangan_belum_kerja') ? 'Belum Bekerja' : null,
                 'kecamatan_id' => $wilayah?->id,
                 'referensi' => isset($referensi[$request->referensi]) ? $referensi[$request->referensi] : null,
                 'nama_referensi' => $request->referensi == 6 ? $request->nama_referensi : null,
@@ -218,21 +230,21 @@ class RegisterController extends Controller
                     'field' => 'foto',
                     'dir' => 'foto',
                 ],
-                [
-                    'input' => 'file_paspor',
-                    'field' => 'paspor',
-                    'dir' => 'paspor',
-                ],
+                // [
+                //     'input' => 'file_paspor',
+                //     'field' => 'paspor',
+                //     'dir' => 'paspor',
+                // ],
                 [
                     'input' => 'file_ktp',
                     'field' => 'ktp',
                     'dir' => 'ktp',
                 ],
-                [
-                    'input' => 'file_kk',
-                    'field' => 'kk',
-                    'dir' => 'kartu-keluarga',
-                ]
+                // [
+                //     'input' => 'file_kk',
+                //     'field' => 'kk',
+                //     'dir' => 'kartu-keluarga',
+                // ]
             ];
 
             foreach ($arrDoc as $doc) {
@@ -308,7 +320,11 @@ class RegisterController extends Controller
             Kandidat::create($kandidat);
 
             /** INSERT PENGALAMAN KERJA */
+            if(!$request->has('keterangan_belum_kerja')){
+                
+
             $pengalamanKerja = [];
+
 
             for ($i = 0; $i < count($request->negara_tempat_kerja); $i++) {
                 $negaraTempatKerja = isset($request->negara_tempat_kerja[$i]) ? $request->negara_tempat_kerja[$i] : null;
@@ -334,7 +350,7 @@ class RegisterController extends Controller
             }
 
             DB::commit();
-
+        }
             session(['is_register' => 'true', 'register_id' => $pendaftaran->id]);
 
             return response()->json(['success' => true, 'message' => 'Register succesfully']);
@@ -398,15 +414,16 @@ class RegisterController extends Controller
                 // 'provinsi_id' => 'required|numeric',
                 // 'kota_id' => 'required|numeric',
                 // 'kecamatan_id' => 'required|numeric',
+                'level_bahasa' => 'required',
                 'referensi' => 'required|numeric',
                 'nama_referensi' => 'required_if:referensi,6',
             ],
             2 => [
-                'no_paspor' => 'required',
-                'tanggal_pengeluaran_paspor' => 'required|date_format:Y-m-d',
-                'masa_kadaluarsa' => 'required|date_format:Y-m-d',
-                'kantor_paspor' => 'required|min:3',
-                'kondisi_paspor' => 'required|numeric'
+                'no_paspor' => 'nullable|min:3|max:50',
+                'tanggal_pengeluaran_paspor' => 'nullable|date_format:Y-m-d',
+                'masa_kadaluarsa' => 'nullable|date_format:Y-m-d',
+                'kantor_paspor' => 'nullable|min:3',
+                'kondisi_paspor' => 'nullable|numeric'
             ],
             3 => [
                 'negara_tempat_kerja.*' => 'required|min:3',
@@ -415,11 +432,21 @@ class RegisterController extends Controller
                 'tanggal_selesai_kerja.*' => 'required|date_format:Y-m-d',
                 'posisi.*' => 'required|min:2',
             ],
+            4 =>[
+            //    required one of all field
+                "check_ktp" => "required_without_all:check_kartu_keluarga,check_akta_lahir,check_ijazah,check_buku_nikah,check_paspor",
+                "check_kartu_keluarga" => "required_without_all:check_ktp,check_akta_lahir,check_ijazah,check_buku_nikah,check_paspor",
+                "check_akta_lahir" => "required_without_all:check_ktp,check_kartu_keluarga,check_ijazah,check_buku_nikah,check_paspor",
+                "check_ijazah" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_buku_nikah,check_paspor",
+                "check_buku_nikah" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_ijazah,check_paspor",
+                "check_paspor" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_ijazah,check_buku_nikah",
+                
+            ],
             5 => [
                 'file_foto' => 'required|max:10240|mimes:jpeg,jpg,bmp,png,webp',
-                'file_paspor' => 'nullable|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+   
                 'file_ktp' => 'required|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
-                'file_kk' => 'required|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
+            
             ],
             6 => [
                 'email' => 'required|email|unique:users,email',

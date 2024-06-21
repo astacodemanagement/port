@@ -11,7 +11,8 @@
         <div class="d-flex">
             <a href="#" class="link-pages">Worker</a>
             <a href="#" class="link-pages">Employer</a>
-            <a href="{{ route('register') }}" class="link-btn fw-semibold">Daftar SIPOOL</a>
+            <a href="{{ route('register') }}" class="link-btn fw-semibold mx-2">Daftar SIPOOL</a>
+            <a href="/login" class="link-btn fw-semibold">Masuk</a>
         </div>
     </div>
 </nav>

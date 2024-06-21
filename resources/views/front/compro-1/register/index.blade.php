@@ -175,6 +175,7 @@
                     <div class="content-from-action">
                         <form class="form mx-auto form-register" novalidate="novalidate">
                             @csrf
+                            <input type="hidden" name="compro" value="1">
                             <div class="mb-5">
 
                                 <!--begin::Step 1-->
@@ -256,12 +257,15 @@
                                         <div class="form-group mb-5">
                                             <select name="pendidikan" class="form-select">
                                                 <option value="">Pendidikan Terakhir</option>
-                                                <option value="1">Tidak/Belum Sekolah</option>
-                                                <option value="2">SD</option>
-                                                <option value="3">SMP/Sederajat</option>
-                                                <option value="4">SMA/SMK/Sederajat</option>
-                                                <option value="5">Diploma</option>
-                                                <option value="6">Sarjana</option>
+                                                     <option value="1">Tidak/Belum Sekolah</option>
+                                                    <option value="2">SD</option>
+                                                    <option value="3">SMP</option>
+                                                    <option value="4">SMA</option>
+                                                    <option value="5">D3</option>
+                                                    <option value="6">D4</option>
+                                                    <option value="7">S1</option>
+                                                    <option value="8">S2</option>
+                                                    <option value="9">S3</option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-5">
@@ -276,6 +280,9 @@
                                         <div class="form-group mb-5">
                                             <select class="form-select wilayah" name="wilayah" aria-labelledby="wilayah">
                                             </select>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control" name="level_bahasa" placeholder="Level Bahasa Ingris" value="">
                                         </div>
                                         {{-- <div class="form-group mb-5">
                                             <select class="form-select select2 provinsi" name="provinsi_id" aria-labelledby="provinsi">
@@ -296,6 +303,16 @@
                                                 <option value="">Kecamatan</option>
                                             </select>
                                         </div> --}}
+                                        <!-- select level bahasa -->
+                                        <div class="form-group
+                                            mb-5">
+                                            <select class="form-select" name="level_bahasa" aria-labelledby="levelBahasa">
+                                                <option value="">Level Bahasa Inggris</option>
+                                                <option value="1">Beginner English</option>
+                                                <option value="2">⁠Medium English</option>
+                                                <option value="3">Advance English</option>
+                                            </select>
+                                        </div>  
                                         <div class="form-group mb-5">
                                             <select name="referensi" class="form-select reference">
                                                 <option value="">Dari mana kamu mengetahui kami ?</option>
@@ -354,6 +371,7 @@
 
                                 <!--begin::Step 3-->
                                 <div class="flex-column" data-kt-stepper-element="content">
+
                                     <div class="fv-row">
                                         <label class="form-label">Pengalaman Kerja</label>
                                     </div>
@@ -385,6 +403,13 @@
                                                 class="fas fa-plus"></i> Tambahkan
                                             Pengalaman Kerja Lainnya</button>
                                     </div>
+                                    <!-- belum ada pengalaman kerja -->
+                                    <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="keterangan_belum_kerja" id="keterangan_belum_kerja">
+                                                    <label class="form-check-label" for="keterangan_belum_kerja " style="padding-top:2px">
+                                                        <b>Ceklis Jika Belum Ada Pengalaman Kerja</b>
+                                                    </label>
+                                    </div> 
                                 </div>
                                 <!--end::Step 3-->
 
@@ -456,13 +481,13 @@
                                                     </div>
                                                     <label class="text-muted"><small>Foto formal background putih/biru/merah</small></label>
                                                 </div>
-                                                <div class="form-input mt-2">
+                                                <!-- <div class="form-input mt-2">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="paspor" style="width: 150px">Paspor</label>
                                                         <input type="file" class="form-control" id="paspor" name="file_paspor" accept="image/*,application/pdf">
                                                     </div>
                                                     <label class="text-muted"><small>Jika ada</small></label>
-                                                </div>
+                                                </div> -->
                                                 <div class="form-input mt-2">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="ktp" style="width: 150px">KTP</label>
@@ -470,13 +495,13 @@
                                                     </div>
                                                     <label class="text-muted"><small>Mohon di Scan</small></label>
                                                 </div>
-                                                <div class="form-input mt-2">
+                                                <!-- <div class="form-input mt-2">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="kk" style="width: 150px">Kartu Keluarga</label>
                                                         <input type="file" class="form-control" id="kk" name="file_kk" accept="image/*,application/pdf">
                                                     </div>
                                                     <label class="text-muted"><small>Mohon di Scan</small></label>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -770,7 +795,7 @@
             el.find('.error-message').remove()
             cloneEl.find('.btn-primary').removeClass('btn-primary').addClass('btn-danger btn-remove-experience')
                 .html('<i class="fas fa-times"></i> Hapus Pengalaman Kerja');
-            cloneEl.find('.input-add-experience').removeClass('input-add-experience')
+            cloneEl.find('.input-add-experience')
             cloneEl.find('.error-message').remove()
             cloneEl.removeClass('row-add-experience fv-row mb-10').addClass(
                 'list-experience list-experience- mb-10')
@@ -833,7 +858,21 @@
                 t.find('i').removeClass('fa-eye').addClass('fa-eye-slash')
             }
         })
-
+        // handle tidak ada pengalaman kerja
+        $('#keterangan_belum_kerja').on('click', function(){
+            // 
+           if($(this).is(':checked')){
+            $('.input-add-experience').prop('disabled', true)
+            $('.btn-add-experience').prop('disabled', true)
+            $('.btn-remove-experience').prop('disabled', true)
+            $('.input-add-experience').val('')
+              }else{
+            $('.input-add-experience').prop('disabled', false)
+            $('.btn-add-experience').prop('disabled', false)
+            $('.btn-remove-experience').prop('disabled', false)
+            $('.input-add-experience').val('')
+              }
+        })
         $('.btn-submit').on('click', function() {
             const t = $(this)
             var formData = new FormData($('.form-register')[0]);

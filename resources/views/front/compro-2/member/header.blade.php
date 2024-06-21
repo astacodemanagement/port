@@ -7,7 +7,7 @@
                 </a>
             </li>
             <li class="nav-item d-none d-xl-block">
-                <a href="{{ route('member.index') }}" class="text-nowrap nav-link">
+                <a href="/" class="text-nowrap nav-link">
                     <img src="{{ asset('frontend/assets/image/akamalogo.png') }}" class="dark-logo"
                         width="180" alt="" />
                     <img src="{{ asset('member-template/images/logos/light-logo.svg') }}" class="light-logo"

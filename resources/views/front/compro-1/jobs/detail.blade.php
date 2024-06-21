@@ -403,7 +403,7 @@
                         </div>
 
                         <div class="row d-block">
-                            @if (auth()?->user()?->kandidat)
+                            @if (auth()?->user()?->kandidat->pendaftaran->status = 'Verifikasi')
                                 <div class="col-12">
                                     <button onclick="location.href='{{ route('front.jobs.apply', hashId($job->id)) }}'" class="element-button-action text-center d-block btn-apply" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
                                         Lamar Pekerjaan

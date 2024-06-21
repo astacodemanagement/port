@@ -1,19 +1,20 @@
 @extends('front.compro-2.layouts.default')
 
 @section('title', 'Home Akama Job')
+
 @section('content')
 @include('front.compro-2.component.navdefault')
 {{-- Slider section --}}
     <div class="md:tw-h-[500px] tw-h-[350px]">
         <div class="tw-h-full" style="background: url('{{ asset('frontend') }}/assets/image/carousel.png'); background-position: center; background-size: cover;">
-        <section id="image-carousel" class="splide max-w-7xl mx-auto" aria-label="Beautiful Images">
+        <section id="image-carousel" class="splide tw-max-w-7xl mx-auto tw-rounded-lg" aria-label="Beautiful Images">
             <div class="splide__track">
               <ul class="splide__list sm:p-0">
                 <li class="splide__slide relative overflow-hidden flex justify-center items-center">
-                  <img src="{{ asset('frontend/assets/image/slider1.jpeg') }}" alt="Slider Image 1" class="block mx-auto rounded-2xl max-w-full w-full h-full bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
+                  <img src="{{ asset('frontend/assets/image/slider1.jpeg') }}" alt="Slider Image 1" class="tw-rounded-lg block mx-auto rounded-2xl max-w-full tw-w-[75%]  bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
                 </li>
                 <li class="splide__slide relative overflow-hidden flex justify-center items-center">
-                  <img src="{{ asset('frontend/assets/image/slider2.jpeg') }}" alt="Slider Image 2" class="block mx-auto rounded-2xl max-w-full w-full h-full bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
+                  <img src="{{ asset('frontend/assets/image/slider2.jpeg') }}" alt="Slider Image 2" class="btw-rounded-lg lock mx-auto rounded-2xl max-w-full tw-w-[75%]  bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
                 </li>
               </ul>
             </div>
@@ -330,14 +331,16 @@
       display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
     }
         .splide__slide img {
   width: 100%;
-  height: 400px;
+  height: 350px;
   background-position:center;
   background-size: cover; 
+  object-fit: cover;
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-top: 3rem;
 }
 /*remove padding in mobile  */
