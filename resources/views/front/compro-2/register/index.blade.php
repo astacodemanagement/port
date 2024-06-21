@@ -313,7 +313,7 @@
             <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-position input-add-experience" data-name="posisi.0" placeholder="Posisi" name="posisi[]">
             <p class="tw-text-red-500 error-posisi[]" style="display: none"></p>
         </div>
-        <button type="button" class="pengalaman-add input-add-experience tw-w-full tw-py-2 tw-bg-sky-500 tw-rounded-md tw-text-white tw-mt-4 button-experience"><i class="fas fa-plus"></i> Tambahkan Pengalaman Kerja Lainnya</button>
+        <button type="button" class="tw-w-full tw-py-2 tw-bg-sky-500 tw-rounded-md tw-text-white tw-mt-4 button-experience"><i class="fas fa-plus"></i> Tambahkan Pengalaman Kerja Lainnya</button>
     </div>
     <!-- Ceklis Jika Belum Ada Pengalaman Kerja< -->
  
@@ -324,7 +324,6 @@
                                 <b>Ceklis Jika Belum Ada Pengalaman Kerja</b>
                 </label>
         </div>
-            <p class="tw-text-red-500 error-keterangan_belum_kerja" style="display: none"></p>
 
     <div class="tw-flex tw-gap-5">
         <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-32 tw-bg-sky-500 tw-rounded-md tw-mt-4 prev-step">Previous</button>
@@ -562,7 +561,7 @@
                 }
             })
          
-        let currentStep = 1;
+        let currentStep = 3;
         function showStep(step) {
             $('.stepper-item').each(function() {
                 const stepNumber = $(this).data('step');
