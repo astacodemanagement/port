@@ -296,7 +296,7 @@
             <p class="tw-text-red-500 error-nama_perusahaan" style="display: none"></p>
         </div>
 
-        <div class="tw-flex tw-gap-5 mb-5">
+        <div class="tw-flex tw-gap-5 tw-mb-3">
             <div class="tw-w-1/2">
                 <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-start-work-date input-add-experience" placeholder="Tanggal mulai bekerja">
                 <input type="hidden" class="tw-hidden h-experience-start-work-date" data-name="tanggal_mulai_kerja.0" name="tanggal_mulai_kerja[]">
@@ -313,7 +313,7 @@
             <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-position input-add-experience" data-name="posisi.0" placeholder="Posisi" name="posisi[]">
             <p class="tw-text-red-500 error-posisi[]" style="display: none"></p>
         </div>
-        <button type="button" class="tw-w-full tw-py-2 tw-bg-sky-500 tw-rounded-md tw-text-white tw-mt-4 button-experience"><i class="fas fa-plus"></i> Tambahkan Pengalaman Kerja Lainnya</button>
+        <button type="button" class="pengalaman-add input-add-experience tw-w-full tw-py-2 tw-bg-sky-500 tw-rounded-md tw-text-white tw-mt-4 button-experience"><i class="fas fa-plus"></i> Tambahkan Pengalaman Kerja Lainnya</button>
     </div>
     <!-- Ceklis Jika Belum Ada Pengalaman Kerja< -->
  
@@ -324,6 +324,7 @@
                                 <b>Ceklis Jika Belum Ada Pengalaman Kerja</b>
                 </label>
         </div>
+            <p class="tw-text-red-500 error-keterangan_belum_kerja" style="display: none"></p>
 
     <div class="tw-flex tw-gap-5">
         <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-32 tw-bg-sky-500 tw-rounded-md tw-mt-4 prev-step">Previous</button>
@@ -341,41 +342,54 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="check_ktp" id="ktp">
-                            <label class="form-check-label" for="ktp" style="padding-top:2px">
+                            <input class="form-check-input" type="checkbox" name="check_ktp" id="check_ktp">
+                            <label class="form-check-label" for="check_ktp" style="padding-top:2px">
                                 <b>KTP</b>
                             </label>
+                            <!-- err msg -->
                         </div>
+                        <p class="tw-text-red-500 error-check_ktp" style="display: none"></p>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="check_kartu_keluarga" id="kk">
-                            <label class="form-check-label" for="kk" style="padding-top:2px">
+                            <input class="form-check-input" type="checkbox" name="check_kartu_keluarga" id="check_kartu_keluarga">
+                            <label class="form-check-label" for="check_kartu_keluarga" style="padding-top:2px">
                                 <b>Kartu Keluarga</b>
+
                             </label>
+                            
                         </div>
+                        <p class="tw-text-red-500 error-check_kartu_keluarga" style="display: none"></p>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="check_akta_lahir" id="akta_lahir">
-                            <label class="form-check-label" for="akta_lahir" style="padding-top:2px">
+                            <input class="form-check-input" type="checkbox" name="check_akta_lahir" id="check_akta_lahir">
+                            <label class="form-check-label" for="check_akta_lahir" style="padding-top:2px">
                                 <b>Akta Lahir</b>
                             </label>
+                            
                         </div>
+                        <p class="tw-text-red-500 error-check_akta_lahir" style="display: none"></p>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="check_ijazah" id="ijazah">
                             <label class="form-check-label" for="ijazah" style="padding-top:2px">
                                 <b>Ijazah</b>
                             </label>
+                            
                         </div>
+                        <p class="tw-text-red-500 error-check_ijazah" style="display: none"></p>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="check_buku_nikah" id="buku_nikah">
-                            <label class="form-check-label" for="buku_nikah" style="padding-top:2px">
+                            <input class="form-check-input" type="checkbox" name="check_buku_nikah" id="check_buku_nikah">
+                            <label class="form-check-label" for="check_buku_nikah" style="padding-top:2px">
                                 <b>Buku Nikah/Akta Cerai</b>
                             </label>
                         </div>
+                        <p class="tw-text-red-500 error-check_buku_nikah" style="display: none"></p>
+
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="check_paspor" id="paspor">
                             <label class="form-check-label" for="paspor" style="padding-top:2px">
                                 <b>Paspor</b>
                             </label>
                         </div>
+                        <p class="tw-text-red-500 error-check_paspor" style="display: none"></p>
+
                         <div class="form-input mt-3">
                             <label for=""><i>Jelaskan jika kelengkapan berkas anda terdapat perbedaan nama/alamat/tempat tanggal lahir/hilang/rusak/lainnya:</i></label>
                             <textarea name="penjelasan_dokumen" cols="30" rows="2" class="form-control" placeholder=""></textarea>
@@ -405,14 +419,7 @@
                                 <!-- errr msg -->
                                 <p class="tw-text-red-500 error-file_foto" style="display: none"></p>
                             </div>
-                            <div class="form-input mt-2">
-                                <div class="input-group">
-                                    <label class="input-group-text" for="paspor" style="width: 150px">Paspor</label>
-                                    <input type="file" class="form-control tw-w-full" id="paspor" name="file_paspor" accept="image/*,application/pdf">
-                                </div>
-                                <label class="text-muted tw-block tw-text-sm"><small>Jika ada</small></label>
-                                <p class="tw-text-red-500 error-file_paspor" style="display: none"></p>
-                            </div>
+                          
                             <div class="form-input mt-2">
                                 <div class="input-group">
                                     <label class="input-group-text" for="ktp" style="width: 150px">KTP</label>
@@ -422,14 +429,7 @@
                                 <p class="tw-text-red-500 error-file_ktp" style="display: none"></p>
                                 
                             </div>
-                            <div class="form-input mt-2">
-                                <div class="input-group">
-                                    <label class="input-group-text" for="kk" style="width: 150px">Kartu Keluarga</label>
-                                    <input type="file" class="form-control tw-w-full" id="kk" name="file_kk" accept="image/*,application/pdf">
-                                </div>
-                                <label class="text-muted tw-block tw-text-sm"><small>Mohon di Scan</small></label>
-                                <p class="tw-text-red-500 error-file_kk" style="display: none"></p>
-                            </div>
+                          
                         </div>
                     </div>
 
@@ -450,39 +450,40 @@
                     <div class="tw-flex tw-flex-col tw-gap-3">
                         <div class="tw-mb-3">
                             <input type="email" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" placeholder="Email" name="email">
-                            <p class="tw-text-red-500 error-email" style="display: none"></p>
                         </div>
+                        <p class="tw-text-red-500 error-email" style="display: none"></p>
                         <div>
-                            <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number" name="no_hp" placeholder="Nomor HP Aktif">
-                            <p class="tw-text-red-500 error-no_hp" style="display: none"></p>
+                            <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number" name="no_hp" id="no_hp" placeholder="Nomor HP Aktif">
                         </div>
+                        <p class="tw-text-red-500 error-no_hp" style="display: none"></p>
                         <div class="tw-mb-3 tw-pt-3 tw-pl-2 tw-pb-0">
                             <div class="tw-flex tw-items-center">
                                 <input class="tw-mr-2" type="checkbox" name="check_whatsapp_number" id="check_whatsapp_number">
                                 <label class="tw-text-gray-700" for="check_whatsapp_number">Nomor whatsapp sama dengan nomor handphone aktif</label>
-                                <p class="tw-text-red-500 error-whatsapp_number" style="display: none"></p>
                             </div>
                         </div>
+                        <p class="tw-text-red-500 error-whatsapp_number" style="display: none"></p>
                         <div class="tw-mb-3">
-                            <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number whatsapp-number" name="no_wa" placeholder="Nomor Whatsapp Aktif">
-                            <p class="tw-text-red-500 error-no_wa" style="display: none"></p>
+                            <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number whatsapp-number" name="no_wa" id="no_wa" placeholder="Nomor Whatsapp Aktif">
                         </div>
+                        <p class="tw-text-red-500 error-no_wa" style="display: none"></p>
                         <div class="tw-mb-3">
                             <div class="tw-relative tw-flex">
                                 <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password" placeholder="Password">
-                                <button class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md" type="button" id="show-password"><i class="fas fa-eye-slash"></i></button>
+                                <span class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md btn-show-password" type="button" id="show-password" style="padding-top: .9rem;"><i class="fas fa-eye-slash"></i></span>
+
                             </div>
                             <!-- err -->
-                            <p class="tw-text-red-500 error-password" style="display: none"></p>
                         </div>
+                        <p class="tw-text-red-500 error-password" style="display: none"></p>
                         <div class="tw-mb-3">
                             <div class="tw-relative tw-flex">
                                 <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password_confirmation" placeholder="Konfirmasi Password">
-                                <button class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md btn-show-password" type="button" id="btn-show-password"><i class="fas fa-eye-slash"></i></button>
+                                <span class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md btn-show-password" type="button" id="show-password" style="padding-top: .9rem;"><i class="fas fa-eye-slash"></i></span>
                             </div>
                             <!-- err -->
-                            <p class="tw-text-red-500 error-password_confirmation" style="display: none"></p>
                         </div>
+                        <p class="tw-text-red-500 error-password_confirmation" style="display: none"></p>
                     </div>
                 </div>
             </div>
@@ -561,7 +562,7 @@
                 }
             })
          
-        let currentStep = 3;
+        let currentStep = 1;
         function showStep(step) {
             $('.stepper-item').each(function() {
                 const stepNumber = $(this).data('step');
@@ -685,17 +686,16 @@
             const cloneEl = el.clone()
 
             el.find('.error-message').remove()
-            cloneEl.find('.btn-primary').removeClass('btn-primary').addClass('btn-danger btn-remove-experience')
+            cloneEl.find('.pengalaman-add').removeClass('tw-bg-sky-500').addClass('tw-bg-rose-500 tw-my-4 btn-remove-experience')
                 .html('<i class="fas fa-times"></i> Hapus Pengalaman Kerja');
             cloneEl.find('.input-add-experience').removeClass('input-add-experience')
             cloneEl.find('.error-message').remove()
             cloneEl.removeClass('row-add-experience fv-row mb-10').addClass(
-                'list-experience list-experience- mb-10')
+                'list-experience list-experience- mb-10')   
             cloneEl.append('<hr>')
             cloneEl.appendTo('.row-list-experience')
 
             $('.input-add-experience').val('')
-
             refreshExperienceList()
             initExperienceDatepicker()
         })
@@ -707,7 +707,6 @@
                 const startWorkdate = t.closest('div.fv-row').find('.h-experience-start-work-date')
                 const endWorkdate = t.closest('div.fv-row').find('.h-experience-end-work-date')
                 const position = t.closest('div.fv-row').find('.experience-position')
-
                 t.attr('data-name', `negara_tempat_kerja.${i}`)
                 company.attr('data-name', `nama_perusahaan.${i}`)
                 startWorkdate.attr('data-name', `tanggal_mulai_kerja.${i}`)
@@ -739,6 +738,23 @@
         $('#no_wa').on('input', function() {
             if ($(this).val().length > 13) {
                 $(this).val($(this).val().slice(0, 13))
+            }
+        })
+
+        $('#check_whatsapp_number').on('click', function(){
+            const t = $(this)
+
+            if (t.is(':checked')) {
+                $('.whatsapp-number').prop('disabled', true)
+                $('.whatsapp-number').val($('.phone-number').val())
+            } else {
+                $('.whatsapp-number').prop('disabled', false)
+            }
+        })
+
+        $('.phone-number').on('keyup keydown change', function(){
+            if ($('#check_whatsapp_number').is(':checked')) {
+                $('.whatsapp-number').val($(this).val())
             }
         })
 

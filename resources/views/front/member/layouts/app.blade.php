@@ -16,6 +16,8 @@
     <link rel="shortcut icon" type="image/png" href="{{ asset('member-template/images/logos/favicon.ico') }}" />
     {{-- <link id="themeColors" rel="stylesheet" href="{{ asset('member-template/css/style-compro-1.css') }}" /> --}}
     @include(partialCompro('member.theme-colors'))
+  <link href="{{ asset('css/app1.css') }}" rel="stylesheet">
+
     <style>
         body {
             background-color: #fafafa

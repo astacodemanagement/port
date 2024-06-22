@@ -426,11 +426,12 @@ class RegisterController extends Controller
                 'kondisi_paspor' => 'nullable|numeric'
             ],
             3 => [
-                'negara_tempat_kerja.*' => 'required|min:3',
-                'nama_perusahaan.*' => 'required|min:3',
-                'tanggal_mulai_kerja.*' => 'required|date_format:Y-m-d',
-                'tanggal_selesai_kerja.*' => 'required|date_format:Y-m-d',
-                'posisi.*' => 'required|min:2',
+                'negara_tempat_kerja.*' => 'nullable|min:3',
+                'nama_perusahaan.*' => 'nullable|min:3',
+                'tanggal_mulai_kerja.*' => 'nullable|date_format:Y-m-d',
+                'tanggal_selesai_kerja.*' => 'nullable|date_format:Y-m-d',
+                'posisi.*' => 'nullable|min:2',
+                'keterangan_belum_kerja' => 'required'
             ],
             4 =>[
             //    required one of all field

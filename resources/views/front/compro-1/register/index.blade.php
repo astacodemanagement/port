@@ -539,7 +539,7 @@
                                                 <div class="form-input mb-3">
                                                     <div class="input-group">
                                                         <input type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password">
-                                                        <span class="btn btn-show-password text-white" style="padding-top: .8rem;" type="button" id="show-password"><i class="fas fa-eye-slash"></i></span>
+                                                        <span class="btn btn-show-password text-white"   type="button" id="show-password"><i class="fas fa-eye-slash"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -788,6 +788,7 @@
             }
         })
 
+       
         $('.btn-add-experience').on('click', function() {
             const el = $('.row-add-experience')
             const cloneEl = el.clone()
@@ -824,6 +825,11 @@
                 position.attr('data-name', `posisi.${i}`)
             })
         }
+
+        $('.row-list-experience').on('click', '.list-experience .btn-remove-experience', function() {
+            $(this).closest('div.list-experience').remove()
+            refreshExperienceList()
+        })
 
         $('.row-list-experience').on('click', '.list-experience .btn-remove-experience', function() {
             $(this).closest('div.list-experience').remove()

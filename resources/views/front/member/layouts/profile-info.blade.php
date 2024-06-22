@@ -2,7 +2,19 @@
     <div class="card mb-4">
         <div class="card-body text-center">
             <div class="profile-pic mb-3 mt-3">
-                <img src="{{ memberProfileImg(auth()->user()) }}" onerror="this.src='{{ asset('member-template/images/profile/user-1.jpg') }}'" width="120" height="120" class="rounded-circle" alt="user" style="object-fit:cover;object-position: center;">
+            
+            <div class="tw-flex tw-flex-col tw-items-center">
+            
+                @php
+                    $status = auth()->user()?->kandidat->pendaftaran->status;
+                    $bgColor = $status === 'Verifikasi' ? 'green-500' : ($status === 'Pending' ? 'red-400' : 'tw-bg-gray-500');
+                @endphp
+                <img src="{{ memberProfileImg(auth()->user()) }}" onerror="this.src='{{ asset('member-template/images/profile/user-1.jpg') }}'" width="120" height="120" class="rounded-circle tw-mx-auto tw-border-[3px] tw-border-{{$bgColor}}" alt="user" style="object-fit:cover;object-position: center;">
+                <span class="tw-mt-2 tw-inline-block  tw-text-white tw-text-xs tw-font-semibold tw-py-1 tw-px-3 tw-rounded-full tw-bg-{{$bgColor}} ">{{$status}}</span>
+            </div>
+
+
+                 
                 <h4 class="mt-3 mb-0">{{ auth()->user()->name }}</h4>
                 <a href="mailto:{{ auth()->user()->email }}">{{ auth()->user()->email }}</a>
                 <a href="{{ route('member.profile.edit') }}" class="w-75 btn btn-rounded btn-light-secondary text-primary btn-lg mt-4">
@@ -42,7 +54,7 @@
     <div class="card mb-4">
         <div class="card-body py-4 px-3">
             <h6 class="text-primary fw-7">
-                Pekerjaan yg Dilamar
+                Status Pekerjaan yg Dilamar
                 <a href="{{ route('member.jobs.index') }}" class="btn btn-primary btn-sm btn-light-secondary float-end text-primary mt-n2"><i class="ti ti-external-link fs-4"></i></a>
             </h6>
             <div class="list-group mt-3">
