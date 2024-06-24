@@ -71,6 +71,16 @@ class PelamarController extends Controller
                 ->orderBy('id', 'desc')
                 ->paginate(4);
         }
+        $data['filter_level_bahasa_inggris'] = $request->input('filter_level_bahasa_inggris');
+        if ($data["filter_level_bahasa_inggris"]) {
+            $data['pelamar'] = Pendaftaran::where('status', $status)
+                ->whereHas('kandidat', function ($query) use ($data) {
+                    $query->where('level_bahasa_inggris', $data['filter_level_bahasa_inggris']);
+                })
+                ->with('kandidat')
+                ->orderBy('id', 'desc')
+                ->paginate(4);
+        }
 
 
         $data['kategori_job'] = KategoriJob::all();

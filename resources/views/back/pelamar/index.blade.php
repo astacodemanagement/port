@@ -189,6 +189,16 @@
                                                                         <label for="filter_height">Tinggi Badan</label>
                                                                         <input type="text" class="form-control" id="filter_height" name="filter_height" placeholder="-- Masukkan Tinggi Badan --" value="{{ $filter_height ?? '' }}">
                                                                     </div>
+                                                                    <!-- level bahasa ingris -->
+                                                                    <div class="form-group">
+                                                                        <label for="filter_level_bahasa_inggris">Level Bahasa Inggris</label>
+                                                                        <select name="filter_level_bahasa_inggris" id="filter_level_bahasa_inggris" class="form-control">
+                                                                            <option value="">-- Pilih Level Bahasa Inggris --</option>
+                                                                            <option value="Beginner English" {{ $filter_level_bahasa_inggris == 'Beginner English' ? 'selected' : '' }}>Beginner English'</option>
+                                                                            <option value="⁠Medium English" {{ $filter_level_bahasa_inggris == '⁠Medium English' ? 'selected' : '' }}>⁠Medium English</option>
+                                                                            <option value="Advanced" {{ $filter_level_bahasa_inggris == 'Advance English' ? 'selected' : '' }}>Advance English</option>
+                                                                        </select>
+                                                                    </div>
                                                                     <button type="submit" class="btn btn-primary">Filter</button>
                                                                 </form>
                                                             </div>

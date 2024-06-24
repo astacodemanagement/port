@@ -29,8 +29,13 @@
             <div class="tw-max-w-7xl tw-mx-auto">
             <form id="search-form" class="tw-flex tw-items-center tw-gap-0 tw-p-2 tw-bg-[#F4F4F5] tw-rounded-lg" data-aos-duration="1000" data-aos="zoom-in-up">
               <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-border-r tw-border-gray-300">
-                <img src="{{ asset('frontend') }}/assets/image/indonesia.png" alt="Indonesia Flag" class="tw-w-8 tw-h-8" />
-                <span>ID</span>
+                <!-- <img src="{{ asset('frontend') }}/assets/image/indonesia.png" alt="Indonesia Flag" class="tw-w-8 tw-h-8" />
+                <span>ID</span> -->
+                @foreach ($negara as $item)
+                <img src="/upload/negara/{{$item->logo}}" alt="Indonesia Flag" class="tw-w-8 tw-h-8" />
+                <span>{{$item->kode_negara}}</span>
+                @endforeach
+
                 <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M6 0L12 6H0L6 0Z" fill="#606060" />
                 </svg>
@@ -121,13 +126,32 @@
                                 
                             </div>
                             <div class="tw-p-6 tw-pt-0">
-                             <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
-                              Detail
-                              <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
-                            </a>
-                          
-                            
+                              <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                                Detail
+                                <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
+                              </a>
+                                @if (auth()?->user()?->kandidat?->pendaftaran?->status == "Verifikasi")
+                                  
+                                <a href="{{ route('front.jobs.apply', hashId($item->id)) }}" class="hover:tw-text-green-600 hover:tw-scale-105 tw-w-full tw-bg-green-100 tw-text-[#28a745] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center tw-mt-4">
+                                  Lamar
+                                  <i class="fa-solid fa-paper-plane tw-ml-2" style="position: relative; top: -2px;"></i>
+                                </a>
+                                @endif
+                               
                             </div>
+                            <!-- <div class="tw-p-6 tw-pt-0 tw-flex tw-gap-4">
+                              <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-1/2 tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                                Detail
+                                <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
+                              </a>
+                              
+                              <button onclick="location.href='{{ route('front.jobs.apply', hashId($item->id)) }}'" class="hover:tw-text-green-600 hover:tw-scale-105 tw-w-1/2 tw-bg-green-100 tw-text-[#28a745] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                                Lamar
+                                <i class="fa-solid fa-paper-plane tw-ml-2" style="position: relative; top: -2px;"></i>
+                              </button>
+                            </div> -->
+
+
                         </div>
                         @endforeach
                     </div>
@@ -453,16 +477,19 @@
 $(document).ready(function() {
     $('#search-form').on('submit', function(e) {
         e.preventDefault();
-        let query = $('#search-input').val();
+        let search = $('#search-input').val();
+        let negara = $('#negara-select').val(); 
         
+
         $.ajax({
             url: `{{route('ajax.job')}}`,
             method: 'GET',
-            data: { query: query },
+            data: { search: search },
             success: function(response) {
                 $('#jobs-container').empty();
                 if(response.length > 0) {
                     response.forEach(function(job) {
+                      let id = job.id;
                         let jobHtml = `
                          <div data-aos="zoom-in-up" data-aos-duration="1000" class="tw-relative tw-flex tw-flex-col tw-mt-6 tw-text-gray-700 tw-bg-[#18191C08] tw-border tw-border-[#E4E5E8] tw-rounded-xl tw-w-full">
                             <div class="tw-relative tw-h-[300px] tw-bg-cover tw-bg-fixed tw-overflow-hidden tw-text-white tw-rounded-xl tw-bg-blue-gray-500" style="background-position:center;">
@@ -472,7 +499,7 @@ $(document).ready(function() {
                             <div class="tw-p-6">
                                
                                 <div class="tw-flex">
-                                    <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C] hover:tw-text-[#18191C] hover:tw-underline ">
+                                    <a href="job/${job.id}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C] hover:tw-text-[#18191C] hover:tw-underline ">
                                     ${job.nama_job}
                                     </a>
                                     </a>
@@ -525,22 +552,23 @@ $(document).ready(function() {
                                 
                                 
                             </div>
-                            <div class="tw-p-6 tw-pt-0">
-                             <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
-                              Detail
-                              <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
-                            </a>
-                          
-                            
+                         
+                             <div class="tw-p-6 tw-pt-0">
+                                <a href="" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                                    Detail
+                                    <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
+                                </a>
                             </div>
                         </div>`;
                         $('#jobs-container').append(jobHtml);
                     });
                 } else {
-                    $('#jobs-container').append('<p>No jobs found.</p>');
+                    $('#jobs-container').append('<p class="tw-text-center tw-text-rose-500">No jobs found.</p>');
                 }
             }
           });
+        // negara search
+
     });
 });
 </script>

@@ -60,7 +60,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="5%">No</th>
-
+                                                        <th width="15%">Lambang</th>
                                                         <th width="5%">Kode Negara</th>
                                                         <th width="15%">Nama Ketegori</th>
                                                         <th class="text-center" width="5%">Aksi</th>
@@ -70,6 +70,15 @@
                                                     @foreach ($negara as $p)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
+                                                            <td>
+                                                                @if ($p->logo)
+                                                                    <img src="/upload/negara/{{$p->logo}}"
+                                                                        alt="{{ $p->nama_negara }}" width="50px">
+
+                                                                @else
+                                                                    Tidak ada lambang
+                                                                @endif
+                                                            </td>
                                                             <td>{{ $p->kode_negara }}</td>
                                                             <td>{{ $p->nama_negara }}</td>
                                                             <td class="text-center">
@@ -107,7 +116,7 @@
             {{-- Modal Tambah Data --}}
             <div class="modal fade" id="modal-negara" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                    <form id="form-negara" action="" method="POST">
+                    <form id="form-negara" action="" method="POST" enctype="multipart/form-data">
                         @csrf <!-- Tambahkan token CSRF -->
                         <div class="modal-content">
                             <div class="modal-header">
@@ -119,11 +128,20 @@
                             <div class="modal-body">
                                 <div class="card-block">
                                     <div class="form-group row">
+                                        <!-- lambang negara -->
+                                        <div class="col-sm-12">
+                                            <label class="col-form-label" for="logo">Lambang Negara</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <input type="file" class="form-control " id="logo"
+                                                name="logo">
+                                        </div>
+                                    </div>
                                         <div class="col-sm-12">
                                             <label class="col-form-label" for="nama_negara">Nama Negara</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success" id="nama_negara"
+                                            <input type="text" class="form-control " id="nama_negara"
                                                 name="nama_negara">
                                         </div>
                                     </div>
@@ -132,7 +150,7 @@
                                             <label class="col-form-label" for="kode_negara">Kode Negara </label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success" id="kode_negara"
+                                            <input type="text" class="form-control " id="kode_negara"
                                                 name="kode_negara">
                                         </div>
                                     </div>
@@ -153,7 +171,7 @@
             <!-- Modal Edit Data -->
             <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
-                    <form id="form-edit-negara" action="" method="POST">
+                    <form id="form-edit-negara" action="" method="POST" enctype="multipart/form-data">
                         @csrf <!-- Tambahkan token CSRF -->
                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
                         <div class="modal-content">
@@ -165,13 +183,34 @@
                             </div>
                             <div class="modal-body">
                                 <div class="card-block">
+                                    <!-- lambang + preview lambang -->
+                                    <div class="form-group
+                                        row">
+                                        <div class="col-sm-12">
+                                            <label class="col-form-label" for="edit_logo">Lambang Negara</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <input type="file" class="form-control " id="edit_logo"
+                                                name="logo">
+                                        </div>
+                                    </div>
+                                    <!-- preview -->
+                                    <div class="form-group
+                                        row">
+                                        <div class="col-sm-12">
+                                            <label class="col-form-label" for="edit_logo">Preview Lambang</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <img src="" id="preview" alt="Preview" width="100px">
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <label class="col-form-label" for="edit_nama_negara">Nama Kategori
                                                 Job</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control "
                                                 id="edit_nama_negara" name="nama_negara">
                                         </div>
                                     </div>
@@ -180,7 +219,7 @@
                                             <label class="col-form-label" for="edit_kode_negara">Kode Negara</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control "
                                                 id="edit_kode_negara" name="kode_negara">
                                         </div>
                                     </div>
@@ -216,7 +255,8 @@
                 $.ajax({
                     url: form.attr('action'),
                     type: 'POST',
-                    data: form.serialize(),
+                    data: new FormData(form[0]),
+                    processData: false,
                     success: function(response) {
                         $('#modal-negara').modal('hide');
                         Swal.fire({
@@ -260,6 +300,7 @@
                     success: function(response) {
                         $('#edit_nama_negara').val(response.nama_negara);
                         $('#edit_kode_negara').val(response.kode_negara);
+                        $('#preview').attr('src', `/upload/negara/${response.logo}`);
                         // Set action form untuk update
                         $('#form-edit-negara').attr('action', `${baseUrl}/negara/${id}`);
                         $('#modal-edit').modal('show');
@@ -271,12 +312,19 @@
             });
 
             // AJAX untuk update data
+            var formData = new FormData($('#form-edit-negara')[0]);
+
             $('#btn-update-negara').click(function() {
                 var form = $('#form-edit-negara');
                 $.ajax({
                     url: form.attr('action'),
                     type: 'POST',
-                    data: form.serialize() + '&_method=PUT',
+                    data: new FormData(form[0]) ,
+                    headers: {
+                        'X-HTTP-Method-Override': 'PUT'
+                    },
+                    contentType: false,
+                    processData: false,
                     success: function(response) {
                         $('#modal-edit').modal('hide');
                         Swal.fire({
@@ -355,5 +403,20 @@
                 });
             });
         });
+    </script>
+    <!-- handle preview img -->
+    <script>
+        $(document).ready(function() {
+            $('#logo').change(function() {
+                var file = $(this)[0].files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#preview').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(file);
+            });
+
+        });
+
     </script>
 @endpush

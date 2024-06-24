@@ -66,6 +66,7 @@
                                                         <th width="15%">Pertanyaan</th>
                                                         <th width="10%">Jawaban</th>
                                                         <th width="5%">Urutan</th>
+                                                        <th width="10%">Company Profile</th>
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -76,6 +77,14 @@
                                                             <td>{{ $p->pertanyaan }}</td>
                                                             <td>{{ $p->jawaban }}</td>
                                                             <td>{{ $p->urutan }}</td>
+                                                            <td>
+                                                            @if ($p->compro == 1)
+                                                                <span class="badge badge-warning">PSI Jobs</span>
+                                                                
+                                                            @else
+                                                                <span class="badge badge-info">Akama Jobs</span>
+                                                            @endif
+                                                             </td>
                                                             <td class="text-center">
                                                                 <a style="color: rgb(242, 236, 236)" href="#"
                                                                     class="btn btn-sm btn-primary btn-edit"
@@ -153,6 +162,17 @@
                                                 name="urutan">
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="col-form-label" for="compro">Company Profile</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <select class="form-control" name="compro" id="compro">
+                                                <option value="1">PSI Jobs</option>
+                                                <option value="2">Akama Jobs</option>
+                                            </select>
+                                            </div>  
+                                    </div>
 
                                 </div>
 
@@ -214,6 +234,17 @@
                                             <input type="number" class="form-control form-control-success"
                                                 id="edit_urutan" name="urutan">
                                         </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="col-form-label" for="edit_compro">Company Profile</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <select class="form-control" name="compro" id="edit_compro">
+                                                <option value="1">PSI Jobs</option>
+                                                <option value="2">Akama Jobs</option>
+                                            </select>
+                                            </div>  
                                     </div>
                                 </div>
                             </div>
@@ -297,12 +328,19 @@
                         $('#edit_pertanyaan').val(response.pertanyaan);
                         $('#edit_urutan').val(response.urutan);
                         $('#edit_jawaban').val(response.jawaban);
+                        if (response.compro == 1) {
+                            $('#edit_compro').val(1);
+                        } else {
+                            $('#edit_compro').val(2);
+                        }
+
+
                         // Set action form untuk update
-                        $('#form-edit-faq').attr('action', '/faq/' + id);
+                        $('#form-edit-faq').attr('action', `${baseUrl}/faq/${id}`);gar
                         $('#modal-edit').modal('show');
                     },
                     error: function(xhr) {
-                        // Handle error
+                        // Handle error\
                     }
                 });
             });
