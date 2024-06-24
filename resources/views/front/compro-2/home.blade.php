@@ -28,30 +28,42 @@
         <div class="tw-max-w-full tw-h-full  tw-bg-[#FFFFFF] tw-rounded-t-3xl tw-shadow-lg tw-px-4 tw-pt-6 tw-pb-4">
             <div class="tw-max-w-7xl tw-mx-auto">
             <form id="search-form" class="tw-flex tw-items-center tw-gap-0 tw-p-2 tw-bg-[#F4F4F5] tw-rounded-lg" data-aos-duration="1000" data-aos="zoom-in-up">
-              <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-border-r tw-border-gray-300">
-                <!-- <img src="{{ asset('frontend') }}/assets/image/indonesia.png" alt="Indonesia Flag" class="tw-w-8 tw-h-8" />
-                <span>ID</span> -->
-                @foreach ($negara as $item)
-                <img src="/upload/negara/{{$item->logo}}" alt="Indonesia Flag" class="tw-w-8 tw-h-8" />
-                <span>{{$item->kode_negara}}</span>
-                @endforeach
-
-                <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 0L12 6H0L6 0Z" fill="#606060" />
-                </svg>
+              <div class="tw-relative tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-border-r tw-border-gray-300">
+                  <div class="tw-relative tw-cursor-pointer" id="custom-dropdown">
+                      <div class="tw-flex tw-items-center tw-gap-2 tw-bg-[#F4F4F5] tw-p-2 tw-rounded-lg tw-border tw-border-gray-300">
+                          <img src="/upload/negara/{{ $negara[0]->logo }}" alt="Country Flag" class="tw-w-8 tw-h-8" id="selected-flag"/>
+                          <span id="selected-code">{{ $negara[0]->kode_negara }}</span>
+                          <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6 0L12 6H0L6 0Z" fill="#606060" />
+                          </svg>
+                      </div>
+                      <div id="dropdown-options" class="tw-hidden tw-absolute tw-bg-white tw-shadow-lg tw-rounded-lg tw-z-10 tw-mt-2 tw-w-full">
+                          @foreach ($negara as $item)
+                          <div class="dropdown-option tw-flex tw-items-center tw-gap-2 tw-p-2 tw-cursor-pointer hover:tw-bg-gray-100" data-code="{{ $item->kode_negara }}" data-logo="/upload/negara/{{ $item->logo }}" data-id="{{ $item->id }}">
+                              <img src="/upload/negara/{{ $item->logo }}" alt="Country Flag" class="tw-w-8 tw-h-8" />
+                              <span>{{ $item->kode_negara }}</span>
+                          </div>
+                          @endforeach
+                      </div>
+                  </div>
               </div>
+              <input type="hidden" name="negara" id="negara-select">
               <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-flex-1">
-                <i class="fa-solid fa-magnifying-glass tw-text-sky-500"></i>
-                <input id="search-input" type="text" placeholder="Job title, keyword, company" name="query" class="tw-border-none tw-outline-none tw-text-base tw-text-gray-600 tw-bg-[#F4F4F5] tw-w-full" />
+                  <i class="fa-solid fa-magnifying-glass tw-text-sky-500"></i>
+                  <input id="search-input" type="text" placeholder="Job title, keyword, company" name="query" class="tw-border-none tw-outline-none tw-text-base tw-text-gray-600 tw-bg-[#F4F4F5] tw-w-full" />
               </div>
               <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-px-4 tw-mr-2 tw-bg-[#F1F9FE] tw-rounded-md tw-cursor-pointer">
-                <i class="fa-solid fa-sliders tw-text-sky-500"></i>
-                <span class="tw-text-sky-500">Filter</span>
+                  <i class="fa-solid fa-sliders tw-text-sky-500"></i>
+                  <span class="tw-text-sky-500">Filter</span>
               </div>
               <button type="submit" class="tw-p-2 tw-px-4 tw-bg-sky-500 tw-text-white tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer">
-                Search
+                  Search
               </button>
-            </form>
+          </form>
+
+
+
+
                      <h3 class=" tw-font-clash-display tw-text-[30px] tw-text-[#11181C]  tw-font-bold tw-my-7 tw-mb-10 ">Lowongan Unggulan</h3>
 
                   {{-- card section --}}
@@ -393,6 +405,33 @@
 
      </style> 
 @endpush
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#custom-dropdown').on('click', function(event) {
+        $('#dropdown-options').toggleClass('tw-hidden');
+        event.stopPropagation();
+    });
+
+    $('.dropdown-option').on('click', function() {
+        var logo = $(this).data('logo');
+        var code = $(this).data('code');
+        var id = $(this).data('id');
+
+        $('#selected-flag').attr('src', logo);
+        $('#selected-code').text(code);
+        $('#negara-select').val(id);
+
+        $('#dropdown-options').style.display = 'none';
+    });
+
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('#custom-dropdown').length) {
+            $('#dropdown-options').style.display = 'none';
+        }
+    });
+});
+</script>
     <script>
         const targets = [
           { element: document.getElementById('starsCount'), count: 4670, suffix: '+' },
@@ -425,54 +464,7 @@
 @push('js')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <script>
-       document.addEventListener('DOMContentLoaded', function() {
-  new Splide('#image-carousel', {
-    type   : 'loop',
-    perPage: 1,
-    autoplay: true,
-    interval: 5000, 
-  }).mount();
-  const testimonialCards = document.querySelectorAll('.testimonial-card');
-            const avatarImages = document.querySelectorAll('.avatar-image');
 
-            let currentIndex = 0;
-            const intervalTime = 5000;
-
-            function resetCards() {
-                testimonialCards.forEach(card => {
-                    card.classList.remove('active');
-                });
-                avatarImages.forEach(image => {
-                    image.classList.remove('active');
-                    image.style.transform = 'scale(1)';
-                });
-            }
-
-            function showCard(index) {
-                resetCards();
-                testimonialCards[index].classList.add('active');
-                avatarImages[index].classList.add('active');
-             
-                avatarImages[index].style.transform = 'scale(1.2)';
-            }
-
-            function nextCard() {
-                currentIndex = (currentIndex + 1) % testimonialCards.length;
-                showCard(currentIndex);
-            }
-
-
-            showCard(currentIndex);
-            setInterval(nextCard, intervalTime);
-            avatarImages.forEach((image, index) => {
-                image.addEventListener('click', () => {
-                    currentIndex = index;
-                    showCard(currentIndex);
-                });
-            });
-       });
-    </script>
    <script>
 $(document).ready(function() {
     $('#search-form').on('submit', function(e) {
@@ -484,7 +476,7 @@ $(document).ready(function() {
         $.ajax({
             url: `{{route('ajax.job')}}`,
             method: 'GET',
-            data: { search: search },
+            data: { search: search,negara:negara },
             success: function(response) {
                 $('#jobs-container').empty();
                 if(response.length > 0) {
