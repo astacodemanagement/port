@@ -239,7 +239,7 @@
                                                                     style="flex: 1; text-align: left; padding-left:9px; word-wrap: break-word; ">
                                                                     <br>
                                                                     <h5 class="card-title">
-                                                                        <a href="">
+                                                                        <a href="{{route('preview-cv', hashId($p->kandidat->id))}}" target="_blank">
                                                                             <span class="badge badge-pill badge-primary"
                                                                                 style="color: #ebeff1;"><i
                                                                                     class="fa fa-eye"></i> Preview</span>

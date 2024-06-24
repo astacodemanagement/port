@@ -6,6 +6,7 @@ use App\Http\Controllers\AlasanController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BelumVerifikasiController;
 use App\Http\Controllers\CounterController;
+use App\Http\Controllers\CvController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailBayarController;
 use App\Http\Controllers\EmployerController;
@@ -357,6 +358,7 @@ Route::prefix('ajax')->group(function () {
     });
 });
 
+
 Route::name('front.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -438,3 +440,6 @@ Route::group(['prefix' => 'compro2'], function () {
     Route::get('/complete', [FeCompanyprofile2::class,'complete'])->name('compro-2.complete');
 
 });
+
+// PREVIEW CV KANDIDAT
+Route::get('/cv/kandidat/{id}', [CvController::class, 'previewCv'])->name('preview-cv')->middleware('auth');
