@@ -75,10 +75,10 @@
     </div>
     
     <div class="text-center mb-4">
-        <button class="btn btn-primary w-100">
+        <a href="{{route('preview-cv', hashId(auth()->user()?->kandidat->id))}}" target="_blank" class="btn btn-primary w-100" >
             Preview CV
             <i class="ms-2 ti ti-external-link"></i>
-        </button>
+        </a>
       
     </div>
 </div>
