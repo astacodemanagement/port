@@ -122,58 +122,80 @@
                                         <div class="col-lg-12 col-xl-6">
                                             <!-- Add this inside your HTML body -->
                                             <div class="row mb-5">
-                                                <div class="filter-container col-md-12 gap-5">
-
-                                                    <form action="{{ route('back-office.pelamar.index',['status'=>$status])}}"
-                                                        method="get">
-                                                        <div
-                                                            class="form-group d-flex 
-                                                     @if($filter_job == 'kategori_job') active @endif">
-                                                            <label for="" class="py-2 text-dark mx-3">Filter</label>
-
-                                                            <select name="filter_job" id="filter" class="form-control"
-                                                                onchange="this.form.submit()">
-                                                                <option value="kategori_job">--Cari Kategori Job--</option>
-                                                                @foreach ($kategori_job as $item)
-                                                                    <option value="{{ $item->id }}"
-                                                                        @if ($filter_job == $item->id) selected @endif>
-                                                                        {{ $item->nama_kategori_job }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            <select name="filter_gender" class="form-control" onchange="this.form.submit()">
-                                                                <option value="">-- Cari Jenis Kelamin --</option>
-                                                                <option value="Laki-laki" {{ $filter_gender == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                                                <option value="Perempuan" {{ $filter_gender == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                                                            </select>
-                                            
-                                                            <input type="text" class="form-control" name="filter_height" placeholder="-- Masukkan Tinggi Badan --" value="{{ $filter_height ?? '' }}" onchange="this.form.submit()">
-                                                      
-                                                            </div>
-
-                                                      
-                                                    </form>
-
-                                                </div>
+                                               <!-- click for filter -->
+                                             
                                                 <div class="search-container col-md-6">
                                                     {{-- send request --}}
 
                                                     {{-- form --}}
                                                     <form action="{{ route('back-office.pelamar.index',['status'=>$status]) }}"
                                                         method="GET">
-
-                                                        <div style="display: inline-block;">
+                                                    <div class="d-flex " style="gap: 10px;">
+                                                        
+                                                        <div>
                                                             <input type="text" class="form-control" id="searchInput"
                                                                 placeholder="Search..." name="search"
                                                                 value="{{ $search ?? '' }}">
                                                         </div>
-                                                        <div style="display: inline-block;">
+                                                        <div>
                                                             <button class="btn btn-primary waves-effect waves-light"
-                                                                type="submit">Search</button>
+                                                                type="submit">
+                                                                <i class="fa fa-search"></i> 
+                                                            </button>
                                                         </div>
+                                                        <!-- filter icon -->
+                                                        <div class="">
+                                                            <button type="button" class="btn btn-warning text-dark" data-toggle="modal"
+                                                                data-target="#filterContainer">
+                                                                <i class="fa-solid fa-sliders"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                     </form>
                                                 </div>
                                                 {{-- filter container --}}
-                                          
+                                                <!-- modal -->
+                                                <div class="modal fade" id="filterContainer" tabindex="-1" role="dialog" aria-labelledby="filterContainerLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="filterContainerLabel">Filter Pencarian</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="{{ route('back-office.pelamar.index',['status'=>$status]) }}" method="GET">
+                                                                    <div class="form-group">
+                                                                        <label for="filter_job">Filter Minat Industri</label>
+                                                                        <select name="filter_job" id="filter_job" class="form-control">
+                                                                            <option value="">-- Pilih Kategori Job --</option>
+                                                                            @foreach ($kategori_job as $item)
+                                                                                <option value="{{ $item->id }}" {{ $filter_job == $item->id ? 'selected' : '' }}>
+                                                                                    {{ $item->nama_kategori_job }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="filter_gender">Jenis Kelamin</label>
+                                                                        <select name="filter_gender" id="filter_gender" class="form-control">
+                                                                            <option value="">-- Pilih Jenis Kelamin --</option>
+                                                                            <option value="Laki-laki" {{ $filter_gender == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                                                            <option value="Perempuan" {{ $filter_gender == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="filter_height">Tinggi Badan</label>
+                                                                        <input type="text" class="form-control" id="filter_height" name="filter_height" placeholder="-- Masukkan Tinggi Badan --" value="{{ $filter_height ?? '' }}">
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary">Filter</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
 
                                                 <br><br>
                                             </div>

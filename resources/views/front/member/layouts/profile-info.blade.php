@@ -79,9 +79,6 @@
             Preview CV
             <i class="ms-2 ti ti-external-link"></i>
         </button>
-        <button class="btn btn-warning text-dark mt-2 w-100">
-            Download CV
-            <i class="ms-2 ti ti-download"></i>
-        </button>
+      
     </div>
 </div>

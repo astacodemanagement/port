@@ -60,7 +60,8 @@
                                                     <tr>
                                                         <th width="5%">No</th>
 
-                                                        <th width="15%">Nama Slider</th>
+                                                        <th width="10%">Nama Slider</th>
+                                                        <th width="10%">Company Profile</th>
                                                         <th width="5%">Urutan</th>
                                                         <th width="5%">Gambar</th>
                                                         <th class="text-center" width="5%">Aksi</th>
@@ -71,6 +72,13 @@
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p->nama_slider }}</td>
+                                                            <td>
+                                                            @if ( $p->compro == 1 )
+                                                                PSI Jobs
+                                                            @else
+                                                                Akama Jobs
+                                                            @endif
+                                                            </td>
                                                             <td>{{ $p->urutan }}</td>
                                                             <td>
                                                                 <a href="/upload/slider/{{ $p->gambar }}"
@@ -127,6 +135,16 @@
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control " id="nama_slider"
                                                 name="nama_slider">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row"></div>
+                                        <div class="col-sm-12">
+                                        <label class="col-form-label" for="compro">Company Profile</label>
+                                            
+                                        <select class="form-control" name="compro" id="compro">
+                                                <option value="1">PSI Jobs</option>
+                                                <option value="2">Akama Jobs</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -201,6 +219,17 @@
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control "
                                                 id="edit_nama_slider" name="nama_slider">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="col-form-label" for="edit_nama_slider">Nama Slider</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <select class="form-control" name="compro" id="compro">
+                                                <option value="1">PSI Jobs</option>
+                                                <option value="2">Akama Jobs</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">

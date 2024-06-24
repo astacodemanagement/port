@@ -5,6 +5,7 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AlasanController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BelumVerifikasiController;
+use App\Http\Controllers\CounterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailBayarController;
 use App\Http\Controllers\EmployerController;
@@ -252,6 +253,14 @@ Route::prefix('administrator')->group(function () {
                     Route::get('/slider/{id}/edit', [SliderController::class, 'edit'])->name('edit');
                     Route::put('/slider/update/{id}', [SliderController::class, 'update'])->name('update');
                 });
+                // counter
+                Route::resource('counter', CounterController::class);
+                Route::name('counter.')->group(function () {
+                    Route::get('/counter', [CounterController::class, 'index'])->name('index');
+                    Route::get('/counter/{id}/edit', [CounterController::class, 'edit'])->name('edit');
+                    Route::put('/counter/update/{id}', [CounterController::class, 'update'])->name('update');
+                });
+                
 
 
                 // Galeri

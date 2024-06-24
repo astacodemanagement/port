@@ -72,12 +72,12 @@ class PelamarController extends Controller
                 ->paginate(4);
         }
 
-        // dd($data);
-        $data['kategori_job'] = KategoriJob::all();
 
+        $data['kategori_job'] = KategoriJob::all();
         return view('back.pelamar.index', $data);
     }
-
+    
+    
 
 
     public function updateStatus(Request $request)

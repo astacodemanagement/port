@@ -15,6 +15,25 @@ class SliderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     protected $validator;
+
+     public function __construct()
+     {
+         // Define validation rules and messages
+         $this->validator = Validator::make([], [
+             'nama_slider' => 'required',
+             'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
+             'compro' => 'required|in:1,2',
+         ], [
+             'nama_slider.required' => 'Nama Slider Wajib diisi',
+             'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
+             'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
+             'compro.required' => 'Pilih salah satu dari pilihan yang tersedia',
+             'compro.in' => 'Pilihan yang dipilih tidak valid, opsinya hanya PSI atau AK AMA',
+         ]);
+     }
+    
     private function simpanLogHistori($aksi, $tabelAsal, $idEntitas, $pengguna, $dataLama, $dataBaru)
     {
         $log = new LogHistori();
@@ -53,16 +72,7 @@ class SliderController extends Controller
     public function store(Request $request)
     {
         // Validasi request
-        $validator = Validator::make($request->all(), [
-            'nama_slider' => 'required|unique:slider,nama_slider',
-            'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
-        ], [
-            'nama_slider.required' => 'Nama Slider Wajib diisi',
-            'gambar.required' => 'Gambar Slider Wajib diisi',
-            'nama_slider.unique' => 'Nama Slider sudah digunakan',
-            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
-            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
-        ]);
+        $validator = Validator::make($request->all(), $this->validator->getRules(), $this->validator->getMessageBag()->toArray());
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
@@ -124,15 +134,7 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validasi request
-        $validator = Validator::make($request->all(), [
-            'nama_slider' => 'required|unique:slider,nama_slider,' . $id,
-            'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
-        ], [
-            'nama_slider.required' => 'Nama Slider Wajib diisi',
-            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
-            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
-        ]);
+        $validator = Validator::make($request->all(), $this->validator->getRules(), $this->validator->getMessageBag()->toArray());
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);

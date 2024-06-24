@@ -96,6 +96,7 @@
                                                                 <td style="text-align: center; font-size:18px;"><span
                                                                         class="label label-warning">{{ $p->nama_kategori_job }}</span>
                                                                 </td>
+
                                                                 <td class="text-center">
                                                                     <a style="color: rgb(242, 236, 236)" href="#"
                                                                         class="btn btn-sm btn-primary btn-detail"
@@ -147,6 +148,7 @@
                                                     <th width="10%">Mitra</th>
                                                     <th width="10%">ID KTKLN</th>
                                                     <th width="10%">Sponsor</th>
+                                                    <th width="5%">Tanggal Akhir Kontrak</th>
                                                     <th width="5%">Status Seleksi</th>
                                                     <th width="15%" class="text-center" width="5%">Aksi</th>
                                                 </tr>
@@ -164,6 +166,8 @@
                                                             <td>{{ $p2->mitra }}</td>
                                                             <td>{{ $p2->mitra }}</td>
                                                             <td>{{ $p2->referensi }}</td>
+                                                            <td>{{ $p2->tanggal_akhir_kontrak }}</td>
+
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
 
