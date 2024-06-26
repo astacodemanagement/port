@@ -22,6 +22,12 @@
             <li class="nav-item hover-dd d-none d-xl-block">
                 <a class="nav-link" href="javascript:void(0)"><i
                         class="ti ti-briefcase me-3 text-primary fs-5"></i> Jobs</a>
+            </li>
+            <li class="nav-item hover-dd d-none d-xl-block">
+                <!-- proses -->
+                <a class="nav-link" href="/member/status"><i
+                        class="ti ti-user me-3 text-primary fs-5"></i> Status Proses</a>
+            </li>
                 {{-- <a href="./app-invoice.html" class="d-flex align-items-center pb-9 position-relative    ">
                                         <div class="bg-light rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
                                         <img src="../../dist/images/svgs/icon-dd-invoice.svg" alt="" class="img-fluid" width="24" height="24">
@@ -152,6 +158,7 @@
                     alt="" />
             </a>
         </div>
+     
         <button class="navbar-toggler p-0 border-0" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -159,6 +166,7 @@
                 <i class="ti ti-dots fs-7"></i>
             </span>
         </button>
+        
         <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <div class="d-flex align-items-center justify-content-between px-0 px-xl-8">
                 <a href="javascript:void(0)"
@@ -254,5 +262,6 @@
                 </ul>
             </div>
         </div>
+           <h4>ppp</h4>
     </nav>
 </header>

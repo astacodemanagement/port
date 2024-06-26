@@ -11,8 +11,13 @@
         <div class="d-flex">
             <a href="#" class="link-pages">Worker</a>
             <a href="#" class="link-pages">Employer</a>
+            @if (auth()->check())
+                <a href="{{route('member.index')}}" class="link-btn fw-semibold mx-2">Profile</a>     
+            @else
+                
             <a href="{{ route('register') }}" class="link-btn fw-semibold mx-2">Daftar SIPOOL</a>
             <a href="/login" class="link-btn fw-semibold">Masuk</a>
+            @endif
         </div>
     </div>
 </nav>

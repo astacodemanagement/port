@@ -48,6 +48,7 @@ use App\Http\Controllers\SeleksiLolosKualifikasiController;
 use App\Http\Controllers\SeleksiSelesaiKontrakController;
 use App\Http\Controllers\SeleksiTerbangController;
 use App\Http\Controllers\SemuaSeleksiController;
+use App\Http\Controllers\StatusProsesController;
 use App\Http\Controllers\SudahVerifikasiController;
 use App\Http\Controllers\SupplierController;
 use App\Models\DetailBayar;
@@ -423,6 +424,13 @@ Route::group(['middleware' => ['role:member']], function () {
                             Route::get('/applied', 'applied')->name('applied');
                             Route::get('/applied/{id}', 'showApplied')->name('applied.show');
                         });
+                    });
+                });
+
+                // Status proses
+                Route::prefix('status')->group(function(){
+                    Route::name('status.')->group(function(){
+                        Route::get('/', [StatusProsesController::class, 'index'])->name('index');
                     });
                 });
             });
