@@ -112,7 +112,7 @@
                 
             <label for=""  class="tw-text-gray-800 tw-font-medium tw-mt-3 tw-font-work-sans">Minat Pekerjaan</label>
                 <select name="kategori_job_id" id="kategori" class="tw-font-work-sans tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-bg-white tw-text-gray-600 tw-rounded-md" required>
-                    <option value="" readonly>Industri Yang Diminati</option>
+                    <option value="" readonly>Industri Yang Diminati *</option>
                     @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->nama_kategori_job }}
                     </option>
@@ -120,19 +120,19 @@
                 </select>
                 <p class="tw-text-red-500 error-kategori" style="display: none"></p>
                 <label for="nik" class="tw-text-gray-800 tw-font-medium tw-mt-3 tw-font-work-sans">Informasi Pribadi</label>
-                <input type="text" name="nik" id="nik" placeholder="Nomor E-KTP (NIK)" class=" tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md id-card-format" required>
+                <input type="text" name="nik" id="nik" placeholder="Nomor E-KTP (NIK) *" class=" tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md id-card-format" required>
                 <p class="tw-text-red-500 error-nik" style="display: none"></p>
                 
-                <input type="text" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
+                <input type="text" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Lengkap *" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                 <p class="tw-text-red-500 error-nama_lengkap" style="display: none"></p>
                 
                 <div class="tw-flex tw-justify-around tw-flex-wrap md:tw-gap-5">
                     <div class="tw-w-[48%] tw-flex tw-flex-col">
-                        <input type="text" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
+                        <input type="text" name="tempat_lahir" id="tempat_lahir" placeholder="Tempat Lahir *" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                         <p class="tw-text-red-500 error-tempat_lahir" style="display: none"></p>
                     </div>
                     <div class="tw-w-[48%] tw-flex tw-flex-col">
-                        <input type="text"  placeholder="Tanggal Lahir" class="tanggal-lahir tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md">
+                        <input type="text"  placeholder="Tanggal Lahir *" class="tanggal-lahir tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md">
                         <!-- h_tanggal_lahir -->
                         <input type="hidden" name="tanggal_lahir" class="h-tanggal-lahir  tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md">
                         <p class="tw-text-red-500 error-tanggal_lahir" style="display: none"></p>
@@ -141,7 +141,7 @@
                 
                 
                 <select name="agama" id="agama" class="tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
-                    <option value="">Agama</option>
+                    <option value="">Agama *</option>
                     <option value="1">Islam</option>
                     <option value="2">Kristen</option>
                     <option value="3">Katolik</option>
@@ -154,32 +154,32 @@
                 
                 <div class="tw-flex tw-justify-between md:tw-gap-5">
                     <div class="tw-w-[49%] tw-flex tw-flex-col">
-                        <input type="number" name="berat_badan" id="berat_badan" placeholder="Berat Badan" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
+                        <input type="number" name="berat_badan" id="berat_badan" placeholder="Berat Badan *" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                         <p class="tw-text-red-500 error-berat_badan" style="display: none"></p>
                     </div>
                     <div class="tw-w-[49%] tw-flex tw-flex-col">
-                        <input type="number" name="tinggi_badan" id="tinggi_badan" placeholder="Tinggi Badan" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
+                        <input type="number" name="tinggi_badan" id="tinggi_badan" placeholder="Tinggi Badan *" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                         <p class="tw-text-red-500 error-tinggi_badan" style="display: none"></p>
                     </div>
                 </div>
                 
                 
                 <select name="jenis_kelamin" id="jenis_kelamin" class="tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
-                    <option value="">Jenis Kelamin</option>
+                    <option value="">Jenis Kelamin *</option>
                     <option value="P">Pria</option>
                     <option value="W">Wanita</option>
                 </select>
                 <p class="tw-text-red-500 error-jenis_kelamin" style="display: none"></p>
                 
                 <select name="status_kawin" id="status_kawin" class="tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
-                    <option value="">Status Kawin</option>
+                    <option value="">Status Kawin *</option>
                     <option value="1">Belum Menikah</option>
                     <option value="2">Menikah</option>
                     <option value="3">Cerai</option>
                 </select>
                 <p class="tw-text-red-500 error-status_kawin" style="display: none"></p>
                 <select name="pendidikan" id="pendidikan" class="tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required">
-                    <option value="" disabled>Pendidikan Terakhir</option>
+                    <option value="" disabled>Pendidikan Terakhir *</option>
                     <option value="1">Tidak/Belum Sekolah</option>
                     <option value="2">SD</option>
                     <option value="3">SMP</option>
@@ -195,17 +195,17 @@
              {{-- flex setagnah setengah ayah ibu--}}
                 <div class="tw-flex tw-justify-between md:tw-gap-5">
                     <div class="tw-w-[49%] tw-flex tw-flex-col">
-                        <input type="text" name="nama_lengkap_ayah" id="nama_lengkap_ayah" placeholder="Nama Ayah" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
+                        <input type="text" name="nama_lengkap_ayah" id="nama_lengkap_ayah" placeholder="Nama Ayah *" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                         <p class="tw-text-red-500 error-nama_lengkap_ayah" style="display: none"></p>
                     </div>
                     <div class="tw-w-[49%] tw-flex tw-flex-col">
-                        <input type="text" name="nama_lengkap_ibu" id="nama_lengkap_ibu" placeholder="Nama Ibu" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
+                        <input type="text" name="nama_lengkap_ibu" id="nama_lengkap_ibu" placeholder="Nama Ibu *" class="tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
                         <p class="tw-text-red-500 error-nama_lengkap_ibu" style="display: none"></p>
                     </div>
                 </div>
            
 
-                <textarea name="alamat" id="alamat" placeholder="Alamat" class="tw-p-2 tw-mb-4 tw-border tw-border-gray-300 tw-mt-4 tw-rounded-md " rows="3" required></textarea>
+                <textarea name="alamat" id="alamat" placeholder="Alamat *" class="tw-p-2 tw-mb-4 tw-border tw-border-gray-300 tw-mt-4 tw-rounded-md " rows="3" required></textarea>
                 <p class="tw-text-red-500 error-alamat" style="display: none"></p>
             
                 <select name="wilayah" id="wilayah" class="tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md wilayah" required>
@@ -214,7 +214,7 @@
                   
              
                 <select name="level_bahasa" id="level_bahasa" class="tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
-                    <option value="">Level Bahasa Inggris</option>
+                    <option value="">Level Bahasa Inggris *</option>
                     <option value="1">Beginner English</option>
                     <option value="2">⁠Medium English</option>
                     <option value="3">Advance English</option>
@@ -411,7 +411,7 @@
                         <div class="col-12">
                             <div class="form-input">
                                 <div class="input-group">
-                                    <label class="input-group-text" for="foto" style="width: 150px">Foto</label>
+                                    <label class="input-group-text" for="foto" style="width: 150px">Foto *</label>
                                     <input type="file" class="form-control tw-w-full" id="foto" name="file_foto" accept="image/*,application/pdf">
                                 </div>
                                 <label class="text-muted tw-block tw-text-sm"><small>Foto formal background putih/biru/merah</small></label>
@@ -421,7 +421,7 @@
                           
                             <div class="form-input mt-2">
                                 <div class="input-group">
-                                    <label class="input-group-text" for="ktp" style="width: 150px">KTP</label>
+                                    <label class="input-group-text" for="ktp" style="width: 150px">KTP * </label>
                                     <input type="file" class="form-control tw-w-full" id="ktp" name="file_ktp" accept="image/*,application/pdf">
                                 </div>
                                 <label class="text-muted tw-block tw-text-sm"><small>Mohon di Scan</small></label>
@@ -448,11 +448,11 @@
                     <label class="tw-block tw-font-medium tw-mb-3">Kontak &amp; Akun</label>
                     <div class="tw-flex tw-flex-col tw-gap-3">
                         <div class="tw-mb-3">
-                            <input type="email" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" placeholder="Email" name="email">
+                            <input type="email" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" placeholder="Email *" name="email">
                         </div>
                         <p class="tw-text-red-500 error-email" style="display: none"></p>
                         <div>
-                            <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number" name="no_hp" id="no_hp" placeholder="Nomor HP Aktif">
+                            <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number" name="no_hp" id="no_hp" placeholder="Nomor HP Aktif *">
                         </div>
                         <p class="tw-text-red-500 error-no_hp" style="display: none"></p>
                         <div class="tw-mb-3 tw-pt-3 tw-pl-2 tw-pb-0">
@@ -463,12 +463,12 @@
                         </div>
                         <p class="tw-text-red-500 error-whatsapp_number" style="display: none"></p>
                         <div class="tw-mb-3">
-                            <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number whatsapp-number" name="no_wa" id="no_wa" placeholder="Nomor Whatsapp Aktif">
+                            <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number whatsapp-number" name="no_wa" id="no_wa" placeholder="Nomor Whatsapp Aktif *">
                         </div>
                         <p class="tw-text-red-500 error-no_wa" style="display: none"></p>
                         <div class="tw-mb-3">
                             <div class="tw-relative tw-flex">
-                                <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password" placeholder="Password">
+                                <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password" placeholder="Password *">
                                 <span class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md btn-show-password" type="button" id="show-password" style="padding-top: .9rem;"><i class="fas fa-eye-slash"></i></span>
 
                             </div>
@@ -477,7 +477,7 @@
                         <p class="tw-text-red-500 error-password" style="display: none"></p>
                         <div class="tw-mb-3">
                             <div class="tw-relative tw-flex">
-                                <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password_confirmation" placeholder="Konfirmasi Password">
+                                <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password_confirmation" placeholder="Konfirmasi Password *">
                                 <span class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md btn-show-password" type="button" id="show-password" style="padding-top: .9rem;"><i class="fas fa-eye-slash"></i></span>
                             </div>
                             <!-- err -->

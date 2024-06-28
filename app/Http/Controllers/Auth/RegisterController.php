@@ -12,6 +12,7 @@ use App\Models\Pendaftaran;
 use App\Models\PengalamanKerja;
 use App\Models\Provinsi;
 use App\Models\User;
+use Illuminate\Support\Str;
 use App\Models\Wilayah;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -22,6 +23,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Traits\UploadFile;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -159,16 +162,20 @@ class RegisterController extends Controller
         DB::beginTransaction();
 
         try {
+            $token = Str::random(64);
             /** INSERT USER */
             $user = User::create([
+                'token' => $token,
                 'name' => $request->nama_lengkap,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 // 'is_kandidat' => 1
             ]);
-
+            Mail::send('email.template', ['token' =>$token ], function($message) use($request){
+                $message->to($request->email);
+                $message->subject('Email Verification Mail');
+            });
             $user->assignRole('member');
-
             /** INSERT PENDAFTARAN */
             $pendaftaran = [
                 // 'negara_id' => $request->negara_id,
@@ -348,16 +355,17 @@ class RegisterController extends Controller
             if (count($pengalamanKerja) > 0) {
                 PengalamanKerja::insert($pengalamanKerja);
             }
-
-            DB::commit();
+             // give notif
+            
         }
+        DB::commit();
             session(['is_register' => 'true', 'register_id' => $pendaftaran->id]);
 
             return response()->json(['success' => true, 'message' => 'Register succesfully']);
         } catch (\Exception $e) {
             DB::rollBack();
 
-            return response()->json(['success' => false, 'message' => $e->getMessage()], 400);
+            return response()->json(['error' => false, 'message' => $e->getMessage()], 400);
         }
     }
 
@@ -492,6 +500,24 @@ class RegisterController extends Controller
 
         return $mergeRules;
     }
+
+    public function verifyEmail($token)
+    {
+        $user = User::where('token', $token)->first();
+    
+        if ($user) {
+            User::where('token', $token)->update([
+                'email_verified_at' => now(),
+               
+            ]);
+
+            return redirect('/')->with('success', 'Email berhasil diverifikasi');
+        }
+
+        return redirect(route('login'))->with('error', 'Token tidak valid');
+    }
+
+    
 
     private function attributes()
     {

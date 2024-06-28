@@ -15,7 +15,8 @@
                 <div class="col-md-12 p-5">
                     <div class="haading" style="text-align: center">
                         <i class="fas fa-check-circle text-success" style="font-size: 8rem;margin-bottom:20px"></i>
-                        <h2>Pendaftaran Berhasil</h2>
+                        <h2>Pendaftaran Berhasil di lakukan silahkan cek email terlebih dahulu</h2>
+                        <p>Untuk melanjutkan proses pendaftaran silahkan cek email anda untuk melakukan verifikasi akun</p>
                     </div>
                 </div>
             </div>

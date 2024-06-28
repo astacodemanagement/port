@@ -54,7 +54,8 @@ use App\Http\Controllers\SupplierController;
 use App\Models\DetailBayar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -385,10 +386,11 @@ Route::name('front.')->group(function () {
 });
 
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
+Route::get('register/verify/{token}', [RegisterController::class, 'verifyEmail'])->name('register.verify-email');
 Route::post('register/step/validation', [RegisterController::class, 'stepValidation'])->name('register.step.validation');
 
 /** MEMBER ROUTE */
-Route::group(['middleware' => ['role:member']], function () {
+Route::group(['middleware' => ['role:member','is_verify_email']], function () {
     Route::prefix('member')->group(function () {
         Route::middleware('member.auth')->group(function () {
             Route::name('member.')->group(function () {
@@ -451,3 +453,4 @@ Route::group(['prefix' => 'compro2'], function () {
 
 // PREVIEW CV KANDIDAT
 Route::get('/cv/kandidat/{id}', [CvController::class, 'previewCv'])->name('preview-cv')->middleware('auth');
+
