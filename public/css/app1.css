@@ -978,6 +978,9 @@ video {
 .tw-overflow-hidden {
   overflow: hidden;
 }
+.tw-rounded {
+  border-radius: 0.25rem;
+}
 .tw-rounded-full {
   border-radius: 9999px;
 }
@@ -1732,6 +1735,11 @@ video {
     right: 10rem;
   }
 
+  .sm\:tw-mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
   .sm\:tw-mb-0 {
     margin-bottom: 0px;
   }
@@ -1880,6 +1888,11 @@ video {
     right: 430px;
   }
 
+  .md\:tw-mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
   .md\:tw-my-3 {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
@@ -2013,6 +2026,10 @@ video {
 
   .md\:tw-pt-5 {
     padding-top: 1.25rem;
+  }
+
+  .md\:tw-text-start {
+    text-align: start;
   }
 
   .md\:tw-text-2xl {

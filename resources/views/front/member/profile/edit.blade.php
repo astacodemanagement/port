@@ -29,7 +29,7 @@
                                 <span class="d-none d-md-block">Dokumen Luar Negeri</span>
                             </button>
                         </li>
-                        {{-- <li class="nav-item" role="presentation">
+                       <li class="nav-item" role="presentation">
                             <button
                                 class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-6"
                                 id="work-experience-tab" data-bs-toggle="pill" data-bs-target="#pills-work-experience" type="button"
@@ -37,7 +37,7 @@
                                 <i class="ti ti-subtask me-2 fs-6"></i>
                                 <span class="d-none d-md-block">Pengalaman Kerja</span>
                             </button>
-                        </li> --}}
+                        </li> 
                         <li class="nav-item" role="presentation">
                             <button
                                 class="nav-link position-relative rounded-0 d-flex align-items-center justify-content-center bg-transparent fs-3 py-6"
@@ -257,32 +257,95 @@
                             @php
                                 $i = 0;
                             @endphp
+                          
+                            <form method="POST" class="form-work">
+                        @csrf
+                        @method('PUT')
+                        <div class="row-list-experience">
+                            @php
+                                $i = 0;
+                            @endphp
                             @foreach (auth()->user()->kandidat->pengalamanKerja as $pengalamanKerja)
-                                <h5 class="fw-7 text-primary">{{ $pengalamanKerja->nama_perusahaan . ' - ' . $pengalamanKerja->posisi }}</h5>
-                                <div class="row mt-lg-4 mt-3">
+                                <div class="col-experience mt-4" >
+                                    @if ($i > 0)
+                                        <hr class="my-3 my-lg-5">
+                                    @endif
+                                    <h5 class="fw-7 text-primary experience-title">{{ $pengalamanKerja->nama_perusahaan . ' - ' . $pengalamanKerja->posisi }}</h5>
+                                    <div class="pt-3 float-end">
+                                        <button type="button" class="btn btn-danger btn-sm btn-delete-experience mt-n5 d-none d-lg-block"><i class="ti ti-x"></i> Hapus</button>
+                                    </div>
+                                    <div class="row mt-lg-4 mt-4">
+                                        <div class="col-lg-4 mb-3 mb-lg-0">
+                                            <h6 class="fw-7">Negara Tempat Bekerja</h6>
+                                            <input type="text" class="form-control experience-country" name="negara_tempat_kerja[]" value="{{ $pengalamanKerja->negara_tempat_kerja }}" required />
+                                        </div>
+                                        <div class="col-lg-4 mb-3 mb-lg-0">
+                                            <h6 class="fw-7">Nama Perusahaan</h6>
+                                            <input type="text" class="form-control experience-company" name="nama_perusahaan[]" value="{{ $pengalamanKerja->nama_perusahaan }}" required />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <h6 class="fw-7">Posisi</h6>
+                                            <input type="text" class="form-control experience-position" name="posisi[]" value="{{ $pengalamanKerja->posisi }}" required />
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-lg-4 mb-3 mb-lg-0">
+                                            <h6 class="fw-7">Tanggal Mulai Bekerja</h6>
+                                            <input type="date" class="form-control experience-start-work-date" name="tanggal_mulai_kerja[]" value="{{ $pengalamanKerja->tanggal_mulai_kerja }}" required />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <h6 class="fw-7">Tanggal Selesai Bekerja</h6>
+                                            <input type="date" class="form-control experience-end-work-date" name="tanggal_selesai_kerja[]" value="{{ $pengalamanKerja->tanggal_selesai_kerja }}" required />
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-danger btn-delete-experience w-100 d-block d-lg-none mt-3"><i class="ti ti-x"></i> Hapus</button>
+                                </div>
+                                @php
+                                    $i++;
+                                @endphp
+                            @endforeach
+                        </div>
+                        <div class="row-add-experience d-none">
+                            <div class="col-experience mt-4" >
+                                <hr class="my-3 my-lg-5">
+                                <h5 class="fw-7 text-primary experience-title">&nbsp;</h5>
+                                <div class="pt-3 float-end">
+                                    <button type="button"  class="btn btn-danger btn-sm btn-delete-experience mt-n5 d-none d-lg-block"><i class="ti ti-x"></i> Hapus</button>
+                                </div>
+                                <div class="row mt-lg-4 mt-4">
                                     <div class="col-lg-4 mb-3 mb-lg-0">
                                         <h6 class="fw-7">Negara Tempat Bekerja</h6>
-                                        <span>{{ $pengalamanKerja->negara_tempat_kerja ?? '-' }}</span>
+                                        <input type="text" class="form-control experience-country">
                                     </div>
                                     <div class="col-lg-4 mb-3 mb-lg-0">
                                         <h6 class="fw-7">Nama Perusahaan</h6>
-                                        <span>{{ $pengalamanKerja->nama_perusahaan ?? '-' }}</span>
+                                        <input type="text" class="form-control experience-company">
                                     </div>
                                     <div class="col-lg-4">
                                         <h6 class="fw-7">Posisi</h6>
-                                        <span>{{ $pengalamanKerja->posisi ?? '-' }}</span>
+                                        <input type="text" class="form-control experience-position">
                                     </div>
                                 </div>
                                 <div class="row mt-4">
                                     <div class="col-lg-4 mb-3 mb-lg-0">
                                         <h6 class="fw-7">Tanggal Mulai Bekerja</h6>
-                                        <span>{{ $pengalamanKerja->tanggal_mulai_kerja ? \Carbon\Carbon::parse($pengalamanKerja->tanggal_mulai_kerja)->format('d F Y') : '-' }}</span>
+                                        <input type="date" class="form-control experience-start-work-date"/>
                                     </div>
                                     <div class="col-lg-4">
                                         <h6 class="fw-7">Tanggal Selesai Bekerja</h6>
-                                        <span>{{ $pengalamanKerja->tanggal_selesai_kerja ? Carbon\Carbon::parse($pengalamanKerja->tanggal_selesai_kerja)->format('d F Y') : '-' }}</span>
+                                        <input type="date" class="form-control experience-end-work-date" />
                                     </div>
                                 </div>
+                                <button type="button" class="btn btn-danger btn-delete-experience w-100 d-block d-lg-none mt-3"><i class="ti ti-x"></i> Hapus</button>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-outline-primary btn-add-experience mt-5"><i class="ti ti-plus"></i> Tambah Pengalaman Kerja</button>
+
+                        <div class="mt-5 text-end">
+                            <a href="{{ route('member.work-experience.index') }}" class="btn btn-outline-danger">Cancel</a>
+                            <button class="btn btn-primary btn-save">Save</button>
+                        </div>
+                    </form>
 
                                 @if ($i > 0)
                                     <hr class="my-3 my-lg-5">
@@ -290,7 +353,7 @@
                                 @php
                                     $i++;
                                 @endphp
-                            @endforeach
+                  
                         </div>
 
                         <div class="tab-pane fade" id="pills-document" role="tabpanel" aria-labelledby="pills-document-tab" tabindex="0">
@@ -520,9 +583,80 @@
 @endpush
 
 @push('script')
+
     @include('vendors.cleave-js')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(function(){
+            refreshExperienceList()
+
+            $('.row-list-experience').on('click', '.btn-delete-experience', function(){
+                const t = $(this)
+
+                t.closest('div.col-experience').remove()
+                refreshExperienceList()
+
+                if ($('.row-list-experience .col-experience').length === 0) {
+                    $('.row-list-experience').html('<div class="text-center no-data">Tidak ada data</div>')
+                }
+            })
+            
+            $('.row-list-experience').on('change keyup keydown', '.experience-company', function(){
+                const t = $(this)
+                const val = t.val()
+                const position = t.closest('div.col-experience').find('.experience-position').val()
+                
+                t.closest('div.col-experience').find('.experience-title').text(`${val} - ${position}`)
+            })
+            
+            $('.row-list-experience').on('change keyup keydown', '.experience-position', function(){
+                const t = $(this)
+                const val = t.val()
+                const company = t.closest('div.col-experience').find('.experience-company').val()
+                
+                t.closest('div.col-experience').find('.experience-title').text(`${company} - ${val}`)
+            })
+
+            $('.btn-add-experience').on('click', function(){
+                const el = $('.row-add-experience .col-experience')
+                const cloneEl = el.clone()
+
+                el.removeClass('d-none')
+                cloneEl.find('.experience-country').attr('name', 'negara_tempat_kerja[]').prop('required', true)
+                cloneEl.find('.experience-company').attr('name', 'nama_perusahaan[]').prop('required', true)
+                cloneEl.find('.experience-position').attr('name', 'posisi[]').prop('required', true)
+                cloneEl.find('.experience-start-work-date').attr('name', 'tanggal_mulai_kerja[]').prop('required', true)
+                cloneEl.find('.experience-end-work-date').attr('name', 'tanggal_selesai_kerja[]').prop('required', true)
+
+                if ($('.row-list-experience .col-experience').length === 0) {
+                    cloneEl.find('hr').remove()
+                }
+
+                cloneEl.appendTo('.row-list-experience')
+                refreshExperienceList()
+
+                if ($('.row-list-experience .col-experience').length > 0) {
+                    $('.row-list-experience .no-data').remove()
+                }
+            })
+
+           
+            
+            function refreshExperienceList()
+            {
+                $.each($('.col-experience'), function(i, item){
+                    const t = $(this)
+                    
+                    t.find('.experience-country').attr('data-name', `negara_tempat_kerja.${i}`)
+                    t.find('.experience-company').attr('data-name', `nama_perusahaan.${i}`)
+                    t.find('.experience-start-work-date').attr('data-name', `tanggal_mulai_kerja.${i}`)
+                    t.find('.experience-end-work-date').attr('data-name', `tanggal_selesai_kerja.${i}`)
+                    t.find('.experience-position').attr('data-name', `posisi.${i}`)
+                })
+            }
+        })
+    </script>
     <script>
         $(document).ready(function() {
             $('.wilayah').select2({
@@ -563,7 +697,12 @@
 
                 return false
             })
+            $('.form-work').on('submit', function() {
+                const t = $(this)
+                formSubmit(t, 3)
 
+                return false
+            })
             $('.form-document').on('submit', function() {
                 const t = $(this)
                 formSubmit(t, 4)

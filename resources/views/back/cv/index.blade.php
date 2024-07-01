@@ -42,15 +42,27 @@
            
             <div class="flex flex-wrap gap-10 justify-start px-10" style="padding-top: 20px; padding-bottom:20px">
                 <div class="profile-wrapper">
-                        <img 
-                        src="data:image/png;base64,<?php echo base64_encode(file_get_contents(base_path('public/upload/foto/thumb_'.$kandidat->foto))); ?>" 
-                        onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
-                        width="120" 
-                        height="200" 
-                    
-                        alt="user" 
+                    @if ($kandidat->foto == null)
+                    <img class="card-img-top img-fluid"
+                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGThxD2scluEhl1Ea8rzz5J9ew7I3NEBUq2g&s"
+                     width="120" 
+                            height="200" 
+                        
+                            alt="user"    
+                     alt="Default Image"
                         style="object-fit:cover;  object-position: center;"
-                    >
+                        >
+                    @else     
+                            <img 
+                            src="data:image/png;base64,<?php echo base64_encode(file_get_contents(base_path('public/upload/foto/thumb_'.$kandidat->foto))); ?>" 
+                            onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
+                            width="120" 
+                            height="200" 
+                        
+                            alt="user" 
+                            style="object-fit:cover;  object-position: center;"
+                        >
+                    @endif
             </div>
             <div>
 

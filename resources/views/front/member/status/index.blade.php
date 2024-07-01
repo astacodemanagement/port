@@ -51,6 +51,17 @@
                         'selesai_kontrak' => 'Selesai Kontrak'
 
                     ];
+
+
+                    $keterangan = [
+                        'cek_kualifikasi' => 'Tidak Perlu Keterangan',
+                        'lolos_kualifikasi' => $item->keterangan_dari_lolos_kualifikasi,
+                        'interview' => $item->keterangan_interview,
+                        'lolos_interview' => $item->keterangan_dari_lolos_interview,
+                        'dalam_proses' => $item->keterangan_dalam_proses,
+                        'terbang' => $item->keterangan_seleksi_terbang,
+                        'selesai_kontrak' => $item->keterangan_selesai_kontrak
+                    ]
                 @endphp
 
                 <ol class="tw-items-center sm:tw-flex tw-mt-10">
@@ -61,8 +72,8 @@
                             $line = $isCompleted ? 'bg-primary' : 'tw-bg-gray-200';
                         @endphp
                         <li class="tw-relative tw-mb-6 sm:tw-mb-0">
-                            <div class="tw-flex tw-items-center tw-w-full tw-h-full">
-                                <div class="tw-z-10 tw-flex tw-items-center tw-justify-center tw-mx-auto tw-w-10 tw-h-10 bg-primary tw-rounded-full tw-ring-0 tw-ring-white sm:tw-ring-8 tw-shrink-0">
+                            <div class="tw-flex tw-items-center tw-h-full">
+                                <div class="tw-z-10 tw-flex tw-items-center tw-justify-center sm:tw-mx-0 tw-mx-auto tw-w-10 tw-h-10 bg-primary tw-rounded-full tw-ring-0 tw-ring-white sm:tw-ring-8 tw-shrink-0">
                                     <i class="{{ $namaIcon }} tw-text-white tw-text-xl"></i>
                                 </div>
                                 @if (!$loop->last)
@@ -70,7 +81,7 @@
                                 @endif
                             </div>
                             <div class="tw-mt-3 sm:tw-pe-8">
-                                <button type="button" class="tw-text-sm tw-font-semibold tw-text-gray-900" data-bs-toggle="modal" data-bs-target="#modal_{{ $status }}{{ $item->id }}">{{ $title[$status] }}</button>
+                                <button type="button" class="tw-text-sm tw-font-semibold tw-text-gray-900 md:tw-mx-0 tw-w-full" data-bs-toggle="modal" data-bs-target="#modal_{{ $status }}{{ $item->id }}">{{ $title[$status] }}</button>
                                 <time class="tw-block tw-text-sm tw-font-normal tw-leading-none tw-text-gray-400 md:tw-text-start tw-text-center ">{{ $tanggal }}</time>
                             </div>
                         </li>
@@ -184,7 +195,7 @@
                                        <h3 class="text-primary tw-font-semibold tw-text-xl">
                                         {{$item->job->nama_perusahaan . ' - ' .  $item->job->nama_job}}
                                        </h3>
-                                       <h5 class="tw-text-gray-700 tw-text-lg">
+                                       <h5 class="tw-text-gray-700 tw-text-base">
                                         @if ($tanggal != 'Belum selesai')
                                         {{$title[$status]}}  selesai pada tanggal {{$tanggal}}
                                             
@@ -192,6 +203,15 @@
                                             Belum mencapai tahapan ini
                                         @endif    
                                     </h5>
+                                    <p>
+                                        <!-- keterangan -->
+                                        @if ($keterangan[$status])
+                                            {{$keterangan[$status]}}
+                                        @else
+                                            Belum ada keterangan
+                                        @endif
+                                      
+                                    </p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary text-primary" data-bs-dismiss="modal">Close</button>

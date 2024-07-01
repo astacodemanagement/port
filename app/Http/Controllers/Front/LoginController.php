@@ -60,7 +60,7 @@ class LoginController extends Controller
         $request->session()->regenerate();
 
         $this->clearLoginAttempts($request);
-
+        $user = $this->guard()->user();
         if (!$this->guard()->user()->hasRole('member')) {
             $this->guard()->logout();
 
@@ -69,6 +69,15 @@ class LoginController extends Controller
             $request->session()->regenerateToken();
 
             return redirect(route('front.login'))->withErrors(['email' => trans('auth.failed')]);
+        }
+        if (is_null($user->email_verified_at)) {
+            $this->guard()->logout();
+    
+            $request->session()->invalidate();
+        
+            $request->session()->regenerateToken();
+    
+            return redirect(route('front.login'))->withErrors(['email' => trans('auth.email_not_confirmed')]);
         }
 
         if ($response = $this->authenticated($request, $this->guard()->user())
