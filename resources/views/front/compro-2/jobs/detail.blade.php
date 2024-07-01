@@ -40,7 +40,7 @@
                     </div>
                 </div>
             </div>
-            @if (auth()?->user()?->kandidat->pendaftaran->status == "Verifikasi")
+            @if (auth()?->user()?->kandidat?->pendaftaran?->status == "Verifikasi")
             <div class="">
                 {{-- icon button --}}
                 <div class="md:tw-flex tw-justify-center tw-items-center tw-mt-10 tw-hidden">
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            @elseif (auth()?->user()?->kandidat->pendaftaran->status == "Belum Verifikasi(Pending)")
+            @elseif (auth()?->user()?->kandidat?->pendaftaran?->status == "Belum Verifikasi(Pending)")
             
             <div class="">
                 {{-- icon button --}}
@@ -121,7 +121,8 @@
                                                 {{$job->jenis_kelamin}}
                                             @else
                                                 Tidak Ada Ketentuan
-                                            @endif</p>
+                                            @endif
+                                        </p>
                                         </div>
                                     </div>
                                 
@@ -135,7 +136,8 @@
                                             {{$job->rentang_usia}}
                                             @else
                                                 Tidak Ada Ketentuan  
-                                            @endif</p>
+                                            @endif
+                                        </p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start tw-space-x-2 tw-mt-5 tw-gap-2">
@@ -409,7 +411,7 @@
                             </div>
                             <div class="col-span-2">
                                  
-                                @if (auth()?->user()?->kandidat->pendaftaran->status == "Verifikasi")
+                                @if (auth()?->user()?->kandidat?->pendaftaran->status == "Verifikasi")
                                     <div class="">
                                         {{-- icon button --}}
                                         <div class="tw-flex tw-justify-center tw-items-center tw-mt-10 md:tw-hidden">
@@ -424,7 +426,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                @elseif (auth()?->user()?->kandidat->pendaftaran->status == "Belum Verifikasi(Pending)")
+                                @elseif (auth()?->user()?->kandidat?->pendaftaran->status == "Belum Verifikasi(Pending)")
                                 
                                     <div class="">
                                         {{-- icon button --}}
