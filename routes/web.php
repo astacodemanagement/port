@@ -174,15 +174,11 @@ Route::prefix('administrator')->group(function () {
 
 
                 // Kategori Job
-                Route::resource('kategori-job', KategoriJobController::class);
                 Route::name('kategori-job.')->group(function () {
-                    Route::get('/kategori-job', [KategoriJobController::class, 'index'])->name('index');
-                    Route::get('/kategori-job/{id}/edit', [KategoriJobController::class, 'edit'])->name('edit');
-                    Route::put('/kategori-job/{id}', [KategoriJobController::class, 'update'])->name('update');
-                });
+                    Route::resource('kategori-job', KategoriJobController::class);
+                    });
 
                 // Job
-                Route::resource('job', JobController::class);
                 Route::name('job.')->group(function () {
                     Route::get('/job', [JobController::class, 'index'])->name('index');
                     Route::post('/simpan_job', [JobController::class, 'store'])->name('simpan_job');
@@ -201,29 +197,20 @@ Route::prefix('administrator')->group(function () {
 
 
                 // Supplier
-                Route::resource('supplier', SupplierController::class);
                 Route::name('supplier.')->group(function () {
-                    Route::get('/supplier', [SupplierController::class, 'index'])->name('index');
-                    Route::get('/supplier/{id}/edit', [SupplierController::class, 'edit'])->name('edit');
-                    Route::put('/supplier/{id}', [SupplierController::class, 'update'])->name('update');
+                    Route::resource('supplier', SupplierController::class);
                 });
 
 
                 // Agency
-                Route::resource('agency', AgencyController::class);
                 Route::name('agency.')->group(function () {
-                    Route::get('/agency', [AgencyController::class, 'index'])->name('index');
-                    Route::get('/agency/{id}/edit', [AgencyController::class, 'edit'])->name('edit');
-                    Route::put('/agency/{id}', [AgencyController::class, 'update'])->name('update');
+                    Route::resource('agency', AgencyController::class);
                 });
 
 
                 // Employer
-                Route::resource('employer', EmployerController::class);
                 Route::name('employer.')->group(function () {
-                    Route::get('/employer', [EmployerController::class, 'index'])->name('index');
-                    Route::get('/employer/{id}/edit', [EmployerController::class, 'edit'])->name('edit');
-                    Route::put('/employer/{id}', [EmployerController::class, 'update'])->name('update');
+                    Route::resource('employer', EmployerController::class);
                 });
 
 
@@ -233,72 +220,48 @@ Route::prefix('administrator')->group(function () {
 
 
                 // Negara
-                Route::resource('negara', NegaraController::class);
                 Route::name('negara.')->group(function () {
-                    Route::get('/negara', [NegaraController::class, 'index'])->name('index');
-                    Route::get('/negara/{id}/edit', [NegaraController::class, 'edit'])->name('edit');
-                    Route::put('/negara/{id}', [NegaraController::class, 'update'])->name('update');
+                    Route::resource('negara', NegaraController::class);;
                 });
 
                 // Fasilitas
-                Route::resource('fasilitas', FasilitasController::class);
                 Route::name('fasilitas.')->group(function () {
-                    Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('index');
-                    Route::get('/fasilitas/{id}/edit', [FasilitasController::class, 'edit'])->name('edit');
-                    Route::put('/fasilitas/{id}', [FasilitasController::class, 'update'])->name('update');
+                    Route::resource('fasilitas', FasilitasController::class);
                 });
 
 
                 // Slider
-                Route::resource('slider', SliderController::class);
                 Route::name('slider.')->group(function () {
-                    Route::get('/slider', [SliderController::class, 'index'])->name('index');
-                    Route::get('/slider/{id}/edit', [SliderController::class, 'edit'])->name('edit');
-                    Route::put('/slider/update/{id}', [SliderController::class, 'update'])->name('update');
+                    Route::resource('slider', SliderController::class);
                 });
                 // counter
-                Route::resource('counter', CounterController::class);
                 Route::name('counter.')->group(function () {
-                    Route::get('/counter', [CounterController::class, 'index'])->name('index');
-                    Route::get('/counter/{id}/edit', [CounterController::class, 'edit'])->name('edit');
-                    Route::put('/counter/update/{id}', [CounterController::class, 'update'])->name('update');
+                    Route::resource('counter', CounterController::class);
                 });
                 
 
 
                 // Galeri
-                Route::resource('galeri', GaleriController::class);
                 Route::name('galeri.')->group(function () {
-                    Route::get('/galeri', [GaleriController::class, 'index'])->name('index');
-                    Route::get('/galeri/{id}/edit', [GaleriController::class, 'edit'])->name('edit');
-                    Route::put('/galeri/update/{id}', [GaleriController::class, 'update'])->name('update')->name('update');
+                    Route::resource('galeri', GaleriController::class);
                 });
 
 
                 // Review
-                Route::resource('review', ReviewController::class);
                 Route::name('review.')->group(function () {
-                    Route::get('/review', [ReviewController::class, 'index'])->name('index');
-                    Route::get('/review/{id}/edit', [ReviewController::class, 'edit'])->name('edit');
-                    Route::put('/review/{id}', [ReviewController::class, 'update'])->name('update');
+                    Route::resource('review', ReviewController::class);
                 });
 
 
                 // Faq
-                Route::resource('faq', FaqController::class);
                 Route::name('faq.')->group(function () {
-                    Route::get('/faq', [FaqController::class, 'index'])->name('index');
-                    Route::get('/faq/{id}/edit', [FaqController::class, 'edit'])->name('edit');
-                    Route::put('/faq/{id}', [FaqController::class, 'update'])->name('update');
+                    Route::resource('faq', FaqController::class);
                 });
 
 
                 // Alasan
-                Route::resource('alasan', AlasanController::class);
                 Route::name('alasan.')->group(function () {
-                    Route::get('/alasan', [AlasanController::class, 'index'])->name('index');
-                    Route::get('/alasan/{id}/edit', [AlasanController::class, 'edit'])->name('edit');
-                    Route::put('/alasan/{id}', [FaqController::class, 'update'])->name('update');
+                    Route::resource('alasan', AlasanController::class);
                 });
 
 
@@ -309,37 +272,25 @@ Route::prefix('administrator')->group(function () {
                 });
 
                 // Step
-                Route::resource('step', StepController::class);
                 Route::name('step.')->group(function () {
-                    Route::get('/step', [StepController::class, 'index'])->name('index');
-                    Route::get('/step/{id}/edit', [StepController::class, 'edit'])->name('edit');
-                    Route::put('/step/update/{id}', [StepController::class, 'update'])->name('update');
+                    Route::resource('step', StepController::class);
                 });
 
                 // Pengaduan
-                Route::resource('pengaduan', PengaduanController::class);
                 Route::name('pengaduan.')->group(function () {
-                    Route::get('/pengaduan', [PengaduanController::class, 'index'])->name('index');
-                    Route::get('/pengaduan/{id}/edit', [PengaduanController::class, 'edit'])->name('edit');
-                    Route::put('/pengaduan/update/{id}', [PengaduanController::class, 'update'])->name('update');
+                    Route::resource('pengaduan', PengaduanController::class);
                 });
 
 
                 // Pemasukan
-                Route::resource('pemasukan', PemasukanController::class);
                 Route::name('pemasukan.')->group(function () {
-                    Route::get('/pemasukan', [PemasukanController::class, 'index'])->name('index');
-                    Route::get('/pemasukan/{id}/edit', [PemasukanController::class, 'edit'])->name('edit');
-                    Route::put('/pemasukan/update/{id}', [PemasukanController::class, 'update'])->name('update');
                 });
+                Route::resource('pemasukan', PemasukanController::class);
 
 
                 // Pengeluaran
-                Route::resource('pengeluaran', PengeluaranController::class);
                 Route::name('pengeluaran.')->group(function () {
-                    Route::get('/pengeluaran', [PengeluaranController::class, 'index'])->name('index');
-                    Route::get('/pengeluaran/{id}/edit', [PengeluaranController::class, 'edit'])->name('edit');
-                    Route::put('/pengeluaran/update/{id}', [PengeluaranController::class, 'update'])->name('update');
+                    Route::resource('pengeluaran', PengeluaranController::class);
                 });
             });
         });
@@ -411,7 +362,7 @@ Route::group(['middleware' => ['role:member','is_verify_email']], function () {
                 Route::prefix('profile')->group(function () {
                     Route::name('profile.')->group(function () {
                         Route::controller(MemberProfileController::class)->group(function () {
-                            Route::get('/', 'edit')->name('edit');
+                            // Route::get('/', 'edit')->name('edit');
                             Route::get('/edit', 'edit')->name('edit');
                             Route::put('/edit', 'update')->name('update');
                         });
