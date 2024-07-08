@@ -125,7 +125,7 @@
                                                     src="{{ asset('template') }}/files/assets/images/avatar-3.jpg"
                                                     alt="Generic placeholder image">
                                                 <div class="media-body">
-                                                    <h5 class="notification-user">Joseph William</h5>
+                                                    <h5 class="notification-user">({{ Auth::user()->name }})</h5>
                                                     <p class="notification-msg">Lorem ipsum dolor sit amet,
                                                         consectetuer elit.</p>
                                                     <span class="notification-time">30 minutes ago</span>
