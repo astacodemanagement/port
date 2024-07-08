@@ -19,7 +19,7 @@
                 @if(auth()?->user()?->kandidat)
                 <div class="tw-mt-6" data-aos="zoom-in" data-aos-duration="1000">
 
-                    <a data-aos="fade-left" href="{{route('compro-2.job.index')}}" class="tw-z-10  tw-w-full tw-px-5 tw-py-3  tw-text-sm tw-tracking-wider tw-text-white tw-uppercase tw-transition-colors tw-duration-300 tw-transform tw-bg-sky-500 tw-rounded-lg lg:tw-w-auto hover:tw-bg-sky-500 focus:tw-outline-none focus:tw-bg-sky-500">
+                    <a data-aos="fade-left" href="/" class="tw-z-10  tw-w-full tw-px-5 tw-py-3  tw-text-sm tw-tracking-wider tw-text-white tw-uppercase tw-transition-colors tw-duration-300 tw-transform tw-bg-sky-500 tw-rounded-lg lg:tw-w-auto hover:tw-bg-sky-500 focus:tw-outline-none focus:tw-bg-sky-500">
                         Start To Found Job 
                         <i class="fas fa-arrow-right tw-ml-2 -tw-rotate-45"></i>
                     </a>

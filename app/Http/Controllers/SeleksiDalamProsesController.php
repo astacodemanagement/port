@@ -86,7 +86,7 @@ class SeleksiDalamProsesController extends Controller
         )
             ->join('job', 'seleksi.job_id', '=', 'job.id')
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
-            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik')
+            ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id') 
             ->leftJoin('supplier', 'seleksi.supplier_id', '=', 'supplier.id') // melakukan left join dengan tabel supplier
             ->where('seleksi.id', $id)
             ->first();

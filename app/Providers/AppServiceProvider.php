@@ -30,10 +30,11 @@ class AppServiceProvider extends ServiceProvider
             $user = auth()->user();
             $workExperiences = PengalamanKerja::where('pendaftaran_id', $user?->kandidat?->pendaftaran?->id)->limit(3)->orderBy('id', 'desc')->get();
             $appliedJobs = Seleksi::where('kandidat_id', auth()->user()->kandidat->id)->orderBy('id', 'desc')->limit(3)->get();
-
+            $jobCompleted = Seleksi::where('kandidat_id', auth()->user()->kandidat->id)->where('status', 'Selesai Kontrak')->get();
             View::share([
                 'work_experiences' => $workExperiences,
-                'recent_applied_jobs' => $appliedJobs
+                'recent_applied_jobs' => $appliedJobs,
+                'job_completed' => $jobCompleted,
             ]);
         });
     }

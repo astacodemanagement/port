@@ -175,6 +175,7 @@
                     <div class="content-from-action">
                         <form class="form mx-auto form-register" novalidate="novalidate">
                             @csrf
+                            <input type="hidden" name="compro" value="1">
                             <div class="mb-5">
 
                                 <!--begin::Step 1-->
@@ -193,7 +194,7 @@
                                         <div class="form-group">
                                             <select class="form-select" name="kategori_job_id"
                                                 aria-labelledby="dropdownKategori">
-                                                <option value="">Industri Yang Diminati</option>
+                                                <option value="">Industri Yang Diminati *</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{ $category->id }}">{{ $category->nama_kategori_job }}
                                                     </option>
@@ -205,25 +206,25 @@
                                     <label class="form-label">Informasi Pribadi</label>
                                     <div class="fv-row mb-10">
                                         <div class="form-group mb-5">
-                                            <input type="text" class="form-control id-card-format" name="nik" placeholder="Nomor E-KTP (NIK)" value="">
+                                            <input type="text" class="form-control id-card-format" name="nik" placeholder="Nomor E-KTP (NIK) *" value="">
                                         </div>
                                         <div class="form-group mb-5">
-                                            <input type="text" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap" value="">
+                                            <input type="text" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap *" value="">
                                         </div>
 
                                         <div class="form-group row mb-5">
                                             <div class="col-6">
-                                                <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir" value="">
+                                                <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir *" value="">
                                             </div>
                                             <div class="col-6">
-                                                <input type="text" class="form-control tanggal-lahir" placeholder="Tanggal Lahir" value="">
+                                                <input type="text" class="form-control tanggal-lahir" placeholder="Tanggal Lahir *" value="">
                                                 <input type="hidden" class="d-none h-tanggal-lahir" name="tanggal_lahir">
                                             </div>
                                         </div>
 
                                         <div class="form-group mb-5">
                                             <select type="text" class="form-control form-select" name="agama">
-                                                <option value="">Agama</option>
+                                                <option value="">Agama *</option>
                                                 <option value="1">Islam</option>
                                                 <option value="2">Kristen</option>
                                                 <option value="3">Katolik</option>
@@ -235,19 +236,19 @@
                                         </div>
 
                                         <div class="form-group row mb-5">
-                                            <div class="col-6"><input type="number" class="form-control" name="berat_badan" min="0" placeholder="Berat Badan" value=""></div>
-                                            <div class="col-6"><input type="number" class="form-control" name="tinggi_badan" min="0" placeholder="Tinggi Badan" value=""></div>
+                                            <div class="col-6"><input type="number" class="form-control" name="berat_badan" min="0" placeholder="Berat Badan *" value=""></div>
+                                            <div class="col-6"><input type="number" class="form-control" name="tinggi_badan" min="0" placeholder="Tinggi Badan *" value=""></div>
                                         </div>
                                         <div class="form-group mb-5">
                                             <select name="jenis_kelamin" class="form-select">
-                                                <option value="">Jenis Kelamin</option>
+                                                <option value="">Jenis Kelamin *</option>
                                                 <option value="P">Pria</option>
                                                 <option value="W">Wanita</option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-5">
                                             <select name="status_kawin" class="form-select">
-                                                <option value="">Status Kawin</option>
+                                                <option value="">Status Kawin *</option>
                                                 <option value="1">Belum Menikah</option>
                                                 <option value="2">Menikah</option>
                                                 <option value="3">Cerai</option>
@@ -255,27 +256,33 @@
                                         </div>
                                         <div class="form-group mb-5">
                                             <select name="pendidikan" class="form-select">
-                                                <option value="">Pendidikan Terakhir</option>
-                                                <option value="1">Tidak/Belum Sekolah</option>
-                                                <option value="2">SD</option>
-                                                <option value="3">SMP/Sederajat</option>
-                                                <option value="4">SMA/SMK/Sederajat</option>
-                                                <option value="5">Diploma</option>
-                                                <option value="6">Sarjana</option>
+                                                <option value="">Pendidikan Terakhir *</option>
+                                                    <option value="1">SD</option>
+                                                    <option value="2">SMP</option>
+                                                    <option value="3">SMA</option>
+                                                    <option value="4">SMA</option>
+                                                    <option value="5">D3</option>
+                                                    <option value="6">D4</option>
+                                                    <option value="7">S1</option>
+                                                    <option value="8">S2</option>
+                                                    <option value="9">S3</option>
                                             </select>
                                         </div>
                                         <div class="form-group mb-5">
-                                            <input type="text" class="form-control" name="nama_lengkap_ayah" placeholder="Nama Lengkap Ayah" value="">
+                                            <input type="text" class="form-control" name="nama_lengkap_ayah" placeholder="Nama Lengkap Ayah *" value="">
                                         </div>
                                         <div class="form-group mb-5">
-                                            <input type="text" class="form-control" name="nama_lengkap_ibu"  placeholder="Nama Lengkap Ibu" value="">
+                                            <input type="text" class="form-control" name="nama_lengkap_ibu"  placeholder="Nama Lengkap Ibu *" value="">
                                         </div>
                                         <div class="form-group mb-5">
-                                            <textarea class="form-control" rows="3" name="alamat" placeholder="Alamat"></textarea>
+                                            <textarea class="form-control" rows="3" name="alamat" placeholder="Alamat *"></textarea>
                                         </div>
                                         <div class="form-group mb-5">
                                             <select class="form-select wilayah" name="wilayah" aria-labelledby="wilayah">
                                             </select>
+                                        </div>
+                                        <div class="form-group mb-5">
+                                            <input type="text" class="form-control" name="level_bahasa" placeholder="Level Bahasa Ingris *" value="">
                                         </div>
                                         {{-- <div class="form-group mb-5">
                                             <select class="form-select select2 provinsi" name="provinsi_id" aria-labelledby="provinsi">
@@ -296,6 +303,16 @@
                                                 <option value="">Kecamatan</option>
                                             </select>
                                         </div> --}}
+                                        <!-- select level bahasa -->
+                                        <div class="form-group
+                                            mb-5">
+                                            <select class="form-select" name="level_bahasa" aria-labelledby="levelBahasa">
+                                                <option value="">Level Bahasa Inggris *</option>
+                                                <option value="1">Beginner English</option>
+                                                <option value="2">⁠Medium English</option>
+                                                <option value="3">Advance English</option>
+                                            </select>
+                                        </div>  
                                         <div class="form-group mb-5">
                                             <select name="referensi" class="form-select reference">
                                                 <option value="">Dari mana kamu mengetahui kami ?</option>
@@ -354,6 +371,7 @@
 
                                 <!--begin::Step 3-->
                                 <div class="flex-column" data-kt-stepper-element="content">
+
                                     <div class="fv-row">
                                         <label class="form-label">Pengalaman Kerja</label>
                                     </div>
@@ -385,6 +403,13 @@
                                                 class="fas fa-plus"></i> Tambahkan
                                             Pengalaman Kerja Lainnya</button>
                                     </div>
+                                    <!-- belum ada pengalaman kerja -->
+                                    <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" name="keterangan_belum_kerja" id="keterangan_belum_kerja">
+                                                    <label class="form-check-label" for="keterangan_belum_kerja " style="padding-top:2px">
+                                                        <b>Ceklis Jika Belum Ada Pengalaman Kerja</b>
+                                                    </label>
+                                    </div> 
                                 </div>
                                 <!--end::Step 3-->
 
@@ -451,32 +476,32 @@
                                             <div class="col-12">
                                                 <div class="form-input">
                                                     <div class="input-group">
-                                                        <label class="input-group-text" for="foto" style="width: 150px">Foto</label>
+                                                        <label class="input-group-text" for="foto" style="width: 150px">Foto *</label>
                                                         <input type="file" class="form-control" id="foto" name="file_foto" accept="image/*">
                                                     </div>
                                                     <label class="text-muted"><small>Foto formal background putih/biru/merah</small></label>
                                                 </div>
-                                                <div class="form-input mt-2">
+                                                <!-- <div class="form-input mt-2">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="paspor" style="width: 150px">Paspor</label>
                                                         <input type="file" class="form-control" id="paspor" name="file_paspor" accept="image/*,application/pdf">
                                                     </div>
                                                     <label class="text-muted"><small>Jika ada</small></label>
-                                                </div>
+                                                </div> -->
                                                 <div class="form-input mt-2">
                                                     <div class="input-group">
-                                                        <label class="input-group-text" for="ktp" style="width: 150px">KTP</label>
+                                                        <label class="input-group-text" for="ktp" style="width: 150px">KTP< */label>
                                                         <input type="file" class="form-control" id="ktp" name="file_ktp" accept="image/*,application/pdf">
                                                     </div>
                                                     <label class="text-muted"><small>Mohon di Scan</small></label>
                                                 </div>
-                                                <div class="form-input mt-2">
+                                                <!-- <div class="form-input mt-2">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="kk" style="width: 150px">Kartu Keluarga</label>
                                                         <input type="file" class="form-control" id="kk" name="file_kk" accept="image/*,application/pdf">
                                                     </div>
                                                     <label class="text-muted"><small>Mohon di Scan</small></label>
-                                                </div>
+                                                </div> -->
                                             </div>
                                         </div>
                                     </div>
@@ -491,10 +516,10 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="form-input mb-3">
-                                                    <input type="email" class="form-control" placeholder="Email" name="email">
+                                                    <input type="email" class="form-control" placeholder="Email *" name="email">
                                                 </div>
                                                 <div class="form-input">
-                                                    <input type="text" class="form-control phone-number phone-number" name="no_hp" placeholder="Nomor HP Aktif">
+                                                    <input type="text" class="form-control phone-number phone-number" name="no_hp" placeholder="Nomor HP Aktif *">
                                                 </div>
                                                 <div class="form-input mb-3 pt-3 pl-2 pb-0">
                                                     <div class="form-check">
@@ -503,18 +528,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-input mb-3">
-                                                    <input type="text" class="form-control phone-number whatsapp-number" name="no_wa" placeholder="Nomor Whatsapp Aktif">
+                                                    <input type="text" class="form-control phone-number whatsapp-number" name="no_wa" placeholder="Nomor Whatsapp Aktif *">
                                                 </div>
                                                 <div class="form-input mb-3">
                                                     <div class="input-group">
-                                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                                        <input type="password" class="form-control" name="password" placeholder="Password *">
                                                         <span class="btn btn-show-password text-white" style="padding-top: .8rem;" type="button" id="show-password"><i class="fas fa-eye-slash"></i></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-input mb-3">
                                                     <div class="input-group">
-                                                        <input type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password">
-                                                        <span class="btn btn-show-password text-white" style="padding-top: .8rem;" type="button" id="show-password"><i class="fas fa-eye-slash"></i></span>
+                                                        <input type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password *">
+                                                        <span class="btn btn-show-password text-white"   type="button" id="show-password"><i class="fas fa-eye-slash"></i></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -763,6 +788,7 @@
             }
         })
 
+       
         $('.btn-add-experience').on('click', function() {
             const el = $('.row-add-experience')
             const cloneEl = el.clone()
@@ -770,7 +796,7 @@
             el.find('.error-message').remove()
             cloneEl.find('.btn-primary').removeClass('btn-primary').addClass('btn-danger btn-remove-experience')
                 .html('<i class="fas fa-times"></i> Hapus Pengalaman Kerja');
-            cloneEl.find('.input-add-experience').removeClass('input-add-experience')
+            cloneEl.find('.input-add-experience')
             cloneEl.find('.error-message').remove()
             cloneEl.removeClass('row-add-experience fv-row mb-10').addClass(
                 'list-experience list-experience- mb-10')
@@ -805,6 +831,11 @@
             refreshExperienceList()
         })
 
+        $('.row-list-experience').on('click', '.list-experience .btn-remove-experience', function() {
+            $(this).closest('div.list-experience').remove()
+            refreshExperienceList()
+        })
+
         $('#check_whatsapp_number').on('click', function(){
             const t = $(this)
 
@@ -833,7 +864,21 @@
                 t.find('i').removeClass('fa-eye').addClass('fa-eye-slash')
             }
         })
-
+        // handle tidak ada pengalaman kerja
+        $('#keterangan_belum_kerja').on('click', function(){
+            // 
+           if($(this).is(':checked')){
+            $('.input-add-experience').prop('disabled', true)
+            $('.btn-add-experience').prop('disabled', true)
+            $('.btn-remove-experience').prop('disabled', true)
+            $('.input-add-experience').val('')
+              }else{
+            $('.input-add-experience').prop('disabled', false)
+            $('.btn-add-experience').prop('disabled', false)
+            $('.btn-remove-experience').prop('disabled', false)
+            $('.input-add-experience').val('')
+              }
+        })
         $('.btn-submit').on('click', function() {
             const t = $(this)
             var formData = new FormData($('.form-register')[0]);

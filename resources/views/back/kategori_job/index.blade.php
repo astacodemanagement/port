@@ -16,7 +16,7 @@
                     <div class="page-header-title">
                         <i class="feather icon-list bg-c-blue"></i>
                         <div class="d-inline">
-                            <h5>Kategori Job</h5>
+                            <h5>Minat Industri</h5>
                             <span>Silahkan isi dengan data yang sesuai dan valid !</span>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                             <li class="breadcrumb-item">
                                 <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#!">Halaman Kategori Job</a>
+                            <li class="breadcrumb-item"><a href="#!">Halaman Minat Industri</a>
                             </li>
 
                         </ul>
@@ -48,7 +48,7 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Data Kategori Job</h5>
+                                        <h5>Data Minat Industri</h5>
 
                                     </div>
                                     <div class="card-block">
@@ -64,7 +64,7 @@
                                                     <tr>
                                                         <th width="5%">No</th>
 
-                                                        <th width="15%">Nama Ketegori</th>
+                                                        <th width="15%">Nama Minat Industri</th>
                                                         <th width="5%">Urutan</th>
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
@@ -114,7 +114,7 @@
                         @csrf <!-- Tambahkan token CSRF -->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Form Input Kategori Job</h4>
+                                <h4 class="modal-title">Form Input Minat Industri</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -126,7 +126,7 @@
 
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="nama_kategori_job">Nama Kategori Job</label>
+                                            <label class="col-form-label" for="nama_kategori_job">Nama Minat Industri</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control form-control-success"
@@ -135,8 +135,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="urutan">Urutan Kategori
-                                                Job</label>
+                                            <label class="col-form-label" for="urutan">Urutan Minat Industri</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="number" class="form-control form-control-success" id="urutan"
@@ -171,7 +170,7 @@
                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Form Edit Kategori Job</h4>
+                                <h4 class="modal-title">Form Edit Minat Industri</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -180,8 +179,7 @@
                                 <div class="card-block">
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_nama_kategori_job">Nama Kategori
-                                                Job</label>
+                                            <label class="col-form-label" for="edit_nama_kategori_job">Nama Minat Industri</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control form-control-success"
@@ -190,7 +188,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_urutan">Urutan Kategori Job</label>
+                                            <label class="col-form-label" for="edit_urutan">Urutan Minat Industri</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="number" class="form-control form-control-success"

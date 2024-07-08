@@ -52,6 +52,8 @@ class NegaraController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+
         // Validasi request
         $validator = Validator::make($request->all(), [
             'nama_negara' => 'required|unique:negara,nama_negara',
@@ -68,16 +70,25 @@ class NegaraController extends Controller
         }
 
         $input = $request->all();
+        // handle logo
+        if ($request->hasFile('logo')) {
+            $image = $request->file('logo');
+            $destinationPath = 'upload/negara/';
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move($destinationPath, $imageName);
+            $input['logo'] = $imageName;
+        }
+        Negara::create([
+            'nama_negara' => $request->nama_negara,
+            'kode_negara' => $request->kode_negara,
+            'logo' => $imageName,
 
-        // Simpan data spp ke database menggunakan fill()
-        $negara = new Negara();
-        $negara->fill($input);
-        $negara->save();
+        ]);
 
         $loggedInUserId = Auth::id();
 
         // Simpan log histori untuk operasi Create dengan user_id yang sedang login
-        $this->simpanLogHistori('Create', 'Negara', $negara->id, $loggedInUserId, null, json_encode($negara));
+        $this->simpanLogHistori('Create', 'Negara', $request->id, $loggedInUserId, null, json_encode($negara));
 
 
         return response()->json(['message' => 'Data Berhasil Disimpan']);
@@ -115,6 +126,7 @@ class NegaraController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'nama_negara' => 'required',
             'kode_negara' => 'required',
@@ -127,11 +139,27 @@ class NegaraController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
+
         $kategoriJob = Negara::findOrFail($id);
         $oldData = $kategoriJob->getOriginal();
 
+        // handle logo
+        if ($request->hasFile('logo')) {
+            $image = $request->file('logo');
+            $destinationPath = 'upload/negara/';
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move($destinationPath, $imageName);
+
+            // Hapus file logo lama jika ada
+            if ($kategoriJob->logo && file_exists(public_path('upload/negara/' . $kategoriJob->logo))) {
+                unlink(public_path('upload/negara/' . $kategoriJob->logo));
+            }
+
+            $kategoriJob->logo = $imageName;
+        }
         // Update data
         $kategoriJob->update([
+            'logo' =>  $imageName,
             'nama_negara' => $request->nama_negara,
             'kode_negara' => $request->kode_negara,
         ]);

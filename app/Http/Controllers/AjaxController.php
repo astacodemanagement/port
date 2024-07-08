@@ -86,9 +86,25 @@ class AjaxController extends Controller
     }
     public function getJob(Request $request)
     {
-        $q = $request->get("query");
-        $jobs = Job::active()->where('nama_job', 'like', '%'.$q.'%')->orderBy('id', 'desc')->get();
-
+        // dd($request->all());
+        $q = $request->get("search");
+        $jobsQuery = Job::active()->orderBy('id', 'desc');
+        
+        if($request->has('search')){
+            $jobsQuery->where('nama_job', 'like', '%'.$q.'%');
+        }
+        
+        if($request->negara !== null){
+            $jobsQuery->where('negara_id', $request->negara);
+        }
+        
+        $jobs = $jobsQuery->get();
+        
+        foreach($jobs as $job){
+           $hasid = hashId($job->id);
+           $job->hashid = $hasid;
+        }
+        
         return response()->json($jobs);
     }
 }

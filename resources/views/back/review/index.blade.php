@@ -65,6 +65,7 @@
                                                         <th width="5%">No</th>
 
                                                         <th width="15%">Nama Review</th>
+                                                        <th width="10%">Company Profile</th>
                                                         <th width="5%">Urutan</th>
                                                         <th width="5%">Gambar</th>
                                                         <th class="text-center" width="5%">Aksi</th>
@@ -75,6 +76,14 @@
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p->nama_review }}</td>
+                                                            <td>
+                                                            @if ($p->compro == 1)
+                                                                <span class="badge badge-warning">PSI Jobs</span>
+                                                                
+                                                            @else
+                                                                <span class="badge badge-info">Akama Jobs</span>
+                                                            @endif
+                                                            </td>
                                                             <td>{{ $p->urutan }}</td>
                                                             <td>
                                                                 <a href="/upload/review/{{ $p->gambar }}"
@@ -140,6 +149,18 @@
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control " id="nama_review"
                                                 name="nama_review">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="col-form-label" for="edit_compro">Company Profile</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <select name="compro" class="form-control" id="">
+                                                <option value="">--Pilih Company Profile--</option>
+                                                <option value="1">Psi Jobs</option>
+                                                <option value="2">Akama Jobsb</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -214,6 +235,18 @@
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control "
                                                 id="edit_nama_review" name="nama_review">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            <label class="col-form-label" for="edit_compro">Company Profile</label>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <select name="compro" class="form-control" id="edit_compro">
+                                                <option value="">--Pilih Company Profile--</option>
+                                                <option value="1">Psi Jobs</option>
+                                                <option value="2">Akama Jobs</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -356,6 +389,9 @@
                         $('#edit_nama_review').val(data.nama_review);
                         $('#edit_keterangan').val(data.keterangan);
                         $('#edit_urutan').val(data.urutan);
+                        if(data.compro){
+
+                        }
                         if (data.gambar) {
                             var gambarImg = '<img src="/upload/review/' + data.gambar +
                                 '" style="max-width: 100px; max-height: 100px;">';

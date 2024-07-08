@@ -66,6 +66,7 @@
 
                                                         <th width="15%">Nama Kandidat</th>
                                                         <th width="5%">Subjek</th>
+                                                        <th>isi</th>
                                                         <th width="5%">Gambar</th>
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
@@ -74,8 +75,9 @@
                                                     @foreach ($pengaduan as $p)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $p->nama_kandidat }}</td>
+                                                            <td>{{ $p->kandidat->nama_lengkap }}</td>
                                                             <td>{{ $p->subjek }}</td>
+                                                            <td>{{ $p->isi }}</td>
                                                             <td>
                                                                 <a href="/upload/pengaduan/{{ $p->gambar }}"
                                                                     target="_blank">

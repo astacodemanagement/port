@@ -1,20 +1,22 @@
 @extends('front.compro-2.layouts.default')
 
 @section('title', 'Home Akama Job')
+
 @section('content')
 @include('front.compro-2.component.navdefault')
 {{-- Slider section --}}
     <div class="md:tw-h-[500px] tw-h-[350px]">
         <div class="tw-h-full" style="background: url('{{ asset('frontend') }}/assets/image/carousel.png'); background-position: center; background-size: cover;">
-        <section id="image-carousel" class="splide max-w-7xl mx-auto" aria-label="Beautiful Images">
+        <section id="image-carousel" class="splide tw-max-w-7xl mx-auto tw-rounded-lg tw-block" aria-label="Beautiful Images">
             <div class="splide__track">
               <ul class="splide__list sm:p-0">
+                @foreach ($slider as $r  )
+                  
                 <li class="splide__slide relative overflow-hidden flex justify-center items-center">
-                  <img src="{{ asset('frontend/assets/image/slider1.jpeg') }}" alt="Slider Image 1" class="block mx-auto rounded-2xl max-w-full w-full h-full bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
+                  <img src="/upload/slider/{{ $r->gambar }}" alt="Slider Image 1" class="tw-rounded-lg block mx-auto rounded-2xl max-w-full tw-w-[75%]  bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
                 </li>
-                <li class="splide__slide relative overflow-hidden flex justify-center items-center">
-                  <img src="{{ asset('frontend/assets/image/slider2.jpeg') }}" alt="Slider Image 2" class="block mx-auto rounded-2xl max-w-full w-full h-full bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
-                </li>
+                @endforeach
+                
               </ul>
             </div>
           </section>
@@ -27,25 +29,42 @@
         <div class="tw-max-w-full tw-h-full  tw-bg-[#FFFFFF] tw-rounded-t-3xl tw-shadow-lg tw-px-4 tw-pt-6 tw-pb-4">
             <div class="tw-max-w-7xl tw-mx-auto">
             <form id="search-form" class="tw-flex tw-items-center tw-gap-0 tw-p-2 tw-bg-[#F4F4F5] tw-rounded-lg" data-aos-duration="1000" data-aos="zoom-in-up">
-              <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-border-r tw-border-gray-300">
-                <img src="{{ asset('frontend') }}/assets/image/indonesia.png" alt="Indonesia Flag" class="tw-w-8 tw-h-8" />
-                <span>ID</span>
-                <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 0L12 6H0L6 0Z" fill="#606060" />
-                </svg>
+              <div class="tw-relative tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-border-r tw-border-gray-300">
+                  <div class="tw-relative tw-cursor-pointer" id="custom-dropdown">
+                      <div class="tw-flex tw-items-center tw-gap-2 tw-bg-[#F4F4F5] tw-p-2 tw-rounded-lg tw-border tw-border-gray-300">
+                          <img src="/upload/negara/{{ $negara[0]->logo }}" alt="Country Flag" class="tw-w-8 tw-h-8" id="selected-flag"/>
+                          <span id="selected-code">{{ $negara[0]->kode_negara }}</span>
+                          <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M6 0L12 6H0L6 0Z" fill="#606060" />
+                          </svg>
+                      </div>
+                      <div id="dropdown-options" class="tw-hidden tw-absolute tw-bg-white tw-shadow-lg tw-rounded-lg tw-z-10 tw-mt-2 tw-w-full">
+                          @foreach ($negara as $item)
+                          <div class="dropdown-option tw-flex tw-items-center tw-gap-2 tw-p-2 tw-cursor-pointer hover:tw-bg-gray-100" data-code="{{ $item->kode_negara }}" data-logo="/upload/negara/{{ $item->logo }}" data-id="{{ $item->id }}">
+                              <img src="/upload/negara/{{ $item->logo }}" alt="Country Flag" class="tw-w-8 tw-h-8" />
+                              <span>{{ $item->kode_negara }}</span>
+                          </div>
+                          @endforeach
+                      </div>
+                  </div>
               </div>
+              <input type="hidden" name="negara" id="negara-select">
               <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-flex-1">
-                <i class="fa-solid fa-magnifying-glass tw-text-sky-500"></i>
-                <input id="search-input" type="text" placeholder="Job title, keyword, company" name="query" class="tw-border-none tw-outline-none tw-text-base tw-text-gray-600 tw-bg-[#F4F4F5] tw-w-full" />
+                  <i class="fa-solid fa-magnifying-glass tw-text-sky-500"></i>
+                  <input id="search-input" type="text" placeholder="Job title, keyword, company" name="query" class="tw-border-none tw-outline-none tw-text-base tw-text-gray-600 tw-bg-[#F4F4F5] tw-w-full" />
               </div>
               <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-px-4 tw-mr-2 tw-bg-[#F1F9FE] tw-rounded-md tw-cursor-pointer">
-                <i class="fa-solid fa-sliders tw-text-sky-500"></i>
-                <span class="tw-text-sky-500">Filter</span>
+                  <i class="fa-solid fa-sliders tw-text-sky-500"></i>
+                  <span class="tw-text-sky-500">Filter</span>
               </div>
               <button type="submit" class="tw-p-2 tw-px-4 tw-bg-sky-500 tw-text-white tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer">
-                Search
+                  Search
               </button>
-            </form>
+          </form>
+
+
+
+
                      <h3 class=" tw-font-clash-display tw-text-[30px] tw-text-[#11181C]  tw-font-bold tw-my-7 tw-mb-10 ">Lowongan Unggulan</h3>
 
                   {{-- card section --}}
@@ -75,7 +94,7 @@
                                         <i class="fa-regular fa-bookmark tw-text-sky-500 tw-text-2xl"></i>
                                     </div>
                                 </div>
-                                <!-- Button -->
+                              <!-- Button -->
                                 <button class="tw-bg-[#DCFCE7] tw-py-2 tw-px-4 tw-rounded-md">
                                     <div class="tw-flex tw-items-center">
                                       <span class="tw-w-4 tw-h-4 tw-rounded-full tw-bg-green-500 tw-border-4 tw-border-green-300 tw-mr-2"></span>
@@ -120,13 +139,32 @@
                                 
                             </div>
                             <div class="tw-p-6 tw-pt-0">
-                             <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
-                              Detail
-                              <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
-                            </a>
-                          
-                            
+                              <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                                Detail
+                                <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
+                              </a>
+                                @if (auth()?->user()?->kandidat?->pendaftaran?->status == "Verifikasi")
+                                  
+                                <a href="{{ route('front.jobs.apply', hashId($item->id)) }}" class="hover:tw-text-green-600 hover:tw-scale-105 tw-w-full tw-bg-green-100 tw-text-[#28a745] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center tw-mt-4">
+                                  Lamar
+                                  <i class="fa-solid fa-paper-plane tw-ml-2" style="position: relative; top: -2px;"></i>
+                                </a>
+                                @endif
+                               
                             </div>
+                            <!-- <div class="tw-p-6 tw-pt-0 tw-flex tw-gap-4">
+                              <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-1/2 tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                                Detail
+                                <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
+                              </a>
+                              
+                              <button onclick="location.href='{{ route('front.jobs.apply', hashId($item->id)) }}'" class="hover:tw-text-green-600 hover:tw-scale-105 tw-w-1/2 tw-bg-green-100 tw-text-[#28a745] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                                Lamar
+                                <i class="fa-solid fa-paper-plane tw-ml-2" style="position: relative; top: -2px;"></i>
+                              </button>
+                            </div> -->
+
+
                         </div>
                         @endforeach
                     </div>
@@ -330,14 +368,16 @@
       display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 20px;
     }
         .splide__slide img {
   width: 100%;
-  height: 400px;
+  height: 350px;
   background-position:center;
   background-size: cover; 
+  object-fit: cover;
   padding: 2rem;
-  border-radius: 10px;
+  border-radius: 20px;
   margin-top: 3rem;
 }
 /*remove padding in mobile  */
@@ -348,7 +388,7 @@
   }
 }
 .carousel-image {
-    display: block;
+    display: none;
     margin: 0 auto;
     border-radius: 15px; 
     max-width: 100%;
@@ -366,6 +406,33 @@
 
      </style> 
 @endpush
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#custom-dropdown').on('click', function(event) {
+        $('#dropdown-options').toggleClass('tw-hidden');
+        event.stopPropagation();
+    });
+
+    $('.dropdown-option').on('click', function() {
+        var logo = $(this).data('logo');
+        var code = $(this).data('code');
+        var id = $(this).data('id');
+
+        $('#selected-flag').attr('src', logo);
+        $('#selected-code').text(code);
+        $('#negara-select').val(id);
+
+        $('#dropdown-options').style.display = 'none';
+    });
+
+    $(document).on('click', function(event) {
+        if (!$(event.target).closest('#custom-dropdown').length) {
+            $('#dropdown-options').style.display = 'none';
+        }
+    });
+});
+</script>
     <script>
         const targets = [
           { element: document.getElementById('starsCount'), count: 4670, suffix: '+' },
@@ -398,68 +465,25 @@
 @push('js')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <script>
-       document.addEventListener('DOMContentLoaded', function() {
-  new Splide('#image-carousel', {
-    type   : 'loop',
-    perPage: 1,
-    autoplay: true,
-    interval: 5000, 
-  }).mount();
-  const testimonialCards = document.querySelectorAll('.testimonial-card');
-            const avatarImages = document.querySelectorAll('.avatar-image');
 
-            let currentIndex = 0;
-            const intervalTime = 5000;
-
-            function resetCards() {
-                testimonialCards.forEach(card => {
-                    card.classList.remove('active');
-                });
-                avatarImages.forEach(image => {
-                    image.classList.remove('active');
-                    image.style.transform = 'scale(1)';
-                });
-            }
-
-            function showCard(index) {
-                resetCards();
-                testimonialCards[index].classList.add('active');
-                avatarImages[index].classList.add('active');
-             
-                avatarImages[index].style.transform = 'scale(1.2)';
-            }
-
-            function nextCard() {
-                currentIndex = (currentIndex + 1) % testimonialCards.length;
-                showCard(currentIndex);
-            }
-
-
-            showCard(currentIndex);
-            setInterval(nextCard, intervalTime);
-            avatarImages.forEach((image, index) => {
-                image.addEventListener('click', () => {
-                    currentIndex = index;
-                    showCard(currentIndex);
-                });
-            });
-       });
-    </script>
    <script>
 $(document).ready(function() {
     $('#search-form').on('submit', function(e) {
         e.preventDefault();
-        let query = $('#search-input').val();
+        let search = $('#search-input').val();
+        let negara = $('#negara-select').val(); 
         
+
         $.ajax({
             url: `{{route('ajax.job')}}`,
             method: 'GET',
-            data: { query: query },
+            data: { search: search,negara:negara },
             success: function(response) {
+            console.log(response);
                 $('#jobs-container').empty();
                 if(response.length > 0) {
                     response.forEach(function(job) {
+                      let id = job.id;
                         let jobHtml = `
                          <div data-aos="zoom-in-up" data-aos-duration="1000" class="tw-relative tw-flex tw-flex-col tw-mt-6 tw-text-gray-700 tw-bg-[#18191C08] tw-border tw-border-[#E4E5E8] tw-rounded-xl tw-w-full">
                             <div class="tw-relative tw-h-[300px] tw-bg-cover tw-bg-fixed tw-overflow-hidden tw-text-white tw-rounded-xl tw-bg-blue-gray-500" style="background-position:center;">
@@ -469,7 +493,7 @@ $(document).ready(function() {
                             <div class="tw-p-6">
                                
                                 <div class="tw-flex">
-                                    <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C] hover:tw-text-[#18191C] hover:tw-underline ">
+                                    <a href="job/${job.id}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C] hover:tw-text-[#18191C] hover:tw-underline ">
                                     ${job.nama_job}
                                     </a>
                                     </a>
@@ -522,25 +546,86 @@ $(document).ready(function() {
                                 
                                 
                             </div>
-                            <div class="tw-p-6 tw-pt-0">
-                             <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
-                              Detail
-                              <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
-                            </a>
-                          
-                            
+                         
+                             <div class="tw-p-6 tw-pt-0">
+                                <a href="/jobs/${job.hashid}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                                    Detail
+                                      <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
+                                </a>
                             </div>
                         </div>`;
                         $('#jobs-container').append(jobHtml);
                     });
                 } else {
-                    $('#jobs-container').append('<p>No jobs found.</p>');
+                  // di bawah job container jangan di dalam
+                    $('#jobs-container').append('<div></div><div><p class="tw-text-center tw-text-lg tw-text-gray-700 tw-mt-6">No jobs found</p></div>');
                 }
             }
           });
+        // negara search
+
     });
 });
 </script>
+<script>
+       document.addEventListener('DOMContentLoaded', function() {
+  new Splide('#image-carousel', {
+    type   : 'loop',
+    perPage: 1,
+    autoplay: true,
+    interval: 5000,
+  }).mount();
+});
+
+    </script>
+      <script>
+       document.addEventListener('DOMContentLoaded', function() {
+  new Splide('#image-carousel2', {
+    type   : 'loop',
+    perPage: 1,
+    autoplay: true,
+    interval: 5000, 
+  }).mount();
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const avatarImages = document.querySelectorAll('.avatar-image');
+
+            let currentIndex = 0;
+            const intervalTime = 5000;
+
+            function resetCards() {
+                testimonialCards.forEach(card => {
+                    card.classList.remove('active');
+                });
+                avatarImages.forEach(image => {
+                    image.classList.remove('active');
+                    image.style.transform = 'scale(1)';
+                });
+            }
+
+            function showCard(index) {
+                resetCards();
+                testimonialCards[index].classList.add('active');
+                avatarImages[index].classList.add('active');
+             
+                avatarImages[index].style.transform = 'scale(1.2)';
+            }
+
+            function nextCard() {
+                currentIndex = (currentIndex + 1) % testimonialCards.length;
+                showCard(currentIndex);
+            }
+
+
+            showCard(currentIndex);
+            setInterval(nextCard, intervalTime);
+            avatarImages.forEach((image, index) => {
+                image.addEventListener('click', () => {
+                    currentIndex = index;
+                    showCard(currentIndex);
+                });
+            });
+       });
+    </script>
 @endpush
  
 @endsection

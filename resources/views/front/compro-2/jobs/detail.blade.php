@@ -34,16 +34,16 @@
                 {{-- icon text --}}
                 <div class="tw-flex tw-justify-start tw-items-center tw-mt-10">
                     <div class="tw-flex tw-items-center tw-space-x-2">
-                        <i class="fa-solid fa-briefcase tw-text-sky-500  md:tw-text-3xl tew-text-lg"></i>
-                        <p class="md:tw-text-3xl
-                    tw-text-[#11181C] tw-font-work-sans tw-font-bold">{{$job->nama_job}}</p>
+                        <i class="fa-solid fa-briefcase tw-text-sky-500  md:tw-text-3xl tw-text-2xl"></i>
+                        <p class="md:tw-text-3xl tw-text-2xl
+                    tw-text-[#11181Ce] tw-font-work-sans tw-font-bold">{{$job->nama_job}}</p>
                     </div>
                 </div>
             </div>
-            @if (auth()?->user()?->kandidat)
+            @if (auth()?->user()?->kandidat?->pendaftaran?->status == "Verifikasi")
             <div class="">
                 {{-- icon button --}}
-                <div class="tw-flex tw-justify-center tw-items-center tw-mt-10">
+                <div class="md:tw-flex tw-justify-center tw-items-center tw-mt-10 tw-hidden">
                     <div class="tw-flex tw-items-center tw-space-x-2">
                         <i class="fa-regular    fa-bookmark tw-text-sky-500 tw-text-3xl"></i>
                         {{-- lamar sekarang button using arrow right --}}
@@ -55,17 +55,33 @@
                     </div>
                 </div>
             </div>
+            @elseif (auth()?->user()?->kandidat?->pendaftaran?->status == "Belum Verifikasi(Pending)")
+            
+            <div class="">
+                {{-- icon button --}}
+                <div class="md:tw-flex tw-justify-center tw-items-center tw-mt-10 tw-hidden">
+                    <div class="tw-flex tw-items-center tw-space-x-2">
+                       <button 
+                            class="tw-flex tw-items-center tw-space-x-2 tw-bg-yellow-300 tw-text-gray-700 tw-py-2 tw-px-4 tw-rounded-lg tw-transition tw-duration-500 tw-ease-in-out hover:tw-bg-sky-400 hover:tw-scale-105 hover:tw-transition ">
+                            <p class="tw-text-lg tw-font-work-sans tw-font-medium">Menunggu Verifikasi </p>
+                            <i class="fa-solid fa-clock"></i>
+                          
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             @else
             <!-- masuk untuk melamar -->
             <div class="">
                 {{-- icon button --}}
-                <div class="tw-flex tw-justify-center tw-items-center tw-mt-10">
+                <div class="md:tw-flex tw-justify-center tw-items-center tw-mt-10 tw-hidden">
                     <div class="tw-flex tw-items-center tw-space-x-2">
                    
                         {{-- lamar sekarang button using arrow right --}}
                         <button onclick="location.href='{{ route('front.jobs.apply', hashId($job->id)) }}'"
                             class="tw-flex tw-items-center tw-space-x-2 tw-bg-sky-500 tw-text-white tw-py-2 md:tw-px-4 tw-px-2 tw-rounded-lg tw-transition tw-duration-500 tw-ease-in-out hover:tw-bg-sky-400 hover:tw-scale-105 hover:tw-transition ">
-                            <p class="md:tw-text-lg tw-text-sm tw-font-work-sans tw-font-medium">Masuk</p>
+                            <p class="md:tw-text-lg tw-text-sm tw-font-work-sans tw-font-medium">Masuk Untuk Melamar</p>
                             <i class="fa-solid fa-arrow-right tw-text-white tw-text-sm md:tw-text-2xl"></i>
                         </button>
                     </div>
@@ -92,7 +108,7 @@
 
                         <h3 class="tw-font-semibold tw-text-xl tw-text-[#18191C] tw-font-work-sans tw-mt-8">Kualifikasi</h3>
                             <div class=" tw-flex tw-flex-wrap tw-justify-start">
-                                <div class="tw-w-1/2 tw-px-5">
+                                <div class="tw-w-1/2">
                                     {{-- icon fontaweome and tex t list --}}
                     
                                     <div class="tw-flex tw-items-start tw-space-x-2 tw-mt-5 tw-gap-2">
@@ -105,7 +121,8 @@
                                                 {{$job->jenis_kelamin}}
                                             @else
                                                 Tidak Ada Ketentuan
-                                            @endif</p>
+                                            @endif
+                                        </p>
                                         </div>
                                     </div>
                                 
@@ -119,7 +136,8 @@
                                             {{$job->rentang_usia}}
                                             @else
                                                 Tidak Ada Ketentuan  
-                                            @endif</p>
+                                            @endif
+                                        </p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start tw-space-x-2 tw-mt-5 tw-gap-2">
@@ -127,7 +145,7 @@
                                             <img src="{{ asset('frontend') }}/assets/image/icon/bahasa.png" class="md:tw-w-8 md:tw-h-8 tw-h-6 tw-w-6" alt="">
                                         </div>
                                         <div>
-                                            <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-xs tw-mb-1">Level Bahas Yang Di Butuhkan</p>
+                                            <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-xs tw-mb-1">Level Bahasa</p>
                                             <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">
                                                 @if ($job->level_bahasa)
                                                 {{$job->level_bahasa}}
@@ -138,7 +156,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tw-w-1/2 tw-px-5">
+                                <div class="tw-w-1/2">
                                     {{-- icon fontaweome and tex t list --}}
                                     <div class="tw-flex tw-items-start tw-space-x-2 tw-mt-5 tw-gap-2">
                                         <div class="">
@@ -260,7 +278,7 @@
                         <div class="tw-flex tw-justify-center tw-items-center">
                             <p class="tw-bg-green-500 tw-px-5 tw-py-1 tw-rounded-md tw-text-white tw-font-bold">tersedia</p>
                         </div>
-                        </div>
+                       </div>
                         <div class="tw-w-full tw-p-5 tw-border tw-mt-5  tw-border-slate-200 tw-shadow-sm tw-shadow-slate-200 tw-rounded-lg py-5  tw-flex-wrap">
                             <div class="tw-grid tw-grid-cols-2 tw-gap-5 tw-flex-wrap">
                                 <div class="tw-w-full">
@@ -385,12 +403,64 @@
                                             <img src="{{ asset('frontend') }}/assets/image/icon/calendar-remove.png" class="md:tw-w-8 md:tw-h-8 tw-w-6 tw-h-6" alt="">
                                         </div>
                                         <div>
-                                            <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-sm tw-mb-1">Tanngal Berakhir</p>
+                                            <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-sm tw-mb-1">Tanggal Berakhir</p>
                                             <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-sm">{{$job->tanggal_tutup}}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-span-2">
+                                 
+                                @if (auth()?->user()?->kandidat?->pendaftaran?->status == "Verifikasi")
+                                    <div class="">
+                                        {{-- icon button --}}
+                                        <div class="tw-flex tw-justify-center tw-items-center tw-mt-10 md:tw-hidden">
+                                            <div class="tw-flex tw-items-center tw-space-x-2">
+                                                <i class="fa-regular    fa-bookmark tw-text-sky-500 tw-text-3xl"></i>
+                                                {{-- lamar sekarang button using arrow right --}}
+                                                <button onclick="location.href='{{ route('front.jobs.apply', hashId($job->id)) }}'"
+                                                    class="tw-flex tw-items-center tw-space-x-2 tw-bg-sky-500 tw-text-white tw-py-2 tw-px-4 tw-rounded-lg tw-transition tw-duration-500 tw-ease-in-out hover:tw-bg-sky-400 hover:tw-scale-105 hover:tw-transition ">
+                                                    <p class="tw-text-lg tw-font-work-sans tw-font-medium">Lamar Sekarang</p>
+                                                    <i class="fa-solid fa-arrow-right tw-text-white"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @elseif (auth()?->user()?->kandidat?->pendaftaran?->status == "Belum Verifikasi(Pending)")
+                                
+                                    <div class="">
+                                        {{-- icon button --}}
+                                        <div class="tw-flex tw-justify-center tw-items-center tw-mt-10 md:tw-hidden">
+                                            <div class="tw-flex tw-items-center tw-space-x-2">
+                                            <button 
+                                                    class="tw-flex tw-items-center tw-space-x-2 tw-bg-yellow-300 tw-text-gray-700 tw-py-2 tw-px-4 tw-rounded-lg tw-transition tw-duration-500 tw-ease-in-out hover:tw-bg-sky-400 hover:tw-scale-105 hover:tw-transition ">
+                                                    <p class="tw-text-lg tw-font-work-sans tw-font-medium">Menunggu Verifikasi </p>
+                                                    <i class="fa-solid fa-clock"></i>
+                                                
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                @else
+                                <!-- masuk untuk melamar -->
+                                    <div class="">
+                                        {{-- icon button --}}
+                                        <div class="tw-flex tw-justify-center tw-items-center tw-mt-10 md:tw-hidden">
+                                            <div class="tw-flex tw-items-center tw-space-x-2">
+                                        
+                                                {{-- lamar sekarang button using arrow right --}}
+                                                <button onclick="location.href='{{ route('front.jobs.apply', hashId($job->id)) }}'"
+                                                    class="tw-flex tw-items-center tw-space-x-2 tw-bg-sky-500 tw-text-white tw-py-2 md:tw-px-4 tw-px-2 tw-rounded-lg tw-transition tw-duration-500 tw-ease-in-out hover:tw-bg-sky-400 hover:tw-scale-105 hover:tw-transition ">
+                                                    <p class="md:tw-text-lg tw-text-sm tw-font-work-sans tw-font-medium">Masuk Untuk Melamar</p>
+                                                    <i class="fa-solid fa-arrow-right tw-text-white tw-text-sm md:tw-text-2xl"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </div>  
+                   
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,8 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\AlasanController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BelumVerifikasiController;
+use App\Http\Controllers\CounterController;
+use App\Http\Controllers\CvController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailBayarController;
 use App\Http\Controllers\EmployerController;
@@ -46,12 +48,14 @@ use App\Http\Controllers\SeleksiLolosKualifikasiController;
 use App\Http\Controllers\SeleksiSelesaiKontrakController;
 use App\Http\Controllers\SeleksiTerbangController;
 use App\Http\Controllers\SemuaSeleksiController;
+use App\Http\Controllers\StatusProsesController;
 use App\Http\Controllers\SudahVerifikasiController;
 use App\Http\Controllers\SupplierController;
 use App\Models\DetailBayar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -252,6 +256,14 @@ Route::prefix('administrator')->group(function () {
                     Route::get('/slider/{id}/edit', [SliderController::class, 'edit'])->name('edit');
                     Route::put('/slider/update/{id}', [SliderController::class, 'update'])->name('update');
                 });
+                // counter
+                Route::resource('counter', CounterController::class);
+                Route::name('counter.')->group(function () {
+                    Route::get('/counter', [CounterController::class, 'index'])->name('index');
+                    Route::get('/counter/{id}/edit', [CounterController::class, 'edit'])->name('edit');
+                    Route::put('/counter/update/{id}', [CounterController::class, 'update'])->name('update');
+                });
+                
 
 
                 // Galeri
@@ -348,6 +360,7 @@ Route::prefix('ajax')->group(function () {
     });
 });
 
+
 Route::name('front.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -373,10 +386,11 @@ Route::name('front.')->group(function () {
 });
 
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
+Route::get('register/verify/{token}', [RegisterController::class, 'verifyEmail'])->name('register.verify-email');
 Route::post('register/step/validation', [RegisterController::class, 'stepValidation'])->name('register.step.validation');
 
 /** MEMBER ROUTE */
-Route::group(['middleware' => ['role:member']], function () {
+Route::group(['middleware' => ['role:member','is_verify_email']], function () {
     Route::prefix('member')->group(function () {
         Route::middleware('member.auth')->group(function () {
             Route::name('member.')->group(function () {
@@ -414,6 +428,21 @@ Route::group(['middleware' => ['role:member']], function () {
                         });
                     });
                 });
+
+                // Status proses
+                Route::prefix('status')->group(function(){
+                    Route::name('status.')->group(function(){
+                        Route::get('/', [StatusProsesController::class, 'index'])->name('index');
+                    });
+                });
+
+                // pengaduan
+                Route::prefix('pengaduan')->group(function(){
+                    Route::name('pengaduan.')->group(function(){
+                        Route::get('/', [PengaduanController::class, 'create'])->name('index');
+                        Route::post('/store', [PengaduanController::class, 'store'])->name('store');
+                    });
+                });
             });
         });
     });
@@ -429,3 +458,7 @@ Route::group(['prefix' => 'compro2'], function () {
     Route::get('/complete', [FeCompanyprofile2::class,'complete'])->name('compro-2.complete');
 
 });
+
+// PREVIEW CV KANDIDAT
+Route::get('/cv/kandidat/{id}', [CvController::class, 'previewCv'])->name('preview-cv')->middleware('auth');
+

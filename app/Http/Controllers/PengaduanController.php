@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kandidat;
 use App\Models\Pengaduan;
 use App\Models\LogHistori;
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ class PengaduanController extends Controller
         $pengaduan = Pengaduan::orderBy('id', 'desc')->get();
         return view('back.pengaduan.index', compact('pengaduan'));
     }
+ 
 
     /**
      * Show the form for creating a new resource.
@@ -41,7 +43,7 @@ class PengaduanController extends Controller
      */
     public function create()
     {
-        //
+        return view('front.member.pengaduan.index');
     }
 
     /**
@@ -52,43 +54,44 @@ class PengaduanController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         // Validasi request
         $validator = Validator::make($request->all(), [
-            'nama_pengaduan' => 'required|unique:pengaduan,nama_pengaduan',
+            'subjek ' => 'nullable',
+            'isi' => 'required',
             'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
         ], [
-            'nama_pengaduan.required' => 'Nama Pengaduan Wajib diisi',
-            'gambar.required' => 'Gambar Pengaduan Wajib diisi',
-            'nama_pengaduan.unique' => 'Nama Pengaduan sudah digunakan',
+            'subjek.required' => 'subjek Wajib diisi',
+            'isi.required' => 'Isi Wajib diisi',
             'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
             'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
+           
         ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-
-        $input = $request->all();  // Pindahkan ini ke bawah validasi
-
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
             $destinationPath = 'upload/pengaduan/';
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move($destinationPath, $imageName);
-            $input['gambar'] = $imageName;
         }
 
-        // Simpan data spp ke database menggunakan fill()
-        $pengaduan = new Pengaduan();
-        $pengaduan->fill($input);
-        $pengaduan->save();
+        Pengaduan::create([
+            'subjek' => $request->subjek,
+            'isi' => $request->isi,
+            'gambar' => $imageName,
+            'kandidat_id' => $request->kandidat_id,
+        ]);
 
-        $loggedInUserId = Auth::id();
-
+        // handle upload file
+     
         // Simpan log histori untuk operasi Create dengan user_id yang sedang login
+        $loggedInUserId = Auth::id();
+        $pengaduan = Kandidat::where('id', $request->kandidat_id)->first();
         $this->simpanLogHistori('Create', 'Pengaduan', $pengaduan->id, $loggedInUserId, null, json_encode($pengaduan));
-
-        return response()->json(['message' => 'Data Berhasil Disimpan']);
+        return redirect()->back()->with("success", "Pengaduan Berhasil Dikirim");
     }
 
 
@@ -126,7 +129,8 @@ class PengaduanController extends Controller
     {
         // Validasi request
         $validator = Validator::make($request->all(), [
-            'nama_pengaduan' => 'required|unique:pengaduan,nama_pengaduan,' . $id,
+            'subjek' => 'required',
+            'isi' => 'required',
             'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
         ], [
             'nama_pengaduan.required' => 'Nama Pengaduan Wajib diisi',
@@ -139,7 +143,12 @@ class PengaduanController extends Controller
         }
 
         $pengaduan = Pengaduan::findOrFail($id);
-
+        $pengaduan = Pengaduan::create([
+            'subjek' => $request->subjek,
+            'isi' => $request->isi,
+            'gambar' => $request->gambar,
+            'kandidat_id' => $request->kandidat_id,
+        ]);
         $input = $request->except(['_token', '_method']); // Exclude unnecessary fields
 
         if ($request->hasFile('gambar')) {

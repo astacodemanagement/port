@@ -403,18 +403,18 @@
                         </div>
 
                         <div class="row d-block">
-                            @if (auth()?->user()?->kandidat)
+                            @if (auth()->user()?->kandidat?->pendaftaran->status == 'Verifikasi')
                                 <div class="col-12">
                                     <button onclick="location.href='{{ route('front.jobs.apply', hashId($job->id)) }}'" class="element-button-action text-center d-block btn-apply" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
                                         Lamar Pekerjaan
                                     </button>
                                 </div>
                             @else
-                            <div class="col-12">
-                                <a href="{{ route('front.login', ['job' => hashId($job->id)]) }}" class="element-button-action text-center d-block" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
-                                    Masuk Untuk Melamar Pekerjaan
-                                </a>
-                            </div>
+                                <div class="col-12">
+                                    <a href="{{ route('front.login', ['job' => hashId($job->id)]) }}" class="element-button-action text-center d-block" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
+                                        Masuk Untuk Melamar Pekerjaan
+                                    </a>
+                                </div>
                             @endif
                             <div class="col">
                                 <div class="element-akun text-center mt-3">
@@ -470,7 +470,7 @@
                         <div class="col-3">
                             <div class="card-body">
                                 <div class="card-image">
-                                    <img src="{{ asset('upload/gambar/thumb_' . $rJob->gambar) }}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}" style="width:100%">
+                                    <img src="/upload/gambar/{{$rJob->gambar}}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}" style="width:100%">
                                 </div>
                                 <div class="card-items-bagde gap-1">
                                     <img src="{{ asset('frontend/assets/icons/stop-circle.svg') }}" alt="">

@@ -10,12 +10,15 @@ class JobController extends Controller
 {
     public function index()
     {
-        return view('front.member.jobs.index');
+        $seleksi = Seleksi::where('kandidat_id', auth()->user()->kandidat->id)->get();
+        return view('front.member.jobs.index',compact('seleksi'));
     }
 
     public function applied()
     {
-        return view('front.member.jobs.applied');
+
+        $seleksi = Seleksi::where('kandidat_id', auth()->user()->kandidat->id)->where('status', '!=', 'Selesai Kontrak')->get();
+        return view('front.member.jobs.applied',compact('seleksi'));
     }
 
     public function showApplied($appliedId)

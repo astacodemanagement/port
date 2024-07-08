@@ -66,6 +66,14 @@
                 text-align: center;
             }
         }
+        .dark-logo {
+    background-color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 10px;
+    right: 3em;
+    width: 30px;
+    z-index: 1;
+}
     </style>
 @endpush
 
@@ -122,58 +130,90 @@
                                         <div class="col-lg-12 col-xl-6">
                                             <!-- Add this inside your HTML body -->
                                             <div class="row mb-5">
-                                                <div class="filter-container col-md-12 gap-5">
-
-                                                    <form action="{{ route('back-office.pelamar.index',['status'=>$status])}}"
-                                                        method="get">
-                                                        <div
-                                                            class="form-group d-flex 
-                                                     @if($filter_job == 'kategori_job') active @endif">
-                                                            <label for="" class="py-2 text-dark mx-3">Filter</label>
-
-                                                            <select name="filter_job" id="filter" class="form-control"
-                                                                onchange="this.form.submit()">
-                                                                <option value="kategori_job">--Cari Kategori Job--</option>
-                                                                @foreach ($kategori_job as $item)
-                                                                    <option value="{{ $item->id }}"
-                                                                        @if ($filter_job == $item->id) selected @endif>
-                                                                        {{ $item->nama_kategori_job }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            <select name="filter_gender" class="form-control" onchange="this.form.submit()">
-                                                                <option value="">-- Cari Jenis Kelamin --</option>
-                                                                <option value="Laki-laki" {{ $filter_gender == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
-                                                                <option value="Perempuan" {{ $filter_gender == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
-                                                            </select>
-                                            
-                                                            <input type="text" class="form-control" name="filter_height" placeholder="-- Masukkan Tinggi Badan --" value="{{ $filter_height ?? '' }}" onchange="this.form.submit()">
-                                                      
-                                                            </div>
-
-                                                      
-                                                    </form>
-
-                                                </div>
+                                               <!-- click for filter -->
+                                             
                                                 <div class="search-container col-md-6">
                                                     {{-- send request --}}
 
                                                     {{-- form --}}
                                                     <form action="{{ route('back-office.pelamar.index',['status'=>$status]) }}"
                                                         method="GET">
-
-                                                        <div style="display: inline-block;">
+                                                    <div class="d-flex " style="gap: 10px;">
+                                                        
+                                                        <div>
                                                             <input type="text" class="form-control" id="searchInput"
                                                                 placeholder="Search..." name="search"
                                                                 value="{{ $search ?? '' }}">
                                                         </div>
-                                                        <div style="display: inline-block;">
+                                                        <div>
                                                             <button class="btn btn-primary waves-effect waves-light"
-                                                                type="submit">Search</button>
+                                                                type="submit">
+                                                                <i class="fa fa-search"></i> 
+                                                            </button>
                                                         </div>
+                                                        <!-- filter icon -->
+                                                        <div class="">
+                                                            <button type="button" class="btn btn-warning text-dark" data-toggle="modal"
+                                                                data-target="#filterContainer">
+                                                                <i class="fa-solid fa-sliders"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
                                                     </form>
                                                 </div>
                                                 {{-- filter container --}}
-                                          
+                                                <!-- modal -->
+                                                <div class="modal fade" id="filterContainer" tabindex="-1" role="dialog" aria-labelledby="filterContainerLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="filterContainerLabel">Filter Pencarian</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="{{ route('back-office.pelamar.index',['status'=>$status]) }}" method="GET">
+                                                                    <div class="form-group">
+                                                                        <label for="filter_job">Filter Minat Industri</label>
+                                                                        <select name="filter_job" id="filter_job" class="form-control">
+                                                                            <option value="">-- Pilih Kategori Job --</option>
+                                                                            @foreach ($kategori_job as $item)
+                                                                                <option value="{{ $item->id }}" {{ $filter_job == $item->id ? 'selected' : '' }}>
+                                                                                    {{ $item->nama_kategori_job }}
+                                                                                </option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="filter_gender">Jenis Kelamin</label>
+                                                                        <select name="filter_gender" id="filter_gender" class="form-control">
+                                                                            <option value="">-- Pilih Jenis Kelamin --</option>
+                                                                            <option value="Laki-laki" {{ $filter_gender == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                                                                            <option value="Perempuan" {{ $filter_gender == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="filter_height">Tinggi Badan</label>
+                                                                        <input type="text" class="form-control" id="filter_height" name="filter_height" placeholder="-- Masukkan Tinggi Badan --" value="{{ $filter_height ?? '' }}">
+                                                                    </div>
+                                                                    <!-- level bahasa ingris -->
+                                                                    <div class="form-group">
+                                                                        <label for="filter_level_bahasa_inggris">Level Bahasa Inggris</label>
+                                                                        <select name="filter_level_bahasa_inggris" id="filter_level_bahasa_inggris" class="form-control">
+                                                                            <option value="">-- Pilih Level Bahasa Inggris --</option>
+                                                                            <option value="Beginner English" {{ $filter_level_bahasa_inggris == 'Beginner English' ? 'selected' : '' }}>Beginner English'</option>
+                                                                            <option value="⁠Medium English" {{ $filter_level_bahasa_inggris == '⁠Medium English' ? 'selected' : '' }}>⁠Medium English</option>
+                                                                            <option value="Advanced" {{ $filter_level_bahasa_inggris == 'Advance English' ? 'selected' : '' }}>Advance English</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <button type="submit" class="btn btn-primary">Filter</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
 
                                                 <br><br>
                                             </div>
@@ -183,19 +223,28 @@
                                             @forelse ($pelamar as $p)
                                            <div class="col-lg-12 col-xl-3">
                                                     <div class="card-sub shadow p-3 mb-5 bg-white rounded">
+                                                    <div>
+                                                                @if ($p->kandidat->pendaftaran->compro == 1)
+                                                                    <img src="{{ asset('frontend/assets/logo/logo.png') }}" class="dark-logo" style="background-color: rgba(255, 255, 255, 0.7); position: absolute; top: 10px; right: 2em; width: 35px; z-index: 1;" alt="" />
+                                                                @else
+                                                                    <img src="{{ asset('frontend/assets/logo/akamalogo.png') }}" class="dark-logo" style="background-color: rgba(255, 255, 255, 0.7); position: absolute; top: 10px; right: 2em; width: 70px; z-index: 1;" alt="" />
+                                                                @endif
+                                                            </div>
                                                         <div class="col-lg-12 col-xl-12">
-                                                            <div class="card-img-container d-flex justify-content-between">
+                                                            <div class="d-flex justify-content-between">
+                                                           
                                                                 <div style="flex: 1;">
                                                                     <!-- Image -->
                                                                     @if ($p->kandidat->foto)
-                                                                        <a href="/upload/foto/{{ $p->kandidat->foto }}"
-                                                                            target="_blank">
-                                                                            <img class="card-img-top img-fluid"
-                                                                                src="/upload/foto/{{ $p->kandidat->foto }}"
-                                                                                onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
-                                                                                alt="Card image cap"
-                                                                                style="border-radius:1rem;">
-                                                                        </a>
+                                                                    <a href="/upload/foto/{{ $p->kandidat->foto }}" target="_blank" style="position: relative; display: inline-block;">
+                                                                        <img class="card-img-top img-fluid"
+                                                                            src="/upload/foto/{{ $p->kandidat->foto }}"
+                                                                            onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
+                                                                            alt="Card image cap"
+                                                                            style="border-radius:1rem;">
+                                                                        
+                                                                    </a>
+
                                                                     @else
                                                                         <!-- Default Image if no foto -->
                                                                         <img class="card-img-top img-fluid"
@@ -207,7 +256,7 @@
                                                                     style="flex: 1; text-align: left; padding-left:9px; word-wrap: break-word; ">
                                                                     <br>
                                                                     <h5 class="card-title">
-                                                                        <a href="">
+                                                                        <a href="{{route('preview-cv', hashId($p->kandidat?->id))}}" target="_blank">
                                                                             <span class="badge badge-pill badge-primary"
                                                                                 style="color: #ebeff1;"><i
                                                                                     class="fa fa-eye"></i> Preview</span>

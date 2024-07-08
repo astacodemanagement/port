@@ -237,7 +237,7 @@ public function updateStatus(Request $request)
             ->first();
         $data["user_id"] = $data['belum_diverifikasi']->kandidat->user_id;
         $data['user_info'] = User::where('id', $data["user_id"])->first();
-    
+         
         return view('back.belum_diverifikasi.detail', $data);
     }
     

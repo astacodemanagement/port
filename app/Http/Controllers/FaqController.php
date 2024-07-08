@@ -55,9 +55,12 @@ class FaqController extends Controller
         // Validasi request
         $validator = Validator::make($request->all(), [
             'pertanyaan' => 'required|unique:faq,pertanyaan',
+            'compro' => 'required|in:1,2',
         ], [
             'pertanyaan.required' => 'Nama Faq Wajib diisi',
             'pertanyaan.unique' => 'Nama Faq sudah digunakan',
+            'compro.required' => 'Pilih Compro',
+            'compro.in' => 'Pilih Compro yang tersedia',
         ]);
 
 

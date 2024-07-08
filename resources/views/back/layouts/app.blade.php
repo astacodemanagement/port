@@ -390,6 +390,8 @@
                                             'back-office.fasilitas.index',
                                             'back-office.kategori-job.index',
                                             'back-office.slider.index',
+                                            'back-office.counter.index',
+                                            
                                             'back-office.galeri.index',
                                             'back-office.review.index',
                                             'back-office.faq.index',
@@ -417,12 +419,17 @@
                                             </li>
                                             <li class="{{ request()->routeIs('back-office.kategori-job.index') ? 'active' : '' }}">
                                                 <a href="{{ route('back-office.kategori-job.index') }}" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Kategori Job</span>
+                                                    <span class="pcoded-mtext">Minat Industri</span>
                                                 </a>
                                             </li>
                                             <li class="{{ request()->routeIs('back-office.slider.index') ? 'active' : '' }}">
                                                 <a href="{{ route('back-office.slider.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Slider</span>
+                                                </a>
+                                            </li>
+                                            <li class="{{ request()->routeIs('back-office.counter.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.counter.index') }}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Counter</span>
                                                 </a>
                                             </li>
                                             <li class="{{ request()->routeIs('back-office.galeri.index') ? 'active' : '' }}">

@@ -331,11 +331,18 @@
                                                                                         <label class="col-form-label"
                                                                                             for="kontrak_kerja">Kontrak
                                                                                             Kerja</label>
-                                                                                        <input type="text"
-                                                                                            class="form-control "
+                                                                                      <select class="form-control "
                                                                                             id="kontrak_kerja"
-                                                                                            name="kontrak_kerja"
-                                                                                            value="{{ $data->kontrak_kerja }}">
+                                                                                            name="kontrak_kerja" required>
+                                                                                            <option value="">--Pilih
+                                                                                                kontrak kerja--</option>
+                                                                                            @for ($i = 1; $i <= 60; $i++)
+                                                                                                <option value="{{ $i }}"
+                                                                                                    {{ $data->kontrak_kerja == $i ? 'selected' : '' }}>
+                                                                                                    {{ $i }} Bulan
+                                                                                                </option>
+                                                                                            @endfor
+                                                                                        </select>
                                                                                     </div>
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
