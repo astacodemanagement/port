@@ -26,7 +26,7 @@
                         'lolos_interview' => $item->tanggal_lolos_interview ?? 'Belum selesai',
                         'dalam_proses' => $item->tanggal_dalam_proses ?? 'Belum selesai',
                         'terbang' => $item->tanggal_terbang ?? 'Belum selesai',
-                        'selesai_kontrak' => $item->tanggal_selesai_kontrak ?? 'Belum selesai',
+                  
                     ];
 
                     $icon = [
@@ -36,7 +36,7 @@
                         'lolos_interview' => 'fas fa-thumbs-up',
                         'dalam_proses' => 'fas fa-clock',
                         'terbang' => 'fas fa-plane',
-                        'selesai_kontrak' => 'fas fa-calendar'
+                        
                     ];
 
                     $title = [
@@ -46,7 +46,7 @@
                         'lolos_interview' => 'Lolos Interview',
                         'dalam_proses' => 'Dalam Proses',
                         'terbang' => 'Terbang',
-                        'selesai_kontrak' => 'Selesai Kontrak'
+                        
 
                     ];
 
@@ -58,7 +58,7 @@
                         'lolos_interview' => $item->keterangan_dari_lolos_interview,
                         'dalam_proses' => $item->keterangan_dalam_proses,
                         'terbang' => $item->keterangan_seleksi_terbang,
-                        'selesai_kontrak' => $item->keterangan_selesai_kontrak
+                       
                     ]
                 @endphp
 
@@ -138,10 +138,7 @@
                                                         <label class="border-checkbox-label" for="tanggal_habis">Tanggal Habis</label>
                                                         <input class="form-control tw-border tw-rounded tw-p-2 tw-w-full" type="date" id="tanggal_habis" name="tanggal_habis" value="{{ $item->tanggal_habis }}" readonly>
                                                     </div>
-                                                    <div class="border-checkbox-group border-checkbox-group-success tw-mb-4">
-                                                        <input class="border-checkbox" type="checkbox" id="pap" name="pap" value="{{ $item->pap }}" {{ $item->pap == 1 ? 'checked' : '' }} readonly disabled>
-                                                        <label class="border-checkbox-label" for="pap">P.A.P</label>
-                                                    </div>
+                                                   
                                                 </div>
                                             </div>
                                         </div>

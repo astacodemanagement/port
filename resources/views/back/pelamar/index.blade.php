@@ -66,6 +66,14 @@
                 text-align: center;
             }
         }
+        .dark-logo {
+    background-color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: 10px;
+    right: 3em;
+    width: 30px;
+    z-index: 1;
+}
     </style>
 @endpush
 
@@ -215,19 +223,28 @@
                                             @forelse ($pelamar as $p)
                                            <div class="col-lg-12 col-xl-3">
                                                     <div class="card-sub shadow p-3 mb-5 bg-white rounded">
+                                                    <div>
+                                                                @if ($p->kandidat->pendaftaran->compro == 1)
+                                                                    <img src="{{ asset('frontend/assets/logo/logo.png') }}" class="dark-logo" style="background-color: rgba(255, 255, 255, 0.7); position: absolute; top: 10px; right: 2em; width: 35px; z-index: 1;" alt="" />
+                                                                @else
+                                                                    <img src="{{ asset('frontend/assets/logo/akamalogo.png') }}" class="dark-logo" style="background-color: rgba(255, 255, 255, 0.7); position: absolute; top: 10px; right: 2em; width: 70px; z-index: 1;" alt="" />
+                                                                @endif
+                                                            </div>
                                                         <div class="col-lg-12 col-xl-12">
-                                                            <div class="card-img-container d-flex justify-content-between">
+                                                            <div class="d-flex justify-content-between">
+                                                           
                                                                 <div style="flex: 1;">
                                                                     <!-- Image -->
                                                                     @if ($p->kandidat->foto)
-                                                                        <a href="/upload/foto/{{ $p->kandidat->foto }}"
-                                                                            target="_blank">
-                                                                            <img class="card-img-top img-fluid"
-                                                                                src="/upload/foto/{{ $p->kandidat->foto }}"
-                                                                                onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
-                                                                                alt="Card image cap"
-                                                                                style="border-radius:1rem;">
-                                                                        </a>
+                                                                    <a href="/upload/foto/{{ $p->kandidat->foto }}" target="_blank" style="position: relative; display: inline-block;">
+                                                                        <img class="card-img-top img-fluid"
+                                                                            src="/upload/foto/{{ $p->kandidat->foto }}"
+                                                                            onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
+                                                                            alt="Card image cap"
+                                                                            style="border-radius:1rem;">
+                                                                        
+                                                                    </a>
+
                                                                     @else
                                                                         <!-- Default Image if no foto -->
                                                                         <img class="card-img-top img-fluid"

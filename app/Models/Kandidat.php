@@ -48,4 +48,9 @@ class Kandidat extends Model
         return  $this->belongsTo(Kecamatan::class, 'kecamatan_id', 'id');
     }
 
+
+    public function screaning()
+    {
+        return $this->hasOne(Screaning::class, 'id_kandidat', 'id');
+    }
 }

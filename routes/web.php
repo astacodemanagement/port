@@ -435,6 +435,14 @@ Route::group(['middleware' => ['role:member','is_verify_email']], function () {
                         Route::get('/', [StatusProsesController::class, 'index'])->name('index');
                     });
                 });
+
+                // pengaduan
+                Route::prefix('pengaduan')->group(function(){
+                    Route::name('pengaduan.')->group(function(){
+                        Route::get('/', [PengaduanController::class, 'create'])->name('index');
+                        Route::post('/store', [PengaduanController::class, 'store'])->name('store');
+                    });
+                });
             });
         });
     });

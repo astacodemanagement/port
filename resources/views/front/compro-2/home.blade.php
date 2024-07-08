@@ -7,15 +7,16 @@
 {{-- Slider section --}}
     <div class="md:tw-h-[500px] tw-h-[350px]">
         <div class="tw-h-full" style="background: url('{{ asset('frontend') }}/assets/image/carousel.png'); background-position: center; background-size: cover;">
-        <section id="image-carousel" class="splide tw-max-w-7xl mx-auto tw-rounded-lg" aria-label="Beautiful Images">
+        <section id="image-carousel" class="splide tw-max-w-7xl mx-auto tw-rounded-lg tw-block" aria-label="Beautiful Images">
             <div class="splide__track">
               <ul class="splide__list sm:p-0">
+                @foreach ($slider as $r  )
+                  
                 <li class="splide__slide relative overflow-hidden flex justify-center items-center">
-                  <img src="{{ asset('frontend/assets/image/slider1.jpeg') }}" alt="Slider Image 1" class="tw-rounded-lg block mx-auto rounded-2xl max-w-full tw-w-[75%]  bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
+                  <img src="/upload/slider/{{ $r->gambar }}" alt="Slider Image 1" class="tw-rounded-lg block mx-auto rounded-2xl max-w-full tw-w-[75%]  bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
                 </li>
-                <li class="splide__slide relative overflow-hidden flex justify-center items-center">
-                  <img src="{{ asset('frontend/assets/image/slider2.jpeg') }}" alt="Slider Image 2" class="btw-rounded-lg lock mx-auto rounded-2xl max-w-full tw-w-[75%]  bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
-                </li>
+                @endforeach
+                
               </ul>
             </div>
           </section>
@@ -93,7 +94,7 @@
                                         <i class="fa-regular fa-bookmark tw-text-sky-500 tw-text-2xl"></i>
                                     </div>
                                 </div>
-                                <!-- Button -->
+                              <!-- Button -->
                                 <button class="tw-bg-[#DCFCE7] tw-py-2 tw-px-4 tw-rounded-md">
                                     <div class="tw-flex tw-items-center">
                                       <span class="tw-w-4 tw-h-4 tw-rounded-full tw-bg-green-500 tw-border-4 tw-border-green-300 tw-mr-2"></span>
@@ -387,7 +388,7 @@
   }
 }
 .carousel-image {
-    display: block;
+    display: none;
     margin: 0 auto;
     border-radius: 15px; 
     max-width: 100%;
@@ -478,6 +479,7 @@ $(document).ready(function() {
             method: 'GET',
             data: { search: search,negara:negara },
             success: function(response) {
+            console.log(response);
                 $('#jobs-container').empty();
                 if(response.length > 0) {
                     response.forEach(function(job) {
@@ -546,16 +548,17 @@ $(document).ready(function() {
                             </div>
                          
                              <div class="tw-p-6 tw-pt-0">
-                                <a href="" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                                <a href="/jobs/${job.hashid}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
                                     Detail
-                                    <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
+                                      <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
                                 </a>
                             </div>
                         </div>`;
                         $('#jobs-container').append(jobHtml);
                     });
                 } else {
-                    $('#jobs-container').append('<p class="tw-text-center tw-text-rose-500">No jobs found.</p>');
+                  // di bawah job container jangan di dalam
+                    $('#jobs-container').append('<div></div><div><p class="tw-text-center tw-text-lg tw-text-gray-700 tw-mt-6">No jobs found</p></div>');
                 }
             }
           });
@@ -564,6 +567,65 @@ $(document).ready(function() {
     });
 });
 </script>
+<script>
+       document.addEventListener('DOMContentLoaded', function() {
+  new Splide('#image-carousel', {
+    type   : 'loop',
+    perPage: 1,
+    autoplay: true,
+    interval: 5000,
+  }).mount();
+});
+
+    </script>
+      <script>
+       document.addEventListener('DOMContentLoaded', function() {
+  new Splide('#image-carousel2', {
+    type   : 'loop',
+    perPage: 1,
+    autoplay: true,
+    interval: 5000, 
+  }).mount();
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+            const avatarImages = document.querySelectorAll('.avatar-image');
+
+            let currentIndex = 0;
+            const intervalTime = 5000;
+
+            function resetCards() {
+                testimonialCards.forEach(card => {
+                    card.classList.remove('active');
+                });
+                avatarImages.forEach(image => {
+                    image.classList.remove('active');
+                    image.style.transform = 'scale(1)';
+                });
+            }
+
+            function showCard(index) {
+                resetCards();
+                testimonialCards[index].classList.add('active');
+                avatarImages[index].classList.add('active');
+             
+                avatarImages[index].style.transform = 'scale(1.2)';
+            }
+
+            function nextCard() {
+                currentIndex = (currentIndex + 1) % testimonialCards.length;
+                showCard(currentIndex);
+            }
+
+
+            showCard(currentIndex);
+            setInterval(nextCard, intervalTime);
+            avatarImages.forEach((image, index) => {
+                image.addEventListener('click', () => {
+                    currentIndex = index;
+                    showCard(currentIndex);
+                });
+            });
+       });
+    </script>
 @endpush
  
 @endsection

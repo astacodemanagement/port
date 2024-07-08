@@ -5,15 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Pengaduan extends Model
+class Screaning extends Model
 {
     use HasFactory;
-    protected $table = 'pengaduan';
+
+    protected $table = 'screaning';
+
     protected $guarded = [];
 
-  
     public function kandidat()
     {
-        return $this->belongsTo(Kandidat::class, 'kandidat_id', 'id');
+        return $this->belongsTo(Kandidat::class, 'id_kandidat', 'id');
     }
 }
+

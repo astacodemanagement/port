@@ -257,9 +257,9 @@
                                         <div class="form-group mb-5">
                                             <select name="pendidikan" class="form-select">
                                                 <option value="">Pendidikan Terakhir *</option>
-                                                     <option value="1">Tidak/Belum Sekolah</option>
-                                                    <option value="2">SD</option>
-                                                    <option value="3">SMP</option>
+                                                    <option value="1">SD</option>
+                                                    <option value="2">SMP</option>
+                                                    <option value="3">SMA</option>
                                                     <option value="4">SMA</option>
                                                     <option value="5">D3</option>
                                                     <option value="6">D4</option>

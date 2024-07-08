@@ -19,14 +19,7 @@
   <!-- tialwind -->
   <!-- import tailwind using laravel mix-->
   <link href="{{ asset('css/app1.css') }}" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-  />
-  <link href="
-https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
-" rel="stylesheet">
+ 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
    
@@ -126,6 +119,14 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
     }
 </style>
   @stack('css')
+  <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <link href="
+https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
+" rel="stylesheet">
 
 </head>
 <body class="tw-opacity-0 tw-transition-opacity tw-duration-500">
@@ -175,7 +176,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
                         <div>
                             <h3 class="tw-text-lg tw-text-white tw-font-work-sans tw-font-bold  ">Get Job Notification</h3>
                             <span class="tw-block tw-mt-2 tw-text-sm tw-text-[#D4D4D8]  tw-hover:tw-underline tw-mb-5">The latest job news, articles, sent to your inbox weekly.</span>
-                            <input type="email" class="tw-w-full tw-py-2 tw-px-4 tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm tw-placeholder-gray-400 tw-focus:tw-outline-none tw-focus:tw-ring-1 tw-focus:tw-ring-blue-500 tw-focus:tw-border-blue-500" placeholder="Enter your email address">
+                          <input type="email" class="tw-w-full tw-py-2 tw-px-4 tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm tw-placeholder-gray-400 tw-focus:tw-outline-none tw-focus:tw-ring-1 tw-focus:tw-ring-blue-500 tw-focus:tw-border-blue-500" placeholder="Enter your email address">
                             <button class="tw-mt-4 tw-py-2 tw-px-4 tw-bg-sky-500 tw-text-white tw-font-semibold tw-rounded-md tw-shadow-sm hover:tw-bg-blue-600">Subscribe</button>
                         </div>
                     </div>

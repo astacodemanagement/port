@@ -575,6 +575,7 @@
                                                                                         <h4 class="sub-title">Dokumen
                                                                                             Persyaratan Jati Diri yang
                                                                                             dimiliki</h4>
+                                                                                            
                                                                                         <div
                                                                                             class="border-checkbox-section">
                                                                                             <div
@@ -668,7 +669,7 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-
+                                                                                
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-12">
                                                                                         <label class="col-form-label"
@@ -683,168 +684,99 @@
                                                                                 </div>
                                                                                 <h4 class="sub-title">Upload Dokumen
                                                                                     Persyaratan Jati Diri yang dimiliki</h4>
-                                                                                <div class="container">
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Foto</label>
-                                                                                                <br>
-                                                                                                <a href="/upload/foto/{{ $belum_diverifikasi->kandidat->foto }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/foto/{{ $belum_diverifikasi->kandidat->foto }}"
-                                                                                                        alt="">
-                                                                                                </a>
+                                                                                 <div class="row mt-lg-4 mt-3">
+                                                                                    @php
+                                                                                    $arrDocument = [
+                                                                                        [
+                                                                                            'key' => 'foto',
+                                                                                            'path' => 'foto',
+                                                                                            'name' => 'Foto'
+                                                                                        ],
+                                                                                        [
+                                                                                            'key' => 'paspor',
+                                                                                            'path' => 'paspor',
+                                                                                            'name' => 'Paspor'
+                                                                                        ],
+                                                                                        [
+                                                                                            'key' => 'ktp',
+                                                                                            'path' => 'ktp',
+                                                                                            'name' => 'KTP'
+                                                                                        ],
+                                                                                        [
+                                                                                            'key' => 'sertifikat_kompetensi',
+                                                                                            'path' => 'sertifikat-kompetensi',
+                                                                                            'name' => 'Sertifikat Kompetensi'
+                                                                                        ],
+                                                                                        [
+                                                                                            'key' => 'sertifikat_bahasa_inggris',
+                                                                                            'path' => 'sertifikat-bahasa-inggris',
+                                                                                            'name' => 'Sertifikat Bahasa Inggris'
+                                                                                        ],
+                                                                                        [
+                                                                                            'key' => 'paklaring',
+                                                                                            'path' => 'paklaring',
+                                                                                            'name' => 'Paklaring'
+                                                                                        ],
+                                                                                        [
+                                                                                            'key' => 'kk',
+                                                                                            'path' => 'kartu-keluarga',
+                                                                                            'name' => 'Kartu Keluarga'
+                                                                                        ],
+                                                                                        [
+                                                                                            'key' => 'akta_lahir',
+                                                                                            'path' => 'akta-lahir',
+                                                                                            'name' => 'Akta Lahir'
+                                                                                        ],
+                                                                                        [
+                                                                                            'key' => 'ijazah',
+                                                                                            'path' => 'ijazah',
+                                                                                            'name' => 'Ijazah'
+                                                                                        ],
+                                                                                        [
+                                                                                            'key' => 'buku_nikah',
+                                                                                            'path' => 'buku-nikah',
+                                                                                            'name' => 'Buku Nikah'
+                                                                                        ],
+                                                                                    ];
+                                                                                @endphp
+                                                                                 @foreach ($arrDocument as $doc)
+                                                                                 <div class="col-6 col-md-2">
+                                                                                     @php
+                                                                                         $originalFile = $belum_diverifikasi->kandidat->{$doc['key']} ? 'upload/' . $doc['path'] . '/' . $belum_diverifikasi->kandidat->{$doc['key']} : null;
+                                                                                         $thumbnailFile = $belum_diverifikasi->kandidat->{$doc['key']} ? 'upload/' . $doc['path'] . '/thumb_' . $belum_diverifikasi->kandidat->{$doc['key']} : null;
+                                                                                         $memberFile = memberDocumentImage($originalFile, $thumbnailFile);
+                                                                                     @endphp
+                                         
+                                                                                     <label for="{{ $doc['key'] }}" style="cursor: pointer">
 
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Paspor</label>
-                                                                                                <a href="/upload/paspor/{{ $belum_diverifikasi->kandidat->paspor }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
+                                                                                         @if ($memberFile['is_uploaded'])
+                                                                                            <a  href="/upload/{{ $doc['path'] }}/{{ $belum_diverifikasi->kandidat->{$doc['key']} }}" target="_blank">
+                                                                                             <img src="{{ asset('member-template/images/transparent.png') }}" alt="{{ $doc['name'] }}" class="rounded-2 img-fluid mb-3 img-preview-doc" style="background-image: url('{{ asset($memberFile['file_image']) }}');">
+                                                                                            </a>
+                                                                                         @else
+                                                                                             <img src="{{ asset('member-template/images/transparent.png') }}" alt="{{ $doc['name'] }}" class="rounded-2 img-fluid mb-3 img-preview-doc" style="background-image: url('{{ asset('member-template/images/upload.png') }}');">
+                                                                                         @endif
+                                                                                         
+                                                                                         <div class="fw-7 text-center mb-4 {{ $memberFile['is_uploaded'] ? '' : 'text-muted' }}">update {{ $doc['name'] }}</div>
+                                                                                         <input type="file" name="file_{{ $doc['key'] }}" id="{{ $doc['key'] }}" class="d-none file-image" accept="{{ $doc['key'] == 'foto' ? 'image/*' :'image/*,application/pdf' }}">
+                                                                                     </label>
+                                                                                 </div>
+                                                                             @endforeach
 
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">KTP</label>
-                                                                                                <a href="/upload/ktp/{{ $belum_diverifikasi->kandidat->ktp }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="container">
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Sertifikat
-                                                                                                    Kompetensi</label>
-                                                                                                <a href="/upload/sertifikat-kompetensi/{{ $belum_diverifikasi->kandidat->sertifikat_kompetensi }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Paklaring</label>
-                                                                                                <a href="/upload/paspor/{{ $belum_diverifikasi->kandidat->paklaring }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="kk">KK</label>
-                                                                                                <a href="/upload/kartu-keluarga/{{ $belum_diverifikasi->kandidat->kk }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="container">
-                                                                                    <div class="row">
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Akta
-                                                                                                    Lahir</label>
-                                                                                                <a href="/upload/akta-lahir/{{ $belum_diverifikasi->kandidat->akta_lahir }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="">Ijazah</label>
-                                                                                                <a href="/upload/ijazah/{{ $belum_diverifikasi->kandidat->ijazah }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="col-sm-4">
-                                                                                            <div class="form-group"
-                                                                                                style="text-align: center;">
-                                                                                                <label
-                                                                                                    class="col-form-label"
-                                                                                                    for="kk">Buku
-                                                                                                    Nikah</label>
-                                                                                                <a href="/upload/buku-nikah/{{ $belum_diverifikasi->kandidat->buku_nikah }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:100%; max-height:100%"
-                                                                                                        src="/upload/preview.png"
-                                                                                                        alt="Preview">
-                                                                                                </a>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                    </div>
-                                                                                </div>
-
-
-
-
+                                                                                 </div>
+                                                                                
 
 
 
 
                                                                             </div>
                                                                         </div>
-
+                                                                        </div>
 
                                                                     </div>
 
                                                                 </div>
-                                                            </div>
+                                                           
 
                                                             <div class="tab-pane" id="cf" role="tabpanel">
                                                                 <div class="modal-content">
@@ -1165,6 +1097,94 @@
 
 
             @push('script')
+            <script>
+                //handle preview foto,ktp,paspor
+               $(document).ready(function(){
+                   $('#foto').change(function(e){
+                       let reader = new FileReader();
+                       reader.onload = (e) => {
+                           $('.previewFoto').attr('src', e.target.result);
+                       }
+                       reader.readAsDataURL(this.files[0]);
+
+                   });
+
+                   $('#ktp').change(function(e){
+                       let reader = new FileReader();
+                       reader.onload = (e) => {
+                           $('.previewKtp').attr('src', e.target.result);
+                       }
+                       reader.readAsDataURL(this.files[0]);
+                   });
+
+                   $('#paspor').change(function(e){
+                       let reader = new FileReader();
+                       reader.onload = (e) => {
+                           $('.previewPaspor').attr('src', e.target.result);
+                       }
+                       reader.readAsDataURL(this.files[0]);
+                   });
+
+                   $('#sertifikat').change(function(e){
+                       let reader = new FileReader();
+                       reader.onload = (e) => {
+                           $('.previewSertifikat').attr('src', e.target.result);
+                       }
+                       reader.readAsDataURL(this.files[0]);
+                   }); 
+                // buat untuk lainnya
+                     $('#sertifikat_kompetensi').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewSertifikatKompetensi').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+    
+                     $('#paklaring').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewPaklaring').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+    
+                     $('#kk').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewKk').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+    
+                     $('#akta_lahir').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewAkta').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+    
+                     $('#ijazah').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewIjazah').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+    
+                     $('#buku_nikah').change(function(e){
+                          let reader = new FileReader();
+                          reader.onload = (e) => {
+                            $('.previewBukuNikah').attr('src', e.target.result);
+                          }
+                          reader.readAsDataURL(this.files[0]);
+                     });
+                }
+
+            );
+
+            </script>
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
                         // Ambil semua input dengan kelas border-checkbox
@@ -1252,4 +1272,16 @@
                         });
                     });
                 </script>
+            @endpush
+
+            @push('css')
+                     
+            <style>
+                       .img-preview-doc {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        
+                </style>
             @endpush

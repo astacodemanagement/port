@@ -21,7 +21,7 @@
                         <!-- <a href="{{ route('member.work-experience.edit') }}" class="float-end btn btn-light-primary text-primary mt-n2"><i class="ti ti-pencil-minus"></i></a> -->
                     </div>
                     <hr class="mb-4 mt-5 w-100">
-                    <h5 class="fw-7 text-primary">Di Lamar tanggal {{$appliedJob->tanggal_apply}}</h5>
+                    <h5 class="fw-7 text-primary">Selesai Pada tanggal {{$appliedJob->tanggal_selesai_kontrak}}</h5>
                     @php
                     $statuses = [
                         'cek_kualifikasi' => $appliedJob->tanggal_cek_kualifikasi ?? 'Belum selesai',
@@ -30,7 +30,7 @@
                         'lolos_interview' => $appliedJob->tanggal_lolos_interview ?? 'Belum selesai',
                         'dalam_proses' => $appliedJob->tanggal_dalam_proses ?? 'Belum selesai',
                         'terbang' => $appliedJob->tanggal_terbang ?? 'Belum selesai',
-                        'selesai_kontrak' => $appliedJob->tanggal_selesai_kontrak ?? 'Belum selesai',
+              
                     ];
 
                     $icon = [
@@ -40,7 +40,7 @@
                         'lolos_interview' => 'fas fa-thumbs-up',
                         'dalam_proses' => 'fas fa-clock',
                         'terbang' => 'fas fa-plane',
-                        'selesai_kontrak' => 'fas fa-calendar'
+            
                     ];
 
                     $title = [
@@ -50,7 +50,7 @@
                         'lolos_interview' => 'Lolos Interview',
                         'dalam_proses' => 'Dalam Proses',
                         'terbang' => 'Terbang',
-                        'selesai_kontrak' => 'Selesai Kontrak'
+                   
 
                     ];
 
@@ -62,7 +62,7 @@
                         'lolos_interview' => $appliedJob->keterangan_dari_lolos_interview,
                         'dalam_proses' => $appliedJob->keterangan_dalam_proses,
                         'terbang' => $appliedJob->keterangan_seleksi_terbang,
-                        'selesai_kontrak' => $appliedJob->keterangan_selesai_kontrak
+           
                     ]
                 @endphp
 

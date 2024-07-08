@@ -143,10 +143,10 @@ class RegisterController extends Controller
         ];
 
         $pendidikanTerakhir = [
-            1 => null,
-            2 => 'SD',
-            3 => 'SMP',
-            4 => 'SMA',
+            1 => 'SD',
+            2 => 'SMP',
+            3 => 'SMA',
+            4 => 'SMK',
             5 => 'D3',
             6 => 'D4',
             7 => 'S1',
@@ -209,6 +209,7 @@ class RegisterController extends Controller
                 'kota_id' => $kota?->id,
                 'level_bahasa_inggris' => $levelBahasa[$request->level_bahasa],
                 'keterangan_belum_kerja' => $request->has('keterangan_belum_kerja') ? 'Belum Bekerja' : null,
+                'keterangan_tidak_ada_passpor' => $request->has('keterangan_tidak_ada_passpor') ? 'Tidak Ada Paspor' : null,
                 'kecamatan_id' => $wilayah?->id,
                 'referensi' => isset($referensi[$request->referensi]) ? $referensi[$request->referensi] : null,
                 'nama_referensi' => $request->referensi == 6 ? $request->nama_referensi : null,

@@ -73,17 +73,18 @@
                                                             <td>{{ $loop->iteration }}</td>
                                                             <td>{{ $p->nama_slider }}</td>
                                                             <td>
-                                                            @if ( $p->compro == 1 )
-                                                                PSI Jobs
+                                                            @if ($p->compro == 1)
+                                                                <span class="badge badge-warning">PSI Jobs</span>
+                                                                
                                                             @else
-                                                                Akama Jobs
+                                                                <span class="badge badge-info">Akama Jobs</span>
                                                             @endif
                                                             </td>
                                                             <td>{{ $p->urutan }}</td>
                                                             <td>
                                                                 <a href="/upload/slider/{{ $p->gambar }}"
                                                                     target="_blank">
-                                                                    <img style="max-width:50px; max-height:50px"
+                                                                    <img style="max-width:200px; max-height:200px"
                                                                         src="/upload/slider/{{ $p->gambar }}"
                                                                         alt="">
                                                                 </a>
@@ -137,7 +138,7 @@
                                                 name="nama_slider">
                                         </div>
                                     </div>
-                                    <div class="form-group row"></div>
+                                    <div class="form-group row">
                                         <div class="col-sm-12">
                                         <label class="col-form-label" for="compro">Company Profile</label>
                                             
@@ -182,10 +183,10 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default waves-effect "
+                                <button type="button" class="btn btn-default waves-effect"
                                     data-dismiss="modal">Kembali</button>
                                 <button type="button" class="btn btn-primary waves-effect waves-light"
-                                    id="btn-save-slider"><i class="fas fa-save"></i> Simpan</button>
+                                    id="btn-save-slider"><i class="fas fa-save"></i> Simpan Perubahan</button>
                             </div>
                         </div>
                     </form>

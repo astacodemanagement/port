@@ -85,21 +85,26 @@ class AjaxController extends Controller
         // Wilayah::insert($arr);
     }
     public function getJob(Request $request)
-{
-    // dd($request->all());
-    $query = Job::active()->orderBy('id', 'desc');
-
-    if ($request->has('search')) {
-        $query->where('nama_job', 'like', '%'.$request->search.'%');
+    {
+        // dd($request->all());
+        $q = $request->get("search");
+        $jobsQuery = Job::active()->orderBy('id', 'desc');
+        
+        if($request->has('search')){
+            $jobsQuery->where('nama_job', 'like', '%'.$q.'%');
+        }
+        
+        if($request->negara !== null){
+            $jobsQuery->where('negara_id', $request->negara);
+        }
+        
+        $jobs = $jobsQuery->get();
+        
+        foreach($jobs as $job){
+           $hasid = hashId($job->id);
+           $job->hashid = $hasid;
+        }
+        
+        return response()->json($jobs);
     }
-
-    if ($request->has('negara')) {
-        $query->where('negara_id', $request->negara);
-    }
-
-    $jobs = $query->get();
-
-    return response()->json($jobs);
-}
-
 }
