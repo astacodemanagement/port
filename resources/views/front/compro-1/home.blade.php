@@ -314,35 +314,44 @@
     <section class="Element-application-jobs">
         <div class="container">
             <div class="title-heading text-center">
-                <h1 class="fw-bold"><span style="color: var(--orange);">Lihat & lamar pekerjaan</span> yang
+                <h1 class="fw-bold"><spanan style="color: var(--orange);">Lihat & lamar pekerjaan</span> yang
                     <br> tersedia untuk kamu
                 </h1>
             </div>
-            <div class="element-search-items d-flex justify-content-center">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control form-control-lg" placeholder="Masukan Kata Kunci"
-                            aria-label="First name">
+        <div class="element-search-items d-flex justify-content-center">
+                <form id="search-form">
+                @csrf
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control form-control-lg" placeholder="Masukan Kata Kunci"
+                                aria-label="First name" id="search-input" name="query">
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-select form-select-lg" aria-label="Large select example">
+                                <option selected>Semua Klasifikasi</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                         <select class="form-select form-select-lg" id="negara-select" aria-label="Large select example">
+                      
+                             @foreach ($negara as $item )
+                                <option value="{{$item->id}}">{{$item->nama_negara}}</option>
+
+                                 
+                             @endforeach
+                            </select>   
+                        </div>
+                        <div class="col-2">
+                            <button type="submit">Cari</button>
+                        </div>
                     </div>
-                    <div class="col-sm-3">
-                        <select class="form-select form-select-lg" aria-label="Large select example">
-                            <option selected>Semua Klasifikasi</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-3">
-                        <input type="text" class="form-control form-control-lg" placeholder="Masukan Negara"
-                            aria-label="First name">
-                    </div>
-                    <div class="col-2">
-                        <button type="submit">Cari</button>
-                    </div>
-                </div>
+                </form>
             </div>
-            <div class="element-items-card mt-5">
-                <div class="row">
+            <div class="element-items-card mt-5" >
+                <div class="row" id="jobs-container">
                     @foreach ($jobs as $job)
                         <div class="col-3">
                             <div class="card-body">
@@ -469,4 +478,111 @@
     <script>
         var lazyLoadInstance = new LazyLoad({});
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- search -->
+     <script>
+        $(document).ready(function() {
+            $('#search-form').on('submit', function(e) {
+        e.preventDefault();
+        let search = $('#search-input').val();
+        let negara = $('#negara-select').val(); 
+        $.ajax({
+            url: `{{route('ajax.job')}}`,
+            method: 'GET',
+            data: { search: search,negara:negara },
+            success: function(response) {
+                $('#jobs-container').empty();
+                if(response.length > 0) {
+                    console.log(response)
+                    response.forEach(function(job) {        
+                    let jobHtml = (`
+                     <div class="col-3 my-3">
+                            <div class="card-body">
+                                <div class="card-image job-image-container">
+                                    <a href=""><img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="/upload/gambar/${job.gambar}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}"></a>
+                                </div>
+                                <div class="card-items-bagde gap-1">
+                                    <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
+                                    <span>Tersedia</span>
+                                </div>
+                                <div class="card-title-heading-card">
+                                    <h5 class="col-10 text-truncate"><a href="/jobs/${job.hashid}">    ${job.nama_job}</a></h5>
+                                    <span>    ${job.nama_perusahaan}</span>
+                                </div>
+                                <div class="card-content">
+                                    <div class="row">
+                                        <div class="col-1 mt-1">
+                                            <img src="{{ asset('frontend') }}/assets/image/location.png" alt="">
+                                        </div>
+                                        <div class="col-10 mt-2">
+                                            <h6 class="title-heading fw-bold">Negara</h6>
+                                            <p>    ${job.nama_negara}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-1 mt-1">
+                                            <img src="{{ asset('frontend') }}/assets/icons/document-text.svg"
+                                                alt="">
+                                        </div>
+                                        <div class="col-10 mt-2">
+                                            <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
+                                            <p>    ${job.kontrak_kerja}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-1 mt-1">
+                                            <img src="{{ asset('frontend') }}/assets/icons/Component 1.svg"
+                                                alt="">
+                                        </div>
+                                        <div class="col-10 mt-2">
+                                            <h6 class="title-heading fw-bold">Gaji</h6>
+                                            <p>    ${job.gaji}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <h6>Berakhir pada ${job.tanggal_tutup}</h6>
+                                        </div>
+                                        <div class="col-12 d-flex align-self-center mt-2">
+                                            <a href="/jobs/${job.hashid}">Lihat Detail
+                                                <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                                    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
+                                                </svg>
+                                                </span>
+                                            </a>
+                                            @if (auth()?->user()?->kandidat?->pendaftaran?->status == "Verifikasi")
+                                  
+                                            <a href="" class="mx-4">Lamar Pekerjaan
+                                                <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill " viewBox="0 0 16 16">
+                                                    <path d="M15.964.686a.5.5 0 0 0-.672-.672L.854 7.854a.5.5 0 0 0 .112.832l4.241 1.696 1.696 4.24a.5.5 0 0 0 .832.113L15.964.686zM6.81 10.38L5.62 8.792l5.826-5.826-4.637 7.414z"></path>
+                                                </svg>
+                                                </span>
+                                            </a>
+                                            @endif
+                                        </div>
+
+                                            <div class="col-12 d-flex align-self-center mt-2">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                    
+                        `);
+                        $('#jobs-container').append(jobHtml );
+
+                });
+            }else{
+                $('#jobs-container').append(`<p>gak ada job</p>`);
+            }
+            
+        } 
+        });
+    })
+        });
+     </script>
 @endpush

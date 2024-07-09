@@ -493,7 +493,7 @@ $(document).ready(function() {
                             <div class="tw-p-6">
                                
                                 <div class="tw-flex">
-                                    <a href="job/${job.id}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C] hover:tw-text-[#18191C] hover:tw-underline ">
+                                    <a href="/jobs/${job.hashid}" class="tw-block tw-mb-2 tw-font-sans tw-text-xl tw-antialiased tw-font-semibold tw-leading-snug tw-tracking-normal tw-text-[#18191C] hover:tw-text-[#18191C] hover:tw-underline ">
                                     ${job.nama_job}
                                     </a>
                                     </a>
@@ -502,7 +502,7 @@ $(document).ready(function() {
                                     </div>
                                 </div>
                                 <!-- Button -->
-                                <button class="tw-bg-[#DCFCE7] tw-py-2 tw-px-4 tw-rounded-md">
+                              <button class="tw-bg-[#DCFCE7] tw-py-2 tw-px-4 tw-rounded-md">
                                     <div class="tw-flex tw-items-center">
                                       <span class="tw-w-4 tw-h-4 tw-rounded-full tw-bg-green-500 tw-border-4 tw-border-green-300 tw-mr-2"></span>
                                         <span class="tw-text-green-700">Available</span>
