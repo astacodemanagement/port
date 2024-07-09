@@ -110,7 +110,14 @@
         {{-- client --}}
         <div class="tw-grid tw-grid-cols-2 tw-gap-6 tw-mt-16 sm:tw-grid-cols-3 lg:tw-grid-cols-5">
             <div class="tw-flex tw-items-center tw-justify-center tw-p-6 " data-aos="fade-right">
-                <img class="tw-w-full tw-h-10" src="https://www.astacode.id/fe/assets/img/logo/papan.png" alt="client1">
+                @forelse ($partner as $item )
+                    
+                <img class="tw-w-full tw-h-10" src="/upload/partner/{{$item->logo}}" alt="{{$item->name}}">
+                @empty
+                    <h4 class="tw-text-center tw-text-rose-400 tw-text-2xl">
+                        No Partner
+                    </h4>
+                @endforelse
             </div>
         </div>
     </div>
@@ -157,32 +164,17 @@
             <div class="tw-grid tw-gap-6 tw-mt-16 tw-grid-cols-1 md:tw-grid-cols-3">
                 <div class="tw-flex tw-items-center tw-justify-center">
                     <ul class="tw-list-none tw-w-full" data-aos="fade-right">
+                        @foreach ($kategori as $item )
+                            
                         <li class="tw-flex tw-items-center tw-mb-10 tw-gap-5 tw-text-2xl">
                             <i class="fa-solid fa-hospital tw-text-sky-500"></i>
-                            <span class="tw-text-gray-800 tw-font-work-sans tw-font-medium">Hospitality</span>
+                            <span class="tw-text-gray-800 tw-font-work-sans tw-font-medium">{{$item->nama_kategori_job}}</span>
                         </li>
-                        <li class="tw-flex tw-items-center tw-mb-10 tw-gap-5 tw-text-2xl">
-                            <i class="fa-solid fa-cubes tw-text-sky-500"></i>
-                            <span class="tw-text-gray-800 tw-font-work-sans tw-font-medium">Manufacture</span>
-                        </li>
-                        <li class="tw-flex tw-items-center tw-gap-5 tw-text-2xl">
-                            <i class="fa-solid fa-helmet-safety tw-text-sky-500"></i>
-                            <span class="tw-text-gray-800 tw-font-work-sans tw-font-medium">Construction</span>
-                        </li>
+                        @endforeach
+                        
                     </ul>
                 </div>
-                <div class="tw-flex tw-items-center tw-justify-center">
-                    <ul class="tw-list-none tw-w-full" data-aos="fade-left">
-                        <li class="tw-flex tw-items-start tw-mb-10 tw-gap-5 tw-text-2xl">
-                            <i class="fa-solid fa-user-clock tw-text-sky-500"></i>
-                            <span class="tw-text-gray-800 tw-font-work-sans tw-font-medium">Domestis Worker</span>
-                        </li>
-                        <li class="tw-flex tw-items-start tw-mb-10 tw-gap-5 tw-text-2xl">
-                            <i class="fa-solid fa-square-plus tw-text-sky-500"></i>
-                            <span class="tw-text-gray-800 tw-font-work-sans tw-font-medium">Other Section</span>
-                        </li>
-                    </ul>
-                </div>
+              
                 <div class="tw-flex tw-items-center tw-justify-center tw-bg-sky-500 tw-rounded-full" data-aos="fade-left">
                     <img src="{{ asset('frontend') }}/assets/image/gedung.png" alt="Description of image" class="tw-w-full tw-h-full tw-rounded-full">
                 </div>

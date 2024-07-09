@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('logo')->nullable();
+            $table->enum('compro',['1','2'])->comment("1 = psi job 2 = akama job");
         });
     }
 

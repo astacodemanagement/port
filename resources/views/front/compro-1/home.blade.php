@@ -322,19 +322,19 @@
                 <form id="search-form">
                 @csrf
                     <div class="row">
-                        <div class="col-sm-3">
+                        <div class="col-sm-5">
                             <input type="text" class="form-control form-control-lg" placeholder="Masukan Kata Kunci"
                                 aria-label="First name" id="search-input" name="query">
                         </div>
-                        <div class="col-sm-3">
+                        <!-- <div class="col-sm-3">
                             <select class="form-select form-select-lg" aria-label="Large select example">
                                 <option selected>Semua Klasifikasi</option>
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>
                             </select>
-                        </div>
-                        <div class="col-sm-3">
+                        </div> -->
+                        <div class="col-sm-5">
                          <select class="form-select form-select-lg" id="negara-select" aria-label="Large select example">
                       
                              @foreach ($negara as $item )

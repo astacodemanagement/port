@@ -6,6 +6,7 @@ use App\Models\Fasilitas;
 use App\Models\Job;
 use App\Models\KategoriJob;
 use App\Models\Negara;
+use App\Models\Partner;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,9 @@ class FeCompanyprofile2 extends Controller
     }
 
     public function employe(){
-        return view('front.compro-2.employe');
+        $data['partner'] = Partner::where('compro',2)->get();
+        $data['kategori'] = KategoriJob::all();
+        return view('front.compro-2.employe',$data);
     }
     
     public function daftar(){

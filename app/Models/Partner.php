@@ -9,5 +9,5 @@ class Partner extends Model
 {
     use HasFactory;
     protected $table = 'partner';
-    protected $fillable = ['name', 'logo'];
+    protected $fillable = ['name', 'logo', 'compro'];
 }
