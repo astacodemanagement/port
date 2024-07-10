@@ -395,10 +395,11 @@ Route::name('front.')->group(function () {
 });
 
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
+Route::get('register/verify/{token}', [RegisterController::class, 'verifyEmail'])->name('register.verify-email');
 Route::post('register/step/validation', [RegisterController::class, 'stepValidation'])->name('register.step.validation');
 
 /** MEMBER ROUTE */
-Route::group(['middleware' => ['role:member']], function () {
+Route::group(['middleware' => ['role:member','is_verify_email']], function () {
     Route::prefix('member')->group(function () {
         Route::middleware('member.auth')->group(function () {
             Route::name('member.')->group(function () {
