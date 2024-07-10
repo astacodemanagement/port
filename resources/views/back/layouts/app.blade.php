@@ -391,7 +391,7 @@
                                             'back-office.kategori-job.index',
                                             'back-office.slider.index',
                                             'back-office.counter.index',
-                                            
+                                            'back-office.partnerindex',
                                             'back-office.galeri.index',
                                             'back-office.review.index',
                                             'back-office.faq.index',
@@ -440,6 +440,11 @@
                                             <li class="{{ request()->routeIs('back-office.review.index') ? 'active' : '' }}">
                                                 <a href="{{ route('back-office.review.index') }}" class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Review</span>
+                                                </a>
+                                            </li>
+                                            <li class="{{ request()->routeIs('back-office.partnerindex') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.partnerindex') }}" class="waves-effect waves-dark">
+                                                    <span class="pcoded-mtext">Partner</span>
                                                 </a>
                                             </li>
                                             <li class="{{ request()->routeIs('back-office.faq.index') ? 'active' : '' }}">
