@@ -627,7 +627,7 @@
                                                         <div class="form-group row">
                                                             <div class="col-sm-6">
                                                                 <label class="col-form-label" for="email">Email</label>
-                                                                <input type="email" class="form-control" id="email" name="email" value="{{ $detail_kandidat->user->email }}">
+                                                                <input type="email" class="form-control" id="email" name="email" value="{{ $detail_kandidat->user?->email }}">
                                                             </div>
                                                             <div class="col-sm-6">
                                                                 <label class="col-form-label" for="password">Password</label>
