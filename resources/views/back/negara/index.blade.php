@@ -137,6 +137,7 @@
                                                 name="logo">
                                         </div>
                                     </div>
+                                    <div class="form-group row">
                                         <div class="col-sm-12">
                                             <label class="col-form-label" for="nama_negara">Nama Negara</label>
                                         </div>
