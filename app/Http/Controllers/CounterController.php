@@ -50,7 +50,7 @@ class CounterController extends Controller
      */
     public function index()
     {
-        $data['counter'] = Counter::all();
+        $data['counter'] = Counter::orderBy('id', 'desc')->get();
         return view('back.counter.index', $data);
     }
 
