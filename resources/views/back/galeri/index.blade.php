@@ -138,7 +138,7 @@
                                             <label class="col-form-label" for="nama_galeri">Nama Galeri</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success" id="nama_galeri"
+                                            <input type="text" class="form-control  " id="nama_galeri"
                                                 name="nama_galeri">
                                         </div>
                                     </div>
@@ -147,7 +147,7 @@
                                             <label class="col-form-label" for="keterangan">Keterangan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="keterangan" id="keterangan" cols="30" rows="3"></textarea>
+                                            <textarea class="form-control  " name="keterangan" id="keterangan" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -155,7 +155,7 @@
                                             <label class="col-form-label" for="urutan">Urutan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success"
+                                            <input type="number" class="form-control  "
                                                 id="urutan" name="urutan">
                                         </div>
                                     </div>
@@ -164,7 +164,7 @@
                                             <label class="col-form-label" for="gambar">Upload Gambar Galeri</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="file" class="form-control form-control-success"
+                                            <input type="file" class="form-control  "
                                                 id="gambar" name="gambar">
                                         </div>
                                     </div>
@@ -212,7 +212,7 @@
                                             <label class="col-form-label" for="edit_nama_galeri">Nama Galeri</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="edit_nama_galeri" name="nama_galeri">
                                         </div>
                                     </div>
@@ -221,7 +221,7 @@
                                             <label class="col-form-label" for="edit_keterangan">Keterangan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="keterangan" id="edit_keterangan" cols="30"
+                                            <textarea class="form-control  " name="keterangan" id="edit_keterangan" cols="30"
                                                 rows="3"></textarea>
                                         </div>
                                     </div>
@@ -230,7 +230,7 @@
                                             <label class="col-form-label" for="edit_urutan">Urutan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success"
+                                            <input type="number" class="form-control  "
                                                 id="edit_urutan" name="urutan">
                                         </div>
                                     </div>

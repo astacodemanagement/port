@@ -132,7 +132,7 @@
                                             <label class="col-form-label" for="name">Nama Pengguna</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success" id="name"
+                                            <input type="text" class="form-control  " id="name"
                                                 name="name">
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@
                                             <label class="col-form-label" for="email">Email</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="email" class="form-control form-control-success" id="email"
+                                            <input type="email" class="form-control  " id="email"
                                                 name="email">
                                         </div>
                                     </div>
@@ -163,7 +163,7 @@
                                             <label class="col-form-label" for="password">Password</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="password" class="form-control form-control-success"
+                                            <input type="password" class="form-control  "
                                                 id="password" name="password">
                                         </div>
                                     </div>
@@ -173,7 +173,7 @@
                                                 Password</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="password" class="form-control form-control-success"
+                                            <input type="password" class="form-control  "
                                                 id="password_confirmation" name="password_confirmation">
                                         </div>
                                     </div>
@@ -211,7 +211,7 @@
                                             <label class="col-form-label" for="edit-name">Nama Pengguna</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success" id="edit-name"
+                                            <input type="text" class="form-control  " id="edit-name"
                                                 name="name">
                                         </div>
                                     </div>
@@ -220,7 +220,7 @@
                                             <label class="col-form-label" for="edit-email">Email</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="email" class="form-control form-control-success" id="edit-email"
+                                            <input type="email" class="form-control  " id="edit-email"
                                                 name="email">
                                         </div>
                                     </div>
@@ -242,7 +242,7 @@
                                             <label class="col-form-label" for="password">Password</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="password" class="form-control form-control-success"
+                                            <input type="password" class="form-control  "
                                                 id="password" name="password">
                                         </div>
                                     </div>
@@ -252,7 +252,7 @@
                                                 Password</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="password" class="form-control form-control-success"
+                                            <input type="password" class="form-control  "
                                                 id="password_confirmation" name="password_confirmation">
                                         </div>
                                     </div>

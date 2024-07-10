@@ -139,7 +139,7 @@
                                             <label class="col-form-label" for="pertanyaan">Pertanyaan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success" id="pertanyaan"
+                                            <input type="text" class="form-control  " id="pertanyaan"
                                                 name="pertanyaan">
                                         </div>
                                     </div>
@@ -149,7 +149,7 @@
                                             <label class="col-form-label" for="jawaban">Jawaban </label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="jawaban" id="jawaban" cols="30" rows="3"></textarea>
+                                            <textarea class="form-control  " name="jawaban" id="jawaban" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
 
@@ -158,7 +158,7 @@
                                             <label class="col-form-label" for="urutan">Urutan </label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success" id="urutan"
+                                            <input type="number" class="form-control  " id="urutan"
                                                 name="urutan">
                                         </div>
                                     </div>
@@ -214,7 +214,7 @@
                                                 Job</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="edit_pertanyaan" name="pertanyaan">
                                         </div>
                                     </div>
@@ -223,7 +223,7 @@
                                             <label class="col-form-label" for="edit_jawaban">Jawaban </label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="jawaban" id="edit_jawaban" cols="30" rows="3"></textarea>
+                                            <textarea class="form-control  " name="jawaban" id="edit_jawaban" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -231,7 +231,7 @@
                                             <label class="col-form-label" for="edit_urutan">Urutan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success"
+                                            <input type="number" class="form-control  "
                                                 id="edit_urutan" name="urutan">
                                         </div>
                                     </div>

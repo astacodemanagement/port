@@ -137,7 +137,7 @@
                                             <label class="col-form-label" for="tanggal_pemasukan">Tanggal Pemasukan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="date" class="form-control form-control-success"
+                                            <input type="date" class="form-control  "
                                                 id="tanggal_pemasukan" name="tanggal_pemasukan">
                                         </div>
                                     </div>
@@ -146,7 +146,7 @@
                                             <label class="col-form-label" for="nama_pemasukan">Nama Pemasukan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="nama_pemasukan" name="nama_pemasukan">
                                         </div>
                                     </div>
@@ -156,7 +156,7 @@
                                             <label class="col-form-label" for="nama_pemasukan">Jumlah Pemasukan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success jumlah_pemasukan" name="jumlah_pemasukan" id="jumlah_pemasukan">
+                                            <input type="text" class="form-control   jumlah_pemasukan" name="jumlah_pemasukan" id="jumlah_pemasukan">
                                   
                                         </div>
                                     </div>
@@ -186,7 +186,7 @@
                                             <label class="col-form-label" for="keterangan">Keterangan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="keterangan" id="keterangan" cols="30"
+                                            <textarea class="form-control  " name="keterangan" id="keterangan" cols="30"
                                                 rows="3"></textarea>
                                         </div>
                                     </div>
@@ -195,7 +195,7 @@
                                             <label class="col-form-label" for="pic">PIC</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="pic" name="pic">
                                         </div>
                                     </div>
@@ -204,7 +204,7 @@
                                             <label class="col-form-label" for="gambar">Upload Gambar Pemasukan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="file" class="form-control form-control-success"
+                                            <input type="file" class="form-control  "
                                                 id="gambar" name="gambar">
                                         </div>
                                     </div>
@@ -251,7 +251,7 @@
                                             <label class="col-form-label" for="edit_tanggal_pemasukan">Tanggal Pemasukan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="date" class="form-control form-control-success"
+                                            <input type="date" class="form-control  "
                                                 id="edit_tanggal_pemasukan" name="tanggal_pemasukan">
                                         </div>
                                     </div>
@@ -260,7 +260,7 @@
                                             <label class="col-form-label" for="edit_nama_pemasukan">Nama Pemasukan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="edit_nama_pemasukan" name="nama_pemasukan">
                                         </div>
                                     </div>
@@ -270,7 +270,7 @@
                                             <label class="col-form-label" for="jumlah_pemasukan">Jumlah Pemasukan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success jumlah_pemasukan" name="jumlah_pemasukan" id="edit_jumlah_pemasukan">
+                                            <input type="text" class="form-control   jumlah_pemasukan" name="jumlah_pemasukan" id="edit_jumlah_pemasukan">
                                   
                                         </div>
                                     </div>
@@ -300,7 +300,7 @@
                                             <label class="col-form-label" for="edit_keterangan">Keterangan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="keterangan" id="edit_keterangan" cols="30"
+                                            <textarea class="form-control  " name="keterangan" id="edit_keterangan" cols="30"
                                                 rows="3"></textarea>
                                         </div>
                                     </div>
@@ -309,7 +309,7 @@
                                             <label class="col-form-label" for="edit_pic">PIC</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="edit_pic" name="pic">
                                         </div>
                                     </div>

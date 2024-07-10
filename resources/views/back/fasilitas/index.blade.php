@@ -128,7 +128,7 @@
                                             <label class="col-form-label" for="nama_fasilitas">Nama Fasilitas</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control "
                                                 id="nama_fasilitas" name="nama_fasilitas">
                                         </div>
                                     </div>
@@ -137,7 +137,7 @@
                                             <label class="col-form-label" for="keterangan">Keterangan Fasilitas </label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success" id="keterangan"
+                                            <input type="text" class="form-control " id="keterangan"
                                                 name="keterangan">
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@
                                                 Job</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control "
                                                 id="edit_nama_fasilitas" name="nama_fasilitas">
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@
                                                 Fasilitas</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control "
                                                 id="edit_keterangan" name="keterangan">
                                         </div>
                                     </div>
@@ -347,8 +347,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-
-                            url: '/fasilitas/' + id,
+                            url: `${baseUrl}/fasilitas/${id}`,
                             type: 'DELETE',
 
                             success: function(response) {
