@@ -6,6 +6,7 @@ use App\Http\Controllers\AlasanController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\BelumVerifikasiController;
 use App\Http\Controllers\CounterController;
+use App\Http\Controllers\CvController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailBayarController;
 use App\Http\Controllers\EmployerController;
@@ -450,3 +451,6 @@ Route::group(['prefix' => 'compro2'], function () {
     Route::get('/complete', [FeCompanyprofile2::class,'complete'])->name('compro-2.complete');
 
 });
+
+// preview cv
+Route::get('/cv/{id}', [CvController::class, 'previewCv'])->name('preview-cv');
