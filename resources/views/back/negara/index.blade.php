@@ -257,6 +257,7 @@
                     url: form.attr('action'),
                     type: 'POST',
                     data: new FormData(form[0]),
+                    contentType: false,
                     processData: false,
                     success: function(response) {
                         $('#modal-negara').modal('hide');
