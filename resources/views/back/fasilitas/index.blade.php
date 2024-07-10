@@ -269,13 +269,13 @@
             $('.btn-edit').click(function() {
                 var id = $(this).data('id');
                 $.ajax({
-                    url: '/fasilitas/' + id + '/edit',
+                    url: `${baseUrl}/fasilitas/${id}/edit`,
                     type: 'GET',
                     success: function(response) {
                         $('#edit_nama_fasilitas').val(response.nama_fasilitas);
-                        $('#edit_keterangan').val(response.kode_fasilitas);
+                        $('#edit_keterangan').val(response.keterangan);
                         // Set action form untuk update
-                        $('#form-edit-fasilitas').attr('action', '/fasilitas/' + id);
+                        $('#form-edit-fasilitas').attr('action', `${baseUrl}/fasilitas/${id}`);
                         $('#modal-edit').modal('show');
                     },
                     error: function(xhr) {
@@ -290,7 +290,12 @@
                 $.ajax({
                     url: form.attr('action'),
                     type: 'POST',
-                    data: form.serialize() + '&_method=PUT',
+                    data: new FormData(form[0]) ,
+                    headers: {
+                        'X-HTTP-Method-Override': 'PUT'
+                    },
+                    contentType: false,
+                    processData: false,
                     success: function(response) {
                         $('#modal-edit').modal('hide');
                         Swal.fire({
