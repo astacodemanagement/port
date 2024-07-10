@@ -1,5 +1,17 @@
 @extends('front.compro-1.layouts.app')
+@push('css')
+<style>
+    .required-label::after {
+        content: " *";
+        color: red;
+    }
+    .form-control[required]::placeholder {
+        content: attr(placeholder) " *";
+        
+    }
+</style>
 
+@endpush
 @section('title', 'Register')
 
 @section('content')
@@ -180,155 +192,123 @@
 
                                 <!--begin::Step 1-->
                                 <div class="flex-column current" data-kt-stepper-element="content">
-                                    <label class="form-label">Minat Pekerjaan</label>
-                                    <div class="fv-row mb-10">
-                                        {{-- <div class="form-group mb-5">
-                                            <select class="form-select" name="negara_id" aria-label="dropdownNegara">
-                                                <option value="">Negara Yang Diminat</option>
-                                                @foreach ($countries as $country)
-                                                    <option value="{{ $country->id }}">{{ $country->nama_negara }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div> --}}
+    <label class="form-label required-label">Minat Pekerjaan</label>
+    <div class="fv-row mb-10">
+        <div class="form-group">
+            <select class="form-select" name="kategori_job_id" aria-labelledby="dropdownKategori" required>
+                <option value="">Industri Yang Diminati</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->nama_kategori_job }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
 
-                                        <div class="form-group">
-                                            <select class="form-select" name="kategori_job_id"
-                                                aria-labelledby="dropdownKategori">
-                                                <option value="">Industri Yang Diminati *</option>
-                                                @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->nama_kategori_job }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+    <label class="form-label required-label">Informasi Pribadi</label>
+    <div class="fv-row mb-10">
+        <div class="form-group mb-5">
+            <input type="text" class="form-control id-card-format" name="nik" placeholder="Nomor E-KTP (NIK)" value="" required>
+        </div>
+        <div class="form-group mb-5">
+            <input type="text" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap" value="" required>
+        </div>
+        <div class="form-group row mb-5">
+            <div class="col-6">
+                <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir" value="" required>
+            </div>
+            <div class="col-6">
+                <input type="text" class="form-control tanggal-lahir" placeholder="Tanggal Lahir" value="" required>
+                <input type="hidden" class="d-none h-tanggal-lahir" name="tanggal_lahir">
+            </div>
+        </div>
+        <div class="form-group mb-5">
+            <select type="text" class="form-control form-select" name="agama" required>
+                <option value="">Agama</option>
+                <option value="1">Islam</option>
+                <option value="2">Kristen</option>
+                <option value="3">Katolik</option>
+                <option value="4">Hindu</option>
+                <option value="5">Buddha</option>
+                <option value="6">Khonghucu</option>
+                <option value="7">Lainnya</option>
+            </select>
+        </div>
+        <div class="form-group row mb-5">
+            <div class="col-6"><input type="number" class="form-control" name="berat_badan" min="0" placeholder="Berat Badan" value="" required></div>
+            <div class="col-6"><input type="number" class="form-control" name="tinggi_badan" min="0" placeholder="Tinggi Badan" value="" required></div>
+        </div>
+        <div class="form-group mb-5">
+            <select name="jenis_kelamin" class="form-select">
+                <option value="">Jenis Kelamin</option>
+                <option value="P">Pria</option>
+                <option value="W">Wanita</option>
+            </select>
+        </div>
+        <div class="form-group mb-5">
+            <select name="status_kawin" class="form-select">
+                <option value="">Status Kawin</option>
+                <option value="1">Belum Menikah</option>
+                <option value="2">Menikah</option>
+                <option value="3">Cerai</option>
+            </select>
+        </div>
+        <div class="form-group mb-5">
+            <select name="pendidikan" class="form-select">
+                <option value="">Pendidikan Terakhir</option>
+                <option value="1">SD</option>
+                <option value="2">SMP</option>
+                <option value="3">SMA</option>
+                <option value="4">SMA</option>
+                <option value="5">D3</option>
+                <option value="6">D4</option>
+                <option value="7">S1</option>
+                <option value="8">S2</option>
+                <option value="9">S3</option>
+            </select>
+        </div>
+        <div class="form-group mb-5">
+            <input type="text" class="form-control" name="nama_lengkap_ayah" placeholder="Nama Lengkap Ayah" value="">
+        </div>
+        <div class="form-group mb-5">
+            <input type="text" class="form-control" name="nama_lengkap_ibu"  placeholder="Nama Lengkap Ibu" value="">
+        </div>
+        <div class="form-group mb-5">
+            <textarea class="form-control" rows="3" name="alamat" placeholder="Alamat"></textarea>
+        </div>
+        <div class="form-group mb-5">
+            <select class="form-select wilayah" name="wilayah" aria-labelledby="wilayah">
+            </select>
+        </div>
+        <div class="form-group mb-5">
+            <input type="text" class="form-control" name="level_bahasa" placeholder="Level Bahasa Ingris" value="">
+        </div>
+        <div class="form-group mb-5">
+            <select class="form-select" name="level_bahasa" aria-labelledby="levelBahasa">
+                <option value="">Level Bahasa Inggris</option>
+                <option value="1">Beginner English</option>
+                <option value="2">⁠Medium English</option>
+                <option value="3">Advance English</option>
+            </select>
+        </div>  
+        <div class="form-group mb-5">
+            <select name="referensi" class="form-select reference">
+                <option value="">Dari mana kamu mengetahui kami ?</option>
+                <option value="1">Google</option>
+                <option value="2">Instagram</option>
+                <option value="3">Facebook</option>
+                <option value="4">Tiktok</option>
+                <option value="5">Teman/Saudara/Keluarga</option>
+                <option value="6">Sponsor</option>
+            </select>
+        </div>
+        <div class="form-group mb-5">
+            <input type="text" class="form-control sponsor d-none" name="nama_referensi" placeholder="Siapa nama Sponsor kamu ?" value="">
+        </div>
+    </div>
+</div>
+</body>
+</html>
 
-                                    <label class="form-label">Informasi Pribadi</label>
-                                    <div class="fv-row mb-10">
-                                        <div class="form-group mb-5">
-                                            <input type="text" class="form-control id-card-format" name="nik" placeholder="Nomor E-KTP (NIK) *" value="">
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <input type="text" class="form-control" name="nama_lengkap" placeholder="Nama Lengkap *" value="">
-                                        </div>
-
-                                        <div class="form-group row mb-5">
-                                            <div class="col-6">
-                                                <input type="text" class="form-control" name="tempat_lahir" placeholder="Tempat Lahir *" value="">
-                                            </div>
-                                            <div class="col-6">
-                                                <input type="text" class="form-control tanggal-lahir" placeholder="Tanggal Lahir *" value="">
-                                                <input type="hidden" class="d-none h-tanggal-lahir" name="tanggal_lahir">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group mb-5">
-                                            <select type="text" class="form-control form-select" name="agama">
-                                                <option value="">Agama *</option>
-                                                <option value="1">Islam</option>
-                                                <option value="2">Kristen</option>
-                                                <option value="3">Katolik</option>
-                                                <option value="4">Hindu</option>
-                                                <option value="5">Buddha</option>
-                                                <option value="6">Khonghucu</option>
-                                                <option value="7">Lainnya</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group row mb-5">
-                                            <div class="col-6"><input type="number" class="form-control" name="berat_badan" min="0" placeholder="Berat Badan *" value=""></div>
-                                            <div class="col-6"><input type="number" class="form-control" name="tinggi_badan" min="0" placeholder="Tinggi Badan *" value=""></div>
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <select name="jenis_kelamin" class="form-select">
-                                                <option value="">Jenis Kelamin *</option>
-                                                <option value="P">Pria</option>
-                                                <option value="W">Wanita</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <select name="status_kawin" class="form-select">
-                                                <option value="">Status Kawin *</option>
-                                                <option value="1">Belum Menikah</option>
-                                                <option value="2">Menikah</option>
-                                                <option value="3">Cerai</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <select name="pendidikan" class="form-select">
-                                                <option value="">Pendidikan Terakhir *</option>
-                                                    <option value="1">SD</option>
-                                                    <option value="2">SMP</option>
-                                                    <option value="3">SMA</option>
-                                                    <option value="4">SMA</option>
-                                                    <option value="5">D3</option>
-                                                    <option value="6">D4</option>
-                                                    <option value="7">S1</option>
-                                                    <option value="8">S2</option>
-                                                    <option value="9">S3</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <input type="text" class="form-control" name="nama_lengkap_ayah" placeholder="Nama Lengkap Ayah *" value="">
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <input type="text" class="form-control" name="nama_lengkap_ibu"  placeholder="Nama Lengkap Ibu *" value="">
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <textarea class="form-control" rows="3" name="alamat" placeholder="Alamat *"></textarea>
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <select class="form-select wilayah" name="wilayah" aria-labelledby="wilayah">
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <input type="text" class="form-control" name="level_bahasa" placeholder="Level Bahasa Ingris *" value="">
-                                        </div>
-                                        {{-- <div class="form-group mb-5">
-                                            <select class="form-select select2 provinsi" name="provinsi_id" aria-labelledby="provinsi">
-                                                <option value="">Provinsi</option>
-                                                @foreach ($provinces as $province)
-                                                    <option value="{{ $province->id }}">{{ $province->nama_provinsi }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <select class="form-select select2 kota" name="kota_id"
-                                                aria-labelledby="kota" disabled>
-                                                <option value="">Kota/Kabupaten</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <select class="form-select select2 kecamatan" name="kecamatan_id" aria-labelledby="kecamatan" disabled>
-                                                <option value="">Kecamatan</option>
-                                            </select>
-                                        </div> --}}
-                                        <!-- select level bahasa -->
-                                        <div class="form-group
-                                            mb-5">
-                                            <select class="form-select" name="level_bahasa" aria-labelledby="levelBahasa">
-                                                <option value="">Level Bahasa Inggris *</option>
-                                                <option value="1">Beginner English</option>
-                                                <option value="2">⁠Medium English</option>
-                                                <option value="3">Advance English</option>
-                                            </select>
-                                        </div>  
-                                        <div class="form-group mb-5">
-                                            <select name="referensi" class="form-select reference">
-                                                <option value="">Dari mana kamu mengetahui kami ?</option>
-                                                <option value="1">Google</option>
-                                                <option value="2">Instagram</option>
-                                                <option value="3">Facebook</option>
-                                                <option value="4">Tiktok</option>
-                                                <option value="5">Teman/Saudara/Keluarga</option>
-                                                <option value="6">Sponsor</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group mb-5">
-                                            <input type="text" class="form-control sponsor d-none" name="nama_referensi" placeholder="Siapa nama Sponsor kamu ?" value="">
-                                        </div>
-                                    </div>
-                                </div>
                                 <!--end::Step 1-->
 
 
@@ -476,7 +456,7 @@
                                             <div class="col-12">
                                                 <div class="form-input">
                                                     <div class="input-group">
-                                                        <label class="input-group-text" for="foto" style="width: 150px">Foto *</label>
+                                                        <label class="input-group-text" for="foto" style="width: 150px">Foto </label>
                                                         <input type="file" class="form-control" id="foto" name="file_foto" accept="image/*">
                                                     </div>
                                                     <label class="text-muted"><small>Foto formal background putih/biru/merah</small></label>
@@ -490,7 +470,7 @@
                                                 </div> -->
                                                 <div class="form-input mt-2">
                                                     <div class="input-group">
-                                                        <label class="input-group-text" for="ktp" style="width: 150px">KTP< */label>
+                                                        <label class="input-group-text" for="ktp" style="width: 150px">KTP </label>
                                                         <input type="file" class="form-control" id="ktp" name="file_ktp" accept="image/*,application/pdf">
                                                     </div>
                                                     <label class="text-muted"><small>Mohon di Scan</small></label>
@@ -940,4 +920,7 @@
             })
         })
     </script>
+      <script>
+        
+      </script>
 @endpush
