@@ -129,7 +129,7 @@
                                             <label class="col-form-label" for="nama_kategori_job">Nama Minat Industri</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="nama_kategori_job" name="nama_kategori_job">
                                         </div>
                                     </div>
@@ -138,7 +138,7 @@
                                             <label class="col-form-label" for="urutan">Urutan Minat Industri</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success" id="urutan"
+                                            <input type="number" class="form-control  " id="urutan"
                                                 name="urutan">
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@
                                             <label class="col-form-label" for="edit_nama_kategori_job">Nama Minat Industri</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="edit_nama_kategori_job" name="nama_kategori_job">
                                         </div>
                                     </div>
@@ -191,7 +191,7 @@
                                             <label class="col-form-label" for="edit_urutan">Urutan Minat Industri</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control form-control-success"
+                                            <input type="number" class="form-control  "
                                                 id="edit_urutan" name="urutan">
                                         </div>
                                     </div>

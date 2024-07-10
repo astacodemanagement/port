@@ -138,7 +138,7 @@
                                                 Pengeluaran</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="date" class="form-control form-control-success"
+                                            <input type="date" class="form-control  "
                                                 id="tanggal_pengeluaran" name="tanggal_pengeluaran">
                                         </div>
                                     </div>
@@ -147,7 +147,7 @@
                                             <label class="col-form-label" for="nama_pengeluaran">Nama Pengeluaran</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="nama_pengeluaran" name="nama_pengeluaran">
                                         </div>
                                     </div>
@@ -158,7 +158,7 @@
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text"
-                                                class="form-control form-control-success jumlah_pengeluaran"
+                                                class="form-control   jumlah_pengeluaran"
                                                 name="jumlah_pengeluaran" id="jumlah_pengeluaran">
 
                                         </div>
@@ -189,7 +189,7 @@
                                             <label class="col-form-label" for="keterangan">Keterangan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="keterangan" id="keterangan" cols="30"
+                                            <textarea class="form-control  " name="keterangan" id="keterangan" cols="30"
                                                 rows="3"></textarea>
                                         </div>
                                     </div>
@@ -198,7 +198,7 @@
                                             <label class="col-form-label" for="pic">PIC</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="pic" name="pic">
                                         </div>
                                     </div>
@@ -207,7 +207,7 @@
                                             <label class="col-form-label" for="gambar">Upload Gambar Pengeluaran</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="file" class="form-control form-control-success"
+                                            <input type="file" class="form-control  "
                                                 id="gambar" name="gambar">
                                         </div>
                                     </div>
@@ -255,7 +255,7 @@
                                                 Pengeluaran</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="date" class="form-control form-control-success"
+                                            <input type="date" class="form-control  "
                                                 id="edit_tanggal_pengeluaran" name="tanggal_pengeluaran">
                                         </div>
                                     </div>
@@ -265,7 +265,7 @@
                                                 Pengeluaran</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="edit_nama_pengeluaran" name="nama_pengeluaran">
                                         </div>
                                     </div>
@@ -277,7 +277,7 @@
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text"
-                                                class="form-control form-control-success jumlah_pengeluaran"
+                                                class="form-control   jumlah_pengeluaran"
                                                 name="jumlah_pengeluaran" id="edit_jumlah_pengeluaran">
 
                                         </div>
@@ -308,7 +308,7 @@
                                             <label class="col-form-label" for="edit_keterangan">Keterangan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <textarea class="form-control form-control-success" name="keterangan" id="edit_keterangan" cols="30"
+                                            <textarea class="form-control  " name="keterangan" id="edit_keterangan" cols="30"
                                                 rows="3"></textarea>
                                         </div>
                                     </div>
@@ -317,7 +317,7 @@
                                             <label class="col-form-label" for="edit_pic">PIC</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control form-control-success"
+                                            <input type="text" class="form-control  "
                                                 id="edit_pic" name="pic">
                                         </div>
                                     </div>
