@@ -79,7 +79,7 @@ Route::prefix('administrator')->group(function () {
                     Route::get('/counter', [CounterController::class, 'index'])->name('index');
                     Route::get('/counter/{id}/edit', [CounterController::class, 'edit'])->name('edit');
                     Route::post('/counter', [CounterController::class, 'store'])->name('store');
-                    Route::put('/counter/{id}', [CounterController::class, 'update'])->name('update');
+                    Route::put('/counter/update/{id}', [CounterController::class, 'update'])->name('update');
                     Route::delete('/counter/{id}', [CounterController::class, 'destroy'])->name('destroy');
 
                 });
@@ -257,7 +257,7 @@ Route::prefix('administrator')->group(function () {
                     Route::put('/negara/{id}', [NegaraController::class, 'update'])->name('update');
                 });
 
-                // Fasilitas
+                // couilitas
                 Route::resource('fasilitas', FasilitasController::class);
                 Route::name('fasilitas.')->group(function () {
                     Route::get('/fasilitas', [FasilitasController::class, 'index'])->name('index');
