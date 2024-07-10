@@ -279,9 +279,7 @@
             <select class="form-select wilayah" name="wilayah" aria-labelledby="wilayah">
             </select>
         </div>
-        <div class="form-group mb-5">
-            <input type="text" class="form-control" name="level_bahasa" placeholder="Level Bahasa Ingris" value="">
-        </div>
+       
         <div class="form-group mb-5">
             <select class="form-select" name="level_bahasa" aria-labelledby="levelBahasa">
                 <option value="">Level Bahasa Inggris</option>
