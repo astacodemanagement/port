@@ -78,17 +78,12 @@ class NegaraController extends Controller
             $image->move($destinationPath, $imageName);
             $input['logo'] = $imageName;
         }
-        Negara::create([
-            'nama_negara' => $request->nama_negara,
-            'kode_negara' => $request->kode_negara,
-            'logo' => $imageName,
-
-        ]);
+        Negara::create($input);
 
         $loggedInUserId = Auth::id();
 
         // Simpan log histori untuk operasi Create dengan user_id yang sedang login
-        $this->simpanLogHistori('Create', 'Negara', $request->id, $loggedInUserId, null, json_encode($negara));
+        $this->simpanLogHistori('Create', 'Negara', $request->id, $loggedInUserId, null, json_encode($input));
 
 
         return response()->json(['message' => 'Data Berhasil Disimpan']);
