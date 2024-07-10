@@ -390,7 +390,7 @@
                         $('#edit_keterangan').val(data.keterangan);
                         $('#edit_urutan').val(data.urutan);
                         if(data.compro){
-
+                            $('#edit_compro').val(data.compro);
                         }
                         if (data.gambar) {
                             var gambarImg = '<img src="/upload/review/' + data.gambar +
