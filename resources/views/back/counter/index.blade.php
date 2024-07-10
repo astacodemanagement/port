@@ -153,7 +153,7 @@
                                             </select>
                                             </div>  
                                     </div>
-                                    <div cs="form-group row">
+                                    <div class="form-group row">
                                         <div class="col-sm-12">
                                             <label class="col-form-label" for="urutan">Urutan</label>
                                         </div>
