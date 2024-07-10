@@ -963,7 +963,7 @@
                                                                                     <input type="email"
                                                                                         class="form-control"
                                                                                         id="email" name="email"
-                                                                                        value="{{ $user_info->email }}">
+                                                                                        value="{{ $user_info?->email }}">
                                                                                 </div>
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
