@@ -195,7 +195,7 @@
                             @foreach ($job->benefits as $item)
                                     <a href="" class="tw-flex tw-items-center tw-bg-[#E8FAF0] tw-rounded-md tw-py-1.5 tw-px-4 tw-gap-3 tw-text-base tw-font-work-sans tw-font-medium tw-text-green-600">
                                         <img src="{{ asset('frontend') }}/assets/image/icon/ceklis.png" class="tw-h-4 tw-w-4 mr-4" alt="">
-                                        <span>{{$item->fasilitas->nama_fasilitas}}</span>
+                                        <span>{{$item->fasilitas?->nama_fasilitas}}</span>
                                     </a>
                                 @endforeach
                               
