@@ -289,7 +289,7 @@ class KandidatController extends Controller
         }
 
         // Periksa apakah NIK ada di tabel pendaftaran
-        $nikExistsInPendaftaran = Pendaftaran::where('nik', $kandidat->nik)->exists();
+        $nikExistsInPendaftaran = Pendaftaran::where('id', $kandidat->pendaftaran_id)->exists();
 
         // Periksa apakah ID ada di tabel seleksi
         $idExistsInSeleksi = Seleksi::where('id', $kandidat->id)->exists();

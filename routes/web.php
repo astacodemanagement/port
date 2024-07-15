@@ -109,7 +109,7 @@ Route::prefix('administrator')->group(function () {
                     Route::get('/kandidat', [KandidatController::class, 'index'])->name('kandidat.index');
                     Route::get('/kandidat/{id}/detail', [KandidatController::class, 'detail'])->name('kandidat.detail');
                     Route::put('/kandidat/update/{id}', [KandidatController::class, 'update'])->name('kandidat.update');
-
+                    Route::delete('/kandidat/{id}', [KandidatController::class, 'destroy'])->name('kandidat.destroy');
                     
                     // // Belum Verifikasi
                     // Route::get('/belum-diverifikasi', [BelumVerifikasiController::class, 'index'])->name('belum-verifikasi');
