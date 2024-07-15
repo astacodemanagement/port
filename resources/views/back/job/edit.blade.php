@@ -230,7 +230,7 @@
                                                                                 </div>
 
 
-                                                                                <!-- <div class="form-group row">
+                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
                                                                                             for="tanggal_kurs">Tanggal
@@ -251,7 +251,7 @@
                                                                                             name="nominal_kurs"
                                                                                             value="{{ $data->nominal_kurs }}">
                                                                                     </div>
-                                                                                </div> -->
+                                                                                </div> 
 
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
