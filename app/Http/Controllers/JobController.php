@@ -71,7 +71,7 @@ class JobController extends Controller
             'nama_perusahaan' => 'required',
             'mitra' => 'nullable',
             'tanggal_tutup' => 'nullable|date',
-            'gaji' => 'required|min:6',
+            'gaji' => 'required',
             'jenis_pembayaran' => 'required|in:Bulan,Jam',
             'estimasi_minimal' => 'required|min:6',
             'estimasi_maksimal' => 'required|min:6',
@@ -105,7 +105,7 @@ class JobController extends Controller
             'nama_perusahaan.required' => 'Nama Perusahaan Wajib diisi',
             'gaji.required' => 'Gaji Wajib diisi',
             'gaji.numeric' => 'Gaji harus berupa angka',
-            'gaji.min' => 'Gaji minimal 6 digit',
+           
             'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',
             'jenis_pembayaran.in' => 'Jenis Pembayaran harus berupa Bulan atau Jam',
             'estimasi_minimal.required' => 'Estimasi Minimal Wajib diisi',
