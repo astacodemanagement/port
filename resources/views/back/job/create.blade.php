@@ -510,6 +510,30 @@
                                                                                             </option>
                                                                                         </select>
                                                                                     </div>
+                                                                                    <div class="col-sm-12 mt-3">
+                                                                                        <label class="col-form-label"
+                                                                                            for="pendidikan">Pendidikan</label>
+                                                                                        <select class="form-control "
+                                                                                            id="pendidikan"
+                                                                                            name="pendidikan" required>
+                                                                                            <option value="">--Pilih
+                                                                                                pendidikan--</option>
+                                                                                            <option value="Tidak diperlukan pendidikan">
+                                                                                                Tidak diperlukan pendidikan
+                                                                                            </option>
+                                                                                            <option value="SMA/SMK">SMA/SMK</option>
+                                                                                            <option value="D3">D3</option>
+                                                                                            <option value="S1">S1</option>
+                                                                                            <option value="S2">S2</option>
+                                                                                            <option value="S3">S3</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <!-- text area ketentuan -->
+                                                                                    <div class="col-sm-12 mt-3">
+                                                                                        <label class="col-form-label"
+                                                                                            for="ketentuan">Ketentuan</label>
+                                                                                        <textarea class="form-control " name="ketentuan" id="ketentuan" cols="30" rows="4"></textarea>
+                                                                                    </div>
                                                                                 </div>
 
 

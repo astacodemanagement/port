@@ -74,7 +74,7 @@ class JobController extends Controller
             'gaji' => 'required',
             'jenis_pembayaran' => 'required|in:Bulan,Jam',
             'estimasi_minimal' => 'required|min:6',
-            'estimasi_maksimal' => 'required|min:6',
+            'estimasi_maksimal' => 'nullable|min:6',
             'gaji_diterima' => 'required|in:Bersih,Kotor',
             'tanggal_kurs' => 'nullable|date',
             // 'nominal_kurs' => 'nullable',
@@ -100,6 +100,7 @@ class JobController extends Controller
             'info_lain' => 'nullable',
             'disclaimer' => 'nullable',
             'fasilitas_id' => 'required|array|min:1',
+            'pendidikan' => 'nullable',
         ], [
             'nama_job.required' => 'Nama Job Wajib diisi',
             'nama_perusahaan.required' => 'Nama Perusahaan Wajib diisi',
@@ -111,7 +112,7 @@ class JobController extends Controller
             'estimasi_minimal.required' => 'Estimasi Minimal Wajib diisi',
 
             'estimasi_minimal.min' => 'Estimasi Minimal minimal 6 digit',
-            'estimasi_maksimal.required' => 'Estimasi Maksimal Wajib diisi',
+           
 
             'estimasi_maksimal.min' => 'Estimasi Maksimal minimal 6 digit',
             'gaji_diterima.required' => 'Status Gaji Diterima Wajib diisi',
@@ -347,6 +348,8 @@ class JobController extends Controller
             'info_lain' => 'nullable',
             'disclaimer' => 'nullable',
             'fasilitas_id' => 'required|array|min:1',
+            'pendidikan' => 'nullable',
+            'ketentuan' => 'nullable|min:6',
         ], [
             'nama_job.required' => 'Nama Job Wajib diisi',
             'nama_perusahaan.required' => 'Nama Perusahaan Wajib diisi',
@@ -381,6 +384,7 @@ class JobController extends Controller
             'fasilitas_id.required' => 'Fasilitas Wajib diisi',
             'fasilitas_id.array' => 'Fasilitas harus berupa array',
             'fasilitas_id.min' => 'Pilih minimal satu fasilitas',
+            'ketentuan.min' => 'Ketentuan minimal 6 digit',
         ]);
 
         if ($validator->fails()) {
@@ -398,7 +402,7 @@ class JobController extends Controller
                 'negara_id', 'kategori_job_id', 'kontrak_kerja', 'jam_kerja', 'hari_kerja', 'cuti_kerja',
                 'masa_percobaan', 'mata_uang_gaji', 'kerja_lembur', 'bahasa', 'deskripsi', 'jenis_kelamin',
                 'tinggi_badan', 'berat_badan', 'rentang_usia', 'level_bahasa', 'pengalaman_kerja', 'paragraf_galeri',
-                'link_video', 'info_lain', 'disclaimer'
+                'link_video', 'info_lain', 'disclaimer','ketentuan','pendidikan'
             ]);
 
             // Hilangkan karakter titik dari input yang bersifat nominal

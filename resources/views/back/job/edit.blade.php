@@ -599,6 +599,56 @@
                                                                                         </select>
 
                                                                                     </div>
+                                                                                    <div class="col-sm-12 mt-3">
+                                                                                        <label class="col-form-label"
+                                                                                            for="pendidikan">Pendidikan</label>
+                                                                                        <select class="form-control "
+                                                                                            id="pendidikan"
+                                                                                            name="pendidikan" required>
+                                                                                            <option value="">--Pilih
+                                                                                                pendidikan--</option>
+                                                                                            <option
+                                                                                                value="Tidak diperlukan pendidikan"
+                                                                                                {{ $data->pendidikan == 'Tidak diperlukan pendidikan' ? 'selected' : '' }}>
+                                                                                                Tidak diperlukan pendidikan
+                                                                                            </option>
+                                                                                            <option
+                                                                                                value="SMA/SMK"
+                                                                                                {{ $data->pendidikan == 'SMA/SMK' ? 'selected' : '' }}>
+                                                                                                SMA/SMK
+                                                                                            </option>
+                                                                                            <!-- d3 -->
+                                                                                            <option
+                                                                                                value="D3"
+                                                                                                {{ $data->pendidikan == 'D3' ? 'selected' : '' }}>
+                                                                                                D3
+                                                                                            </option>
+                                                                                            <!-- s1 -->
+                                                                                            <option
+                                                                                                value="S1"
+                                                                                                {{ $data->pendidikan == 'S1' ? 'selected' : '' }}>
+                                                                                                S1
+                                                                                            </option>
+                                                                                            <!-- s2 -->
+                                                                                            <option
+                                                                                                value="S2"
+                                                                                                {{ $data->pendidikan == 'S2' ? 'selected' : '' }}>
+                                                                                                S2
+                                                                                            </option>
+                                                                                            <!-- s3 -->
+                                                                                            <option
+                                                                                                value="S3"
+                                                                                                {{ $data->pendidikan == 'S3' ? 'selected' : '' }}>
+                                                                                                S3
+                                                                                            </option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <!-- text area ketentuan -->
+                                                                                    <div class="col-sm-12 mt-3">
+                                                                                        <label class="col-form-label"
+                                                                                            for="ketentuan">Ketentuan</label>
+                                                                                        <textarea class="form-control " name="ketentuan" id="ketentuan" cols="30" rows="4">{{$data->ketentuan}}</textarea>
+                                                                                    </div>
                                                                                 </div>
 
 
