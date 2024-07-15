@@ -65,7 +65,7 @@ class PelamarController extends Controller
         if ($data["filter_height"]) {
             $data['pelamar'] = Pendaftaran::where('status', $status)
                 ->whereHas('kandidat', function ($query) use ($data) {
-                    $query->where('tinggi_badan', $data['filter_height']);
+                    $query->where('tinggi_badan', '>=', $data['filter_height']);
                 })
                 ->with('kandidat')
                 ->orderBy('id', 'desc')
