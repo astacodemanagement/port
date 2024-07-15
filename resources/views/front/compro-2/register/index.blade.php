@@ -349,7 +349,7 @@
     <input type="text" name="kantor_paspor" id="kantor_paspor" placeholder="Kantor Yang Mengeluarkan Paspor" class="passpor tw-font-work-sans tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required>
     <p class="tw-text-red-500 error-kantor_paspor" style="display: none"></p>
     
-    <label for="kondisi_paspor" class="tw-text-gray-800 tw-font-medium tw-mt-3 tw-font-work-sans">Negara Paspor</label>
+    <label for="kondisi_paspor" class="tw-text-gray-800 tw-font-medium tw-mt-3 tw-font-work-sans">Keterangan Passpor</label>
     <select name="kondisi_paspor" id="kondisi_paspor" class="tw-font-work-sans tw-text-gray-600 passpor tw-bg-white tw-mt-4 tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" required>
         <option value="">Pilihlah Pertanyaan dibawah ini jika kamu memiliki Paspor</option>
         <option value="1">Paspor saya fisiknya masih ada</option>
@@ -429,8 +429,7 @@
         <form data-step="4" method="POST" id="step-form-4" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form " style="display: none">
             @csrf
             <div class="fv-row mb-10">
-                <label class="form-label">Dokumen Persyaratan Jati Diri yang dimiliki (ceklist
-                    untuk berkas yang dimiliki)</label>
+                <label class="form-label">Dokumen Persyaratan Jati Diri yang dimiliki (wajib ceklist salah satu dokumen)</label>
                 <div class="row">
                     <div class="col-12">
                         <div class="form-check">
@@ -505,9 +504,9 @@
                             <div class="form-input">
                                 <div class="input-group">
                                     <label class="input-group-text" for="foto" style="width: 150px">Foto </label>
-                                    <input type="file" class="form-control tw-w-full" id="foto" name="file_foto" accept="image/,application/pdf">
+                                    <input type="file" class="form-control tw-w-full" id="foto" name="file_foto" accept="image/*">
                                 </div>
-                                <label class="text-muted tw-block tw-text-sm"><small>Foto formal background putih/biru/merah</small></label>
+                                <label class="text-muted tw-block tw-text-sm"><small>Foto formal background putih/biru/merah *jpeg|jpg|bmp|png|webp</small></label>
                                 <!-- errr msg -->
                                 <p class="tw-text-red-500 error-file_foto" style="display: none"></p>
                             </div>
@@ -515,9 +514,9 @@
                             <div class="form-input mt-2">
                                 <div class="input-group">
                                     <label class="input-group-text" for="ktp" style="width: 150px">KTP  </label>
-                                    <input type="file" class="form-control tw-w-full" id="ktp" name="file_ktp" accept="image/,application/pdf">
+                                    <input type="file" class="form-control tw-w-full" id="ktp" name="file_ktp" accept="image/*">
                                 </div>
-                                <label class="text-muted tw-block tw-text-sm"><small>Mohon di Scan</small></label>
+                                <label class="text-muted tw-block tw-text-sm"><small>Mohon di Scan *jpeg|jpg|bmp|png|webp</small></label>
                                 <p class="tw-text-red-500 error-file_ktp" style="display: none"></p>
                                 
                             </div>
@@ -596,6 +595,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
+    @push('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    @endpush
     <script>
     $(document).ready(function() {
         let datepickerOption = {
@@ -760,9 +763,7 @@
                     }
                 },
                 error: function(xhr, status, error) {
-                    t.prop('disabled', false).html('Submit')
-                    $('.btn-prev').prop('disabled', false)
-                    
+                   
                     if (xhr.responseJSON) {
                         if (xhr.responseJSON.errors) {
                             $.each(xhr.responseJSON.errors, function(i, item) {
