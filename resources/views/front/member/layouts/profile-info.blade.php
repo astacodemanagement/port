@@ -57,7 +57,7 @@
         <div class="card-body py-4 px-3">
             <h6 class="text-primary fw-7">
                 Status Pekerjaan yg Dilamar
-                <a href="{{ route('member.status.index') }}" class="btn btn-primary btn-sm btn-light-secondary float-end text-primary mt-n2"><i class="ti ti-external-link fs-4"></i></a>
+                {{-- <a href="{{ route('member.status.index') }}" class="btn btn-primary btn-sm btn-light-secondary float-end text-primary mt-n2"><i class="ti ti-external-link fs-4"></i></a> --}}
             </h6>
             <div class="list-group mt-3">
                 @forelse ($recent_applied_jobs as $appliedJob)
