@@ -52,8 +52,6 @@ class NegaraController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-
         // Validasi request
         $validator = Validator::make($request->all(), [
             'nama_negara' => 'required|unique:negara,nama_negara',
@@ -63,31 +61,97 @@ class NegaraController extends Controller
             'nama_negara.unique' => 'Nama Negara sudah digunakan',
             'kode_negara.required' => 'Kode Negara Wajib diisi',
         ]);
-
-
+    
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-
+    
         $input = $request->all();
-        // handle logo
+    
+        // Handle logo
         if ($request->hasFile('logo')) {
             $image = $request->file('logo');
-            $destinationPath = 'upload/negara/';
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move($destinationPath, $imageName);
-            $input['logo'] = $imageName;
+            $imageName = $this->convertImageToWebp($image, 'upload/negara/');
+    
+            if ($imageName) {
+                $input['logo'] = $imageName;
+            }
         }
+    
         Negara::create($input);
-
+    
         $loggedInUserId = Auth::id();
-
+    
         // Simpan log histori untuk operasi Create dengan user_id yang sedang login
         $this->simpanLogHistori('Create', 'Negara', $request->id, $loggedInUserId, null, json_encode($input));
-
-
+    
         return response()->json(['message' => 'Data Berhasil Disimpan']);
     }
+    
+    private function convertImageToWebp($image, $destinationPath)
+    {
+        // Pastikan direktori tujuan ada
+        if (!file_exists(public_path($destinationPath))) {
+            mkdir(public_path($destinationPath), 0777, true);
+        }
+    
+        // Ambil nama file asli dan ekstensinya
+        $originalFileName = $image->getClientOriginalName();
+    
+        // Ambil tipe MIME dari gambar
+        $imageMimeType = $image->getMimeType();
+    
+        // Filter hanya tipe MIME gambar yang didukung (misalnya, image/jpeg, image/png, dll.)
+        if (strpos($imageMimeType, 'image/') === 0) {
+            // Gabungkan waktu dengan nama file asli
+            $imageName = date('YmdHis') . '_' . str_replace(' ', '_', $originalFileName);
+    
+            // Simpan gambar asli ke tujuan yang diinginkan
+            $image->move(public_path($destinationPath), $imageName);
+    
+            // Path gambar asli
+            $sourceImagePath = public_path($destinationPath . $imageName);
+    
+            // Path untuk menyimpan gambar WebP
+            $webpImagePath = $destinationPath . pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+    
+            // Baca gambar asli dan konversi ke WebP jika tipe MIME didukung
+            switch ($imageMimeType) {
+                case 'image/jpeg':
+                    $sourceImage = @imagecreatefromjpeg($sourceImagePath);
+                    break;
+                case 'image/png':
+                    $sourceImage = @imagecreatefrompng($sourceImagePath);
+                    break;
+                    // Tambahkan jenis MIME lain jika diperlukan
+                default:
+                    // Jenis MIME tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+                    return null;
+            }
+    
+            // Jika gambar asli berhasil dibaca
+            if ($sourceImage !== false) {
+                // Buat gambar baru dalam format WebP
+                imagewebp($sourceImage, public_path($webpImagePath));
+    
+                // Hapus gambar asli dari memori
+                imagedestroy($sourceImage);
+    
+                // Hapus file asli setelah konversi selesai
+                @unlink($sourceImagePath);
+    
+                // Kembalikan hanya nama file gambar WebP
+                return pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+            } else {
+                // Gagal membaca gambar asli, tangani kasus ini sesuai kebutuhan Anda
+                return null;
+            }
+        } else {
+            // Tipe MIME gambar tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+            return null;
+        }
+    }
+    
 
     /**
      * Display the specified resource.
@@ -120,51 +184,113 @@ class NegaraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        // dd($request->all());
-        $validator = Validator::make($request->all(), [
-            'nama_negara' => 'required',
-            'kode_negara' => 'required',
-        ], [
-            'nama_negara.required' => 'Nama Negara Wajib diisi',
-            'kode_negara.required' => 'Kode Negara Wajib diisi',
-        ]);
+{
+    // Validasi request
+    $validator = Validator::make($request->all(), [
+        'nama_negara' => 'required',
+        'kode_negara' => 'required',
+    ], [
+        'nama_negara.required' => 'Nama Negara Wajib diisi',
+        'kode_negara.required' => 'Kode Negara Wajib diisi',
+    ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
+    if ($validator->fails()) {
+        return response()->json(['errors' => $validator->errors()], 422);
+    }
 
+    $negara = Negara::findOrFail($id);
+    $oldData = $negara->getOriginal();
 
-        $kategoriJob = Negara::findOrFail($id);
-        $oldData = $kategoriJob->getOriginal();
+    $input = $request->all();
 
-        // handle logo
-        if ($request->hasFile('logo')) {
-            $image = $request->file('logo');
-            $destinationPath = 'upload/negara/';
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move($destinationPath, $imageName);
+    // Handle logo
+    if ($request->hasFile('logo')) {
+        $image = $request->file('logo');
+        $imageName = $this->convertImageToWebpUpdate($image, 'upload/negara/');
 
+        if ($imageName) {
             // Hapus file logo lama jika ada
-            if ($kategoriJob->logo && file_exists(public_path('upload/negara/' . $kategoriJob->logo))) {
-                unlink(public_path('upload/negara/' . $kategoriJob->logo));
+            if ($negara->logo && file_exists(public_path('upload/negara/' . $negara->logo))) {
+                unlink(public_path('upload/negara/' . $negara->logo));
             }
 
-            $kategoriJob->logo = $imageName;
+            $input['logo'] = $imageName;
         }
-        // Update data
-        $kategoriJob->update([
-            'logo' =>  $imageName,
-            'nama_negara' => $request->nama_negara,
-            'kode_negara' => $request->kode_negara,
-        ]);
-
-
-        $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Update', 'Negara', $kategoriJob->id, $loggedInUserId, json_encode($oldData), json_encode($kategoriJob));
-
-        return response()->json(['message' => 'Data berhasil diupdate.']);
     }
+
+    // Update data
+    $negara->update($input);
+
+    $loggedInUserId = Auth::id();
+    $this->simpanLogHistori('Update', 'Negara', $negara->id, $loggedInUserId, json_encode($oldData), json_encode($negara));
+
+    return response()->json(['message' => 'Data berhasil diupdate.']);
+}
+
+private function convertImageToWebpUpdate($image, $destinationPath)
+{
+    // Pastikan direktori tujuan ada
+    if (!file_exists(public_path($destinationPath))) {
+        mkdir(public_path($destinationPath), 0777, true);
+    }
+
+    // Ambil nama file asli dan ekstensinya
+    $originalFileName = $image->getClientOriginalName();
+
+    // Ambil tipe MIME dari gambar
+    $imageMimeType = $image->getMimeType();
+
+    // Filter hanya tipe MIME gambar yang didukung (misalnya, image/jpeg, image/png, dll.)
+    if (strpos($imageMimeType, 'image/') === 0) {
+        // Gabungkan waktu dengan nama file asli
+        $imageName = date('YmdHis') . '_' . str_replace(' ', '_', $originalFileName);
+
+        // Simpan gambar asli ke tujuan yang diinginkan
+        $image->move(public_path($destinationPath), $imageName);
+
+        // Path gambar asli
+        $sourceImagePath = public_path($destinationPath . $imageName);
+
+        // Path untuk menyimpan gambar WebP
+        $webpImagePath = $destinationPath . pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+
+        // Baca gambar asli dan konversi ke WebP jika tipe MIME didukung
+        switch ($imageMimeType) {
+            case 'image/jpeg':
+                $sourceImage = @imagecreatefromjpeg($sourceImagePath);
+                break;
+            case 'image/png':
+                $sourceImage = @imagecreatefrompng($sourceImagePath);
+                break;
+                // Tambahkan jenis MIME lain jika diperlukan
+            default:
+                // Jenis MIME tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+                return null;
+        }
+
+        // Jika gambar asli berhasil dibaca
+        if ($sourceImage !== false) {
+            // Buat gambar baru dalam format WebP
+            imagewebp($sourceImage, public_path($webpImagePath));
+
+            // Hapus gambar asli dari memori
+            imagedestroy($sourceImage);
+
+            // Hapus file asli setelah konversi selesai
+            @unlink($sourceImagePath);
+
+            // Kembalikan hanya nama file gambar WebP
+            return pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+        } else {
+            // Gagal membaca gambar asli, tangani kasus ini sesuai kebutuhan Anda
+            return null;
+        }
+    } else {
+        // Tipe MIME gambar tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+        return null;
+    }
+}
+
 
     /**
      * Remove the specified resource from storage.
@@ -173,19 +299,29 @@ class NegaraController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        $kategoriJob = Negara::findOrFail($id);
-            
-        if (!$kategoriJob) {
-            return response()->json(['message' => 'Data Negara not found'], 404);
-        }
+{
+    $negara = Negara::findOrFail($id);
 
-        $kategoriJob->delete();
-        $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Delete', 'Negara', $id, $loggedInUserId, json_encode($kategoriJob), null);
-
-        return response()->json(['message' => 'Data berhasil dihapus.']);
+    if (!$negara) {
+        return response()->json(['message' => 'Data Negara not found'], 404);
     }
+
+    // Hapus file logo jika ada
+    if ($negara->logo && file_exists(public_path('upload/negara/' . $negara->logo))) {
+        unlink(public_path('upload/negara/' . $negara->logo));
+    }
+
+    $loggedInUserId = Auth::id();
+    $oldData = json_encode($negara->toArray());
+
+    // Hapus data dari database
+    $negara->delete();
+
+    // Simpan log histori untuk operasi delete
+    $this->simpanLogHistori('Delete', 'Negara', $id, $loggedInUserId, $oldData, null);
+
+    return response()->json(['message' => 'Data berhasil dihapus.']);
+}
 
   
 
