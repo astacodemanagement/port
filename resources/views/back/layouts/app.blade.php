@@ -23,7 +23,7 @@
         content="flat ui, admin Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="colorlib" />
 
-    <link rel="icon" href="{{ asset('template') }}/files/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ asset('template') }}/files/assets/images/favicon.png" type="image/x-icon">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
@@ -94,7 +94,7 @@
                             </li>
                         </ul>
                         <ul class="nav-right">
-                            <li class="header-notification">
+                            {{-- <li class="header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="feather icon-bell"></i>
@@ -109,7 +109,7 @@
                                         <li>
                                             <div class="media">
                                                 <img class="img-radius"
-                                                    src="{{ asset('template') }}/files/assets/images/avatar-4.jpg"
+                                                    src="{{ asset('template') }}/files/assets/images/avatar.png"
                                                     alt="Generic placeholder image">
                                                 <div class="media-body">
                                                     <h5 class="notification-user">John Doe</h5>
@@ -135,7 +135,7 @@
                                         <li>
                                             <div class="media">
                                                 <img class="img-radius"
-                                                    src="{{ asset('template') }}/files/assets/images/avatar-4.jpg"
+                                                    src="{{ asset('template') }}/files/assets/images/avatar.png"
                                                     alt="Generic placeholder image">
                                                 <div class="media-body">
                                                     <h5 class="notification-user">Sara Soudein</h5>
@@ -147,21 +147,21 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>
-                            <li class="header-notification">
+                            </li> --}}
+                            {{-- <li class="header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="displayChatbox dropdown-toggle" data-toggle="dropdown">
                                         <i class="feather icon-message-square"></i>
                                         <span class="badge bg-c-green">3</span>
                                     </div>
                                 </div>
-                            </li>
+                            </li> --}}
                             <li class="user-profile header-notification">
                                 <div class="dropdown-primary dropdown">
                                     <div class="dropdown-toggle" data-toggle="dropdown">
-                                        <img src="{{ asset('template') }}/files/assets/images/avatar-4.jpg"
+                                        <img src="{{ asset('template') }}/files/assets/images/avatar.png"
                                             class="img-radius" alt="User-Profile-Image">
-                                        <span>John Doe</span>
+                                        <span>{{ Auth::user()->name }}</span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu"
@@ -238,7 +238,7 @@
                                     data-status="online" data-username="Alice">
                                     <a class="media-left" href="#!">
                                         <img class="media-object img-radius"
-                                            src="{{ asset('template') }}/files/assets/images/avatar-4.jpg"
+                                            src="{{ asset('template') }}/files/assets/images/avatar.png"
                                             alt="Generic placeholder image">
                                         <div class="live-status bg-success"></div>
                                     </a>
