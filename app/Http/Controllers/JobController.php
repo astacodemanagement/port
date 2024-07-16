@@ -63,7 +63,6 @@ class JobController extends Controller
     }
 
 
-
     public function store(Request $request)
     {
         $request->validate([
@@ -105,14 +104,19 @@ class JobController extends Controller
             'nama_perusahaan.required' => 'Nama Perusahaan Wajib diisi',
             'gaji.required' => 'Gaji Wajib diisi',
             'gaji.numeric' => 'Gaji harus berupa angka',
-           
+    
             'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',
             'jenis_pembayaran.in' => 'Jenis Pembayaran harus berupa Bulan atau Jam',
-            'estimasi.required' => 'Estimasi Wajib diisi',
+            'estimasi_minimal.required' => 'Estimasi Minimal Wajib diisi',
+    
+            'estimasi_minimal.min' => 'Estimasi Minimal minimal 6 digit',
+    
+    
+            'estimasi_maksimal.min' => 'Estimasi Maksimal minimal 6 digit',
             'gaji_diterima.required' => 'Status Gaji Diterima Wajib diisi',
             'gaji_diterima.in' => 'Status Gaji Diterima harus berupa Bersih atau Kotor',
             'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',
-
+    
             'negara_id.required' => 'Negara Wajib diisi',
             'negara_id.exists' => 'Negara yang dipilih tidak valid',
             'kategori_job_id.required' => 'Kategori Job Wajib diisi',
@@ -129,38 +133,33 @@ class JobController extends Controller
             'fasilitas_id.array' => 'Fasilitas harus berupa array',
             'fasilitas_id.min' => 'Pilih minimal satu fasilitas',
         ]);
-
-
+    
         // Mulai transaksi database
         DB::beginTransaction();
         try {
             // Hapus karakter titik dari input nominal sebelum menyimpan ke database
             $nominalFields = ['gaji', 'estimasi_minimal', 'estimasi_maksimal', 'nominal_kurs'];
             $jobData = $request->except('fasilitas_id'); // kecualikan fasilitas_id jika tidak ada dalam tabel job
-
+    
             foreach ($nominalFields as $field) {
                 if (isset($jobData[$field])) {
                     $jobData[$field] = str_replace('.', '', $jobData[$field]);
                 }
             }
-
-
+            
+            // Handle image upload and conversion to WebP
             if ($request->hasFile('gambar')) {
-                $file = $request->gambar;
-                $filename = $file->hashName();
-
-                $dir = 'upload/gambar/';
-
-                $upload = $this->uploadImage($file, $dir, $filename, [['width' => '580', 'height' => '500'], ['width' => '300', 'height' => '300'], ['width' => '432', 'height' => '132']]);
-
-                if ($upload) {
+                $file = $request->file('gambar');
+                $filename = $this->convertImageToWebp($file, 'upload/gambar/');
+    
+                if ($filename) {
                     $jobData['gambar'] = $filename;
                 }
             }
-
+    
             // Simpan ke dalam tabel job dengan semua gambar yang diterima
             $job = Job::create($jobData);
-
+    
             // Simpan ke dalam tabel benefit
             foreach ($request->fasilitas_id as $benefit) {
                 Benefit::create([
@@ -168,10 +167,10 @@ class JobController extends Controller
                     'fasilitas_id' => $benefit,
                 ]);
             }
-
+    
             // Commit transaksi jika tidak ada kesalahan
             DB::commit();
-
+    
             // Mendapatkan ID pengguna yang sedang login
             $loggedInUserId = Auth::id();
             // Simpan log histori untuk operasi Create dengan ruangan_id yang sedang login
@@ -180,10 +179,74 @@ class JobController extends Controller
         } catch (\Exception $e) {
             // Rollback transaksi jika terjadi kesalahan
             DB::rollback();
-            return response()->json(['message' => 'Terjadi kesalahan saat menyimpan data' . $e->getMessage()], 500);
+            return response()->json(['message' => 'Terjadi kesalahan saat menyimpan data: ' . $e->getMessage()], 500);
         }
     }
-
+    
+    private function convertImageToWebp($image, $destinationPath)
+    {
+        // Pastikan direktori tujuan ada
+        if (!file_exists(public_path($destinationPath))) {
+            mkdir(public_path($destinationPath), 0777, true);
+        }
+    
+        // Ambil nama file asli dan ekstensinya
+        $originalFileName = $image->getClientOriginalName();
+    
+        // Ambil tipe MIME dari gambar
+        $imageMimeType = $image->getMimeType();
+    
+        // Filter hanya tipe MIME gambar yang didukung (misalnya, image/jpeg, image/png, dll.)
+        if (strpos($imageMimeType, 'image/') === 0) {
+            // Gabungkan waktu dengan nama file asli
+            $imageName = date('YmdHis') . '_' . str_replace(' ', '_', $originalFileName);
+    
+            // Simpan gambar asli ke tujuan yang diinginkan
+            $image->move(public_path($destinationPath), $imageName);
+    
+            // Path gambar asli
+            $sourceImagePath = public_path($destinationPath . $imageName);
+    
+            // Path untuk menyimpan gambar WebP
+            $webpImagePath = $destinationPath . pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+    
+            // Baca gambar asli dan konversi ke WebP jika tipe MIME didukung
+            switch ($imageMimeType) {
+                case 'image/jpeg':
+                    $sourceImage = @imagecreatefromjpeg($sourceImagePath);
+                    break;
+                case 'image/png':
+                    $sourceImage = @imagecreatefrompng($sourceImagePath);
+                    break;
+                    // Tambahkan jenis MIME lain jika diperlukan
+                default:
+                    // Jenis MIME tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+                    return null;
+            }
+    
+            // Jika gambar asli berhasil dibaca
+            if ($sourceImage !== false) {
+                // Buat gambar baru dalam format WebP
+                imagewebp($sourceImage, public_path($webpImagePath));
+    
+                // Hapus gambar asli dari memori
+                imagedestroy($sourceImage);
+    
+                // Hapus file asli setelah konversi selesai
+                @unlink($sourceImagePath);
+    
+                // Kembalikan hanya nama file gambar WebP
+                return pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+            } else {
+                // Gagal membaca gambar asli, tangani kasus ini sesuai kebutuhan Anda
+                return null;
+            }
+        } else {
+            // Tipe MIME gambar tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+            return null;
+        }
+    }
+    
 
     public function updateStatus(Request $request)
     {
@@ -357,124 +420,173 @@ class JobController extends Controller
             'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',
             // 'nominal_kurs.required' => 'Nominal Kurs Wajib diisi',
 
-            'negara_id.required' => 'Negara Wajib diisi',
-            'negara_id.exists' => 'Negara yang dipilih tidak valid',
-            'kategori_job_id.required' => 'Kategori Job Wajib diisi',
-            'kategori_job_id.exists' => 'Kategori Job yang dipilih tidak valid',
-            'kontrak_kerja.required' => 'Kontrak Kerja Wajib diisi',
-            'jam_kerja.required' => 'Jam Kerja Wajib diisi',
-            'hari_kerja.required' => 'Hari Kerja Wajib diisi',
-            'cuti_kerja.required' => 'Cuti Kerja Wajib diisi',
-            'jenis_kelamin.in' => 'Jenis Kelamin harus berupa Laki-laki atau Perempuan',
-            'tinggi_badan.numeric' => 'Tinggi Badan harus berupa angka',
-            'berat_badan.numeric' => 'Berat Badan harus berupa angka',
-            'link_video.url' => 'Link Video harus berupa URL yang valid',
-            'fasilitas_id.required' => 'Fasilitas Wajib diisi',
-            'fasilitas_id.array' => 'Fasilitas harus berupa array',
-            'fasilitas_id.min' => 'Pilih minimal satu fasilitas',
-            'ketentuan.min' => 'Ketentuan minimal 6 digit',
-        ]);
+        'negara_id.required' => 'Negara Wajib diisi',
+        'negara_id.exists' => 'Negara yang dipilih tidak valid',
+        'kategori_job_id.required' => 'Kategori Job Wajib diisi',
+        'kategori_job_id.exists' => 'Kategori Job yang dipilih tidak valid',
+        'kontrak_kerja.required' => 'Kontrak Kerja Wajib diisi',
+        'jam_kerja.required' => 'Jam Kerja Wajib diisi',
+        'hari_kerja.required' => 'Hari Kerja Wajib diisi',
+        'cuti_kerja.required' => 'Cuti Kerja Wajib diisi',
+        'jenis_kelamin.in' => 'Jenis Kelamin harus berupa Laki-laki atau Perempuan',
+        'tinggi_badan.numeric' => 'Tinggi Badan harus berupa angka',
+        'berat_badan.numeric' => 'Berat Badan harus berupa angka',
+        'link_video.url' => 'Link Video harus berupa URL yang valid',
+        'fasilitas_id.required' => 'Fasilitas Wajib diisi',
+        'fasilitas_id.array' => 'Fasilitas harus berupa array',
+        'fasilitas_id.min' => 'Pilih minimal satu fasilitas',
+        'ketentuan.min' => 'Ketentuan minimal 6 digit',
+    ]);
 
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
-
-        try {
-            $kategoriJob = Job::findOrFail($id);
-            $oldData = $kategoriJob->getOriginal();
-
-            // Ambil semua input dari request, kecualikan 'fasilitas_id'
-            $requestData = $request->only([
-                'nama_job', 'nama_perusahaan', 'mitra', 'tanggal_tutup', 'gaji', 'jenis_pembayaran',
-                'estimasi_minimal', 'estimasi_maksimal', 'gaji_diterima', 'tanggal_kurs', 'nominal_kurs',
-                'negara_id', 'kategori_job_id', 'kontrak_kerja', 'jam_kerja', 'hari_kerja', 'cuti_kerja',
-                'masa_percobaan', 'mata_uang_gaji', 'kerja_lembur', 'bahasa', 'deskripsi', 'jenis_kelamin',
-                'tinggi_badan', 'berat_badan', 'rentang_usia', 'level_bahasa', 'pengalaman_kerja', 'paragraf_galeri',
-                'link_video', 'info_lain', 'disclaimer','ketentuan','pendidikan'
-            ]);
-
-            // Hilangkan karakter titik dari input yang bersifat nominal
-            $nominalFields = ['gaji', 'estimasi_minimal', 'estimasi_maksimal', 'nominal_kurs'];
-            foreach ($nominalFields as $field) {
-                if (isset($requestData[$field])) {
-                    $requestData[$field] = str_replace('.', '', $requestData[$field]);
-                }
-            }
-
-            // Handle gambar
-            if ($request->hasFile('gambar')) {
-                // Unlink gambar lama
-                if ($kategoriJob->gambar) {
-                    $dir = public_path('upload/gambar/');
-                    // if (file_exists($oldImagePath)) {
-                    //     unlink($oldImagePath);
-                    // }
-                    
-                    if (File::exists(public_path($dir . $kategoriJob->gambar))) {
-                        File::delete(public_path($dir . $kategoriJob->gambar));
-                    }
-                    
-                    if (File::exists(public_path($dir . 'thumb_' . $kategoriJob->gambar))) {
-                        File::delete(public_path($dir . 'thumb_' . $kategoriJob->gambar));
-                    }
-                    
-                    if (File::exists(public_path($dir . 'thumb_580_' . $kategoriJob->gambar))) {
-                        File::delete(public_path($dir . 'thumb_580_' . $kategoriJob->gambar));
-                    }
-                    
-                    if (File::exists(public_path($dir . 'thumb_300_' . $kategoriJob->gambar))) {
-                        File::delete(public_path($dir . 'thumb_300_' . $kategoriJob->gambar));
-                    }
-                    
-                    if (File::exists(public_path($dir . 'thumb_432_' . $kategoriJob->gambar))) {
-                        File::delete(public_path($dir . 'thumb_432_' . $kategoriJob->gambar));
-                    }
-                }
-
-                // Upload gambar baru
-                $file = $request->gambar;
-                $filename = $file->hashName();
-                $dir = 'upload/gambar/';
-                $upload = $this->uploadImage($file, $dir, $filename, [['width' => '580', 'height' => '500'], ['width' => '300', 'height' => '300'], ['width' => '432', 'height' => '132']]);
-
-                if ($upload) {
-                    $requestData['gambar'] = $filename;
-                }
-            }
-
-
-
-            $kategoriJob->update($requestData);
-
-            // Update tabel benefit
-
-            // Handle checkbox update: update jika checked, delete jika unchecked
-            $benefit = Benefit::where('job_id', $id)->get();
-            $benefitId = $benefit->pluck('id')->toArray();
-            $requestBenefitId = $request->fasilitas_id;
-            $deleteBenefit = array_diff($benefitId, $requestBenefitId);
-            $addBenefit = array_diff($requestBenefitId, $benefitId);
-            if ($deleteBenefit) {
-                Benefit::whereIn('id', $deleteBenefit)->delete();
-            }
-            if ($addBenefit) {
-                foreach ($addBenefit as $benefit) {
-                    Benefit::create([
-                        'job_id' => $kategoriJob->id,
-                        'fasilitas_id' => $benefit,
-                    ]);
-                }
-            }
-
-            $loggedInUserId = Auth::id();
-            $this->simpanLogHistori('Update', 'Job', $kategoriJob->id, $loggedInUserId, json_encode($oldData), json_encode($kategoriJob));
-
-            return response()->json(['message' => 'Data berhasil diupdate.']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Terjadi kesalahan saat mengupdate data: ' . $e->getMessage()], 500);
-        }
+    if ($validator->fails()) {
+        return response()->json(['errors' => $validator->errors()], 422);
     }
 
+    DB::beginTransaction();
+    try {
+        $job = Job::findOrFail($id);
+        $oldData = $job->getOriginal();
+
+        // Ambil semua input dari request, kecualikan 'fasilitas_id'
+        $requestData = $request->only([
+            'nama_job', 'nama_perusahaan', 'mitra', 'tanggal_tutup', 'gaji', 'jenis_pembayaran',
+            'estimasi_minimal', 'estimasi_maksimal', 'gaji_diterima', 'tanggal_kurs', 'nominal_kurs',
+            'negara_id', 'kategori_job_id', 'kontrak_kerja', 'jam_kerja', 'hari_kerja', 'cuti_kerja',
+            'masa_percobaan', 'mata_uang_gaji', 'kerja_lembur', 'bahasa', 'deskripsi', 'jenis_kelamin',
+            'tinggi_badan', 'berat_badan', 'rentang_usia', 'level_bahasa', 'pengalaman_kerja', 'paragraf_galeri',
+            'link_video', 'info_lain', 'disclaimer', 'ketentuan', 'pendidikan'
+        ]);
+
+        // Hilangkan karakter titik dari input yang bersifat nominal
+        $nominalFields = ['gaji', 'estimasi_minimal', 'estimasi_maksimal', 'nominal_kurs'];
+        foreach ($nominalFields as $field) {
+            if (isset($requestData[$field])) {
+                $requestData[$field] = str_replace('.', '', $requestData[$field]);
+            }
+        }
+
+        // Handle gambar
+        if ($request->hasFile('gambar')) {
+            // Unlink gambar lama
+            if ($job->gambar) {
+                $dir = 'upload/gambar/';
+                if (File::exists(public_path($dir . $job->gambar))) {
+                    File::delete(public_path($dir . $job->gambar));
+                }
+            }
+
+            // Upload gambar baru
+            $file = $request->file('gambar');
+            $filename = $this->convertImageToWebpUpdate($file, 'upload/gambar/');
+
+            if ($filename) {
+                $requestData['gambar'] = $filename;
+            }
+        }
+
+        // Update data job
+        $job->update($requestData);
+
+        // Update tabel benefit
+        // Handle checkbox update: update jika checked, delete jika unchecked
+        $existingBenefits = Benefit::where('job_id', $id)->pluck('fasilitas_id')->toArray();
+        $requestBenefitIds = $request->fasilitas_id;
+
+        // Hapus benefits yang tidak ada di request
+        $deleteBenefits = array_diff($existingBenefits, $requestBenefitIds);
+        if ($deleteBenefits) {
+            Benefit::where('job_id', $id)->whereIn('fasilitas_id', $deleteBenefits)->delete();
+        }
+
+        // Tambah benefits yang ada di request tetapi tidak ada di existing
+        $addBenefits = array_diff($requestBenefitIds, $existingBenefits);
+        if ($addBenefits) {
+            foreach ($addBenefits as $benefit) {
+                Benefit::create([
+                    'job_id' => $job->id,
+                    'fasilitas_id' => $benefit,
+                ]);
+            }
+        }
+
+        // Commit transaksi jika tidak ada kesalahan
+        DB::commit();
+
+        $loggedInUserId = Auth::id();
+        $this->simpanLogHistori('Update', 'Job', $job->id, $loggedInUserId, json_encode($oldData), json_encode($job));
+
+        return response()->json(['message' => 'Data berhasil diupdate.']);
+    } catch (\Exception $e) {
+        DB::rollback();
+        return response()->json(['error' => 'Terjadi kesalahan saat mengupdate data: ' . $e->getMessage()], 500);
+    }
+}
+
+private function convertImageToWebpUpdate($image, $destinationPath)
+{
+    // Pastikan direktori tujuan ada
+    if (!file_exists(public_path($destinationPath))) {
+        mkdir(public_path($destinationPath), 0777, true);
+    }
+
+    // Ambil nama file asli dan ekstensinya
+    $originalFileName = $image->getClientOriginalName();
+
+    // Ambil tipe MIME dari gambar
+    $imageMimeType = $image->getMimeType();
+
+    // Filter hanya tipe MIME gambar yang didukung (misalnya, image/jpeg, image/png, dll.)
+    if (strpos($imageMimeType, 'image/') === 0) {
+        // Gabungkan waktu dengan nama file asli
+        $imageName = date('YmdHis') . '_' . str_replace(' ', '_', $originalFileName);
+
+        // Simpan gambar asli ke tujuan yang diinginkan
+        $image->move(public_path($destinationPath), $imageName);
+
+        // Path gambar asli
+        $sourceImagePath = public_path($destinationPath . $imageName);
+
+        // Path untuk menyimpan gambar WebP
+        $webpImagePath = $destinationPath . pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+
+        // Baca gambar asli dan konversi ke WebP jika tipe MIME didukung
+        switch ($imageMimeType) {
+            case 'image/jpeg':
+                $sourceImage = @imagecreatefromjpeg($sourceImagePath);
+                break;
+            case 'image/png':
+                $sourceImage = @imagecreatefrompng($sourceImagePath);
+                break;
+                // Tambahkan jenis MIME lain jika diperlukan
+            default:
+                // Jenis MIME tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+                return null;
+        }
+
+        // Jika gambar asli berhasil dibaca
+        if ($sourceImage !== false) {
+            // Buat gambar baru dalam format WebP
+            imagewebp($sourceImage, public_path($webpImagePath));
+
+            // Hapus gambar asli dari memori
+            imagedestroy($sourceImage);
+
+            // Hapus file asli setelah konversi selesai
+            @unlink($sourceImagePath);
+
+            // Kembalikan hanya nama file gambar WebP
+            return pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+        } else {
+            // Gagal membaca gambar asli, tangani kasus ini sesuai kebutuhan Anda
+            return null;
+        }
+    } else {
+        // Tipe MIME gambar tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+        return null;
+    }
+}
+
+    
 
     /**
      * Remove the specified resource from storage.
