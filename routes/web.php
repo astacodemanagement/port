@@ -49,6 +49,7 @@ use App\Http\Controllers\SeleksiLolosKualifikasiController;
 use App\Http\Controllers\SeleksiSelesaiKontrakController;
 use App\Http\Controllers\SeleksiTerbangController;
 use App\Http\Controllers\SemuaSeleksiController;
+use App\Http\Controllers\StatusProsesController;
 use App\Http\Controllers\SudahVerifikasiController;
 use App\Http\Controllers\SupplierController;
 use App\Models\DetailBayar;
@@ -395,7 +396,7 @@ Route::name('front.')->group(function () {
 });
 
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
-Route::get('register/verify/{token}', [RegisterController::class, 'verifyEmail'])->name('register.verify-email');
+Route::get('register/verify', [RegisterController::class, 'verifyEmail'])->name('register.verify-email');
 Route::post('register/step/validation', [RegisterController::class, 'stepValidation'])->name('register.step.validation');
 
 /** MEMBER ROUTE */
@@ -404,8 +405,8 @@ Route::group(['middleware' => ['role:member','is_verify_email']], function () {
         Route::middleware('member.auth')->group(function () {
             Route::name('member.')->group(function () {
                 Route::get('/', [MemberHomeController::class, 'index'])->name('index');
-                
-                /** WORK EXPERIENCE */
+          
+              /** WORK EXPERIENCE */
                 Route::prefix('work-experience')->group(function () {
                     Route::name('work-experience.')->group(function () {
                         Route::controller(MemberWorkExperienceController::class)->group(function () {
@@ -426,7 +427,12 @@ Route::group(['middleware' => ['role:member','is_verify_email']], function () {
                         });
                     });
                 });
-
+                 // Status proses
+                 Route::prefix('status')->group(function(){
+                    Route::name('status.')->group(function(){
+                        Route::get('/', [StatusProsesController::class, 'index'])->name('index');
+                    });
+                });
                 /** JOB */
                 Route::prefix('jobs')->group(function () {
                     Route::name('jobs.')->group(function () {
