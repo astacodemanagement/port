@@ -440,7 +440,7 @@ class RegisterController extends Controller
                 'tanggal_mulai_kerja.*' => 'nullable|date_format:Y-m-d',
                 'tanggal_selesai_kerja.*' => 'nullable|date_format:Y-m-d',
                 'posisi.*' => 'nullable|min:2',
-                'keterangan_belum_kerja' => 'required'
+                'keterangan_belum_kerja' => 'nullable'
             ],
             4 =>[
             //    required one of all field
