@@ -55,41 +55,118 @@ class AlasanController extends Controller
         // Validasi request
         $validator = Validator::make($request->all(), [
             'nama_alasan' => 'required|unique:alasan,nama_alasan',
-            'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
+            'gambar' => 'required|mimes:jpeg,jpg,png,gif,webp|max:2048', // Menambahkan webp ke validasi
         ], [
             'nama_alasan.required' => 'Nama Alasan Wajib diisi',
-            'gambar.required' => 'Gambar Alasan Wajib diisi',
             'nama_alasan.unique' => 'Nama Alasan sudah digunakan',
-            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
+            'gambar.required' => 'Gambar Alasan Wajib diisi',
+            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG, GIF, dan WebP',
             'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
         ]);
-
+    
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-
-        $input = $request->all();  // Pindahkan ini ke bawah validasi
-
+    
+        $input = $request->all();
+    
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
             $destinationPath = 'upload/alasan/';
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move($destinationPath, $imageName);
+    
+            // Mengubah gambar ke format WebP
+            $imageName = $this->convertImageToWebp($image, $destinationPath);
+            if (!$imageName) {
+                return response()->json(['errors' => ['gambar' => ['Gagal mengonversi gambar ke format WebP.']]], 422);
+            }
+    
             $input['gambar'] = $imageName;
         }
-
-        // Simpan data spp ke database menggunakan fill()
+    
+        // Simpan data alasan ke database menggunakan fill()
         $alasan = new Alasan();
         $alasan->fill($input);
         $alasan->save();
-
+    
         $loggedInUserId = Auth::id();
-
+    
         // Simpan log histori untuk operasi Create dengan user_id yang sedang login
         $this->simpanLogHistori('Create', 'Alasan', $alasan->id, $loggedInUserId, null, json_encode($alasan));
-
+    
         return response()->json(['message' => 'Data Berhasil Disimpan']);
     }
+    
+    private function convertImageToWebp($image, $destinationPath)
+    {
+        // Pastikan direktori tujuan ada
+        if (!file_exists(public_path($destinationPath))) {
+            mkdir(public_path($destinationPath), 0777, true);
+        }
+    
+        // Ambil nama file asli dan ekstensinya
+        $originalFileName = $image->getClientOriginalName();
+    
+        // Ambil tipe MIME dari gambar
+        $imageMimeType = $image->getMimeType();
+    
+        // Filter hanya tipe MIME gambar yang didukung (misalnya, image/jpeg, image/png, dll.)
+        if (strpos($imageMimeType, 'image/') === 0) {
+            // Gabungkan waktu dengan nama file asli
+            $imageName = date('YmdHis') . '_' . str_replace(' ', '_', $originalFileName);
+    
+            // Simpan gambar asli ke tujuan yang diinginkan
+            $image->move(public_path($destinationPath), $imageName);
+    
+            // Path gambar asli
+            $sourceImagePath = public_path($destinationPath . $imageName);
+    
+            // Path untuk menyimpan gambar WebP
+            $webpImagePath = $destinationPath . pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+    
+            // Baca gambar asli dan konversi ke WebP jika tipe MIME didukung
+            switch ($imageMimeType) {
+                case 'image/jpeg':
+                    $sourceImage = @imagecreatefromjpeg($sourceImagePath);
+                    break;
+                case 'image/png':
+                    $sourceImage = @imagecreatefrompng($sourceImagePath);
+                    break;
+                case 'image/gif':
+                    $sourceImage = @imagecreatefromgif($sourceImagePath);
+                    break;
+                case 'image/webp':
+                    // Jika gambar sudah dalam format WebP, langsung gunakan
+                    $sourceImage = @imagecreatefromwebp($sourceImagePath);
+                    break;
+                // Tambahkan jenis MIME lain jika diperlukan
+                default:
+                    // Jenis MIME tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+                    return null;
+            }
+    
+            // Jika gambar asli berhasil dibaca
+            if ($sourceImage !== false) {
+                // Buat gambar baru dalam format WebP
+                imagewebp($sourceImage, public_path($webpImagePath));
+    
+                // Hapus gambar asli dari memori
+                imagedestroy($sourceImage);
+    
+                // Hapus file asli setelah konversi selesai
+                @unlink($sourceImagePath);
+    
+                // Kembalikan hanya nama file gambar WebP
+                return pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+            } else {
+                // Gagal membaca gambar asli, tangani kasus ini sesuai kebutuhan Anda
+                return null;
+            }
+        } else {
+            // Tipe MIME gambar tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+            return null;
+        }
+    }
+    
 
 
     /**
@@ -127,26 +204,32 @@ class AlasanController extends Controller
         // Validasi request
         $validator = Validator::make($request->all(), [
             'nama_alasan' => 'required|unique:alasan,nama_alasan,' . $id,
-            'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
+            'gambar' => 'nullable|mimes:jpeg,jpg,png,gif,webp|max:2048', // Menambahkan webp ke validasi
         ], [
             'nama_alasan.required' => 'Nama Alasan Wajib diisi',
-            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG dan GIF',
+            'nama_alasan.unique' => 'Nama Alasan sudah digunakan',
+            'gambar.mimes' => 'Foto yang dimasukkan hanya diperbolehkan berekstensi JPG, JPEG, PNG, GIF, dan WebP',
             'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 2 MB',
         ]);
-
+    
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-
+    
         $alasan = Alasan::findOrFail($id);
-
+        $oldData = $alasan->getOriginal();
+    
         $input = $request->except(['_token', '_method']); // Exclude unnecessary fields
-
+    
         if ($request->hasFile('gambar')) {
             $image = $request->file('gambar');
             $destinationPath = 'upload/alasan/';
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move($destinationPath, $imageName);
+    
+            // Mengubah gambar ke format WebP
+            $imageName = $this->convertImageToWebpUpdate($image, $destinationPath);
+            if (!$imageName) {
+                return response()->json(['errors' => ['gambar' => ['Gagal mengonversi gambar ke format WebP.']]], 422);
+            }
     
             // Hapus file gambar lama jika ada
             if ($alasan->gambar && file_exists(public_path('upload/alasan/' . $alasan->gambar))) {
@@ -158,14 +241,86 @@ class AlasanController extends Controller
     
         // Update alasan data di database
         $alasan->update($input);
-
+    
         $loggedInUserId = Auth::id();
-
+    
         // Simpan log histori untuk operasi Update dengan user_id yang sedang login
-        $this->simpanLogHistori('Update', 'Alasan', $alasan->id, $loggedInUserId, json_encode($alasan->getOriginal()), json_encode($alasan));
-
+        $this->simpanLogHistori('Update', 'Alasan', $alasan->id, $loggedInUserId, json_encode($oldData), json_encode($alasan));
+    
         return response()->json(['message' => 'Data Berhasil Diupdate']);
     }
+    
+    private function convertImageToWebpUpdate($image, $destinationPath)
+    {
+        // Pastikan direktori tujuan ada
+        if (!file_exists(public_path($destinationPath))) {
+            mkdir(public_path($destinationPath), 0777, true);
+        }
+    
+        // Ambil nama file asli dan ekstensinya
+        $originalFileName = $image->getClientOriginalName();
+    
+        // Ambil tipe MIME dari gambar
+        $imageMimeType = $image->getMimeType();
+    
+        // Filter hanya tipe MIME gambar yang didukung (misalnya, image/jpeg, image/png, dll.)
+        if (strpos($imageMimeType, 'image/') === 0) {
+            // Gabungkan waktu dengan nama file asli
+            $imageName = date('YmdHis') . '_' . str_replace(' ', '_', $originalFileName);
+    
+            // Simpan gambar asli ke tujuan yang diinginkan
+            $image->move(public_path($destinationPath), $imageName);
+    
+            // Path gambar asli
+            $sourceImagePath = public_path($destinationPath . $imageName);
+    
+            // Path untuk menyimpan gambar WebP
+            $webpImagePath = $destinationPath . pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+    
+            // Baca gambar asli dan konversi ke WebP jika tipe MIME didukung
+            switch ($imageMimeType) {
+                case 'image/jpeg':
+                    $sourceImage = @imagecreatefromjpeg($sourceImagePath);
+                    break;
+                case 'image/png':
+                    $sourceImage = @imagecreatefrompng($sourceImagePath);
+                    break;
+                case 'image/gif':
+                    $sourceImage = @imagecreatefromgif($sourceImagePath);
+                    break;
+                case 'image/webp':
+                    // Jika gambar sudah dalam format WebP, langsung gunakan
+                    $sourceImage = @imagecreatefromwebp($sourceImagePath);
+                    break;
+                // Tambahkan jenis MIME lain jika diperlukan
+                default:
+                    // Jenis MIME tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+                    return null;
+            }
+    
+            // Jika gambar asli berhasil dibaca
+            if ($sourceImage !== false) {
+                // Buat gambar baru dalam format WebP
+                imagewebp($sourceImage, public_path($webpImagePath));
+    
+                // Hapus gambar asli dari memori
+                imagedestroy($sourceImage);
+    
+                // Hapus file asli setelah konversi selesai
+                @unlink($sourceImagePath);
+    
+                // Kembalikan hanya nama file gambar WebP
+                return pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
+            } else {
+                // Gagal membaca gambar asli, tangani kasus ini sesuai kebutuhan Anda
+                return null;
+            }
+        } else {
+            // Tipe MIME gambar tidak didukung, tangani kasus ini sesuai kebutuhan Anda
+            return null;
+        }
+    }
+    
 
 
 
