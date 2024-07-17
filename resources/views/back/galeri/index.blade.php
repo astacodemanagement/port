@@ -231,12 +231,17 @@
                                                 name="urutan">
                                         </div>
                                     </div>
-                                    <div class="form-group" id="gambar_edit_container">
-                                        <label for="gambar_edit">Galeri</label>
+                                    <div class="form-group" id="">
+                                        <label for="gambar_edit">Gambar</label>
+
                                         <input type="file" class="form-control" name="gambar" id="gambar_edit">
+
                                         <div id="gambar_image_container"></div>
                                         <br>
-                                        <a id="gambar_download_link" href="" target="_blank"></a>
+                                        <!-- Tautan untuk mengunduh atau melihat gambar -->
+                                        <a id="gambar_download_link" href="" target="_blank">
+
+                                        </a>
                                     </div>
 
 
@@ -352,10 +357,8 @@
                             var gambarImg = '<img src="/upload/galeri/' + data.gambar +
                                 '" style="max-width: 100px; max-height: 100px;">';
                             var gambarLink = '<a href="/upload/galeri/' + data.gambar +
-                                '" target="_blank"><i class="fa fa-eye"></i> Lihat Gambar</a>';
-                            $('#gambar_image_container').html(gambarImg);
-                            $('#gambar_download_link').attr('href', '/upload/galeri/' + data
-                                .gambar);
+                                '" target="_blank"><i class="fa fa-eye"></i> Lihat Bukti</a>';
+                            $('#gambar_edit_container').append(gambarImg + '<br>' + gambarLink);
                         }
 
                         $('#modal-edit').modal('show');
