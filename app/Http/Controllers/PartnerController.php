@@ -181,7 +181,8 @@ class PartnerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $partner = Partner::findOrFail($id);
+        return response()->json($partner);
     }
 
     /**
