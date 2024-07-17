@@ -155,8 +155,7 @@
                                             <label class="col-form-label" for="urutan">Urutan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control  "
-                                                id="urutan" name="urutan">
+                                            <input type="number" class="form-control  " id="urutan" name="urutan">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -164,8 +163,7 @@
                                             <label class="col-form-label" for="gambar">Upload Gambar Galeri</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="file" class="form-control  "
-                                                id="gambar" name="gambar">
+                                            <input type="file" class="form-control  " id="gambar" name="gambar">
                                         </div>
                                     </div>
 
@@ -212,8 +210,8 @@
                                             <label class="col-form-label" for="edit_nama_galeri">Nama Galeri</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control  "
-                                                id="edit_nama_galeri" name="nama_galeri">
+                                            <input type="text" class="form-control  " id="edit_nama_galeri"
+                                                name="nama_galeri">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -221,8 +219,7 @@
                                             <label class="col-form-label" for="edit_keterangan">Keterangan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <textarea class="form-control  " name="keterangan" id="edit_keterangan" cols="30"
-                                                rows="3"></textarea>
+                                            <textarea class="form-control  " name="keterangan" id="edit_keterangan" cols="30" rows="3"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -230,22 +227,18 @@
                                             <label class="col-form-label" for="edit_urutan">Urutan</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control  "
-                                                id="edit_urutan" name="urutan">
+                                            <input type="number" class="form-control  " id="edit_urutan"
+                                                name="urutan">
                                         </div>
                                     </div>
                                     <div class="form-group" id="gambar_edit_container">
-                                        <label for="gambar_edit">Bukti Pengeluaran</label>
-
+                                        <label for="gambar_edit">Galeri</label>
                                         <input type="file" class="form-control" name="gambar" id="gambar_edit">
-
                                         <div id="gambar_image_container"></div>
                                         <br>
-                                        <!-- Tautan untuk mengunduh atau melihat gambar -->
-                                        <a id="gambar_download_link" href="" target="_blank">
-
-                                        </a>
+                                        <a id="gambar_download_link" href="" target="_blank"></a>
                                     </div>
+
 
 
                                 </div>
@@ -337,37 +330,36 @@
     {{-- PERINTAH EDIT DATA --}}
     <script>
         $(document).ready(function() {
-            // $('.dataTable tbody').on('click', 'td .btn-edit', function(e) {
             $('.btn-edit').click(function(e) {
                 e.preventDefault();
 
                 var id = $(this).data('id');
 
                 $.ajax({
-                    galeri: 'GET',
+                    type: 'GET',
                     url: `${baseUrl}/galeri/${id}/edit`,
                     beforeSend: function() {
-                        $('#gambar_edit_container').html('')
+                        $('#gambar_edit_container').html('');
                     },
                     success: function(data) {
-                        // console.log(data); // Cek apakah data terisi dengan benar
                         // Mengisi data pada form modal
                         $('#id').val(data.id); // Menambahkan nilai id ke input tersembunyi
                         $('#edit_nama_galeri').val(data.nama_galeri);
                         $('#edit_keterangan').val(data.keterangan);
                         $('#edit_urutan').val(data.urutan);
+
                         if (data.gambar) {
                             var gambarImg = '<img src="/upload/galeri/' + data.gambar +
                                 '" style="max-width: 100px; max-height: 100px;">';
                             var gambarLink = '<a href="/upload/galeri/' + data.gambar +
-                                '" target="_blank"><i class="fa fa-eye"></i> Lihat Bukti</a>';
-                            $('#gambar_edit_container').append(gambarImg + '<br>' + gambarLink);
+                                '" target="_blank"><i class="fa fa-eye"></i> Lihat Gambar</a>';
+                            $('#gambar_image_container').html(gambarImg);
+                            $('#gambar_download_link').attr('href', '/upload/galeri/' + data
+                                .gambar);
                         }
 
-                        $('#modal-galeri-edit').modal('show');
-                        $('#id').val(id);
+                        $('#modal-edit').modal('show');
                     },
-
                     error: function(xhr) {
                         // Tangani kesalahan jika ada
                         alert('Error: ' + xhr.statusText);
