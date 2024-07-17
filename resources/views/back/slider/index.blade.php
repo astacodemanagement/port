@@ -227,7 +227,7 @@
                                             <label class="col-form-label" for="edit_nama_slider">Nama Slider</label>
                                         </div>
                                         <div class="col-sm-12">
-                                            <select class="form-control" name="compro" id="compro">
+                                            <select class="form-control" name="compro" id="edit_compro">
                                                 <option value="1">PSI Jobs</option>
                                                 <option value="2">Akama Jobs</option>
                                             </select>
@@ -373,6 +373,7 @@
                         $('#edit_nama_slider').val(data.nama_slider);
                         $('#edit_keterangan').val(data.keterangan);
                         $('#edit_urutan').val(data.urutan);
+                        $('#edit_compro').val(data.compro);
                         if (data.gambar) {
                             var gambarImg = '<img src="/upload/slider/' + data.gambar +
                                 '" style="max-width: 100px; max-height: 100px;">';
