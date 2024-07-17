@@ -48,7 +48,7 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Data partner</h5>
+                                        <h5>Data Partner</h5>
 
                                     </div>
                                     <div class="card-block">
@@ -65,7 +65,7 @@
                                                         <th width="5%">No</th>
 
                                                         <th width="15%">Nama partner</th>
-                                                        <th width="15%">LOGO</th>
+                                                        <th width="15%">Logo</th>
                                                         <th width="10%">Company Profile</th>                                                      
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
