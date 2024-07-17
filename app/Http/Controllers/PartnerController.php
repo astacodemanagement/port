@@ -71,24 +71,30 @@ class PartnerController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
     
-        $imageName = null;
+        $input = $request->all();  // Pindahkan ini ke bawah validasi
     
         if ($request->hasFile('logo')) {
             $image = $request->file('logo');
             $destinationPath = 'upload/partner/';
+            
+            // Konversi logo ke WebP
             $imageName = $this->convertImageToWebp($image, $destinationPath);
+            if ($imageName) {
+                $input['logo'] = $imageName;
+            } else {
+                return response()->json(['error' => 'Gagal mengonversi logo ke WebP'], 500);
+            }
         }
     
-        Partner::create([
-            'name' => $request->name,
-            'logo' => $imageName,
-            'compro' => $request->compro,
-        ]);
+        // Simpan data spp ke database menggunakan fill()
+        $partner = new Partner();
+        $partner->fill($input);
+        $partner->save();
     
         $loggedInUserId = Auth::id();
     
         // Simpan log histori untuk operasi Create dengan user_id yang sedang login
-        $this->simpanLogHistori('Create', 'Partner', $request->name, $loggedInUserId, null, null);
+        $this->simpanLogHistori('Create', 'Slider', $partner->id, $loggedInUserId, null, json_encode($partner));
     
         return response()->json(['message' => 'Data Berhasil Disimpan']);
     }
