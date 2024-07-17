@@ -19,7 +19,7 @@ class PartnerController extends Controller
     {
         $log = new LogHistori();
         $log->tabel_asal = $tabelAsal;
-        $log->id_entitas = $idEntitas;
+        $log->id_entitas = $idEntitas; // Pastikan $idEntitas adalah integer yang valid
         $log->aksi = $aksi;
         $log->waktu = now(); // Menggunakan waktu saat ini
         $log->pengguna = $pengguna;
@@ -27,6 +27,7 @@ class PartnerController extends Controller
         $log->data_baru = $dataBaru;
         $log->save();
     }
+    
     public function index()
     {
      $partner = Partner::paginate(10);
@@ -314,15 +315,34 @@ private function convertImageToWebpUpdate($image, $destinationPath)
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
+
     public function destroy($id)
     {
-         $partner = Partner::findOrFail($id);
-          $oldData = $partner->toArray();
-          $partner->delete();
-    
-          $loggedInUserId = Auth::id();
-          $this->simpanLogHistori('Delete', 'partner', $partner->id, $loggedInUserId, json_encode($oldData), null);
-    
-          return response()->json(['message' => 'Data berhasil dihapus.']);
+        $partner = Partner::find($id);
+
+        if (!$partner) {
+            return response()->json(['message' => 'Data partner not found'], 404);
+        }
+
+        // Hapus file terkait jika ada sebelum menghapus entitas dari database
+        $oldBuktiFileName = $partner->logo; // Nama file saja
+        $oldBuktiPath = public_path('upload/partner/' . $oldBuktiFileName);
+
+        if ($oldBuktiFileName && file_exists($oldBuktiPath)) {
+            unlink($oldBuktiPath);
+        }
+
+        $partner->delete();
+
+        $loggedInUserId = Auth::id();
+
+        // Simpan log histori untuk operasi Delete dengan user_id yang sedang login dan informasi data yang dihapus
+        $this->simpanLogHistori('Delete', 'partner', $id, $loggedInUserId, json_encode($partner), null);
+
+
+        return response()->json(['message' => 'Data Berhasil Dihapus']);
     }
+
+
 }
