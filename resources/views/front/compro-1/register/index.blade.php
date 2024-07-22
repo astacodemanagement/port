@@ -356,7 +356,12 @@
                                     <div class="fv-row row-list-experience"></div>
                                     <div class="fv-row mb-10 row-add-experience">
                                     <div class="form-group mb-5">
-                                            <input type="text" class="form-control input-add-experience experience-category" data-name="kategori.0" placeholder="Negara Tempat Bekerja" name="kategori[]">
+                                            <!-- <input type="text" class="form-control input-add-experience experience-category" data-name="kategori.0" placeholder="Negara Tempat Bekerja" name="kategori[]"> -->
+                                            <select name="kategori[]" data-name="kategori.0" class="form-select input-add-experience experience-category" id="">
+                                                 <option value="">Pilih Kategori Pengalaman Kerja</option>
+                                                <option value="1">Dalam Negeri</option>
+                                                <option value="2">Luar Negeri</option>
+                                            </select>
                                         </div>
 
                                         <div class="form-group mb-5">
@@ -784,9 +789,16 @@
                 'list-experience list-experience- mb-10')
             cloneEl.append('<hr>')
             cloneEl.appendTo('.row-list-experience')
-
-            $('.input-add-experience').val('')
-
+            // delete value input sebelumnya
+          
+            cloneEl.find('.input-add-experience').val('')
+            cloneEl.find('.experience-category').val('')
+            cloneEl.find('.experience-country').val('')
+            cloneEl.find('.experience-company').val('')
+            cloneEl.find('.experience-start-work-date').val('')
+            cloneEl.find('.experience-end-work-date').val('')
+            cloneEl.find('.experience-position').val('')
+            
             refreshExperienceList()
             initExperienceDatepicker()
         })
@@ -815,10 +827,7 @@
             refreshExperienceList()
         })
 
-        $('.row-list-experience').on('click', '.list-experience .btn-remove-experience', function() {
-            $(this).closest('div.list-experience').remove()
-            refreshExperienceList()
-        })
+      
 
         $('#check_whatsapp_number').on('click', function(){
             const t = $(this)
