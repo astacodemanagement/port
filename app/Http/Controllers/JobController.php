@@ -104,13 +104,10 @@ class JobController extends Controller
             'nama_perusahaan.required' => 'Nama Perusahaan Wajib diisi',
             'gaji.required' => 'Gaji Wajib diisi',
             'gaji.numeric' => 'Gaji harus berupa angka',
-    
+            'estimasi.required' => 'Estimasi Wajib diisi',
             'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',
             'jenis_pembayaran.in' => 'Jenis Pembayaran harus berupa Bulan atau Jam',
-            'estimasi_minimal.required' => 'Estimasi Minimal Wajib diisi',
-            'estimasi_minimal.min' => 'Estimasi Minimal minimal 6 digit',
-            'estimasi_maksimal.min' => 'Estimasi Maksimal minimal 6 digit',
-            'estimasi.required' => 'Estimasi Wajib diisi',
+
             'gaji_diterima.required' => 'Status Gaji Diterima Wajib diisi',
             'gaji_diterima.in' => 'Status Gaji Diterima harus berupa Bersih atau Kotor',
             'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',
@@ -377,8 +374,7 @@ class JobController extends Controller
         'tanggal_tutup' => 'nullable|date',
         'gaji' => 'required|min:6',
         'jenis_pembayaran' => 'required|in:Bulan,Jam',
-        'estimasi_minimal' => 'required|min:6',
-        'estimasi_maksimal' => 'required|min:6',
+        'estimasi' => 'required',
         'gaji_diterima' => 'required|in:Bersih,Kotor',
         'tanggal_kurs' => 'nullable|date',
         // 'nominal_kurs' => 'required|nullable',
@@ -414,84 +410,14 @@ class JobController extends Controller
         'gaji.min' => 'Gaji minimal 6 digit',
         'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',
         'jenis_pembayaran.in' => 'Jenis Pembayaran harus berupa Bulan atau Jam',
-        'estimasi_minimal.required' => 'Estimasi Minimal Wajib diisi',
-
-        'estimasi_minimal.min' => 'Estimasi Minimal minimal 6 digit',
-        'estimasi_maksimal.required' => 'Estimasi Maksimal Wajib diisi',
-
-        'estimasi_maksimal.min' => 'Estimasi Maksimal minimal 6 digit',
+        'estimasi' => 'Estimasi Wajib diisi',
         'gaji_diterima.required' => 'Status Gaji Diterima Wajib diisi',
         'gaji_diterima.in' => 'Status Gaji Diterima harus berupa Bersih atau Kotor',
         'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',
         // 'nominal_kurs.required' => 'Nominal Kurs Wajib diisi',
     ]);
     
-        $validator = Validator::make($request->all(), [
-            'nama_job' => 'required',
-            'nama_perusahaan' => 'required',
-            'mitra' => 'nullable',
-            'tanggal_tutup' => 'nullable|date',
-            'gaji' => 'required|min:6',
-            'jenis_pembayaran' => 'required|in:Bulan,Jam',
-            'estimasi' => 'required',
-            'gaji_diterima' => 'required|in:Bersih,Kotor',
-            'tanggal_kurs' => 'nullable|date',
-            // 'nominal_kurs' => 'required|nullable',
-            'negara_id' => 'required|exists:negara,id',
-            'kategori_job_id' => 'required|exists:kategori_job,id',
-            'kontrak_kerja' => 'required',
-            'jam_kerja' => 'required',
-            'hari_kerja' => 'required',
-            'cuti_kerja' => 'required',
-            'masa_percobaan' => 'nullable',
-            'mata_uang_gaji' => 'nullable',
-            'kerja_lembur' => 'nullable',
-            'bahasa' => 'nullable',
-            'deskripsi' => 'nullable',
-            'jenis_kelamin' => 'nullable|in:Laki-laki,Perempuan',
-            'tinggi_badan' => 'nullable|numeric',
-            'berat_badan' => 'nullable|numeric',
-            'rentang_usia' => 'nullable',
-            'level_bahasa' => 'nullable',
-            'pengalaman_kerja' => 'nullable',
-            'paragraf_galeri' => 'nullable',
-            'link_video' => 'nullable|url',
-            'info_lain' => 'nullable',
-            'disclaimer' => 'nullable',
-            'fasilitas_id' => 'required|array|min:1',
-            'pendidikan' => 'nullable',
-            'ketentuan' => 'nullable|min:6',
-        ], [
-            'nama_job.required' => 'Nama Job Wajib diisi',
-            'nama_perusahaan.required' => 'Nama Perusahaan Wajib diisi',
-            'gaji.required' => 'Gaji Wajib diisi',
-            'gaji.numeric' => 'Gaji harus berupa angka',
-            'gaji.min' => 'Gaji minimal 6 digit',
-            'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',
-            'jenis_pembayaran.in' => 'Jenis Pembayaran harus berupa Bulan atau Jam',
-            'estimasi.required' => 'Estimasi Wajib diisi',
-            'gaji_diterima.required' => 'Status Gaji Diterima Wajib diisi',
-            'gaji_diterima.in' => 'Status Gaji Diterima harus berupa Bersih atau Kotor',
-            'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',
-            // 'nominal_kurs.required' => 'Nominal Kurs Wajib diisi',
-
-        'negara_id.required' => 'Negara Wajib diisi',
-        'negara_id.exists' => 'Negara yang dipilih tidak valid',
-        'kategori_job_id.required' => 'Kategori Job Wajib diisi',
-        'kategori_job_id.exists' => 'Kategori Job yang dipilih tidak valid',
-        'kontrak_kerja.required' => 'Kontrak Kerja Wajib diisi',
-        'jam_kerja.required' => 'Jam Kerja Wajib diisi',
-        'hari_kerja.required' => 'Hari Kerja Wajib diisi',
-        'cuti_kerja.required' => 'Cuti Kerja Wajib diisi',
-        'jenis_kelamin.in' => 'Jenis Kelamin harus berupa Laki-laki atau Perempuan',
-        'tinggi_badan.numeric' => 'Tinggi Badan harus berupa angka',
-        'berat_badan.numeric' => 'Berat Badan harus berupa angka',
-        'link_video.url' => 'Link Video harus berupa URL yang valid',
-        'fasilitas_id.required' => 'Fasilitas Wajib diisi',
-        'fasilitas_id.array' => 'Fasilitas harus berupa array',
-        'fasilitas_id.min' => 'Pilih minimal satu fasilitas',
-        'ketentuan.min' => 'Ketentuan minimal 6 digit',
-    ]);
+        
 
     if ($validator->fails()) {
         return response()->json(['errors' => $validator->errors()], 422);
@@ -505,7 +431,7 @@ class JobController extends Controller
         // Ambil semua input dari request, kecualikan 'fasilitas_id'
         $requestData = $request->only([
             'nama_job', 'nama_perusahaan', 'mitra', 'tanggal_tutup', 'gaji', 'jenis_pembayaran',
-            'estimasi_minimal', 'estimasi_maksimal', 'gaji_diterima', 'tanggal_kurs', 'nominal_kurs',
+            'estimasi', 'estimasi', 'gaji_diterima', 'tanggal_kurs', 'nominal_kurs',
             'negara_id', 'kategori_job_id', 'kontrak_kerja', 'jam_kerja', 'hari_kerja', 'cuti_kerja',
             'masa_percobaan', 'mata_uang_gaji', 'kerja_lembur', 'bahasa', 'deskripsi', 'jenis_kelamin',
             'tinggi_badan', 'berat_badan', 'rentang_usia', 'level_bahasa', 'pengalaman_kerja', 'paragraf_galeri',
@@ -513,7 +439,7 @@ class JobController extends Controller
         ]);
 
         // Hilangkan karakter titik dari input yang bersifat nominal
-        $nominalFields = ['gaji', 'estimasi_minimal', 'estimasi_maksimal', 'nominal_kurs'];
+        $nominalFields = ['gaji', 'estimasi', 'nominal_kurs'];
         foreach ($nominalFields as $field) {
             if (isset($requestData[$field])) {
                 $requestData[$field] = str_replace('.', '', $requestData[$field]);
