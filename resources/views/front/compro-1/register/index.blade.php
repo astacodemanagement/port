@@ -355,6 +355,10 @@
                                     </div>
                                     <div class="fv-row row-list-experience"></div>
                                     <div class="fv-row mb-10 row-add-experience">
+                                    <div class="form-group mb-5">
+                                            <input type="text" class="form-control input-add-experience experience-category" data-name="kategori.0" placeholder="Negara Tempat Bekerja" name="kategori[]">
+                                        </div>
+
                                         <div class="form-group mb-5">
                                             <input type="text" class="form-control input-add-experience experience-country" data-name="negara_tempat_kerja.0" placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
                                         </div>
@@ -469,9 +473,9 @@
                                                 <div class="form-input mt-2">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="ktp" style="width: 150px">KTP </label>
-                                                        <input type="file" class="form-control" id="ktp" name="file_ktp" accept="image/*,application/pdf">
+                                                        <input type="file" class="form-control" id="ktp" name="file_ktp" accept="image/*">
                                                     </div>
-                                                    <label class="text-muted"><small>Mohon di Scan</small></label>
+                                                    <label class="text-muted"><small>Mohon di Scan *jpeg|jpg|bmp|png|webp</small></label>
                                                 </div>
                                                 <!-- <div class="form-input mt-2">
                                                     <div class="input-group">
@@ -791,12 +795,14 @@
         {
             $.each($('.experience-country'), function(i, item){
                 const t = $(this)
+                const category = t.closest('div.fv-row').find('.experience-category')
                 const company = t.closest('div.fv-row').find('.experience-company')
                 const startWorkdate = t.closest('div.fv-row').find('.h-experience-start-work-date')
                 const endWorkdate = t.closest('div.fv-row').find('.h-experience-end-work-date')
                 const position = t.closest('div.fv-row').find('.experience-position')
 
                 t.attr('data-name', `negara_tempat_kerja.${i}`)
+                category.attr('data-name', `kategori.${i}`)
                 company.attr('data-name', `nama_perusahaan.${i}`)
                 startWorkdate.attr('data-name', `tanggal_mulai_kerja.${i}`)
                 endWorkdate.attr('data-name', `tanggal_selesai_kerja.${i}`)
