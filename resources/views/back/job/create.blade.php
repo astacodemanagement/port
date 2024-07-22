@@ -687,21 +687,13 @@
                             value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
                             $(this).val(value);
                         });
-                        $('#estimasi_minimal').on('input', function() {
+                        $('#estimasi').on('input', function() {
                             let value = $(this).val().replace(/\D/g, '');
                             value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
                             $(this).val(value);
                         });
-                        $('#estimasi_maksimal').on('input', function() {
-                            let value = $(this).val().replace(/\D/g, '');
-                            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-                            $(this).val(value);
-                        });
-                        $('#nominal_kurs').on('input', function() {
-                            let value = $(this).val().replace(/\D/g, '');
-                            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-                            $(this).val(value);
-                        });
+                      
+                     
                     });
                 </script>
 
@@ -710,7 +702,7 @@
                 <script>
                     $(document).ready(function() {
                         $.ajax({
-                            url: '{{ route('back-office.job.getNegara') }}',
+                            url: `{{ route('back-office.job.getNegara') }}`,
                             type: 'GET',
                             success: function(data) {
                                 var options = '';
@@ -736,7 +728,7 @@
                 <script>
                     $(document).ready(function() {
                         $.ajax({
-                            url: '{{ route('back-office.job.getKategoriJob') }}',
+                            url: `{{ route('back-office.job.getKategoriJob') }}`,
                             type: 'GET',
                             success: function(response) {
                                 console.log(response);
