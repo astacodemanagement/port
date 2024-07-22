@@ -174,7 +174,7 @@
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
                                                                                             for="estimasi">Estimasi
-                                                                                            LDR</label>
+                                                                                            IDR</label>
                                                                                         <input type="text"
                                                                                             class="form-control "
                                                                                             id="estimasi"

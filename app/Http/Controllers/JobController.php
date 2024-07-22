@@ -72,7 +72,7 @@ class JobController extends Controller
             'tanggal_tutup' => 'nullable|date',
             'gaji' => 'required',
             'jenis_pembayaran' => 'required|in:Bulan,Jam',
-            'estimasi' => 'required',
+            'estimasi' => 'required|numeric',
             'gaji_diterima' => 'required|in:Bersih,Kotor',
             // 'tanggal_kurs' => 'nullable|date',
             // 'nominal_kurs' => 'nullable',
@@ -105,6 +105,7 @@ class JobController extends Controller
             'gaji.required' => 'Gaji Wajib diisi',
             'gaji.numeric' => 'Gaji harus berupa angka',
             'estimasi.required' => 'Estimasi Wajib diisi',
+            'estimasi.numeric' => 'Estimasi harus berupa angka',
             'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',
             'jenis_pembayaran.in' => 'Jenis Pembayaran harus berupa Bulan atau Jam',
 
