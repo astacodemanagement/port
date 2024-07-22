@@ -283,9 +283,9 @@
         <div class="form-group mb-5">
             <select class="form-select" name="level_bahasa" aria-labelledby="levelBahasa">
                 <option value="">Level Bahasa Inggris</option>
-                <option value="1">Beginner English</option>
-                <option value="2">⁠Medium English</option>
-                <option value="3">Advance English</option>
+                <option value="1">Beginner English (pemula)</option>
+                <option value="2">⁠Medium English (sedang)</option>
+                <option value="3">Advance English (profesional)</option>
             </select>
         </div>  
         <div class="form-group mb-5">
