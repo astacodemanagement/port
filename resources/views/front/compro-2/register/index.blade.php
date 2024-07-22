@@ -300,9 +300,9 @@
 
                     <select name="level_bahasa" id="level_bahasa" class="tw-w-full tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
                         <option value="">Level Bahasa Inggris </option>
-                        <option value="1">Beginner English</option>
-                        <option value="2">⁠Medium English</option>
-                        <option value="3">Advance English</option>
+                        <option value="1">Beginner English (pemula)</option>
+                        <option value="2">⁠Medium English (sedang)</option>
+                        <option value="3">Advance English (profesional)</option>
     
                     </select>   
                 </div>

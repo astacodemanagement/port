@@ -160,9 +160,9 @@ class RegisterController extends Controller
             9 => 'S3'
         ];
         $levelBahasa = [
-            1 => 'Beginner English',
-            2 => '⁠Medium English',
-            3 => 'Advance English'
+            1 => 'Beginner English (Pemula)',
+            2 => '⁠Medium English (Sedang)',
+            3 => 'Advance English (Profesional)'
         ];
 
         DB::beginTransaction();
