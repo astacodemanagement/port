@@ -72,7 +72,7 @@ class JobController extends Controller
             'tanggal_tutup' => 'nullable|date',
             'gaji' => 'required',
             'jenis_pembayaran' => 'required|in:Bulan,Jam',
-            'estimasi' => 'required|min:6',
+            'estimasi' => 'required',
             'gaji_diterima' => 'required|in:Bersih,Kotor',
             // 'tanggal_kurs' => 'nullable|date',
             // 'nominal_kurs' => 'nullable',
