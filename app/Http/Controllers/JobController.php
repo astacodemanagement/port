@@ -73,8 +73,7 @@ class JobController extends Controller
             'tanggal_tutup' => 'nullable|date',
             'gaji' => 'required',
             'jenis_pembayaran' => 'required|in:Bulan,Jam',
-            'estimasi_minimal' => 'required|min:6',
-            'estimasi_maksimal' => 'nullable|min:6',
+            'estimasi' => 'required|min:6',
             'gaji_diterima' => 'required|in:Bersih,Kotor',
             'tanggal_kurs' => 'nullable|date',
             // 'nominal_kurs' => 'nullable',
@@ -109,12 +108,7 @@ class JobController extends Controller
            
             'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',
             'jenis_pembayaran.in' => 'Jenis Pembayaran harus berupa Bulan atau Jam',
-            'estimasi_minimal.required' => 'Estimasi Minimal Wajib diisi',
-
-            'estimasi_minimal.min' => 'Estimasi Minimal minimal 6 digit',
-           
-
-            'estimasi_maksimal.min' => 'Estimasi Maksimal minimal 6 digit',
+            'estimasi.required' => 'Estimasi Wajib diisi',
             'gaji_diterima.required' => 'Status Gaji Diterima Wajib diisi',
             'gaji_diterima.in' => 'Status Gaji Diterima harus berupa Bersih atau Kotor',
             'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',
@@ -321,8 +315,7 @@ class JobController extends Controller
             'tanggal_tutup' => 'nullable|date',
             'gaji' => 'required|min:6',
             'jenis_pembayaran' => 'required|in:Bulan,Jam',
-            'estimasi_minimal' => 'required|min:6',
-            'estimasi_maksimal' => 'required|min:6',
+            'estimasi' => 'required',
             'gaji_diterima' => 'required|in:Bersih,Kotor',
             'tanggal_kurs' => 'nullable|date',
             // 'nominal_kurs' => 'required|nullable',
@@ -358,12 +351,7 @@ class JobController extends Controller
             'gaji.min' => 'Gaji minimal 6 digit',
             'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',
             'jenis_pembayaran.in' => 'Jenis Pembayaran harus berupa Bulan atau Jam',
-            'estimasi_minimal.required' => 'Estimasi Minimal Wajib diisi',
-
-            'estimasi_minimal.min' => 'Estimasi Minimal minimal 6 digit',
-            'estimasi_maksimal.required' => 'Estimasi Maksimal Wajib diisi',
-
-            'estimasi_maksimal.min' => 'Estimasi Maksimal minimal 6 digit',
+            'estimasi.required' => 'Estimasi Wajib diisi',
             'gaji_diterima.required' => 'Status Gaji Diterima Wajib diisi',
             'gaji_diterima.in' => 'Status Gaji Diterima harus berupa Bersih atau Kotor',
             'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',

@@ -396,7 +396,8 @@ Route::name('front.')->group(function () {
 });
 
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
-Route::get('register/verify', [RegisterController::class, 'verifyEmail'])->name('register.verify-email');
+Route::get('register/verify/{token}', [RegisterController::class, 'verifyEmail'])->name('register.verify-email');
+Route::get('register/verify/{token}', [RegisterController::class, 'verifyEmailToken'])->name('register.verify-email-token');
 Route::post('register/step/validation', [RegisterController::class, 'stepValidation'])->name('register.step.validation');
 
 /** MEMBER ROUTE */

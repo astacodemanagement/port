@@ -6,7 +6,7 @@
             <div class="tw-flex tw-flex-col tw-items-center">
             
                 @php
-                    $status = auth()->user()?->kandidat->pendaftaran->status;
+                    $status = auth()->user()?->kandidat?->pendaftaran->status;
                     $bgColor = $status === 'Verifikasi' ? 'green-500' : ($status === 'Pending' ? 'red-400' : 'tw-bg-gray-500');
                 @endphp
                 <img src="{{ memberProfileImg(auth()->user()) }}" onerror="this.src='{{ asset('member-template/images/profile/user-1.jpg') }}'" width="120" height="120" class="rounded-circle tw-mx-auto tw-border-[3px] tw-border-{{$bgColor}}" alt="user" style="object-fit:cover;object-position: center;">

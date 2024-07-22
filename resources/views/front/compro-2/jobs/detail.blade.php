@@ -345,7 +345,7 @@
                                         </div>
                                         <div>
                                             <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-sm  tw-mb-1">Bahasa </p>
-                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->bahasa}}</p>
+                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->bahasa ?? 'tidak ada'}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start tw-space-x-2 tw-mt-5 tw-gap-2">

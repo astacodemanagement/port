@@ -377,6 +377,14 @@
     <div class="fv-row">
         <label class="tw-font-medium tw-mb-3">Pengalaman Kerja</label>
     </div>
+    <!-- kategori dalam negeri luar negeri -->
+    <div class="tw-mb-5">
+        <select name="kategori" id="kategori" class="tw-w-full tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
+            <option value="">Pilih Kategori Pengalaman Kerja</option>
+            <option value="1">Dalam Negeri</option>
+            <option value="2">Luar Negeri</option>
+        </select>
+    </div>
     <div class="fv-row row-list-experience"></div>
     <div class="fv-row mb-10 row-add-experience">
         <div class="tw-mb-5">
