@@ -177,7 +177,7 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
                 // 'is_kandidat' => 1
             ]);
-            Mail::send('email.template', function($message) use($request){
+            Mail::send('email.template', ['token' =>$token ], function($message) use($request){
                 $message->to($request->email);
                 $message->subject('Email Verification Mail');
             });
