@@ -74,7 +74,7 @@ class JobController extends Controller
             'jenis_pembayaran' => 'required|in:Bulan,Jam',
             'estimasi' => 'required|min:6',
             'gaji_diterima' => 'required|in:Bersih,Kotor',
-            'tanggal_kurs' => 'nullable|date',
+            // 'tanggal_kurs' => 'nullable|date',
             // 'nominal_kurs' => 'nullable',
             'negara_id' => 'required|exists:negara,id',
             'kategori_job_id' => 'required|exists:kategori_job,id',

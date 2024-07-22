@@ -169,32 +169,20 @@
                                                                                     </div>
                                                                                 </div>
 
+                                                                                
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
-                                                                                            for="estimasi_minimal">Estimasi
-                                                                                            IDR
-                                                                                            Min</label>
+                                                                                            for="estimasi">Estimasi
+                                                                                            LDR</label>
                                                                                         <input type="text"
                                                                                             class="form-control "
-                                                                                            id="estimasi_minimal"
-                                                                                            name="estimasi_minimal">
+                                                                                            id="estimasi"
+                                                                                            name="estimasi"
+                                                                                            >
                                                                                     </div>
                                                                                     <div class="col-sm-6">
-                                                                                        <label class="col-form-label"
-                                                                                            for="estimasi_maksimal">Estimasi
-                                                                                            IDR
-                                                                                            Mak</label>
-                                                                                        <input type="text"
-                                                                                            class="form-control "
-                                                                                            id="estimasi_maksimal"
-                                                                                            name="estimasi_maksimal">
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="form-group row">
-                                                                                    <div class="col-sm-12">
-                                                                                        <label class="col-form-label"
+                                                                                    <label class="col-form-label"
                                                                                             for="gaji_diterima">Gaji Yang
                                                                                             Diterima</label>
                                                                                         <select class="form-control "
@@ -213,26 +201,8 @@
                                                                                     </div>
                                                                                 </div>
 
-                                                                                <div class="form-group row">
-                                                                                    <div class="col-sm-6">
-                                                                                        <label class="col-form-label"
-                                                                                            for="tanggal_kurs">Tanggal
-                                                                                            Kurs</label>
-                                                                                        <input type="date"
-                                                                                            class="form-control "
-                                                                                            id="tanggal_kurs"
-                                                                                            name="tanggal_kurs">
-                                                                                    </div>
-                                                                                    <div class="col-sm-6">
-                                                                                        <label class="col-form-label"
-                                                                                            for="nominal_kurs">Nominal
-                                                                                            Kurs</label>
-                                                                                        <input type="text"
-                                                                                            class="form-control "
-                                                                                            id="nominal_kurs"
-                                                                                            name="nominal_kurs">
-                                                                                    </div>
-                                                                                </div>
+
+                                                                               
 
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
