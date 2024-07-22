@@ -107,16 +107,10 @@ class JobController extends Controller
     
             'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',
             'jenis_pembayaran.in' => 'Jenis Pembayaran harus berupa Bulan atau Jam',
-<<<<<<< HEAD
             'estimasi_minimal.required' => 'Estimasi Minimal Wajib diisi',
-    
             'estimasi_minimal.min' => 'Estimasi Minimal minimal 6 digit',
-    
-    
             'estimasi_maksimal.min' => 'Estimasi Maksimal minimal 6 digit',
-=======
             'estimasi.required' => 'Estimasi Wajib diisi',
->>>>>>> dev/pram
             'gaji_diterima.required' => 'Status Gaji Diterima Wajib diisi',
             'gaji_diterima.in' => 'Status Gaji Diterima harus berupa Bersih atau Kotor',
             'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',
@@ -374,7 +368,7 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-<<<<<<< HEAD
+
 {
     $validator = Validator::make($request->all(), [
         'nama_job' => 'required',
@@ -430,8 +424,8 @@ class JobController extends Controller
         'gaji_diterima.in' => 'Status Gaji Diterima harus berupa Bersih atau Kotor',
         'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',
         // 'nominal_kurs.required' => 'Nominal Kurs Wajib diisi',
-=======
-    {
+    ]);
+    
         $validator = Validator::make($request->all(), [
             'nama_job' => 'required',
             'nama_perusahaan' => 'required',
@@ -480,7 +474,6 @@ class JobController extends Controller
             'gaji_diterima.in' => 'Status Gaji Diterima harus berupa Bersih atau Kotor',
             'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',
             // 'nominal_kurs.required' => 'Nominal Kurs Wajib diisi',
->>>>>>> dev/pram
 
         'negara_id.required' => 'Negara Wajib diisi',
         'negara_id.exists' => 'Negara yang dipilih tidak valid',
