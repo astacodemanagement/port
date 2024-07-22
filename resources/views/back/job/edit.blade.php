@@ -215,28 +215,7 @@
                                                                                 </div>
 
 
-                                                                                 <div class="form-group row">
-                                                                                    <div class="col-sm-6">
-                                                                                        <label class="col-form-label"
-                                                                                            for="tanggal_kurs">Tanggal
-                                                                                            Kurs</label>
-                                                                                        <input type="date"
-                                                                                            class="form-control "
-                                                                                            id="tanggal_kurs"
-                                                                                            name="tanggal_kurs"
-                                                                                            value="{{ $data->tanggal_kurs }}">
-                                                                                    </div>
-                                                                                    <div class="col-sm-6">
-                                                                                        <label class="col-form-label"
-                                                                                            for="nominal_kurs">Nominal
-                                                                                            Kurs</label>
-                                                                                        <input type="text"
-                                                                                            class="form-control "
-                                                                                            id="nominal_kurs"
-                                                                                            name="nominal_kurs"
-                                                                                            value="{{ $data->nominal_kurs }}">
-                                                                                    </div>
-                                                                                </div> 
+                                                                               
 
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
@@ -827,30 +806,10 @@
 
 
                         // Tambahkan separator saat halaman dimuat
-                        $('#estimasi_minimal').val(addThousandSeparator($('#estimasi_minimal').val()));
+                        $('#estimasi').val(addThousandSeparator($('#estimasi').val()));
 
                         // Tambahkan separator saat pengguna mengetik
-                        $('#estimasi_minimal').on('input', function() {
-                            let value = stripNonNumeric($(this).val());
-                            $(this).val(addThousandSeparator(value));
-                        });
-
-
-                        // Tambahkan separator saat halaman dimuat
-                        $('#estimasi_maksimal').val(addThousandSeparator($('#estimasi_maksimal').val()));
-
-                        // Tambahkan separator saat pengguna mengetik
-                        $('#estimasi_maksimal').on('input', function() {
-                            let value = stripNonNumeric($(this).val());
-                            $(this).val(addThousandSeparator(value));
-                        });
-
-
-                        // Tambahkan separator saat halaman dimuat
-                        $('#nominal_kurs').val(addThousandSeparator($('#nominal_kurs').val()));
-
-                        // Tambahkan separator saat pengguna mengetik
-                        $('#nominal_kurs').on('input', function() {
+                        $('#estimasi').on('input', function() {
                             let value = stripNonNumeric($(this).val());
                             $(this).val(addThousandSeparator(value));
                         });
@@ -906,7 +865,7 @@
                     });
                 </script>
                 <script type="text/javascript" src="{{ asset('template') }}/files/bower_components/switchery/js/switchery.min.js">
-                    < script type = "text/javascript"
+                    <script type = "text/javascript"
                     src = "{{ asset('template') }}/files/bower_components/bootstrap-tagsinput/js/bootstrap-tagsinput.js" >
                 </script>
             @endpush
