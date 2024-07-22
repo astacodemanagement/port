@@ -182,30 +182,15 @@
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
-                                                                                            for="estimasi_minimal">Estimasi
-                                                                                            IDR
-                                                                                            Min</label>
+                                                                                            for="estimasi">Estimasi
+                                                                                            LDR</label>
                                                                                         <input type="text"
                                                                                             class="form-control "
-                                                                                            id="estimasi_minimal"
-                                                                                            name="estimasi_minimal"
-                                                                                            value="{{ $data->estimasi_minimal }}">
+                                                                                            id="estimasi"
+                                                                                            name="estimasi"
+                                                                                            value="{{ $data->estimasi }}">
                                                                                     </div>
                                                                                     <div class="col-sm-6">
-                                                                                        <label class="col-form-label"
-                                                                                            for="estimasi_maksimal">Estimasi
-                                                                                            IDR
-                                                                                            Mak</label>
-                                                                                        <input type="text"
-                                                                                            class="form-control "
-                                                                                            id="estimasi_maksimal"
-                                                                                            name="estimasi_maksimal"
-                                                                                            value="{{ $data->estimasi_maksimal }}">
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <div class="form-group row">
-                                                                                    <div class="col-sm-12">
                                                                                         <label class="col-form-label"
                                                                                             for="gaji_diterima">Gaji Yang
                                                                                             Diterima</label>

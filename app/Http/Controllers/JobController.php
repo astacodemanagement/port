@@ -108,6 +108,7 @@ class JobController extends Controller
     
             'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',
             'jenis_pembayaran.in' => 'Jenis Pembayaran harus berupa Bulan atau Jam',
+<<<<<<< HEAD
             'estimasi_minimal.required' => 'Estimasi Minimal Wajib diisi',
     
             'estimasi_minimal.min' => 'Estimasi Minimal minimal 6 digit',

@@ -23,7 +23,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules\Password;
 use App\Traits\UploadFile;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Events\Verified;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
@@ -104,7 +107,10 @@ class RegisterController extends Controller
         $kota = Kota::find($wilayah?->kota_id);
         $noHp = $request->no_hp;
         $noWa = $request->no_wa;
-
+        $kategori = [
+            1 => 'dalam negeri',
+            2 => 'luar negeri'
+        ];
         $agama = [
             0 => null,
             1 => 'Islam',
@@ -171,7 +177,7 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
                 // 'is_kandidat' => 1
             ]);
-            Mail::send('email.template', ['token' =>$token ], function($message) use($request){
+            Mail::send('email.template', function($message) use($request){
                 $message->to($request->email);
                 $message->subject('Email Verification Mail');
             });
@@ -217,6 +223,7 @@ class RegisterController extends Controller
                 'tanggal_pengeluaran_paspor' => $request->tanggal_pengeluaran_paspor,
                 'masa_kadaluarsa' => $request->masa_kadaluarsa,
                 'kantor_paspor' => $request->kantor_paspor,
+                'kategori' => $kategori[$request->kategori],
                 'kondisi_paspor' => isset($kondisiPaspor[$request->kondisi_paspor]) ? $kondisiPaspor[$request->kondisi_paspor] : null,
                 'ada_ktp' => $request->has('check_ktp') ? 'Ya' : null,
                 'ada_kk' => $request->has('check_kartu_keluarga') ? 'Ya' : null,
@@ -517,6 +524,7 @@ class RegisterController extends Controller
 
         return redirect(route('login'))->with('error', 'Token tidak valid');
     }
+
 
     
 
