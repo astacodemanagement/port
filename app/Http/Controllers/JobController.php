@@ -74,8 +74,7 @@ class JobController extends Controller
             'jenis_pembayaran' => 'required|in:Bulan,Jam',
             'estimasi' => 'required|numeric',
             'gaji_diterima' => 'required|in:Bersih,Kotor',
-            // 'tanggal_kurs' => 'nullable|date',
-            // 'nominal_kurs' => 'nullable',
+         
             'negara_id' => 'required|exists:negara,id',
             'kategori_job_id' => 'required|exists:kategori_job,id',
             'kontrak_kerja' => 'required',
@@ -111,8 +110,7 @@ class JobController extends Controller
 
             'gaji_diterima.required' => 'Status Gaji Diterima Wajib diisi',
             'gaji_diterima.in' => 'Status Gaji Diterima harus berupa Bersih atau Kotor',
-            'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',
-    
+          
             'negara_id.required' => 'Negara Wajib diisi',
             'negara_id.exists' => 'Negara yang dipilih tidak valid',
             'kategori_job_id.required' => 'Kategori Job Wajib diisi',
@@ -134,7 +132,7 @@ class JobController extends Controller
         DB::beginTransaction();
         try {
             // Hapus karakter titik dari input nominal sebelum menyimpan ke database
-            $nominalFields = ['gaji', 'estimasi_minimal', 'estimasi_maksimal', 'nominal_kurs'];
+            $nominalFields = ['gaji', 'estimasi'];
             $jobData = $request->except('fasilitas_id'); // kecualikan fasilitas_id jika tidak ada dalam tabel job
     
             foreach ($nominalFields as $field) {
@@ -377,8 +375,6 @@ class JobController extends Controller
         'jenis_pembayaran' => 'required|in:Bulan,Jam',
         'estimasi' => 'required',
         'gaji_diterima' => 'required|in:Bersih,Kotor',
-        'tanggal_kurs' => 'nullable|date',
-        // 'nominal_kurs' => 'required|nullable',
         'negara_id' => 'required|exists:negara,id',
         'kategori_job_id' => 'required|exists:kategori_job,id',
         'kontrak_kerja' => 'required',
@@ -414,8 +410,7 @@ class JobController extends Controller
         'estimasi' => 'Estimasi Wajib diisi',
         'gaji_diterima.required' => 'Status Gaji Diterima Wajib diisi',
         'gaji_diterima.in' => 'Status Gaji Diterima harus berupa Bersih atau Kotor',
-        'tanggal_kurs.date' => 'Tanggal Kurs harus berupa tanggal yang valid',
-        // 'nominal_kurs.required' => 'Nominal Kurs Wajib diisi',
+      
     ]);
     
         
@@ -432,7 +427,7 @@ class JobController extends Controller
         // Ambil semua input dari request, kecualikan 'fasilitas_id'
         $requestData = $request->only([
             'nama_job', 'nama_perusahaan', 'mitra', 'tanggal_tutup', 'gaji', 'jenis_pembayaran',
-            'estimasi', 'estimasi', 'gaji_diterima', 'tanggal_kurs', 'nominal_kurs',
+            'estimasi', 'gaji_diterima',
             'negara_id', 'kategori_job_id', 'kontrak_kerja', 'jam_kerja', 'hari_kerja', 'cuti_kerja',
             'masa_percobaan', 'mata_uang_gaji', 'kerja_lembur', 'bahasa', 'deskripsi', 'jenis_kelamin',
             'tinggi_badan', 'berat_badan', 'rentang_usia', 'level_bahasa', 'pengalaman_kerja', 'paragraf_galeri',
@@ -440,7 +435,7 @@ class JobController extends Controller
         ]);
 
         // Hilangkan karakter titik dari input yang bersifat nominal
-        $nominalFields = ['gaji', 'estimasi', 'nominal_kurs'];
+        $nominalFields = ['gaji', 'estimasi'];
         foreach ($nominalFields as $field) {
             if (isset($requestData[$field])) {
                 $requestData[$field] = str_replace('.', '', $requestData[$field]);
