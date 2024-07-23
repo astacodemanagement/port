@@ -171,10 +171,7 @@ class RegisterController extends Controller
 
         try {
             $token = Str::random(64);
-            Mail::send('email.template', ['token' => $token], function($message) use ($request) {
-                $message->to($request->email);
-                $message->subject('Verify your email address');
-            });
+           
             /** INSERT USER */
             $user = User::create([
                 'token' => $token,
@@ -366,7 +363,10 @@ class RegisterController extends Controller
                 PengalamanKerja::insert($pengalamanKerja);
             }
              // give notif
-            
+             Mail::send('email.template', ['token' => $token], function($message) use ($request) {
+                $message->to($request->email);
+                $message->subject('Verify your email address');
+            });
         
         DB::commit();
         
