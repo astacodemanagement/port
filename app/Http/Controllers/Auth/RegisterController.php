@@ -332,11 +332,11 @@ class RegisterController extends Controller
 
             Kandidat::create($kandidat);
 
+            $pengalamanKerja = [];
             /** INSERT PENGALAMAN KERJA */
             if (!$request->has('keterangan_belum_kerja')) {
 
 
-                $pengalamanKerja = [];
 
 
                 for ($i = 0; $i < count($request->negara_tempat_kerja); $i++) {
