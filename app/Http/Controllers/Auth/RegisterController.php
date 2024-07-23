@@ -28,6 +28,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
@@ -377,6 +378,7 @@ class RegisterController extends Controller
         }
         } catch (\Exception $e) {
             DB::rollBack();
+            Log::error($e->getMessage());
             return response()->json(['error' => false, 'message' => $e->getMessage()], 400);
         }
         
