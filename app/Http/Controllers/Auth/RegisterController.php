@@ -378,7 +378,7 @@ class RegisterController extends Controller
         }
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error($e->getMessage());
+            Log::error("error register cuy".$e->getMessage());
             return response()->json(['error' => false, 'message' => $e->getMessage()], 400);
         }
         
