@@ -96,7 +96,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        
+
         $request->merge(['no_hp' => str_replace(' ', '', $request->no_hp)]);
         $request->merge(['no_wa' => str_replace(' ', '', $request->has('check_whatsapp_number') ? $request->no_hp : $request->no_wa)]);
 
@@ -171,7 +171,7 @@ class RegisterController extends Controller
 
         try {
             $token = Str::random(64);
-           
+
             /** INSERT USER */
             $user = User::create([
                 'token' => $token,
@@ -333,55 +333,54 @@ class RegisterController extends Controller
             Kandidat::create($kandidat);
 
             /** INSERT PENGALAMAN KERJA */
-            if(!$request->has('keterangan_belum_kerja')){
-                
-
-            $pengalamanKerja = [];
+            if (!$request->has('keterangan_belum_kerja')) {
 
 
-            for ($i = 0; $i < count($request->negara_tempat_kerja); $i++) {
-                $negaraTempatKerja = isset($request->kategori[$i]) ? $request->kategori[$i] : null;
-                $negaraTempatKerja = isset($request->negara_tempat_kerja[$i]) ? $request->negara_tempat_kerja[$i] : null;
-                $namaPerusahaan = isset($request->nama_perusahaan[$i]) ? $request->nama_perusahaan[$i] : null;
-                $tanggalMulaiKerja = isset($request->tanggal_mulai_kerja[$i]) ? $request->tanggal_mulai_kerja[$i] : null;
-                $tanggalSelesaiKerja = isset($request->tanggal_selesai_kerja[$i]) ? $request->tanggal_selesai_kerja[$i] : null;
-                $posisi = isset($request->posisi[$i]) ? $request->posisi[$i] : null;
+                $pengalamanKerja = [];
 
-                $pengalamanKerja[] = [
-                    'pendaftaran_id' => $pendaftaran->id,
-                    'negara_tempat_kerja' => $negaraTempatKerja,
-                    'nama_perusahaan' => $namaPerusahaan,
-                    'tanggal_mulai_kerja' => $tanggalMulaiKerja,
-                    'tanggal_selesai_kerja' => $tanggalSelesaiKerja,
-                    'posisi' => $posisi,
-                    'created_at' => now(),
-                    'updated_at' => now()
-                ];
+
+                for ($i = 0; $i < count($request->negara_tempat_kerja); $i++) {
+                    $negaraTempatKerja = isset($request->kategori[$i]) ? $request->kategori[$i] : null;
+                    $negaraTempatKerja = isset($request->negara_tempat_kerja[$i]) ? $request->negara_tempat_kerja[$i] : null;
+                    $namaPerusahaan = isset($request->nama_perusahaan[$i]) ? $request->nama_perusahaan[$i] : null;
+                    $tanggalMulaiKerja = isset($request->tanggal_mulai_kerja[$i]) ? $request->tanggal_mulai_kerja[$i] : null;
+                    $tanggalSelesaiKerja = isset($request->tanggal_selesai_kerja[$i]) ? $request->tanggal_selesai_kerja[$i] : null;
+                    $posisi = isset($request->posisi[$i]) ? $request->posisi[$i] : null;
+
+                    $pengalamanKerja[] = [
+                        'pendaftaran_id' => $pendaftaran->id,
+                        'negara_tempat_kerja' => $negaraTempatKerja,
+                        'nama_perusahaan' => $namaPerusahaan,
+                        'tanggal_mulai_kerja' => $tanggalMulaiKerja,
+                        'tanggal_selesai_kerja' => $tanggalSelesaiKerja,
+                        'posisi' => $posisi,
+                        'created_at' => now(),
+                        'updated_at' => now()
+                    ];
+                }
             }
 
             if (count($pengalamanKerja) > 0) {
                 PengalamanKerja::insert($pengalamanKerja);
             }
-             // give notif
-             Mail::send('email.template', ['token' => $token], function($message) use ($request) {
+            // give notif
+            Mail::send('email.template', ['token' => $token], function($message) use ($request) {
                 $message->to($request->email);
                 $message->subject('Verify your email address');
             });
         
-        DB::commit();
-        
+            DB::commit();
 
-        session(['is_register' => 'true', 'register_id' => $pendaftaran->id]);
-        
+
+            session(['is_register' => 'true', 'register_id' => $pendaftaran->id]);
+
 
             return response()->json(['success' => true, 'message' => 'Register succesfully']);
-        }
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error("error register cuy".$e->getMessage());
+            Log::error("error register cuy" . $e->getMessage());
             return response()->json(['error' => false, 'message' => $e->getMessage()], 400);
         }
-        
     }
 
     /**
@@ -456,22 +455,22 @@ class RegisterController extends Controller
                 'posisi.*' => 'nullable|min:2',
                 'keterangan_belum_kerja' => 'nullable'
             ],
-            4 =>[
-            //    required one of all field
+            4 => [
+                //    required one of all field
                 "check_ktp" => "required_without_all:check_kartu_keluarga,check_akta_lahir,check_ijazah,check_buku_nikah,check_paspor",
                 "check_kartu_keluarga" => "required_without_all:check_ktp,check_akta_lahir,check_ijazah,check_buku_nikah,check_paspor",
                 "check_akta_lahir" => "required_without_all:check_ktp,check_kartu_keluarga,check_ijazah,check_buku_nikah,check_paspor",
                 "check_ijazah" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_buku_nikah,check_paspor",
                 "check_buku_nikah" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_ijazah,check_paspor",
                 "check_paspor" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_ijazah,check_buku_nikah",
-                
+
             ],
-          
+
             5 => [
                 'file_foto' => 'required|max:10240|mimes:jpeg,jpg,bmp,png,webp',
-   
+
                 'file_ktp' => 'required|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
-            
+
             ],
             6 => [
                 'email' => 'required|email|unique:users,email',
@@ -500,11 +499,11 @@ class RegisterController extends Controller
     public function verifyEmail($token)
     {
         $user = User::where('token', $token)->first();
-    
+
         if ($user) {
             User::where('token', $token)->update([
                 'email_verified_at' => now(),
-               
+
             ]);
 
             return redirect('/')->with('success', 'Email berhasil diverifikasi');
@@ -514,7 +513,7 @@ class RegisterController extends Controller
     }
 
 
-    
+
 
     private function attributes()
     {
