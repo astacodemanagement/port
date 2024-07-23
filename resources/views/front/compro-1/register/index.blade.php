@@ -890,11 +890,12 @@
                     $('.btn-prev').prop('disabled', true)
                 },
                 success: function(response) {
+                    console.log(response);
                     if (response.success) {
                         t.prop('disabled', true).html(
                             '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Redirect'
                         )
-                        location.href = '{{ route('register.complete') }}'
+                        location.href = `{{ route('register.complete') }}`
                     }
                 },
                 error: function(xhr, status, error) {

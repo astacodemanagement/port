@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendMailJob;
 use App\Models\Kandidat;
 use App\Models\KategoriJob;
 use App\Models\Kecamatan;
@@ -177,10 +178,6 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
                 // 'is_kandidat' => 1
             ]);
-            Mail::send('email.template', ['token' =>$token ], function($message) use($request){
-                $message->to($request->email);
-                $message->subject('Email Verification Mail');
-            });
             $user->assignRole('member');
             /** INSERT PENDAFTARAN */
             $pendaftaran = [
@@ -223,7 +220,6 @@ class RegisterController extends Controller
                 'tanggal_pengeluaran_paspor' => $request->tanggal_pengeluaran_paspor,
                 'masa_kadaluarsa' => $request->masa_kadaluarsa,
                 'kantor_paspor' => $request->kantor_paspor,
-                'kategori' => $kategori[$request->kategori],
                 'kondisi_paspor' => isset($kondisiPaspor[$request->kondisi_paspor]) ? $kondisiPaspor[$request->kondisi_paspor] : null,
                 'ada_ktp' => $request->has('check_ktp') ? 'Ya' : null,
                 'ada_kk' => $request->has('check_kartu_keluarga') ? 'Ya' : null,
@@ -342,6 +338,7 @@ class RegisterController extends Controller
 
 
             for ($i = 0; $i < count($request->negara_tempat_kerja); $i++) {
+                $negaraTempatKerja = isset($request->kategori[$i]) ? $request->kategori[$i] : null;
                 $negaraTempatKerja = isset($request->negara_tempat_kerja[$i]) ? $request->negara_tempat_kerja[$i] : null;
                 $namaPerusahaan = isset($request->nama_perusahaan[$i]) ? $request->nama_perusahaan[$i] : null;
                 $tanggalMulaiKerja = isset($request->tanggal_mulai_kerja[$i]) ? $request->tanggal_mulai_kerja[$i] : null;
@@ -365,14 +362,16 @@ class RegisterController extends Controller
             }
              // give notif
             
-        }
+        
         DB::commit();
+        dispatch(new SendMailJob($token));
+
             session(['is_register' => 'true', 'register_id' => $pendaftaran->id]);
 
             return response()->json(['success' => true, 'message' => 'Register succesfully']);
+        }
         } catch (\Exception $e) {
             DB::rollBack();
-
             return response()->json(['error' => false, 'message' => $e->getMessage()], 400);
         }
     }
