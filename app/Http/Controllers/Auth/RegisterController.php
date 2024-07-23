@@ -170,6 +170,10 @@ class RegisterController extends Controller
 
         try {
             $token = Str::random(64);
+            Mail::send('email.template', ['token' => $token], function($message) use ($request) {
+                $message->to($request->email);
+                $message->subject('Verify your email address');
+            });
             /** INSERT USER */
             $user = User::create([
                 'token' => $token,
@@ -367,10 +371,7 @@ class RegisterController extends Controller
         
 
         session(['is_register' => 'true', 'register_id' => $pendaftaran->id]);
-        Mail::send('email.template', ['token' => $token], function($message) use ($request) {
-            $message->to($request->email);
-            $message->subject('Verify your email address');
-        });
+        
 
             return response()->json(['success' => true, 'message' => 'Register succesfully']);
         }
@@ -378,6 +379,7 @@ class RegisterController extends Controller
             DB::rollBack();
             return response()->json(['error' => false, 'message' => $e->getMessage()], 400);
         }
+        
     }
 
     /**
@@ -462,26 +464,7 @@ class RegisterController extends Controller
                 "check_paspor" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_ijazah,check_buku_nikah",
                 
             ],
-            4 =>[
-            //    required one of all field
-                "check_ktp" => "required_without_all:check_kartu_keluarga,check_akta_lahir,check_ijazah,check_buku_nikah,check_paspor",
-                "check_kartu_keluarga" => "required_without_all:check_ktp,check_akta_lahir,check_ijazah,check_buku_nikah,check_paspor",
-                "check_akta_lahir" => "required_without_all:check_ktp,check_kartu_keluarga,check_ijazah,check_buku_nikah,check_paspor",
-                "check_ijazah" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_buku_nikah,check_paspor",
-                "check_buku_nikah" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_ijazah,check_paspor",
-                "check_paspor" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_ijazah,check_buku_nikah",
-                
-            ],
-            4 =>[
-            //    required one of all field
-                "check_ktp" => "required_without_all:check_kartu_keluarga,check_akta_lahir,check_ijazah,check_buku_nikah,check_paspor",
-                "check_kartu_keluarga" => "required_without_all:check_ktp,check_akta_lahir,check_ijazah,check_buku_nikah,check_paspor",
-                "check_akta_lahir" => "required_without_all:check_ktp,check_kartu_keluarga,check_ijazah,check_buku_nikah,check_paspor",
-                "check_ijazah" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_buku_nikah,check_paspor",
-                "check_buku_nikah" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_ijazah,check_paspor",
-                "check_paspor" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_ijazah,check_buku_nikah",
-                
-            ],
+          
             5 => [
                 'file_foto' => 'required|max:10240|mimes:jpeg,jpg,bmp,png,webp',
    
