@@ -364,9 +364,13 @@ class RegisterController extends Controller
             
         
         DB::commit();
-        dispatch(new SendMailJob($token));
+        
 
-            session(['is_register' => 'true', 'register_id' => $pendaftaran->id]);
+        session(['is_register' => 'true', 'register_id' => $pendaftaran->id]);
+        Mail::send('email.template', ['token' => $token], function($message) use ($request) {
+            $message->to($request->email);
+            $message->subject('Verify your email address');
+        });
 
             return response()->json(['success' => true, 'message' => 'Register succesfully']);
         }
