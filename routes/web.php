@@ -385,6 +385,8 @@ Route::name('front.')->group(function () {
             });
         });
     });
+    // pengaduan
+    Route::resource('pengaduan', PengaduanController::class);
     
     /** AUTHENTICATION */
     Auth::routes(['login' => false, 'logout' => false]);
