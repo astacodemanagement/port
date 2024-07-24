@@ -106,7 +106,7 @@
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
-                                                                                            for="nama_job">Nama Job</label>
+                                                                                            for="nama_job">Posisi Pekerjaan</label>
                                                                                         <input type="text"
                                                                                             class="form-control "
                                                                                             id="nama_job" name="nama_job"
@@ -795,13 +795,13 @@
 
                     $(document).ready(function() {
                         // Tambahkan separator saat halaman dimuat
-                        $('#gaji').val(addThousandSeparator($('#gaji').val()));
+                        // $('#gaji').val(addThousandSeparator($('#gaji').val()));
 
-                        // Tambahkan separator saat pengguna mengetik
-                        $('#gaji').on('input', function() {
-                            let value = stripNonNumeric($(this).val());
-                            $(this).val(addThousandSeparator(value));
-                        });
+                        // // Tambahkan separator saat pengguna mengetik
+                        // $('#gaji').on('input', function() {
+                        //     let value = stripNonNumeric($(this).val());
+                        //     $(this).val(addThousandSeparator(value));
+                        // });
 
 
 
