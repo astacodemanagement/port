@@ -103,7 +103,7 @@
                                 </button>
                                 <p class="tw-mt-5 tw-text-lg tw-font-semibold tw-leading-5 tw-text-[#11181C]">Gaji</p>
                                 <p class="tw-block tw-font-sans tw-text-base tw-antialiased tw-font-light tw-leading-relaxed tw-text-inherit">
-                                    <span class="tw-text-[#2B9FDC] tw-text-lg tw-font-semibold tw-font-clash-display tw-mt-1">Rp {{'Rp'. number_format($item->estimasi_minimal)}} - {{'Rp'.number_format($item->estimasi_maksimal)}} jt/</span> <span class="tw-text-lg tw-font-normal tw-text-[#2B9FDC]">bulan</span>
+                                    <span class="tw-text-[#2B9FDC] tw-text-lg tw-font-semibold tw-font-clash-display tw-mt-1">{{$item->gaji}}</span>
                                 </p>
                                 <div class="tw-grid tw-grid-cols-2 tw-gap-4 tw-mt-4">
                                     <div class="tw-flex tw-items-start">
