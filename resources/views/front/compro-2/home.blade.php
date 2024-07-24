@@ -110,7 +110,7 @@
                                         <i class="fa-solid fa-location-dot tw-text-base tw-mr-2" style="color: rgba(43, 159, 220, 1)"></i>
                                         <div>
                                             <p class="tw-text-base tw-font-semibold" style="color: rgba(0, 49, 79, 1)">Negara</p>
-                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">{{$item->nama_negara}}</p>
+                                            <p class="tw-text-sm tw-font-light tw-text-[#52525B]">{{$item->negara->nama_negara}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start">
