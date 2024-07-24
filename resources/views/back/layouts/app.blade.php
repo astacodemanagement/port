@@ -31,18 +31,20 @@
     <link rel="stylesheet" type="text/css"
         href="{{ asset('template') }}/files/bower_components/bootstrap/css/bootstrap.min.css">
 
-    
+
 
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/assets/icon/feather/css/feather.css">
 
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/assets/css/font-awesome-n.min.css"> --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" type="text/css" href="{{ asset('template') }}/files/assets/css/style.css">
 
 
 
- 
+
 
     @stack('css')
 </head>
@@ -177,8 +179,10 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <form action="{{ route('logout') }}" method="POST" id="form-logout">@csrf</form>
-                                            <a href="javascript:void(0)" class="logout" onclick="document.getElementById('form-logout').submit()">
+                                            <form action="{{ route('logout') }}" method="POST" id="form-logout">@csrf
+                                            </form>
+                                            <a href="javascript:void(0)" class="logout"
+                                                onclick="document.getElementById('form-logout').submit()">
                                                 <i class="feather icon-log-out"></i> Logout
                                             </a>
                                         </li>
@@ -342,56 +346,34 @@
                         <div class="nav-list">
                             <div class="pcoded-inner-navbar main-menu">
                                 <div class="pcoded-navigation-label">Dashboard</div>
-                                
+
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class="{{ request()->routeIs('back-office.home') ? 'active' : '' }}" >
-                                        <a href="{{ route('back-office.home') }}" class="waves-effect waves-dark " >
+                                    <li class="{{ request()->routeIs('back-office.home') ? 'active' : '' }}">
+                                        <a href="{{ route('back-office.home') }}" class="waves-effect waves-dark ">
                                             <span class="pcoded-micon"><i class="feather icon-home "></i></span>
                                             <span class="pcoded-mtext">Dashboard</span>
                                         </a>
-                                    
+
                                     </li>
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class="{{ request()->routeIs('back-office.job.index') ? 'active' : '' }}">
-                                        <a href="{{ route('back-office.job.index') }}" class="waves-effect waves-dark ">
+                                        <a href="{{ route('back-office.job.index') }}"
+                                            class="waves-effect waves-dark ">
                                             <span class="pcoded-micon"><i class="feather icon-anchor "></i></span>
                                             <span class="pcoded-mtext">Job</span>
                                         </a>
                                     </li>
                                 </ul>
-                 
+
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class="pcoded-hasmenu  {{ request()->routeIs([
-                                        'back-office.pengguna.index',
-                                        'back-office.negara.index',
-                                        'back-office.fasilitas.index',
-                                        'back-office.kategori-job.index',
-                                        'back-office.slider.index',
-                                        'back-office.galeri.index',
-                                        'back-office.review.index',
-                                        'back-office.faq.index',
-                                        'back-office.alasan.index',
-                                        'back-office.step.index',
-                                        'back-office.supplier.index',
-                                        'back-office.agency.index',
-                                        'back-office.employer.index',
-                                        'other' 
-                                    ]) ? 'pcoded-trigger' : '' }}">
-                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon">
-                                                <i class="feather icon-layers"></i>
-                                            </span>
-                                            <span class="pcoded-mtext">Master</span>
-                                        </a>
-                                        <ul class="pcoded-submenu" style="{{ request()->routeIs([
+                                    <li
+                                        class="pcoded-hasmenu  {{ request()->routeIs([
                                             'back-office.pengguna.index',
                                             'back-office.negara.index',
                                             'back-office.fasilitas.index',
                                             'back-office.kategori-job.index',
                                             'back-office.slider.index',
-                                            'back-office.counter.index',
-                                            'back-office.partnerindex',
                                             'back-office.galeri.index',
                                             'back-office.review.index',
                                             'back-office.faq.index',
@@ -400,80 +382,139 @@
                                             'back-office.supplier.index',
                                             'back-office.agency.index',
                                             'back-office.employer.index',
-                                            'other' 
-                                        ]) ? 'display: block' : 'display: none' }};">
-                                            <li class="{{ request()->routeIs('back-office.pengguna.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.pengguna.index') }}" class="waves-effect waves-dark">
+                                            'other',
+                                        ])
+                                            ? 'pcoded-trigger'
+                                            : '' }}">
+                                        <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                            <span class="pcoded-micon">
+                                                <i class="feather icon-layers"></i>
+                                            </span>
+                                            <span class="pcoded-mtext">Master</span>
+                                        </a>
+                                        <ul class="pcoded-submenu"
+                                            style="{{ request()->routeIs([
+                                                'back-office.pengguna.index',
+                                                'back-office.negara.index',
+                                                'back-office.fasilitas.index',
+                                                'back-office.kategori-job.index',
+                                                'back-office.slider.index',
+                                                'back-office.counter.index',
+                                                'back-office.partnerindex',
+                                                'back-office.galeri.index',
+                                                'back-office.review.index',
+                                                'back-office.faq.index',
+                                                'back-office.alasan.index',
+                                                'back-office.step.index',
+                                                'back-office.supplier.index',
+                                                'back-office.agency.index',
+                                                'back-office.employer.index',
+                                                'other',
+                                            ])
+                                                ? 'display: block'
+                                                : 'display: none' }};">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.pengguna.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.pengguna.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Pengguna</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.negara.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.negara.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.negara.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.negara.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Negara</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.fasilitas.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.fasilitas.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.fasilitas.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.fasilitas.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Fasilitas</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.kategori-job.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.kategori-job.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.kategori-job.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.kategori-job.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Minat Industri</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.slider.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.slider.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.slider.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.slider.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Slider</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.counter.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.counter.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.counter.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.counter.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Counter</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.galeri.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.galeri.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.galeri.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.galeri.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Galeri</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.review.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.review.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.review.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.review.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Review</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.partnerindex') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.partnerindex') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.partnerindex') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.partnerindex') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Partner</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.faq.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.faq.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.faq.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.faq.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">FAQ</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.alasan.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.alasan.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.alasan.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.alasan.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Alasan</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.step.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.step.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.step.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.step.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Step</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.supplier.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.supplier.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.supplier.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.supplier.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Supplier</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.agency.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.agency.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.agency.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.agency.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Agency</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.employer.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.employer.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.employer.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.employer.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Employer</span>
                                                 </a>
                                             </li>
@@ -483,9 +524,9 @@
                                                 </a>
                                             </li>
                                         </ul>
-                                        
+
                                     </li>
-                                   
+
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
@@ -493,35 +534,50 @@
                                             </span>
                                             <span class="pcoded-mtext">Pelamar</span>
                                         </a>
-                                        <ul class="pcoded-submenu" style="{{ request()->routeIs([
-                                            'back-office.pelamar.index',
-                                            'back-office.pelamar.kandidat.index'
-                                        ]) ? 'display: block' : 'display: none' }}">
-                                        
-                                            <li class="{{ request()->fullUrlIs(route('back-office.pelamar.index', ['status' => 'Belum Verifikasi(Pending)'])) ? 'active' : '' }}">
-                                                <a data-toggle="tab" href="{{ route('back-office.pelamar.index', ['status' => 'Belum Verifikasi(Pending)']) }}" class="waves-effect waves-dark">
+                                        <ul class="pcoded-submenu"
+                                            style="{{ request()->routeIs(['back-office.pelamar.index', 'back-office.pelamar.kandidat.index'])
+                                                ? 'display: block'
+                                                : 'display: none' }}">
+
+                                            <li
+                                                class="{{ request()->fullUrlIs(route('back-office.pelamar.index', ['status' => 'Belum Verifikasi(Pending)'])) ? 'active' : '' }}">
+                                                <a data-toggle="tab"
+                                                    href="{{ route('back-office.pelamar.index', ['status' => 'Belum Verifikasi(Pending)']) }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Belum Diverifikasi (Pending)</span>
+                                                    @if ($belumVerifikasi > 0)
+                                                        <span class="badge bg-danger">{{ $belumVerifikasi }}</span>
+                                                    @endif
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->fullUrlIs(route('back-office.pelamar.index', ['status' => 'Verifikasi'])) ? 'active' : '' }}">
-                                                <a data-toggle="tab" href="{{ route('back-office.pelamar.index', ['status' => 'Verifikasi']) }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->fullUrlIs(route('back-office.pelamar.index', ['status' => 'Verifikasi'])) ? 'active' : '' }}">
+                                                <a data-toggle="tab"
+                                                    href="{{ route('back-office.pelamar.index', ['status' => 'Verifikasi']) }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Sudah Diverifikasi</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->fullUrlIs(route('back-office.pelamar.index', ['status' => 'Reject'])) ? 'active' : '' }}">
-                                                <a data-toggle="tab" href="{{ route('back-office.pelamar.index', ['status' => 'Reject']) }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->fullUrlIs(route('back-office.pelamar.index', ['status' => 'Reject'])) ? 'active' : '' }}">
+                                                <a data-toggle="tab"
+                                                    href="{{ route('back-office.pelamar.index', ['status' => 'Reject']) }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Reject Verifikasi</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.pelamar.kandidat.index') ? 'active' : '' }}">
-                                                <a data-toggle="tab" href="{{ route('back-office.pelamar.kandidat.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.pelamar.kandidat.index') ? 'active' : '' }}">
+                                                <a data-toggle="tab"
+                                                    href="{{ route('back-office.pelamar.kandidat.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Data Kandidat</span>
                                                 </a>
                                             </li>
                                         </ul>
-                                        
+
                                     </li>
-                                    
+
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
                                             <span class="pcoded-micon">
@@ -529,69 +585,90 @@
                                             </span>
                                             <span class="pcoded-mtext">Proses Seleksi</span>
                                         </a>
-                                        <ul class="pcoded-submenu" style="{{ request()->routeIs([
-                                            'back-office.seleksi.semua-seleksi',
-                                            'back-office.seleksi.seleksi.index',
-                                            'back-office.seleksi.seleksi-lolos-kualifikasi',
-                                            'back-office.seleksi.seleksi-interview',
-                                            'back-office.seleksi.seleksi-lolos-interview',
-                                            'back-office.seleksi.seleksi-dalam-proses',
-                                            'back-office.seleksi.seleksi-terbang',
-                                            'back-office.seleksi.seleksi-selesai-kontrak',
-                                            'back-office.seleksi.seleksi-batal'
-                                        ]) ? 'display: block' : 'display: none' }}">
-                                            <li class="{{ request()->routeIs('back-office.seleksi.semua-seleksi') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.seleksi.semua-seleksi') }}" class="waves-effect waves-dark">
+                                        <ul class="pcoded-submenu"
+                                            style="{{ request()->routeIs([
+                                                'back-office.seleksi.semua-seleksi',
+                                                'back-office.seleksi.seleksi.index',
+                                                'back-office.seleksi.seleksi-lolos-kualifikasi',
+                                                'back-office.seleksi.seleksi-interview',
+                                                'back-office.seleksi.seleksi-lolos-interview',
+                                                'back-office.seleksi.seleksi-dalam-proses',
+                                                'back-office.seleksi.seleksi-terbang',
+                                                'back-office.seleksi.seleksi-selesai-kontrak',
+                                                'back-office.seleksi.seleksi-batal',
+                                            ])
+                                                ? 'display: block'
+                                                : 'display: none' }}">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.seleksi.semua-seleksi') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.seleksi.semua-seleksi') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">All Data</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.seleksi.seleksi.index') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.seleksi.seleksi.index') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.seleksi.seleksi.index') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.seleksi.seleksi.index') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Cek Kualifikasi</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.seleksi.seleksi-lolos-kualifikasi') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.seleksi.seleksi-lolos-kualifikasi') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.seleksi.seleksi-lolos-kualifikasi') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.seleksi.seleksi-lolos-kualifikasi') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Lolos Kualifikasi</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.seleksi.seleksi-interview') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.seleksi.seleksi-interview') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.seleksi.seleksi-interview') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.seleksi.seleksi-interview') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Interview</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.seleksi.seleksi-lolos-interview') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.seleksi.seleksi-lolos-interview') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.seleksi.seleksi-lolos-interview') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.seleksi.seleksi-lolos-interview') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Lolos Interview</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.seleksi.seleksi-dalam-proses') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.seleksi.seleksi-dalam-proses') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.seleksi.seleksi-dalam-proses') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.seleksi.seleksi-dalam-proses') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Dalam Proses</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.seleksi.seleksi-terbang') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.seleksi.seleksi-terbang') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.seleksi.seleksi-terbang') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.seleksi.seleksi-terbang') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Terbang</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.seleksi.seleksi-selesai-kontrak') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.seleksi.seleksi-selesai-kontrak') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.seleksi.seleksi-selesai-kontrak') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.seleksi.seleksi-selesai-kontrak') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Selesai Kontrak</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.seleksi.seleksi-batal') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.seleksi.seleksi-batal') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.seleksi.seleksi-batal') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.seleksi.seleksi-batal') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Batal</span>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    
-                                    
-                                     
+
+
+
                                 </ul>
-                                
+
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class="pcoded-hasmenu">
                                         <a href="javascript:void(0)" class="waves-effect waves-dark">
@@ -600,26 +677,30 @@
                                             </span>
                                             <span class="pcoded-mtext">Pembayaran</span>
                                         </a>
-                                        <ul class="pcoded-submenu" style="{{ request()->routeIs([
-                                            'back-office.penempatan',
-                                            'back-office.commitment-fee'
-                                        ]) ? 'display: block' : 'display: none' }}">
-                                            <li class="{{ request()->routeIs('back-office.penempatan') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.penempatan') }}" class="waves-effect waves-dark">
+                                        <ul class="pcoded-submenu"
+                                            style="{{ request()->routeIs(['back-office.penempatan', 'back-office.commitment-fee'])
+                                                ? 'display: block'
+                                                : 'display: none' }}">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.penempatan') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.penempatan') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Biaya Penempatan</span>
                                                 </a>
                                             </li>
-                                            <li class="{{ request()->routeIs('back-office.commitment-fee') ? 'active' : '' }}">
-                                                <a href="{{ route('back-office.commitment-fee') }}" class="waves-effect waves-dark">
+                                            <li
+                                                class="{{ request()->routeIs('back-office.commitment-fee') ? 'active' : '' }}">
+                                                <a href="{{ route('back-office.commitment-fee') }}"
+                                                    class="waves-effect waves-dark">
                                                     <span class="pcoded-mtext">Komitmen Fee</span>
                                                 </a>
                                             </li>
                                         </ul>
                                     </li>
                                 </ul>
-                                
+
                                 <div class="pcoded-navigation-label">Setting</div>
-                                
+
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class="{{ request()->is('pengaturan') ? 'active' : '' }}">
                                         <a href="/pengaturan" class="waves-effect waves-dark">
@@ -629,33 +710,44 @@
                                     </li>
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class="{{ request()->routeIs('back-office.pemasukan.index') ? 'active' : '' }}">
-                                        <a href="{{ route('back-office.pemasukan.index') }}" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon"><i class="feather icon-corner-down-left"></i></span>
+                                    <li
+                                        class="{{ request()->routeIs('back-office.pemasukan.index') ? 'active' : '' }}">
+                                        <a href="{{ route('back-office.pemasukan.index') }}"
+                                            class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i
+                                                    class="feather icon-corner-down-left"></i></span>
                                             <span class="pcoded-mtext">Pemasukan</span>
                                         </a>
                                     </li>
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class="{{ request()->routeIs('back-office.pengeluaran.index') ? 'active' : '' }}">
-                                        <a href="{{ route('back-office.pengeluaran.index') }}" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon"><i class="feather icon-corner-down-right"></i></span>
+                                    <li
+                                        class="{{ request()->routeIs('back-office.pengeluaran.index') ? 'active' : '' }}">
+                                        <a href="{{ route('back-office.pengeluaran.index') }}"
+                                            class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i
+                                                    class="feather icon-corner-down-right"></i></span>
                                             <span class="pcoded-mtext">Pengeluaran</span>
                                         </a>
                                     </li>
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class="{{ request()->routeIs('back-office.pengaduan.index') ? 'active' : '' }}">
-                                        <a href="{{ route('back-office.pengaduan.index') }}" class="waves-effect waves-dark">
+                                    <li
+                                        class="{{ request()->routeIs('back-office.pengaduan.index') ? 'active' : '' }}">
+                                        <a href="{{ route('back-office.pengaduan.index') }}"
+                                            class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-phone-call"></i></span>
                                             <span class="pcoded-mtext">Pengaduan</span>
                                         </a>
                                     </li>
                                 </ul>
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class="{{ request()->routeIs('back-office.log-histori.index') ? 'active' : '' }}">
-                                        <a href="{{ route('back-office.log-histori.index') }}" class="waves-effect waves-dark">
-                                            <span class="pcoded-micon"><i class="feather icon-message-circle"></i></span>
+                                    <li
+                                        class="{{ request()->routeIs('back-office.log-histori.index') ? 'active' : '' }}">
+                                        <a href="{{ route('back-office.log-histori.index') }}"
+                                            class="waves-effect waves-dark">
+                                            <span class="pcoded-micon"><i
+                                                    class="feather icon-message-circle"></i></span>
                                             <span class="pcoded-mtext">Log Histori</span>
                                         </a>
                                     </li>
@@ -668,19 +760,20 @@
                                         </a>
                                     </li>
                                 </ul>
-                                
+
                                 <ul class="pcoded-item pcoded-left-item">
                                     <li class>
-                                         
-                                       
-                                        <a href="javascript:void(0)" class="logout" onclick="document.getElementById('form-logout').submit()">
+
+
+                                        <a href="javascript:void(0)" class="logout"
+                                            onclick="document.getElementById('form-logout').submit()">
                                             <span class="pcoded-micon"><i class="feather icon-log-out"></i></span>
                                             <span class="pcoded-mtext">Logout</span>
                                         </a>
                                     </li>
                                 </ul>
-                                
-                                
+
+
                             </div>
                         </div>
                     </nav>
@@ -694,8 +787,8 @@
     </div>
 
 
- 
- 
+
+
     <script type="text/javascript" src="{{ asset('template') }}/files/bower_components/jquery/js/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('template') }}/files/bower_components/jquery-ui/js/jquery-ui.min.js">
     </script>
@@ -706,20 +799,23 @@
 
     <script src="{{ asset('template') }}/files/assets/pages/waves/js/waves.min.js"></script>
 
-    <script type="text/javascript" src="{{ asset('template') }}/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+    <script type="text/javascript"
+        src="{{ asset('template') }}/files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
 
     <script src="{{ asset('template') }}/files/assets/pages/chart/float/jquery.flot.js"></script>
     <script src="{{ asset('template') }}/files/assets/pages/chart/float/jquery.flot.categories.js"></script>
     <script src="{{ asset('template') }}/files/assets/pages/chart/float/curvedLines.js"></script>
     <script src="{{ asset('template') }}/files/assets/pages/chart/float/jquery.flot.tooltip.min.js"></script>
 
-  
+
     <script src="{{ asset('template') }}/files/assets/js/pcoded.min.js"></script>
     <script src="{{ asset('template') }}/files/assets/js/vertical/vertical-layout.min.js"></script>
     <script type="text/javascript" src="{{ asset('template') }}/files/assets/js/script.min.js"></script>
-    <script>const baseUrl='{{route('back-office.home')}}'</script>
+    <script>
+        const baseUrl = '{{ route('back-office.home') }}'
+    </script>
     @stack('script')
-    
+
 </body>
 
 </html>

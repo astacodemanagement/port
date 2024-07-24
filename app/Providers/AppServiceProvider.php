@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Pendaftaran;
 use App\Models\PengalamanKerja;
 use App\Models\Seleksi;
 use Illuminate\Support\Facades\View;
@@ -26,6 +27,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+            // Share the count of non-active users with all views
+            $belumVerifikasi = Pendaftaran::where('status', 'Belum Verifikasi(Pending)')->count();
+            View::share('belumVerifikasi', $belumVerifikasi);
+
+
         View::composer('*member*', function ($view) {
             $user = auth()->user();
             $workExperiences = PengalamanKerja::where('pendaftaran_id', $user?->kandidat?->pendaftaran?->id)->limit(3)->orderBy('id', 'desc')->get();
