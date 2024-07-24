@@ -386,7 +386,7 @@ Route::name('front.')->group(function () {
         });
     });
     // pengaduan
-    Route::resource('pengaduan', PengaduanController::class);
+  
     
     /** AUTHENTICATION */
     Auth::routes(['login' => false, 'logout' => false]);
@@ -408,7 +408,7 @@ Route::group(['middleware' => ['role:member','is_verify_email']], function () {
         Route::middleware('member.auth')->group(function () {
             Route::name('member.')->group(function () {
                 Route::get('/', [MemberHomeController::class, 'index'])->name('index');
-          
+                Route::resource('pengaduan', PengaduanController::class);
               /** WORK EXPERIENCE */
                 Route::prefix('work-experience')->group(function () {
                     Route::name('work-experience.')->group(function () {
