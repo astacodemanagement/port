@@ -7,13 +7,17 @@ use App\Models\KategoriJob;
 use App\Models\LogHistori;
 use App\Models\Pendaftaran;
 use App\Models\User;
+use App\Traits\UploadFile;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class PelamarController extends Controller
 {
+    use UploadFile;
+
     private function simpanLogHistori($aksi, $tabelAsal, $idEntitas, $pengguna, $dataLama, $dataBaru)
     {
         $log = new LogHistori();
@@ -141,6 +145,7 @@ class PelamarController extends Controller
 
     public function updateDetail(Request $request, $id)
     {
+        
         $verifikasi = Pendaftaran::findOrFail($id);
         // update level bahasa inggris di tabel kandidat
         Kandidat::where('pendaftaran_id', $id)->first()->update([
@@ -183,12 +188,61 @@ class PelamarController extends Controller
                 'email' => $request->email
             ]);
         }
-
+        
         if ($request->has('password') && $request->password != null) {
             User::where('id', $verifikasi->kandidat->user_id)->update([
                 'password' => Hash::make($request->password)
             ]);
         }
+        $kandidat = Kandidat::where('pendaftaran_id', $id)->first();
+        $data['ada_ktp'] = $request->has('ada_ktp') ? 'Ya' : 'Tidak';
+        $data['ada_kk'] = $request->has('ada_kk') ? 'Ya' : 'Tidak';
+        $data['ada_akta_lahir'] = $request->has('ada_akta_lahir') ? 'Ya' : 'Tidak';
+        $data['ada_ijazah'] = $request->has('ada_ijazah') ? 'Ya' : 'Tidak';
+        $data['ada_buku_nikah'] = $request->has('ada_buku_nikah') ? 'Ya' : 'Tidak';
+        $data['ada_paspor'] = $request->has('ada_paspor') ? 'Ya' : 'Tidak';
+    
+        $arrDoc = [
+            ['input' => 'file_foto', 'field' => 'foto', 'dir' => 'foto'],
+            ['input' => 'file_paspor', 'field' => 'paspor', 'dir' => 'paspor'],
+            ['input' => 'file_ktp', 'field' => 'ktp', 'dir' => 'ktp'],
+            ['input' => 'file_kk', 'field' => 'kk', 'dir' => 'kartu-keluarga'],
+            ['input' => 'file_sertifikat_kompetensi', 'field' => 'sertifikat_kompetensi', 'dir' => 'sertifikat-kompetensi'],
+            ['input' => 'file_sertifikat_bahasa_inggris', 'field' => 'sertifikat_bahasa_inggris', 'dir' => 'sertifikat-bahasa-inggris'],
+            ['input' => 'file_paklaring', 'field' => 'paklaring', 'dir' => 'paklaring'],
+            ['input' => 'file_akta_lahir', 'field' => 'akta_lahir', 'dir' => 'akta-lahir'],
+            ['input' => 'file_ijazah', 'field' => 'ijazah', 'dir' => 'ijazah'],
+            ['input' => 'file_buku_nikah', 'field' => 'buku_nikah', 'dir' => 'buku-nikah'],
+        ];
+    
+        foreach ($arrDoc as $doc) {
+            /** UPLOAD */
+            if ($request->hasFile($doc['input'])) {
+                $file = $request->{$doc['input']};
+                $filename = $file->hashName();
+                $fileExtention = $file->extension();
+                $dir = 'upload/' . $doc['dir'] . '/';
+                
+                if ($fileExtention === 'pdf') {
+                    $upload = $this->uploadFile($file, $dir, $filename);
+                } else {
+                    $upload = $this->uploadImage($file, $dir, $filename, [['width' => '400', 'height' => '400']]);
+                }
+    
+                if ($upload) {
+                    if (File::exists(public_path($dir . $kandidat->{$doc['field']}))) {
+                        File::delete(public_path($dir . $kandidat->{$doc['field']}));
+                    }
+    
+                    if (File::exists(public_path($dir . 'thumb_' . $kandidat->{$doc['field']}))) {
+                        File::delete(public_path($dir . 'thumb_' . $kandidat->{$doc['field']}));
+                    }
+                    $data[$doc['field']] = $filename;
+                }
+            }
+        }
+                
+        Kandidat::where('pendaftaran_id', $id)->update($data);
 
         $loggedInUserId = Auth::id();
 

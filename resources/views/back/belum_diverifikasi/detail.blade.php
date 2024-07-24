@@ -575,42 +575,40 @@
                                                                     <h4 class="sub-title">Dokumen
                                                                         Persyaratan Jati Diri yang
                                                                         dimiliki</h4>
-                                                                    <div class="border-checkbox-section">
+                                                                        <div class="border-checkbox-section">
                                                                         <div class="border-checkbox-group border-checkbox-group-success">
-                                                                            <input class="border-checkbox" type="checkbox" id="ada_ktp" name="ada_ktp" value="{{ $belum_diverifikasi->ada_ktp }}" {{ $belum_diverifikasi->ada_ktp == 'Ya' ? 'checked' : '' }}>
+                                                                            <input class="border-checkbox" type="checkbox" id="ada_ktp" name="ada_ktp" value="{{ $belum_diverifikasi->kandidat->ada_ktp }}" {{ $belum_diverifikasi->kandidat->ada_ktp == 'Ya' ? 'checked' : '' }}>
                                                                             <label class="border-checkbox-label" for="ada_ktp">KTP</label>
                                                                         </div>
 
 
 
                                                                         <div class="border-checkbox-group border-checkbox-group-success">
-                                                                            <input class="border-checkbox" type="checkbox" id="ada_kk" name="ada_kk" value="{{ $belum_diverifikasi->ada_kk }}" {{ $belum_diverifikasi->ada_kk == 'Ya' ? 'checked' : '' }}>
+                                                                            <input class="border-checkbox" type="checkbox" id="ada_kk" name="ada_kk" value="{{ $belum_diverifikasi->kandidat->ada_kk }}" {{ $belum_diverifikasi->kandidat->ada_kk == 'Ya' ? 'checked' : '' }}>
                                                                             <label class="border-checkbox-label" for="ada_kk">KK</label>
                                                                         </div>
 
                                                                         <div class="border-checkbox-group border-checkbox-group-success">
-                                                                            <input class="border-checkbox" type="checkbox" id="ada_akta_lahir" name="ada_akta_lahir" value="{{ $belum_diverifikasi->ada_akta_lahir }}" {{ $belum_diverifikasi->ada_akta_lahir == 'Ya' ? 'checked' : '' }}>
+                                                                            <input class="border-checkbox" type="checkbox" id="ada_akta_lahir" name="ada_akta_lahir" value="{{ $belum_diverifikasi->kandidat->ada_akta_lahir }}" {{ $belum_diverifikasi->kandidat->ada_akta_lahir == 'Ya' ? 'checked' : '' }}>
                                                                             <label class="border-checkbox-label" for="ada_akta_lahir">Akta
                                                                                 Lahir</label>
                                                                         </div>
 
                                                                         <div class="border-checkbox-group border-checkbox-group-success">
-                                                                            <input class="border-checkbox" type="checkbox" id="ada_ijazah" name="ada_ijazah" value="{{ $belum_diverifikasi->ada_ijazah }}" {{ $belum_diverifikasi->ada_ijazah == 'Ya' ? 'checked' : '' }}>
+                                                                            <input class="border-checkbox" type="checkbox" id="ada_ijazah" name="ada_ijazah" value="{{ $belum_diverifikasi->kandidat->ada_ijazah }}" {{ $belum_diverifikasi->kandidat->ada_ijazah == 'Ya' ? 'checked' : '' }}>
                                                                             <label class="border-checkbox-label" for="ada_ijazah">Ijazah</label>
                                                                         </div>
 
                                                                         <div class="border-checkbox-group border-checkbox-group-success">
-                                                                            <input class="border-checkbox" type="checkbox" id="ada_buku_nikah" name="ada_buku_nikah" value="{{ $belum_diverifikasi->ada_buku_nikah }}" {{ $belum_diverifikasi->ada_buku_nikah == 'Ya' ? 'checked' : '' }}>
+                                                                            <input class="border-checkbox" type="checkbox" id="ada_buku_nikah" name="ada_buku_nikah" value="{{ $belum_diverifikasi->kandidat->ada_buku_nikah }}" {{ $belum_diverifikasi->kandidat->ada_buku_nikah == 'Ya' ? 'checked' : '' }}>
                                                                             <label class="border-checkbox-label" for="ada_buku_nikah">Buku
                                                                                 Nikah</label>
                                                                         </div>
 
                                                                         <div class="border-checkbox-group border-checkbox-group-success">
-                                                                            <input class="border-checkbox" type="checkbox" id="ada_paspor" name="ada_paspor" value="{{ $belum_diverifikasi->ada_paspor }}" {{ $belum_diverifikasi->ada_paspor == 'Ya' ? 'checked' : '' }}>
+                                                                            <input class="border-checkbox" type="checkbox" id="ada_paspor" name="ada_paspor" value="{{ $belum_diverifikasi->kandidat->ada_paspor }}" {{ $belum_diverifikasi->kandidat->ada_paspor == 'Ya' ? 'checked' : '' }}>
                                                                             <label class="border-checkbox-label" for="ada_paspor">Paspor</label>
                                                                         </div>
-
-                                                                    </div>
                                                                 </div>
                                                             </div>
 
@@ -685,15 +683,15 @@
                                                                 @foreach ($arrDocument as $doc)
                                                                 <div class="col-6 col-md-2">
                                                                     @php
-                                                                    $originalFile = $belum_diverifikasi->{$doc['key']} ? 'upload/' . $doc['path'] . '/' . $belum_diverifikasi->{$doc['key']} : null;
-                                                                    $thumbnailFile = $belum_diverifikasi->{$doc['key']} ? 'upload/' . $doc['path'] . '/thumb_' . $belum_diverifikasi->{$doc['key']} : null;
+                                                                    $originalFile = $belum_diverifikasi->kandidat->{$doc['key']} ? 'upload/' . $doc['path'] . '/' . $belum_diverifikasi->kandidat->{$doc['key']} : null;
+                                                                    $thumbnailFile = $belum_diverifikasi->kandidat->{$doc['key']} ? 'upload/' . $doc['path'] . '/thumb_' . $belum_diverifikasi->kandidat->{$doc['key']} : null;
                                                                     $memberFile = memberDocumentImage($originalFile, $thumbnailFile);
                                                                     @endphp
 
                                                                     <label for="{{ $doc['key'] }}" style="cursor: pointer">
 
                                                                         @if ($memberFile['is_uploaded'])
-                                                                        <a href="/upload/{{ $doc['path'] }}/{{ $belum_diverifikasi->{$doc['key']} }}" target="_blank">
+                                                                        <a href="/upload/{{ $doc['path'] }}/{{ $belum_diverifikasi->kandidat->{$doc['key']} }}" target="_blank">
                                                                             <img src="{{ asset('member-template/images/transparent.png') }}" alt="{{ $doc['name'] }}" class="rounded-2 img-fluid mb-3 img-preview-doc" style="background-image: url('{{ asset($memberFile['file_image']) }}');">
                                                                         </a>
                                                                         @else
