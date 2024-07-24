@@ -43,8 +43,11 @@
                                     <h5>Deals Analytics</h5>
                                 </div>
                                 <div class="card-block">
-                                    <div id="sales-analytics" class="chart-shadow"
-                                        style="height:380px"></div>
+                                    <!-- <canvas id="myChart" style="width:100%;max-width:600px"></canvas> -->
+
+                                    <canvas
+                                    id="myChart"
+                                        style="height:380px"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -53,8 +56,8 @@
                                 <div class="card-body">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-25">Impressions</h6>
-                                            <h3 class="f-w-700 text-c-blue">1,563</h3>
+                                            <h6 class="m-b-25">Total Job</h6>
+                                            <h3 class="f-w-700 text-c-blue">{{$count_job}}</h3>
                                             <p class="m-b-0">May 23 - June 01 (2017)</p>
                                         </div>
                                         <div class="col-auto">
@@ -67,8 +70,8 @@
                                 <div class="card-body">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-25">Goal</h6>
-                                            <h3 class="f-w-700 text-c-green">30,564</h3>
+                                            <h6 class="m-b-25">Total Kandidat</h6>
+                                            <h3 class="f-w-700 text-c-green">{{$count_kandidat}}</h3>
                                             <p class="m-b-0">May 23 - June 01 (2017)</p>
                                         </div>
                                         <div class="col-auto">
@@ -81,8 +84,8 @@
                                 <div class="card-body">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-b-25">Impact</h6>
-                                            <h3 class="f-w-700 text-c-yellow">42.6%</h3>
+                                            <h6 class="m-b-25">Total Negara</h6>
+                                            <h3 class="f-w-700 text-c-yellow">{{$count_negara}}</h3>
                                             <p class="m-b-0">May 23 - June 01 (2017)</p>
                                         </div>
                                         <div class="col-auto">
@@ -278,7 +281,7 @@
                         <div class="col-xl-4 col-md-6">
                             <div class="card latest-update-card">
                                 <div class="card-header">
-                                    <h5>Latest Activity</h5>
+                                    <h5>Pengaduan PSI JOB</h5>
                                     <div class="card-header-right">
                                         <ul class="list-unstyled card-option">
                                             <li class="first-opt"><i
@@ -301,76 +304,8 @@
                                 <div class="card-block">
                                     <div class="scroll-widget">
                                         <div class="latest-update-box">
-                                            <div class="row p-t-20 p-b-30">
-                                                <div
-                                                    class="col-auto text-right update-meta p-r-0">
-                                                    <i class="b-primary update-icon ring"></i>
-                                                </div>
-                                                <div class="col p-l-5">
-                                                    <a href="#!">
-                                                        <h6>Devlopment & Update</h6>
-                                                    </a>
-                                                    <p class="text-muted m-b-0">Lorem ipsum dolor
-                                                        sit amet, <a href="#!"
-                                                            class="text-c-blue"> More</a></p>
-                                                </div>
-                                            </div>
-                                            <div class="row p-b-30">
-                                                <div
-                                                    class="col-auto text-right update-meta p-r-0">
-                                                    <i class="b-primary update-icon ring"></i>
-                                                </div>
-                                                <div class="col p-l-5">
-                                                    <a href="#!">
-                                                        <h6>Showcases</h6>
-                                                    </a>
-                                                    <p class="text-muted m-b-0">Lorem dolor sit
-                                                        amet, <a href="#!"
-                                                            class="text-c-blue"> More</a></p>
-                                                </div>
-                                            </div>
-                                            <div class="row p-b-30">
-                                                <div
-                                                    class="col-auto text-right update-meta p-r-0">
-                                                    <i class="b-success update-icon ring"></i>
-                                                </div>
-                                                <div class="col p-l-5">
-                                                    <a href="#!">
-                                                        <h6>Miscellaneous</h6>
-                                                    </a>
-                                                    <p class="text-muted m-b-0">Lorem ipsum dolor
-                                                        sit ipsum amet, <a href="#!"
-                                                            class="text-c-green"> More</a></p>
-                                                </div>
-                                            </div>
-                                            <div class="row p-b-30">
-                                                <div
-                                                    class="col-auto text-right update-meta p-r-0">
-                                                    <i class="b-danger update-icon ring"></i>
-                                                </div>
-                                                <div class="col p-l-5">
-                                                    <a href="#!">
-                                                        <h6>Your Manager Posted.</h6>
-                                                    </a>
-                                                    <p class="text-muted m-b-0">Lorem ipsum dolor
-                                                        sit amet, <a href="#!"
-                                                            class="text-c-red"> More</a></p>
-                                                </div>
-                                            </div>
-                                            <div class="row p-b-30">
-                                                <div
-                                                    class="col-auto text-right update-meta p-r-0">
-                                                    <i class="b-primary update-icon ring"></i>
-                                                </div>
-                                                <div class="col p-l-5">
-                                                    <a href="#!">
-                                                        <h6>Showcases</h6>
-                                                    </a>
-                                                    <p class="text-muted m-b-0">Lorem dolor sit
-                                                        amet, <a href="#!"
-                                                            class="text-c-blue"> More</a></p>
-                                                </div>
-                                            </div>
+                                            @foreach ($pengaduan as $p )
+                                                
                                             <div class="row">
                                                 <div
                                                     class="col-auto text-right update-meta p-r-0">
@@ -378,13 +313,13 @@
                                                 </div>
                                                 <div class="col p-l-5">
                                                     <a href="#!">
-                                                        <h6>Miscellaneous</h6>
+                                                        <h6>{{$p->kandidat->nama_lengkap}}</h6>
                                                     </a>
-                                                    <p class="text-muted m-b-0">Lorem ipsum dolor
-                                                        sit ipsum amet, <a href="#!"
-                                                            class="text-c-green"> More</a></p>
+                                                    <p class="text-muted m-b-0"> <a href="#!"
+                                                    class="text-c-green"> {{$p->subjek}}</a> {{$p->isi}}</p>
                                                 </div>
                                             </div>
+                                            @endforeach  
                                         </div>
                                     </div>
                                 </div>
@@ -395,7 +330,7 @@
                         <div class="col-md-12">
                             <div class="card table-card">
                                 <div class="card-header">
-                                    <h5>New Products</h5>
+                                    <h5>New Kandidat</h5>
                                     <div class="card-header-right">
                                         <ul class="list-unstyled card-option">
                                             <li class="first-opt"><i
@@ -421,145 +356,43 @@
                                             <thead>
                                                 <tr>
                                                     <th>Name</th>
-                                                    <th>Product Code</th>
-                                                    <th>Customer</th>
+                                                
+                                                    <th>Tempat Lahir</th>
+                                                    <th>Foto</th>
                                                     <th>Status</th>
-                                                    <th>Rating</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                @foreach ($pelamar as $p )
+                                                    
                                                 <tr>
-                                                    <td>Sofa</td>
-                                                    <td>#PHD001</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection"
-                                                            class="__cf_email__"
-                                                            data-cfemail="a7c6c5c4e7c0cac6cecb89c4c8ca">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td><label class="label label-danger">Out
-                                                            Stock</label></td>
+
+                                                    <td>{{$p->nama_lengkap}}</td>
+                                                  
                                                     <td>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
+                                                        {{$p->tempat_lahir}}
+                                                    </td>
+                                                    <td>
+                                                    <a href="/upload/foto/{{ $p->foto }}" target="_blank">
+                                                                    <img style="max-width:50px; max-height:50px"
+                                                                        src="/upload/foto/{{ $p->foto }}"
+                                                                        alt="">
+                                                                </a>
+                                                    </td>
+                                                    <td>
+                                                    @php 
+                                                        $statusColor = [
+                                                            'Verifikasi' => 'success',
+                                                            'Pending' => 'danger',
+                                                            'Reject' => 'warning'
+                                                        ];
+                                                    @endphp
+                                                    <span class="badge badge-{{$statusColor[$p->status]}}">{{$p->status}}</span>
+                                                    
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Computer</td>
-                                                    <td>#PHD002</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection"
-                                                            class="__cf_email__"
-                                                            data-cfemail="8be8efe8cbece6eae2e7a5e8e4e6">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td><label class="label label-success">In
-                                                            Stock</label></td>
-                                                    <td>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Mobile</td>
-                                                    <td>#PHD003</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection"
-                                                            class="__cf_email__"
-                                                            data-cfemail="97e7e6e5d7f0faf6fefbb9f4f8fa">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td><label class="label label-danger">Out
-                                                            Stock</label></td>
-                                                    <td>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Coat</td>
-                                                    <td>#PHD004</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection"
-                                                            class="__cf_email__"
-                                                            data-cfemail="d6b4b5a596b1bbb7bfbaf8b5b9bb">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td><label class="label label-success">In
-                                                            Stock</label></td>
-                                                    <td>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Watch</td>
-                                                    <td>#PHD005</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection"
-                                                            class="__cf_email__"
-                                                            data-cfemail="3f5c5b5c7f58525e5653115c5052">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td><label class="label label-success">In
-                                                            Stock</label></td>
-                                                    <td>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Shoes</td>
-                                                    <td>#PHD006</td>
-                                                    <td><a href="https://demo.dashboardpack.com/cdn-cgi/l/email-protection"
-                                                            class="__cf_email__"
-                                                            data-cfemail="44343536042329252d286a272b29">[email&#160;protected]</a>
-                                                    </td>
-                                                    <td><label class="label label-danger">Out
-                                                            Stock</label></td>
-                                                    <td>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-c-yellow"></i></a>
-                                                        <a href="#!"><i
-                                                                class="fa fa-star f-12 text-default"></i></a>
-                                                    </td>
-                                                </tr>
+                                                @endforeach
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -580,12 +413,33 @@
 
 @push('script')
 
+<script>
+    const xValues = [100,200,300,400,500,600,700,800,900,1000];
 
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{ 
+      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+      borderColor: "red",
+      fill: false
+    }, { 
+      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+      borderColor: "green",
+      fill: false
+    }, { 
+      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+      borderColor: "blue",
+      fill: false
+    }]
+  },
+  options: {
+    legend: {display: false}
+  }
+});
+</script>
 @endpush
 
-@push('css')
-
-
-@endpush
 
                   
