@@ -102,7 +102,7 @@ class JobController extends Controller
             'nama_job.required' => 'Nama Job Wajib diisi',
             'nama_perusahaan.required' => 'Nama Perusahaan Wajib diisi',
             'gaji.required' => 'Gaji Wajib diisi',
-            'gaji.numeric' => 'Gaji harus berupa angka',
+           
             'estimasi.required' => 'Estimasi Wajib diisi',
             'estimasi.numeric' => 'Estimasi harus berupa angka',
             'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',

@@ -105,7 +105,7 @@
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
-                                                                                            for="nama_job">Nama Job</label>
+                                                                                            for="nama_job">Posisi Pekerjaan</label>
                                                                                         <input type="text"
                                                                                             class="form-control "
                                                                                             id="nama_job" name="nama_job">
@@ -682,11 +682,11 @@
 
                 <script>
                     $(document).ready(function() {
-                        $('#gaji').on('input', function() {
-                            let value = $(this).val().replace(/\D/g, '');
-                            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-                            $(this).val(value);
-                        });
+                        // $('#gaji').on('input', function() {
+                        //     let value = $(this).val().replace(/\D/g, '');
+                        //     value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                        //     $(this).val(value);
+                        // });
                         $('#estimasi').on('input', function() {
                             let value = $(this).val().replace(/\D/g, '');
                             value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
