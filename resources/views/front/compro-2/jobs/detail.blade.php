@@ -282,7 +282,7 @@
                                 
                             @endif
                             <h3 class="tw-text-center tw-mt-5 tw-font-semibold tw-font-work-sans tw-text-xl">Gaji</h3>
-                            <h5 class="tw-text-green-600 md:tw-my-3 tw-my-2 tw-text-center tw-font-semibold md:tw-text-3xl tw-text-xl tw-font-work-sans">Mulai {{$job->mata_uang_gaji}} {{number_format($job->gaji)}} / {{$job->jenis_pembayaran}}</h5>
+                            <h5 class="tw-text-green-600 md:tw-my-3 tw-my-2 tw-text-center tw-font-semibold md:tw-text-3xl tw-text-xl tw-font-work-sans">Mulai {{$job->mata_uang_gaji}} {{$job->gaji}} / {{$job->jenis_pembayaran}}</h5>
                             <p class="tw-text-gray-500 tw-text-center tw-my-3 tw-font-base tw-text-sm tw-font-clash-display">{{$job->mata_uang_gaji}} ± {{$job->estimasi ?? number_format($job->gaji)}}
                             {{-- badgetersedia --}}
                         <div class="tw-flex tw-justify-center tw-items-center">
