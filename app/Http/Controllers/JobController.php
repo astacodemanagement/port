@@ -74,7 +74,8 @@ class JobController extends Controller
             'jenis_pembayaran' => 'required|in:Bulan,Jam',
             'estimasi' => 'required|numeric',
             'gaji_diterima' => 'required|in:Bersih,Kotor',
-         
+            'tanggal_kurs' => 'required',
+            'nominal_kurs' => 'required',
             'negara_id' => 'required|exists:negara,id',
             'kategori_job_id' => 'required|exists:kategori_job,id',
             'kontrak_kerja' => 'required',
@@ -102,7 +103,8 @@ class JobController extends Controller
             'nama_job.required' => 'Nama Job Wajib diisi',
             'nama_perusahaan.required' => 'Nama Perusahaan Wajib diisi',
             'gaji.required' => 'Gaji Wajib diisi',
-           
+            'tanggal_kurs.required' => 'Tanggal Kurs Wajib diisi',
+            'nominal_kurs.required' => 'Tanggal Kurs Wajib diisi',
             'estimasi.required' => 'Estimasi Wajib diisi',
             'estimasi.numeric' => 'Estimasi harus berupa angka',
             'jenis_pembayaran.required' => 'Jenis Pembayaran Wajib diisi',
