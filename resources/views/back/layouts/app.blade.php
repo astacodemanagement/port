@@ -414,7 +414,7 @@
                                             </li>
                                             <li class="{{ request()->routeIs('back-office.fasilitas.index') ? 'active' : '' }}">
                                                 <a href="{{ route('back-office.fasilitas.index') }}" class="waves-effect waves-dark">
-                                                    <span class="pcoded-mtext">Fasilitas</span>
+                                                    <span class="pcoded-mtext">Benefit</span>
                                                 </a>
                                             </li>
                                             <li class="{{ request()->routeIs('back-office.kategori-job.index') ? 'active' : '' }}">

@@ -378,15 +378,16 @@
         <label class="tw-font-medium tw-mb-3">Pengalaman Kerja</label>
     </div>
     <!-- kategori dalam negeri luar negeri -->
+    
+    <div class="fv-row row-list-experience"></div>
+    <div class="fv-row mb-10 row-add-experience">
     <div class="tw-mb-5">
-        <select name="kategori" id="kategori" class="tw-w-full tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
+        <select  class="tw-w-full tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md input-add-experience experience-category" required data-name="kategori.0" name="kategori[]">
             <option value="">Pilih Kategori Pengalaman Kerja</option>
             <option value="1">Dalam Negeri</option>
             <option value="2">Luar Negeri</option>
         </select>
     </div>
-    <div class="fv-row row-list-experience"></div>
-    <div class="fv-row mb-10 row-add-experience">
         <div class="tw-mb-5">
             <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md experience-country input-add-experience" data-name="negara_tempat_kerja.0" placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
             <p class="tw-text-red-500 error-negara_tempat_kerja" style="display: none"></p>
@@ -408,6 +409,10 @@
                 <input type="hidden" class="tw-hidden h-experience-end-work-date" data-name="tanggal_selesai_kerja.0" name="tanggal_selesai_kerja[]">
                 <p class="tw-text-red-500 error-tanggal_selesai_kerja[]" style="display: none"></p>
             </div>
+        </div>
+        <div class="fv-row tw-mb-5">
+            <!-- desc pekerjaan -->
+            <textarea name="deskripsi_pekerjaan" id="deskripsi_pekerjaan" class="tw-p-2 tw-w-full tw-border tw-border-gray-300 tw-rounded-md" placeholder="Deskripsi Pekerjaan" rows="3"></textarea>
         </div>
 
         <div class="tw-mb-5">
@@ -568,7 +573,7 @@
                         <p class="tw-text-red-500 error-no_wa" style="display: none"></p>
                         <div class="tw-mb-3">
                             <div class="tw-relative tw-flex">
-                                <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password" placeholder="Password " >
+                                <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password" placeholder="Masukan Password Akun " >
                                 <span class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md btn-show-password" type="button" id="show-password" style="padding-top: .9rem;"><i class="fas fa-eye-slash"></i></span>
 
                             </div>
@@ -577,7 +582,7 @@
                         <p class="tw-text-red-500 error-password" style="display: none"></p>
                         <div class="tw-mb-3">
                             <div class="tw-relative tw-flex">
-                                <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password_confirmation" placeholder="Konfirmasi Password " >
+                                <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password_confirmation" placeholder="Konfirmasi Password Akun" >
                                 <span class="tw-absolute tw-right-0 tw-top-0 tw-h-full tw-px-3 tw-bg-gray-100 tw-rounded-r-md btn-show-password" type="button" id="show-password" style="padding-top: .9rem;"><i class="fas fa-eye-slash"></i></span>
                             </div>
                             <!-- err -->
@@ -826,21 +831,26 @@
             refreshExperienceList()
             initExperienceDatepicker()
         })
-        function refreshExperienceList()
-        {
-            $.each($('.experience-country'), function(i, item){
-                const t = $(this)
-                const company = t.closest('div.fv-row').find('.experience-company')
-                const startWorkdate = t.closest('div.fv-row').find('.h-experience-start-work-date')
-                const endWorkdate = t.closest('div.fv-row').find('.h-experience-end-work-date')
-                const position = t.closest('div.fv-row').find('.experience-position')
-                t.attr('data-name', `negara_tempat_kerja.${i}`)
-                company.attr('data-name', `nama_perusahaan.${i}`)
-                startWorkdate.attr('data-name', `tanggal_mulai_kerja.${i}`)
-                endWorkdate.attr('data-name', `tanggal_selesai_kerja.${i}`)
-                position.attr('data-name', `posisi.${i}`)
-            })
-        }
+        function refreshExperienceList() {
+    $('.experience-category').each(function(i) {
+        const t = $(this);
+        const country = t.closest('div.fv-row').find('.experience-country');
+        const company = t.closest('div.fv-row').find('.experience-company');
+        const startWorkdate = t.closest('div.fv-row').find('.h-experience-start-work-date');
+        const endWorkdate = t.closest('div.fv-row').find('.h-experience-end-work-date');
+        const position = t.closest('div.fv-row').find('.experience-position');
+        const desc = t.closest('div.fv-row').find('.deskripsi_pekerjaan');
+
+        t.attr('data-name', `kategori.${i}`);
+        country.attr('data-name', `negara_tempat_kerja.${i}`);
+        company.attr('data-name', `nama_perusahaan.${i}`);
+        startWorkdate.attr('data-name', `tanggal_mulai_kerja.${i}`);
+        endWorkdate.attr('data-name', `tanggal_selesai_kerja.${i}`);
+        position.attr('data-name', `posisi.${i}`);
+        desc.attr('data-name', `deskripsi_pekerjaan.${i}`);
+    });
+}
+
 
         $('.row-list-experience').on('click', '.list-experience .btn-remove-experience', function() {
             $(this).closest('div.list-experience').remove()

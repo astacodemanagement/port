@@ -25,7 +25,7 @@
             </li>
             <li class="nav-item hover-dd d-none d-xl-block">
                 <!-- proses -->
-                <a class="nav-link" href="/member/pengaduan"><i
+                <a class="nav-link" href="{{route('member.pengaduan.create')}}"><i
                         class="ti ti-user me-3 text-primary fs-5"></i>Pengaduan</a>
             </li>
                 {{-- <a href="./app-invoice.html" class="d-flex align-items-center pb-9 position-relative    ">
