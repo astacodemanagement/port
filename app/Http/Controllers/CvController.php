@@ -24,7 +24,7 @@ class CvController extends Controller
         $htmlContent = view('back.cv.index', $data)->render();
         Browsershot::html($htmlContent)
             ->format('A4')
-            ->savePdf('cv.pdf');
+            ->savePdf($path);
    
         return response()->file($path);
 
