@@ -117,11 +117,7 @@
                                         </div>
                                         <div>
                                             <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-xs tw-mb-1">Jenis Kelamin</p>
-                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs ">@if ($job->jenis_kelamin)
-                                                {{$job->jenis_kelamin}}
-                                            @else
-                                                Tidak Ada Ketentuan
-                                            @endif
+                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs ">{{$job->jenis_kelamin ?? 'tidak ada ketentuan'}}
                                         </p>
                                         </div>
                                     </div>
@@ -132,11 +128,9 @@
                                         </div>
                                         <div>
                                             <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-xs tw-mb-1">Usia</p>
-                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">@if ($job->rentang_usia)
-                                            {{$job->rentang_usia}}
-                                            @else
-                                                Tidak Ada Ketentuan  
-                                            @endif
+                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">
+                                            {{$job->rentang_usia ?? 'tidak ada ketentuan'}}
+                                          
                                         </p>
                                         </div>
                                     </div>
@@ -147,11 +141,8 @@
                                         <div>
                                             <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-xs tw-mb-1">Level Bahasa</p>
                                             <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">
-                                                @if ($job->level_bahasa)
-                                                {{$job->level_bahasa}}
-                                                @else
-                                                    Tidak Ada Ketentuan
-                                                @endif
+                                                {{$job->level_bahasa ?? 'tidak ada ketentuan'}}
+                                               
                                             </p>    
                                         </div>
                                     </div>
@@ -231,9 +222,11 @@
                     <div class="tw-w-full tw-flex tw-px-5 md:tw-px-0 tab-content" id="content2" style="display: none;">
                         <div class="tw-w-full">
                             <!-- video embed yt -->
+                             @if($job->link_video)
                             <div class="tw-relative tw-w-full tw-mt-8 tw-h-[300px] tw-bg-cover tw-bg-fixed tw-overflow-hidden tw-text-white tw-rounded-xl tw-bg-blue-gray-500" style="background-position:center;">
                                 <iframe class="tw-w-full tw-h-full" src="{{$job->link_video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
+                            @endif
                             @if ($job->galeri)  
 
                             @foreach ($job->galeri as $item)
@@ -264,9 +257,9 @@
                     <div class="tw-w-full tw-flex tw-px-5 md:tw-px-0 tab-content" id="content3" style="display: none;">
                         <div class="tw-w-full">
                         <h3 class="tw-font-semibold tw-text-xl tw-text-[#18191C] tw-font-work-sans tw-mt-8">Informasi Lainya</h3>
-                        <p class="tw-font-clash-display  tw-text-gray-600 tw-mt-3 md:tw-text-lg tw-text-xs ">{{$job->info_lain}}</p>
+                        <p class="tw-font-clash-display  tw-text-gray-600 tw-mt-3 md:tw-text-lg tw-text-xs ">{{$job->info_lain ?? 'Tidak ada Informasi Lainya'}}</p>
                         <h3 class="tw-font-semibold tw-text-xl tw-text-[#18191C] tw-font-work-sans tw-mt-8">Disclaimer</h3>
-                        <p class="tw-font-clash-display md:tw-text-lg tw-text-xs tw-text-gray-600 tw-mt-3 ">{{$job->disclaimer}}</p>
+                        <p class="tw-font-clash-display md:tw-text-lg tw-text-xs tw-text-gray-600 tw-mt-3 ">{{$job->disclaimer ?? "tidak ada disclaimer"}}</p>
                         
                         </div>
                     </div>  
@@ -282,8 +275,8 @@
                                 
                             @endif
                             <h3 class="tw-text-center tw-mt-5 tw-font-semibold tw-font-work-sans tw-text-xl">Gaji</h3>
-                            <h5 class="tw-text-green-600 md:tw-my-3 tw-my-2 tw-text-center tw-font-semibold md:tw-text-3xl tw-text-xl tw-font-work-sans">Mulai {{$job->gaji}} / {{$job->jenis_pembayaran}}</h5>
-                            <p class="tw-text-gray-500 tw-text-center tw-my-3 tw-font-base tw-text-sm tw-font-clash-display">{{$job->mata_uang_gaji}} ± {{$job->estimasi ?? number_format($job->gaji)}}
+                            <h5 class="tw-text-green-600 md:tw-my-3 tw-my-2 tw-text-center tw-font-semibold md:tw-text-3xl tw-text-xl tw-font-work-sans">Mulai {{$job->gaji ?? 'tidak ada keterangan gaji'}} / {{$job->jenis_pembayaran}}</h5>
+                            <p class="tw-text-gray-500 tw-text-center tw-my-3 tw-font-base tw-text-sm tw-font-clash-display">{{$job->mata_uang_gaji}} ± {{$job->estimasi ?? $job->gaji}}
                             {{-- badgetersedia --}}
                         <div class="tw-flex tw-justify-center tw-items-center">
                             <p class="tw-bg-green-500 tw-px-5 tw-py-1 tw-rounded-md tw-text-white tw-font-bold">tersedia</p>

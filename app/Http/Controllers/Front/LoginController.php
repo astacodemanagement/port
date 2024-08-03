@@ -58,43 +58,46 @@ class LoginController extends Controller
     protected function sendLoginResponse(Request $request)
     {
         $request->session()->regenerate();
-
+    
         $this->clearLoginAttempts($request);
         $user = $this->guard()->user();
+    
         if (!$this->guard()->user()->hasRole('member')) {
             $this->guard()->logout();
-
             $request->session()->invalidate();
-    
             $request->session()->regenerateToken();
-
-            return redirect(route('front.login'))->withErrors(['email' => trans('auth.failed')]);
+    
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Email atau password salah',
+            ], 422);
         }
+    
         if (is_null($user->email_verified_at)) {
             $this->guard()->logout();
-    
             $request->session()->invalidate();
-        
             $request->session()->regenerateToken();
     
-            return redirect(route('front.login'))->withErrors(['email' => trans('auth.email_not_confirmed')]);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Email belum terverifikasi',
+            ], 422);
         }
-
-        if ($response = $this->authenticated($request, $this->guard()->user())
-        ) {
+    
+        if ($response = $this->authenticated($request, $this->guard()->user())) {
             return $response;
         }
-
+    
         $redirectTo = session()->has('redirect_to') ? session()->get('redirect_to') : route('member.index');
-
         session()->forget('redirect_to');
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect($redirectTo);
-        // redirect()->intended($this->redirectPath());
+    
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Login successful',
+            'redirect_to' => $redirectTo
+        ], 200);
     }
-
+    
     public function logout(Request $request)
     {
         $this->guard()->logout();

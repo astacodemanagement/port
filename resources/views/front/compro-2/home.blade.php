@@ -185,7 +185,7 @@
                             <div class="tw-relative tw-max-w-full tw-px-4 tw-mx-auto sm:tw-px-6 lg:tw-px-8">
                               <div class="tw-max-w-7xl tw-mx-auto">
                                 <dl class="sm:tw-grid sm:tw-grid-cols-3">
-                                  <div data-aos="fade-up" data-aos-duration="1000" class="tw-flex tw-flex-col tw-p-6 tw-text-center tw-border-b tw-border-sky-500 sm:tw-border-0 sm:tw-border-r">
+                                  <div data-aos="fade-up" data-aos-duration="1000" class="S tw-flex tw-flex-col tw-p-6 tw-text-center tw-border-b tw-border-sky-500 sm:tw-border-0 sm:tw-border-r">
                                     <dt class="tw-order-2 tw-mt-2 tw-text-lg tw-font-medium tw-leading-6 tw-text-gray-700 tw-border-l-4 tw-pl-3 tw-border-sky-500" id="item-1">
                                         Kandidat
                                     </dt>

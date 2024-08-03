@@ -183,11 +183,50 @@
 @endpush
 
 @push('script')
+<script src="{{ asset('frontend/js/sweetalert2.all.min.js') }}"></script>
+<!-- swal cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
     <script>
         $(function(){
-            $('form').on('submit', function(){
-                $(this).find('.btn-login').prop('disabled', true).prepend(`<div class="spinner-border spinner-border-sm" role="status"></div> `)
-            })
-        })
+            $('form').on('submit', function(event){
+                event.preventDefault();
+                let form = $(this);
+                let button = form.find('.btn-login');
+                button.prop('disabled', true).prepend(`<div class="spinner-border spinner-border-sm" role="status"></div> `);
+
+                $.ajax({
+                    url: form.attr('action'),
+                    method: form.attr('method'),
+                    data: form.serialize(),
+                    success: function(response) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Login Successful',
+                            text: response.message,
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(function() {
+                            window.location.href = response.redirect_url;
+                        });
+                    },
+                    error: function(xhr) {
+                        let errors = xhr.responseJSON.errors;
+                        let errorMessage = 'An error occurred. Please try again.';
+                        if (errors) {
+                            errorMessage = Object.values(errors).map(errorArray => errorArray.join(' ')).join(' ');
+                        }
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Login Failed',
+                            text: xhr.responseJSON.message,
+                        });
+                        button.prop('disabled', false).find('.spinner-border').remove();
+                    }
+                });
+            });
+        });
     </script>
+    <!-- swal -->
 @endpush

@@ -169,6 +169,26 @@
                                                                                     </div>
                                                                                 </div>
 
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="tanggal_kurs">Tanggal
+                                                                                            Kurs</label>
+                                                                                        <input type="date"
+                                                                                            class="form-control "
+                                                                                            id="tanggal_kurs"
+                                                                                            name="tanggal_kurs">
+                                                                                    </div>
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="nominal_kurs">Nominal
+                                                                                            Kurs</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control "
+                                                                                            id="nominal_kurs"
+                                                                                            name="nominal_kurs">
+                                                                                    </div>
+                                                                                </div>
                                                                                 
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
@@ -257,18 +277,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="kontrak_kerja">Kontrak
                                                                                             Kerja</label>
-                                                                                            <select class="form-control "
-                                                                                            id="kontrak_kerja"
-                                                                                            name="kontrak_kerja" required>
-                                                                                            <option value="">--Pilih
-                                                                                                kontrak kerja--</option>
-                                                                                            @for ($i = 1; $i <= 60; $i++)
-                                                                                                <option value="{{ $i }}"
-                                                                                                   >
-                                                                                                    {{ $i }} Bulan
-                                                                                                </option>
-                                                                                            @endfor
-                                                                                        </select>
+                                                                                          <input type="text" class="form-control" name="kontrak_kerja" id="kontrak_kerja">
                                                                                     </div>
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"

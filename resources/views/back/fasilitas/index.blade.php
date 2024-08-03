@@ -15,7 +15,7 @@
                     <div class="page-header-title">
                         <i class="feather icon-list bg-c-blue"></i>
                         <div class="d-inline">
-                            <h5>Fasilitas</h5>
+                            <h5>Benefit</h5>
                             <span>Silahkan isi dengan data yang sesuai dan valid !</span>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                             <li class="breadcrumb-item">
                                 <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#!">Halaman Fasilitas</a>
+                            <li class="breadcrumb-item"><a href="#!">Halaman Benefit</a>
                             </li>
 
                         </ul>
@@ -47,7 +47,7 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h5>Data Fasilitas</h5>
+                                        <h5>Data Benefit</h5>
 
                                     </div>
                                     <div class="card-block">
@@ -63,7 +63,7 @@
                                                     <tr>
                                                         <th width="5%">No</th>
 
-                                                        <th width="5%">Nama Fasilitas</th>
+                                                        <th width="5%">Nama Benefit</th>
                                                         <th width="15%">Keterangan</th>
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
@@ -113,7 +113,7 @@
                         @csrf <!-- Tambahkan token CSRF -->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Form Input Fasilitas</h4>
+                                <h4 class="modal-title">Form Input Benefit</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -125,7 +125,7 @@
 
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="nama_fasilitas">Nama Fasilitas</label>
+                                            <label class="col-form-label" for="nama_fasilitas">Nama Benefit</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control "
@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="keterangan">Keterangan Fasilitas </label>
+                                            <label class="col-form-label" for="keterangan">Keterangan Benefit </label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control " id="keterangan"
@@ -169,7 +169,7 @@
                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">Form Edit Fasilitas</h4>
+                                <h4 class="modal-title">Form Edit Benefit</h4>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -189,7 +189,7 @@
                                     <div class="form-group row">
                                         <div class="col-sm-12">
                                             <label class="col-form-label" for="edit_keterangan">Keterangan
-                                                Fasilitas</label>
+                                                Benefit</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control "

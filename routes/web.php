@@ -408,7 +408,7 @@ Route::group(['middleware' => ['role:member','is_verify_email']], function () {
         Route::middleware('member.auth')->group(function () {
             Route::name('member.')->group(function () {
                 Route::get('/', [MemberHomeController::class, 'index'])->name('index');
-                Route::resource('pengaduan', PengaduanController::class);
+              Route::get("/pengaduan/create", [PengaduanController::class, 'create'])->name('pengaduan.create');
               /** WORK EXPERIENCE */
                 Route::prefix('work-experience')->group(function () {
                     Route::name('work-experience.')->group(function () {

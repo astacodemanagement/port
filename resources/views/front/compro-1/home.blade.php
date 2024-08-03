@@ -393,7 +393,7 @@
                                         </div>
                                         <div class="col-10 mt-2">
                                             <h6 class="title-heading fw-bold">Gaji</h6>
-                                            <p>{{ $job->gaji ? 'Rp ' . number_format($job->gaji) : '-' }}</p>
+                                            <p>{{ $job->gaji ?? '-' }}</p>
                                         </div>
                                     </div>
                                     <div class="row">

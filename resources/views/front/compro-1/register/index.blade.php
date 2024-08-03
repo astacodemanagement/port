@@ -382,6 +382,10 @@
                                                 <input type="hidden" class="d-none tanggal-selesai-bekerja input-add-experience h-experience-end-work-date" data-name="tanggal_selesai_kerja.0" name="tanggal_selesai_kerja[]">
                                             </div>
                                         </div>
+                                        <!-- desc Pekerjaan -->
+                                        <div class="form-group mb-5">
+                                            <textarea class="form-control input-add-experience experience-job-desc" data-name="deskripsi_pekerjaan.0" name="deskripsi_pekerjaan[]" placeholder="Deskripsi Pekerjaan"></textarea>
+                                        </div>
 
                                         <div class="form-group mb-5">
                                             <input type="text" class="form-control input-add-experience experience-position" placeholder="Posisi" data-name="posisi.0" name="posisi[]">
@@ -519,13 +523,13 @@
                                                 </div>
                                                 <div class="form-input mb-3">
                                                     <div class="input-group">
-                                                        <input type="password" class="form-control" name="password" placeholder="Password *">
+                                                        <input type="password" class="form-control" name="password" placeholder="Password Akun">
                                                         <span class="btn btn-show-password text-white" style="padding-top: .8rem;" type="button" id="show-password"><i class="fas fa-eye-slash"></i></span>
                                                     </div>
                                                 </div>
                                                 <div class="form-input mb-3">
                                                     <div class="input-group">
-                                                        <input type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password *">
+                                                        <input type="password" class="form-control" name="password_confirmation" placeholder="Konfirmasi Password Akun">
                                                         <span class="btn btn-show-password text-white"   type="button" id="show-password"><i class="fas fa-eye-slash"></i></span>
                                                     </div>
                                                 </div>
@@ -798,6 +802,7 @@
             cloneEl.find('.experience-start-work-date').val('')
             cloneEl.find('.experience-end-work-date').val('')
             cloneEl.find('.experience-position').val('')
+            cloneEl.find('.experience-job-desc').val('')
             
             refreshExperienceList()
             initExperienceDatepicker()
@@ -812,6 +817,7 @@
                 const startWorkdate = t.closest('div.fv-row').find('.h-experience-start-work-date')
                 const endWorkdate = t.closest('div.fv-row').find('.h-experience-end-work-date')
                 const position = t.closest('div.fv-row').find('.experience-position')
+                const desc = t.closest('div.fv-row').find('.experience-job-desc')
 
                 t.attr('data-name', `negara_tempat_kerja.${i}`)
                 category.attr('data-name', `kategori.${i}`)
@@ -819,6 +825,8 @@
                 startWorkdate.attr('data-name', `tanggal_mulai_kerja.${i}`)
                 endWorkdate.attr('data-name', `tanggal_selesai_kerja.${i}`)
                 position.attr('data-name', `posisi.${i}`)
+                desc.attr('data-name', `deskripsi_pekerjaan.${i}`)
+
             })
         }
 
