@@ -140,7 +140,8 @@ class RegisterController extends Controller
             3 => 'Facebook',
             4 => 'Tiktok',
             5 => 'Teman/Saudara/Keluarga',
-            6 => 'Sponsor'
+            6 => 'Disnaker/ BP2MI/ Instansi',
+            7 => 'Partnership/Sponsor/PL'
         ];
 
         $statusKawin = [
@@ -438,7 +439,7 @@ class RegisterController extends Controller
                 // 'kecamatan_id' => 'required|numeric',
                 'level_bahasa' => 'required',
                 'referensi' => 'required|numeric',
-                'nama_referensi' => 'required_if:referensi,6',
+                'nama_referensi' => 'required_if:referensi,7',
             ],
             2 => [
                 'no_paspor' => 'nullable|min:3|max:50',
@@ -450,8 +451,8 @@ class RegisterController extends Controller
             3 => [
                 'negara_tempat_kerja.*' => 'nullable|min:3',
                 'nama_perusahaan.*' => 'nullable|min:3',
-                'tanggal_mulai_kerja.*' => 'nullable|date_format:Y-m-d',
-                'tanggal_selesai_kerja.*' => 'nullable|date_format:Y-m-d',
+                'tanggal_mulai_kerja.*' => 'nullable',
+                'tanggal_selesai_kerja.*' => 'nullable',
                 'posisi.*' => 'nullable|min:2',
                 'keterangan_belum_kerja' => 'nullable'
             ],
@@ -463,16 +464,12 @@ class RegisterController extends Controller
                 "check_ijazah" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_buku_nikah,check_paspor",
                 "check_buku_nikah" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_ijazah,check_paspor",
                 "check_paspor" => "required_without_all:check_ktp,check_kartu_keluarga,check_akta_lahir,check_ijazah,check_buku_nikah",
+                'file_foto' => 'required|max:10240|mimes:jpeg,jpg,bmp,png,webp',
+                'file_ktp' => 'required|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
 
             ],
 
             5 => [
-                'file_foto' => 'required|max:10240|mimes:jpeg,jpg,bmp,png,webp',
-
-                'file_ktp' => 'required|max:10240|max:10240|mimes:jpeg,jpg,bmp,png,webp,pdf',
-
-            ],
-            6 => [
                 'email' => 'required|email|unique:users,email',
                 'no_hp' => 'required|numeric|min_digits:6|max_digits:14',
                 'no_wa' => 'required|numeric|min_digits:6|max_digits:14',
@@ -558,7 +555,9 @@ class RegisterController extends Controller
             'password_confirmation' => 'Konfirmasi password',
             'wilayah' => 'Wilayah',
             'pendidikan' => 'Pendidikan',
+            'check_ktp' => 'KTP',
         ];
+
     }
 
     private function messages()
@@ -593,6 +592,13 @@ class RegisterController extends Controller
             'email' => 'Format email tidak valid',
             'unique' => ':attribute sudah digunakan',
             'pendidikan.required' => ':attribute belum dipilih',
+            'check_ktp.required_without_all' => 'Pilih salah satu dokumen',
+            'check_kartu_keluarga.required_without_all' => 'Pilih salah satu dokumen',
+            'check_akta_lahir.required_without_all' => 'Pilih salah satu dokumen',
+            'check_ijazah.required_without_all' => 'Pilih salah satu dokumen',
+            'check_buku_nikah.required_without_all' => 'Pilih salah satu dokumen',
+            'check_paspor.required_without_all' => 'Pilih salah satu dokumen',
+
         ];
     }
 }

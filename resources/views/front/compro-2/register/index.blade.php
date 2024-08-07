@@ -118,32 +118,19 @@
                     </div>
                     <div class="tw-absolute tw-top-1 tw-left-24 md:tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
                         <h3 class="stepper-title">Step 4</h3>
-                        <p class="tw-text-sm tw-font-normal tw-text-gray-500 stepper-desc">Ceklis Dokumen Pribadi</p>
+                        <p class="tw-text-sm tw-font-normal tw-text-gray-500 stepper-desc">Centang & Upload dokumen</p>
                     </div>
                 </div>
         
+               
                 <div class="tw-relative tw-w-full stepper-item"  data-step="5">
                     <div class="tw-h-16 tw-p-5 tw-w-16 tw-flex tw-items-center tw-justify-center tw-bg-sky-500 tw-rounded-xl">
                         <span class="tw-text-white tw-text-2xl tw-font-extrabold stepper-number">5</span>
                         <i class="fas fa-check tw-text-white tw-text-2xl " style="display: none"></i>
                     </div>
-                    <div class="tw-relative tw-mx-auto tw-mr-1">
-                        <img src="{{ asset('frontend') }}/assets/image/framestriped.png" alt="" class="">
-                    </div>
-                    <div class="tw-absolute tw-top-1 tw-left-24 md:tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
-                        <h3 class="stepper-title">Step 5</h3>
-                        <p class="tw-text-sm tw-font-normal tw-text-gray-500 stepper-desc">Upload Dokumen</p>
-                    </div>
-                </div>
-        
-                <div class="tw-relative tw-w-full stepper-item"  data-step="6">
-                    <div class="tw-h-16 tw-p-5 tw-w-16 tw-flex tw-items-center tw-justify-center tw-bg-sky-500 tw-rounded-xl">
-                        <span class="tw-text-white tw-text-2xl tw-font-extrabold stepper-number">6</span>
-                        <i class="fas fa-check tw-text-white tw-text-2xl " style="display: none"></i>
-                    </div>
               
                     <div class="tw-absolute tw-top-1 tw-left-24 md:tw-left-1/3 tw-text-2xl tw-font-bold tw-text-sky-500">
-                        <h3 class="stepper-title">Step 6</h3>
+                        <h3 class="stepper-title">Step 5</h3>
                         <p class="tw-text-sm tw-font-normal tw-text-gray-500 stepper-desc">Kontak Akun</p>
                     </div>
                 </div>
@@ -163,7 +150,7 @@
             <div class="tw-relative">
 
                 <select name="kategori_job_id" id="kategori" class="tw-w-full tw-font-work-sans tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-bg-white tw-text-gray-600 tw-rounded-md" required>
-                    <option value="" readonly>Industri Yang Diminati  </option>
+                    <option value="" readonly>Industri Yang Di Inginkan  </option>
                     @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->nama_kategori_job }}
                     </option>
@@ -301,7 +288,7 @@
                     <select name="level_bahasa" id="level_bahasa" class="tw-w-full tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
                         <option value="">Level Bahasa Inggris </option>
                         <option value="1">Beginner English (pemula)</option>
-                        <option value="2">⁠Medium English (sedang)</option>
+                        <option value="2">⁠Medium English (good)</option>
                         <option value="3">Advance English (profesional)</option>
     
                     </select>   
@@ -309,18 +296,24 @@
                 <p class="tw-text-red-500 error-level_bahasa" style="display: none"></p>
                 {{-- referensi --}}
                 <div class="tw-relative">
-                    <select name="referensi" id="referensi" class="tw-w-full tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
+                    <select name="referensi" id="referensi" class="referensi tw-w-full tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
                         <option value="">Dari mana kamu mengetahui kami ?</option>
                         <option value="1">Google</option>
                         <option value="2">Instagram</option>
                         <option value="3">Facebook</option>
                         <option value="4">Tiktok</option>
                         <option value="5">Teman/Saudara/Keluarga</option>
-                        <option value="6">Sponsor</option>                                     
-                    </select>   
+                        <option value="6">Disnaker/ BP2MI/ Instansi</option>
+                        <option value="7">Partnership/Sponsor/PL</option>                                     
+                    </select>
+                    
                 </div>
                
                 <p class="tw-text-red-500 error-referensi" style="display: none"></p>
+                <!-- inpur sponsor -->
+                
+                    <input type="text" name="sponsor" id="sponsor" placeholder="Nama Sponsor" class="sponsor tw-w-full tw-font-work-sans  tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required style="display:none">
+            
                 <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
             </form>  
     <!-- form 2 -->
@@ -400,19 +393,19 @@
 
         <div class="tw-flex tw-gap-5 tw-mb-3">
             <div class="tw-w-1/2">
-                <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-start-work-date input-add-experience" placeholder="Tanggal mulai bekerja">
-                <input type="hidden" class="tw-hidden h-experience-start-work-date" data-name="tanggal_mulai_kerja.0" name="tanggal_mulai_kerja[]">
+                <input type="number" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-start-work-date input-add-experience"  data-name="tanggal_mulai_kerja.0" name="tanggal_mulai_kerja[]" placeholder="Tahun mulai bekerja">
+                <!-- <input type="hidden" class="tw-hidden h-experience-start-work-date" data-name="tanggal_mulai_kerja.0" name="tanggal_mulai_kerja[]"> -->
                 <p class="tw-text-red-500 error-tanggal_mulai_kerja[]" style="display: none"></p>
             </div>
             <div class="tw-w-1/2">
-                <input type="text" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-end-work-date input-add-experience" placeholder="Tanggal selesai bekerja">
-                <input type="hidden" class="tw-hidden h-experience-end-work-date" data-name="tanggal_selesai_kerja.0" name="tanggal_selesai_kerja[]">
+                <input type="number" class="tw-w-full tw-p-2 tw-border tw-border-gray-300 tw-rounded-md datetimepicker experience-end-work-date input-add-experience" data-name="tanggal_selesai_kerja.0" name="tanggal_selesai_kerja[]" placeholder="Tahun selesai bekerja">
+                <!-- <input type="hidden" class="tw-hidden h-experience-end-work-date" data-name="tanggal_selesai_kerja.0" name="tanggal_selesai_kerja[]"> -->
                 <p class="tw-text-red-500 error-tanggal_selesai_kerja[]" style="display: none"></p>
             </div>
         </div>
         <div class="fv-row tw-mb-5">
             <!-- desc pekerjaan -->
-            <textarea name="deskripsi_pekerjaan" id="deskripsi_pekerjaan" class="tw-p-2 tw-w-full tw-border tw-border-gray-300 tw-rounded-md" placeholder="Deskripsi Pekerjaan" rows="3"></textarea>
+            <textarea name="deskripsi_pekerjaan" id="deskripsi_pekerjaan" class="tw-p-2 tw-w-full tw-border tw-border-gray-300 tw-rounded-md input-add-experience" placeholder="Deskripsi Pekerjaan" rows="3"></textarea>
         </div>
 
         <div class="tw-mb-5">
@@ -452,7 +445,6 @@
                             </label>
                             <!-- err msg -->
                         </div>
-                        <p class="tw-text-red-500 error-check_ktp" style="display: none"></p>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="check_kartu_keluarga" id="check_kartu_keluarga">
                             <label class="form-check-label" for="check_kartu_keluarga" style="padding-top:2px">
@@ -461,7 +453,6 @@
                             </label>
                             
                         </div>
-                        <p class="tw-text-red-500 error-check_kartu_keluarga" style="display: none"></p>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="check_akta_lahir" id="check_akta_lahir">
                             <label class="form-check-label" for="check_akta_lahir" style="padding-top:2px">
@@ -469,7 +460,6 @@
                             </label>
                             
                         </div>
-                        <p class="tw-text-red-500 error-check_akta_lahir" style="display: none"></p>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="check_ijazah" id="ijazah">
                             <label class="form-check-label" for="ijazah" style="padding-top:2px">
@@ -477,14 +467,12 @@
                             </label>
                             
                         </div>
-                        <p class="tw-text-red-500 error-check_ijazah" style="display: none"></p>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="check_buku_nikah" id="check_buku_nikah">
                             <label class="form-check-label" for="check_buku_nikah" style="padding-top:2px">
                                 <b>Buku Nikah/Akta Cerai</b>
                             </label>
                         </div>
-                        <p class="tw-text-red-500 error-check_buku_nikah" style="display: none"></p>
 
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" name="check_paspor" id="paspor">
@@ -498,20 +486,7 @@
                             <label for=""><i>Jelaskan jika kelengkapan berkas anda terdapat perbedaan nama/alamat/tempat tanggal lahir/hilang/rusak/lainnya:</i></label>
                             <textarea name="penjelasan_dokumen" cols="30" rows="2" class="form-control" placeholder=""></textarea>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tw-flex tw-gap-5">
-                <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-32 tw-bg-sky-500 tw-rounded-md tw-mt-4 prev-step">Previous</button>
-                <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
-            </div>
-        </form>
-        {{-- form 5 --}}
-        <form data-step="5" method="POST" id="step-form-5" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form " style="display: none">
-            @csrf
-            <div class="flex-column" data-kt-stepper-element="content">
-                <div class="fv-row mb-10">
-                    <label class="form-label">Upload Dokumen</label>
+                        <label class="form-label mt-4">Upload Dokumen</label>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-input">
@@ -519,8 +494,8 @@
                                     <label class="input-group-text" for="foto" style="width: 150px">Foto </label>
                                     <input type="file" class="form-control tw-w-full" id="foto" name="file_foto" accept="image/*">
                                 </div>
-                                <label class="text-muted tw-block tw-text-sm"><small>Foto formal background putih/biru/merah *jpeg|jpg|bmp|png|webp</small></label>
-                                <!-- errr msg -->
+                                <label class="text-muted tw-block tw-text-sm"><small>*) Foto formal background putih/biru/merah <br> Format jpg/jpeg/png/bmp/webp</small></label>
+                              
                                 <p class="tw-text-red-500 error-file_foto" style="display: none"></p>
                             </div>
                           
@@ -529,31 +504,32 @@
                                     <label class="input-group-text" for="ktp" style="width: 150px">KTP  </label>
                                     <input type="file" class="form-control tw-w-full" id="ktp" name="file_ktp" accept="image/*">
                                 </div>
-                                <label class="text-muted tw-block tw-text-sm"><small>Mohon di Scan *jpeg|jpg|bmp|png|webp</small></label>
+                                <label class="text-muted tw-block tw-text-sm"><small>*) Mohon di Scan <br>Format jpg/jpeg/png/bmp/webp                                </small></label>
                                 <p class="tw-text-red-500 error-file_ktp" style="display: none"></p>
                                 
                             </div>
                           
                         </div>
                     </div>
-
-                </div>
-                {{-- button next/prev --}}
-                <div class="tw-flex tw-gap-5">
-                    <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-32 tw-bg-sky-500 tw-rounded-md tw-mt-4 prev-step">Previous</button>
-                    <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
+                    </div>
                 </div>
             </div>
-            
+            <div class="tw-flex tw-gap-5">
+                <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-32 tw-bg-sky-500 tw-rounded-md tw-mt-4 prev-step">Previous</button>
+                <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
+            </div>
         </form>
+      
         {{-- form 6 --}}
-        <form data-step="6" method="POST" id="step-form-6" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form " style="display: none">
+        <form data-step="5" method="POST" id="step-form-5" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form " style="display: none">
             <div class="tw-flex tw-flex-col" data-kt-stepper-element="content">
                 <div class="tw-mb-10">
                     <label class="tw-block tw-font-medium tw-mb-3">Kontak &amp; Akun</label>
                     <div class="tw-flex tw-flex-col tw-gap-3">
                         <div class="tw-mb-3 tw-relative">
                             <input type="email" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" placeholder="Email " name="email" required>
+                            <label class="text-muted tw-block tw-text-sm">Verifikasi akun akan dikirim melalui email yang didaftarkan</small></label>
+
                         </div>
                         <p class="tw-text-red-500 error-email" style="display: none"></p>
                         <div class="tw-relative">
@@ -631,16 +607,16 @@
             $('.h-masa-kadaluarsa').val(e.format(0, "yyyy-mm-dd"))
         });
 
-        initExperienceDatepicker()
-        function initExperienceDatepicker() {
-            $('.experience-start-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
-                $(this).closest('div').find('.h-experience-start-work-date').val(e.format(0, "yyyy-mm-dd"))
-            });
+        // initExperienceDatepicker()
+        // function initExperienceDatepicker() {
+        //     $('.experience-start-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
+        //         $(this).closest('div').find('.h-experience-start-work-date').val(e.format(0, "yyyy-mm-dd"))
+        //     });
 
-            $('.experience-end-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
-                $(this).closest('div').find('.h-experience-end-work-date').val(e.format(0, "yyyy-mm-dd"))
-            });
-        }
+        //     $('.experience-end-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
+        //         $(this).closest('div').find('.h-experience-end-work-date').val(e.format(0, "yyyy-mm-dd"))
+        //     });
+        // }
         $(".select2").select2({
                 theme: 'bootstrap-5'
             });
@@ -670,7 +646,7 @@
                 }
             })
          
-        let currentStep = 1;
+        let currentStep = 5;
         function showStep(step) {
             $('.stepper-item').each(function() {
                 const stepNumber = $(this).data('step');
@@ -702,6 +678,7 @@
 
         var formData = new FormData($(`#step-form-${step}`)[0]);
         formData.append('step', step);
+
         // post ke url validasi
         $.ajax({
             url: `{{ route('register.step.validation') }}`,
@@ -840,6 +817,7 @@
         const endWorkdate = t.closest('div.fv-row').find('.h-experience-end-work-date');
         const position = t.closest('div.fv-row').find('.experience-position');
         const desc = t.closest('div.fv-row').find('.deskripsi_pekerjaan');
+        
 
         t.attr('data-name', `kategori.${i}`);
         country.attr('data-name', `negara_tempat_kerja.${i}`);
@@ -850,7 +828,37 @@
         desc.attr('data-name', `deskripsi_pekerjaan.${i}`);
     });
 }
+$('.row-list-experience').on('change', '.experience-category', function() {
+    const t = $(this);
+    const country = t.closest('div.fv-row').find('.experience-country');
+    const company = t.closest('div.fv-row').find('.experience-company');
+    const startWorkdate = t.closest('div.fv-row').find('.h-experience-start-work-date');
+    const endWorkdate = t.closest('div.fv-row').find('.h-experience-end-work-date');
+    const position = t.closest('div.fv-row').find('.experience-position');
+    const desc = t.closest('div.fv-row').find('.deskripsi_pekerjaan');
+    if (t.val() === '1') {
+        country.val('Indonesia');
+        country.prop('disabled', true);
+    } else {
+        country.val('');
+        country.prop('disabled', false);
+    }
+    refreshExperienceList()
+});
 
+// saya ingin saat exprricence_cateogry di isi dalam negeri experience_country tidak boleh di isi dan value nya indonesia
+$('.experience-category').on('change', function() { 
+    const t = $(this);
+    const country = t.closest('div.fv-row').find('.experience-country');
+    if (t.val() === '1') {
+        country.val('Indonesia');
+        country.prop('disabled', true);
+    } else {
+        country.val('');
+        country.prop('disabled', false);
+    }
+    refreshExperienceList()
+});     
 
         $('.row-list-experience').on('click', '.list-experience .btn-remove-experience', function() {
             $(this).closest('div.list-experience').remove()
@@ -878,6 +886,17 @@
             }
         })
 
+
+        
+        $('.referensi').on('change', function() {
+     
+            $('.sponsor').hide()
+
+            if ($(this).val() === '7') {
+                // remove diaplay none style
+                $('.sponsor').show()
+            }
+        })
         $('#check_whatsapp_number').on('click', function(){
             const t = $(this)
 
