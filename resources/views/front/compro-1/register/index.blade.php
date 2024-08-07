@@ -284,7 +284,7 @@
             <select class="form-select" name="level_bahasa" aria-labelledby="levelBahasa">
                 <option value="">Level Bahasa Inggris</option>
                 <option value="1">Beginner English (pemula)</option>
-                <option value="2">⁠Medium English (sedang)</option>
+                <option value="2">⁠Medium English (good)</option>
                 <option value="3">Advance English (profesional)</option>
             </select>
         </div>  
@@ -292,11 +292,13 @@
             <select name="referensi" class="form-select reference">
                 <option value="">Dari mana kamu mengetahui kami ?</option>
                 <option value="1">Google</option>
-                <option value="2">Instagram</option>
-                <option value="3">Facebook</option>
-                <option value="4">Tiktok</option>
-                <option value="5">Teman/Saudara/Keluarga</option>
-                <option value="6">Sponsor</option>
+                        <option value="2">Instagram</option>
+                        <option value="3">Facebook</option>
+                        <option value="4">Tiktok</option>
+                        <option value="5">Teman/Saudara/Keluarga</option>
+                        <option value="6">Disnaker/ BP2MI/ Instansi</option>
+                        <option value="7">Partnership/Sponsor/PL</option>                                     
+
             </select>
         </div>
         <div class="form-group mb-5">
@@ -774,7 +776,7 @@
         $('.reference').on('change', function() {
             $('.sponsor').addClass('d-none')
 
-            if ($(this).val() === '6') {
+            if ($(this).val() === '7') {
                 $('.sponsor').removeClass('d-none')
             }
         })
@@ -834,8 +836,33 @@
             $(this).closest('div.list-experience').remove()
             refreshExperienceList()
         })
-
+        $('.row-list-experience').on('change', '.experience-category', function() {
+            const t = $(this);
+            const country = t.closest('div.fv-row').find('.experience-country');
+            const company = t.closest('div.fv-row').find('.experience-company');
+            const startWorkdate = t.closest('div.fv-row').find('.h-experience-start-work-date');
+            const endWorkdate = t.closest('div.fv-row').find('.h-experience-end-work-date');
+            const position = t.closest('div.fv-row').find('.experience-position');
+            const desc = t.closest('div.fv-row').find('.experience-job-desc ');
+            if (t.val() === '1') {
+                country.val('Indonesia');
+                country.prop('disabled', true);
+            } else {
+                country.val('');
+                country.prop('disabled', false);
+            }
+            refreshExperienceList()
+        });
       
+      $('.experience-category').change(function(){
+        console.log($(this).val());
+        if($(this).val() == '1'){
+          $('.experience-country').val('Indonesia');
+            $('.experience-country').prop('disabled', true);
+        }else{
+            $('.experience-country').val('');
+            }
+        });
 
         $('#check_whatsapp_number').on('click', function(){
             const t = $(this)
