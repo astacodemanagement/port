@@ -319,18 +319,8 @@
                                                                                         <label class="col-form-label"
                                                                                             for="kontrak_kerja">Kontrak
                                                                                             Kerja</label>
-                                                                                      <select class="form-control "
-                                                                                            id="kontrak_kerja"
-                                                                                            name="kontrak_kerja" required>
-                                                                                            <option value="">--Pilih
-                                                                                                kontrak kerja--</option>
-                                                                                            @for ($i = 1; $i <= 60; $i++)
-                                                                                                <option value="{{ $i }}"
-                                                                                                    {{ $data->kontrak_kerja == $i ? 'selected' : '' }}>
-                                                                                                    {{ $i }} Bulan
-                                                                                                </option>
-                                                                                            @endfor
-                                                                                        </select>
+                                                                                            <input type="text" class="form-control" name="kontrak_kerja" id="kontrak_kerja">
+
                                                                                     </div>
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"

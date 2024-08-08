@@ -252,7 +252,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group" id="">
-                                        <label for="gambar_edit">Bukti Pengeluaran</label>
+                                        <label for="gambar_edit">Gambar Slider</label>
 
                                         <input type="file" class="form-control" name="gambar" id="gambar_edit">
 
