@@ -146,7 +146,7 @@
             <form data-step="1" method="POST" id="step-form-1" class="md:tw-mt-0 tw-mt-10 tw-flex tw-flex-col md:tw-w-2/3 tw-max-w-full step-form "  style="display: none">
                 @csrf  
                 <input type="hidden" name="compro" value="2">
-            <label for=""  class="tw-text-gray-800 tw-font-medium tw-mt-3 tw-font-work-sans">Minat Pekerjaan</label>
+            <label for=""  class="tw-text-gray-800 tw-font-medium tw-mt-3 tw-font-work-sans">Industri Pekerjaan</label>
             <div class="tw-relative">
 
                 <select name="kategori_job_id" id="kategori" class="tw-w-full tw-font-work-sans tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-bg-white tw-text-gray-600 tw-rounded-md" required>
@@ -494,7 +494,7 @@
                                     <label class="input-group-text" for="foto" style="width: 150px">Foto </label>
                                     <input type="file" class="form-control tw-w-full" id="foto" name="file_foto" accept="image/*">
                                 </div>
-                                <label class="text-muted tw-block tw-text-sm"><small>*) Foto formal background putih/biru/merah <br> Format jpg/jpeg/png/bmp/webp</small></label>
+                                <label class="text-muted tw-block tw-text-sm"><small> Foto formal background putih/biru/merah <br> Format jpg/jpeg/png/bmp/webp</small></label>
                               
                                 <p class="tw-text-red-500 error-file_foto" style="display: none"></p>
                             </div>
@@ -504,7 +504,7 @@
                                     <label class="input-group-text" for="ktp" style="width: 150px">KTP  </label>
                                     <input type="file" class="form-control tw-w-full" id="ktp" name="file_ktp" accept="image/*">
                                 </div>
-                                <label class="text-muted tw-block tw-text-sm"><small>*) Mohon di Scan <br>Format jpg/jpeg/png/bmp/webp                                </small></label>
+                                <label class="text-muted tw-block tw-text-sm"><small> Mohon di Scan <br>Format jpg/jpeg/png/bmp/webp                                </small></label>
                                 <p class="tw-text-red-500 error-file_ktp" style="display: none"></p>
                                 
                             </div>
@@ -646,7 +646,7 @@
                 }
             })
          
-        let currentStep = 5;
+        let currentStep = 1;
         function showStep(step) {
             $('.stepper-item').each(function() {
                 const stepNumber = $(this).data('step');

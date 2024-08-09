@@ -280,7 +280,7 @@
                                                                                             name="kategori_job_id"
                                                                                             class="form-control">
                                                                                             <option value="">Pilih
-                                                                                                Industri Minat Pekerjaan
+                                                                                                Industri Industri Pekerjaan
                                                                                             </option>
 
                                                                                             <!-- Loop untuk kategori job -->
@@ -682,44 +682,8 @@
                                                                                         </div>
                                                                                     </div>
 
-                                                                                    <div class="form-group row">
-                                                                                        <div class="col-sm-12">
-                                                                                            <label class="col-form-label"
-                                                                                                for="paragraf_galeri">Paragraf
-                                                                                                Galeri</label>
-                                                                                            <textarea class="form-control " name="paragraf_galeri" id="paragraf_galeri" cols="30" rows="4">{{ $data->paragraf_galeri }}</textarea>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="form-group row">
-                                                                                        <div class="col-sm-12">
-                                                                                            <label class="col-form-label"
-                                                                                                for="link_video">Link
-                                                                                                Video</label>
-                                                                                            <input type="text"
-                                                                                                class="form-control "
-                                                                                                id="link_video"
-                                                                                                name="link_video"
-                                                                                                value="{{ $data->link_video }}">
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <div class="col-sm-12">
-                                                                                            <label class="col-form-label"
-                                                                                                for="info_lain">Informasi
-                                                                                                Lainnya</label>
-                                                                                            <textarea class="form-control " name="info_lain" id="info_lain" cols="30" rows="4">{{ $data->info_lain }}</textarea>
-                                                                                        </div>
-                                                                                    </div>
-
-
-                                                                                    <div class="form-group row">
-                                                                                        <div class="col-sm-12">
-                                                                                            <label class="col-form-label"
-                                                                                                for="disclaimer">Disclaimer</label>
-                                                                                            <textarea class="form-control " name="disclaimer" id="disclaimer" cols="30" rows="4">{{ $data->disclaimer }}</textarea>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                   
+                                                                                  
 
                                                                                     <div class="form-group row">
                                                                                         <div class="col-sm-12">

@@ -126,13 +126,14 @@
                                         Step 4
                                     </h3>
                                     <div class="stepper-desc">
-                                        Ceklist Dokumen Pribadi
+                                    Centang & Upload dokumen
                                     </div>
                                 </div>
                             </div>
 
                             <div class="stepper-line h-40px"></div>
                         </div>
+
 
                         <div class="stepper-item me-5" data-kt-stepper-element="nav">
                             <div class="stepper-wrapper d-flex align-items-center">
@@ -148,30 +149,6 @@
                                 <div class="stepper-label">
                                     <h3 class="stepper-title">
                                         Step 5
-                                    </h3>
-                                    <div class="stepper-desc">
-                                        Upload Dokumen
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="stepper-line h-40px"></div>
-                        </div>
-
-                        <div class="stepper-item me-5" data-kt-stepper-element="nav">
-                            <div class="stepper-wrapper d-flex align-items-center">
-                                <div class="stepper-icon w-40px h-40px">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                        fill="currentColor" class="stepper-check bi bi-check2" viewBox="0 0 16 16">
-                                        <path
-                                            d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
-                                    </svg>
-                                    <span class="stepper-number">6</span>
-                                </div>
-
-                                <div class="stepper-label">
-                                    <h3 class="stepper-title">
-                                        Step 6
                                     </h3>
                                     <div class="stepper-desc">
                                         Kontak &amp; Akun
@@ -192,11 +169,11 @@
 
                                 <!--begin::Step 1-->
                                 <div class="flex-column current" data-kt-stepper-element="content">
-    <label class="form-label required-label">Minat Pekerjaan</label>
+    <label class="form-label required-label">Industri Pekerjaan</label>
     <div class="fv-row mb-10">
         <div class="form-group">
             <select class="form-select" name="kategori_job_id" aria-labelledby="dropdownKategori" required>
-                <option value="">Industri Yang Diminati</option>
+                <option value="">Industri Yang Diinginkan</option>
                 @foreach ($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->nama_kategori_job }}</option>
                 @endforeach
@@ -454,25 +431,17 @@
                                                     <label for=""><i>Jelaskan jika kelengkapan berkas anda terdapat perbedaan nama/alamat/tempat tanggal lahir/hilang/rusak/lainnya:</i></label>
                                                     <textarea name="penjelasan_dokumen" cols="30" rows="2" class="form-control" placeholder=""></textarea>
                                                 </div>
+                                                
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <!--end::Step 4-->
-
-
-                                <!--begin::Step 5-->
-                                <div class="flex-column" data-kt-stepper-element="content">
-                                    <div class="fv-row mb-10">
-                                        <label class="form-label">Upload Dokumen</label>
-                                        <div class="row">
+                                        <div class="row mt-4">
                                             <div class="col-12">
                                                 <div class="form-input">
                                                     <div class="input-group">
                                                         <label class="input-group-text" for="foto" style="width: 150px">Foto </label>
                                                         <input type="file" class="form-control" id="foto" name="file_foto" accept="image/*">
                                                     </div>
-                                                    <label class="text-muted"><small>Foto formal background putih/biru/merah</small></label>
+                                                    <label class="text-muted"><small>Foto formal background putih/biru/merah <br> Format jpg/jpeg/png/bmp/webp</small></label>
                                                 </div>
                                                 <!-- <div class="form-input mt-2">
                                                     <div class="input-group">
@@ -486,7 +455,7 @@
                                                         <label class="input-group-text" for="ktp" style="width: 150px">KTP </label>
                                                         <input type="file" class="form-control" id="ktp" name="file_ktp" accept="image/*">
                                                     </div>
-                                                    <label class="text-muted"><small>Mohon di Scan *jpeg|jpg|bmp|png|webp</small></label>
+                                                    <label class="text-muted"><small>Mohon di Scan <br> Format jpg/jpeg/png/bmp/webp  </small></label>
                                                 </div>
                                                 <!-- <div class="form-input mt-2">
                                                     <div class="input-group">
@@ -499,8 +468,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--end::Step 5-->
-
+                               
 
                                 <!--begin::Step 6-->
                                 <div class="flex-column" data-kt-stepper-element="content">

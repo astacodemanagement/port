@@ -129,7 +129,7 @@
                                                                     {{-- <div class="col-sm-12">
                                                                                     <label class="col-form-label"
                                                                                         for="nama_kategori_job">Industri
-                                                                                        Minat Pekerjaan</label>
+                                                                                        Industri Pekerjaan</label>
                                                                                     <input type="text" 
                                                                                         class="form-control"
                                                                                         id="nama_kategori_job"
