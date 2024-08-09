@@ -126,7 +126,7 @@
                                                                         </div> --}}
                                                                         <div class="col-sm-12">
                                                                             <label class="col-form-label" for="nama_kategori_job">Industri
-                                                                                Minat Pekerjaan</label>
+                                                                                Industri Pekerjaan</label>
                                                                             <input type="text" readonly class="form-control" id="nama_kategori_job" name="nama_kategori_job" value="{{ $belum_diverifikasi?->kategoriJob?->nama_kategori_job }}">
 
                                                                             <input type="hidden" readonly class="form-control" id="kategori_job_id" name="kategori_job_id" value="{{ $belum_diverifikasi->kategori_job_id }}">

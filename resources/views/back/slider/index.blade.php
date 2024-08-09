@@ -258,7 +258,7 @@
 
                                         <div id="gambar_image_container"></div>
                                         <br>
-                                        <!-- Tautan untuk mengunduh atau melihat gambar -->
+                                      
                                         <a id="gambar_download_link" href="" target="_blank">
 
                                         </a>

@@ -93,10 +93,7 @@ class JobController extends Controller
             'rentang_usia' => 'nullable',
             'level_bahasa' => 'nullable',
             'pengalaman_kerja' => 'nullable',
-            'paragraf_galeri' => 'nullable',
-            'link_video' => 'nullable|url',
-            'info_lain' => 'nullable',
-            'disclaimer' => 'nullable',
+          
             'fasilitas_id' => 'required|array|min:1',
             'pendidikan' => 'nullable',
         ], [
@@ -124,7 +121,7 @@ class JobController extends Controller
             'jenis_kelamin.in' => 'Jenis Kelamin harus berupa Laki-laki atau Perempuan',
             'tinggi_badan.numeric' => 'Tinggi Badan harus berupa angka',
             'berat_badan.numeric' => 'Berat Badan harus berupa angka',
-            'link_video.url' => 'Link Video harus berupa URL yang valid',
+           
             'fasilitas_id.required' => 'Fasilitas Wajib diisi',
             'fasilitas_id.array' => 'Fasilitas harus berupa array',
             'fasilitas_id.min' => 'Pilih minimal satu fasilitas',
@@ -394,10 +391,6 @@ class JobController extends Controller
         'rentang_usia' => 'nullable',
         'level_bahasa' => 'nullable',
         'pengalaman_kerja' => 'nullable',
-        'paragraf_galeri' => 'nullable',
-        'link_video' => 'nullable|url',
-        'info_lain' => 'nullable',
-        'disclaimer' => 'nullable',
         'fasilitas_id' => 'required|array|min:1',
         'pendidikan' => 'nullable',
         'ketentuan' => 'nullable|min:6',
@@ -432,8 +425,7 @@ class JobController extends Controller
             'estimasi', 'gaji_diterima',
             'negara_id', 'kategori_job_id', 'kontrak_kerja', 'jam_kerja', 'hari_kerja', 'cuti_kerja',
             'masa_percobaan', 'mata_uang_gaji', 'kerja_lembur', 'bahasa', 'deskripsi', 'jenis_kelamin',
-            'tinggi_badan', 'berat_badan', 'rentang_usia', 'level_bahasa', 'pengalaman_kerja', 'paragraf_galeri',
-            'link_video', 'info_lain', 'disclaimer', 'ketentuan', 'pendidikan'
+            'tinggi_badan', 'berat_badan', 'rentang_usia', 'level_bahasa', 'pengalaman_kerja',  'ketentuan', 'pendidikan'
         ]);
 
         // Hilangkan karakter titik dari input yang bersifat nominal
