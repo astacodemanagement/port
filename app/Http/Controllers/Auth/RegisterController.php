@@ -164,10 +164,14 @@ class RegisterController extends Controller
         ];
         $levelBahasa = [
             1 => 'Beginner English (Pemula)',
-            2 => '⁠Medium English (Sedang)',
+            2 => '⁠Medium English (Good)',
             3 => 'Advance English (Profesional)'
         ];
-
+        $hubungan = [
+            1 => 'Orang Tua',
+            2 => 'Saudara Kandung',
+            3 => 'Suami/Istri',
+        ];      
         DB::beginTransaction();
 
         try {
@@ -233,7 +237,10 @@ class RegisterController extends Controller
                 'penjelasan_dokumen' => $request->penjelasan_dokumen,
                 'email' => $request->email,
                 'no_hp' => $noHp,
-                'no_wa' => $noWa,
+                'no_wa' => $noWa, 
+                'hubungan' => $hubungan[$request->hubungan],
+                'no_telp_darurat' => $request->no_telp_darurat,
+                'nama_kontak_darurat' => $request->nama_kontak_darurat,
                 'user_id' => $user->id
             ];
 
@@ -457,7 +464,6 @@ class RegisterController extends Controller
                 'keterangan_belum_kerja' => 'nullable'
             ],
             4 => [
-                //    required one of all field
                 "check_ktp" => "required_without_all:check_kartu_keluarga,check_akta_lahir,check_ijazah,check_buku_nikah,check_paspor",
                 "check_kartu_keluarga" => "required_without_all:check_ktp,check_akta_lahir,check_ijazah,check_buku_nikah,check_paspor",
                 "check_akta_lahir" => "required_without_all:check_ktp,check_kartu_keluarga,check_ijazah,check_buku_nikah,check_paspor",
@@ -473,6 +479,9 @@ class RegisterController extends Controller
                 'email' => 'required|email|unique:users,email',
                 'no_hp' => 'required|numeric|min_digits:6|max_digits:14',
                 'no_wa' => 'required|numeric|min_digits:6|max_digits:14',
+                'hubungan' => 'required',
+                'no_telp_darurat' => 'required|numeric|min_digits:6|max_digits:14', 
+                'nama_kontak_darurat' => 'required',
                 'password' =>  ['required', 'confirmed', Password::min(6)],
                 'password_confirmation' => 'required'
             ]

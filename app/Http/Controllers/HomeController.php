@@ -7,6 +7,7 @@ use App\Models\Job;
 use App\Models\Negara;
 use App\Models\Review;
 use App\Models\Slider;
+use App\Models\Step;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,8 +26,10 @@ class HomeController extends Controller
       $jobs = Job::active()->orderBy('id', 'desc')->limit(4)->get();
       $alasan = Alasan::all();
       $negara = Negara::all();
+      $step = Step::orderBy('urutan', 'asc')->limit(4)->get();
+      
      
       
-      return  viewCompro('home', compact('slider','alasan', 'jobs','review','negara'));
+      return  viewCompro('home', compact('slider','alasan', 'jobs','review','negara','step'));
    }
 }
