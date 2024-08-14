@@ -300,8 +300,20 @@
                 <h1 class="text-center fw-bold"><span style="color: var(--orange);">4 Langkah </span>mudah mendaftar
                     kerja</h1>
             </div>
-            <div class="text-center">
+            <!-- <div class="text-center">
                 <img src="{{ asset('frontend') }}/assets/image/wrapper.png" alt="">
+            </div> -->
+            
+            <div class="d-flex" style="align-items: center; justify-content: start;">
+                @foreach ($step as $s  )
+                    <div class="" style="width: 25%; display: flex; justify-content: center; align-items:center; flex-direction: column;">
+                        <img src="/upload/step/{{$s->gambar}}" width="100" alt="" style="margin: auto; align-items:center;">
+                        <div class="text-center mt-3">
+                            <h6 class="fw-bold">{{ $s->nama_step }}</h6>
+                            <span>{{ $s->keterangan }}</span>
+                        </div>
+                    </div>
+                @endforeach
             </div>
             <div class="text-center mt-5">
                 <a href="{{ route('register') }}" class="btn-action">Daftar SIPOL</a>
@@ -376,16 +388,7 @@
                                             <p>{{ $job->negara?->nama_negara }}</p>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-1 mt-1">
-                                            <img src="{{ asset('frontend') }}/assets/icons/document-text.svg"
-                                                alt="">
-                                        </div>
-                                        <div class="col-10 mt-2">
-                                            <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
-                                            <p>{{ $job->kontrak_kerja ?? '-' }}</p>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="row">
                                         <div class="col-1 mt-1">
                                             <img src="{{ asset('frontend') }}/assets/icons/Component 1.svg"

@@ -245,7 +245,7 @@
                 <div class="col-4 d-block mb-4">
                     <div class="wrapper-content-right">
                         <div class="wrapper-image">
-                            <img src="{{ asset('upload/gambar/thumb_432_' . $job->gambar) }}" alt="{{ $job->nama_job }}">
+                            <img src="{{ asset('upload/gambar/' . $job->gambar) }}" alt="{{ $job->nama_job }}" style="height: 250px; object-fit:cover; ">
                         </div>
                         <div class="wrapper-salary">
                             <div class="wrapper-icon">
@@ -279,7 +279,7 @@
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Negara</h6>
-                                            <span class="text-white">{{ $job->negara?->nama_negara }}</span>
+                                            <span style="color:#d1d5db;">{{ $job->negara?->nama_negara }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -291,7 +291,7 @@
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Kontrak Kerja</h6>
-                                            <span class="text-white">{{ $job->kontrak_kerja ?? '-' }}</span>
+                                            <span class="" style="color:#d1d5db;">{{ $job->kontrak_kerja ?? '-' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -302,8 +302,8 @@
                                             <img src="{{ asset('frontend/assets/icons/bulk/clock.png') }}" alt="">
                                         </div>
                                         <div class="col">
-                                            <h6 class="text-white">Jam Kerja</h6>
-                                            <span class="text-white">{{ $job->jam_kerja ?? '-' }}</span>
+                                            <h6 class="text-white mb-1">Jam Kerja</h6>
+                                            <span style="color:#d1d5db;">{{ $job->jam_kerja ?? '-' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -315,7 +315,7 @@
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Hari Kerja</h6>
-                                            <span class="text-white">{{ $job->hari_kerja ?? '-' }} Hari / Minggu</span>
+                                            <span style="color:#d1d5db;">{{ $job->hari_kerja ?? '-' }} Hari / Minggu</span>
                                         </div>
                                     </div>
                                 </div>
@@ -329,7 +329,7 @@
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Cuti Kerja</h6>
-                                            <span class="text-white">{{ $job->cuti_kerja ?? '-' }}</span>
+                                            <span style="color:#d1d5db;">{{ $job->cuti_kerja ?? '-' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -342,7 +342,7 @@
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Masa Percobaan</h6>
-                                            <span class="text-white">{{ $job->masa_percobaan ?? '-' }}</span>
+                                            <span style="color:#d1d5db;">{{ $job->masa_percobaan ?? '-' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -353,8 +353,8 @@
                                             <img src="{{ asset('frontend/assets/icons/bulk/translate.png') }}" alt="">
                                         </div>
                                         <div class="col">
-                                            <h6 class="text-white">Bahasa Yang Digunakan</h6>
-                                            <span class="text-white">{{ $job->bahasa ?? '-' }}</span>
+                                            <h6 class="text-white">Bahasa</h6>
+                                            <span style="color:#d1d5db;">{{ $job->bahasa ?? '-' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -366,7 +366,7 @@
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Overtime</h6>
-                                            <span class="text-white">{{ $job->overtime }}</span>
+                                            <span style="color:#d1d5db;">{{ $job->overtime }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -382,7 +382,7 @@
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Industri Pekerjaan</h6>
-                                            <span class="text-white">{{ $job->jobKategori?->nama_kategori_job }}</span>
+                                            <span style="color:#d1d5db;">{{ $job->jobKategori?->nama_kategori_job }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -395,7 +395,7 @@
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Jenis Pekerjaan</h6>
-                                            <span class="text-white">{{ $job->kontrak_kerja }}</span>
+                                            <span style="color:#d1d5db;">{{ $job->kontrak_kerja }}</span>
                                         </div>
                                     </div>
                                 </div>
