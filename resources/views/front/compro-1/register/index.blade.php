@@ -323,6 +323,12 @@
                                             <option value="5">Paspor saya terdapat data yang berbeda</option>
                                         </select>
                                     </div>
+                                    <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="keterangan_tidak_ada_passpor" id="keterangan_tidak_ada_passpor">
+                                    <label class="form-check-label" for="keterangan_tidak_ada_passpor " style="padding-top:2px">
+                                        <b>Ceklis Jika Belum Ada Passpor</b>
+                                    </label>
+                                </div>
                                 </div>
                             </div>
                             <!--end::Step 2-->
