@@ -283,7 +283,7 @@
                 </div>
                 <p class="tw-text-red-500 error-wilayah" style="display: none"></p>
                   
-                <div class="tw-relative">
+                <!-- <div class="tw-relative">
 
                     <select name="level_bahasa" id="level_bahasa" class="tw-w-full tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
                         <option value="">Level Bahasa Inggris </option>
@@ -293,7 +293,7 @@
     
                     </select>   
                 </div>
-                <p class="tw-text-red-500 error-level_bahasa" style="display: none"></p>
+                <p class="tw-text-red-500 error-level_bahasa" style="display: none"></p> -->
                 {{-- referensi --}}
                 <div class="tw-relative">
                     <select name="referensi" id="referensi" class="referensi tw-w-full tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
