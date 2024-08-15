@@ -567,7 +567,12 @@
                             </div>
                         </div>
                         <p class="tw-text-red-500 error-nama_kontak_darurat" style="display: none"></p>
-                        <!-- nomor  -->
+                        <!-- nomor  telp darurat-->
+                        <div class="tw-mb-3">
+                            <div class="tw-relative">
+                                <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number" name="no_telp_kontak_darurat" id="no_telp_kontak_darurat" placeholder="Nomor Telp Kontak Darurat" required>
+                            </div>
+                        </div>
                         <div class="tw-mb-3">
                             <div class="tw-relative tw-flex">
                                 <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password" placeholder="Masukan Password Akun " >
