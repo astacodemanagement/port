@@ -444,7 +444,7 @@ class RegisterController extends Controller
                 // 'provinsi_id' => 'required|numeric',
                 // 'kota_id' => 'required|numeric',
                 // 'kecamatan_id' => 'required|numeric',
-                'level_bahasa' => 'required',
+                // 'level_bahasa' => 'required',
                 'referensi' => 'required|numeric',
                 'nama_referensi' => 'required_if:referensi,7',
             ],
