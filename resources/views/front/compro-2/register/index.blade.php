@@ -542,11 +542,32 @@
                                 <label class="tw-text-gray-700" for="check_whatsapp_number">Nomor whatsapp sama dengan nomor handphone aktif</label>
                             </div>
                         </div>
+
                         <p class="tw-text-red-500 error-whatsapp_number" style="display: none"></p>
                         <div class="tw-mb-3 tw-relative">
                             <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md phone-number whatsapp-number" name="no_wa" id="no_wa" placeholder="Nomor Whatsapp Aktif " required>
                         </div>
                         <p class="tw-text-red-500 error-no_wa" style="display: none"></p>
+               
+                        <div class="tw-mb-3">
+                            <div class="tw-flex tw-items-center">
+                                <!-- kontak darurat -->
+                                 <select name="hubungan" id="hubungan" class="tw-w-full tw-font-work-sans tw-text-gray-600 tw-bg-white tw-mt-4 tw-p-3 tw-border tw-px-3 tw-border-gray-300 tw-rounded-md" required>
+                                    <option value="">Hubungan dengan kontak darurat</option>
+                                    <option value="1">Orang Tua</option>
+                                    <option value="2">Saudara Kandung</option>
+                                    <option value="3">Suami/Istri</option>
+                                 </select>
+                            </div>
+                        </div>
+                        <!-- nama kontak darurat -->
+                        <div class="tw-mb-3">
+                            <div class="tw-relative">
+                                <input type="text" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="nama_kontak_darurat" id="nama_kontak_darurat" placeholder="Nama Kontak Darurat" required>
+                            </div>
+                        </div>
+                        <p class="tw-text-red-500 error-nama_kontak_darurat" style="display: none"></p>
+                        <!-- nomor  -->
                         <div class="tw-mb-3">
                             <div class="tw-relative tw-flex">
                                 <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password" placeholder="Masukan Password Akun " >

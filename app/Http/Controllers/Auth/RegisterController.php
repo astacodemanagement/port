@@ -96,9 +96,9 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-
         $request->merge(['no_hp' => str_replace(' ', '', $request->no_hp)]);
         $request->merge(['no_wa' => str_replace(' ', '', $request->has('check_whatsapp_number') ? $request->no_hp : $request->no_wa)]);
+        $request->merge(['no_telp_darurat' => str_replace(' ', '', $request->no_telp_darurat)]);
 
         $request->validate($this->rules(), $this->messages(), $this->attributes());
 
@@ -162,16 +162,13 @@ class RegisterController extends Controller
             8 => 'S2',
             9 => 'S3'
         ];
-        $levelBahasa = [
-            1 => 'Beginner English (Pemula)',
-            2 => '⁠Medium English (Good)',
-            3 => 'Advance English (Profesional)'
-        ];
+       
         $hubungan = [
             1 => 'Orang Tua',
             2 => 'Saudara Kandung',
             3 => 'Suami/Istri',
         ];      
+
         DB::beginTransaction();
 
         try {
@@ -217,7 +214,6 @@ class RegisterController extends Controller
                 'alamat' => $request->alamat,
                 'provinsi_id' => $provinsi?->id,
                 'kota_id' => $kota?->id,
-                'level_bahasa_inggris' => $levelBahasa[$request->level_bahasa],
                 'keterangan_belum_kerja' => $request->has('keterangan_belum_kerja') ? 'Belum Bekerja' : null,
                 'keterangan_tidak_ada_passpor' => $request->has('keterangan_tidak_ada_passpor') ? 'Tidak Ada Paspor' : null,
                 'kecamatan_id' => $wilayah?->id,
@@ -238,9 +234,9 @@ class RegisterController extends Controller
                 'email' => $request->email,
                 'no_hp' => $noHp,
                 'no_wa' => $noWa, 
-                'hubungan' => $hubungan[$request->hubungan],
-                'no_telp_darurat' => $request->no_telp_darurat,
-                'nama_kontak_darurat' => $request->nama_kontak_darurat,
+                'hubungan' => $hubungan[$request->hubungan] ?? null,
+                'no_telp_darurat' => $request->no_telp_darurat ?? null,
+                'nama_kontak_darurat' => $request->nama_kontak_darurat ?? null,
                 'user_id' => $user->id
             ];
 
@@ -251,21 +247,11 @@ class RegisterController extends Controller
                     'field' => 'foto',
                     'dir' => 'foto',
                 ],
-                // [
-                //     'input' => 'file_paspor',
-                //     'field' => 'paspor',
-                //     'dir' => 'paspor',
-                // ],
                 [
                     'input' => 'file_ktp',
                     'field' => 'ktp',
                     'dir' => 'ktp',
                 ],
-                // [
-                //     'input' => 'file_kk',
-                //     'field' => 'kk',
-                //     'dir' => 'kartu-keluarga',
-                // ]
             ];
 
             foreach ($arrDoc as $doc) {

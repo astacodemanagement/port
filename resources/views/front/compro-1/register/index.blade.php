@@ -511,7 +511,7 @@
                                                 <input type="text" class="form-control" name="nama_kontak_darurat" placeholder="Nama Kontak Darurat">
                                             </div>
                                             <div class="form-input mb-3">
-                                                <input type="number" class="form-control phone-number" name="no_telp_darurat"  placeholder="Nomor Telepon Darurat">
+                                                <input type="text" class="form-control phone-number" name="no_telp_darurat"  placeholder="Nomor Telepon Darurat">
                                             </div>
                                             <div class="form-input mb-3">
                                                 <div class="input-group">
