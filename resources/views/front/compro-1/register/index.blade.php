@@ -258,14 +258,14 @@
                                         </select>
                                     </div>
 
-                                    <div class="form-group mb-5">
+                                    <!-- <div class="form-group mb-5">
                                         <select class="form-select" name="level_bahasa" aria-labelledby="levelBahasa">
                                             <option value="">Level Bahasa Inggris</option>
                                             <option value="1">Beginner English (pemula)</option>
                                             <option value="2">⁠Medium English (good)</option>
                                             <option value="3">Advance English (profesional)</option>
                                         </select>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group mb-5">
                                         <select name="referensi" class="form-select reference">
                                             <option value="">Dari mana kamu mengetahui kami ?</option>
