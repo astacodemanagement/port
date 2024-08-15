@@ -296,7 +296,7 @@
                                 <label class="form-label">Dokumen Perjalanan Luar Negeri</label>
                                 <div class="fv-row mb-10">
                                     <div class="form-group mb-5">
-                                        <input type="text" class="form-control" name="no_paspor" placeholder="Nomor Paspor" value="">
+                                        <input type="text" class="form-control" name="no_paspor" id="nomor_paspor" placeholder="Nomor Paspor" value="">
                                     </div>
                                     <div class="form-group mb-5">
                                         <div class="input-group">
@@ -511,7 +511,7 @@
                                                 <input type="text" class="form-control" name="nama_kontak_darurat" placeholder="Nama Kontak Darurat">
                                             </div>
                                             <div class="form-input mb-3">
-                                                <input type="text" class="form-control phone-number" name="no_telp_darurat"  placeholder="Nomor Telepon Darurat">
+                                                <input type="text" class="form-control darurat" name="no_telp_darurat"  placeholder="Nomor Telepon Darurat">
                                             </div>
                                             <div class="form-input mb-3">
                                                 <div class="input-group">
@@ -869,6 +869,19 @@
             $('.whatsapp-number').val($(this).val())
         }
     })
+    $('.darurat').on('input', function() {
+            if ($(this).val().length > 13) {
+                $(this).val($(this).val().slice(0, 13))
+            }
+        })
+        // nomor passpor
+        
+        $('.nomor_paspor').on('input', function() {
+            if ($(this).val().length > 8) {
+                $(this).val($(this).val().slice(0, 8))
+            }
+        })
+
 
     $('.btn-show-password').on('click', function() {
         const t = $(this)
