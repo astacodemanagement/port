@@ -186,7 +186,7 @@ class RegisterController extends Controller
             /** INSERT PENDAFTARAN */
             $pendaftaran = [
                 // 'negara_id' => $request->negara_id,
-                'compro' => $request->compro,
+                'compro' => $request->compro ,
                 'negara_id' => 0,
                 'kategori_job_id' => $request->kategori_job_id,
                 'status' => 'Belum Verifikasi(Pending)'
@@ -357,11 +357,19 @@ class RegisterController extends Controller
             if (count($pengalamanKerja) > 0) {
                 PengalamanKerja::insert($pengalamanKerja);
             }
-            // give notif
-            Mail::send('email.template', ['token' => $token], function($message) use ($request) {
-                $message->to($request->email);
-                $message->subject('Verify your email address');
-            });
+            $imagepsi = url('logo.png');
+            $imageakama = url('akamalogo.png');
+            if($request->compro  == 1 ){
+                Mail::send('email.psi', ['token' => $token,'nama_lengkap' => $request->nama_lengkap,'image'=>$imagepsi], function($message) use ($request) {
+                    $message->to($request->email);
+                    $message->subject('Verifikasi Email');
+                });
+            }else{
+                Mail::send('email.akama', ['token' => $token,'nama_lengkap' => $request->nama_lengkap,'image' => $imageakama], function($message) use ($request) {
+                    $message->to($request->email);
+                    $message->subject('Verifikasi Email');
+                });
+            }
         
             DB::commit();
 

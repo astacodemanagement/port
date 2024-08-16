@@ -54,6 +54,7 @@ use App\Http\Controllers\SudahVerifikasiController;
 use App\Http\Controllers\SupplierController;
 use App\Models\DetailBayar;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -464,3 +465,13 @@ Route::group(['prefix' => 'compro2'], function () {
 
 // preview cv
 Route::get('/cv/{id}', [CvController::class, 'previewCv'])->name('preview-cv');
+
+Route::get('/test/email',function(){
+    $image = url('logo.png');
+    dd($image);
+    Mail::send('email.psi', ['token' => '21893819830921','nama_lengkap' => 'pramudita ahmad','image' => $image], function($message) {
+        $message->to('pramudita5800@gmail.com');
+        $message->subject('Verify your email address');
+    });
+
+});
