@@ -676,7 +676,7 @@
             }
         })
 
-        let currentStep = 3;
+        let currentStep = 1;
 
         function showStep(step) {
             $('.stepper-item').each(function() {
