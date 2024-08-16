@@ -4,8 +4,11 @@
 
 @section('content')
 @include('front.compro-2.component.navdefault')
+<div class="" style="max-width: 100%;">
+
+
 {{-- Slider section --}}
-    <div class="md:tw-h-[500px] tw-h-[350px]">
+    <div class="md:tw-h-full  tw-h-[350px]">
         <div class="tw-h-full" style="background: url('{{ asset('frontend') }}/assets/image/carousel.png'); background-position: center; background-size: cover;">
         <section id="image-carousel" class="splide tw-max-w-7xl mx-auto tw-rounded-lg tw-block" aria-label="Beautiful Images">
             <div class="splide__track">
@@ -13,7 +16,7 @@
                 @foreach ($slider as $r  )
                   
                 <li class="splide__slide relative overflow-hidden flex justify-center items-center">
-                  <img src="/upload/slider/{{ $r->gambar }}" alt="Slider Image 1" class="tw-rounded-lg block mx-auto rounded-2xl max-w-full tw-w-[75%]  bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
+                  <img src="upload/slider/{{ $r->gambar }}" alt="Slider Image 1" class="tw-rounded-lg tw-py-10 tw-pb-12 block mx-auto rounded-2xl max-w-full  bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
                 </li>
                 @endforeach
                 
@@ -358,6 +361,7 @@
                    
             
     </div>
+    </div>
     @push('css')
      <style>
       .splide__slide {
@@ -373,12 +377,11 @@
         .splide__slide img {
   width: 100%;
   height: 100%;
-  background-position:center;
-  background-size: cover; 
-  object-fit: cover;
-  padding: 2rem;
+  
+  
   border-radius: 20px;
   margin-top: 3rem;
+  margin-bottom: 3rem;
 }
 /*remove padding in mobile  */
 @media (max-width: 767px) {
@@ -578,7 +581,7 @@ $(document).ready(function() {
 });
 
     </script>
-      <script>
+      <!-- <script>
        document.addEventListener('DOMContentLoaded', function() {
   new Splide('#image-carousel2', {
     type   : 'loop',
@@ -625,7 +628,7 @@ $(document).ready(function() {
                 });
             });
        });
-    </script>
+    </script> -->
 @endpush
  
 @endsection
