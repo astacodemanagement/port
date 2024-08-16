@@ -375,8 +375,8 @@
     border-radius: 20px;
     }
         .splide__slide img {
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  max-height: 630px;
   
   
   border-radius: 20px;
@@ -387,7 +387,7 @@
 @media (max-width: 767px) {
   .splide__slide img {
     padding: 1em;
-    height: 250px;
+    height: 215px;
   }
 }
 .carousel-image {
