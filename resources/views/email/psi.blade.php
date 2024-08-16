@@ -47,6 +47,10 @@
 <body>
     <div class="container">
         <div class="card">
+
+                <img src="{{$image}}" alt="" style="width: 60px; height:auto;">
+        
+
             <h2 class="heading">Akun Berhasil Dibuat!!</h2>
             <p class="text">Selamat, {{$nama_lengkap}}</p>
             <p class="text" style="margin-bottom: 20px;">Akun anda berhasil dibuat, tekan tombol di bawah ini untuk verifikasi akun</p>
