@@ -7,14 +7,24 @@
         <div class="container">
             @include('front.compro-1.layouts.navbar')
             <!-- Caraousel Section -->
-            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div id="slider" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
-                        aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
-                        aria-label="Slide 3"></button>
+      
+
+                    @php
+                        $i = 0;
+                        $count = app\Models\Slider::count() + 1;
+
+
+                    @endphp
+                    @while ($i < $count)
+
+                        <button type="button" data-bs-target="#slider" data-bs-slide-to="{{ $i }}"
+                            class="{{ $i == 0 ? 'active' : '' }}" aria-current="true" aria-label="Slide {{ $i + 1 }}"></button>
+                        @php
+                            $i++;
+                        @endphp
+                    @endwhile
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="1000">
@@ -44,33 +54,7 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="carousel-item" data-bs-interval="1000">
-                        <div class="carousel-items">
-                            <div class="carousel-items-left">
-                                <div class="items-left-text">
-                                    <div class="text-heading">
-                                        <h6>PT. Sahabat Putra International</h6>
-                                    </div>
-                                    <div class="carousel-title-heading">
-                                        <h1>Siap bantu proses kamu untuk kerja di luar negeri</h1>
-                                    </div>
-                                    <div class="carousel-text">
-                                        <span>Kami adalah Perusahaan yang memiliki lisensi resmi P3MI (Penempatan
-                                            Pekerja Migran
-                                            Indonesia) dibawah naungan Kementrian Tenaga Kerja</span>
-                                    </div>
-                                    <div class="carousel-link-button mt-4">
-                                        <a href="#">Lihat Pekerjaan Tersedia</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="items-right-image">
-                                <div class="carousel-image">
-                                    <img src="{{ asset('frontend') }}/assets/image/image-header.png" alt="">
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+              
                     @foreach ($slider as $p)
                         <div class="carousel-item" data-bs-interval="10000" >
                             <div class="carousel-items">
@@ -98,12 +82,13 @@
                             </div>
                         </div>
                     @endforeach
+                  
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleDark" role="button" data-bs-slide="prev">
+                <a class="carousel-control-prev" href="#slider" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselExampleDark" role="button" data-bs-slide="next">
+                <a class="carousel-control-next" href="#slider" role="button" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="sr-only">Next</span>
                 </a>
