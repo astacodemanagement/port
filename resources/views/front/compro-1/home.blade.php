@@ -13,7 +13,7 @@
 
                     @php
                         $i = 0;
-                        $count = app\Models\Slider::count() + 1;
+                        $count = app\Models\Slider::where('compro',1)->count() + 1;
 
 
                     @endphp
