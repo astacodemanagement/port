@@ -22,6 +22,8 @@ class JobController extends Controller
     {
         $id = hashId($id, 'decode');
         $job = Job::active()->where('id', $id)->firstOrFail();
+        // carbon create at
+        $job->create_at = $job->created_at->diffForHumans();
         $relateJobs = Job::active()->where('kategori_job_id', $job->kategori_job_id)->where('id', '!=', $id)->orderBy('id', 'desc')->limit(4)->get();
 
         return viewCompro('jobs.detail', compact('job', 'relateJobs'));
