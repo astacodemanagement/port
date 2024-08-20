@@ -878,9 +878,6 @@
             if (t.val() === '1') {
                 country.val('Indonesia');
                 country.prop('disabled', true);
-            } else {
-                country.val('');
-                country.prop('disabled', false);
             }
             refreshExperienceList()
         });
