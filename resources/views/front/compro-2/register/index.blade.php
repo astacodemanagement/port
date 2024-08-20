@@ -316,7 +316,7 @@
         <p class="tw-text-red-500 error-referensi" style="display: none"></p>
         <!-- inpur sponsor -->
 
-        <input type="text" name="sponsor" id="sponsor" placeholder="Nama Sponsor" class="sponsor tw-w-full tw-font-work-sans  tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required style="display:none">
+        <input type="text" name="nama_referensi" id="sponsor" placeholder="Nama Sponsor" class="sponsor tw-w-full tw-font-work-sans  tw-font-medium tw-mt-4 tw-p-2 tw-border tw-border-gray-300 tw-rounded-md" required style="display:none">
 
         <button type="button" class="tw-py-2 tw-px-5 tw-text-white tw-w-20 tw-bg-sky-500 tw-rounded-md tw-mt-4 next-step">Next</button>
     </form>
