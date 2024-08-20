@@ -300,7 +300,7 @@
                                         </div>
                                         <div>
                                             <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-sm  tw-mb-1">Kontrak Kerja</p>
-                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->kontrak_kerja}} Bulan</p>
+                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->kontrak_kerja}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start tw-space-x-2 tw-mt-5 tw-gap-2">
@@ -330,7 +330,7 @@
                                         </div>
                                         <div>
                                             <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-sm  tw-mb-1">Cuti Kerja</p>
-                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->cuti_kerja}} hari / tahun</p>
+                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->cuti_kerja}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start tw-space-x-2 tw-mt-5 tw-gap-2">
