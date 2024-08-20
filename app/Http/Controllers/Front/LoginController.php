@@ -88,11 +88,7 @@ class LoginController extends Controller
         $redirectTo = session()->has('redirect_to') ? session()->get('redirect_to') : route('member.index');
         session()->forget('redirect_to');
     
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Login successful',
-            'redirect_to' => $redirectTo,
-        ], 200);
+       return redirect()->intended($redirectTo);
     }
     
     public function logout(Request $request)
