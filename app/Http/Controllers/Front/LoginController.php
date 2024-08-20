@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/member';
 
     /**
      * Create a new controller instance.
@@ -91,7 +91,7 @@ class LoginController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Login successful',
-            'redirect_to' => '/member',
+            'redirect_to' => $redirectTo,
         ], 200);
     }
     
