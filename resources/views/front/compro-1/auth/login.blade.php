@@ -208,7 +208,9 @@
                             timer: 2000,
                             showConfirmButton: false
                         }).then(function() {
-                            window.location.href = response.redirect_url;
+                            // pinfah ke member
+                            console.log('redirect to member');
+                            window.location.href = "member";
                         });
                     },
                     error: function(xhr) {
