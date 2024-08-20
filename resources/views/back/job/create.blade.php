@@ -399,7 +399,7 @@
                                                                                             name="jenis_kelamin" required>
                                                                                             <option value="">--Pilih
                                                                                                 jenis kelamin--</option>
-                                                                                            <option value="Pria / Wanita">Pria / Wanita
+                                                                                            <option value="Pria / wanm">Pria / wanm
                                                                                             <option value="Laki-laki">
                                                                                                 Laki-laki
                                                                                             </option>
@@ -506,10 +506,11 @@
                                                                                             name="pendidikan" required>
                                                                                             <option value="">--Pilih
                                                                                                 pendidikan--</option>
-                                                                                            <option value="Tidak diperlukan pendidikan">
-                                                                                                Tidak diperlukan pendidikan
-                                                                                            </option>
-                                                                                            <option value="SMA/SMK">SMA/SMK</option>
+
+                                                                                            <option value="SD">SD</option>
+                                                                                            <option value="SMP">SMP</option>
+                                                                                            <option value="SMA">SMA</option>
+                                                                                            <option value="SMK">SMK</option>
                                                                                             <option value="D3">D3</option>
                                                                                             <option value="S1">S1</option>
                                                                                             <option value="S2">S2</option>

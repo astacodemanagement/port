@@ -588,15 +588,26 @@
                                                                                             name="pendidikan" required>
                                                                                             <option value="">--Pilih
                                                                                                 pendidikan--</option>
-                                                                                            <option
-                                                                                                value="Tidak diperlukan pendidikan"
-                                                                                                {{ $data->pendidikan == 'Tidak diperlukan pendidikan' ? 'selected' : '' }}>
-                                                                                                Tidak diperlukan pendidikan
+                                                                                              
+
+                                                                                            <option value="SD"
+                                                                                                {{ $data->pendidikan == 'SD' ? 'selected' : '' }}>
+                                                                                                SD
                                                                                             </option>
+                                                                                            <option value="SMP"
+                                                                                                {{ $data->pendidikan == 'SMP' ? 'selected' : '' }}>
+                                                                                                SMP
+                                                                                            </option>
+                                                                                            
+
                                                                                             <option
-                                                                                                value="SMA/SMK"
-                                                                                                {{ $data->pendidikan == 'SMA/SMK' ? 'selected' : '' }}>
-                                                                                                SMA/SMK
+                                                                                                value="SMA"
+                                                                                                {{ $data->pendidikan == 'SMA' ? 'selected' : '' }}>
+                                                                                                SMA
+                                                                                            </option>
+                                                                                            <option value="SMK"
+                                                                                                {{ $data->pendidikan == 'SMK' ? 'selected' : '' }}>
+                                                                                                SMK
                                                                                             </option>
                                                                                             <!-- d3 -->
                                                                                             <option
