@@ -264,15 +264,27 @@
                                                                     <br><br>
                                                                     <h4 class="sub-title"> > Kontak Darurat</h4>
                                                                     <div class="form-group row">
-                                                                        <div class="col-sm-4">
-                                                                            <label class="col-form-label" for="nama_keluarga">Nama
-                                                                                Keluarga</label>
-                                                                            <input type="text" readonly class="form-control" id="nama_keluarga" name="nama_keluarga" value="{{ $belum_diverifikasi->kandidat->nama_keluarga }}">
-                                                                        </div>
+                                                                       
                                                                         <div class="col-sm-4">
                                                                             <label class="col-form-label" for="hubungan">Hubungan
-                                                                                Keluarga</label>
-                                                                            <input type="text" readonly class="form-control" id="hubungan" name="hubungan" value="{{ $belum_diverifikasi->kandidat->hubungan }}">
+                                                                                Kontak Darurat</label>
+                                                                                <select readonly class="form-control" id="hubungan" name="hubungan">
+                                                                                    <option value="Orang Tua" {{ $belum_diverifikasi->kandidat->hubungan == 'Orang Tua' ? 'selected' : '' }}>
+                                                                                        Orang Tua</option>
+                                                                                    <option value="Saudara" {{ $belum_diverifikasi->kandidat->hubungan == 'Saudara' ? 'selected' : '' }}>
+                                                                                        Saudara</option>
+                                                                                    <option value="Keluarga" {{ $belum_diverifikasi->kandidat->hubungan == 'Keluarga' ? 'selected' : '' }}>
+                                                                                        Keluarga</option>
+                                                                                    <option value="Teman" {{ $belum_diverifikasi->kandidat->hubungan == 'Teman' ? 'selected' : '' }}>
+                                                                                        Teman</option>
+                                                                                    <option value="Lainnya" {{ $belum_diverifikasi->kandidat->hubungan == 'Lainnya' ? 'selected' : '' }}>
+                                                                                        Lainnya</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        <div class="col-sm-4">
+                                                                            <label class="col-form-label" for="nama_keluarga">Nama
+                                                                                Kontak Darurat</label>
+                                                                            <input type="text" readonly class="form-control" id="nama_keluarga" name="nama_keluarga" value="{{ $belum_diverifikasi->kandidat->nama_kontak_darurat }}">
                                                                         </div>
                                                                         <div class="col-sm-4">
                                                                             <label class="col-form-label" for="no_telp_darurat">No

@@ -328,31 +328,27 @@ class RegisterController extends Controller
 
             $pengalamanKerja = [];
             /** INSERT PENGALAMAN KERJA */
-            if ($request->has('negara_tempat_kerja') != null) {
+          if($request->has('negara_tempat_kerja') && $request->has('keterangan_belum_kerja') != null ){
+            for ($i = 0; $i < count($request->negara_tempat_kerja); $i++) {
+                $negaraTempatKerja = isset($request->kategori[$i]) ? $request->kategori[$i] : null;
+                $negaraTempatKerja = isset($request->negara_tempat_kerja[$i]) ? $request->negara_tempat_kerja[$i] : null;
+                $namaPerusahaan = isset($request->nama_perusahaan[$i]) ? $request->nama_perusahaan[$i] : null;
+                $tanggalMulaiKerja = isset($request->tanggal_mulai_kerja[$i]) ? $request->tanggal_mulai_kerja[$i] : null;
+                $tanggalSelesaiKerja = isset($request->tanggal_selesai_kerja[$i]) ? $request->tanggal_selesai_kerja[$i] : null;
+                $posisi = isset($request->posisi[$i]) ? $request->posisi[$i] : null;
 
-
-
-
-                for ($i = 0; $i < count($request->negara_tempat_kerja); $i++) {
-                    $negaraTempatKerja = isset($request->kategori[$i]) ? $request->kategori[$i] : null;
-                    $negaraTempatKerja = isset($request->negara_tempat_kerja[$i]) ? $request->negara_tempat_kerja[$i] : null;
-                    $namaPerusahaan = isset($request->nama_perusahaan[$i]) ? $request->nama_perusahaan[$i] : null;
-                    $tanggalMulaiKerja = isset($request->tanggal_mulai_kerja[$i]) ? $request->tanggal_mulai_kerja[$i] : null;
-                    $tanggalSelesaiKerja = isset($request->tanggal_selesai_kerja[$i]) ? $request->tanggal_selesai_kerja[$i] : null;
-                    $posisi = isset($request->posisi[$i]) ? $request->posisi[$i] : null;
-
-                    $pengalamanKerja[] = [
-                        'pendaftaran_id' => $pendaftaran->id,
-                        'negara_tempat_kerja' => $negaraTempatKerja,
-                        'nama_perusahaan' => $namaPerusahaan,
-                        'tanggal_mulai_kerja' => $tanggalMulaiKerja,
-                        'tanggal_selesai_kerja' => $tanggalSelesaiKerja,
-                        'posisi' => $posisi,
-                        'created_at' => now(),
-                        'updated_at' => now()
-                    ];
-                }
+                $pengalamanKerja[] = [
+                    'pendaftaran_id' => $pendaftaran->id,
+                    'negara_tempat_kerja' => $negaraTempatKerja,
+                    'nama_perusahaan' => $namaPerusahaan,
+                    'tanggal_mulai_kerja' => $tanggalMulaiKerja,
+                    'tanggal_selesai_kerja' => $tanggalSelesaiKerja,
+                    'posisi' => $posisi,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ];
             }
+        }
 
             if (count($pengalamanKerja) > 0) {
                 PengalamanKerja::insert($pengalamanKerja);
