@@ -457,6 +457,9 @@
                                                                                             name="jenis_kelamin" required>
                                                                                             <option value="">--Pilih
                                                                                                 jenis kelamin--</option>
+                                                                                                <option value="Laki-laki & Perempuan" {{$data->jenis_kelamin == 'Laki-laki & Perempuan' ? 'selected' : '' }}>Laki-laki & Perempuan
+                                                                                                </option>
+                                                                                                
 
                                                                                             <!-- Cek apakah nilai yang sedang diedit adalah '5' -->
                                                                                             <option value="Laki-laki"
