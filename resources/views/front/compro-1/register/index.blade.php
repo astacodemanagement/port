@@ -316,7 +316,7 @@
                                     <div class="form-group mb-5">
                                         <select class="form-select" name="kondisi_paspor" aria-labelledby="dropdownPaspor">
                                             <option value="">Pilihlah Pertanyaan dibawah ini jika kamu memiliki Paspor</option>
-                                            <option value="1">Paspor saLuya fisiknya masih ada</option>
+                                            <option value="1">Paspor saya fisiknya masih ada</option>
                                             <option value="2">Paspor saya hilang</option>
                                             <option value="3">Paspor saya rusak</option>
                                             <option value="4">Paspor saya ditahan agency sebelumnya</option>

@@ -96,6 +96,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        // dd($request->all());
         $request->merge(['no_hp' => str_replace(' ', '', $request->no_hp)]);
         $request->merge(['no_wa' => str_replace(' ', '', $request->has('check_whatsapp_number') ? $request->no_hp : $request->no_wa)]);
         $request->merge(['no_telp_darurat' => str_replace(' ', '', $request->no_telp_darurat)]);
@@ -215,7 +216,7 @@ class RegisterController extends Controller
                 'provinsi_id' => $provinsi?->id,
                 'kota_id' => $kota?->id,
                 'keterangan_belum_kerja' => $request->has('keterangan_belum_kerja') ? 'Belum Bekerja' : null,
-                'keterangan_tidak_ada_passpor' => $request->has('keterangan_tidak_ada_passpor') ? 'Tidak Ada Paspor' : null,
+                'keterangan_tidak_ada_passpor' => $request->has('keteranga  n_tidak_ada_passpor') ? 'Tidak Ada Paspor' : null,
                 'kecamatan_id' => $wilayah?->id,
                 'referensi' => isset($referensi[$request->referensi]) ? $referensi[$request->referensi] : null,
                 'nama_referensi' => $request->referensi == 6 ? $request->nama_referensi : null,
@@ -328,10 +329,10 @@ class RegisterController extends Controller
 
             $pengalamanKerja = [];
             /** INSERT PENGALAMAN KERJA */
-          if($request->has('negara_tempat_kerja') && $request->has('keterangan_belum_kerja') != null ){
-            for ($i = 0; $i < count($request->negara_tempat_kerja); $i++) {
+          if($request->keterangan_belum_kerja == null){
+            for ($i = 0; $i < count($request->kategori); $i++) {
                 $negaraTempatKerja = isset($request->kategori[$i]) ? $request->kategori[$i] : null;
-                $negaraTempatKerja = isset($request->negara_tempat_kerja[$i]) ? $request->negara_tempat_kerja[$i] : null;
+                $negaraTempatKerja = isset($request->negara_tempat_kerja[$i]) ? $request->negara_tempat_kerja[$i] : "Indonesia";
                 $namaPerusahaan = isset($request->nama_perusahaan[$i]) ? $request->nama_perusahaan[$i] : null;
                 $tanggalMulaiKerja = isset($request->tanggal_mulai_kerja[$i]) ? $request->tanggal_mulai_kerja[$i] : null;
                 $tanggalSelesaiKerja = isset($request->tanggal_selesai_kerja[$i]) ? $request->tanggal_selesai_kerja[$i] : null;

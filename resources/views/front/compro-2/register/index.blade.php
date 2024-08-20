@@ -585,7 +585,7 @@
                         </div>
                         <!-- err -->
                     </div>
-                    <p class="tw-text-red-500 error-password" style="display: none"></p>
+         
                     <div class="tw-mb-3">
                         <div class="tw-relative tw-flex">
                             <input type="password" class="tw-w-full tw-p-3 tw-border tw-border-gray-300 tw-rounded-md" name="password_confirmation" placeholder="Konfirmasi Password Akun">
@@ -593,6 +593,7 @@
                         </div>
                         <!-- err -->
                     </div>
+                    <p class="tw-text-red-500 error-password" style="display: none"></p>
                     <p class="tw-text-red-500 error-password_confirmation" style="display: none"></p>
                 </div>
             </div>
@@ -860,6 +861,13 @@
                 endWorkdate.attr('data-name', `tanggal_selesai_kerja.${i}`);
                 position.attr('data-name', `posisi.${i}`);
                 desc.attr('data-name', `deskripsi_pekerjaan.${i}`);
+                if (t.val() === '1') {
+                country.val('Indonesia');
+                country.prop('disabled', true);
+            } else {
+                country.val('');
+                country.prop('disabled', false);
+            }
             });
         }
         $('.row-list-experience').on('change', '.experience-category', function() {
