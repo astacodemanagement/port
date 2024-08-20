@@ -506,7 +506,9 @@
                 </div>
                 <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-8 tw-px-5 md:tw-px-0">
                     {{-- job card --}}
-                    @foreach ($relateJobs as $item)
+                 
+                        
+                    @forelse ($relateJobs as $item)
                             
                         
                 
@@ -585,7 +587,15 @@
                                 
                                 </div>
                             </div>
-                            @endforeach
+                    @empty
+                        <div class="tw-w-full tw-flex tw-justify-center tw-items-center tw-mt-10">
+                            <div class="tw-flex tw-items-center tw-space-x-2">
+                                <p class="tw-text-3xl
+                                tw-text-[#11181C] tw-font-work-sans tw-font-bold">Tidak Ada Lowongan Terkait</p>
+                            </div>
+                        </div>
+                    @endforelse
+
                     
                 </div>
             </div>
