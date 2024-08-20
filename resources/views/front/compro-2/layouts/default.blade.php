@@ -129,7 +129,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
 " rel="stylesheet">
 
 </head>
-<body class="tw-opacity-0 tw-transition-opacity tw-duration-500">
+<body class="tw-opacity-0 tw-transition-opacity tw-duration-500 tw-max-w-full">
   {{-- navbar --}}
   
   
@@ -146,8 +146,8 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
                     <div class="tw-grid tw-grid-cols-1 tw-gap-6 sm:tw-grid-cols-2 md:tw-grid-cols-3 lg:tw-grid-cols-5   ">
                         <div>
                             <a href="#" class="tw-bg-white">
-                                <div class="tw-bg-white md:tw-w-2/3 tw-w-1/3 h-full tw-p-2 tw-rounded-md">
-                                    <img class="md:tw-w-full tw-w-2full tw-h-10" src="{{ asset('frontend') }}/assets/image/akamalogo.png" alt="">
+                                <div class="tw-bg-white md:tw-w-2/3 tw-w-1/3   h-full tw-p-2 tw-rounded-md">
+                                    <img class="md:tw-w-full tw-w-full tw-h-10" src="{{ asset('frontend') }}/assets/image/akamalogo.png" alt="">
                                 </div>
                             </a>
                         </div>
