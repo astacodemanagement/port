@@ -15,8 +15,8 @@
               <ul class="splide__list sm:p-0">
                 @foreach ($slider as $r  )
                   
-                <li class="splide__slide relative overflow-hidden flex justify-center items-center">
-                  <img src="upload/slider/{{ $r->gambar }}" alt="Slider Image 1" class="tw-rounded-lg tw-py-10 tw-pb-12 block mx-auto rounded-2xl max-w-full  bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
+                <li class="splide__slide relative overflow-hidden flex justify-center items-center tw-my-auto">
+                  <img src="upload/slider/{{ $r->gambar }}" alt="Slider Image 1" class="tw-rounded-lg  tw-pb-14 block mx-auto rounded-2xl max-w-full  bg-center bg-cover p-8 mt-12 sm:p-4 sm:h-62">
                 </li>
                 @endforeach
                 
@@ -32,11 +32,13 @@
         <div class="tw-max-w-full tw-h-full  tw-bg-[#FFFFFF] tw-rounded-t-3xl tw-shadow-lg tw-px-4 tw-pt-6 tw-pb-4">
             <div class="tw-max-w-7xl tw-mx-auto">
             <form id="search-form" class="tw-flex tw-items-center tw-gap-0 tw-p-2 tw-bg-[#F4F4F5] tw-rounded-lg" data-aos-duration="1000" data-aos="zoom-in-up">
-              <div class="tw-relative tw-flex tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-border-r tw-border-gray-300">
+              <!-- widt 25% -->
+              
+              <div class="tw-relative tw-flex  tw-items-center tw-gap-2 tw-p-2 tw-bg-[#F4F4F5] tw-border-r tw-border-gray-300">
                   <div class="tw-relative tw-cursor-pointer" id="custom-dropdown">
                       <div class="tw-flex tw-items-center tw-gap-2 tw-bg-[#F4F4F5] tw-p-2 tw-rounded-lg tw-border tw-border-gray-300">
                           <img src="/upload/negara/{{ $negara[0]->logo }}" alt="Country Flag" class="tw-w-8 tw-h-8" id="selected-flag"/>
-                          <span id="selected-code">{{ $negara[0]->kode_negara }}</span>
+                          <span id="selected-code" class="tw-hidden md:tw-inline" >{{ $negara[0]->kode_negara }}</span>
                           <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M6 0L12 6H0L6 0Z" fill="#606060" />
                           </svg>
@@ -58,9 +60,9 @@
               </div>
               <div class="tw-flex tw-items-center tw-gap-2 tw-p-2 tw-px-4 tw-mr-2 tw-bg-[#F1F9FE] tw-rounded-md tw-cursor-pointer">
                   <i class="fa-solid fa-sliders tw-text-sky-500"></i>
-                  <span class="tw-text-sky-500">Filter</span>
+                  <span class="tw-text-sky-500 tw-hidden md:tw-inline">Filter</span>
               </div>
-              <button type="submit" class="tw-p-2 tw-px-4 tw-bg-sky-500 tw-text-white tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer">
+              <button type="submit" class="md:tw-block tw-hidden tw-p-2 tw-px-4 tw-bg-sky-500 tw-text-white tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer">
                   Search
               </button>
           </form>
@@ -386,8 +388,9 @@
 /*remove padding in mobile  */
 @media (max-width: 767px) {
   .splide__slide img {
-    padding: 1em;
-    height: 215px;
+    padding-left: 1em;
+    height: 300px;
+    padding-right: 1em;
   }
 }
 .carousel-image {
@@ -577,6 +580,7 @@ $(document).ready(function() {
     perPage: 1,
     autoplay: true,
     interval: 5000,
+    arrows: false,
   }).mount();
 });
 
