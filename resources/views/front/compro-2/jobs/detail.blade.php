@@ -339,7 +339,7 @@
                                         </div>
                                         <div>
                                             <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-sm tw-mb-1">Probation</p>
-                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->masa_percobaan}} bulan</p>
+                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->masa_percobaan}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start tw-space-x-2 tw-mt-5 tw-gap-2">
@@ -357,7 +357,7 @@
                                         </div>
                                         <div>
                                             <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-sm  tw-mb-1">Overtime</p>
-                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->kerja_lembur}} hari</p>
+                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->kerja_lembur}}</p>
                                         </div>
                                     </div>
                                 </div>
