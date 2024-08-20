@@ -276,7 +276,7 @@
                             @endif
                             <h3 class="tw-text-center tw-mt-5 tw-font-semibold tw-font-work-sans tw-text-xl">Gaji</h3>
                             <h5 class="tw-text-green-600 md:tw-my-3 tw-my-2 tw-text-center tw-font-semibold md:tw-text-3xl tw-text-xl tw-font-work-sans">Mulai {{$job->gaji ?? 'tidak ada keterangan gaji'}} / {{$job->jenis_pembayaran}}</h5>
-                            <p class="tw-text-gray-500 tw-text-center tw-my-3 tw-font-base tw-text-sm tw-font-clash-display">{{$job->mata_uang_gaji}} ± {{$job->estimasi ?? $job->gaji}}
+                            <p class="tw-text-gray-500 tw-text-center tw-my-3 tw-font-base tw-text-sm tw-font-clash-display">Rp ± {{number_format($job->estimasi) ?? $job->gaji}}
                             {{-- badgetersedia --}}
                         <div class="tw-flex tw-justify-center tw-items-center">
                             <p class="tw-bg-green-500 tw-px-5 tw-py-1 tw-rounded-md tw-text-white tw-font-bold">tersedia</p>
@@ -309,7 +309,7 @@
                                         </div>
                                         <div>
                                             <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-sm  tw-mb-1">Jam Kerja</p>
-                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->jam_kerja}} jam</p>
+                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->jam_kerja}}</p>
                                         </div>
                                     </div>
                                     <div class="tw-flex tw-items-start tw-space-x-2 tw-mt-5 tw-gap-2">
@@ -318,7 +318,7 @@
                                         </div>
                                         <div>
                                             <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-sm  tw-mb-1">Hari  Kerja</p>
-                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->hari_kerja}} hari / minggu</p>
+                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->hari_kerja}} hari/minggu</p>
                                         </div>
                                     </div>
                                 
@@ -396,7 +396,7 @@
                                         </div>
                                         <div>
                                             <p class="tw-text-[#262626] tw-font-work-sans tw-font-semibold md:tw-text-lg tw-text-sm tw-mb-1">Tanggal Posting</p>
-                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->tanggal_tutup}}</p>
+                                            <p class="tw-text-[#262626] tw-font-work-sans md:tw-text-lg tw-text-xs">{{$job->created_at}}</p>
                                         </div>
                                     </div>
                                 </div>
