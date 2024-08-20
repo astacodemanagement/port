@@ -276,7 +276,7 @@
                             @endif
                             <h3 class="tw-text-center tw-mt-5 tw-font-semibold tw-font-work-sans tw-text-xl">Gaji</h3>
                             <h5 class="tw-text-green-600 md:tw-my-3 tw-my-2 tw-text-center tw-font-semibold md:tw-text-3xl tw-text-xl tw-font-work-sans">Mulai {{$job->gaji ?? 'tidak ada keterangan gaji'}} / {{$job->jenis_pembayaran}}</h5>
-                            <p class="tw-text-gray-500 tw-text-center tw-my-3 tw-font-base tw-text-sm tw-font-clash-display">Rp ± {{number_format($job->estimasi) ?? $job->gaji}}
+                            <p class="tw-text-gray-500 tw-text-center tw-my-3 tw-font-base tw-text-lg tw-font-clash-display">Rp ± {{number_format($job->estimasi) ?? $job->gaji}}
                             {{-- badgetersedia --}}
                         <div class="tw-flex tw-justify-center tw-items-center">
                             <p class="tw-bg-green-500 tw-px-5 tw-py-1 tw-rounded-md tw-text-white tw-font-bold">tersedia</p>
