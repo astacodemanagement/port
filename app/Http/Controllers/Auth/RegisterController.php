@@ -328,7 +328,7 @@ class RegisterController extends Controller
 
             $pengalamanKerja = [];
             /** INSERT PENGALAMAN KERJA */
-            if (!$request->has('keterangan_belum_kerja')) {
+            if ($request->has('negara_tempat_kerja') != null) {
 
 
 
