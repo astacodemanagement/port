@@ -462,14 +462,14 @@
                                                                                                 
 
                                                                                             <!-- Cek apakah nilai yang sedang diedit adalah '5' -->
-                                                                                            <option value="Laki-laki"
-                                                                                                {{ $data->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>
-                                                                                                Laki-laki</option>
+                                                                                            <option value="Pria"
+                                                                                                {{ $data->jenis_kelamin == 'Pria' ? 'selected' : '' }}>
+                                                                                                Pria</option>
 
                                                                                             <!-- Cek apakah nilai yang sedang diedit adalah '6' -->
-                                                                                            <option value="Perempuan"
-                                                                                                {{ $data->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
-                                                                                                Perempuan </option>
+                                                                                            <option value="Wanita"
+                                                                                                {{ $data->jenis_kelamin == 'Wanita' ? 'selected' : '' }}>
+                                                                                                Wanita </option>
 
 
                                                                                         </select>

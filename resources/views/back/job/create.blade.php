@@ -400,11 +400,12 @@
                                                                                             <option value="">--Pilih
                                                                                                 jenis kelamin--</option>
                                                                                             <option value="Pria/Wanita">Pria/Wanita
-                                                                                            <option value="Laki-laki">
-                                                                                                Laki-laki
                                                                                             </option>
-                                                                                            <option value="Perempuan">
-                                                                                                Perempuan
+                                                                                            <option value="Pria">
+                                                                                                Pria
+                                                                                            </option>
+                                                                                            <option value="Wanita">
+                                                                                                Wanita
                                                                                             </option>
                                                                                         </select>
                                                                                     </div>
