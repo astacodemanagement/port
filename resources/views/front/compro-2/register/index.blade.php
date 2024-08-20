@@ -861,10 +861,10 @@
                 endWorkdate.attr('data-name', `tanggal_selesai_kerja.${i}`);
                 position.attr('data-name', `posisi.${i}`);
                 desc.attr('data-name', `deskripsi_pekerjaan.${i}`);
-                if (t.val() === '1') {
-                country.val('Indonesia');
-                country.prop('disabled', true);
-            } 
+               
+            
+
+                    t.attr('required', true)
             });
         }
         $('.row-list-experience').on('change', '.experience-category', function() {
@@ -875,21 +875,17 @@
             const endWorkdate = t.closest('div.fv-row').find('.h-experience-end-work-date');
             const position = t.closest('div.fv-row').find('.experience-position');
             const desc = t.closest('div.fv-row').find('.deskripsi_pekerjaan');
-            if (t.val() === '1') {
-                country.val('Indonesia');
-                country.prop('disabled', true);
-            }
+       
             refreshExperienceList()
         });
 
-        $('.experience-category').on('change', function() {
+        $('.row-list-experience').on('change', '.experience-category', function()  {
             const t = $(this);
-            const country = t.closest('div.fv-row').find('.experience-country');
+            const country = t.closest('div.list-experience').find('.experience-country');
             if (t.val() === '1') {
                 country.val('Indonesia');
                 country.prop('disabled', true);
             } else {
-                country.val('');
                 country.prop('disabled', false);
             }
             refreshExperienceList()
