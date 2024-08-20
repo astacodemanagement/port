@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -78,10 +78,7 @@ class LoginController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
     
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Email belum terverifikasi',
-            ], 422);
+           return redirect()->back()->with("error","email belum terverikasi");
         }
     
         if ($response = $this->authenticated($request, $this->guard()->user())) {
@@ -94,7 +91,7 @@ class LoginController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Login successful',
-            'redirect_to' => $redirectTo
+            'redirect_to' => '/member',
         ], 200);
     }
     
