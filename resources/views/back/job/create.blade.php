@@ -399,7 +399,7 @@
                                                                                             name="jenis_kelamin" required>
                                                                                             <option value="">--Pilih
                                                                                                 jenis kelamin--</option>
-                                                                                            <option value="Pria / wanm">Pria / wanm
+                                                                                            <option value="Pria/Wanita">Pria/Wanita
                                                                                             <option value="Laki-laki">
                                                                                                 Laki-laki
                                                                                             </option>
