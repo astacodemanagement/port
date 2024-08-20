@@ -474,7 +474,7 @@ class RegisterController extends Controller
                 'no_hp' => 'required|numeric|min_digits:6|max_digits:14',
                 'no_wa' => 'required|numeric|min_digits:6|max_digits:14',
                 'hubungan' => 'required',
-                'no_telp_darurat' => 'nullble|numeric|min_digits:6|max_digits:14', 
+                'no_telp_darurat' => 'nullable|numeric|min_digits:6|max_digits:14', 
                 'nama_kontak_darurat' => 'required',
                 'password' =>  ['required', 'confirmed', Password::min(6)],
                 'password_confirmation' => 'required'
@@ -486,7 +486,7 @@ class RegisterController extends Controller
         }
 
         $mergeRules = [];
-
+        
         foreach ($rules as $rule) {
             foreach ($rule as $k => $v) {
                 $mergeRules[$k] = $v;
@@ -509,7 +509,7 @@ class RegisterController extends Controller
             return redirect('/')->with('success', 'Email berhasil diverifikasi');
         }
 
-        return redirect(route('login'))->with('error', 'Token tidak valid');
+        dd('token tidak valid');
     }
 
 
