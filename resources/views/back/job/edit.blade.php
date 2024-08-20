@@ -319,7 +319,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="kontrak_kerja">Kontrak
                                                                                             Kerja</label>
-                                                                                            <input type="text" class="form-control" name="kontrak_kerja" id="kontrak_kerja">
+                                                                                            <input type="text" class="form-control" name="kontrak_kerja" id="kontrak_kerja" value="{{$data->kontrak_kerja}}">
 
                                                                                     </div>
                                                                                     <div class="col-sm-6">
