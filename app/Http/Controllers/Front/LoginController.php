@@ -67,10 +67,7 @@ class LoginController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
     
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Email atau password salah',
-            ], 422);
+            return  redirect()->back()->with("error","Anda email atau password salalh");
         }
     
         if (is_null($user->email_verified_at)) {
