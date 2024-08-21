@@ -13,6 +13,7 @@ class CvController extends Controller
    
     public function previewCv($id){
         $path =  base_path('public/upload/cv/'.$id.'.pdf');
+        dd($path);
        
         $id = hashId($id, 'decode');
         $data['kandidat'] = Kandidat::find($id)->first();
@@ -24,8 +25,10 @@ class CvController extends Controller
      
         $htmlContent = view('back.cv.index', $data)->render();
         Browsershot::html($htmlContent)
-            ->format('A4')
-            ->savePdf($path);
+        ->noSandbox() 
+        ->setNodeBinary('/root/.nvm/versions/node/v20.16.0/bin/node')
+        ->format('A4')
+        ->savePdf($path);
    
         return response()->file($path);
 
