@@ -8,6 +8,7 @@ use App\Models\Kecamatan;
 use App\Models\Kota;
 use App\Models\PengalamanKerja;
 use App\Models\Provinsi;
+use App\Models\Screaning;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -332,6 +333,28 @@ class ProfileController extends Controller
 
             $kandidat->update($request->except(['type', 'file_foto', 'file_paspor', 'file_kk', 'file_ktp', 'file_sertifikat_kompetensi', 'file_sertifikat_bahasa_inggris', 'file_paklaring', 'file_akta_lahir', 'file_buku_nikah', 'file_ijazah']));
 
+            return response()->json(['success' => true, 'message' => 'Profil berhasil diperbarui', '_token' => csrf_token()]);
+        }
+        else if ($request->type == 5) {
+            
+            $screaning = $request->only([
+                'have_kids', 'total_kids', 'old_kids', 'willing_to_work', 'willing_to_obey_rules',
+                'motivation_work', 'health', 'pyschical_disability', 'pyschical_disability_explain',
+                'operation', 'operation_explain', 'disease', 'disease_explain', 'pregnant',
+                'pregnant_explain', 'declaration'
+            ]);
+      
+               $screaning['have_kids'] = $request->has('have_kids') ? 1 : 0;
+               $screaning['willing_to_work'] = $request->has('willing_to_work') ? 1 : 0;
+               $screaning['willing_to_obey_rules'] = $request->has('willing_to_obey_rules') ? 1 : 0;
+               $screaning['motivation_work'] = $request->has('motivation_work') ? 1 : 0;
+               $screaning['pyschical_disability'] = $request->has('pyschical_disability') ? 1 : 0;
+               $screaning['operation'] = $request->has('operation') ? 1 : 0;
+               $screaning['disease'] = $request->has('disease') ? 1 : 0;
+               $screaning['pregnant'] = $request->has('pregnant') ? 1 : 0;
+               $screaning['declaration'] = $request->has('declaration') ? 1 : 0;
+   
+            Screaning::updateOrCreate(['id_kandidat' => auth()->user()->kandidat->id], $screaning);
             return response()->json(['success' => true, 'message' => 'Profil berhasil diperbarui', '_token' => csrf_token()]);
         }
 
