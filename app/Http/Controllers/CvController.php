@@ -12,7 +12,7 @@ class CvController extends Controller
 
    
     public function previewCv($id){
-        $path =  url('upload/cv/'.$id.'.pdf');
+        $path =  base_path('public/upload/cv/'.$id.'.pdf');
        
         $id = hashId($id, 'decode');
         $data['kandidat'] = Kandidat::find($id)->first();
