@@ -15,8 +15,8 @@ class HomeController extends Controller
 {
    public function index()
    {
-      dd(request()->host());
-      if(request()->host() == env('COMPRO_1')){
+     
+      if(request()->host() == "putrasi.id"){
          $slider = Slider::where('compro', 1)->orderBy('id', 'desc')->limit(4)->get();
          $review = Review::where('compro',1)->orderBy('id','desc')->limit(4)->get();
       }else{
