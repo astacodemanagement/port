@@ -219,7 +219,7 @@ class RegisterController extends Controller
                 'keterangan_tidak_ada_passpor' => $request->has('keteranga  n_tidak_ada_passpor') ? 'Tidak Ada Paspor' : null,
                 'kecamatan_id' => $wilayah?->id,
                 'referensi' => isset($referensi[$request->referensi]) ? $referensi[$request->referensi] : null,
-                'nama_referensi' => $request->referensi == 6 ? $request->nama_referensi : null,
+                'nama_referensi' => $request->referensi == 7 ? $request->nama_referensi : null,
                 'no_paspor' => $request->no_paspor,
                 'tanggal_pengeluaran_paspor' => $request->tanggal_pengeluaran_paspor,
                 'masa_kadaluarsa' => $request->masa_kadaluarsa,
@@ -331,7 +331,7 @@ class RegisterController extends Controller
             /** INSERT PENGALAMAN KERJA */
           if($request->keterangan_belum_kerja == null){
             for ($i = 0; $i < count($request->kategori); $i++) {
-                $negaraTempatKerja = isset($request->kategori[$i]) ? $request->kategori[$i] : null;
+                $negaraTempatKerja = isset($request->kategori[$i]) ? $request->kategori[$i] : 1;
                 $negaraTempatKerja = isset($request->negara_tempat_kerja[$i]) ? $request->negara_tempat_kerja[$i] : "Indonesia";
                 $namaPerusahaan = isset($request->nama_perusahaan[$i]) ? $request->nama_perusahaan[$i] : null;
                 $tanggalMulaiKerja = isset($request->tanggal_mulai_kerja[$i]) ? $request->tanggal_mulai_kerja[$i] : null;

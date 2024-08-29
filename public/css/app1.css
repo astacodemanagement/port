@@ -650,6 +650,10 @@ video {
   margin-top: 1.75rem;
   margin-bottom: 1.75rem;
 }
+.tw-my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .tw-mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -844,9 +848,6 @@ video {
 }
 .tw-w-\[49\%\] {
   width: 49%;
-}
-.tw-w-\[75\%\] {
-  width: 75%;
 }
 .tw-w-auto {
   width: auto;
@@ -1291,6 +1292,9 @@ video {
 }
 .tw-pb-12 {
   padding-bottom: 3rem;
+}
+.tw-pb-14 {
+  padding-bottom: 3.5rem;
 }
 .tw-pb-16 {
   padding-bottom: 4rem;
@@ -1931,10 +1935,6 @@ video {
 
   .md\:tw-h-8 {
     height: 2rem;
-  }
-
-  .md\:tw-h-\[500px\] {
-    height: 500px;
   }
 
   .md\:tw-h-\[58vh\] {

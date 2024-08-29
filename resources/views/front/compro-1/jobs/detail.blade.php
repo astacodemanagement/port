@@ -255,7 +255,7 @@
                                 </div>
                                 <div class="salary-items">
                                     <div class="d-flex align-middle">
-                                        <h6 class="fw-bold text-white">Mulai {{ $job->mata_uang_gaji }} {{ number_format($job->estimasi_minimal) }} - {{ number_format($job->estimasi_maksimal) }} / {{ $job->jenis_pembayaran }}</h6>
+                                        <h6 class="fw-bold text-white">Mulai {{ $job->mata_uang_gaji }} {{$job->gaji}} / {{ $job->jenis_pembayaran }}</h6>
                                         <div class="">
                                             <span style="margin-left: 5px;padding: 5px;background: var(--text-w);color: var(--orange);font-size: 12px;border-radius: 8px;">Tersedia</span>
                                         </div>
@@ -264,7 +264,7 @@
                                 </div>
                                 <hr class="text-white">
                                 <div class="text-information d-flex">
-                                    <span class="gap-1">IDR ± 487.343 - 779.500</span>
+                                    <span class="gap-1">{{$job->mata_uang_gaji}} ± {{$job->estimasi}}  </span>
                                     <span> | Kurs: {{ \Carbon\Carbon::parse($job->tanggal_kurs)->format('d/m/Y') }} - IDR {{ number_format($job->nominal_kurs) }}</span>
                                 </div>
                             </div>
@@ -508,7 +508,7 @@
                                         </div>
                                         <div class="col-10 mt-2">
                                             <h6 class="title-heading fw-bold">Gaji</h6>
-                                            <p>Rp {{ $rJob->gaji ? number_format($rJob->gaji) : '-' }}</p>
+                                            <p>Rp {{ $rJob->gaji ?? "-" }}</p>
                                         </div>
                                     </div>
                                     <div class="row">

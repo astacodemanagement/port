@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="d-flex">
             <a href="{{ route('front.home') }}">
-            <img src="{{ asset('frontend') }}/assets/logo/lpnavogo.png" alt="">
+            <img src="{{asset('images/psi.png')}}" width="80px" alt="">
             <span class="navbar-brand text-white fw-semibold mt-2 col-sm-hidden">PT. PUTRA SAHABAT
                 INTERNATIONAL</span>
             </a>
