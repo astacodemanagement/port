@@ -238,7 +238,7 @@
                                                                     @if ($p->kandidat->foto)
                                                                     <a href="/upload/foto/{{ $p->kandidat->foto }}" target="_blank" style="position: relative; display: inline-block;">
                                                                         <img class="card-img-top img-fluid"
-                                                                            src="/upload/foto/{{ $p->kandidat->foto }}"
+                                                                            src="/upload/foto/thumb_{{ $p->kandidat->foto }}"
                                                                             onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
                                                                             alt="Card image cap"
                                                                             style="border-radius:1rem;">
@@ -270,7 +270,7 @@
                                                                     <p class="mb-1 text-muted">
                                                                         <i class="fas fa-weight-scale"></i>
                                                                         <b style="font-weight: bold; margin:0%">{{ $p->kandidat->tinggi_badan }}
-                                                                            cm - {{ $p->kandidat->berat_badan }} Kg</b>
+                                                                            cm |  {{ $p->kandidat->berat_badan }} Kg</b>
                                                                     </p>
                                                                     <p class="mb-1 text-muted"><i class="fa fa-user"></i> <b
                                                                             style="font-weight: bold;">
@@ -346,7 +346,7 @@
                                                                 <div class="text-left">
                                                                     <!-- Icon mata untuk detail -->
 
-                                                                    <div class="d-flex">
+                                                                    <div class="d-flex text-center">
                                                                         <a href="" data-toggle="modal"
                                                                             data-target="#ubahStatusModal{{ $p->id }}"
                                                                             class="form-control mr-2"
