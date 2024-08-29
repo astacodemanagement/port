@@ -54,7 +54,7 @@
             <div class="row gap-4">
                 <div class="col">
                     <div class="d-flex">
-                        <img src="{{ asset('frontend') }}/assets/logo/logo.png" alt="">
+                        <img src="{{asset('images/psi.png')}}" alt="">
                         <a class="navbar-brand text-white fw-semibold mt-2 col-sm-hidden">PT. PUTRA SAHABAT
                             INTERNATIONAL</a>
                     </div>

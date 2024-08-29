@@ -43,9 +43,9 @@ class PelamarController extends Controller
                     $query->where('provinsi', 'like', '%' . $search . '%');
                 })
                 ->orWhere('nama_lengkap', 'like', '%' . $search . '%')
-                ->orderBy('id', 'desc')->paginate(4);
+                ->orderBy('id', 'desc')->paginate(3);
         } else {
-            $data['pelamar'] = Pendaftaran::where('status', $status)->orderBy('id', 'desc')->with('kandidat')->paginate(4);
+            $data['pelamar'] = Pendaftaran::where('status', $status)->orderBy('id', 'desc')->with('kandidat')->paginate(3);
         }
         // dd($data['pelamar']);
         $data['filter_job'] = $request->input('filter_job');
@@ -53,7 +53,7 @@ class PelamarController extends Controller
             $data['pelamar'] = Pendaftaran::where('status', $status)
                 ->where('kategori_job_id', $data['filter_job'])
                 ->with('kandidat')
-                ->orderBy('id', 'desc')->paginate(4);
+                ->orderBy('id', 'desc')->paginate(3);
         }
         $data['filter_gender'] = $request->input('filter_gender');
         if ($data["filter_gender"]) {
@@ -63,7 +63,7 @@ class PelamarController extends Controller
                 })
                 ->with('kandidat')
                 ->orderBy('id', 'desc')
-                ->paginate(4);
+                ->paginate(3);
         }
         $data['filter_height'] = $request->input('filter_height');
         if ($data["filter_height"]) {
@@ -73,7 +73,7 @@ class PelamarController extends Controller
                 })
                 ->with('kandidat')
                 ->orderBy('id', 'desc')
-                ->paginate(4);
+                ->paginate(3);
         }
         $data['filter_level_bahasa_inggris'] = $request->input('filter_level_bahasa_inggris');
         if ($data["filter_level_bahasa_inggris"]) {
@@ -83,7 +83,7 @@ class PelamarController extends Controller
                 })
                 ->with('kandidat')
                 ->orderBy('id', 'desc')
-                ->paginate(4);
+                ->paginate(3);
         }
 
 

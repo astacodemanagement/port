@@ -71,11 +71,12 @@
                         @php
                             $isCompleted = $tanggal != 'Belum selesai';
                             $namaIcon = $isCompleted ? 'fas fa-check' : $icon[$status];
-                            $line = $isCompleted ? 'bg-primary' : 'tw-bg-gray-200';
+                            $line = $isCompleted ? 'bg-success' : 'tw-bg-gray-200';
+                            $bg = $isCompleted ? 'bg-success' : 'bg-primary';
                         @endphp
                         <li class="tw-relative tw-mb-6 sm:tw-mb-0">
                             <div class="tw-flex tw-items-center tw-h-full">
-                                <div class="tw-z-10 tw-flex tw-items-center tw-justify-center sm:tw-mx-0 tw-mx-auto tw-w-10 tw-h-10 bg-primary tw-rounded-full tw-ring-0 tw-ring-white sm:tw-ring-8 tw-shrink-0">
+                                <div class="tw-z-10 tw-flex tw-items-center tw-justify-center sm:tw-mx-0 tw-mx-auto tw-w-10 tw-h-10 {{$bg}} tw-rounded-full tw-ring-0 tw-ring-white sm:tw-ring-8 tw-shrink-0">
                                     <i class="{{ $namaIcon }} tw-text-white tw-text-xl"></i>
                                 </div>
                                 @if (!$loop->last)

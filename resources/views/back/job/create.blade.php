@@ -85,11 +85,7 @@
                                                                     Kandidat</a>
                                                                 <div class="slide"></div>
                                                             </li>
-                                                            <li class="nav-item">
-                                                                <a class="nav-link" data-toggle="tab" href="#settings7"
-                                                                    role="tab"><i class="fas fa-server"></i>Lainnya</a>
-                                                                <div class="slide"></div>
-                                                            </li>
+                                                           
                                                         </ul>
 
                                                         <form id="form_job"
@@ -102,6 +98,13 @@
                                                                     <div class="modal-content">
                                                                         <div class="modal-body">
                                                                             <div class="card-block">
+                                                                            <div class="form-group row">
+                                                                                        <div class="col-sm-12">
+                                                                                            <label class="col-form-label"
+                                                                                                for="gambar">Gambar</label>
+                                                                                            <input type="file" class="form-control" id="gambar" name="gambar">
+                                                                                            </div>
+                                                                                    </div>
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
@@ -295,19 +298,8 @@
                                                                                         <label class="col-form-label"
                                                                                             for="hari_kerja">Hari
                                                                                             Kerja</label>
-                                                                                        <select class="form-control "
-                                                                                            id="hari_kerja"
-                                                                                            name="hari_kerja" required>
-                                                                                            <option value="">--Pilih
-                                                                                                hari
-                                                                                                kerja--</option>
-                                                                                            <option value="5">5 Hari
-                                                                                                Per
-                                                                                                Minggu</option>
-                                                                                            <option value="6">6 Hari
-                                                                                                Per
-                                                                                                Minggu</option>
-                                                                                        </select>
+                                                                                            <input type="text" class="form-control" name="hari_kerja" id="hari_kerja" >
+
 
                                                                                     </div>
                                                                                     <div class="col-sm-6">
@@ -374,6 +366,39 @@
 
 
                                                                                 </div>
+                                                                                <div class="form-group row">
+                                                                                        <div class="col-sm-12">
+                                                                                            <h4 class="sub-title">Fasilitas
+                                                                                                Pekerjaan</h4>
+                                                                                            <div
+                                                                                                class="border-checkbox-section">
+
+                                                                                                {{-- Looping untuk checkbox fasilitas --}}
+                                                                                                @foreach ($fasilitas as $item)
+                                                                                                    <div
+                                                                                                        class="border-checkbox-group border-checkbox-group-success">
+                                                                                                        <input
+                                                                                                            class="border-checkbox"
+                                                                                                            type="checkbox"
+                                                                                                            id="fasilitas-{{ $item->id }}"
+                                                                                                            name="fasilitas_id[]"
+                                                                                                            value="{{ $item->id }}">
+                                                                                                        {{-- Gunakan ID atau nama fasilitas --}}
+                                                                                                        <label
+                                                                                                            class="border-checkbox-label"
+                                                                                                            for="fasilitas-{{ $item->id }}">
+                                                                                                            {{ $item->nama_fasilitas }}
+                                                                                                            {{-- Nama dari fasilitas --}}
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                @endforeach
+
+                                                                                              
+
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                   
 
 
 
@@ -538,63 +563,7 @@
 
                                                                 </div>
 
-                                                                <div class="tab-pane" id="settings7" role="tabpanel">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-body">
-                                                                            <div class="card-block">
-                                                                                <div class="card-block">
-                                                                                    <div class="form-group row">
-                                                                                        <div class="col-sm-12">
-                                                                                            <h4 class="sub-title">Fasilitas
-                                                                                                Pekerjaan</h4>
-                                                                                            <div
-                                                                                                class="border-checkbox-section">
-
-                                                                                                {{-- Looping untuk checkbox fasilitas --}}
-                                                                                                @foreach ($fasilitas as $item)
-                                                                                                    <div
-                                                                                                        class="border-checkbox-group border-checkbox-group-success">
-                                                                                                        <input
-                                                                                                            class="border-checkbox"
-                                                                                                            type="checkbox"
-                                                                                                            id="fasilitas-{{ $item->id }}"
-                                                                                                            name="fasilitas_id[]"
-                                                                                                            value="{{ $item->id }}">
-                                                                                                        {{-- Gunakan ID atau nama fasilitas --}}
-                                                                                                        <label
-                                                                                                            class="border-checkbox-label"
-                                                                                                            for="fasilitas-{{ $item->id }}">
-                                                                                                            {{ $item->nama_fasilitas }}
-                                                                                                            {{-- Nama dari fasilitas --}}
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                @endforeach
-
-                                                                                              
-
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div class="form-group row">
-                                                                                        <div class="col-sm-12">
-                                                                                            <label class="col-form-label"
-                                                                                                for="gambar">Gambar</label>
-                                                                                            <input type="file" class="form-control" id="gambar" name="gambar">
-                                                                                            </div>
-                                                                                    </div>
-
-
-
-
-
-                                                                                </div>
-                                                                            </div>
-
-
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
+                                                           
 
                                                                 <a href="{{ route('back-office.job.index') }}"
                                                                     class="btn btn-warning waves-effect waves-light mt-3"><i

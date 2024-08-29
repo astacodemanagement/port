@@ -344,15 +344,15 @@
                                 <div class="fv-row mb-10 row-add-experience">
                                     <div class="form-group mb-5">
                                         <!-- <input type="text" class="form-control input-add-experience experience-category" data-name="kategori.0" placeholder="Negara Tempat Bekerja" name="kategori[]"> -->
-                                        <select name="kategori[]" data-name="kategori.0" class="form-select input-add-experience experience-category" id="">
-                                            <option value="">Pilih Kategori Pengalaman Kerja</option>
+                                        <select name="kategori[]" data-name="kategori.0" class="form-select input-add-experience experience-category" id="first-experience-category">
+                                            <option value="">Pilih dimana kamu bekerja </option>
                                             <option value="1">Dalam Negeri</option>
                                             <option value="2">Luar Negeri</option>
                                         </select>
                                     </div>
 
                                     <div class="form-group mb-5">
-                                        <input type="text" class="form-control input-add-experience experience-country" data-name="negara_tempat_kerja.0" placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]">
+                                        <input type="text" class="form-control input-add-experience experience-country" data-name="negara_tempat_kerja.0" placeholder="Negara Tempat Bekerja" name="negara_tempat_kerja[]" id="first-experience-country">
                                     </div>
 
                                     <div class="form-group mb-5">
@@ -361,10 +361,10 @@
 
                                     <div class="form-group row mb-5">
                                         <div class="col-6">
-                                            <input type="text" class="form-control datetimepicker input-add-experience experience-start-work-date" placeholder="Tahun mulai bekerja" name="tanggal_mulai_kerja[]">
+                                            <input type="text" class="form-control  input-add-experience experience-start-work-date" placeholder="Tahun mulai bekerja" name="tanggal_mulai_kerja[]">
                                         </div>
                                         <div class="col-6">
-                                            <input type="text" class="form-control datetimepicker input-add-experience experience-end-work-date" placeholder="Tahun selesai bekerja" name="tanggal_selesai_kerja[]">
+                                            <input type="text" class="form-control  input-add-experience experience-end-work-date" placeholder="Tahun selesai bekerja" name="tanggal_selesai_kerja[]">
                                         </div>
                                     </div>
                                     <!-- desc Pekerjaan -->
@@ -497,6 +497,7 @@
                                             <div class="form-input mb-3">
                                                 <input type="text" class="form-control phone-number whatsapp-number" name="no_wa" placeholder="Nomor Whatsapp Aktif *">
                                             </div>
+                                            <label for="" class="form-label">Kontak Darurat yang dapat dihubungi</label>
                                             <div class="form-input mb-3">
                                                 <!-- kontrak darurat -->
                                                  <select name="hubungan" class="form-select">
@@ -624,17 +625,7 @@
         $('.h-masa-kadaluarsa').val(e.format(0, "yyyy-mm-dd"))
     });
 
-    initExperienceDatepicker()
 
-    function initExperienceDatepicker() {
-        $('.experience-start-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
-            $(this).closest('div').find('.h-experience-start-work-date').val(e.format(0, "yyyy-mm-dd"))
-        });
-
-        $('.experience-end-work-date').datepicker(datepickerOption).on('changeDate', function(e) {
-            $(this).closest('div').find('.h-experience-end-work-date').val(e.format(0, "yyyy-mm-dd"))
-        });
-    }
 
     var element = document.querySelector("#kt_stepper_example_vertical");
 
@@ -776,6 +767,10 @@
         const el = $('.row-add-experience')
         const cloneEl = el.clone()
 
+        cloneEl.find('.experience-category').attr('id', '')
+        cloneEl.find('.experience-country').attr('id', '')
+
+
         el.find('.error-message').remove()
         cloneEl.find('.btn-primary').removeClass('btn-primary').addClass('btn-danger btn-remove-experience')
             .html('<i class="fas fa-times"></i> Hapus Pengalaman Kerja');
@@ -795,7 +790,13 @@
         cloneEl.find('.experience-end-work-date').val('')
         cloneEl.find('.experience-position').val('')
         cloneEl.find('.experience-job-desc').val('')
-
+        if (t.val() === '1') {
+            country.val('Indonesia');
+            country.prop('disabled', true);
+        } else {
+            country.val('');
+            country.prop('disabled', false);
+        }
         refreshExperienceList()
         initExperienceDatepicker()
     })
@@ -818,10 +819,24 @@
             position.attr('data-name', `posisi.${i}`)
             desc.attr('data-name', `deskripsi_pekerjaan.${i}`)
 
+            if (t.val() === '1') {
+            country.val('Indonesia');
+            country.prop('disabled', true);
+        } else {
+            country.val('');
+            country.prop('disabled', false);
+        }
         })
     }
 
     $('.row-list-experience').on('click', '.list-experience .btn-remove-experience', function() {
+        if (t.val() === '1') {
+            country.val('Indonesia');
+            country.prop('disabled', true);
+        } else {
+            country.val('');
+            country.prop('disabled', false);
+        }
         $(this).closest('div.list-experience').remove()
         refreshExperienceList()
     })
@@ -843,13 +858,15 @@
         refreshExperienceList()
     });
 
-    $('.experience-category').change(function() {
+    $('#first-experience-category').change(function() {
         console.log($(this).val());
-        if ($(this).val() == '1') {
-            $('.experience-country').val('Indonesia');
-            $('.experience-country').prop('disabled', true);
+        const country = $('#first-experience-country');
+        if ($(this).val() === '1') {
+            country.val('Indonesia');
+            country.prop('disabled', true);
         } else {
-            $('.experience-country').val('');
+            country.val('');
+            country.prop('disabled', false);
         }
     });
 

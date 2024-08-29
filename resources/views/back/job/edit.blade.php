@@ -103,6 +103,23 @@
 
                                                                         <div class="modal-body">
                                                                             <div class="card-block">
+                                                                            <div class="form-group row">
+                                                                                        <div class="col-sm-12">
+                                                                                            <label class="col-form-label"
+                                                                                                for="gambar">Gambar</label>
+                                                                                            <input type="file"
+                                                                                                class="form-control"
+                                                                                                id="gambar"
+                                                                                                name="gambar">
+                                                                                                <br>
+                                                                                                <a href="/upload/gambar/{{ $data->gambar }}"
+                                                                                                    target="_blank">
+                                                                                                    <img style="max-width:150px; max-height:150px"
+                                                                                                        src="/upload/gambar/{{ $data->gambar }}"
+                                                                                                        alt="">
+                                                                                                </a>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 <div class="form-group row">
                                                                                     <div class="col-sm-6">
                                                                                         <label class="col-form-label"
@@ -339,26 +356,7 @@
                                                                                         <label class="col-form-label"
                                                                                             for="hari_kerja">Hari
                                                                                             Kerja</label>
-                                                                                        <select class="form-control "
-                                                                                            id="hari_kerja"
-                                                                                            name="hari_kerja" required>
-                                                                                            <option value="">--Pilih
-                                                                                                hari
-                                                                                                kerja--</option>
-
-
-                                                                                            <!-- Cek apakah nilai yang sedang diedit adalah '5' -->
-                                                                                            <option value="5"
-                                                                                                {{ $data->hari_kerja == '5' ? 'selected' : '' }}>
-                                                                                                5 Hari Kerja</option>
-
-                                                                                            <!-- Cek apakah nilai yang sedang diedit adalah '6' -->
-                                                                                            <option value="6"
-                                                                                                {{ $data->hari_kerja == '6' ? 'selected' : '' }}>
-                                                                                                6 Hari Kerja</option>
-
-
-                                                                                        </select>
+                                                                                        <input type="text" class="form-control" name="hari_kerja" id="hari_kerja" value="{{$data->hari_kerja}}">
 
                                                                                     </div>
                                                                                     <div class="col-sm-6">
@@ -699,23 +697,7 @@
                                                                                    
                                                                                   
 
-                                                                                    <div class="form-group row">
-                                                                                        <div class="col-sm-12">
-                                                                                            <label class="col-form-label"
-                                                                                                for="gambar">Gambar</label>
-                                                                                            <input type="file"
-                                                                                                class="form-control"
-                                                                                                id="gambar"
-                                                                                                name="gambar">
-                                                                                                <br>
-                                                                                                <a href="/upload/gambar/{{ $data->gambar }}"
-                                                                                                    target="_blank">
-                                                                                                    <img style="max-width:150px; max-height:150px"
-                                                                                                        src="/upload/gambar/{{ $data->gambar }}"
-                                                                                                        alt="">
-                                                                                                </a>
-                                                                                        </div>
-                                                                                    </div>
+                                                                                  
 
 
 

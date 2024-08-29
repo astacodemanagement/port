@@ -221,7 +221,7 @@
 
                                         <div class="row" id="draggablePanelList">
                                             @forelse ($pelamar as $p)
-                                           <div class="col-lg-12 col-xl-3">
+                                           <div class="col-lg-12 col-xl-4">
                                                     <div class="card-sub shadow p-3 mb-5 bg-white rounded">
                                                     <div>
                                                                 @if ($p->kandidat->pendaftaran->compro == 1)
@@ -231,9 +231,9 @@
                                                                 @endif
                                                             </div>
                                                         <div class="col-lg-12 col-xl-12">
-                                                            <div class="d-flex justify-content-between">
+                                                            <div class="d-flex justify-content-between ">
                                                            
-                                                                <div style="flex: 1;">
+                                                                <div style="flex: 1;" class="mr-4" >
                                                                     <!-- Image -->
                                                                     @if ($p->kandidat->foto)
                                                                     <a href="/upload/foto/{{ $p->kandidat->foto }}" target="_blank" style="position: relative; display: inline-block;">

@@ -72,7 +72,7 @@
                     <img
                         src="data:image/png;base64,<?php echo base64_encode(file_get_contents(base_path('public/upload/foto/thumb_' . $kandidat->foto))); ?>"
                         onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
-                        width="120"
+                        width="150"
                         height="200"
 
                         alt="user"
@@ -80,7 +80,7 @@
                     @else
                     <img class="card-img-top img-fluid"
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGThxD2scluEhl1Ea8rzz5J9ew7I3NEBUq2g&s"
-                        width="120"
+                        width="150"
                         height="200"
 
                         alt="user"
