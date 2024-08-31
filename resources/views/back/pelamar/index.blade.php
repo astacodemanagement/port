@@ -236,12 +236,12 @@
                                                                 <div style="flex: 1;" class="mr-4" >
                                                                     <!-- Image -->
                                                                     @if ($p->kandidat->foto)
-                                                                    <a href="/upload/foto/{{ $p->kandidat->foto }}" target="_blank" style="position: relative; display: inline-block;">
+                                                                    <a href="/upload/foto/{{ $p->kandidat->foto }}" target="_blank" style="position: relative; display: inline-block;" >
                                                                         <img class="card-img-top img-fluid"
                                                                             src="/upload/foto/thumb_{{ $p->kandidat->foto }}"
                                                                             onerror="this.src='{{ asset('images/placeholder-user.png') }}'"
                                                                             alt="Card image cap"
-                                                                            style="border-radius:1rem;">
+                                                                            style="border-radius:1rem; border:2px solid #00324F; ">
                                                                         
                                                                     </a>
 
@@ -291,8 +291,6 @@
                                                         <div class="col-lg-12 col-xl-12">
 
                                                             <div class="card-block">
-
-
                                                                 <a
                                                                     href="{{ route('back-office.pelamar.verifikasi.detail', $p->id) }}">
                                                                     <h5 class="card-title">
@@ -300,11 +298,7 @@
                                                                             style="font-weight: bold; color:#00324F; font-family: 'Poppins', sans-serif;">{{ $p->kandidat->nama_lengkap }}</b>
                                                                     </h5>
                                                                 </a>
-
-
-
-
-                                                                <p class="mb-1 text-muted"><i
+                                                              <p class="mb-1 text-muted"><i
                                                                         class="fas fa-location-dot"></i><b
                                                                         style="font-weight: bold;">
                                                                         {{ $p->kandidat->provinsi?->nama_provinsi }},
@@ -346,7 +340,7 @@
                                                                 <div class="text-left">
                                                                     <!-- Icon mata untuk detail -->
 
-                                                                    <div class="d-flex text-center">
+                                                                    <div class="d-flex justify-start text-center" style="width: 100%;">
                                                                         <a href="" data-toggle="modal"
                                                                             data-target="#ubahStatusModal{{ $p->id }}"
                                                                             class="form-control mr-2"
