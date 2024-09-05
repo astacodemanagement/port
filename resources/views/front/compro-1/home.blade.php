@@ -32,7 +32,7 @@
                             <div class="carousel-items-left">
                                 <div class="items-left-text">
                                     <div class="text-heading">
-                                        <h6>PT. Putra Sahabat  International</h6>
+                                        <h6>PT. Putra   Sahabat  International</h6>
                                     </div>
                                     <div class="carousel-title-heading">
                                         <h1>Siap bantu proses kamu untuk kerja di luar negeri</h1>

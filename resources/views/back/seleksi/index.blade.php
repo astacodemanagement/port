@@ -77,7 +77,10 @@
                                                         @foreach ($group as $p)
                                                             <tr>
                                                                 <td>{{ $no }}</td>
-                                                                <td><b>{{ $p->nama_job }}</b></td>
+                                                                <td><b><a title="Detail" style="color: rgb(242, 236, 236)"
+                                                                        href="#"
+                                                                    
+                                                                        data-id="{{ $jobId }}">{{ $p->nama_job }}</a></b></td>
 
                                                                 <td>{{ $p->nama_negara }}</td>
                                                                 <td>{{ $p->nama_perusahaan }}</td>
@@ -167,7 +170,7 @@
                                                             <td>{{ $p2->nama_lengkap }}</td>
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
-                                                                <a href="{{ route('back-office.seleksi.seleksi.detail', $p2->id) }}"
+                                                                   <a href="{{ route('preview-cv', hashId($p2->kandidat_id)) }}"
                                                                     class="form-control mr-2"
                                                                     style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
                                                                     title="Detail">
