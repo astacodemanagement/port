@@ -782,7 +782,7 @@
                                                                                     <input readonly type="text"
                                                                                         class="form-control"
                                                                                         id="gaji" name="gaji"
-                                                                                        value="{{ number_format($seleksi_dalam_proses->job->gaji) }}">
+                                                                                        value="{{ $seleksi_dalam_proses->job->gaji }}">
                                                                                 </div>
 
                                                                                 <div class="col-sm-4">

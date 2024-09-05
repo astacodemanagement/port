@@ -75,7 +75,10 @@
                                                         @foreach ($group as $p)
                                                             <tr>
                                                                 <td>{{ $loop->iteration }}</td>
-                                                                <td><b>{{ $p->nama_job }}</b></td>
+                                                                <td><b><a title="Detail" style="color: rgb(242, 236, 236)"
+                                                                        href="#"
+                                                                    
+                                                                        data-id="{{ $jobId }}">{{ $p->nama_job }}</a></b></td>
 
 
                                                                 <td>{{ $p->nama_negara }}</td>
@@ -144,7 +147,7 @@
                                                             <td>{{ $p2->nama_negara }}</td>
                                                             <td>{{ $p2->nama_job }}</td>
                                                             <td>{{ $p2->mitra }}</td>
-                                                            <td>{{ $p2->mitra }}</td>
+                                                            <td>{{ $p2->id_ktkln }}</td>
                                                             <td>{{ $p2->referensi }}</td>
                                                             <td>{{ $p2->status }}</td>
                                                             <td class="text-center d-flex">
