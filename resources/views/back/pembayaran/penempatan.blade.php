@@ -74,7 +74,7 @@
                                                     @foreach ($pembayaran as $p)
                                                         <tr>
                                                             <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $p->nama_kandidat }}</td>
+                                                            <td>{{ $p->kandidat->nama_lengkap }}</td>
                                                             <td>{{ $p->job->mitra }}</td>
                                                             <td>Rp. {{ number_format($p->biaya_penempatan, 0, ',', '.') }}
                                                             </td>

@@ -34,7 +34,7 @@ class PembayaranController extends Controller
     {
         $pembayaran = Seleksi::select('seleksi.*', 'pendaftaran.*') 
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id') 
-            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik') 
+            ->join('pendaftaran', 'kandidat.id', '=', 'pendaftaran.id') 
             ->orderBy('seleksi.id', 'asc') // Mengurutkan berdasarkan id seleksi secara ascending
             ->get();
     
@@ -42,12 +42,8 @@ class PembayaranController extends Controller
     }
 
     public function penempatan()
-    {
-        $pembayaran = Seleksi::select('seleksi.*', 'pendaftaran.*') 
-            ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id') 
-            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik') 
-            ->orderBy('seleksi.id', 'asc') // Mengurutkan berdasarkan id seleksi secara ascending
-            ->get();
+    {   $pembayaran = Seleksi::all();
+        
     
         return view('back.pembayaran.penempatan', compact('pembayaran'));
     }
@@ -56,8 +52,8 @@ class PembayaranController extends Controller
     {
         $pembayaran = Seleksi::select('seleksi.*', 'pendaftaran.*') 
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id') 
-            ->join('pendaftaran', 'kandidat.nik', '=', 'pendaftaran.nik') 
-            ->orderBy('seleksi.id', 'asc') // Mengurutkan berdasarkan id seleksi secara ascending
+            ->join('pendaftaran', 'kandidat.id', '=', 'pendaftaran.id') 
+            ->orderBy('seleksi.id', 'asc')
             ->get();
     
         return view('back.pembayaran.commitment_fee', compact('pembayaran'));
