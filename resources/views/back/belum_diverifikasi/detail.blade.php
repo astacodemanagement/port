@@ -726,17 +726,23 @@
                                                                             <div class="col-sm-6">
                                                                                 <label class="col-form-label" for="level_bahasa_inggris">Level</label>
                                                                                 <select class="form-control" id="level_bahasa_inggris" name="level_bahasa_inggris">
-                                                                                    <option value="">--Pilih
-                                                                                        Level--</option>
-                                                                                    <option value="Beginner English" {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Beginner English' ? 'selected' : '' }}>
-                                                                                        Beginner English
-                                                                                    </option>
-                                                                                    <option value="⁠Medium English" {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == '⁠Medium English' ? 'selected' : '' }}>
-                                                                                        ⁠Medium English
-                                                                                    </option>
-                                                                                    <option value="Advance English" {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Advance English' ? 'selected' : '' }}>
-                                                                                        Advance English
-                                                                                    </option>
+                                                                                <option value="">--Pilih
+                                                                        Level--</option>
+                                                                    <option value="Tingkat Dasar" {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Tingkat Dasar' ? 'selected' : '' }}>
+                                                                        Tingkat Dasar
+                                                                    </option>
+                                                                    <option value="Tingkat Menengah" {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Tingkat Menengah' ? 'selected' : '' }}>
+                                                                        Tingkat Menengah
+                                                                    </option>
+                                                                    <option value="Tingkat Profesional" {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Tingkat Profesional' ? 'selected' : '' }}>
+                                                                        Tingkat Profesional
+                                                                    </option>
+                                                                    <option value="Tingkar Profesional Mahir" {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Tingkar Profesional Mahir' ? 'selected' : '' }}>
+                                                                        Tingkar Profesional Mahir
+                                                                    </option>
+                                                                    <option value="Tingkat Fasih Atau Bahasa Ahli" {{ $belum_diverifikasi->kandidat->level_bahasa_inggris == 'Tingkat Fasih Atau Bahasa Ahli' ? 'selected' : '' }}>
+                                                                        Tingkat Fasih Atau Bahasa Ahli
+                                                                    </option>
                                                                                 </select>
 
 

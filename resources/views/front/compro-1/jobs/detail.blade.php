@@ -245,7 +245,7 @@
                 <div class="col-4 d-block mb-4">
                     <div class="wrapper-content-right">
                         <div class="wrapper-image">
-                            <img src="{{ asset('upload/gambar/' . $job->gambar) }}" alt="{{ $job->nama_job }}" style="height: 250px; object-fit:cover; ">
+                            <img src="{{ asset('upload/gambar/' . $job->gambar) }}" alt="{{ $job->nama_job }}" style="height: 250px; object-fit:cover; " class="tw-rounded-md">
                         </div>
                         <div class="wrapper-salary">
                             <div class="wrapper-icon">
@@ -315,7 +315,7 @@
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Hari Kerja</h6>
-                                            <span style="color:#d1d5db;">{{ $job->hari_kerja ?? '-' }} Hari / Minggu</span>
+                                            <span style="color:#d1d5db;">{{ $job->hari_kerja ?? '-' }} Hari/Minggu</span>
                                         </div>
                                     </div>
                                 </div>
