@@ -658,14 +658,20 @@
                                                                 <select class="form-control" id="level_bahasa_inggris" name="level_bahasa_inggris">
                                                                     <option value="">--Pilih
                                                                         Level--</option>
-                                                                    <option value="Beginner English" {{ $detail_kandidat->level_bahasa_inggris == 'Beginner English' ? 'selected' : '' }}>
-                                                                        Beginner English
+                                                                    <option value="Tingkat Dasar" {{ $detail_kandidat->level_bahasa_inggris == 'Tingkat Dasar' ? 'selected' : '' }}>
+                                                                        Tingkat Dasar
                                                                     </option>
-                                                                    <option value="⁠Medium English" {{ $detail_kandidat->level_bahasa_inggris == '⁠Medium English' ? 'selected' : '' }}>
-                                                                        ⁠Medium English
+                                                                    <option value="Tingkat Menengah" {{ $detail_kandidat->level_bahasa_inggris == 'Tingkat Menengah' ? 'selected' : '' }}>
+                                                                        Tingkat Menengah
                                                                     </option>
-                                                                    <option value="Advance English" {{ $detail_kandidat->level_bahasa_inggris == 'Advance English' ? 'selected' : '' }}>
-                                                                        Advance English
+                                                                    <option value="Tingkat Profesional" {{ $detail_kandidat->level_bahasa_inggris == 'Tingkat Profesional' ? 'selected' : '' }}>
+                                                                        Tingkat Profesional
+                                                                    </option>
+                                                                    <option value="Tingkar Profesional Mahir" {{ $detail_kandidat->level_bahasa_inggris == 'Tingkar Profesional Mahir' ? 'selected' : '' }}>
+                                                                        Tingkar Profesional Mahir
+                                                                    </option>
+                                                                    <option value="Tingkat Fasih Atau Bahasa Ahli" {{ $detail_kandidat->level_bahasa_inggris == 'Tingkat Fasih Atau Bahasa Ahli' ? 'selected' : '' }}>
+                                                                        Tingkat Fasih Atau Bahasa Ahli
                                                                     </option>
                                                                 </select>
 
@@ -712,7 +718,7 @@
                                                                 <label class="border-checkbox-label" for="operation">Pernah
                                                                     Operasi</label>
                                                             </div>
-                                                            <div class="border-checkbox-group border-checkbox-group-success">
+                                                            <div cliass="border-checkbox-group border-checkbox-group-success">
                                                                 <input class="border-checkbox" type="checkbox" id="disease" name="disease" value="{{ $detail_kandidat->screaning?->disease }}" {{ $detail_kandidat->screaning?->disease == true ? 'checked' : '' }}>
                                                                 <label class="border-checkbox-label" for="disease">Penyakit
                                                                     Menahun</label>

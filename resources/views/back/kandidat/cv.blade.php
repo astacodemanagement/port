@@ -63,5 +63,10 @@
     
     <div class="border">
     </div>
+
+     <script>
+
+    document.body.innerHTML = document.body.innerHTML.toUpperCase();
+    </script>
 </body>
 </html>
