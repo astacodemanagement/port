@@ -24,8 +24,8 @@
                 $statuses = [
                 'cek_kualifikasi' => $appliedJob->tanggal_cek_kualifikasi ?? '-',
                 'lolos_kualifikasi' => $appliedJob->tanggal_lolos_kualifikasi ?? '-',
-                'interview' => $appliedJob->tanggal_interview ?? '-',
-                'lolos_interview' => $appliedJob->tanggal_lolos_interview ?? '-',
+                'interview' => $appliedJob->tanggal_dari_interview ?? '-',
+                'lolos_interview' => $appliedJob->tanggal_dari_lolos_interview ?? '-',
                 'dalam_proses' => $appliedJob->tanggal_dalam_proses ?? '-',
                 'terbang' => $appliedJob->tanggal_terbang ?? '-',
 

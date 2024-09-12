@@ -186,6 +186,16 @@
 <script src="{{ asset('frontend/js/sweetalert2.all.min.js') }}"></script>
 <!-- swal cdn -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- kalo ada error apapun dari session witrh tampilin -->
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed',
+                text: '{{ session('error') }}',
+            });
+        </script>
+    @endif
 
 
     <script>
