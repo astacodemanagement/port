@@ -115,7 +115,7 @@
                                     <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}" placeholder="name@example.com" required>
                                     <label for="email" class="form-label">Email</label>
                                     @if (session('error'))
-                                    <small>{{ {{ session('error') }}}}</small>
+                                    <small>{{ session('error') }}</small>
                                      @endif
                                       <small class="text-danger" id="err" style="display: none;"></small>
                                 </div>
@@ -226,7 +226,7 @@
                         $('#err').text(errorMessage).show();
                     },
                     complete: function() {
-                    
+
                         button.prop('disabled', false).find('.spinner-border').remove();
                     }
                 });
