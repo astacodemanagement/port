@@ -20,11 +20,11 @@ class HomeController extends Controller
       if(request()->host() == "putrasi.id"){
          $slider = Slider::where('compro', 1)->orderBy('id', 'desc')->limit(4)->get();
          $review = Review::where('compro',1)->orderBy('id','desc')->limit(4)->get();
-         $setting = Setting::where('compro',1)->first();
+        
       }else{
          $slider = Slider::where('compro', 2)->orderBy('id', 'desc')->limit(4)->get();
          $review = Review::where('compro',2)->orderBy('id','desc')->limit(4)->get();
-         $setting = Setting::where('compro',2)->first();
+        
       }
 
       $jobs = Job::active()->orderBy('id', 'desc')->limit(4)->get();
@@ -34,6 +34,6 @@ class HomeController extends Controller
       
      
       
-      return  viewCompro('home', compact('slider','alasan', 'jobs','review','negara','step','setting'));
+      return  viewCompro('home', compact('slider','alasan', 'jobs','review','negara','step'));
    }
 }

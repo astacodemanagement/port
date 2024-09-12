@@ -132,7 +132,14 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
 <body class="tw-opacity-0 tw-transition-opacity tw-duration-500 tw-max-w-full">
   {{-- navbar --}}
   
-  
+  @php
+    if (request()->host() == "putrasi.id"){
+        $setting = App\Models\Setting::where('compro',1)->first();
+    }    
+    else{
+        $setting = App\Models\Setting::where('compro',2)->first();
+    }
+@endphp
   
   @yield('content')
   <section class="tw-bg-[#154565] tw-w-full">

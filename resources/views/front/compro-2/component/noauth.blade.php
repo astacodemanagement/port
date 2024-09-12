@@ -1,3 +1,11 @@
+@php
+    if (request()->host() == "putrasi.id"){
+        $setting = App\Models\Setting::where('compro',1)->first();
+    }    
+    else{
+        $setting = App\Models\Setting::where('compro',2)->first();
+    }
+@endphp
 <nav class="tw-bg-[#FAFAFA]">
   <div class="tw-mx-auto tw-max-w-7xl tw-px-2 sm:tw-px-6 lg:tw-px-8">
     <div class="tw-relative tw-flex tw-h-16 tw-items-center tw-justify-between">
