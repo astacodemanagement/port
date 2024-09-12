@@ -4,7 +4,7 @@
 
       <div class="tw-flex tw-flex-1 tw-items-center tw-justify-start">
         <a href="/" class="tw-flex tw-flex-shrink-0 tw-items-center">
-          <img class="tw-h-8 tw-w-auto" src="{{ asset('frontend') }}/assets/image/akamalogo.png" alt="Your Company">
+          <img class="tw-h-8 tw-w-auto" src="{{ asset('upload/logo/'.$setting->logo)}}" alt="Your Company">
         </a>
 
       </div>
