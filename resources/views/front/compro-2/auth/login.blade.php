@@ -3,6 +3,10 @@
 @include('front.compro-2.component.noauth')
 <div class="tw-bg-[#F3F4F6] md:tw-h-[58vh] tw-py-20  tw-flex tw-items-center ">
     @if (session('error'))
+        <div class="tw-bg-red-500 tw-text-white tw-p-4 tw-rounded-lg tw-mb-6">
+            {{ session('error') }}
+        </div>
+        
                 
     @endif
     <div class="tw-w-full tw-mx-auto tw-px-4">
