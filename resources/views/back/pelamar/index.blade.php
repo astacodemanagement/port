@@ -252,38 +252,39 @@
                                                                             alt="Default Image">
                                                                     @endif
                                                                 </div>
-                                                                <div
-                                                                    style="flex: 1; text-align: left; padding-left:9px; word-wrap: break-word; ">
-                                                                    <br>
-                                                                    <h5 class="card-title">
-                                                                        <a href="{{route('preview-cv', hashId($p->kandidat?->id))}}" target="_blank">
-                                                                            <span class="badge badge-pill badge-primary"
-                                                                                style="color: #ebeff1;"><i
-                                                                                    class="fa fa-eye"></i> Preview</span>
-                                                                        </a>
-                                                                    </h5>
+                                                                <div style="flex: 1; text-align: left; padding-left:9px; word-wrap: break-word;">
+    <br>
+    <h5 class="card-title">
+        <a href="{{route('preview-cv', hashId($p->kandidat?->id))}}" target="_blank">
+            <span class="badge badge-pill badge-primary" style="color: #ebeff1;">
+                <i class="fa fa-eye"></i> Preview
+            </span>
+        </a>
+    </h5>
 
-                                                                    <p class="mb-1 text-muted"> <i
-                                                                            class="fas fa-graduation-cap"></i> <b
-                                                                            style="font-weight: bold;">{{ $p->kandidat->pendidikan }}</b>
-                                                                    </p>
-                                                                    <p class="mb-1 text-muted">
-                                                                        <i class="fas fa-weight-scale"></i>
-                                                                        <b style="font-weight: bold; margin:0%">{{ $p->kandidat->tinggi_badan }}
-                                                                            cm |  {{ $p->kandidat->berat_badan }} Kg</b>
-                                                                    </p>
-                                                                    <p class="mb-1 text-muted"><i class="fa fa-user"></i> <b
-                                                                            style="font-weight: bold;">
-                                                                            {{ $p->kandidat->usia }}
-                                                                            Tahun</b></p>
-                                                                    <p class="card-text mb-1 text-muted"
-                                                                        style="font-family: 'Poppins', sans-serif; ">
-                                                                        <i class="fa fa-book"></i><b
-                                                                            style="font-weight: bold;">
-                                                                            {{ $p->kandidat->no_paspor }}</b>
-                                                                    </p>
+    <p class="mb-1 text-muted d-flex align-items-center">
+        <i class="fas fa-graduation-cap" style="min-width: 24px; margin-right: 8px; text-align: center;"></i>
+        <b style="font-weight: bold;">{{ $p->kandidat->pendidikan }}</b>
+    </p>
 
-                                                                </div>
+    <p class="mb-1 text-muted d-flex align-items-center">
+        <i class="fas fa-weight-scale" style="min-width: 24px; margin-right: 8px; text-align: center;"></i>
+        <b style="font-weight: bold;">{{ $p->kandidat->tinggi_badan }} cm | {{ $p->kandidat->berat_badan }} Kg</b>
+    </p>
+
+    <p class="mb-1 text-muted d-flex align-items-center">
+        <i class="fa fa-user" style="min-width: 24px; margin-right: 8px; text-align: center;"></i>
+        <b style="font-weight: bold;">{{ $p->kandidat->usia }} Tahun</b>
+    </p>
+
+    <p class="card-text mb-1 text-muted d-flex align-items-center" style="font-family: 'Poppins', sans-serif;">
+        <i class="fa fa-book" style="min-width: 24px; margin-right: 8px; text-align: center;"></i>
+        <b style="font-weight: bold;">{{ $p->kandidat->no_paspor }}</b>
+    </p>
+</div>
+
+
+
                                                             </div>
                                                         </div>
 
