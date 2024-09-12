@@ -8,7 +8,12 @@
 <div class="row">
     @include('front.member.layouts.profile-info')
     <div class="col-md-9">
-
+    <div class="card">
+        <div class="card-body">
+        <p class=" text-dark">Untuk melihat detail keterangan  proses, click tahapan prosesnya!!</p>
+            
+        </div>
+    </div>
 
 
         <div class="card">
@@ -88,12 +93,13 @@
                             <div class="tw-hidden sm:tw-flex tw-w-full {{ $line }} tw-h-1"></div>
                             @endif
                         </div>
-                        <div class="tw-mt-3 sm:tw-pe-8">
+                        <div class="tw-mt-3 sm:tw-pe-8 tw-mb-4">
                             <button type="button" class="tw-text-sm tw-font-semibold tw-text-gray-900 md:tw-mx-0 tw-w-full" data-bs-toggle="modal" data-bs-target="#modal_{{ $status }}{{ $appliedJob->id }}">{{ $title[$status] }}</button>
                             <time class="tw-block tw-text-sm tw-font-normal tw-leading-none tw-text-gray-400 md:tw-text-start tw-text-center ">{{ $tanggal }}</time>
                         </div>
+                        
                         </li>
-
+                       
                         @if ($status == 'dalam_proses')
                         <div class="modal fade" id="modal_{{ $status }}{{ $appliedJob->id }}" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog" role="document">

@@ -1,25 +1,34 @@
+@php
+    if (request()->host() == "putrasi.id"){
+        $setting = App\Models\Setting::where('compro',1)->first();
+    }    
+    else{
+        $setting = App\Models\Setting::where('compro',2)->first();
+    }
+@endphp
+  \
 <footer class="footer-part bg-primary pt-9 pb-9">
     <div class="container">
         <div class="row justify-content-center justify-content-lg-start my-4">
             <div class="col-lg-6">
                 <div class="text-center text-lg-start">
-                    <p class="mb-0 mt-3 text-white">2024 &copy; Putra Sahabat International. All rights reserved.</p>
+                    <p class="mb-0 mt-3 text-white">{{$setting->footer}}</p>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="text-center text-lg-end">
-                    <button type="button" class="btn btn-light-dark btn-circle me-3" style="background-color: #0c496e">
+                    <a href="{{$setting->facebook}}" class="btn btn-light-dark btn-circle me-3" style="background-color: #0c496e">
                         <i class="fs-5 ti ti-brand-facebook text-white"></i>
-                    </button>
-                    <button type="button" class="btn btn-light-dark btn-circle me-3" style="background-color: #0c496e">
+                    </a>
+                    <a href="{{$setting->instagram}}" class="btn btn-light-dark btn-circle me-3" style="background-color: #0c496e">
                         <i class="fs-5 ti ti-brand-instagram text-white"></i>
-                    </button>
-                    <button type="button" class="btn btn-light-dark btn-circle me-3" style="background-color: #0c496e">
+                    </a>
+                    <a href="" class="btn btn-light-dark btn-circle me-3" style="background-color: #0c496e">
                         <i class="fs-5 ti ti-brand-linkedin text-white"></i>
-                    </button>
-                    <button type="button" class="btn btn-light-dark btn-circle" style="background-color: #0c496e">
+                    </a>
+                    <a href="{{$setting->twitter}}" class="btn btn-light-dark btn-circle" style="background-color: #0c496e">
                         <i class="fs-5 ti ti-brand-twitter text-white"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
