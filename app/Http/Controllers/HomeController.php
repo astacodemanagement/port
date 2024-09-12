@@ -34,6 +34,6 @@ class HomeController extends Controller
       
      
       
-      return  viewCompro('home', compact('slider','alasan', 'jobs','review','negara','stepe','setting'));
+      return  viewCompro('home', compact('slider','alasan', 'jobs','review','negara','step','setting'));
    }
 }
