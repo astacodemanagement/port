@@ -114,9 +114,10 @@
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}" placeholder="name@example.com" required>
                                     <label for="email" class="form-label">Email</label>
-                                    @error('email')
-                                        <small class="text-danger" role="alert">{{ $message }}</small>
-                                    @enderror
+                                    @if (session('error'))
+                                    <small>{{ {{ session('error') }}}}</small>
+                                     @endif
+                                      <small class="text-danger" id="err" style="display: none;"></small>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -187,15 +188,7 @@
 <!-- swal cdn -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- kalo ada error apapun dari session witrh tampilin -->
-    @if (session('error'))
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Login Failed',
-                text: '{{ session('error') }}',
-            });
-        </script>
-    @endif
+   
 
 
     <script>
@@ -229,11 +222,11 @@
                         if (errors) {
                             errorMessage = Object.values(errors).map(errorArray => errorArray.join(' ')).join(' ');
                         }
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Login Failed',
-                            text: xhr.responseJSON.message,
-                        });
+                        // display to id err
+                        $('#err').text(errorMessage).show();
+                    },
+                    complete: function() {
+                    
                         button.prop('disabled', false).find('.spinner-border').remove();
                     }
                 });
