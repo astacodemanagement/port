@@ -47,6 +47,14 @@
 
 <body>
     @yield('content')
+    @php
+    if (request()->host() == "putrasi.id"){
+        $setting = App\Models\Setting::where('compro',1)->first();
+    }    
+    else{
+        $setting = App\Models\Setting::where('compro',2)->first();
+    }
+    @endphp
 
     <!-- Footer -->
     <div class="Element-footer">

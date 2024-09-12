@@ -1,4 +1,12 @@
 <!-- Navbar Navigation -->
+@php
+    if (request()->host() == "putrasi.id"){
+        $setting = App\Models\Setting::where('compro',1)->first();
+    }    
+    else{
+        $setting = App\Models\Setting::where('compro',2)->first();
+    }
+@endphp
 <nav class="navbar fixed-top">
     <div class="container-fluid">
         <div class="d-flex">
