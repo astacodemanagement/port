@@ -702,8 +702,8 @@
                                 <div class="pcoded-navigation-label">Setting</div>
 
                                 <ul class="pcoded-item pcoded-left-item">
-                                    <li class="{{ request()->is('pengaturan') ? 'active' : '' }}">
-                                        <a href="/pengaturan" class="waves-effect waves-dark">
+                                    <li class="{{ request()->is('back-office.pengaturan') ? 'active' : '' }}">
+                                        <a href="/administrator/pengaturan" class="waves-effect waves-dark">
                                             <span class="pcoded-micon"><i class="feather icon-settings"></i></span>
                                             <span class="pcoded-mtext">Pengaturan Umum</span>
                                         </a>

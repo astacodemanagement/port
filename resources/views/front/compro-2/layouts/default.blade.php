@@ -147,7 +147,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
                         <div>
                             <a href="#" class="tw-bg-white">
                                 <div class="tw-bg-white md:tw-w-2/3 tw-w-1/3   h-full tw-p-2 tw-rounded-md">
-                                    <img class="md:tw-w-full tw-w-full tw-h-10" src="{{ asset('frontend') }}/assets/image/akamalogo.png" alt="">
+                                    <img class="md:tw-w-full tw-w-full tw-h-10" src="{{ asset('upload/logo/'.$setting->logo)}}" alt="">
                                 </div>
                             </a>
                         </div>
@@ -186,7 +186,7 @@ https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css
             <hr class="tw-h-px tw-my-6 tw-bg-gray-200 tw-border-none ">
     
             <div>
-                <p class="tw-text-start tw-text-[#D4D4D8]">© Brand 2024 - All rights reserved</p>
+                <p class="tw-text-start tw-text-[#D4D4D8]">{{$setting->footer}}</p>
             </div>
         </div>
     </footer>

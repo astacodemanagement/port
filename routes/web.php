@@ -49,6 +49,7 @@ use App\Http\Controllers\SeleksiLolosKualifikasiController;
 use App\Http\Controllers\SeleksiSelesaiKontrakController;
 use App\Http\Controllers\SeleksiTerbangController;
 use App\Http\Controllers\SemuaSeleksiController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StatusProsesController;
 use App\Http\Controllers\SudahVerifikasiController;
 use App\Http\Controllers\SupplierController;
@@ -77,6 +78,10 @@ Route::prefix('administrator')->group(function () {
     Route::group(['middleware' => ['role:superadmin|admin']], function () {
         Route::middleware('auth')->group(function () {
             Route::name('back-office.')->group(function () {
+                Route::get('/pengaturan', [SettingController::class, 'index'])->name('pengaturan.index');
+                // update
+                Route::put('/pengaturan/update', [SettingController::class, 'update'])->name('pengaturan.update');
+
            
                 Route::name('counter.')->group(function () {
                     Route::get('/counter', [CounterController::class, 'index'])->name('index');
