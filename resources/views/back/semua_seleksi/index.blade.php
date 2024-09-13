@@ -61,7 +61,6 @@
                                                     <tr>
                                                         <th width="5%">No</th>
                                                         <th width="15%">Posisi</th>
-
                                                         <th width="15%">Negara</th>
                                                         <th width="15%">Nama Perusahaan</th>
                                                         <th width="5%">Mitra</th>
@@ -76,8 +75,6 @@
                                                             <tr>
                                                                 <td>{{ $loop->iteration }}</td>
                                                                 <td><b>{{ $p->nama_job }}</b></td>
-
-
                                                                 <td>{{ $p->nama_negara }}</td>
                                                                 <td>{{ $p->nama_perusahaan }}</td>
                                                                 <td>{{ $p->mitra }}</td>
@@ -353,42 +350,5 @@
         });
     </script>
 
-    <script>
-        function submitUbahStatus(id) {
-            var formData = $('#ubahStatusForm' + id).serialize();
-            // Tambahkan script berikut di bagian head template atau di dalam tag script Anda
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                type: 'POST',
-                url: '{{ route('back-office.seleksi.update_seleksi_dalam_proses.status') }}', // Sesuaikan dengan URL rute Anda
-                data: formData,
-                success: function(response) {
-                    // Handle success, tampilkan SweetAlert untuk konfirmasi OK
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Status berhasil diubah',
-                        showConfirmButton: true,
-                        confirmButtonText: 'OK'
-                    }).then(function() {
-                        // Reload halaman setelah pengguna mengklik OK
-                        location.reload();
-                    });
-                },
-                error: function(error) {
-                    // Handle error, tampilkan SweetAlert error jika diperlukan
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Terjadi kesalahan',
-                        text: 'Gagal mengubah data.'
-                    });
-                    console.error(error);
-                }
-            });
-        }
-    </script>
+   
 @endpush

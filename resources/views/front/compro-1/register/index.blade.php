@@ -989,6 +989,20 @@
     })
 </script>
 <script>
-
+// give all form to uppercase value input,select,text area and label
+$('form').on('input', 'input,select,textarea', function() {
+    $(this).val($(this).val().toUpperCase())
+})
+// label
+$('form').on('input', 'label', function() {
+    $(this).text($(this).text().toUpperCase())
+})
+// uppercse select option
+$('form').on('change', 'select', function() {
+    // foreach
+    $(this).find('option').each(function() {
+        $(this).text($(this).text().toUpperCase())
+    })
+})
 </script>
 @endpush

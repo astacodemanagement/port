@@ -59,7 +59,7 @@
 
 
                 $keterangan = [
-                'cek_kualifikasi' => 'Tidak Perlu Keterangan',
+                'cek_kualifikasi' => '-',
                 'lolos_kualifikasi' => $appliedJob->keterangan_dari_lolos_kualifikasi,
                 'interview' => $appliedJob->keterangan_interview,
                 'lolos_interview' => $appliedJob->keterangan_dari_lolos_interview,

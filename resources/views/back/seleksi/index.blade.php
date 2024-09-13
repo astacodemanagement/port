@@ -77,9 +77,8 @@
                                                         @foreach ($group as $p)
                                                             <tr>
                                                                 <td>{{ $no }}</td>
-                                                                <td><b><a title="Detail" style="color: rgb(242, 236, 236)"
+                                                                <td><b><a title="Detail"
                                                                         href="#"
-                                                                    
                                                                         data-id="{{ $jobId }}">{{ $p->nama_job }}</a></b></td>
 
                                                                 <td>{{ $p->nama_negara }}</td>
