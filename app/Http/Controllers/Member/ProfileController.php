@@ -347,7 +347,7 @@ class ProfileController extends Controller
                $screaning['have_kids'] = $request->has('have_kids') ? 1 : 0;
                $screaning['willing_to_work'] = $request->has('willing_to_work') ? 1 : 0;
                $screaning['willing_to_obey_rules'] = $request->has('willing_to_obey_rules') ? 1 : 0;
-               $screaning['motivation_work'] = $request->has('motivation_work') ? 1 : 0;
+         
                $screaning['pyschical_disability'] = $request->has('pyschical_disability') ? 1 : 0;
                $screaning['operation'] = $request->has('operation') ? 1 : 0;
                $screaning['disease'] = $request->has('disease') ? 1 : 0;

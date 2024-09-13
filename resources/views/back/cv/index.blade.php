@@ -277,14 +277,11 @@
                 </tr>
                 <tr class="bar ">
                     <td class="bar ">What motivation do you have for working abroad?</td>
-                    <td class="bar ">
-                        <input type="checkbox" {{ $kandidat->screaning?->motivation_work ? 'checked' : '' }} disabled class="checkbox-custom">
-                        <span>yes</span>
+                    <td class="bar " colspan="2"> 
+                       
+                        <span>{{$kandidat->screaning->motivation_work ?? "-"}}</span>
                     </td>
-                    <td class="bar ">
-                        <input type="checkbox" {{ !$kandidat->screaning?->motivation_work ? 'checked' : '' }} disabled class="checkbox-custom">
-                        <span>no</span>
-                    </td>
+                    
                 </tr>
             </tbody>
         </table>
