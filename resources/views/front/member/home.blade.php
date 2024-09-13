@@ -441,15 +441,7 @@
                                                 Patuh Aturan</label>
                                         </div>
                                     </div>
-                                    <!-- motivation_work -->
-                                    <div class="col-md-auto col-12 ">
-                                        <div class="form-check form-check-inline">
-
-                                            <input class="form-check-input" type="checkbox" id="motivation_work" name="motivation_work" value="{{ auth()->user()->kandidat->screaning?->motivation_work }}" {{ auth()->user()->kandidat->screaning?->motivation_work == true ? 'checked' : '' }} disabled>
-                                            <label class="form-check-label" for="motivation_work">Motivasi
-                                                Bekerja</label>
-                                        </div>
-                                    </div>
+                                
                                     <div class="col-md-auto col-12 ">
                                         <div class="form-check form-check-inline">
 
@@ -464,7 +456,15 @@
                         </div>
                         <hr class="my-3 my-lg-5">
                         <div class="row my-3">
+
                             <div class="form-group row">
+                                <!-- motivation work -->
+                                <div class="col-sm-12 mb-5">
+                                    <h4 class="fw-7 mb-1">Motivasi Bekerja</h4>
+                                    <span>
+                                        {{ auth()->user()->kandidat->screaning?->motivation_work ?? 'Tidak ada Motivasi Bekerja'}}
+                                    </span>
+                                </div>
                                 <div class="col-sm-12 mb-5">
                                     <h4 class="fw-7 mb-1">Penjelasan Disabilitas</h4>
                                     <!-- pyschical_disability_explain -->

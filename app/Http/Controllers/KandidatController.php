@@ -157,7 +157,7 @@ class KandidatController extends Controller
              'old_kids' => 'nullable|numeric',
              'willing_to_work' => 'nullable|boolean',
              'willing_to_obey_rules' => 'nullable|boolean',
-             'motivation_work' => 'nullable|boolean',
+             'motivation_work' => 'nullable|min:6',
              'health' => 'nullable|in:Healthy,no',
              'pyschical_disability' => 'nullable|boolean',
              'pyschical_disability_explain' => 'nullable',
@@ -186,7 +186,7 @@ class KandidatController extends Controller
             $screaning['have_kids'] = $request->has('have_kids') ? 1 : 0;
             $screaning['willing_to_work'] = $request->has('willing_to_work') ? 1 : 0;
             $screaning['willing_to_obey_rules'] = $request->has('willing_to_obey_rules') ? 1 : 0;
-            $screaning['motivation_work'] = $request->has('motivation_work') ? 1 : 0;
+           
             $screaning['pyschical_disability'] = $request->has('pyschical_disability') ? 1 : 0;
             $screaning['operation'] = $request->has('operation') ? 1 : 0;
             $screaning['disease'] = $request->has('disease') ? 1 : 0;

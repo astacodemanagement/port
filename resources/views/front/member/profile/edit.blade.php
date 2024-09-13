@@ -516,142 +516,149 @@
                             @method('PUT')
                             <div class="row mt-lg-4 mt-3 w-full">
 
-<div class="col-lg-12">
-    <h6 class="fw-7 text-primary">Pre Screening</h6>
-    <div class="row  ">
-        <h3 class="text-dark fw-7 mt-5 mb-2">Informasi Dasar</h3>
+                                <div class="col-lg-12">
+                                    <h6 class="fw-7 text-primary">Pre Screening</h6>
+                                    <div class="row  ">
+                                        <h3 class="text-dark fw-7 mt-5 mb-2">Informasi Dasar</h3>
 
 
-        <div class="col-md-auto col-12 ">
-            <div class="form-check form-check-inline">
+                                        <div class="col-md-auto col-12 ">
+                                            <div class="form-check form-check-inline">
 
-                <input class="form-check-input" type="checkbox" id="have_kids" name="have_kids" value="{{ auth()->user()->kandidat->screaning?->have_kids }}" {{ auth()->user()->kandidat->screaning?->have_kids == true ? 'checked' : '' }}>
-                <label class="form-check-label" for="have_kids">anak</label>
-            </div>
-        </div>
-        <div class="col-md-auto col-12 ">
-            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="have_kids" name="have_kids" value="{{ auth()->user()->kandidat->screaning?->have_kids }}" {{ auth()->user()->kandidat->screaning?->have_kids == true ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="have_kids">anak</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-auto col-12 ">
+                                            <div class="form-check form-check-inline">
 
-                <input class="form-check-input" type="checkbox" id="pyschical_disability" name="pyschical_disability" value="{{ auth()->user()->kandidat->screaning?->pyschical_disability }}" {{ auth()->user()->kandidat->screaning?->pyschical_disability == true ? 'checked' : '' }}>
-                <label class="form-check-label" for="pyschical_disability">Disabilitas</label>
-            </div>
-        </div>
-        <div class="col-md-auto col-12 ">
-            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="pyschical_disability" name="pyschical_disability" value="{{ auth()->user()->kandidat->screaning?->pyschical_disability }}" {{ auth()->user()->kandidat->screaning?->pyschical_disability == true ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="pyschical_disability">Disabilitas</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-auto col-12 ">
+                                            <div class="form-check form-check-inline">
 
-                <input class="form-check-input" type="checkbox" id="operation" name="operation" value="{{ auth()->user()->kandidat->screaning?->operation }}" {{ auth()->user()->kandidat->screaning?->operation == true ? 'checked' : '' }}>
-                <label class="form-check-label" for="operation">Pernah
-                    Operasi</label>
-            </div>
-        </div>
+                                                <input class="form-check-input" type="checkbox" id="operation" name="operation" value="{{ auth()->user()->kandidat->screaning?->operation }}" {{ auth()->user()->kandidat->screaning?->operation == true ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="operation">Pernah
+                                                    Operasi</label>
+                                            </div>
+                                        </div>
 
-        <div class="col-md-auto col-12 ">
-            <div class="form-check form-check-inline">
+                                        <div class="col-md-auto col-12 ">
+                                            <div class="form-check form-check-inline">
 
-                <input class="form-check-input" type="checkbox" id="pregnant" name="pregnant" value="{{ auth()->user()->kandidat->screaning?->pregnant }}" {{ auth()->user()->kandidat->screaning?->pregnant == true ? 'checked' : '' }}>
-                <label class="form-check-label" for="pregnant">Hamil</label>
-            </div>
-        </div>
-        <!-- siap untuk bekerja -->
-        <div class="col-md-auto col-12 ">
-            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="pregnant" name="pregnant" value="{{ auth()->user()->kandidat->screaning?->pregnant }}" {{ auth()->user()->kandidat->screaning?->pregnant == true ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="pregnant">Hamil</label>
+                                            </div>
+                                        </div>
+                                        <!-- siap untuk bekerja -->
+                                        <div class="col-md-auto col-12 ">
+                                            <div class="form-check form-check-inline">
 
-                <input class="form-check-input" type="checkbox" id="willing_to_work" name="willing_to_work" value="{{ auth()->user()->kandidat->screaning?->willing_to_work }}" {{ auth()->user()->kandidat->screaning?->willing_to_work == true ? 'checked' : '' }}>
-                <label class="form-check-label" for="willing_to_work">Siap
-                    Bekerja</label>
-            </div>
-        </div>
-        <!-- willing_to_obey_rules -->
-        <div class="col-md-auto col-12 ">
-            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="willing_to_work" name="willing_to_work" value="{{ auth()->user()->kandidat->screaning?->willing_to_work }}" {{ auth()->user()->kandidat->screaning?->willing_to_work == true ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="willing_to_work">Siap
+                                                    Bekerja</label>
+                                            </div>
+                                        </div>
+                                        <!-- willing_to_obey_rules -->
+                                        <div class="col-md-auto col-12 ">
+                                            <div class="form-check form-check-inline">
 
-                <input class="form-check-input" type="checkbox" id="willing_to_obey_rules" name="willing_to_obey_rules" value="{{ auth()->user()->kandidat->screaning?->willing_to_obey_rules }}" {{ auth()->user()->kandidat->screaning?->willing_to_obey_rules == true ? 'checked' : '' }}>
-                <label class="form-check-label" for="willing_to_obey_rules">Siap
-                    Patuh Aturan</label>
-            </div>
-        </div>
-        <!-- motivation_work -->
-        <div class="col-md-auto col-12 ">
-            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="willing_to_obey_rules" name="willing_to_obey_rules" value="{{ auth()->user()->kandidat->screaning?->willing_to_obey_rules }}" {{ auth()->user()->kandidat->screaning?->willing_to_obey_rules == true ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="willing_to_obey_rules">Siap
+                                                    Patuh Aturan</label>
+                                            </div>
+                                        </div>
+                                        <!-- motivation_work -->
 
-                <input class="form-check-input" type="checkbox" id="motivation_work" name="motivation_work" value="{{ auth()->user()->kandidat->screaning?->motivation_work }}" {{ auth()->user()->kandidat->screaning?->motivation_work == true ? 'checked' : '' }}>
-                <label class="form-check-label" for="motivation_work">Motivasi
-                    Bekerja</label>
-            </div>
-        </div>
-        <div class="col-md-auto col-12 ">
-            <div class="form-check form-check-inline">
+                                        <div class="col-md-auto col-12 ">
+                                            <div class="form-check form-check-inline">
 
-                <input class="form-check-input" type="checkbox" id="disease" name="disease" value="{{ auth()->user()->kandidat->screaning?->disease }}" {{ auth()->user()->kandidat->screaning?->disease == true ? 'checked' : '' }}>
-                <label class="form-check-label" for="disease">Penyakit</label>
-            </div>
-        </div>
+                                                <input class="form-check-input" type="checkbox" id="disease" name="disease" value="{{ auth()->user()->kandidat->screaning?->disease }}" {{ auth()->user()->kandidat->screaning?->disease == true ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="disease">Penyakit</label>
+                                            </div>
+                                        </div>
 
-    </div>
+                                    </div>
 
-</div>
-</div>
-<hr class="my-3 my-lg-5">
-<div class="row my-3">
-<div class="form-group row">
-    <div class="col-sm-12">
-        <label class="col-form-label" for="explain">Penjelasan Disabilitas</label>
-        <!-- pyschical_disability_explain -->
-        <textarea class="form-control" name="pyschical_disability_explain" id="pyschical_disability_explain" cols="30" rows="2">{{ auth()->user()->kandidat->screaning?->pyschical_disability_explain }}</textarea>
-    </div>
-    <!-- operation_explain -->
-    <div class="col-sm-12">
-        <label class="col-form-label" for="explain">Penjelasan Operasi</label>
-        <textarea class="form-control" name="operation_explain" id="operation_explain" cols="30" rows="2">{{ auth()->user()->kandidat->screaning?->operation_explain }}</textarea>
-    </div>
-    <!-- disease_explain -->
-    <div class="col-sm-12">
-        <label class="col-form-label" for="explain">Penjelasan Penyakit Menahun</label>
-        <textarea class="form-control" name="disease_explain" id="disease_explain" cols="30" rows="2">{{ auth()->user()->kandidat->screaning?->disease_explain }}</textarea>
-    </div>
-    <!-- pregnant_explain -->
-    <div class="col-sm-12">
-        <label class="col-form-label" for="explain">Penjelasan Kehamilan</label>
-        <textarea class="form-control" name="pregnant_explain" id="pregnant_explain" cols="30" rows="2">{{ auth()->user()->kandidat->screaning?->pregnant_explain }}</textarea>
-    </div>
-</div>
-<div class="form-group row">
-    <div class="col-sm-12">
-        
-        <label class="col-form-label" for="health">Kesehatan</label>
-        <select class="form-control" id="health" name="health">
-            <option value="">--Pilih
-                Kesehatan--</option>
-            <option value="Healthy" {{ auth()->user()->kandidat->screaning?->health == 'Healthy' ? 'selected' : '' }}>
-                Sehat
-            </option>
-            <option value="no" {{ auth()->user()->kandidat->screaning?->health == 'no' ? 'selected' : '' }}>
-                Tidak Sehat
-            </option>
-        </select>
-    </div>
-    <div class="col-sm-12 ">
-        <div class="border-checkbox-section">
-                            
-            <div class="mt-4 form-check form-check-inline">
+                                </div>
+                            </div>
+                            <hr class="my-3 my-lg-5">
+                            <div class="row my-3">
+                                <div class="form-group row">
+                                    <!-- motivation work -->
+                                    <div class="col-sm-12">
+                                        <label class="col-form-label" for="explain">Motivasi Bekerja</label>
+                                        <select class="form-control" id="motivation_work" name="motivation_work">
+                                            <option value="">--Pilih
+                                                Motivasi Bekerja--</option>
+                                            <option value="Looking money for my future" {{ auth()->user()->kandidat->screaning?->motivation_work == 'Looking money for my future' ? 'selected' : '' }}>
+                                                Looking money for my future
+                                            </option>
+                                            <option value=" Looking money for my family" {{ auth()->user()->kandidat->screaning?->motivation_work == ' Looking money for my family' ? 'selected' : '' }}>
+                                                Looking money for my family
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label class="col-form-label" for="explain">Penjelasan Disabilitas</label>
+                                        <!-- pyschical_disability_explain -->
+                                        <textarea class="form-control" name="pyschical_disability_explain" id="pyschical_disability_explain" cols="30" rows="2">{{ auth()->user()->kandidat->screaning?->pyschical_disability_explain }}</textarea>
+                                    </div>
+                                    <!-- operation_explain -->
+                                    <div class="col-sm-12">
+                                        <label class="col-form-label" for="explain">Penjelasan Operasi</label>
+                                        <textarea class="form-control" name="operation_explain" id="operation_explain" cols="30" rows="2">{{ auth()->user()->kandidat->screaning?->operation_explain }}</textarea>
+                                    </div>
+                                    <!-- disease_explain -->
+                                    <div class="col-sm-12">
+                                        <label class="col-form-label" for="explain">Penjelasan Penyakit Menahun</label>
+                                        <textarea class="form-control" name="disease_explain" id="disease_explain" cols="30" rows="2">{{ auth()->user()->kandidat->screaning?->disease_explain }}</textarea>
+                                    </div>
+                                    <!-- pregnant_explain -->
+                                    <div class="col-sm-12">
+                                        <label class="col-form-label" for="explain">Penjelasan Kehamilan</label>
+                                        <textarea class="form-control" name="pregnant_explain" id="pregnant_explain" cols="30" rows="2">{{ auth()->user()->kandidat->screaning?->pregnant_explain }}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
 
-                <input class="form-check-input" type="checkbox" id="declaration" name="declaration" value="{{ auth()->user()->kandidat->screaning?->declaration }}" {{ auth()->user()->kandidat->screaning?->declaration == 1 ? 'checked' : '' }}>
-                <label class="form-check-input-label text-lowercase" for="declaration">I HEREBY THAT THE INFORMATION GIVEN IS COMPLETE AND ACCURATE TO THE BEST OF MY KNOWLEDGE. I AM AWARE THAT ANY MISREPRESENTATION OR MISSION OF FACTS IN MY APPLICATION WILL JUSTIFY THE DENIAL OF ADMISSION, THE CENCELATION OF ADMISSION OR EXPULSION.</label>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="row mt-5">
-    <div class="col-12 text-end">
-        <a href="{{ route('member.index') }}" class="btn btn-outline-danger">Cancel</a>
-        <button class="btn btn-primary btn-save">Save</button>
-    </div>
-</div>
+                                        <label class="col-form-label" for="health">Kesehatan</label>
+                                        <select class="form-control" id="health" name="health">
+                                            <option value="">--Pilih
+                                                Kesehatan--</option>
+                                            <option value="Healthy" {{ auth()->user()->kandidat->screaning?->health == 'Healthy' ? 'selected' : '' }}>
+                                                Sehat
+                                            </option>
+                                            <option value="no" {{ auth()->user()->kandidat->screaning?->health == 'no' ? 'selected' : '' }}>
+                                                Tidak Sehat
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-12 ">
+                                        <div class="border-checkbox-section">
+
+                                            <div class="mt-4 form-check form-check-inline">
+
+                                                <input class="form-check-input" type="checkbox" id="declaration" name="declaration" value="{{ auth()->user()->kandidat->screaning?->declaration }}" {{ auth()->user()->kandidat->screaning?->declaration == 1 ? 'checked' : '' }}>
+                                                <label class="form-check-input-label text-lowercase" for="declaration">I HEREBY THAT THE INFORMATION GIVEN IS COMPLETE AND ACCURATE TO THE BEST OF MY KNOWLEDGE. I AM AWARE THAT ANY MISREPRESENTATION OR MISSION OF FACTS IN MY APPLICATION WILL JUSTIFY THE DENIAL OF ADMISSION, THE CENCELATION OF ADMISSION OR EXPULSION.</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-5">
+                                    <div class="col-12 text-end">
+                                        <a href="{{ route('member.index') }}" class="btn btn-outline-danger">Cancel</a>
+                                        <button class="btn btn-primary btn-save">Save</button>
+                                    </div>
+                                </div>
 
 
-</div>
+                            </div>
                         </form>
-                       
+
 
                     </div>
                 </div>
@@ -952,7 +959,7 @@
 
                 reader.onload = function(e) {
                     let filename = ext === "pdf" ? `{{ asset('
-                    member - template / images / pdf.png ') }}`: e.target.result
+                    member - template / images / pdf.png ') }}` : e.target.result
                     el.closest('div').find('img.img-preview-doc').attr('style', `background-image: url('${filename}')`)
                 }
 

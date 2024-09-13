@@ -739,12 +739,7 @@
                                                                 <label class="border-checkbox-label" for="willing_to_obey_rules">Siap
                                                                     Patuh Aturan</label>
                                                             </div>
-                                                            <!-- motivation_work -->
-                                                            <div class="border-checkbox-group border-checkbox-group-success">
-                                                                <input class="border-checkbox" type="checkbox" id="motivation_work" name="motivation_work" value="{{ $detail_kandidat->screaning?->motivation_work }}" {{ $detail_kandidat->screaning?->motivation_work == true ? 'checked' : '' }}>
-                                                                <label class="border-checkbox-label" for="motivation_work">Motivasi
-                                                                    Bekerja</label>
-                                                            </div>
+                                                       
                                                         </div>
 
                                                         <h6 class="mt-5">Jelaskan
@@ -766,6 +761,22 @@
 
                                                         </div>
                                                         <!-- text area for explain dan informasikan kosongkan jika tidak merasa-->
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-12">
+                                                                <label class="col-form-label" for="explain">Motivasi Bekerja</label>
+                                                               <!-- motivation_work -->
+                                                                <select class="form-control" id="motivation_work" name="motivation_work">
+                                                                    <option value="">--Pilih
+                                                                        Motivasi Bekerja--</option>
+                                                                    <option value="Looking money for my future" {{ $detail_kandidat->screaning?->motivation_work == 'Looking money for my future' ? 'selected' : '' }}>
+                                                                         Looking money for my future
+                                                                    </option>
+                                                                    <option value=" Looking money for my family" {{ $detail_kandidat->screaning?->motivation_work == ' Looking money for my family' ? 'selected' : '' }}>
+                                                                         Looking money for my family
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
 
                                                         <div class="form-group row">
                                                             <div class="col-sm-12">
