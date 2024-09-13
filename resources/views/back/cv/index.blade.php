@@ -312,11 +312,11 @@
                 <tr class="bar">
                     <td class="bar">Do you have any physical disability?</td>
                     <td class="bar">
-                        <input type="checkbox" {{ $kandidat->screaning?->physical_disability ? 'checked' : '' }} disabled class="checkbox-custom">
+                        <input type="checkbox" {{ $kandidat->screaning?->pyschical_disability ? 'checked' : '' }} disabled class="checkbox-custom">
                         <span>yes {{ $kandidat->screaning?->pyschical_disability_explain }}</span>
                     </td>
                     <td class="bar">
-                        <input type="checkbox" {{ !$kandidat->screaning?->physical_disability ? 'checked' : '' }} disabled class="checkbox-custom">
+                        <input type="checkbox" {{ !$kandidat->screaning?->pyschical_disability ? 'checked' : '' }} disabled class="checkbox-custom">
                         <span>no</span>
                     </td>
                 </tr>

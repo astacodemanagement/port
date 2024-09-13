@@ -99,12 +99,18 @@
                                 
                             </div>
                             <div class="tw-p-6 tw-pt-0">
-                             <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
-                              Detail
-                              <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
-                            </a>
-                          
-                            
+                              <a href="{{ route('front.jobs.show', hashId($item->id)) }}" class="hover:tw-text-sky-600 hover:tw-scale-105 tw-w-full tw-bg-sky-100 tw-text-[#2B9FDC] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center">
+                                Detail
+                                <i class="fa-solid fa-arrow-right tw-ml-2 -tw-rotate-45" style="position: relative; top: -2px;"></i>
+                              </a>
+                                @if (auth()?->user()?->kandidat?->pendaftaran?->status == "Verifikasi")
+                                  
+                                <a href="{{ route('front.jobs.apply', hashId($item->id)) }}" class="hover:tw-text-green-600 hover:tw-scale-105 tw-w-full tw-bg-green-100 tw-text-[#28a745] tw-font-bold tw-rounded-lg tw-border-none tw-cursor-pointer tw-py-2 tw-flex tw-items-center tw-justify-center tw-mt-4">
+                                  Lamar
+                                  <i class="fa-solid fa-paper-plane tw-ml-2" style="position: relative; top: -2px;"></i>
+                                </a>
+                                @endif
+                               
                             </div>
                         </div>
                         @endforeach

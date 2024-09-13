@@ -20,7 +20,7 @@
                 <a class="nav-link" href="{{ route('member.index') }}"><i class="ti ti-user me-3 text-primary fs-5"></i> Profile</a>
             </li>
             <li class="nav-item hover-dd d-none d-xl-block">
-                <a class="nav-link" href="javascript:void(0)"><i
+                <a class="nav-link" href="/jobs"><i
                         class="ti ti-briefcase me-3 text-primary fs-5"></i> Jobs</a>
             </li>   
             <li class="nav-item hover-dd d-none d-xl-block">

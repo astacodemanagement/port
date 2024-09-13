@@ -61,7 +61,7 @@
         <div class="container">
             <div class="wrapper-content-detail">
                 <div class="wrapper-items d-flex gap-4 align-self-center">
-                    <img src="{{ asset('frontend/assets/icons/bag-icon 2.png') }}" alt="">
+                <i class="fa-solid fa-suitcase fs-1 " style="color:#0F5078; margin-bottom:-15px;"></i>
                     <h2>{{ $job->nama_job }}</h2>
                 </div>
             </div>
@@ -275,11 +275,11 @@
                                 <div class="items-negara">
                                     <div class="row d-flex">
                                         <div class="col-1">
-                                            <img src="{{ asset('frontend/assets/icons/location.png') }}" alt="">
+                                        <i class="fa-solid fa-location-dot fs-5 text-light"></i>
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Negara</h6>
-                                            <span style="color:#d1d5db;">{{ $job->negara?->nama_negara }}</span>
+                                            <span style="color:#e2e8f0;">{{ $job->negara?->nama_negara }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -287,11 +287,11 @@
                                 <div class="items-negara mt-3">
                                     <div class="row d-flex">
                                         <div class="col-1">
-                                            <img src="{{ asset('frontend/assets/icons/bulk/document-text.png') }}" alt="">
+                                        <i class="fa-solid fa-file fs-5 text-light"></i>
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Kontrak Kerja</h6>
-                                            <span class="" style="color:#d1d5db;">{{ $job->kontrak_kerja ?? '-' }}</span>
+                                            <span class="" style="color:#e2e8f0;">{{ $job->kontrak_kerja ?? '-' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -299,11 +299,11 @@
                                 <div class="items-negara mt-3">
                                     <div class="row d-flex">
                                         <div class="col-1">
-                                            <img src="{{ asset('frontend/assets/icons/bulk/clock.png') }}" alt="">
+                                        <i class="fa-solid fa-clock fs-5 text-light"></i>
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white mb-1">Jam Kerja</h6>
-                                            <span style="color:#d1d5db;">{{ $job->jam_kerja ?? '-' }}</span>
+                                            <span style="color:#e2e8f0;">{{ $job->jam_kerja ?? '-' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -311,11 +311,11 @@
                                 <div class="items-negara mt-3">
                                     <div class="row d-flex">
                                         <div class="col-1">
-                                            <img src="{{ asset('frontend/assets/icons/bulk/calendar-2.png') }}" alt="">
+                                        <i class="fa-solid fa-calendar-days fs-5 text-light"></i>
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Hari Kerja</h6>
-                                            <span style="color:#d1d5db;">{{ $job->hari_kerja ?? '-' }} Hari/Minggu</span>
+                                            <span style="color:#e2e8f0;">{{ $job->hari_kerja ?? '-' }} Hari/Minggu</span>
                                         </div>
                                     </div>
                                 </div>
@@ -325,11 +325,11 @@
                                 <div class="items-negara">
                                     <div class="row d-flex">
                                         <div class="col-1">
-                                            <img src="{{ asset('frontend/assets/icons/bulk/airplane-square.png') }}" alt="">
+                                        <i class="fa-solid fa-plane fs-5 text-white"></i>
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Cuti Kerja</h6>
-                                            <span style="color:#d1d5db;">{{ $job->cuti_kerja ?? '-' }}</span>
+                                            <span style="color:#e2e8f0;">{{ $job->cuti_kerja ?? '-' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -338,11 +338,11 @@
                                 <div class="items-negara mt-3">
                                     <div class="row d-flex">
                                         <div class="col-1">
-                                            <img src="{{ asset('frontend/assets/icons/bulk/calendar-tick.png') }}" alt="">
+                                        <i class="fa-solid fa-calendar fs-5 text-white"></i>
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Masa Percobaan</h6>
-                                            <span style="color:#d1d5db;">{{ $job->masa_percobaan ?? '-' }}</span>
+                                            <span style="color:#e2e8f0;">{{ $job->masa_percobaan ?? '-' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -350,11 +350,11 @@
                                 <div class="items-negara mt-3">
                                     <div class="row d-flex">
                                         <div class="col-1">
-                                            <img src="{{ asset('frontend/assets/icons/bulk/translate.png') }}" alt="">
+                                        <i class="fa-solid fa-language fs-5 text-light"></i>
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Bahasa</h6>
-                                            <span style="color:#d1d5db;">{{ $job->bahasa ?? '-' }}</span>
+                                            <span style="color:#e2e8f0;">{{ $job->bahasa ?? '-' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -362,11 +362,11 @@
                                 <div class="items-negara mt-3">
                                     <div class="row d-flex">
                                         <div class="col-1">
-                                            <img src="{{ asset('frontend/assets/icons/bulk/timer.png') }}" alt="">
+                                        <i class="fa-solid fa-hourglass-end fs-5 text-light"></i>
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Overtime</h6>
-                                            <span style="color:#d1d5db;">{{ $job->overtime }}</span>
+                                            <span style="color:#e2e8f0;">{{ $job->overtime }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -378,11 +378,11 @@
                                 <div class="items-negara">
                                     <div class="row d-flex">
                                         <div class="col-1">
-                                            <img src="{{ asset('frontend/assets/icons/bulk/building-4.png') }}" alt="">
+                                        <i class="fa-solid fa-building fs-5 text-light"></i>
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Industri Pekerjaan</h6>
-                                            <span style="color:#d1d5db;">{{ $job->jobKategori?->nama_kategori_job }}</span>
+                                            <span style="color:#e2e8f0;">{{ $job->jobKategori?->nama_kategori_job }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -391,11 +391,11 @@
                                 <div class="items-negara">
                                     <div class="row d-flex">
                                         <div class="col-1">
-                                            <img src="{{ asset('frontend/assets/icons/bulk/transaction-minus.png') }}" alt="">
+                                        <i class="fa-solid fa-file-contract fs-5 text-light"></i>
                                         </div>
                                         <div class="col">
                                             <h6 class="text-white">Jenis Pekerjaan</h6>
-                                            <span style="color:#d1d5db;">{{ $job->kontrak_kerja }}</span>
+                                            <span style="color:#e2e8f0; font-size:0.8rem" >{{ $job->kontrak_kerja }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -409,6 +409,14 @@
                                         Lamar Pekerjaan
                                     </button>
                                 </div>
+                            @elseif (auth()?->user()?->kandidat?->pendaftaran?->status == "Belum Verifikasi(Pending)")
+                                <div class="col-12">
+                                    <a href="{{ route('front.profile') }}" class="element-button-action text-center d-block" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
+                                        Menunggu Verifikasi
+                                    </a>
+                                </div>
+
+                                
                             @else
                                 <div class="col-12">
                                     <a href="{{ route('front.login', ['job' => hashId($job->id)]) }}" class="element-button-action text-center d-block" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
