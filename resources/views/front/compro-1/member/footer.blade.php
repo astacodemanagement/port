@@ -6,7 +6,7 @@
         $setting = App\Models\Setting::where('compro',2)->first();
     }
 @endphp
-  \
+  
 <footer class="footer-part bg-primary pt-9 pb-9">
     <div class="container">
         <div class="row justify-content-center justify-content-lg-start my-4">

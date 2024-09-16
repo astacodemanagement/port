@@ -2,12 +2,23 @@
 @section('title', $job->nama_job)
 
 @section('content')
+@push('css')
+<style>
+    @media (min-width: 767px) {
+        .element-detail-share{
+            display: flex;
+        }
+        
+    }
+</style>
+    
+@endpush
 
     <!-- Detail Jobs Information -->
     <section class="Element-information-jobs">
         <div class="container p-0">
             <div class="row m-0">
-                <div class="col-6 m-0">
+                <div class="col-md-8 col-12 m-0">
                     <div class="element-detail-date d-flex align-self-center">
                         <div class="items-icons">
                             <a href="{{ route('front.jobs.index') }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -25,8 +36,8 @@
                     </div>
                 </div>
 
-                <div class="col-6">
-                    <div class="element-detail-share">
+                <div class="col-md-4 col-12">
+                    <div class="element-detail-share mt-3 gap-1">
                         <span class="fw-bold">Bagikan:</span>
                         <div class="icons-items">
                             <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -82,8 +93,7 @@
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="tab-job-gallery" data-bs-toggle="tab" href="#tab-panel-job-gallery"
-                                    role="tab" aria-controls="tab-panel-job-gallery" aria-selected="false">Galeri
-                                    Pekerjaan</a>
+                                    role="tab" aria-controls="tab-panel-job-gallery" aria-selected="false">Galeri</a>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="tab-other-information" data-bs-toggle="tab" href="#tab-panel-other-information"
@@ -264,8 +274,7 @@
                                 </div>
                                 <hr class="text-white">
                                 <div class="text-information d-flex">
-                                    <span class="gap-1">{{$job->mata_uang_gaji}} ± {{$job->estimasi}}  </span>
-                                    <span> | Kurs: {{ \Carbon\Carbon::parse($job->tanggal_kurs)->format('d/m/Y') }} - IDR {{ number_format($job->nominal_kurs) }}</span>
+                                    <span class="gap-1">{{$job->mata_uang_gaji}} ± {{$job->estimasi}} | Kurs: {{ \Carbon\Carbon::parse($job->tanggal_kurs)->format('d/m/Y') }} - IDR {{ number_format($job->nominal_kurs) }}</span>
                                 </div>
                             </div>
                         </div>
@@ -419,9 +428,12 @@
                                 
                             @else
                                 <div class="col-12">
-                                    <a href="{{ route('front.login', ['job' => hashId($job->id)]) }}" class="element-button-action text-center d-block" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
-                                        Masuk Untuk Melamar Pekerjaan
-                                    </a>
+                                    <div class="d-flex " style="justify-content: center; align-items: center;">
+
+                                        <a href="{{ route('front.login', ['job' => hashId($job->id)]) }}" class="element-button-action text-center d-block" style="magin:0 auto;width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
+                                            Masuk Untuk Melamar Pekerjaan
+                                        </a>
+                                    </div>
                                 </div>
                             @endif
                             <div class="col">
@@ -438,15 +450,15 @@
             <div class="row m-0">
                 <div class="col-8 m-0">
                     <div class="content-warning d-block d-lg-none">
-                        <div class="row m-0">
-                            <div class="col-1 float-right">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        <div class="gap-2 d-flex">
+                            <div class="col-1 col-md-2 ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                     fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
                                     <path
                                         d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
                                 </svg>
                             </div>
-                            <div class="col-11">
+                            <div class="col-md-10 col-11">
                                 <span>“HATI-HATI DENGAN OKNUM YANG MENGATASNAMAKAN PERUSAHAAN. KAMI
                                     TIDAK PERNAH
                                     MELAKUKAN
@@ -492,7 +504,7 @@
                                     <span>{{ $rJob->nama_perusahaan }}</span>
                                 </div>
                                 <div class="card-content">
-                                    <div class="row">
+                                    <div class="d-flex">
                                         <div class="col-1 mt-1">
                                             <img src="{{ asset('frontend/assets/image/location.png') }}" alt="">
                                         </div>
@@ -501,7 +513,7 @@
                                             <p>{{ $rJob->negara?->nama_negara }}</p>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="d-flex">
                                         <div class="col-1 mt-1">
                                             <img src="{{ asset('frontend/assets/icons/document-text.svg') }}" alt="">
                                         </div>
@@ -510,7 +522,7 @@
                                             <p>{{ $rJob->kontrak_kerja }}</p>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="d-flex">
                                         <div class="col-1 mt-1">
                                             <img src="{{ asset('frontend/assets/icons/Component 1.svg') }}" alt="">
                                         </div>

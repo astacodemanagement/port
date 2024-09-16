@@ -11,6 +11,17 @@
 
     }
 </style>
+<style>
+    .button-submit{
+        margin-top: 3rem;
+    }
+    @media (max-width: 767px) {
+        .button-submit{
+            margin-top: -3rem;
+        }
+      }
+    
+</style>
 
 @endpush
 @section('title', 'Register')
@@ -533,16 +544,16 @@
                             <!--end::Step 6-->
                         </div>
                     </form>
-                    <div class="me-2">
+                    <div class="me-2" >
                         <button type="button"
-                            class="btn btn-light btn-prev float-start mt-5 btn-active-light-primary"
+                            class="btn btn-light btn-prev float-start  btn-active-light-primary button-submit"
                             data-kt-stepper-action="previous">
                             Kembali
                         </button>
-                        <button type="button" class="btn btn-primary float-end mt-5 btn-next" data-kt-stepper-action="next">
+                        <button type="button" class="btn btn-primary float-end  btn-next button-submit" data-kt-stepper-action="next">
                         Selanjutnya
                         </button>
-                        <button type="button" class="btn btn-primary float-end mt-5 btn-submit"
+                        <button type="button" class="btn btn-primary float-end  btn-submit button-submit"
                             data-kt-stepper-action="submit">
                             Kirim
                         </button>

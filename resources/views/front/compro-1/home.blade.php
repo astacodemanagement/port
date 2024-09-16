@@ -3,19 +3,27 @@
 @section('subtitle', 'Menu Awal')
 
 @section('content')
+@push('css')
+<style>
+    .wrapper-carousel{
+        width: 100%;
+        border-radius: 2rem;
+        background-color: white;
+    }
+</style>
+    
+@endpush
     <section class="Element-nav-items">
         <div class="container">
             @include('front.compro-1.layouts.navbar')
             <!-- Caraousel Section -->
+            <div class="wrapper-carousel">
+                
             <div id="slider" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-      
-
                     @php
                         $i = 0;
                         $count = app\Models\Slider::where('compro',1)->count() + 1;
-
-
                     @endphp
                     @while ($i < $count)
 
@@ -93,6 +101,8 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
+            </div>
+
             <!-- #End -->
         </div>
     </section>
@@ -108,7 +118,7 @@
                             <h3 class="fw-bold mt-2" style="color:var(--orange)">10,000</h3>
                         </div>
                         <div class="title-text">
-                            <h6 class="fw-reguler mt-3">Jumlah pekerja yang telah mendaftar di
+                            <h6 class="fw-reguler mt-3 inter" style="font-size:18px; ">Jumlah pekerja yang telah mendaftar di
                                 “SIPOOL”</h6>
                         </div>
                     </div>
@@ -218,7 +228,7 @@
     <!-- Fitur SIPOL Section -->
     <section class="Element-fitur-sipol">
         <div class="container">
-            <div class="title-heading text-center">
+            <div class=" text-center" style="margin-bottom:-40px; padding-top:40px;">
                 <h1 class="fw-bold">Fitur SIPOOL</h1>
             </div>
             <div class="container d-flex justify-content-evenly">
@@ -236,6 +246,7 @@
                                         </div>
                                     </div>
                                     <div class="col-1 float-end">
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -321,7 +332,7 @@
                     <div class="row">
                         <div class="col-sm-5">
                             <input type="text" class="form-control form-control-lg" placeholder="Masukan Kata Kunci"
-                                aria-label="First name" id="search-input" name="query">
+                                aria-label="First name" id="search-input" name="query"  style="font-size:14px;">
                         </div>
                         <!-- <div class="col-sm-3">
                             <select class="form-select form-select-lg" aria-label="Large select example">
@@ -332,7 +343,7 @@
                             </select>
                         </div> -->
                         <div class="col-sm-5">
-                         <select class="form-select form-select-lg" id="negara-select" aria-label="Large select example">
+                         <select class="form-select form-select-lg" id="negara-select" aria-label="Large select example"  style="font-size:14px;">
                       
                              @foreach ($negara as $item )
                                 <option value="{{$item->id}}">{{$item->nama_negara}}</option>
@@ -355,16 +366,16 @@
                                 <div class="card-image job-image-container">
                                     <a href="{{ route('front.jobs.show', hashId($job->id)) }}"><img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/' . $job->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}"></a>
                                 </div>
-                                <div class="card-items-bagde gap-1">
+                                <div class="card-items-bagde gap-1 p-1">
                                     <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
-                                    <span>Tersedia</span>
+                                    <span class="inter">Tersedia</span>
                                 </div>
                                 <div class="card-title-heading-card">
                                     <h5 class="col-10 text-truncate"><a href="{{ route('front.jobs.show', hashId($job->id)) }}">{{ $job->nama_job }}</a></h5>
                                     <span>{{ $job->nama_perusahaan }}</span>
                                 </div>
                                 <div class="card-content">
-                                    <div class="row">
+                                    <div class="d-flex">
                                         <div class="col-1 mt-1">
                                             <img src="{{ asset('frontend') }}/assets/image/location.png" alt="">
                                         </div>
@@ -374,7 +385,7 @@
                                         </div>
                                     </div>
                                    
-                                    <div class="row">
+                                    <div class="d-flex">
                                         <div class="col-1 mt-1">
                                             <img src="{{ asset('frontend') }}/assets/icons/Component 1.svg"
                                                 alt="">

@@ -4,14 +4,30 @@
         $setting = App\Models\Setting::where('compro',1)->first();
     }    
     else{
-        $setting = App\Models\Setting::where('compro',2)->first();
+        $setting = App\Models\Setting::where('compro',1)->first();
     }
 @endphp
+@push('css')
+    <style>
+        .logo{
+            width: 80px;
+            
+        }
+       /* mobile 50px */
+       @media (max-width: 767px) {
+        .logo{
+            width: 50px;
+        }
+      
+        
+       }
+    </style>
+@endpush
 <nav class="navbar fixed-top">
     <div class="container-fluid">
         <div class="d-flex">
             <a href="{{ route('front.home') }}">
-            <img src="{{asset('upload/logo/'.$setting->logo)}}" width="80px" alt="">
+            <img src="{{asset('upload/logo/'.$setting->logo)}}"class="logo" alt="">
             <span class="navbar-brand text-white fw-semibold mt-2 col-sm-hidden">{{$setting->nama_perusahaan}}</span>
             </a>
         </div>
@@ -22,7 +38,7 @@
                 <a href="{{route('member.index')}}" class="link-btn fw-semibold mx-2">Profile</a>     
             @else
                 
-            <a href="{{ route('register') }}" class="link-btn fw-semibold mx-2">Daftar SIPOOL</a>
+            <a href="{{ route('register') }}" class="link-btn fw-semibold mx-2">Daftar</a>
             <a href="/login" class="link-btn fw-semibold">Masuk</a>
             @endif
         </div>
