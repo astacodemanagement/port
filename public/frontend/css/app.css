@@ -180,7 +180,7 @@
 }
 
 .Element-herosection .container-sm {
-    padding: 56px 0;
+    padding: 0px 0;
 }
 
 .Element-herosection .row .col-sm-3 {
@@ -256,7 +256,7 @@
 
 .Element-fitur-sipol .row .card-fitur-sipool-items .col-1 {
     float: right;
-    background-image: url("../assets/image/Mobile-App-Placeholder-2\ \(1\).png");
+    background-image: url("../../frontend/assets/icons/Desktop.png");
     width: 210px;
     height: 200px;
 }
@@ -495,9 +495,10 @@
 }
 
 .Element-application-jobs .element-next a {
-    padding: 12px 36px;
+    padding: 12px 12px;
     border: 2px solid var(--biru-d);
     text-decoration: none;
+    font-size: 12px;
     border-radius: 8px;
     color: var(--biru-d);
 }
@@ -1183,9 +1184,9 @@
     .Element-fitur-sipol .row .card-fitur-sipool-items .col-1 {
         position: relative;
         margin-left: 130px;
-        background-image: url("../assets/image/Mobile-App-Placeholder-2\ \(1\).png");
+            background-image: url("../../frontend/assets/icons/Desktop.png");
         object-fit: cover;
-        left: -900px;
+       
     }
 
     .Element-fitur-sipol .row .col-8 {
@@ -1195,7 +1196,7 @@
     .Element-fitur-sipol .row .card-fitur-sipool-danger .col-1 {
         position: relative;
         margin-left: 130px;
-        background-image: url("../assets/image/Mobile-App-Placeholder-2\ \(1\).png");
+            background-image: url("../../frontend/assets/icons/Desktop.png");
         object-fit: cover;
     }
 
@@ -1353,7 +1354,7 @@
 
     /* Wrapper Content */
     .wrapper-content .col-4 {
-        width: 350px;
+        width: 100%;
     }
 
     /* Find Jobs */
@@ -1455,7 +1456,7 @@
     }
 
     .wrapper-content-left .nav-tabs .nav-link {
-        font-size: 8px;
+        font-size: 11px;
     }
 
     .wrapper-content .row .col-8 {
@@ -1471,7 +1472,7 @@
     }
 
     .wrapper-content .wrapper-content-left {
-        padding: 18px;
+        padding: 0px;
     }
 
     .wrapper-content .row .wrapper-content-left .benefit-pekerjaan {
@@ -1629,7 +1630,7 @@
     }
 
     .Element-footer .container .row {
-        padding: 20px 20px 10px 10px;
+     
         display: grid;
         grid-template-columns: repeat(1, 1fr);
     }
