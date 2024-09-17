@@ -226,7 +226,7 @@
     <!-- #End -->
 
     <!-- Fitur SIPOL Section -->
-    <section class="Element-fitur-sipol">
+    <section class="Element-fitur-sipol" style="max-width:100%;">
         <div class="container">
             <div class=" text-center" style="margin-bottom:-40px; padding-top:40px;">
                 <h1 class="fw-bold">Fitur SIPOOL</h1>
@@ -289,33 +289,7 @@
     </section>
     <!-- #End -->
 
-    <!-- Section Langkah Kerja -->
-    <section class="Element-work-steps">
-        <div class="container">
-            <div class="title-heading p-4">
-                <h1 class="text-center fw-bold"><span style="color: var(--orange);">4 Langkah </span>mudah mendaftar
-                    kerja</h1>
-            </div>
-            <!-- <div class="text-center">
-                <img src="{{ asset('frontend') }}/assets/image/wrapper.png" alt="">
-            </div> -->
-            
-            <div class="d-flex" style="align-items: center; justify-content: start;">
-                @foreach ($step as $s  )
-                    <div class="" style="width: 25%; display: flex; justify-content: center; align-items:center; flex-direction: column;">
-                        <img src="/upload/step/{{$s->gambar}}" width="100" alt="" style="margin: auto; align-items:center;">
-                        <div class="text-center mt-3">
-                            <h6 class="fw-bold">{{ $s->nama_step }}</h6>
-                            <span>{{ $s->keterangan }}</span>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-            <div class="text-center mt-5">
-                <a href="{{ route('register') }}" class="btn-action">Daftar SIPOL</a>
-            </div>
-        </div>
-    </section>
+
     <!-- #End -->
 
     <!-- Section Lamaran pekerjaan -->

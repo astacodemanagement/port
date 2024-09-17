@@ -22,9 +22,17 @@
 }
 
 * {
-    box-sizing: 0;
+    box-sizing: border-box;
     font-family: inter;
 }
+
+
+body {
+    overflow-x: hidden; 
+}
+
+
+
 
 /* Navbar Section */
 .Element-nav-items {
@@ -257,7 +265,7 @@
 .Element-fitur-sipol .row .card-fitur-sipool-items .col-1 {
     float: right;
     background-image: url("../../frontend/assets/icons/Desktop.png");
-    width: 210px;
+    width: 100%;
     height: 200px;
 }
 
@@ -271,7 +279,7 @@
 
 .Element-fitur-sipol .row .card-fitur-sipool-danger .col-1 {
     background-image: url("../assets/image/Mobile-App-Placeholder-2\ \(1\).png");
-    width: 210px;
+    width: 100%;
     height: 200px;
     background-image: cover;
     object-fit: contain;
@@ -1290,7 +1298,7 @@
     .Element-application-jobs .container .row .col-3 {
         display: block;
         padding: 0 20px;
-        width: 390px;
+        width: 100%;
     }
 
     .Element-application-jobs .title-heading h1 {
@@ -1615,35 +1623,35 @@
     }
 
     /* Element Footer */
-    .Element-footer {
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
-    }
+        .Element-footer {
+            min-height: 100%;
+            margin: 0;
+            padding: 12px;
+        }
 
-    .Element-footer .container {
-        padding: 20px 0;
-    }
+        .Element-footer .container {
+            padding: 20px 0;
+        }
 
-    .Element-footer .container .row .col .navbar-brand {
-        font-size: 15px;
-    }
+        .Element-footer .container .row .col .navbar-brand {
+            font-size: 15px;
+        }
 
-    .Element-footer .container .row {
-     
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-    }
+        .Element-footer .container .row {
+        
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+        }
 
-    .Element-footer .container .row .foter-bottom {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        padding: 20px;
-    }
+        .Element-footer .container .row .foter-bottom {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            padding: 20px;
+        }
 
-    .Element-footer .container .list-unstyled {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        .Element-footer .container .list-unstyled {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 }
