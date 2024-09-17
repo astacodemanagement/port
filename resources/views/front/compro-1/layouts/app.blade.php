@@ -66,7 +66,9 @@
     @endphp
 
     <!-- Footer -->
-    <div class="Element-footer ">
+    <div class="Element-footer" style=" min-height: 100%;
+            margin: 0;
+            padding: 12px;">
         <div class="container ">
             <div class="row gap-4">
                 <div class="col">
