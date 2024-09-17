@@ -1625,8 +1625,7 @@ body {
     /* Element Footer */
         .Element-footer {
             min-height: 100%;
-            margin: 0;
-            padding: 12px;
+          
         }
 
         .Element-footer .container {
