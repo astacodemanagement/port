@@ -66,8 +66,8 @@
     @endphp
 
     <!-- Footer -->
-    <div class="Element-footer tw-max-w-full">
-        <div class="container " style="padding:10px;">
+    <div class="Element-footer ">
+        <div class="container ">
             <div class="row gap-4">
                 <div class="col">
                     <div class="d-flex">
@@ -144,7 +144,6 @@
             </div>
         </div>
     </div>
-    </section>
     <!-- #End -->
     
 

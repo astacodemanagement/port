@@ -23,7 +23,7 @@
        }
     </style>
 @endpush
-<nav class="navbar fixed-top">
+<nav class="navbar " style="max-width:100%">
     <div class="container-fluid">
         <div class="d-flex">
             <a href="{{ route('front.home') }}">
