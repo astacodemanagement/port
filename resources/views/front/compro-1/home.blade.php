@@ -340,7 +340,7 @@
                                 <div class="card-image job-image-container">
                                     <a href="{{ route('front.jobs.show', hashId($job->id)) }}"><img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/' . $job->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}"></a>
                                 </div>
-                                <div class="card-items-bagde gap-1 p-1">
+                                <div class="card-items-bagde gap-1 " style="padding-left: 1rem; padding-right: 1rem; width:100%;">
                                     <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
                                     <span class="inter">Tersedia</span>
                                 </div>

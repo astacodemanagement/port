@@ -21,9 +21,12 @@
       
         
        }
+       /* badge to mobile-mobile-daftar */
+     
+
     </style>
 @endpush
-<nav class="navbar " style="max-width:100%">
+<nav class="navbar fixed-top  " style="max-width:100%">
     <div class="container-fluid">
         <div class="d-flex">
             <a href="{{ route('front.home') }}">
@@ -40,6 +43,7 @@
                 
             <a href="{{ route('register') }}" class="link-btn fw-semibold mx-2">Daftar</a>
             <a href="/login" class="link-btn fw-semibold">Masuk</a>
+
             @endif
         </div>
     </div>
