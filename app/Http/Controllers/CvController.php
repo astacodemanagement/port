@@ -16,7 +16,7 @@ class CvController extends Controller
         $id = hashId($id, 'decode');
         $data['kandidat'] = Kandidat::find($id)->first();
         $pdf = Pdf::loadView('back.cv.index', $data);
-        return $pdf->stream('cv-pdf');
+        return $pdf->stream('cv-pdf.pdf');
 
     }
 }
