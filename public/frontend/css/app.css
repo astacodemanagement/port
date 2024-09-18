@@ -758,7 +758,7 @@ body {
 
 .wrapper-content .col-4 .wrapper-content-right .wrapper-salary {
     padding: 12px;
-    margin: 20px 0;
+    margin: 13px 0;
     background-color: var(--orange);
     border-radius: 8px;
 }
@@ -1129,6 +1129,7 @@ body {
         padding: 12px 5px;
         background: var(--orange);
         text-decoration: none;
+      
         color: var(--text-w);
         opacity: 100%;
         border-radius: 8px;
@@ -1550,7 +1551,7 @@ body {
 
     .Element-nav-items-search .navbar {
         display: flex;
-        margin: 20px 27px 30px 10px;
+        margin: 20px 20px 30px 20px;
         padding: 12px 7px;
         background: var(--biru-n);
         border-radius: 8px;
@@ -1581,9 +1582,11 @@ body {
     }
 
     .Element-nav-items-search .navbar .link-btn {
-        padding: 12px 7px;
+        display: none;
+        padding: 5px 7px;
         background: var(--orange);
         text-decoration: none;
+
         color: var(--text-w);
         opacity: 100%;
         border-radius: 8px;
@@ -1594,10 +1597,11 @@ body {
     /* List Jobs Search  */
     .list-jobs-search {
         display: flex;
-        min-height: 70vh;
+        min-height: 45vh;
         align-items: end;
-        padding: 10px 20px;
+      
     }
+   
 
     .list-jobs-search .container {
         display: grid;

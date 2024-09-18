@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Alasan;
 use App\Models\Job;
+use App\Models\KategoriJob;
 use App\Models\Negara;
+use App\Models\Partner;
 use App\Models\Review;
 use App\Models\Setting;
 use App\Models\Slider;
@@ -35,5 +37,11 @@ class HomeController extends Controller
      
       
       return  viewCompro('home', compact('slider','alasan', 'jobs','review','negara','step'));
+   }
+   public function employe()
+   {
+      $data['partner'] = Partner::where('compro',2)->get();
+      $data['kategori'] = KategoriJob::all();
+      return viewCompro('employe',$data);
    }
 }

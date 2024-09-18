@@ -350,19 +350,18 @@
                                 </div>
                                 <div class="card-content">
                                     <div class="d-flex">
-                                        <div class="col-1 mt-1">
-                                            <img src="{{ asset('frontend') }}/assets/image/location.png" alt="">
+                                        <div class="col-1 mt-2" style="margin-right:-7px;    ">
+                                        <i class="fa-solid fa-location-dot fs-6 "  style="color:#F97316;"></i>
                                         </div>
-                                        <div class="col-10 mt-2">
-                                            <h6 class="title-heading fw-bold">Negara</h6>
-                                            <p>{{ $job->negara?->nama_negara }}</p>
+                                        <div class="col-10 mt-2 ">
+                                            <h6 class="title-heading fw-bold mx-1">Negara</h6>
+                                            <p class="mx-1">{{ $job->negara?->nama_negara }}</p>
                                         </div>
                                     </div>
                                    
                                     <div class="d-flex">
-                                        <div class="col-1 mt-1">
-                                            <img src="{{ asset('frontend') }}/assets/icons/Component 1.svg"
-                                                alt="">
+                                        <div class="col-1 mt-2">
+                                        <i class="fa-solid fa-money-bill fs-6" style="color:#F97316; margin-bottom:-5px;"></i>
                                         </div>
                                         <div class="col-10 mt-2">
                                             <h6 class="title-heading fw-bold">Gaji</h6>
