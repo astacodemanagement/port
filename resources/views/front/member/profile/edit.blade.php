@@ -124,7 +124,6 @@
                                     <h6 class="fw-7">Pendidikan</h6>
                                     <select name="pendidikan" class="form-select">
                                         <option value="">Pendidikan Terakhir</option>
-                                        <option value="1" {{ auth()->user()->kandidat->pendidikan == 'Tidak/Belum Sekolah' ? 'selected' : '' }}>Tidak/Belum Sekolah</option>
                                         <option value="2" {{ auth()->user()->kandidat->pendidikan == 'SD' ? 'selected' : '' }}>SD</option>
                                         <option value="3" {{ auth()->user()->kandidat->pendidikan == 'SMP/Sederajat' ? 'selected' : '' }}>SMP/Sederajat</option>
                                         <option value="4" {{ auth()->user()->kandidat->pendidikan == 'SMA/SMK/Sederajat' ? 'selected' : '' }}>SMA/SMK/Sederajat</option>
@@ -526,7 +525,7 @@
                                             <div class="form-check form-check-inline">
 
                                                 <input class="form-check-input" type="checkbox" id="have_kids" name="have_kids" value="{{ auth()->user()->kandidat->screaning?->have_kids }}" {{ auth()->user()->kandidat->screaning?->have_kids == true ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="have_kids">anak</label>
+                                                <label class="form-check-label" for="have_kids">Memiliki Anak</label>
                                             </div>
                                         </div>
                                         <div class="col-md-auto col-12 ">
@@ -576,7 +575,7 @@
                                             <div class="form-check form-check-inline">
 
                                                 <input class="form-check-input" type="checkbox" id="disease" name="disease" value="{{ auth()->user()->kandidat->screaning?->disease }}" {{ auth()->user()->kandidat->screaning?->disease == true ? 'checked' : '' }}>
-                                                <label class="form-check-label" for="disease">Penyakit</label>
+                                                <label class="form-check-label" for="disease">Riwayat penyakit</label>
                                             </div>
                                         </div>
 
@@ -613,7 +612,7 @@
                                     </div>
                                     <!-- disease_explain -->
                                     <div class="col-sm-12">
-                                        <label class="col-form-label" for="explain">Penjelasan Penyakit Menahun</label>
+                                        <label class="col-form-label" for="explain">Penjelasan riwayat penyakit</label>
                                         <textarea class="form-control" name="disease_explain" id="disease_explain" cols="30" rows="2">{{ auth()->user()->kandidat->screaning?->disease_explain }}</textarea>
                                     </div>
                                     <!-- pregnant_explain -->
