@@ -296,7 +296,7 @@
             </thead>
             <tbody>
                 <tr class="bar ">
-                    <td class="bar ">How is your health?</td>
+                    <td class="bar ">are you healthy??</td>
                     <td class="bar ">
                         <input type="checkbox" {{ $kandidat->screaning?->health ? 'checked' : '' }} disabled class="checkbox-custom">
                         <span>yes</span>
