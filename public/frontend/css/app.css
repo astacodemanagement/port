@@ -278,11 +278,14 @@ body {
 }
 
 .Element-fitur-sipol .row .card-fitur-sipool-danger .col-1 {
-    background-image: url("../assets/image/Mobile-App-Placeholder-2\ \(1\).png");
+    background-image: url("../../frontend/assets/icons/Desktop.png");
     width: 100%;
     height: 200px;
-    background-image: cover;
-    object-fit: contain;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
 }
 
 .Element-fitur-sipol .row .card-fitur-sipool-item {
@@ -1191,10 +1194,13 @@ body {
     }
 
     .Element-fitur-sipol .row .card-fitur-sipool-items .col-1 {
-        position: relative;
-        margin-left: 130px;
-            background-image: url("../../frontend/assets/icons/Desktop.png");
-        object-fit: cover;
+        width: 100%;
+        height: 200px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
        
     }
 
@@ -1203,10 +1209,14 @@ body {
     }
 
     .Element-fitur-sipol .row .card-fitur-sipool-danger .col-1 {
-        position: relative;
-        margin-left: 130px;
-            background-image: url("../../frontend/assets/icons/Desktop.png");
-        object-fit: cover;
+
+        width: 100%;
+        height: 200px;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        justify-content: center;
     }
 
 
