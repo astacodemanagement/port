@@ -169,9 +169,7 @@
             <a href="#" class="nav-link fs-6 fw-bold ">Worker</a>
             <a href="#" class="nav-link fs-6 fw-bold ">Employer</a>
 
-            @if (auth()->check())
-                <a href="{{ route('member.index') }}" class="nav-link">Profile</a>
-            @endif
+          
 
             <!-- Auth buttons for desktop and mobile -->
             <div class="auth-buttons">
