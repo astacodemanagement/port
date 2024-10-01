@@ -23,6 +23,26 @@
         }
 
     }
+    @media (max-width: 767px) {
+        #tab-the-content{
+            justify-content: center;
+        }
+    }
+    @media (min-width:768px) {
+        #tab-the-content{
+            justify-content: start;
+        }
+    }
+    @media (max-width: 767px) {
+        #gap-job{
+            gap:1.5rem
+        }
+    }
+    @media (min-width: 768px) {
+        #gap-job{
+            gap:1rem
+        }
+    }
 </style>
 
 @endpush
@@ -84,21 +104,21 @@
 <section class="wrapper-detail-pekerjaan" style="background: var(--white-b-d);">
     <div class="container">
         <div class="wrapper-content-detail">
-            <div class="wrapper-items d-flex gap-4 align-self-center">
+            <div class="wrapper-items d-flex align-self-center" id="gap-job">
                 <i class="fa-solid fa-suitcase fs-1 " style="color:#0F5078; margin-bottom:-15px;"></i>
-                <h2 id="title-job">{{ $job->nama_job }}</h2>
+                <h2 id="title-job">Carpenter</h2>
             </div>
         </div>
     </div>
 </section>
 <!-- End -->
 <!-- Content Wrapper -->
-<section class="wrapper-content p-3">
+<section class="wrapper-content ">
     <div class="container">
         <div class="row m-0">
             <div class="col-8 mb-4">
                 <div class="wrapper-content-left bg-white ">
-                    <ul class="nav nav-tabs" role="tablist">
+                    <ul class="nav nav-tabs d-flex " id="tab-the-content"   role="tablist">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" id="tab-detail-job" data-bs-toggle="tab" href="#tab-panel-job-detail"
                                 role="tab" aria-controls="tab-panel-job-detail" aria-selected="true">Detail
@@ -291,11 +311,11 @@
                         </div>
                         
                     </div>
-                    <div class="d-flex justify-content-center" style="width: 100%; background-color: var(--orange); border-radius:8px;">
+                    <!-- <div class="d-flex justify-content-center" style="width: 100%; background-color: var(--orange); border-radius:8px;">
     <span style="width: 100%; margin-left: 5px; padding: 10px; color: var(--text-w);  font-size: 12px; border-radius: 8px; text-align: center;">
         Tersedia
     </span>
-</div>
+</div> -->
 
                     <hr class=" text-white">
                     <div class="d-flex">
@@ -532,7 +552,7 @@
                         <div class="card-image">
                             <img src="/upload/gambar/{{$rJob->gambar}}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}" style="width:100%">
                         </div>
-                        <div class="card-items-bagde gap-1">
+                        <div class="card-items-bagde " style="gap:3rem; padding-right: 10px;">
                             <img src="{{ asset('frontend/assets/icons/stop-circle.svg') }}" alt="">
                             <div class="">
                                 <span>Tersedia</span>

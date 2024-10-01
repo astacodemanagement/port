@@ -10,6 +10,8 @@
         border-radius: 2rem;
         background-color: white;
     }
+    
+   
 </style>
     
 @endpush
@@ -17,7 +19,7 @@
         <div class="container">
             @include('front.compro-1.layouts.navbar')
             <!-- Caraousel Section -->
-            <div class="wrapper-carousel">
+            <div class="wrapper-carousel"  style="margin-top:7rem">
                 
             <div id="slider" class="carousel carousel-dark slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -36,7 +38,7 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="1000">
-                        <div class="carousel-items">
+                        <div class="carousel-items" >
                             <div class="carousel-items-left">
                                 <div class="items-left-text">
                                     <div class="text-heading">
