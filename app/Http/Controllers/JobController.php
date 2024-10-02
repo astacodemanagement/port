@@ -130,9 +130,8 @@ class JobController extends Controller
         // Mulai transaksi database
         DB::beginTransaction();
         try {
-            // Hapus karakter titik dari input nominal sebelum menyimpan ke database
             $nominalFields = ['gaji', 'estimasi'];
-            $jobData = $request->except('fasilitas_id'); // kecualikan fasilitas_id jika tidak ada dalam tabel job
+            $jobData = $request->except('fasilitas_id');
     
             foreach ($nominalFields as $field) {
                 if (isset($jobData[$field])) {
@@ -140,7 +139,6 @@ class JobController extends Controller
                 }
             }
             
-            // Handle image upload and conversion to WebP
             if ($request->hasFile('gambar')) {
                 $file = $request->file('gambar');
                 $filename = $this->convertImageToWebp($file, 'upload/gambar/');
@@ -150,10 +148,8 @@ class JobController extends Controller
                 }
             }
     
-            // Simpan ke dalam tabel job dengan semua gambar yang diterima
             $job = Job::create($jobData);
     
-            // Simpan ke dalam tabel benefit
             foreach ($request->fasilitas_id as $benefit) {
                 Benefit::create([
                     'job_id' => $job->id,
@@ -161,16 +157,12 @@ class JobController extends Controller
                 ]);
             }
     
-            // Commit transaksi jika tidak ada kesalahan
             DB::commit();
     
-            // Mendapatkan ID pengguna yang sedang login
             $loggedInUserId = Auth::id();
-            // Simpan log histori untuk operasi Create dengan ruangan_id yang sedang login
             $this->simpanLogHistori('Create', 'Job', $job->id, $loggedInUserId, null, json_encode($job));
             return response()->json(['message' => 'Data berhasil disimpan'], 200);
         } catch (\Exception $e) {
-            // Rollback transaksi jika terjadi kesalahan
             DB::rollback();
             return response()->json(['message' => 'Terjadi kesalahan saat menyimpan data: ' . $e->getMessage()], 500);
         }
@@ -178,32 +170,23 @@ class JobController extends Controller
     
     private function convertImageToWebp($image, $destinationPath)
     {
-        // Pastikan direktori tujuan ada
         if (!file_exists(public_path($destinationPath))) {
             mkdir(public_path($destinationPath), 0777, true);
         }
     
-        // Ambil nama file asli dan ekstensinya
         $originalFileName = $image->getClientOriginalName();
     
-        // Ambil tipe MIME dari gambar
         $imageMimeType = $image->getMimeType();
     
-        // Filter hanya tipe MIME gambar yang didukung (misalnya, image/jpeg, image/png, dll.)
         if (strpos($imageMimeType, 'image/') === 0) {
-            // Gabungkan waktu dengan nama file asli
             $imageName = date('YmdHis') . '_' . str_replace(' ', '_', $originalFileName);
     
-            // Simpan gambar asli ke tujuan yang diinginkan
             $image->move(public_path($destinationPath), $imageName);
     
-            // Path gambar asli
             $sourceImagePath = public_path($destinationPath . $imageName);
     
-            // Path untuk menyimpan gambar WebP
             $webpImagePath = $destinationPath . pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
     
-            // Baca gambar asli dan konversi ke WebP jika tipe MIME didukung
             switch ($imageMimeType) {
                 case 'image/jpeg':
                     $sourceImage = @imagecreatefromjpeg($sourceImagePath);
@@ -211,31 +194,19 @@ class JobController extends Controller
                 case 'image/png':
                     $sourceImage = @imagecreatefrompng($sourceImagePath);
                     break;
-                    // Tambahkan jenis MIME lain jika diperlukan
                 default:
-                    // Jenis MIME tidak didukung, tangani kasus ini sesuai kebutuhan Anda
                     return null;
             }
     
-            // Jika gambar asli berhasil dibaca
             if ($sourceImage !== false) {
-                // Buat gambar baru dalam format WebP
-                imagewebp($sourceImage, public_path($webpImagePath));
-    
-                // Hapus gambar asli dari memori
-                imagedestroy($sourceImage);
-    
-                // Hapus file asli setelah konversi selesai
+                imagewebp($sourceImage, public_path($webpImagePath));    
+                imagedestroy($sourceImage);    
                 @unlink($sourceImagePath);
-    
-                // Kembalikan hanya nama file gambar WebP
                 return pathinfo($imageName, PATHINFO_FILENAME) . '.webp';
             } else {
-                // Gagal membaca gambar asli, tangani kasus ini sesuai kebutuhan Anda
                 return null;
             }
         } else {
-            // Tipe MIME gambar tidak didukung, tangani kasus ini sesuai kebutuhan Anda
             return null;
         }
     }
@@ -367,7 +338,7 @@ class JobController extends Controller
 {
     $validator = Validator::make($request->all(), [
         'nama_job' => 'required',
-        'nama_perusahaan' => 'required',
+        'nama_perusahaan' => 'nullable',
         'mitra' => 'nullable',
         'tanggal_tutup' => 'nullable|date',
         'gaji' => 'required|min:6',
@@ -396,7 +367,7 @@ class JobController extends Controller
         'ketentuan' => 'nullable|min:6',
     ], [
         'nama_job.required' => 'Nama Job Wajib diisi',
-        'nama_perusahaan.required' => 'Nama Perusahaan Wajib diisi',
+       
         'gaji.required' => 'Gaji Wajib diisi',
         'gaji.numeric' => 'Gaji harus berupa angka',
         'gaji.min' => 'Gaji minimal 6 digit',
