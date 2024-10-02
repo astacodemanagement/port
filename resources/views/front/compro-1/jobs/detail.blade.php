@@ -42,6 +42,10 @@
         #gap-job{
             gap:1rem
         }
+        .content-col{
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
     }
 </style>
 
@@ -106,7 +110,7 @@
         <div class="wrapper-content-detail">
             <div class="wrapper-items d-flex align-self-center" id="gap-job">
                 <i class="fa-solid fa-suitcase fs-1 " style="color:#0F5078; margin-bottom:-15px;"></i>
-                <h2 id="title-job">Carpenter</h2>
+                <h2 id="title-job">{{$job->nama_job ?? "-"}}</h2>
             </div>
         </div>
     </div>
@@ -292,20 +296,20 @@
                     </div>
                     <div class="wrapper-salary">
                         <div class="wrapper-icon">
-                            <div class="d-flex">
+                            <div class="d-flex gap-1">
                                 <img src="{{ asset('frontend/assets/icons/bulk/coin.png') }}" width="30" height="30">
-                                <h4 class="fw-bold text-white">GAJI</h4>
+                                <h2 class="fw-bolder text-white">GAJI</h2>
                             </div>
                             <div class="salary-items">
                                 <div class="d-flex align-middle">
-                                    <h6 class="fw-bold text-white">Mulai {{ $job->mata_uang_gaji }} {{$job->gaji}} / {{ $job->jenis_pembayaran }}</h6>
+                                    <h5 class="fw-bold text-white">Mulai Mulai {{ $job->mata_uang_gaji }} {{$job->gaji}} / {{ $job->jenis_pembayaran }}</h5>
                                    
                                 </div>
                                 <hr class="text-white">
                             </div>
                             <hr class="text-white">
                             <div class="text-information d-flex">
-                                <span class="gap-1">{{$job->mata_uang_gaji}} ± {{$job->estimasi}} | Kurs: {{ \Carbon\Carbon::parse($job->tanggal_kurs)->format('d/m/Y') }} - IDR {{ number_format($job->nominal_kurs) }}</span>
+                                <span class="gap-1">{{$job->mata_uang_gaji}} ± {{number_format($job->estimasi)}} | Kurs: {{ \Carbon\Carbon::parse($job->tanggal_kurs)->format('d/m/Y') }} - IDR {{ number_format($job->nominal_kurs) }}</span>
                                 
                             </div>
                         </div>
@@ -318,8 +322,8 @@
 </div> -->
 
                     <hr class=" text-white">
-                    <div class="d-flex">
-                        <div class="col-6">
+                    <div class="d-flex " style="justify-content: space-around;">
+                        <div class="col-6 content-col" >
                             <div class="items-negara mx-2">
 <div class="row d-flex">
                                     <div class="col-1">
@@ -333,7 +337,7 @@
                             </div>
 
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 content-col">
                             <div class="items-negara ">
                                 <div class="row d-flex">
                                     <div class="col-1">
@@ -349,7 +353,7 @@
                     </div>
                     <div class="d-flex mx-2">
 
-                        <div class="col-6">
+                        <div class="col-6 content-col">
                         <div class="items-negara  mt-3">
                                 <div class="row d-flex">
                                     <div class="col-1 ">
@@ -362,7 +366,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 content-col">
                         <div class="items-negara mt-3">
                                 <div class="row d-flex">
                                     <div class="col-1">
@@ -370,7 +374,7 @@
                                     </div>
                                     <div class="col">
                                         <h6 class="text-white mb-1" style="margin-left:-0.3rem;">Hari Kerja</h6>
-                                        <span style="color:#e2e8f0;  margin-left:-0.3rem;">{{ $job->hari_kerja ?? '-' }} Hari/Minggu</span>
+                                        <span style="color:#e2e8f0;  margin-left:-0.3rem;">{{ $job->hari_kerja ?? '-' }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -378,7 +382,7 @@
                     </div>
                     <div class="d-flex mx-2">
 
-                        <div class="col-6">
+                        <div class="col-6 content-col">
                         <div class="items-negara mt-3">
                                 <div class="row d-flex">
                                     <div class="col-1">
@@ -391,7 +395,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 content-col">
                         <div class="items-negara mt-3">
                                 <div class="row d-flex">
                                     <div class="col-1">
@@ -406,7 +410,7 @@
                         </div>
                     </div>
                     <div class="d-flex mx-2">
-                        <div class="col-6">
+                        <div class="col-6 content-col">
                         <div class="items-negara mt-3">
                                 <div class="row d-flex">
                                     <div class="col-1">
@@ -420,7 +424,7 @@
                             </div>
                        
                         </div>
-                        <div class="col-6">
+                        <div class="col-6 content-col">
 
 
                         <div class="items-negara mt-3">
@@ -439,7 +443,7 @@
                   
                     <hr class="text-white">
                     <div class="d-flex mt-4 mb-4 mx-2">
-                        <div class="col-sm">
+                        <div class="col-sm  content-col">
                             <div class="items-negara">
                                 <div class="row d-flex">
                                     <div class="col-1">
@@ -452,7 +456,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-sm  content-col">
                             <div class="items-negara">
                                 <div class="row d-flex">
                                     <div class="col-1">
@@ -552,7 +556,7 @@
                         <div class="card-image">
                             <img src="/upload/gambar/{{$rJob->gambar}}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}" style="width:100%">
                         </div>
-                        <div class="card-items-bagde " style="gap:3rem; padding-right: 10px;">
+                        <div class="card-items-bagde " >
                             <img src="{{ asset('frontend/assets/icons/stop-circle.svg') }}" alt="">
                             <div class="">
                                 <span>Tersedia</span>
@@ -563,7 +567,7 @@
                             </h5>
                             <span>{{ $rJob->nama_perusahaan }}</span>
                         </div>
-                        <div class="card-content">
+                        <div class="card-content" >
                             <div class="d-flex">
                                 <div class="col-1 mt-1">
                                     <img src="{{ asset('frontend/assets/image/location.png') }}" alt="">
