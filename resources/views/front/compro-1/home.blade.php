@@ -37,7 +37,7 @@
                     @endwhile
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="1000">
+                    <div class="carousel-item active" data-bs-interval="7000">
                         <div class="carousel-items" >
                             <div class="carousel-items-left">
                                 <div class="items-left-text">
@@ -66,7 +66,7 @@
                     </div>
               
                     @foreach ($slider as $p)
-                        <div class="carousel-item" data-bs-interval="10000" >
+                        <div class="carousel-item" data-bs-interval="7000" >
                             <div class="carousel-items">
                                 <div class="carousel-items-left">
                                     <div class="items-left-text">
@@ -340,18 +340,18 @@
                         <div class="col-3">
                             <div class="card-body">
                                 <div class="card-image job-image-container">
-                                    <a href="{{ route('front.jobs.show', hashId($job->id)) }}"><img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/' . $job->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}"></a>
+                                    <a href="{{ route('front.jobs.show', hashId($job->id)) }}"><img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/' . $job->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}" style="border-radius:15px;"></a>
                                 </div>
                                 <div class="card-items-bagde gap-1 " style="padding-left: 1rem; padding-right: 1rem; width:100%;">
-                                    <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="">
+                                    <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="" width="20px"> 
                                     <span class="inter">Tersedia</span>
                                 </div>
                                 <div class="card-title-heading-card">
                                     <h5 class="col-10 text-truncate"><a href="{{ route('front.jobs.show', hashId($job->id)) }}">{{ $job->nama_job }}</a></h5>
-                                    <span>{{ $job->nama_perusahaan }}</span>
+                                    <span>{{ $job->nama_perusahaan ?? '' }}</span>
                                 </div>
                                 <div class="card-content">
-                                    <div class="d-flex">
+                                    <div class="d-flex mx-2">
                                         <div class="col-1 mt-2" style="margin-right:-7px;    ">
                                         <i class="fa-solid fa-location-dot fs-6 "  style="color:#F97316;"></i>
                                         </div>
