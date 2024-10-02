@@ -302,7 +302,7 @@
                             </div>
                             <div class="salary-items">
                                 <div class="d-flex align-middle">
-                                    <h5 class="fw-bold text-white">Mulai Mulai {{ $job->mata_uang_gaji }} {{$job->gaji}} / {{ $job->jenis_pembayaran }}</h5>
+                                    <h5 class="fw-bold text-white">Mulai  {{ $job->mata_uang_gaji }} {{$job->gaji}} / {{ $job->jenis_pembayaran }}</h5>
                                    
                                 </div>
                                 <hr class="text-white">
