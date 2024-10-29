@@ -43,8 +43,8 @@
             gap:1rem
         }
         .content-col{
-            margin-left: 1rem;
-            margin-right: 1rem;
+         
+         
         }
     }
 </style>
@@ -302,14 +302,14 @@
                             </div>
                             <div class="salary-items">
                                 <div class="d-flex align-middle">
-                                    <h5 class="fw-bold text-white">Mulai  {{ $job->mata_uang_gaji }} {{$job->gaji}} / {{ $job->jenis_pembayaran }}</h5>
+                                    <h5 class="fw-bold text-white"> {{ $job->mata_uang_gaji }} {{$job->gaji}} / {{ $job->jenis_pembayaran }}</h5>
                                    
                                 </div>
                                 <hr class="text-white">
                             </div>
                             <hr class="text-white">
                             <div class="text-information d-flex">
-                                <span class="gap-1">{{$job->mata_uang_gaji}} ± {{number_format($job->estimasi)}} | Kurs: {{ \Carbon\Carbon::parse($job->tanggal_kurs)->format('d/m/Y') }} - IDR {{ number_format($job->nominal_kurs) }}</span>
+                                <span class="gap-1"> ± {{number_format($job->estimasi)}} | Kurs: {{ \Carbon\Carbon::parse($job->tanggal_kurs)->format('d/m/Y') }} - IDR {{ number_format($job->nominal_kurs) }}</span>
                                 
                             </div>
                         </div>
@@ -402,8 +402,8 @@
                                         <i class="fa-solid fa-language fs-5 text-light"></i>
                                     </div>
                                     <div class="col">
-                                        <h6 class="text-white" style="margin-left:-0.2rem; ">Bahasa</h6>
-                                        <span style="color:#e2e8f0;  margin-left:-0.2rem;">{{ $job->bahasa ?? 'tidak ada' }}</span>
+                                        <h6 class="text-white" style="margin-left:-0.2rem; ">Mata Uang Gaji</h6>
+                                        <span style="color:#e2e8f0;  margin-left:-0.2rem;">{{ $job->mata_uang_gaji ?? 'tidak ada' }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -434,7 +434,7 @@
                                     </div>
                                     <div class="col">
                                         <h6 class="text-white" style="margin-left:-0.3rem;">Overtime</h6>
-                                        <span style="color:#e2e8f0;  margin-left:-0.3rem;">{{ $job->overtime ?? "tidak ada" }}</span>
+                                        <span style="color:#e2e8f0;  margin-left:-0.3rem;">{{ $job->kerja_lembur ?? "tidak ada" }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -456,15 +456,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm  content-col">
+                        <div class="col-sm   ">
                             <div class="items-negara">
-                                <div class="row d-flex">
+                                <div class="row d-flex ">
                                     <div class="col-1">
                                         <i class="fa-solid fa-file-contract fs-5 text-light"></i>
                                     </div>
                                     <div class="col">
                                         <h6 class="text-white" style="margin-top:-1px;">Jenis Pekerjaan</h6>
-                                        <span style="color:#e2e8f0; margin-top:-1px; font-size:0.8rem">{{ $job->kontrak_kerja }}</span>
+                                        <span style="color:#e2e8f0; margin-top:-1px; font-size:0.8rem">{{ $job->jenis_pekerjaan }}</span>
                                     </div>
                                 </div>
                             </div>
