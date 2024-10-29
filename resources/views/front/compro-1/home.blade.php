@@ -211,7 +211,7 @@
     <!-- #End -->
 
     <!-- Tentang Sipol -->
-    <section class="Element-about-sipol">
+    <!-- <section class="Element-about-sipol">
         <div class="container text-center">
             <div class="Element-sipol-tentang-content">
                 <div class="title-heading">
@@ -224,11 +224,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- #End -->
 
     <!-- Fitur SIPOL Section -->
-    <section class="Element-fitur-sipol" style="max-width:100%;">
+    <!-- <section class="Element-fitur-sipol" style="max-width:100%;">
         <div class="container">
             <div class=" text-center" style="margin-bottom:-40px; padding-top:40px;">
                 <h1 class="fw-bold">Fitur SIPOOL</h1>
@@ -288,7 +288,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- #End -->
 
 
@@ -347,11 +347,11 @@
                                     <span class="inter">Tersedia</span>
                                 </div>
                                 <div class="card-title-heading-card">
-                                    <h5 class="col-10 text-truncate"><a href="{{ route('front.jobs.show', hashId($job->id)) }}">{{ $job->nama_job }}</a></h5>
+                                    <h5 class="col-10 "><a href="{{ route('front.jobs.show', hashId($job->id)) }}">{{ $job->nama_job }}</a></h5>
                                     <span>{{ $job->nama_perusahaan ?? '' }}</span>
                                 </div>
                                 <div class="card-content">
-                                    <div class="d-flex mx-2">
+                                    <div class="d-flex mx-2 gap-1">
                                         <div class="col-1 mt-2" style="margin-right:-7px;    ">
                                         <i class="fa-solid fa-location-dot fs-6 "  style="color:#F97316;"></i>
                                         </div>
@@ -361,7 +361,7 @@
                                         </div>
                                     </div>
                                    
-                                    <div class="d-flex">
+                                    <div class="d-flex mx-2 gap-1">
                                         <div class="col-1 mt-2">
                                         <i class="fa-solid fa-money-bill fs-6" style="color:#F97316; margin-bottom:-5px;"></i>
                                         </div>
