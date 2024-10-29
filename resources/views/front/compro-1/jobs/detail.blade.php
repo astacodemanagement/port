@@ -299,10 +299,11 @@
                             <div class="d-flex gap-1">
                                 <img src="{{ asset('frontend/assets/icons/bulk/coin.png') }}" width="30" height="30">
                                 <h2 class="fw-bolder text-white">GAJI</h2>
+
                             </div>
-                            <div class="salary-items">
-                                <div class="d-flex align-middle">
-                                    <h5 class="fw-bold text-white">  {{$job->gaji}} / {{ $job->jenis_pembayaran }}</h5>
+                            <div class="" style="margin-left:33px">
+                                <div class="d-flex align-start">
+                                    <h5 class="fw-bold text-white  tw-text-start">  {{$job->gaji}} / {{ $job->jenis_pembayaran }}</h5>
                                    
                                 </div>
                                 <hr class="text-white">
