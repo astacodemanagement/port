@@ -3,6 +3,7 @@
 @section('subtitle', 'Menu Job')
 @push('css')
  
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.css" integrity="sha512-ngQ4IGzHQ3s/Hh8kMyG4FC74wzitukRMIcTOoKT3EyzFZCILOPF0twiXOQn75eDINUfKBYmzYn2AA8DkAk8veQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
     <link rel="stylesheet" type="text/css"
@@ -347,13 +348,23 @@
                                                                                             id="kerja_lembur"
                                                                                             name="kerja_lembur">
                                                                                     </div>
-                                                                                    <div class="col-sm-6">
+                                                                                    <!-- <div class="col-sm-6">
                                                                                         <label class="col-form-label"
                                                                                             for="bahasa">Bahasa Yang
                                                                                             Digunakan</label>
                                                                                         <input type="text"
                                                                                             class="form-control "
                                                                                             id="bahasa" name="bahasa">
+                                                                                    </div> -->
+                                                                                    <!-- jenis pekerjaan -->
+                                                                                    <div class="col-sm-6">
+                                                                                        <label class="col-form-label"
+                                                                                            for="jenis_pekerjaan">Jenis
+                                                                                            Pekerjaan</label>
+                                                                                        <input type="text"
+                                                                                            class="form-control "
+                                                                                            id="jenis_pekerjaan"
+                                                                                            name="jenis_pekerjaan">
                                                                                     </div>
                                                                                 </div>
 
@@ -615,6 +626,18 @@
 
 
             @push('script')
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote.min.js" integrity="sha512-6rE6Bx6fCBpRXG/FWpQmvguMWDLWMQjPycXMr35Zx/HRD9nwySZswkkLksgyQcvrpYMx0FELLJVBvWFtubZhDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(function(){
+        // deksirpsi summer note
+        $('#deskripsi').summernote({
+            height: 200,
+            placeholder: 'Deskripsi',
+            tabsize: 2,
+            height: 100
+        });
+    })
+</script>
                 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
                 <script type="text/javascript" src="{{ asset('template') }}/files/bower_components/switchery/js/switchery.min.js">
