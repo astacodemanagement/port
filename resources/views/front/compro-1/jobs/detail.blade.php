@@ -306,7 +306,7 @@
                                     <h5 class="fw-bold text-white  tw-text-start">  {{$job->gaji}} / {{ $job->jenis_pembayaran }}</h5>
                                    
                                 </div>
-                                <hr class="text-white">
+                                
                             </div>
                             <hr class="text-white">
                             <div class="text-information d-flex">
