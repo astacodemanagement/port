@@ -310,7 +310,7 @@
                             </div>
                             <hr class="text-white">
                             <div class="text-information d-flex">
-                                <span class="gap-1"> ± {{number_format($job->estimasi)}} | Kurs: {{ \Carbon\Carbon::parse($job->tanggal_kurs)->format('d/m/Y') }} - IDR {{ number_format($job->nominal_kurs) }}</span>
+                                <span class="gap-1"> ± {{$job->estimasi}} | Kurs: {{ \Carbon\Carbon::parse($job->tanggal_kurs)->format('d/m/Y') }} - IDR {{ $job->nominal_kurs }}</span>
                                 
                             </div>
                         </div>
