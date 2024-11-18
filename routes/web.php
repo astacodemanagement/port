@@ -73,6 +73,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+
 Route::prefix('administrator')->group(function () {
     Auth::routes();
     Route::group(['middleware' => ['role:superadmin|admin']], function () {
@@ -380,6 +381,7 @@ Route::prefix('ajax')->group(function () {
 Route::name('front.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/employe', [HomeController::class, 'employe'])->name('employe');
     
     /** JOB */
     Route::name('jobs.')->group(function () {
@@ -415,6 +417,7 @@ Route::group(['middleware' => ['role:member','is_verify_email']], function () {
             Route::name('member.')->group(function () {
                 Route::get('/', [MemberHomeController::class, 'index'])->name('index');
               Route::get("/pengaduan/create", [PengaduanController::class, 'create'])->name('pengaduan.create');
+                Route::post("/pengaduan", [PengaduanController::class, 'store'])->name('pengaduan.store');
               /** WORK EXPERIENCE */
                 Route::prefix('work-experience')->group(function () {
                     Route::name('work-experience.')->group(function () {

@@ -152,7 +152,7 @@
     </style>
 @endpush
 
-<nav class="navbar fixed-top" style="max-width:100%">
+<nav class="navbar fixed-top mb-5" style="max-width:100%">
     <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center" href="{{ route('front.home') }}">
             <img src="{{ asset('upload/logo/'.$setting->logo) }}" class="logo" alt="">
@@ -166,8 +166,8 @@
 
         <!-- Navigation links -->
         <div class="nav-menu">
-            <a href="#" class="nav-link fs-6 fw-bold ">Worker</a>
-            <a href="#" class="nav-link fs-6 fw-bold ">Employer</a>
+            <a href="{{route('front.home')}}" class="nav-link fs-6 fw-bold ">Worker</a>
+            <a href="{{route('front.employe')}}" class="nav-link fs-6 fw-bold ">Employer</a>
 
           
 

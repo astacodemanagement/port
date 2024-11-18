@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kandidat;
+use App\Models\KategoriJob;
 use App\Models\Seleksi;
 use App\Models\LogHistori;
 use Carbon\Carbon;
@@ -52,13 +53,15 @@ class SemuaSeleksiController extends Controller
                 'kategori_job.urutan as kategori_urutan'
             )
             ->get();
+            $kategori_job = KategoriJob::all();
 
         // Cetak hasil query ke konsol untuk diinspeksi
         \Illuminate\Support\Facades\Log::info('Query Result:', ['seleksi' => $seleksi]);
 
         $seleksi_group = $seleksi->groupBy('job_id');
+        
 
-        return view('back.semua_seleksi.index', compact('seleksi', 'seleksi_group'));
+        return view('back.semua_seleksi.index', compact('seleksi', 'seleksi_group','kategori_job'));
     }
 
 

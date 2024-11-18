@@ -23,7 +23,7 @@ class SliderController extends Controller
          // Define validation rules and messages
          $this->validator = Validator::make([], [
              'nama_slider' => 'required',
-             'gambar' => 'mimes:jpg,jpeg,png,gif|max:2048', // Max 2 MB (2048 KB)
+             'gambar' => 'mimes:jpg,jpeg,png,gif,webp|max:2048', // Max 2 MB (2048 KB)
              'compro' => 'required|in:1,2',
          ], [
              'nama_slider.required' => 'Nama Slider Wajib diisi',

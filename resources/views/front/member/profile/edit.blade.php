@@ -297,13 +297,20 @@
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-lg-4 mb-3 mb-lg-0">
+                                        <div class="col-lg-6 mb-3 mb-lg-0">
                                             <h6 class="fw-7">Tanggal Mulai Bekerja</h6>
                                             <input type="date" class="form-control experience-start-work-date" name="tanggal_mulai_kerja[]" value="{{ $pengalamanKerja->tanggal_mulai_kerja }}" required />
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6">
                                             <h6 class="fw-7">Tanggal Selesai Bekerja</h6>
                                             <input type="date" class="form-control experience-end-work-date" name="tanggal_selesai_kerja[]" value="{{ $pengalamanKerja->tanggal_selesai_kerja }}" required />
+                                        </div>
+                                    </div>
+                                    <!-- desc pekerjaan -->
+                                    <div class="row mt-4">
+                                        <div class="col-lg-12">
+                                            <h6 class="fw-7">Deskripsi Pekerjaan</h6>
+                                            <textarea class="form-control" name="deskripsi_pekerjaan[]" required>{{ $pengalamanKerja->deskripsi_pekerjaan }}</textarea>
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-danger btn-delete-experience w-100 d-block d-lg-none mt-3"><i class="ti ti-x"></i> Hapus</button>
@@ -335,13 +342,19 @@
                                         </div>
                                     </div>
                                     <div class="row mt-4">
-                                        <div class="col-lg-4 mb-3 mb-lg-0">
+                                        <div class="col-lg-6 mb-3 mb-lg-0">
                                             <h6 class="fw-7">Tanggal Mulai Bekerja</h6>
                                             <input type="date" class="form-control experience-start-work-date" />
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-6    ">
                                             <h6 class="fw-7">Tanggal Selesai Bekerja</h6>
                                             <input type="date" class="form-control experience-end-work-date" />
+                                        </div>
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col-lg-12">
+                                            <h6 class="fw-7">Deskripsi Pekerjaan</h6>
+                                            <textarea class="form-control experience-desc" ></textarea>
                                         </div>
                                     </div>
                                     <button type="button" class="btn btn-danger btn-delete-experience w-100 d-block d-lg-none mt-3"><i class="ti ti-x"></i> Hapus</button>
@@ -792,6 +805,7 @@
             cloneEl.find('.experience-position').attr('name', 'posisi[]').prop('required', true)
             cloneEl.find('.experience-start-work-date').attr('name', 'tanggal_mulai_kerja[]').prop('required', true)
             cloneEl.find('.experience-end-work-date').attr('name', 'tanggal_selesai_kerja[]').prop('required', true)
+            cloneEl.find('.experience-desc').attr('name', 'deskripsi_pekerjaan[]').prop('required', true)
 
             if ($('.row-list-experience .col-experience').length === 0) {
                 cloneEl.find('hr').remove()
@@ -816,6 +830,7 @@
                 t.find('.experience-start-work-date').attr('data-name', `tanggal_mulai_kerja.${i}`)
                 t.find('.experience-end-work-date').attr('data-name', `tanggal_selesai_kerja.${i}`)
                 t.find('.experience-position').attr('data-name', `posisi.${i}`)
+                t.find('.experience-desc').attr('data-name', `deskripsi_pekerjaan.${i}`)
             })
         }
     })

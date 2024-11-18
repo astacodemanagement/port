@@ -236,15 +236,23 @@
                             </div>
                         </div>
                         <div class="row mt-4">
-                            <div class="col-lg-4 mb-3 mb-lg-0">
+                            <div class="col-lg-6 mb-3 mb-lg-0">
                                 <h6 class="fw-7">Tanggal Mulai Bekerja</h6>
                                 <span>{{ $pengalamanKerja->tanggal_mulai_kerja ? \Carbon\Carbon::parse($pengalamanKerja->tanggal_mulai_kerja)->format('d F Y') : '-' }}</span>
                             </div>
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
                                 <h6 class="fw-7">Tanggal Selesai Bekerja</h6>
                                 <span>{{ $pengalamanKerja->tanggal_selesai_kerja ? Carbon\Carbon::parse($pengalamanKerja->tanggal_selesai_kerja)->format('d F Y') : '-' }}</span>
                             </div>
                         </div>
+                        <div class="row mt-4">
+                            <div class="col-lg-12">
+                                <h6 class="fw-7">Deskripsi Pekerjaan</h6>
+                                <span>{{ $pengalamanKerja->desc_pekerjaan ?? '-' }}</span>
+                            </div>
+                        </div>
+
+
 
                         @if ($i > 0)
                         <hr class="my-3 my-lg-5">

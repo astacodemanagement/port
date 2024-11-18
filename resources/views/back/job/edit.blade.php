@@ -431,6 +431,40 @@
 
                                                                                 </div>
 
+                                                                                <div class="form-group row">
+                                                                                        <div class="col-sm-12">
+                                                                                            <h4 class="sub-title">Fasilitas
+                                                                                                Pekerjaan</h4>
+                                                                                            <div
+                                                                                                class="border-checkbox-section">
+
+                                                                                                {{-- Looping untuk checkbox fasilitas --}}
+
+                                                                                                @foreach ($fasilitas as $item)
+                                                                                                    <div
+                                                                                                        class="border-checkbox-group border-checkbox-group-success">
+                                                                                                        <input
+                                                                                                            class="border-checkbox"
+                                                                                                            type="checkbox"
+                                                                                                            id="fasilitas-{{ $item->id }}"
+                                                                                                            name="fasilitas_id[]"
+                                                                                                            value="{{ $item->id }}"
+                                                                                                            {{ $data->benefits->pluck('fasilitas_id')->contains($item->id) ? 'checked' : '' }}>
+                                                                                                        <label
+                                                                                                            class="border-checkbox-label"
+                                                                                                            for="fasilitas-{{ $item->id }}">
+                                                                                                            {{ $item->nama_fasilitas }}
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                @endforeach
+
+
+
+
+
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
 
 
                                                                             </div>
@@ -635,11 +669,11 @@
                                                                                         </select>
                                                                                     </div>
                                                                                     <!-- text area ketentuan -->
-                                                                                    <div class="col-sm-12 mt-3">
+                                                                                    <!-- <div class="col-sm-12 mt-3">
                                                                                         <label class="col-form-label"
                                                                                             for="ketentuan">Ketentuan</label>
                                                                                         <textarea class="form-control " name="ketentuan" id="ketentuan" cols="30" rows="4">{{$data->ketentuan}}</textarea>
-                                                                                    </div>
+                                                                                    </div> -->
                                                                                 </div>
 
 
@@ -660,49 +694,17 @@
                                                                             <div class="card-block">
 
                                                                                 <div class="card-block">
-                                                                                    <div class="form-group row">
-                                                                                        <div class="col-sm-12">
-                                                                                            <h4 class="sub-title">Fasilitas
-                                                                                                Pekerjaan</h4>
-                                                                                            <div
-                                                                                                class="border-checkbox-section">
-
-                                                                                                {{-- Looping untuk checkbox fasilitas --}}
-
-                                                                                                @foreach ($fasilitas as $item)
-                                                                                                    <div
-                                                                                                        class="border-checkbox-group border-checkbox-group-success">
-                                                                                                        <input
-                                                                                                            class="border-checkbox"
-                                                                                                            type="checkbox"
-                                                                                                            id="fasilitas-{{ $item->id }}"
-                                                                                                            name="fasilitas_id[]"
-                                                                                                            value="{{ $item->id }}"
-                                                                                                            {{ $data->benefits->pluck('fasilitas_id')->contains($item->id) ? 'checked' : '' }}>
-                                                                                                        <label
-                                                                                                            class="border-checkbox-label"
-                                                                                                            for="fasilitas-{{ $item->id }}">
-                                                                                                            {{ $item->nama_fasilitas }}
-                                                                                                        </label>
-                                                                                                    </div>
-                                                                                                @endforeach
-
-
-
-
-
-                                                                                            </div>
-                                                                                        </div>
+                                                                                    <!-- info lain -->
+                                                                                    
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <!-- info_lain -->
+                                                                                        <label class="col-form-label"
+                                                                                            for="info_lain">Info
+                                                                                            Lain</label>
+                                                                                        <textarea class="form-control " name="info_lain" id="info_lain" cols="30" rows="4">{{$data->info_lain}}</textarea>
                                                                                     </div>
-
-                                                                                   
-                                                                                  
-
-                                                                                  
-
-
-
-
+                                                                                </div>
 
                                                                                 </div>
                                                                             </div>

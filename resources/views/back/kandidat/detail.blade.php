@@ -447,6 +447,14 @@
                                                                 <input type="text" class="form-control" value="{{ $pengalaman->posisi }}">
                                                             </div>
                                                         </div>
+                                                        <!-- desc_pekerjaan -->
+                                                        <div class="form-group row">
+                                                            <div class="col-sm-12">
+                                                                <label class="col-form-label" for="desc_pekerjaan">Deskripsi
+                                                                    Pekerjaan</label>
+                                                                <textarea class="form-control" name="desc_pekerjaan" id="desc_pekerjaan" cols="30" rows="4">{{ $pengalaman->desc_pekerjaan }}</textarea>
+                                                            </div>
+                                                        </div>
                                                         <hr>
                                                     </div>
                                                     @endforeach
