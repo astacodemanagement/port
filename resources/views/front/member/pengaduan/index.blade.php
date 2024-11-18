@@ -80,4 +80,17 @@
         reader.readAsDataURL(this.files[0]);
     };
 </script>
+<!-- swal cdn and cetch from succes redirect -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+@if (session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: '{{ session('success') }}',
+        showConfirmButton: false,
+        timer: 2000
+    });
+</script>
+@endif
 @endsection

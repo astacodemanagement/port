@@ -75,7 +75,8 @@
                                                         @foreach ($group as $p)
                                                             <tr>
                                                                 <td>{{ $loop->iteration }}</td>
-                                                                <td><b>{{ $p->nama_job }}</b></td>
+                                                                <td>
+                                                                    {{ $p->nama_job }}</td>
 
 
                                                                 <td>{{ $p->nama_negara }}</td>
@@ -91,7 +92,7 @@
                                                                     <a title="Detail" style="color: rgb(242, 236, 236)"
                                                                         href="#"
                                                                         class="btn btn-sm btn-primary btn-detail"
-                                                                        data-id="{{ $p->id }}" style="color: black">
+                                                                        data-id="{{ $jobId }}" style="color: black">
                                                                         <i class="fas fa-eye"></i> Detail
                                                                     </a>
                                                                 </td>
@@ -144,154 +145,144 @@
 
                                 <div class="card-block">
 
-                                    <div class="dt-responsive table-responsive">
-                                        <table id="order-table2" class="table table-striped table-bordered nowrap">
-                                            <thead>
-                                                <tr>
-                                                    <th width="5%"><input type="checkbox" id="checkAll"></th>
-                                                    <!-- Checkbox for "Check All" -->
-                                                    <th width="5%">No</th>
-                                                    <th width="15%">Tanggal Apply</th>
-                                                    <th width="15%">Nama Kandidat</th>
-                                                    <th width="5%">Status Seleksi</th>
-                                                    <th width="15%" class="text-center" width="5%">Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($seleksi_group as $jobId => $group)
-                                                    @foreach ($group as $p2)
-                                                        <tr data-job-id="{{ $jobId }}">
-                                                            <td><input type="checkbox" name="selected_items[]"
-                                                                    value="{{ $p2->id }}"></td>
-                                                            <!-- Checkbox for each row -->
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $p2->tanggal_apply }}</td>
-                                                            <td>{{ $p2->nama_lengkap }}</td>
-                                                            <td>{{ $p2->status }}</td>
-                                                            <td class="text-center d-flex">
-                                                                <a href="{{ route('back-office.seleksi.seleksi.detail', $p2->id) }}"
-                                                                    class="form-control mr-2"
-                                                                    style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
-                                                                    title="Detail">
-                                                                    <i class="fa fa-eye"></i>
-                                                                    Lihat CV
-                                                                </a>
+<div class="dt-responsive table-responsive">
+    <table id="order-table2" class="table table-striped table-bordered nowrap">
+        <thead>
+            <tr>
+                <th width="5%"><input type="checkbox" id="checkAll"></th>
+                <!-- Checkbox for "Check All" -->
+                <th width="5%">No</th>
+                <th width="15%">Tanggal Apply</th>
+                <th width="15%">Nama Kandidat</th>
+                <th width="5%">Status Seleksi</th>
+                <th width="15%" class="text-center" width="5%">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($seleksi_group as $jobId => $group)
+                @foreach ($group as $p2)
+                    <tr data-job-id="{{ $jobId }}">
+                        <td><input type="checkbox" name="selected_items[]"
+                                value="{{ $p2->id }}"></td>
+                        <!-- Checkbox for each row -->
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $p2->tanggal_apply }}</td>
+                        <td>{{ $p2->nama_lengkap }}</td>
+                        <td>{{ $p2->status }}</td>
+                        <td class="text-center d-flex">
+                               <a href="{{ route('preview-cv', hashId($p2->kandidat_id)) }}"
+                                class="form-control mr-2"
+                                style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
+                                title="Detail">
+                                <i class="fa fa-eye"></i>
+                                Lihat CV
+                            </a>
 
-                                                                <a href="" data-toggle="modal"
-                                                                    data-target="#ubahStatusModal{{ $p2->id }}"
-                                                                    class="form-control mr-2"
-                                                                    style="background-color: #00324F; color: #fff; font-size: 12px; "
-                                                                    title="Ubah Status">
-                                                                    <i class="fa fa-edit"></i>
-                                                                    Ubah Status
+                            <a href="" data-toggle="modal"
+                                data-target="#ubahStatusModal{{ $p2->id }}"
+                                class="form-control mr-2"
+                                style="background-color: #00324F; color: #fff; font-size: 12px; "
+                                title="Ubah Status">
+                                <i class="fa fa-edit"></i>
+                                Ubah Status
 
-                                                                </a>
-                                                                <a href="{{ route('back-office.seleksi.seleksi.detail', $p2->id) }}"
-                                                                    class="form-control"
-                                                                    style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
-                                                                    title="Detail">
-                                                                    <i class="fa fa-arrow-right"></i>
-                                                                    Lihat Detail
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <!-- Modal -->
-                                                        <div class="modal fade"
-                                                            id="ubahStatusModal{{ $p2->id }}" tabindex="-1"
-                                                            role="dialog" aria-labelledby="ubahStatusModalLabel"
-                                                            aria-hidden="true">
+                            </a>
+                            <a href="{{ route('back-office.seleksi.seleksi.detail', $p2->id) }}"
+                                class="form-control"
+                                style="background-color: transparent; color: #00324F; font-size: 12px;  border: 1px solid #00324F;"
+                                title="Detail">
+                                <i class="fa fa-arrow-right"></i>
+                                Lihat Detail
+                            </a>
+                        </td>
+                    </tr>
+                    <!-- Modal -->
+                    <div class="modal fade" id="ubahStatusModal{{ $p2->id }}"
+                        tabindex="-1" role="dialog"
+                        aria-labelledby="ubahStatusModalLabel" aria-hidden="true">
 
-                                                            <div class="modal-dialog" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title"
-                                                                            id="ubahStatusModalLabel">Ubah
-                                                                            Status - {{ $p2->nama_lengkap }}</h5>
-                                                                        <button type="button" class="close"
-                                                                            data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <!-- Add your form with combo box for status update -->
-                                                                        <form id="ubahStatusForm{{ $p2->id }}">
-                                                                            <!-- Combo box for status update -->
-                                                                            <div class="form-group">
-                                                                                <label for="statusSelect">Ubah
-                                                                                    Status:</label>
-                                                                                <select class="form-control"
-                                                                                    id="statusSelect{{ $p2->id }}"
-                                                                                    name="status">
-                                                                                    <option value="Lolos Interview">
-                                                                                        Lolos Interview</option>
-                                                                                    <option value="Cek Kualifikasi">Cek
-                                                                                        Kualifikasi</option>
-                                                                                    <option value="Lolos Kualifikasi">
-                                                                                        Lolos Kualifikasi</option>
-                                                                                    <option value="Dalam Proses">Dalam
-                                                                                        Proses</option>
-                                                                                    <option value="Terbang">Terbang
-                                                                                    </option>
-                                                                                    <option value="Selesai Kontrak">
-                                                                                        Selesai Kontrak</option>
-                                                                                    <option value="Batal">Batal
-                                                                                    </option>
-                                                                                    <!-- Add other status options if needed -->
-
-                                                                                </select>
-                                                                                <br>
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        for="keterangan_dari_interview">Keterangan
-                                                                                        Dari Interview :</label>
-                                                                                    <textarea name="keterangan_dari_interview" id="keterangan_dari_interview" cols="30" rows="3"
-                                                                                        class="form-control"></textarea>
-
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- Add hidden input for the Pendaftaran ID -->
-                                                                            <input type="hidden" name="id"
-                                                                                value="{{ $p2->id }}">
-                                                                        </form>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button"
-                                                                            class="btn btn-secondary"
-                                                                            data-dismiss="modal"><i
-                                                                                class="fas fa-undo"></i>
-                                                                            Tutup</button>
-                                                                        <button type="button" class="btn btn-primary"
-                                                                            onclick="submitUbahStatus({{ $p2->id }})"><i
-                                                                                class="fas fa-save"></i>
-                                                                            Simpan</button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                        <!-- Tambahkan event listener untuk checkbox "Check All" -->
-                                        <script>
-                                            // Mengambil referensi checkbox "Check All"
-                                            const checkAllCheckbox = document.getElementById('checkAll');
-
-                                            // Mengambil referensi semua checkbox lainnya di dalam tabel
-                                            const checkboxes = document.querySelectorAll('input[name="selected_items[]"]');
-
-                                            // Menambahkan event listener untuk checkbox "Check All"
-                                            checkAllCheckbox.addEventListener('change', function() {
-                                                checkboxes.forEach(function(checkbox) {
-                                                    checkbox.checked = checkAllCheckbox.checked;
-                                                });
-                                            });
-                                        </script>
-
-                                        <button id="btnClear" class="btn btn-warning" title="Clear atau Kembali"><i
-                                                class="fa fa-undo"></i>Clear</button>
-                                    </div>
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title"
+                                        id="ubahStatusModalLabel">Ubah
+                                        Status - {{ $p2->nama_lengkap }}</h5>
+                                    <button type="button" class="close"
+                                        data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
+                                <div class="modal-body">
+                                    <!-- Add your form with combo box for status update -->
+                                    <form id="ubahStatusForm{{ $p2->id }}">
+                                        <!-- Combo box for status update -->
+                                        <div class="form-group">
+                                            <label for="statusSelect">Ubah
+                                                Status:</label>
+                                            <select class="form-control"
+                                                id="statusSelect{{ $p2->id }}"
+                                                name="status">
+                                                {{-- <option value="Cek Kualifikasi">Cek Kualifikasi</option> --}}
+                                                <option value="Lolos Kualifikasi">
+                                                    Lolos Kualifikasi</option>
+                                                <option value="Interview">Interview
+                                                </option>
+                                                <option value="Lolos Interview">
+                                                    Lolos Interview</option>
+                                                <option value="Dalam Proses">Dalam
+                                                    Proses</option>
+                                                <option value="Terbang">Terbang
+                                                </option>
+                                                <option value="Selesai Kontrak">
+                                                    Selesai Kontrak</option>
+                                                <option value="Batal">Batal
+                                                </option>
+                                                <!-- Add other status options if needed -->
+                                            </select>
+                                        </div>
+                                        <!-- Add hidden input for the Pendaftaran ID -->
+                                        <input type="hidden" name="id"
+                                            value="{{ $p2->id }}">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button"
+                                        class="btn btn-secondary"
+                                        data-dismiss="modal"><i
+                                            class="fas fa-undo"></i>
+                                        Tutup</button>
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="submitUbahStatus({{ $p2->id }})"><i
+                                            class="fas fa-save"></i>
+                                        Simpan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @endforeach
+        </tbody>
+    </table>
+    <!-- Tambahkan event listener untuk checkbox "Check All" -->
+    <script>
+        // Mengambil referensi checkbox "Check All"
+        const checkAllCheckbox = document.getElementById('checkAll');
+
+        // Mengambil referensi semua checkbox lainnya di dalam tabel
+        const checkboxes = document.querySelectorAll('input[name="selected_items[]"]');
+
+        // Menambahkan event listener untuk checkbox "Check All"
+        checkAllCheckbox.addEventListener('change', function() {
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = checkAllCheckbox.checked;
+            });
+        });
+    </script>
+
+    <button id="btnClear" class="btn btn-warning" title="Clear atau Kembali"><i
+            class="fa fa-undo"></i>Clear</button>
+</div>
+</div>
                             </div>
 
 
@@ -316,39 +307,25 @@
     <script>
         $(document).ready(function() {
             $('#order-table2').DataTable();
-            // Sembunyikan tabel kedua saat halaman dimuat
             $("#tb2").hide();
 
-            // Tangani klik pada tombol "Detail" pada tabel pertama
             $("#order-table tbody").on("click", ".btn-detail", function() {
                 var jobId = $(this).data("id");
 
-                // Cetak nilai jobId ke konsol untuk diinspeksi
                 console.log("jobId:", jobId);
-
-                // Sembunyikan tabel pertama
                 $("#tb1").hide();
-
-                // Sembunyikan semua baris pada tabel kedua
-                // $("#order-table2 tbody tr").hide();
-
-                // Tampilkan baris yang sesuai dengan job_id yang dipilih
-                $("#order-table2 tbody tr[data-job-id='" + jobId + "']").show();
-
-                // Tampilkan tabel kedua
+                $("#order-table2 tbody tr").hide();
+                $(`#order-table2 tbody tr[data-job-id=${jobId}]`).show();
                 $("#tb2").show();
             });
 
-            // Tangani klik pada tombol Clear
             $("#btnClear").on("click", function() {
-                // Sembunyikan tabel kedua
                 $("#tb2").hide();
-
-                // Tampilkan tabel pertama
                 $("#tb1").show();
             });
         });
     </script>
+
 
     <script>
         $(document).ready(function() {

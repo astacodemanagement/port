@@ -422,7 +422,7 @@ class JobController extends Controller
         // Ambil semua input dari request, kecualikan 'fasilitas_id'
         $requestData = $request->only([
             'nama_job', 'nama_perusahaan', 'mitra', 'tanggal_tutup', 'gaji', 'jenis_pembayaran',
-            'estimasi', 'gaji_diterima','nominal_kurs','jenis_pekerjaan',
+            'estimasi', 'gaji_diterima','nominal_kurs','jenis_pekerjaan','info_lain',
             'negara_id', 'kategori_job_id', 'kontrak_kerja', 'jam_kerja', 'hari_kerja', 'cuti_kerja',
             'masa_percobaan', 'mata_uang_gaji', 'kerja_lembur', 'bahasa', 'deskripsi', 'jenis_kelamin',
             'tinggi_badan', 'berat_badan', 'rentang_usia', 'level_bahasa', 'pengalaman_kerja',  'ketentuan', 'pendidikan'

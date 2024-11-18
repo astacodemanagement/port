@@ -56,6 +56,55 @@
             .font-medium {
                 font-weight: 500;
             }
+            .container {
+            padding: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        ol {
+            border-left: 2px solid #333;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        li::before {
+            content: "";
+            position: absolute;
+            left: -10px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background-color: #6c757d;
+            border-radius: 50%;
+            border: 3px solid #28a745;
+        }
+        h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .year-range {
+            font-size: 14px;
+            color: #007bff;
+        }
+        time {
+            font-size: 14px;
+            color: #007bff;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .desc-pekerjaan {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+            padding-left: 10px;
+        }
         </style>
 
     </head>
@@ -102,12 +151,16 @@
                         <p class="text-xs text-gray-600">{{$kandidat->paspor ?? "-" }}</p>
                     </td>
                     <td style="padding-left:10px; width:25%;">
-                        <h4>Passpor no</h4>
+                        <h4> Date off issue</h4>
                         <p class="text-xs text-gray-600">{{$kandidat->no_paspor ?? "-"}}</p>
                     </td>
                     <td style="width:25%; padding-left:t10px;">
-                        <h4>production date</h4>
+                        <h4>Date of expiry   </h4>
                         <p class="text-xs text-gray-600" clas>{{$kandidat->tanggal_pengeluaran_paspor ?? "- "}}</p>
+                    </td>
+                    <td>
+                        <h4> Issuing office</h4>
+                        <p class="text-xs text-gray-600">{{$kandidat->kantor_paspor ?? "-"}}</p>
                     </td>
 
                 </tr>
@@ -195,27 +248,33 @@
                 </tbody>
             </table> -->
 
-        <div class="flex flex-wrap justify-start w-full pt-10 pb-10">
-            <div class="w-1/2 px-4">
-
-                <ol class="relative border-s border-gray-600">
-                    @foreach ($kandidat->pengalamanKerja as $item)
-                    <li class="mb-10 ms-6">
-                        <span class="absolute flex items-center justify-center w-6 h-6 bg-gray-500 rounded-full -start-3 ring-4 ring-green-400">
-                            <!-- counter -->
-                            <span class="text-white">{{$loop->iteration}}</span>
-                        </span>
-                        <h3 class="flex items-center mb-1 text-base font-semibold text-gray-900">{{$item->negara_tempat_kerja}} | <span class="text-blue-500 font-normal"> {{ $item->tanggal_mulai_kerja ? \Carbon\Carbon::parse($item->tanggal_mulai_kerja)->format('Y') : '-' }} - {{ $item->tanggal_selesai_kerja ? \Carbon\Carbon::parse($item->tanggal_selesai_kerja)->format('Y') : '-' }} </span></h3>
-                        <time class="block mb-2 text-sm font-normal leading-none text-blue-500">{{$item->nama_perusahaan}} | {{$item->posisi}}</time>
-                       
-                    </li>
-                    @endforeach
-                </ol>
-
-
-            </div>
-            <div></div>
-        </div>
+            <div class="container">
+        <h2>Work Experience Information</h2>
+        <ol>
+            @foreach ($kandidat->pengalamanKerja as $item)
+            <li>
+             
+                <h3>{{ $item->negara_tempat_kerja }} | 
+                    <span class="year-range">
+                        {{ $item->tanggal_mulai_kerja ? \Carbon\Carbon::parse($item->tanggal_mulai_kerja)->format('Y') : '-' }} 
+                        - 
+                        {{ $item->tanggal_selesai_kerja ? \Carbon\Carbon::parse($item->tanggal_selesai_kerja)->format('Y') : '-' }}
+                    </span>
+                </h3>
+                <time>{{ $item->nama_perusahaan }} | {{ $item->posisi }}</time>
+                @if($item->desc_pekerjaan)
+                    <div class="desc-pekerjaan">
+                        <strong>Job Description:</strong> {{ $item->desc_pekerjaan }}
+                    </div>
+                @else
+                    <div class="desc-pekerjaan">
+                        <strong>Job Description:</strong> Not provided
+                    </div>
+                @endif
+            </li>
+            @endforeach
+        </ol>
+    </div>
 
         <!-- table screening -->
         @php

@@ -122,7 +122,7 @@ class ProfileController extends Controller
             ];
 
             $request->validate([
-                'no_paspor' => 'required|numeric|max_digits:16|min_digits:16',
+                'no_paspor' => 'required|max_digits:16|min_digits:3',
                 'tanggal_pengeluaran_paspor' => 'required|date_format:Y-m-d',
                 'masa_kadaluarsa' => 'required|date_format:Y-m-d',
                 'kantor_paspor' => 'required|min:3',
@@ -144,6 +144,8 @@ class ProfileController extends Controller
                 'tanggal_mulai_kerja.*' => 'required|date_format:Y-m-d',
                 'tanggal_selesai_kerja.*' => 'required|date_format:Y-m-d',
                 'posisi.*' => 'required|min:3|max:100',
+                'deskripsi_pekerjaan.*' => 'nullable|min:3|max:255',
+
             ],
             [
                 'required' => ':attribute harus diisi',
@@ -176,6 +178,7 @@ class ProfileController extends Controller
                         'tanggal_mulai_kerja' => $request->tanggal_mulai_kerja[$i],
                         'tanggal_selesai_kerja' => $request->tanggal_selesai_kerja[$i],
                         'posisi' => $request->posisi[$i],
+                        'desc_pekerjaan' => $request->deskripsi_pekerjaan[$i],
                         'created_at' => now(),
                         'updated_at' => now()
                     ];

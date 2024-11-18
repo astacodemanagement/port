@@ -86,7 +86,11 @@
                                                                     Kandidat</a>
                                                                 <div class="slide"></div>
                                                             </li>
-                                                           
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab" href="#settings7"
+                                                                    role="tab"><i class="fas fa-server"></i>Lainnya</a>
+                                                                <div class="slide"></div>
+                                                            </li>
                                                         </ul>
 
                                                         <form id="form_job"
@@ -379,7 +383,7 @@
                                                                                 </div>
                                                                                 <div class="form-group row">
                                                                                         <div class="col-sm-12">
-                                                                                            <h4 class="sub-title">Fasilitas
+                                                                                            <h4 class="sub-title">Benefit
                                                                                                 Pekerjaan</h4>
                                                                                             <div
                                                                                                 class="border-checkbox-section">
@@ -555,11 +559,11 @@
                                                                                         </select>
                                                                                     </div>
                                                                                     <!-- text area ketentuan -->
-                                                                                    <div class="col-sm-12 mt-3">
+                                                                                    <!-- <div class="col-sm-12 mt-3">
                                                                                         <label class="col-form-label"
                                                                                             for="ketentuan">Ketentuan</label>
                                                                                         <textarea class="form-control " name="ketentuan" id="ketentuan" cols="30" rows="4"></textarea>
-                                                                                    </div>
+                                                                                    </div> -->
                                                                                 </div>
 
 
@@ -572,6 +576,28 @@
 
                                                                     </div>
 
+                                                                </div>
+                                                                <div class="tab-pane" id="settings7" role="tabpanel">
+                                                                    <div class="modal-content">
+
+                                                                        <div class="modal-body">
+                                                                            <div class="card-block">
+
+                                                                                <div class="form-group row">
+                                                                                    <div class="col-sm-12">
+                                                                                        <!-- info_lain -->
+                                                                                        <label class="col-form-label"
+                                                                                            for="info_lain">Info
+                                                                                            Lain</label>
+                                                                                        <textarea class="form-control " name="info_lain" id="info_lain" cols="30" rows="4"></textarea>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                        </div>
+
+                                                                    </div>
                                                                 </div>
 
                                                            

@@ -89,7 +89,7 @@
                     <div class="page-header-title">
                         <i class="feather icon-list bg-c-blue"></i>
                         <div class="d-inline">
-                            <h5>Belum Diverifikasi</h5>
+                            <h5>{{$status}}</h5>
                             <span>Silahkan isi dengan data yang sesuai dan valid !</span>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                             <li class="breadcrumb-item">
                                 <a href="{{ route('back-office.home') }}"><i class="feather icon-home"></i></a>
                             </li>
-                            <li class="breadcrumb-item"><a href="#!">Halaman Belum Diverifikasi</a>
+                            <li class="breadcrumb-item"><a href="#!">Halaman {{$status}}</a>
                             </li>
 
                         </ul>
