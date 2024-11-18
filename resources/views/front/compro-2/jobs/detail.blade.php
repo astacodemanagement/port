@@ -183,10 +183,11 @@
                         </div>
                         <div class="tw-mt-14">
                             <h3 class="tw-font-semibold tw-text-xl tw-text-[#18191C] tw-font-work-sans tw-mb-5">Deskripsi Pekerjaan</h3>
-                            {{-- deskripsi pekerjaan --}}
-                            <p class="tw-text-[#52525B] tw-pr-12 tw-font-work-sans md:tw-text-lg tw-text-xs">
-                                {{$job->deskripsi}}
-                            </p>
+                            {{-- deskripsi pekerjaan html element response--}}
+                            <div class="tw-text-gray-600 tw-font-clash-display tw-text-xs tw-font-work-sans tw-text-justify tw-mb-5 tw-leading-7 tw-text-base">
+                                {!! $job->deskripsi_pekerjaan !!}
+                            </div>  
+
                         </div>
                         {{-- benefit pekerjaan --}}
                         <div class="tw-mt-14">
