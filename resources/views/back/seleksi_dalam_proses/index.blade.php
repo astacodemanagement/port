@@ -132,7 +132,7 @@
                                                     <th width="10%">Posisi</th>
                                                     <th width="10%">Mitra</th>
                                                     <th width="10%">ID KTKLN</th>
-                                                    <th width="10%">Sponsor</th>
+                                                    <th width="10%">Referensi</th>
                                                     <th width="5%">Status Seleksi</th>
                                                     <th width="15%" class="text-center" width="5%">Aksi</th>
                                                 </tr>
@@ -325,8 +325,7 @@
                                                                                         <div class="">
                                                                                             <label
                                                                                                 class="border-checkbox-label"
-                                                                                                for="tanggal_ak">Tanggal
-                                                                                                AK</label>
+                                                                                                for="tanggal_ak">Janji Temu</label>
                                                                                             <input class="form-control"
                                                                                                 type="date"
                                                                                                 id="tanggal_ak"
@@ -385,19 +384,7 @@
                                                                                                 }
                                                                                             });
                                                                                         </script>
-                                                                                        <div class="">
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="tanggal_validity">Tanggal
-                                                                                                Validity</label>
-                                                                                            <input class="form-control"
-                                                                                                type="date"
-                                                                                                id="tanggal_validity"
-                                                                                                name="tanggal_validity"
-                                                                                                value="{{ $p2->tanggal_validity }}">
-
-                                                                                        </div>
-                                                                                        <br>
+                                                                                        
                                                                                         <div class="">
                                                                                             <label
                                                                                                 class="border-checkbox-label"
@@ -414,8 +401,21 @@
                                                                                         <div class="">
                                                                                             <label
                                                                                                 class="border-checkbox-label"
+                                                                                                for="tanggal_validity">Tanggal
+                                                                                                Valid Visa</label>
+                                                                                            <input class="form-control"
+                                                                                                type="date"
+                                                                                                id="tanggal_validity"
+                                                                                                name="tanggal_validity"
+                                                                                                value="{{ $p2->tanggal_validity }}">
+
+                                                                                        </div>
+                                                                                        <br>
+                                                                                        <div class="">
+                                                                                            <label
+                                                                                                class="border-checkbox-label"
                                                                                                 for="tanggal_habis">Tanggal
-                                                                                                Habis</label>
+                                                                                                Expiry Visa</label>
                                                                                             <input class="form-control"
                                                                                                 type="date"
                                                                                                 id="tanggal_habis"
@@ -436,7 +436,7 @@
                                                                                                 {{ $p2->pap == 1 ? 'checked' : '' }}>
                                                                                             <label
                                                                                                 class="border-checkbox-label"
-                                                                                                for="pap">P.A.P</label>
+                                                                                                for="pap">Tanggal P.A.P</label>
                                                                                         </div>
 
 

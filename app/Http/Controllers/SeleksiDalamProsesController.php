@@ -81,19 +81,25 @@ class SeleksiDalamProsesController extends Controller
             'seleksi.*',
             'job.nama_job as nama_job',
             'kandidat.nama_lengkap as nama_lengkap',
+            'kandidat.*',
             'pendaftaran.*',
-            'supplier.nama_supplier as nama_supplier' // tambahkan kolom nama_supplier
+            'job.*',
+            'supplier.nama_supplier as nama_supplier' ,
+            'negara.*',
+            'kategori_job.*'
         )
             ->join('job', 'seleksi.job_id', '=', 'job.id')
+            // negara di dalam
             ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
             ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id') 
-            ->leftJoin('supplier', 'seleksi.supplier_id', '=', 'supplier.id') // melakukan left join dengan tabel supplier
+            ->leftJoin('supplier', 'seleksi.supplier_id', '=', 'supplier.id')
+            ->leftJoin('negara', 'job.negara_id', '=', 'negara.id') 
+            ->leftJoin('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
             ->where('seleksi.id', $id)
             ->first();
 
         // Load daftar pekerjaan
-        $jobList = Job::pluck('nama_job', 'id');
-
+        $jobList = Job::pluck('nama_job', 'id'); 
         // Kirim nilai ID ke tampilan menggunakan compact
         return view('back.seleksi_dalam_proses.detail', compact('seleksi_dalam_proses', 'detail_bayar', 'refund_detail_bayar', 'id', 'jobList', 'agency', 'employer'));
     }
@@ -221,6 +227,8 @@ class SeleksiDalamProsesController extends Controller
         $seleksi->job_terselect = $request->job_terselect;
         $seleksi->gaji_akhir = str_replace(['.', ','], '', $request->gaji_akhir);
         $seleksi->employer_id = $request->employer_id;
+        $seleksi->employer = $request->employer;
+        $seleksi->alamat_employer = $request->alamat_employer;
         $seleksi->agency_id = $request->agency_id;
         $seleksi->durasi_kontrak = $request->durasi_kontrak;
 

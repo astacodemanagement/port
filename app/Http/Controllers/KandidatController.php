@@ -132,7 +132,7 @@ class KandidatController extends Controller
              'kota_id' => 'required',
              'kecamatan_id' => 'required',
              'no_telp_darurat' => 'nullable|numeric|digits_between:6,14',
-             'no_paspor' => 'nullable|numeric|digits_between:1,16',
+             'no_paspor' => 'nullable',
              'tanggal_pengeluaran_paspor' => 'nullable|date_format:Y-m-d',
              'masa_kadaluarsa' => 'nullable|date_format:Y-m-d',
              'kantor_paspor' => 'nullable|min:3',

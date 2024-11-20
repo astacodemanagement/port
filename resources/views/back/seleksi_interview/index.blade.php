@@ -67,43 +67,41 @@
                                                         <th width="5%">Mitra</th>
                                                         <th width="5%">Total Employe</th>
                                                         <th width="5%">Kategori  Industri Pekerjaan</th>
-                                                        <th width="5%">Detail</th>
+                                                        <!--  --><th width="5%">Detail</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach ($seleksi_group as $jobId => $group)
-                                                        @foreach ($group as $p)
-                                                            <tr>
-                                                                <td>{{ $loop->iteration }}</td>
-                                                                <td>
-                                                                    {{ $p->nama_job }}</td>
+    @php $groupIndex = 1; @endphp {{-- Initialize group counter --}}
+    @foreach ($seleksi_group as $jobId => $group)
+        @php $itemIndex = 1; @endphp 
+        @foreach ($group as $p)
+            <tr>
+                <td>{{ $groupIndex }}</td>
+                <td>{{ $p->nama_job }}</td>
+                <td>{{ $p->nama_negara }}</td>
+                <td>{{ $p->nama_perusahaan }}</td>
+                <td>{{ $p->mitra }}</td>
+                <td style="text-align: center; font-size:23px;">
+                    <span class="label label-danger">{{ count($group) }}</span>
+                </td>
+                <td style="text-align: center; font-size:18px;">
+                    <span class="label label-warning">{{ $p->nama_kategori_job }}</span>
+                </td>
+                <td class="text-center">
+                    <a title="Detail" style="color: rgb(242, 236, 236)"
+                        href="#"
+                        class="btn btn-sm btn-primary btn-detail"
+                        data-id="{{ $jobId }}" style="color: black">
+                        <i class="fas fa-eye"></i> Detail
+                    </a>
+                </td>
+            </tr>
+            @break {{-- Break out of the inner loop after the first iteration --}}
+        @endforeach
+        @php $groupIndex++; @endphp {{-- Increment the group counter --}}
+    @endforeach
+</tbody>
 
-
-                                                                <td>{{ $p->nama_negara }}</td>
-                                                                <td>{{ $p->nama_perusahaan }}</td>
-                                                                <td>{{ $p->mitra }}</td>
-                                                                <td style="text-align: center; font-size:23px;"><span
-                                                                        class="label label-danger">{{ count($group) }}</span>
-                                                                </td>
-                                                                <td style="text-align: center; font-size:18px;"><span
-                                                                        class="label label-warning">{{ $p->nama_kategori_job }}</span>
-                                                                </td>
-                                                                <td class="text-center">
-                                                                    <a title="Detail" style="color: rgb(242, 236, 236)"
-                                                                        href="#"
-                                                                        class="btn btn-sm btn-primary btn-detail"
-                                                                        data-id="{{ $jobId }}" style="color: black">
-                                                                        <i class="fas fa-eye"></i> Detail
-                                                                    </a>
-                                                                </td>
-
-
-                                                            </tr>
-                                                            {{-- Break out of the inner loop after the first iteration --}}
-                                                        @break
-                                                    @endforeach
-                                                @endforeach
-                                            </tbody>
                                         </table>
 
 
@@ -240,6 +238,14 @@
                                                 <!-- Add other status options if needed -->
                                             </select>
                                         </div>
+                                        <div class="form-group">
+                                                                                    <label
+                                                                                        for="keterangan_dari_interview">Keterangan
+                                                                                        Dari  Interview :</label>
+                                                                                    <textarea name="keterangan_dari_interview" id="keterangan_dari_interview" cols="30" rows="3"
+                                                                                        class="form-control"></textarea>
+
+                                                                                </div>
                                         <!-- Add hidden input for the Pendaftaran ID -->
                                         <input type="hidden" name="id"
                                             value="{{ $p2->id }}">
@@ -280,7 +286,7 @@
     </script>
 
     <button id="btnClear" class="btn btn-warning" title="Clear atau Kembali"><i
-            class="fa fa-undo"></i>Clear</button>
+            class="fa fa-undo"></i>Kembali</button>
 </div>
 </div>
                             </div>

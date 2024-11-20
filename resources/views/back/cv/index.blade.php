@@ -146,19 +146,19 @@
                     <td style="font-size:1.2rem; ">( {{$kandidat->jenis_kelamin}} )</td>
                 </tr>
                 <tr style="padding:10px;">
-                    <td style="padding-left:10px;  width:25%;">
+                    <td style="  width:25%;">
                         <h4>Passpor</h4>
-                        <p class="text-xs text-gray-600">{{$kandidat->paspor ?? "-" }}</p>
+                        <p class="text-xs text-gray-600">{{$kandidat->no_paspor ?? "-" }}</p>
                     </td>
-                    <td style="padding-left:10px; width:25%;">
+                    <td style=" width:25%;">
                         <h4> Date off issue</h4>
-                        <p class="text-xs text-gray-600">{{$kandidat->no_paspor ?? "-"}}</p>
+                        <p class="text-xs text-gray-600">{{$kandidat->tanggal_lahir ?? "-"}}</p>
                     </td>
-                    <td style="width:25%; padding-left:t10px;">
+                    <td style="width:25%; ">
                         <h4>Date of expiry   </h4>
                         <p class="text-xs text-gray-600" clas>{{$kandidat->tanggal_pengeluaran_paspor ?? "- "}}</p>
                     </td>
-                    <td>
+                    <td style="width: 25%;"> 
                         <h4> Issuing office</h4>
                         <p class="text-xs text-gray-600">{{$kandidat->kantor_paspor ?? "-"}}</p>
                     </td>

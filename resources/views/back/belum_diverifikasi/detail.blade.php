@@ -186,12 +186,7 @@
                                                                         <div class="col-sm-6">
                                                                             <label class="col-form-label" for="jenis_kelamin">Jenis
                                                                                 Kelamin</label>
-                                                                            <select readonly class="form-control" id="jenis_kelamin" name="jenis_kelamin">
-                                                                                <option value="Laki-laki" {{ $belum_diverifikasi->kandidat->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>
-                                                                                    Laki-laki</option>
-                                                                                <option value="Perempuan" {{ $belum_diverifikasi->kandidat->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>
-                                                                                    Perempuan</option>
-                                                                            </select>
+                                                                       <input type="text" readonly class="form-control" id="jenis_kelamin" name="jenis_kelamin" value="{{ $belum_diverifikasi->kandidat->jenis_kelamin }}">
                                                                         </div>
 
                                                                         <div class="col-sm-6">
@@ -268,18 +263,7 @@
                                                                         <div class="col-sm-4">
                                                                             <label class="col-form-label" for="hubungan">Hubungan
                                                                                 Kontak Darurat</label>
-                                                                                <select readonly class="form-control" id="hubungan" name="hubungan">
-                                                                                    <option value="Orang Tua" {{ $belum_diverifikasi->kandidat->hubungan == 'Orang Tua' ? 'selected' : '' }}>
-                                                                                        Orang Tua</option>
-                                                                                    <option value="Saudara" {{ $belum_diverifikasi->kandidat->hubungan == 'Saudara' ? 'selected' : '' }}>
-                                                                                        Saudara</option>
-                                                                                    <option value="Keluarga" {{ $belum_diverifikasi->kandidat->hubungan == 'Keluarga' ? 'selected' : '' }}>
-                                                                                        Keluarga</option>
-                                                                                    <option value="Teman" {{ $belum_diverifikasi->kandidat->hubungan == 'Teman' ? 'selected' : '' }}>
-                                                                                        Teman</option>
-                                                                                    <option value="Lainnya" {{ $belum_diverifikasi->kandidat->hubungan == 'Lainnya' ? 'selected' : '' }}>
-                                                                                        Lainnya</option>
-                                                                                </select>
+                                                                                <input type="text" readonly class="form-control" id="hubungan" name="hubungan" value="{{ $belum_diverifikasi->kandidat->hubungan }}">
                                                                             </div>
                                                                         <div class="col-sm-4">
                                                                             <label class="col-form-label" for="nama_keluarga">Nama

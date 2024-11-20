@@ -78,8 +78,8 @@
                                                             <tr>
                                                                 <td>{{ $no }}</td>
                                                                 <td><b><a title="Detail"
-                                                                        href="#"
-                                                                        data-id="{{ $jobId }}">{{ $p->nama_job }}</a></b></td>
+                                                                    href="#"
+                                                                    data-id="{{ $jobId }}">{{ $p->nama_job }}</a></b></td>
 
                                                                 <td>{{ $p->nama_negara }}</td>
                                                                 <td>{{ $p->nama_perusahaan }}</td>

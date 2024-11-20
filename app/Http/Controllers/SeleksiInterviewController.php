@@ -32,17 +32,14 @@ class SeleksiInterviewController extends Controller
 
     public function index()
     {
-        $seleksi = DB::table('seleksi')
-            
-           
-            
-        ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
-        ->join('job', 'seleksi.job_id', '=', 'job.id')
-        ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id')
-        ->join('negara', 'job.negara_id', '=', 'negara.id')
-        ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id') 
-
-            ->where('seleksi.status', 'Interview') // Menambahkan klausa where untuk status
+       
+            $seleksi = DB::table('seleksi')
+            ->join('kandidat', 'seleksi.kandidat_id', '=', 'kandidat.id')
+            ->join('job', 'seleksi.job_id', '=', 'job.id')
+            ->join('negara', 'job.negara_id', '=', 'negara.id')
+            ->join('kategori_job', 'job.kategori_job_id', '=', 'kategori_job.id', 'left')
+            ->join('pendaftaran', 'kandidat.pendaftaran_id', '=', 'pendaftaran.id')  
+            ->where('seleksi.status', 'Interview')  
             ->select(
                 'seleksi.*',
                 'kandidat.nama_lengkap',
@@ -51,14 +48,17 @@ class SeleksiInterviewController extends Controller
                 'job.nama_perusahaan',
                 'kategori_job.nama_kategori_job',
                 'job.mitra',
-                'kategori_job.urutan as kategori_urutan'
-            )
+                'kategori_job.urutan as kategori_urutan',
+
+                'pendaftaran.bayar_cf'            
+                )
             ->get();
     
         // Cetak hasil query ke konsol untuk diinspeksi
         \Illuminate\Support\Facades\Log::info('Query Result:', ['seleksi' => $seleksi]);
     
         $seleksi_group = $seleksi->groupBy('job_id');
+        // dd($seleksi_group);
     
         return view('back.seleksi_interview.index', compact('seleksi', 'seleksi_group'));
     }

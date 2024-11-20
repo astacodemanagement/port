@@ -248,10 +248,7 @@
                                 @endforeach
                             </div>
                             <hr>
-                            <div class="row">
-                                <h5 class="fw-bold">Lorem ipsum dolor sit amet consectetur :</h5>
-                                <span class="text-small">{{ $job->paragraf_galeri }}</span>
-                            </div>
+                          
                         </div>
                         <div class=" tab-pane" id="tab-panel-other-information" role="tabpanel" aria-labelledby="tab-other-information">
                             <div class="content-information">

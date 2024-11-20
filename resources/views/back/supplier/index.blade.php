@@ -62,7 +62,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="5%">No</th>
-                                                        <th width="15%">Nama Ketegori</th>
+                                                        <th width="15%">Nama Supplier</th>
                                                         <th width="15%">No Telp</th>
                                                         <th class="text-center" width="5%">Aksi</th>
                                                     </tr>
@@ -109,7 +109,7 @@
             <div class="modal fade" id="modal-supplier" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <form id="form-supplier" action="" method="POST">
-                        @csrf <!-- Tambahkan token CSRF -->
+                        @csrf 
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title">Form Input Supplier</h4>
@@ -180,7 +180,7 @@
             <div class="modal fade" id="modal-edit" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <form id="form-edit-supplier" action="" method="POST">
-                        @csrf <!-- Tambahkan token CSRF -->
+                        @csrf
                         @method('PUT') <!-- Tambahkan method PUT untuk update -->
                         <div class="modal-content">
                             <div class="modal-header">
@@ -193,8 +193,7 @@
                                 <div class="card-block">
                                     <div class="form-group row">
                                         <div class="col-sm-12">
-                                            <label class="col-form-label" for="edit_nama_supplier">Nama Kategori
-                                                Job</label>
+                                            <label class="col-form-label" for="edit_nama_supplier">Nama Supplier</label>
                                         </div>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control "
@@ -323,7 +322,7 @@
             $('#btn-update-supplier').click(function() {
                 var form = $('#form-edit-supplier');
                 $.ajax({
-                    url: form.attr('action'),
+                    url: `${baseUrl}/supplier/${form.attr('action').split('/')[2]}`,
                     type: 'POST',
                     data: form.serialize() + '&_method=PUT',
                     success: function(response) {

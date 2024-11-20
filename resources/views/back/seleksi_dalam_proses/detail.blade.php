@@ -869,17 +869,7 @@
                                                                                 <div class="col-sm-6">
                                                                                     <label class="col-form-label"
                                                                                         for="employer_id">Employer</label>
-                                                                                    <select name="employer_id"
-                                                                                        id="employer_id"
-                                                                                        class="form-control">
-                                                                                        @foreach ($employer as $p)
-                                                                                            <option
-                                                                                                value="{{ $p->id }}"
-                                                                                                {{ $p->id == $seleksi_dalam_proses->employer_id ? 'selected' : '' }}>
-                                                                                                {{ $p->nama_employer }}
-                                                                                            </option>
-                                                                                        @endforeach
-                                                                                    </select>
+                                                                                        <input type="text" id="employer" name="employer" class="form-control" value="{{ $seleksi_dalam_proses->employer }}">
 
                                                                                 </div>
 
@@ -888,11 +878,11 @@
                                                                                     <label class="col-form-label"
                                                                                         for="alamat_employer">Alamat
                                                                                         Employer</label>
-                                                                                    <input readonly type="text"
+                                                                                    <input  type="text"
                                                                                         class="form-control"
                                                                                         id="alamat_employer"
                                                                                         name="alamat_employer"
-                                                                                        value="{{ $seleksi_dalam_proses->alamat_agency }}">
+                                                                                        value="{{ $seleksi_dalam_proses->alamat_employer }}">
                                                                                 </div>
 
 
@@ -1285,8 +1275,7 @@
                                                                                     bayar_cf = parseFloat(bayar_cf);
 
                                                                                     var biaya_id = parseFloat(document.getElementById('biaya_id').value.replace(/[^0-9,]/g, '').replace(',', '.'));
-                                                                                    var biaya_mcu = parseFloat(document.getElementById('biaya_mcu').value.replace(/[^0-9,]/g, '').replace(',',
-                                                                                        '.'));
+                                                                                
 
                                                                                     // Hitung total biaya
                                                                                     var total_biaya = biaya_penempatan - bayar_cf;
@@ -1320,17 +1309,8 @@
 
 
                                                                             <div class="form-group row">
-                                                                                <div class="col-sm-6">
-                                                                                    <label class="col-form-label"
-                                                                                        for="biaya_mcu">Biaya MCU</label>
-                                                                                    <input type="text"
-                                                                                        class="form-control"
-                                                                                        id="biaya_mcu" name="biaya_mcu"
-                                                                                        value="{{ number_format($seleksi_dalam_proses->biaya_mcu, 0, ',', '.') }}"
-                                                                                        oninput="formatNumber3(this)"
-                                                                                        onchange="hitungTotalBiaya()">
-                                                                                </div>
-                                                                                <div class="col-sm-6">
+                                                                               
+                                                                                <div class="col-sm-12">
                                                                                     <label class="col-form-label"
                                                                                         for="biaya_id">Biaya ID</label>
                                                                                     <input type="text"
@@ -1602,16 +1582,12 @@
                                                                                     <label class="col-form-label"
                                                                                         for="status_paid_cf">Status
                                                                                         Paid</label>
-                                                                                    <select name="status_paid_cf"
+                                                                               <input type="text"
+                                                                                        class="form-control"
                                                                                         id="status_paid_cf"
-                                                                                        class="form-control" readonly>
-                                                                                        <option value="Unpaid"
-                                                                                            {{ $seleksi_dalam_proses->status_paid_cf == 'Unpaid' ? 'selected' : '' }}>
-                                                                                            Unpaid</option>
-                                                                                        <option value="Paid"
-                                                                                            {{ $seleksi_dalam_proses->status_paid_cf == 'Paid' ? 'selected' : '' }}>
-                                                                                            Paid</option>
-                                                                                    </select>
+                                                                                        name="status_paid_cf"
+                                                                                        value="{{ $seleksi_dalam_proses->status_paid_cf }}">    
+                                                                                        
 
 
                                                                                 </div>
