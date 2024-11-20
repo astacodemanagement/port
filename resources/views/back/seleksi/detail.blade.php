@@ -122,8 +122,7 @@
 
                                                                                 <div class="col-sm-12">
                                                                                     <label class="col-form-label"
-                                                                                        for="nama_kategori_job">Industri
-                                                                                        Industri Pekerjaan</label>
+                                                                                        for="nama_kategori_job">Minat Industri</label>
                                                                                     <input type="text" readonly
                                                                                         class="form-control"
                                                                                         id="nama_kategori_job"
@@ -537,6 +536,17 @@
                                                                                                 class="form-control"
                                                                                                 value="{{ $pengalaman->posisi }}">
                                                                                         </div>
+                                                                                    </div>
+                                                                                    <div class="form-group row">
+                                                                                        <div class="col-sm-12">
+                                                                                            <label class="col-form-label"
+                                                                                                for="deskripsi_pekerjaan">Deskripsi
+                                                                                                Pekerjaan</label>
+                                                                                            <textarea readonly class="form-control" name="deskripsi_pekerjaan"
+                                                                                                id="deskripsi_pekerjaan" cols="30"
+                                                                                                rows="4">{{ $pengalaman->deskripsi_pekerjaan }}</textarea>
+                                                                                        </div>
+
                                                                                     </div>
                                                                                     <hr>
                                                                                 </div>

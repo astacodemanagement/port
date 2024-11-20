@@ -82,10 +82,10 @@
                                                             <td>Rp. {{ number_format($p->sisa_bayar, 0, ',', '.') }}</td>
 
                                                             <td class="text-center">
-                                                                <a style="color: rgb(242, 236, 236)" href="#"
+                                                                <!-- spesifik redirect to id #pembayaran -->
+                                                                <a style="color: rgb(242, 236, 236)" href="{{route('back-office.seleksi.seleksi-dalam-proses.detail',['id'=> $p->id])}}#pembayaran"
                                                                     class="btn btn-sm btn-primary btn-edit"
-                                                                    data-toggle="modal" data-target="#modal-edit"
-                                                                    data-id="{{ $p->id }}" style="color: black">
+                                                                  style="color: black">
                                                                     <i class="fas fa-eye"></i> Detail
                                                                 </a>
 

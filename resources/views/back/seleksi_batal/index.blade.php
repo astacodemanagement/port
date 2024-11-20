@@ -49,7 +49,7 @@
                                 <div class="card" id="tb1">
                                     <div class="card-header">
                                         <h5> <span class="badge badge-pill badge-danger"
-                                                style="color: #ecf1f3; display: inline-block;"> Data Seleksi Batal</span>
+                                                style="color: #ecf1f3; display: inline-block;"> Data Batal</span>
                                         </h5>
 
                                     </div>

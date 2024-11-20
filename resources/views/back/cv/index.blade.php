@@ -148,11 +148,11 @@
                 <tr style="padding:10px;">
                     <td style="  width:25%;">
                         <h4>Passpor</h4>
-                        <p class="text-xs text-gray-600">{{$kandidat->paspor ?? "-" }}</p>
+                        <p class="text-xs text-gray-600">{{$kandidat->no_paspor ?? "-" }}</p>
                     </td>
                     <td style=" width:25%;">
                         <h4> Date off issue</h4>
-                        <p class="text-xs text-gray-600">{{$kandidat->no_paspor ?? "-"}}</p>
+                        <p class="text-xs text-gray-600">{{$kandidat->tanggal_lahir ?? "-"}}</p>
                     </td>
                     <td style="width:25%; ">
                         <h4>Date of expiry   </h4>

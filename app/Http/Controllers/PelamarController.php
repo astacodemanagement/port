@@ -35,6 +35,7 @@ class PelamarController extends Controller
     public function index(Request $request, $status)
     {
         $data['status'] = $status;
+
         $search = $request->input('search');
 
         if ($search) {

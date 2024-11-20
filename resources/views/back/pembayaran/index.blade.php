@@ -114,7 +114,7 @@
             <div class="modal fade" id="modal-pembayaran" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <form id="form-pembayaran" action="" method="POST">
-                        @csrf <!-- Tambahkan token CSRF -->
+                        @csrf
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h4 class="modal-title">Form Input Pembayaran</h4>

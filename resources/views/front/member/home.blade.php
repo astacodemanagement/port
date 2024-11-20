@@ -315,7 +315,7 @@
 
                         <hr class="my-3 my-lg-5">
 
-                        <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Berkas Dokumen Persyaratan Jati Diri yang Dimiliki</h5>
+                        <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Persyaratan jati diri yg dimiliki</h5>
                         <div class="row mt-lg-4 mt-3">
                             @php
                             $arrDocument = [

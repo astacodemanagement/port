@@ -44,19 +44,18 @@ class SeleksiController extends Controller
                 'seleksi.*',
                 'kandidat.nama_lengkap',
                 'job.nama_job',
-                'negara.nama_negara', // Perbaiki bagian ini untuk mengambil nama_negara dari tabel negara
+                'negara.nama_negara',
                 'job.nama_perusahaan',
                 'kategori_job.nama_kategori_job',
                 'job.mitra',
                 'kategori_job.urutan as kategori_urutan',
-                'pendaftaran.bayar_cf' // Ambil kolom bayar_cf dari tabel pendaftaran
-            )
+                'pendaftaran.bayar_cf'            )
             ->get();
     
-        // Cetak hasil query ke konsol untuk diinspeksi
         \Illuminate\Support\Facades\Log::info('Query Result:', ['seleksi' => $seleksi]);
     
         $seleksi_group = $seleksi->groupBy('job_id');
+        // dd($seleksi_group);
     
         return view('back.seleksi.index', compact('seleksi', 'seleksi_group'));
     }
@@ -68,22 +67,18 @@ class SeleksiController extends Controller
     {
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
+        // dd($status);
 
-
-        // Get the original data before the update
         $cek_kualifikasi = Seleksi::findOrFail($cek_kualifikasi_id);
         $oldData = $cek_kualifikasi->getOriginal();
 
-        // Update the status in the database
         Seleksi::where('id', $cek_kualifikasi_id)->update([
             'status' => $status,
             'tanggal_cek_kualifikasi' => Carbon::now()->toDateString()
         ]);
 
-        // Get the updated data after the update
         $updatedData = Seleksi::findOrFail($cek_kualifikasi_id)->getOriginal();
 
-        // Log the histori
         $loggedInUserId = Auth::id();
         $this->simpanLogHistori('Update', 'Cek Kualifikasi', $cek_kualifikasi_id, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
 
@@ -92,24 +87,20 @@ class SeleksiController extends Controller
 
     public function updateStatusMultiple(Request $request)
     {
-        // Mengambil ID dari baris tabel yang dipilih
         $selectedIds = $request->input('ids');
         $status = $request->input('status');
 
 
-        // Memastikan minimal satu ID dipilih
         if (empty($selectedIds)) {
             return response()->json(['message' => 'Tidak ada data yang dipilih untuk diperbarui.'], 422);
         }
 
-        // Update status untuk setiap ID yang dipilih
         foreach ($selectedIds as $id) {
             Seleksi::where('id', $id)->update([
                 'status' => $status,
                 'tanggal_cek_kualifikasi' => Carbon::now()->toDateString()
             ]);
 
-            // Log histori untuk setiap ID yang diperbarui
             $cek_kualifikasi = Seleksi::findOrFail($id);
             $loggedInUserId = Auth::id();
             $this->simpanLogHistori('Update', 'Cek Kualifikasi', $id, $loggedInUserId, json_encode($cek_kualifikasi->getOriginal()), json_encode($cek_kualifikasi));
@@ -137,7 +128,6 @@ class SeleksiController extends Controller
             ->first();
             
     
-        // Kirim nilai ID ke tampilan menggunakan compact
         return view('back.seleksi.detail', compact('seleksi', 'id'));
     }
     

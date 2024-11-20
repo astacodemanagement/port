@@ -767,7 +767,13 @@
             tabsize: 2,
             height: 100
         });
+        $('#info_lain').summernote({
+            height: 300,
+            placeholder: 'Informasi Lainya',
+            tabsize: 2,
+        });
     })
+
 </script>
 
                 <script>

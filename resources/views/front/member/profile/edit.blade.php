@@ -381,7 +381,7 @@
                         <form class="form-document" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Dokumen Persyaratan Jati Diri yang Dimiliki</h5>
+                            <h5 class="fw-7 mt-4 mt-lg-0 text-primary">Persyaratan jati diri yg dimiliki</h5>
                             <div class="row mt-lg-4 mt-3">
                                 <div class="col-lg-12 mb-3">
                                     <h6 class="fw-7">Kelengkapan Dokumen</h6>
