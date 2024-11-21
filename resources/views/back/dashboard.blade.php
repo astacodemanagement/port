@@ -214,7 +214,7 @@
                                                         {{$j->nama_perusahaan}}
                                                     </td>
                                                     <td>
-                                                    {{$j->negara->nama_negara}}
+                                                        {{$j->negara->nama_negara}}
                                                     </td>
                                                     <td>
                                                         @if ($j->jenis_kelamin == 'Laki-laki')
@@ -226,7 +226,7 @@
                                                         @endif
                                                     </td>
 
-                                                   
+
                                                 </tr>
                                                 @endforeach
 
@@ -237,55 +237,55 @@
                             </div>
                         </div>
                         <div class="col-md-12 col-xl-6">
-    <div class="card table-card">
-        <div class="card-header">
-            <h5>JOB Inactive</h5>
-            <div class="card-header-right">
-                <ul class="list-unstyled card-option">
-                    <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
-                    <li><i class="feather icon-maximize full-card"></i></li>
-                    <li><i class="feather icon-minus minimize-card"></i></li>
-                    <li><i class="feather icon-refresh-cw reload-card"></i></li>
-                    <li><i class="feather icon-trash close-card"></i></li>
-                    <li><i class="feather icon-chevron-left open-card-option"></i></li>
-                </ul>
-            </div>
-        </div>
-        <div class="card-block p-b-0">
-            <div class="table-responsive">
-                <table class="table table-hover m-b-0">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Perusahaan</th>
-                            <th>Negara</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($jobinactive as $j)
-                        <tr>
-                            <td>{{$j->nama_job}}</td>
-                            <td>{{$j->nama_perusahaan}}</td>
-                            <td>{{$j->negara->nama_negara}}</td>
-                            <td>
-                                @php
-                                $statusColor = [
-                                    'Verifikasi' => 'success',
-                                    'Pending' => 'danger',
-                                    'Reject' => 'warning'
-                                ];
-                                @endphp
-                                <span class="badge badge-{{$statusColor[$j->status] ?? 'secondary'}}">{{$j->status}}</span>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
+                            <div class="card table-card">
+                                <div class="card-header">
+                                    <h5>JOB Inactive</h5>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
+                                            <li><i class="feather icon-maximize full-card"></i></li>
+                                            <li><i class="feather icon-minus minimize-card"></i></li>
+                                            <li><i class="feather icon-refresh-cw reload-card"></i></li>
+                                            <li><i class="feather icon-trash close-card"></i></li>
+                                            <li><i class="feather icon-chevron-left open-card-option"></i></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block p-b-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover m-b-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Perusahaan</th>
+                                                    <th>Negara</th>
+                                                    <th>Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($jobinactive as $j)
+                                                <tr>
+                                                    <td>{{$j->nama_job}}</td>
+                                                    <td>{{$j->nama_perusahaan}}</td>
+                                                    <td>{{$j->negara->nama_negara}}</td>
+                                                    <td>
+                                                        @php
+                                                        $statusColor = [
+                                                        'Verifikasi' => 'success',
+                                                        'Pending' => 'danger',
+                                                        'Reject' => 'warning'
+                                                        ];
+                                                        @endphp
+                                                        <span class="badge badge-{{$statusColor[$j->status] ?? 'secondary'}}">{{$j->status}}</span>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
                         <div class="col-xl-12">
@@ -316,132 +316,46 @@
                                                     style="width:100%"></div>
                                             </div>
                                         </div>
-                                      
+
                                     </div>
                                 </div>
                             </div>
                         </div>
 
 
-                        <div class="col-md-12 col-xl-4">
+                        <div class="col-md-12 col-xl-8">
                             <div class="card latest-update-card text-white">
                                 <div class="card-header">
-                                <h5>Interview Kandidat</h5>
+                                    <h5>Interview Kandidat</h5>
                                 </div>
                                 <!-- table -->
+                                <div class="card-block p-b-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover m-b-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Posisi</th>
+                                                    <th>Mitra</th>
+                                                    <th>Tanggal Interview</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($interview as $i)
+                                                <tr>
+                                                    <td>{{$i->kandidat->nama_lengkap}}</td>
+                                                    <td>{{$i->job->nama_job}}</td>
+                                                    <td>{{$i->job->mitra}}</td>
+                                                    <td>{{$i->tanggal_interview}}</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xl-4 col-md-12">
-                            <div class="card latest-update-card">
-                                <div class="card-header">
-                                    <h5>What’s New</h5>
-                                    <div class="card-header-right">
-                                        <ul class="list-unstyled card-option">
-                                            <li class="first-opt"><i
-                                                    class="feather icon-chevron-left open-card-option"></i>
-                                            </li>
-                                            <li><i class="feather icon-maximize full-card"></i>
-                                            </li>
-                                            <li><i class="feather icon-minus minimize-card"></i>
-                                            </li>
-                                            <li><i
-                                                    class="feather icon-refresh-cw reload-card"></i>
-                                            </li>
-                                            <li><i class="feather icon-trash close-card"></i></li>
-                                            <li><i
-                                                    class="feather icon-chevron-left open-card-option"></i>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="card-block">
-                                    <div class="scroll-widget">
-                                        <div class="latest-update-box">
-                                            <div class="row p-t-20 p-b-30">
-                                                <div
-                                                    class="col-auto text-right update-meta p-r-0">
-                                                    <img src="{{ asset('template') }}/files/assets/images/avatar-4.jpg"
-                                                        alt="user image"
-                                                        class="img-radius img-40 align-top m-r-15 update-icon">
-                                                </div>
-                                                <div class="col p-l-5">
-                                                    <a href="#!">
-                                                        <h6>Your Manager Posted.</h6>
-                                                    </a>
-                                                    <p class="text-muted m-b-0">Jonny michel</p>
-                                                </div>
-                                            </div>
-                                            <div class="row p-b-30">
-                                                <div
-                                                    class="col-auto text-right update-meta p-r-0">
-                                                    <i
-                                                        class="feather icon-briefcase bg-c-red update-icon"></i>
-                                                </div>
-                                                <div class="col p-l-5">
-                                                    <a href="#!">
-                                                        <h6>You have 3 pending Task.</h6>
-                                                    </a>
-                                                    <p class="text-muted m-b-0">Hemilton</p>
-                                                </div>
-                                            </div>
-                                            <div class="row p-b-30">
-                                                <div
-                                                    class="col-auto text-right update-meta p-r-0">
-                                                    <i
-                                                        class="feather icon-check f-w-600 bg-c-green update-icon"></i>
-                                                </div>
-                                                <div class="col p-l-5">
-                                                    <a href="#!">
-                                                        <h6>New Order Received.</h6>
-                                                    </a>
-                                                    <p class="text-muted m-b-0">Hemilton</p>
-                                                </div>
-                                            </div>
-                                            <div class="row p-b-30">
-                                                <div
-                                                    class="col-auto text-right update-meta p-r-0">
-                                                    <img src="{{ asset('template') }}/files/assets/images/avatar-4.jpg"
-                                                        alt="user image"
-                                                        class="img-radius img-40 align-top m-r-15 update-icon">
-                                                </div>
-                                                <div class="col p-l-5">
-                                                    <a href="#!">
-                                                        <h6>Your Manager Posted.</h6>
-                                                    </a>
-                                                    <p class="text-muted m-b-0">Jonny michel</p>
-                                                </div>
-                                            </div>
-                                            <div class="row p-b-30">
-                                                <div
-                                                    class="col-auto text-right update-meta p-r-0">
-                                                    <i
-                                                        class="feather icon-briefcase bg-c-red update-icon"></i>
-                                                </div>
-                                                <div class="col p-l-5">
-                                                    <a href="#!">
-                                                        <h6>You have 3 pending Task.</h6>
-                                                    </a>
-                                                    <p class="text-muted m-b-0">Hemilton</p>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div
-                                                    class="col-auto text-right update-meta p-r-0">
-                                                    <i
-                                                        class="feather icon-check f-w-600 bg-c-green update-icon"></i>
-                                                </div>
-                                                <div class="col p-l-5">
-                                                    <a href="#!">
-                                                        <h6>New Order Received.</h6>
-                                                    </a>
-                                                    <p class="text-muted m-b-0">Hemilton</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </>
+                       
                         <div class="col-xl-4 col-md-6">
                             <div class="card latest-update-card">
                                 <div class="card-header">
@@ -489,8 +403,112 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="col-md-3">
+                            <div class="card latest-update-card text-white">
+                                <div class="card-header">
+                                            <h5>Kandidat Berdasarkan Provinsi</h5>
+                                        </div>
+                                <div class="card-block">
+                                <table class="table table-hover m-b-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama Provinsi</th>
+                                                    <th>Total</th>
+                                              
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($provinsi_count as $p)
+                                                <tr>
+                                                    <td>{{$p->provinsi->nama_provinsi}}</td>
+                                                    <td><span style="font-weight: 700;">{{$p->total}}</span></td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>                     
+                                </div>
+                                </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card latest-update-card text-white">
+                                <div class="card-header">
+                                            <h5>Kandidat Berdasarkan Minat Industri</h5>
+                                        </div>
+                                <div class="card-block">
+                                <table class="table table-hover m-b-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama Minat</th>
+                                                    <th>Total</th>
+                                              
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($kategori_job_count as $k)
+                                                <tr>
+                                                    <td>{{$k->kategoriJob->nama_kategori_job ?? "-"}}</td>
+                                                    <td><span style="font-weight: 700;">{{$k->total}}</span></td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>                     
+                                </div>
+                                </div>
+                        </div>
 
-
+                        <div class="col-md-3">
+                            <div class="card latest-update-card text-white">
+                                <div class="card-header">
+                                            <h5>Kandidat Berdasarkan Negara Tujuan</h5>
+                                        </div>
+                                <div class="card-block">
+                                <table class="table table-hover m-b-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama Negara</th>
+                                                    <th>Total</th>
+                                              
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($country_count as $c)
+                                                <tr>
+                                                    <td>{{$c->negara->nama_negara ?? "-"}}</td>
+                                                    <td><span style="font-weight: 700;">{{$c->total}}</span></td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>                     
+                                </div>
+                                </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card latest-update-card text-white">
+                                <div class="card-header">
+                                            <h5>Kandidat Berdasarkan Pendidikan</h5>
+                                        </div>
+                                <div class="card-block">
+                                <table class="table table-hover m-b-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Nama Pendidikan</th>
+                                                    <th>Total</th>
+                                              
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($pendidikan_count as $p)
+                                                <tr>
+                                                    <td>{{$p->pendidikan ?? "-"}}</td>
+                                                    <td><span style="font-weight: 700;">{{$p->total}}</span></td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>                     
+                                </div>
+                                </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="card table-card">
                                 <div class="card-header">
@@ -564,6 +582,7 @@
                             </div>
                         </div>
 
+                        
 
 
                     </div>
