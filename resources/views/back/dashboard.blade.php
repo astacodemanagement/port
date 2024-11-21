@@ -344,7 +344,7 @@
                                                 @foreach ($interview as $i)
                                                 <tr>
                                                     <td>{{$i->kandidat->nama_lengkap}}</td>
-                                                    <td>{{$i->job->nama_job}}</td>
+                                                    <td>{{$i->job->nama_job ?? "-"}}</td>
                                                     <td>{{$i->job->mitra}}</td>
                                                     <td>{{$i->tanggal_interview}}</td>
                                                 </tr>
