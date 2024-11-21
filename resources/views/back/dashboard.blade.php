@@ -341,21 +341,28 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($interview as $i)
+                                            <tbody>
+                                                @forelse ($interview as $i)
                                                 <tr>
-                                                    <td>{{$i->kandidat->nama_lengkap}}</td>
-                                                    <td>{{$i->job->nama_job ?? "-"}}</td>
-                                                    <td>{{$i->job->mitra}}</td>
-                                                    <td>{{$i->tanggal_interview}}</td>
+                                                    <td>{{ $i->kandidat->nama_lengkap }}</td>
+                                                    <td>{{ $i->job->nama_job ?? "-" }}</td>
+                                                    <td>{{ $i->job->mitra ?? "-" }}</td>
+                                                    <td>{{ $i->tanggal_interview }}</td>
                                                 </tr>
-                                                @endforeach
+                                                @empty
+                                                <tr>
+                                                    <td colspan="4" class="text-center">Tidak ada data interview kandidat.</td>
+                                                </tr>
+                                                @endforelse
+                                            </tbody>
+
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                       
+
                         <div class="col-xl-4 col-md-6">
                             <div class="card latest-update-card">
                                 <div class="card-header">
@@ -403,111 +410,133 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-md-3">
                             <div class="card latest-update-card text-white">
                                 <div class="card-header">
-                                            <h5>Kandidat Berdasarkan Provinsi</h5>
-                                        </div>
+                                    <h5>Kandidat Berdasarkan Provinsi</h5>
+                                </div>
                                 <div class="card-block">
-                                <table class="table table-hover m-b-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nama Provinsi</th>
-                                                    <th>Total</th>
-                                              
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($provinsi_count as $p)
-                                                <tr>
-                                                    <td>{{$p->provinsi->nama_provinsi}}</td>
-                                                    <td><span style="font-weight: 700;">{{$p->total}}</span></td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>                     
+                                    <table class="table table-hover m-b-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama Provinsi</th>
+                                                <th>Total</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tbody>
+                                            @forelse ($provinsi_count as $p)
+                                            <tr>
+                                                <td>{{ $p->provinsi->nama_provinsi ?? '-' }}</td>
+                                                <td><span style="font-weight: 700;">{{ $p->total }}</span></td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="2" class="text-center">Tidak ada data kandidat berdasarkan provinsi.</td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+
+                                        </tbody>
+                                    </table>
                                 </div>
-                                </div>
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card latest-update-card text-white">
                                 <div class="card-header">
-                                            <h5>Kandidat Berdasarkan Minat Industri</h5>
-                                        </div>
+                                    <h5>Kandidat Berdasarkan Minat Industri</h5>
+                                </div>
                                 <div class="card-block">
-                                <table class="table table-hover m-b-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nama Minat</th>
-                                                    <th>Total</th>
-                                              
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($kategori_job_count as $k)
-                                                <tr>
-                                                    <td>{{$k->kategoriJob->nama_kategori_job ?? "-"}}</td>
-                                                    <td><span style="font-weight: 700;">{{$k->total}}</span></td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>                     
+                                    <table class="table table-hover m-b-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama Minat</th>
+                                                <th>Total</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tbody>
+                                            @forelse ($kategori_job_count as $k)
+                                            <tr>
+                                                <td>{{ $k->kategoriJob->nama_kategori_job ?? '-' }}</td>
+                                                <td><span style="font-weight: 700;">{{ $k->total }}</span></td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="2" class="text-center">Tidak ada data kandidat berdasarkan minat industri.</td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+
+                                        </tbody>
+                                    </table>
                                 </div>
-                                </div>
+                            </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="card latest-update-card text-white">
                                 <div class="card-header">
-                                            <h5>Kandidat Berdasarkan Negara Tujuan</h5>
-                                        </div>
+                                    <h5>Kandidat Berdasarkan Negara Tujuan</h5>
+                                </div>
                                 <div class="card-block">
-                                <table class="table table-hover m-b-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nama Negara</th>
-                                                    <th>Total</th>
-                                              
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($country_count as $c)
-                                                <tr>
-                                                    <td>{{$c->negara->nama_negara ?? "-"}}</td>
-                                                    <td><span style="font-weight: 700;">{{$c->total}}</span></td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>                     
+                                    <table class="table table-hover m-b-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama Negara</th>
+                                                <th>Total</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse($country_count as $c)
+                                            <tr>
+                                                <td>{{$c->negara->nama_negara ?? "-"}}</td>
+                                                <td><span style="font-weight: 700;">{{$c->total}}</span></td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="2" class="text-center">Tidak ada data kandidat berdasarkan negara tujuan.</td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
                                 </div>
-                                </div>
+                            </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card latest-update-card text-white">
                                 <div class="card-header">
-                                            <h5>Kandidat Berdasarkan Pendidikan</h5>
-                                        </div>
+                                    <h5>Kandidat Berdasarkan Pendidikan</h5>
+                                </div>
                                 <div class="card-block">
-                                <table class="table table-hover m-b-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nama Pendidikan</th>
-                                                    <th>Total</th>
-                                              
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($pendidikan_count as $p)
-                                                <tr>
-                                                    <td>{{$p->pendidikan ?? "-"}}</td>
-                                                    <td><span style="font-weight: 700;">{{$p->total}}</span></td>
-                                                </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>                     
+                                    <table class="table table-hover m-b-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Nama Pendidikan</th>
+                                                <th>Total</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($pendidikan_count as $p)
+                                            <tr>
+                                                <td>{{$p->pendidikan ?? "-"}}</td>
+                                                <td><span style="font-weight: 700;">{{$p->total}}</span></td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="2" class="text-center">Tidak ada data kandidat berdasarkan pendidikan.</td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
                                 </div>
-                                </div>
+                            </div>
                         </div>
                         <div class="col-md-12">
                             <div class="card table-card">
@@ -582,7 +611,7 @@
                             </div>
                         </div>
 
-                        
+
 
 
                     </div>
