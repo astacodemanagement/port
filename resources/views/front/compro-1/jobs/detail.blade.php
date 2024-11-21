@@ -47,7 +47,20 @@
          
         }
     }
+    @media (max-width: 767px) {
+        .item-benefit{
+            flex-wrap: nowrap;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            gap:1px;
+        }
+        .card-item{
+            margin-top: 10px;
+        }
+    }
 </style>
+
 
 @endpush
 
@@ -225,12 +238,12 @@
                                 <span>{!! $job->deskripsi !!}</span>
                             </div>
                             <div class="hr"></div>
-                            <div class="benefit-pekerjaan">
+                            <div class="benefit-pekerjaan ">
                                 <h5 class="fw-bold mt-1">Benefit :</h5>
-                                <div class="d-flex gap-3">
+                                <div class="d-flex gap-2 item-benefit">
                                     @foreach ($job->benefits as $item)
                                     <div class="card-item">
-                                        <span>{{ $item->fasilitas?->nama_fasilitas }}</span>
+                                        <span style="font-size:1rem">{{ $item->fasilitas?->nama_fasilitas }}</span>
                                     </div>
                                     @endforeach
                                 </div>
@@ -239,7 +252,7 @@
                             </div>
                         </div>
                         <div class="tab-pane" id="tab-panel-job-gallery" role="tabpanel" aria-labelledby="tab-job-gallery">
-                            <h5 class="fw-bold">Galeri</h5>
+                            <h5 class="fw-bold px-3">Galeri</h5>
                             <div class="row m-0">
                                 @foreach ($job->galeri as $galeri)
                                 <div class="col-3 border-rounded" style="border-radius: 10px;">
@@ -251,7 +264,7 @@
                           
                         </div>
                         <div class=" tab-pane" id="tab-panel-other-information" role="tabpanel" aria-labelledby="tab-other-information">
-                            <div class="content-information">
+                            <div class="content-information px-3">
                                 <span class="text-small">{{ $job->info_lain }}</span>
                             </div>
                         </div>

@@ -84,7 +84,7 @@
             <div class="element-items-card mt-5 p-0 ">
                 <div class="row m-0">
                 @foreach ($jobs as $job)
-                        <div class="col-3">
+                        <div class="col-md-3 col-12">
                             <div class="card-body">
                                 <div class="card-image job-image-container">
                                     <a href="{{ route('front.jobs.show', hashId($job->id)) }}"><img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/' . $job->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}" style="border-radius:15px;"></a>
@@ -651,7 +651,7 @@
     <style>
         body {
             overflow-x: hidden !important;
-            min-width: 400px !important;
+            min-width: 300px !important;
         }
 
         .find-jobs {

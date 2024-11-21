@@ -1,12 +1,18 @@
 @extends('back.layouts.app')
 @section('title','Halaman Dashboard')
 @section('subtitle','Menu Dashboard')
+@push('css')
 
+<link rel="stylesheet" type="text/css" href="{{asset('template/files/assets/css/style.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('template/files/assets/css/widget.css')}}">
+@endpush
 @section('content')
 
 <div class="pcoded-content">
 
+
     <div class="page-header card">
+
         <div class="row align-items-end">
             <div class="col-lg-8">
                 <div class="page-header-title">
@@ -36,6 +42,71 @@
                 <div class="page-body">
 
                     <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card prod-p-card card-info">
+                                <div class="card-body">
+                                    <div class="row align-items-center m-b-30">
+                                        <div class="col">
+                                            <h6 class="m-b-5 text-white">Total Belum Verifikasi</h6>
+                                            <h3 class="m-b-0 f-w-700 text-white">{{$belum_verifikasi}}</h3>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-money-bill-alt text-c-info f-18"></i>
+                                        </div>
+                                    </div>
+                                    <p class="m-b-0 text-white"><span class="label label-info m-r-10">+11%</span>From Previous Month</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card prod-p-card card-blue">
+                                <div class="card-body">
+                                    <div class="row align-items-center m-b-30">
+                                        <div class="col">
+                                            <h6 class="m-b-5 text-white">Total Verifikasi</h6>
+                                            <h3 class="m-b-0 f-w-700 text-white">{{$verifikasi}}</h3>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-database text-c-blue f-18"></i>
+                                        </div>
+                                    </div>
+                                    <p class="m-b-0 text-white"><span class="label label-primary m-r-10">+12%</span>From Previous Month</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card prod-p-card card-yellow">
+                                <div class="card-body">
+                                    <div class="row align-items-center m-b-30">
+                                        <div class="col">
+                                            <h6 class="m-b-5 text-white">Total Reject</h6>
+                                            <h3 class="m-b-0 f-w-700 text-white">{{$reject}}</h3>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign text-c-yellow f-18"></i>
+                                        </div>
+                                    </div>
+                                    <p class="m-b-0 text-white"><span class="label label-warning m-r-10">+52%</span>From Previous Month</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card prod-p-card card-red">
+                                <div class="card-body">
+                                    <div class="row align-items-center m-b-30">
+                                        <div class="col">
+                                            <h6 class="m-b-5 text-white">Total Reject Backlist</h6>
+                                            <h3 class="m-b-0 f-w-700 text-white">{{$backlist}}</h3>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-dollar-sign text-c-red f-18"></i>
+                                        </div>
+                                    </div>
+                                    <p class="m-b-0 text-white"><span class="label label-danger m-r-10">+52%</span>From Previous Month</p>
+                                </div>
+                            </div>
+                        </div>
+
 
                         <div class="col-md-12 col-xl-8">
                             <div class="card sale-card">
@@ -46,7 +117,7 @@
                                     <!-- <canvas id="myChart" style="width:100%;max-width:600px"></canvas> -->
 
                                     <canvas
-                                    id="myChart"
+                                        id="myChart"
                                         style="height:380px"></canvas>
                                 </div>
                             </div>
@@ -97,46 +168,155 @@
                         </div>
 
 
+                        <div class="col-md-12 col-xl-6">
+                            <div class="card table-card">
+                                <div class="card-header">
+                                    <h5>JOB Active</h5>
+                                    <div class="card-header-right">
+                                        <ul class="list-unstyled card-option">
+                                            <li class="first-opt"><i
+                                                    class="feather icon-chevron-left open-card-option"></i>
+                                            </li>
+                                            <li><i class="feather icon-maximize full-card"></i>
+                                            </li>
+                                            <li><i class="feather icon-minus minimize-card"></i>
+                                            </li>
+                                            <li><i
+                                                    class="feather icon-refresh-cw reload-card"></i>
+                                            </li>
+                                            <li><i class="feather icon-trash close-card"></i></li>
+                                            <li><i
+                                                    class="feather icon-chevron-left open-card-option"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-block p-b-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover m-b-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Name</th>
+
+                                                    <th>Perusahaan</th>
+                                                    <th>Negara</th>
+                                                    <th>Jenis Kelamin</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($jobactive as $j )
+
+                                                <tr>
+
+                                                    <td>{{$j->nama_job}}</td>
+
+                                                    <td>
+                                                        {{$j->nama_perusahaan}}
+                                                    </td>
+                                                    <td>
+                                                    {{$j->negara->nama_negara}}
+                                                    </td>
+                                                    <td>
+                                                        @if ($j->jenis_kelamin == 'Laki-laki')
+                                                        <span class="badge badge-primary">Laki-laki</span>
+                                                        @elseif ($j->jenis_kelamin == 'Perempuan')
+                                                        <span class="badge badge-danger">Perempuan</span>
+                                                        @else
+                                                        <span class="badge badge-warning">-</span>
+                                                        @endif
+                                                    </td>
+
+                                                   
+                                                </tr>
+                                                @endforeach
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xl-6">
+    <div class="card table-card">
+        <div class="card-header">
+            <h5>JOB Inactive</h5>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li class="first-opt"><i class="feather icon-chevron-left open-card-option"></i></li>
+                    <li><i class="feather icon-maximize full-card"></i></li>
+                    <li><i class="feather icon-minus minimize-card"></i></li>
+                    <li><i class="feather icon-refresh-cw reload-card"></i></li>
+                    <li><i class="feather icon-trash close-card"></i></li>
+                    <li><i class="feather icon-chevron-left open-card-option"></i></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-block p-b-0">
+            <div class="table-responsive">
+                <table class="table table-hover m-b-0">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Perusahaan</th>
+                            <th>Negara</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($jobinactive as $j)
+                        <tr>
+                            <td>{{$j->nama_job}}</td>
+                            <td>{{$j->nama_perusahaan}}</td>
+                            <td>{{$j->negara->nama_negara}}</td>
+                            <td>
+                                @php
+                                $statusColor = [
+                                    'Verifikasi' => 'success',
+                                    'Pending' => 'danger',
+                                    'Reject' => 'warning'
+                                ];
+                                @endphp
+                                <span class="badge badge-{{$statusColor[$j->status] ?? 'secondary'}}">{{$j->status}}</span>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
                         <div class="col-xl-12">
                             <div class="card proj-progress-card">
                                 <div class="card-block">
                                     <div class="row">
-                                        <div class="col-xl-3 col-md-6">
-                                            <h6>Published Project</h6>
-                                            <h5 class="m-b-30 f-w-700">532<span
-                                                    class="text-c-green m-l-10">+1.69%</span></h5>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-c-red"
-                                                    style="width:25%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-md-6">
-                                            <h6>Completed Task</h6>
-                                            <h5 class="m-b-30 f-w-700">4,569<span
-                                                    class="text-c-red m-l-10">-0.5%</span></h5>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-c-blue"
-                                                    style="width:65%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-md-6">
-                                            <h6>Successfull Task</h6>
-                                            <h5 class="m-b-30 f-w-700">89%<span
-                                                    class="text-c-green m-l-10">+0.99%</span></h5>
-                                            <div class="progress">
-                                                <div class="progress-bar bg-c-green"
-                                                    style="width:85%"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-3 col-md-6">
-                                            <h6>Ongoing Project</h6>
-                                            <h5 class="m-b-30 f-w-700">365<span
-                                                    class="text-c-green m-l-10">+0.35%</span></h5>
+                                        <div class="col-xl-4 col-md-6">
+                                            <h6>Kandidat Dalam Proses</h6>
+                                            <h5 class="m-b-30 text-c-yellow f-w-700">532</h5>
                                             <div class="progress">
                                                 <div class="progress-bar bg-c-yellow"
-                                                    style="width:45%"></div>
+                                                    style="width:50%"></div>
                                             </div>
                                         </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <h6>Kandidat Terbang</h6>
+                                            <h5 class="m-b-30 text-c-blue f-w-700">4,569</h5>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-c-blue"
+                                                    style="width:70%"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-md-6">
+                                            <h6>Kandidat Selesai Kontrak</h6>
+                                            <h5 class="m-b-30  text-c-green f-w-700">89</h5>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-c-green"
+                                                    style="width:100%"></div>
+                                            </div>
+                                        </div>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -144,27 +324,11 @@
 
 
                         <div class="col-md-12 col-xl-4">
-                            <div class="card card-blue text-white">
-                                <div class="card-block p-b-0">
-                                    <div class="row m-b-50">
-                                        <div class="col">
-                                            <h6 class="m-b-5">Sales In July</h6>
-                                            <h5 class="m-b-0 f-w-700">$2665.00</h5>
-                                        </div>
-                                        <div class="col-auto text-center">
-                                            <p class="m-b-5">Direct Sale</p>
-                                            <h6 class="m-b-0">$1768</h6>
-                                        </div>
-                                        <div class="col-auto text-center">
-                                            <p class="m-b-5">Referal</p>
-                                            <h6 class="m-b-0">$897</h6>
-                                        </div>
-                                    </div>
-                                    <div id="sec-ecommerce-chart-line" class
-                                        style="height:60px"></div>
-                                    <div id="sec-ecommerce-chart-bar" style="height:195px">
-                                    </div>
+                            <div class="card latest-update-card text-white">
+                                <div class="card-header">
+                                <h5>Interview Kandidat</h5>
                                 </div>
+                                <!-- table -->
                             </div>
                         </div>
                         <div class="col-xl-4 col-md-12">
@@ -277,7 +441,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </>
                         <div class="col-xl-4 col-md-6">
                             <div class="card latest-update-card">
                                 <div class="card-header">
@@ -305,7 +469,7 @@
                                     <div class="scroll-widget">
                                         <div class="latest-update-box">
                                             @foreach ($pengaduan as $p )
-                                                
+
                                             <div class="row">
                                                 <div
                                                     class="col-auto text-right update-meta p-r-0">
@@ -316,10 +480,10 @@
                                                         <h6>{{$p->kandidat->nama_lengkap}}</h6>
                                                     </a>
                                                     <p class="text-muted m-b-0"> <a href="#!"
-                                                    class="text-c-green"> {{$p->subjek}}</a> {{$p->isi}}</p>
+                                                            class="text-c-green"> {{$p->subjek}}</a> {{$p->isi}}</p>
                                                 </div>
                                             </div>
-                                            @endforeach  
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
@@ -356,7 +520,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>Name</th>
-                                                
+
                                                     <th>Tempat Lahir</th>
                                                     <th>Foto</th>
                                                     <th>Status</th>
@@ -364,31 +528,31 @@
                                             </thead>
                                             <tbody>
                                                 @foreach ($pelamar as $p )
-                                                    
+
                                                 <tr>
 
                                                     <td>{{$p->nama_lengkap}}</td>
-                                                  
+
                                                     <td>
                                                         {{$p->tempat_lahir}}
                                                     </td>
                                                     <td>
-                                                    <a href="/upload/foto/{{ $p->foto }}" target="_blank">
-                                                                    <img style="max-width:50px; max-height:50px"
-                                                                        src="/upload/foto/{{ $p->foto }}"
-                                                                        alt="">
-                                                                </a>
+                                                        <a href="/upload/foto/{{ $p->foto }}" target="_blank">
+                                                            <img style="max-width:50px; max-height:50px"
+                                                                src="/upload/foto/{{ $p->foto }}"
+                                                                alt="">
+                                                        </a>
                                                     </td>
                                                     <td>
-                                                    @php 
+                                                        @php
                                                         $statusColor = [
-                                                            'Verifikasi' => 'success',
-                                                            'Pending' => 'danger',
-                                                            'Reject' => 'warning'
+                                                        'Verifikasi' => 'success',
+                                                        'Pending' => 'danger',
+                                                        'Reject' => 'warning'
                                                         ];
-                                                    @endphp
-                                                    <span class="badge badge-{{$statusColor[$p->status]}}">{{$p->status}}</span>
-                                                    
+                                                        @endphp
+                                                        <span class="badge badge-{{$statusColor[$p->status]}}">{{$p->status}}</span>
+
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -414,32 +578,31 @@
 @push('script')
 
 <script>
-    const xValues = [100,200,300,400,500,600,700,800,900,1000];
+    const xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: xValues,
-    datasets: [{ 
-      data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
-      borderColor: "red",
-      fill: false
-    }, { 
-      data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
-      borderColor: "green",
-      fill: false
-    }, { 
-      data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
-      borderColor: "blue",
-      fill: false
-    }]
-  },
-  options: {
-    legend: {display: false}
-  }
-});
+    new Chart("myChart", {
+        type: "line",
+        data: {
+            labels: xValues,
+            datasets: [{
+                data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+                borderColor: "red",
+                fill: false
+            }, {
+                data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
+                borderColor: "green",
+                fill: false
+            }, {
+                data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
+                borderColor: "blue",
+                fill: false
+            }]
+        },
+        options: {
+            legend: {
+                display: false
+            }
+        }
+    });
 </script>
 @endpush
-
-
-                  
