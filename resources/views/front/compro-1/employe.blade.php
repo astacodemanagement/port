@@ -78,7 +78,7 @@
 <section class="container py-5">
 
 
-    <img src="{{ asset('frontend') }}/assets/image/section3.png" alt="" class="md:tw-w-[40%] md:tw-h-[200px] tw-w-full tw-h-full"  style="  display: block;
+    <img src="{{ asset('frontend') }}/assets/image/section3.png" alt="" class="md:tw-w-[40%] md:tw-h-[400px] tw-w-full tw-h-full tw-border-transparent"  style="  display: block;
   margin-left: auto;
   margin-right: auto;
   ">
@@ -139,42 +139,49 @@
 
 <!-- Our expertise in the industrial sector -->
 <section class="tw-py-10 container">
-    <h2 class="text-center tw-text-xl tw-font-semibold tw-text-[#00314F] tw-font-caveat lg:tw-text-4xl tw-mt-10">Our expertise in the industrial sector </h2>
-
-    <div class="tw-flex tw-flex-col md:tw-flex-row md:tw-flex-wrap md:tw-justify-between tw-pt-10" >
-        <div class="tw-w-1/5 my-2 tw-rounded-md  py-2 ">
-          <div class="tw-flex tw-justify-center tw-flex-col tw-items-center px-3">
-          <img src="{{ asset('frontend') }}/assets/image/exp1.png" alt="" class="md:tw-w-full tw-w-[50%]" style="  display: block;"/>
-          <p class="tw-text-gray-800 tw-text-lg tw-text-center pt-3 tw-font-medium">Hospitality</p>
-          </div>
-        </div>
-        <div class="tw-w-1/5 my-2 tw-rounded-md  py-2 ">
-          <div class="tw-flex tw-justify-center tw-flex-col tw-items-center px-3">
-          <img src="{{ asset('frontend') }}/assets/image/exp2.png" alt="" class="md:tw-w-full tw-w-[50%]" style="  display: block;"/>
-          <p class="tw-text-gray-800 tw-text-lg tw-text-center pt-3 tw-font-medium">Manufacture</p>
-          </div>
-        </div>
-        <div class="tw-w-1/5 my-2 tw-rounded-md  py-2 ">
-          <div class="tw-flex tw-justify-center tw-flex-col tw-items-center px-3">
-          <img src="{{ asset('frontend') }}/assets/image/exp3.png" alt="" class="md:tw-w-full tw-w-[50%]" style="  display: block;"/>
-          <p class="tw-text-gray-800 tw-text-lg tw-text-center pt-3 tw-font-medium">Construction</p>
-          </div>
-        </div>
-        <div class="tw-w-1/5 my-2 tw-rounded-md  py-2 ">
-          <div class="tw-flex tw-justify-center tw-flex-col tw-items-center px-3">
-          <img src="{{ asset('frontend') }}/assets/image/exp4.png" alt="" class="md:tw-w-full tw-w-[50%]" style="  display: block;"/>
-          <p class="tw-text-gray-800 tw-text-lg tw-text-center pt-3 tw-font-medium">Domestic worker</p>
-          </div>
-        </div>
-        <div class="tw-w-1/5 my-2 tw-rounded-md  py-2 ">
-          <div class="tw-flex tw-justify-center tw-flex-col tw-items-center px-3">
-          <img src="{{ asset('frontend') }}/assets/image/exp5.png" alt="" class="md:tw-w-full tw-w-[50%]" style="  display: block;"/>
-          <p class="tw-text-gray-800 tw-text-lg tw-text-center pt-3 tw-font-medium">Other Sectors</p>
-          </div>
-        </div>
-            
-        </div>
+  <h2 class="text-center tw-text-xl tw-font-semibold tw-text-[#00314F] tw-font-caveat lg:tw-text-4xl tw-mt-10">Our expertise in the industrial sector</h2>
+  
+  <div class="tw-grid tw-grid-cols-2 sm:tw-grid-cols-3 lg:tw-grid-cols-5 tw-gap-4 tw-pt-10">
+    <!-- Hospitality -->
+    <div class="tw-rounded-md tw-py-2">
+      <div class="tw-flex tw-justify-center tw-flex-col tw-items-center tw-px-3">
+        <img src="{{ asset('frontend') }}/assets/image/exp1.png" alt="Hospitality" class="tw-w-16 sm:tw-w-20 lg:tw-w-full" style="display: block;"/>
+        <p class="tw-text-gray-800 tw-text-base lg:tw-text-lg tw-text-center tw-pt-3 tw-font-medium">Hospitality</p>
+      </div>
     </div>
+    
+    <!-- Manufacture -->
+    <div class="tw-rounded-md tw-py-2">
+      <div class="tw-flex tw-justify-center tw-flex-col tw-items-center tw-px-3">
+        <img src="{{ asset('frontend') }}/assets/image/exp2.png" alt="Manufacture" class="tw-w-16 sm:tw-w-20 lg:tw-w-full" style="display: block;"/>
+        <p class="tw-text-gray-800 tw-text-base lg:tw-text-lg tw-text-center tw-pt-3 tw-font-medium">Manufacture</p>
+      </div>
+    </div>
+    
+    <!-- Construction -->
+    <div class="tw-rounded-md tw-py-2">
+      <div class="tw-flex tw-justify-center tw-flex-col tw-items-center tw-px-3">
+        <img src="{{ asset('frontend') }}/assets/image/exp3.png" alt="Construction" class="tw-w-16 sm:tw-w-20 lg:tw-w-full" style="display: block;"/>
+        <p class="tw-text-gray-800 tw-text-base lg:tw-text-lg tw-text-center tw-pt-3 tw-font-medium">Construction</p>
+      </div>
+    </div>
+    
+    <!-- Domestic worker -->
+    <div class="tw-rounded-md tw-py-2">
+      <div class="tw-flex tw-justify-center tw-flex-col tw-items-center tw-px-3">
+        <img src="{{ asset('frontend') }}/assets/image/exp4.png" alt="Domestic worker" class="tw-w-16 sm:tw-w-20 lg:tw-w-full" style="display: block;"/>
+        <p class="tw-text-gray-800 tw-text-base lg:tw-text-lg tw-text-center tw-pt-3 tw-font-medium">Domestic worker</p>
+      </div>
+    </div>
+    
+    <!-- Other Sectors -->
+    <div class="tw-rounded-md tw-py-2">
+      <div class="tw-flex tw-justify-center tw-flex-col tw-items-center tw-px-3">
+        <img src="{{ asset('frontend') }}/assets/image/exp5.png" alt="Other Sectors" class="tw-w-16 sm:tw-w-20 lg:tw-w-full" style="display: block;"/>
+        <p class="tw-text-gray-800 tw-text-base lg:tw-text-lg tw-text-center tw-pt-3 tw-font-medium">Other Sectors</p>
+      </div>
+    </div>
+  </div>
 </section>
 <div class="tw-w-full tw-bg-[#F2FAFF]">
 <section class="tw-py-10 container ]">

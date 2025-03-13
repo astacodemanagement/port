@@ -297,7 +297,7 @@
                                                                                             name="kategori_job_id"
                                                                                             class="form-control">
                                                                                             <option value="">Pilih
-                                                                                                Industri Industri Pekerjaan
+                                                                                                Industri  Pekerjaan
                                                                                             </option>
 
                                                                                             <!-- Loop untuk kategori job -->
@@ -433,7 +433,7 @@
 
                                                                                 <div class="form-group row">
                                                                                         <div class="col-sm-12">
-                                                                                            <h4 class="sub-title">Fasilitas
+                                                                                            <h4 class="sub-title">Benefit
                                                                                                 Pekerjaan</h4>
                                                                                             <div
                                                                                                 class="border-checkbox-section">

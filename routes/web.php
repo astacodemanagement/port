@@ -379,7 +379,11 @@ Route::prefix('ajax')->group(function () {
 });
 
 Route::name('front.')->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('index');
+    Route::controller(FrontJobController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::get('/{id}/apply', 'apply')->name('apply');
+    });
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/employe', [HomeController::class, 'employe'])->name('employe');
     
