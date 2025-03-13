@@ -46,4 +46,23 @@ class Job extends Model
     {
         $query->where('status', 'draft');
     }
+    public function scopeSearch($query, array $filters)
+    {
+        return $query->when(
+            $filters['query'] ?? false,
+            function (Builder $query, $searchTerm) {
+                $query->where(function ($query) use ($searchTerm) {
+                    $query->where('nama_job', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('nama_perusahaan', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('gaji', 'like', '%' . $searchTerm . '%');
+                });
+            }
+        )->when(
+            $filters['negara_id'] ?? false,
+            function (Builder $query, $negaraId) {
+                $query->where('negara_id', $negaraId);
+            }
+        );
+    }
+
 }
