@@ -389,13 +389,11 @@ Route::name('front.')->group(function () {
     
     /** JOB */
     Route::name('jobs.')->group(function () {
-        Route::prefix('jobs')->group(function () {
             Route::controller(FrontJobController::class)->group(function () {
                 Route::get('/', 'index')->name('index');
                 Route::get('/{id}', 'show')->name('show');
                 Route::get('/{id}/apply', 'apply')->name('apply');
             });
-        });
     });
     // pengaduan
   
@@ -486,4 +484,10 @@ Route::get('/test/email',function(){
         $message->subject('Verify your email address');
     });
 
+});
+
+
+// php ingfo
+Route::get('/phpinfo', function () {
+    phpinfo();
 });
