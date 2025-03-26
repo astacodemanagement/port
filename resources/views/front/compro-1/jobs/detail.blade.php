@@ -399,7 +399,7 @@
                             <div class="d-flex gap-2 item-benefit">
                                 @foreach ($job->benefits as $item)
                                 <div class="card-item">
-                                    <span style="font-size:1rem;font-weight: 500" class="tw-font-semibold">{{ $item->fasilitas?->nama_fasilitas }}</span>
+                                    <span style="font-size:0.7rem;font-weight: 500" class="tw-font-semibold">{{ $item->fasilitas?->nama_fasilitas }}</span>
                                 </div>
                                 @endforeach
                             </div>

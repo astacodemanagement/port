@@ -31,7 +31,7 @@
 
 @section('content')
     <!-- Navbar -->
-    <section class="Element-nav-items-search" style="margin-bottom: 80px;">
+    <section class="Element-nav-items-search" style="margin-bottom: 100px;">
         <div class="container">
             @include('front.compro-1.layouts.navbar')
         </div>
@@ -42,7 +42,7 @@
 <!-- List Jobs Search -->
 <div class="list-jobs-search" >
     <div class="container">
-        <form action="/" method="GET" class="w-50">
+        <form action="/" method="GET" style="width: 60%">
             <div class="row m-0">
              
                 
