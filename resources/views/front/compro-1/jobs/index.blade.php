@@ -164,8 +164,8 @@
         <form action="{{ route('front.jobs.index') }}" method="GET" class="form-search-job">
             <div class="search-form-wrapper">
                 <div class="form-group">
-                    <select name="kategori" class="form-select form-select-lg" aria-label="Select example">
-                        <option>Semua Sektor</option>
+                    <select name="kategori" class="form-select form-select-lg" aria-label="Select Sektor">
+                        <option value="">Semua Sektor</option>
                         @foreach ($kategori as $kat)
                             <option value="{{ $kat->nama_kategori_job }}" {{ request()->kategori == $kat->nama_kategori_job ? 'selected' : '' }}>
                                 {{ $kat->nama_kategori_job }}
@@ -175,8 +175,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <select name="negara" class="form-select form-select-lg" aria-label="Select example">
-                        <option>Semua Negara</option>
+                    <select name="negara" class="form-select form-select-lg" aria-label="Select Negara">
+                        <option value="">Semua Negara</option>
                         @foreach ($negara as $neg)
                             <option value="{{ $neg->nama_negara }}" {{ request()->negara == $neg->nama_negara ? 'selected' : '' }}>
                                 {{ $neg->nama_negara }}
@@ -186,11 +186,9 @@
                 </div>
                 
                 <div class="form-group search-button">
-                    <button type="submit" class=" search-btn">Search</button>
+                    <button type="submit" class="search-btn">Cari</button>
                 </div>
             </div>
-            
-        
         </form>
     </div>
        
