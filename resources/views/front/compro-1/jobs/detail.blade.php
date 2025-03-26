@@ -638,68 +638,79 @@
         </div>
         <div class="element-items-card mt-5">
             <div class="row">
-                @foreach ($relateJobs as $rJob)
-                <div class="col-3">
-                    <div class="card-body">
-                        <div class="card-image">
-                            <img src="/upload/gambar/{{$rJob->gambar}}" onerror="this.src='{{ asset('images/no-image.png') }}'" alt="{{ $job->nama_job }}" style="width:100%">
-                        </div>
-                        <div class="card-items-bagde " >
-                            <img src="{{ asset('frontend/assets/icons/stop-circle.svg') }}" alt="">
-                            <div class="">
-                                <span>Tersedia</span>
+                
+                @foreach ($relateJobs as $job)
+                        <div class="col-md-3 col-12">
+                            <div class="card-body">
+                                <div class="card-image job-image-container">
+                                    <a href="{{ route('front.jobs.show', hashId($job->id)) }}">
+                                        <img class="lazy job-image" 
+                                            src="{{ asset('images/placeholder-image.png') }}" 
+                                            data-src="{{ asset('upload/gambar/' . $job->gambar) }}" 
+                                            onerror="this.src='{{ asset('images/no-image-580.png') }}'" 
+                                            alt="{{ $job->nama_job }}">
+                                    </a>
+                                </div>
+                                <div class="card-items-bagde gap-1 " style="padding-left: 1rem; padding-right: 1rem; width:100%;">
+                                    <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="" width="20px"> 
+                                    <span class="inter">Tersedia</span>
+                                </div>
+                                <div class="card-title-heading-card">
+                                    <h5 class="col-10 "><a href="{{ route('front.jobs.show', hashId($job->id)) }}">{{ $job->nama_job }}</a></h5>
+                                    <span>{{ $job->nama_perusahaan ?? '' }}</span>
+                                </div>
+                                <div class="card-content">
+                                    <div class="d-flex mx-2 gap-1">
+                                        <div class="col-1 mt-2" style="margin-right:-7px;    ">
+                                        <i class="fa-solid fa-location-dot fs-6 "  style="color:#F97316;"></i>
+                                        </div>
+                                        <div class="col-10 mt-2 ">
+                                            <h6 class="title-heading fw-bold mx-1">Negara</h6>
+                                            <p class="mx-1">{{ $job->negara?->nama_negara }}</p>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="d-flex mx-2 gap-1">
+                                        <div class="col-1 mt-2">
+                                        <i class="fa-solid fa-money-bill fs-6" style="color:#F97316; margin-bottom:-5px;"></i>
+                                        </div>
+                                        <div class="col-10 mt-2">
+                                            <h6 class="title-heading fw-bold">Gaji</h6>
+                                            <p>{{ $job->gaji ?? '-' }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 ">
+                                            <h6>Berakhir pada {{ $job->tanggal_tutup ? \Carbon\Carbon::parse($job->tanggal_tutup)->format('d F Y') : '-' }}</h6>
+                                        </div>
+                                        <div class="col-12 d-flex align-self-center mt-2">
+                                            <a href="{{ route('front.jobs.show', hashId($job->id)) }}">Lihat Detail
+                                                <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                                                    <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
+                                                </svg>
+                                                </span>
+                                            </a>
+                                            @if (auth()?->user()?->kandidat?->pendaftaran?->status == "Verifikasi")
+                                  
+                                            <a href="{{ route('front.jobs.apply', hashId($job->id)) }}" class="mx-4">Lamar Pekerjaan
+                                                <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send-fill " viewBox="0 0 16 16">
+                                                    <path d="M15.964.686a.5.5 0 0 0-.672-.672L.854 7.854a.5.5 0 0 0 .112.832l4.241 1.696 1.696 4.24a.5.5 0 0 0 .832.113L15.964.686zM6.81 10.38L5.62 8.792l5.826-5.826-4.637 7.414z"></path>
+                                                </svg>
+                                                </span>
+                                            </a>
+                                            @endif
+                                        </div>
+
+                                            <div class="col-12 d-flex align-self-center mt-2">
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-title-heading-card">
-                            <h5 class="col-10 text-truncate">{{ $rJob->nama_job }}
-                            </h5>
-                            <span>{{ $rJob->nama_perusahaan }}</span>
-                        </div>
-                        <div class="card-content" >
-                            <div class="d-flex">
-                                <div class="col-1 mt-1">
-                                    <img src="{{ asset('frontend/assets/image/location.png') }}" alt="">
-                                </div>
-                                <div class="col-10 mt-2">
-                                    <h6 class="title-heading fw-bold">Negara</h6>
-                                    <p>{{ $rJob->negara?->nama_negara }}</p>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="col-1 mt-1">
-                                    <img src="{{ asset('frontend/assets/icons/document-text.svg') }}" alt="">
-                                </div>
-                                <div class="col-10 mt-2">
-                                    <h6 class="title-heading fw-bold">Kontrak Kerja</h6>
-                                    <p>{{ $rJob->kontrak_kerja }}</p>
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <div class="col-1 mt-1">
-                                    <img src="{{ asset('frontend/assets/icons/Component 1.svg') }}" alt="">
-                                </div>
-                                <div class="col-10 mt-2">
-                                    <h6 class="title-heading fw-bold">Gaji</h6>
-                                    <p>Rp {{ $rJob->gaji ?? "-" }}</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <h6>Berakhir pada {{ $rJob->tanggal_tutup ? 'tanggal ' . \Carbon\Carbon::parse($rJob->tanggal_tutup)->format('d F Y') : '-' }}</h6>
-                                </div>
-                                <div class="col-12 d-flex align-self-center mt-2">
-                                    <a href="">Lihat Detail <span><svg xmlns="http://www.w3.org/2000/svg" clas
-                                                width="16" height="16" fill="currentColor"
-                                                class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
-                                            </svg></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endforeach
+                    @endforeach
                 <div class="element-next mt-5 text-center mb-5">
                     <a href="{{ route('front.jobs.index', ['category' => hashId($job->kategori_job_id)]) }}">Lihat lebih lanjut
                         <svg xmlns=" http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
