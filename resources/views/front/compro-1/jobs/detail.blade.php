@@ -8,6 +8,118 @@
         .element-detail-share {
             display: flex;
         }
+    }
+
+    #title-job {
+        margin-top: -2px;
+    }
+
+    @media (max-width: 767px) {
+        #title-job {
+            margin-top: -0rem;
+            margin-left: -1rem;
+            font-size: 26px;
+        }
+    }
+    /* Other existing styles... */
+    
+    /* Job Info Grid Styling */
+    .job-info-grid {
+        margin-bottom: 2rem;
+    }
+    
+    .job-info-section h5 {
+        color: #333;
+        border-bottom: 2px solid #f1f1f1;
+        padding-bottom: 0.5rem;
+    }
+    
+    .job-info-items {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    @media (max-width: 767px) {
+        .job-info-items {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .job-info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .job-info-icon {
+        width: 40px;
+        height: 40px;
+        background-color: rgba(253, 37, 13, 0.1);
+        border-radius: 50%;
+        display: flex;
+        color: #F97316;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    .job-info-icon i {
+        font-size: 1.25rem;
+    }
+    
+    .job-info-content h6 {
+        margin: 0;
+        font-size: 0.9rem;
+    }
+    
+    .job-info-content p {
+        margin: 0;
+        color: #6c757d;
+    }
+    
+    .hr {
+        height: 1px;
+        background-color: #e9ecef;
+        border: none;
+        margin: 1.5rem 0;
+    }
+    
+    /* Job Status Badge */
+    .job-status-badge {
+        padding: 0.5rem;
+    }
+    
+    .job-status-badge .badge {
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+    
+    /* Fix for benefits section */
+    .benefit-pekerjaan .item-benefit {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .benefit-pekerjaan .card-item {
+        background-color: #f8f9fa;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        border: 1px solid #e9ecef;
+    }
+    
+    .Element-application-jobs {
+        background-image: url('{{ asset('frontend/assets/image/image-background.png') }}') !important;
+        min-height: unset;
+    }
+</style>
+<style>
+    @media (min-width: 767px) {
+        .element-detail-share {
+            display: flex;
+        }
 
     }
 
@@ -161,28 +273,138 @@
                     </ul>
                     <div class="tab-content pt-5" id="tab-content">
                         <div class="tab-pane active px-3" id="tab-panel-job-detail" role="tabpanel"
-                            aria-labelledby="tab-detail-job">
-                       
-                          
-                            <div class="deskripsi-pekerjaan">
-                                <h5 class="fw-bold">Deskripsi Pekerjaan:</h5>
-                             <!-- get html element -->
-                                <span>{!! $job->deskripsi !!}</span>
-                            </div>
-                            <div class="hr"></div>
-                            <div class="benefit-pekerjaan ">
-                                <h5 class="fw-bold mt-1">Benefit :</h5>
-                                <div class="d-flex gap-2 item-benefit">
-                                    @foreach ($job->benefits as $item)
-                                    <div class="card-item">
-                                        <span style="font-size:1rem;font-weight: 500" class="tw-font-semibold">{{ $item->fasilitas?->nama_fasilitas }}</span>
+                        aria-labelledby="tab-detail-job">
+                        
+                        <!-- Job Information Grid -->
+                        <div class="job-info-grid">
+                            <div class="job-info-section">
+                                <h5 class="fw-bold mb-4">Informasi Pekerjaan</h5>
+                                
+                                <div class="job-info-items">
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-location-dot "></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Negara</h6>
+                                            <p>{{ $job->negara?->nama_negara ?? '-' }}</p>
+                                        </div>
                                     </div>
-                                    @endforeach
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-file "></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Kontrak Kerja</h6>
+                                            <p>{{ $job->kontrak_kerja ?? '-' }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-clock "></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Jam Kerja</h6>
+                                            <p>{{ $job->jam_kerja ?? '-' }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-calendar-days "></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Hari Kerja</h6>
+                                            <p>{{ $job->hari_kerja ?? '-' }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-plane "></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Cuti Kerja</h6>
+                                            <p>{{ $job->cuti_kerja ?? '-' }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-language "></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Mata Uang Gaji</h6>
+                                            <p>{{ $job->mata_uang_gaji ?? '-' }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-calendar "></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Masa Percobaan</h6>
+                                            <p>{{ $job->masa_percobaan ?? '-' }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-hourglass-end "></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Overtime</h6>
+                                            <p>{{ $job->kerja_lembur ?? 'Tidak ada' }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-building "></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Industri Pekerjaan</h6>
+                                            <p>{{ $job->jobKategori?->nama_kategori_job ?? '-' }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-file-contract "></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Jenis Pekerjaan</h6>
+                                            <p>{{ $job->jenis_pekerjaan ?? '-' }}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="hr"></div>
-                              
                             </div>
                         </div>
+                        
+                        <div class="hr my-4"></div>
+                        
+                        <div class="deskripsi-pekerjaan">
+                            <h5 class="fw-bold">Deskripsi Pekerjaan:</h5>
+                            <!-- get html element -->
+                            <span>{!! $job->deskripsi !!}</span>
+                        </div>
+                        
+                        <div class="hr my-4"></div>
+                        
+                        <div class="benefit-pekerjaan">
+                            <h5 class="fw-bold">Benefit:</h5>
+                            <div class="d-flex gap-2 item-benefit">
+                                @foreach ($job->benefits as $item)
+                                <div class="card-item">
+                                    <span style="font-size:1rem;font-weight: 500" class="tw-font-semibold">{{ $item->fasilitas?->nama_fasilitas }}</span>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                         <div class="tab-pane" id="tab-panel-job-gallery" role="tabpanel" aria-labelledby="tab-job-gallery">
                             <h5 class="fw-bold">Persyaratan Kandidat:</h5>
                             <div class="row">
@@ -287,225 +509,66 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4 d-block mb-4">
-                <div class="wrapper-content-right">
-                    <div class="wrapper-image">
-                        <img src="{{ asset('upload/gambar/' . $job->gambar) }}" alt="{{ $job->nama_job }}" style="height: 250px; object-fit:cover; border-radius:8px;" class="tw-rounded-md">
+<div class="col-4 d-block mb-4">
+    <div class="wrapper-content-right">
+        <div class="wrapper-image">
+            <img src="{{ asset('upload/gambar/' . $job->gambar) }}" alt="{{ $job->nama_job }}" style="height: 250px; object-fit:cover; border-radius:8px;" class="tw-rounded-md">
+        </div>
+        
+        <div class="wrapper-salary">
+            <div class="wrapper-icon">
+                <div class="d-flex gap-1">
+                    <img src="{{ asset('frontend/assets/icons/bulk/coin.png') }}" width="30" height="30">
+                    <h2 class="fw-bolder text-white">GAJI</h2>
+                </div>
+                <div class="" style="margin-left:33px">
+                    <div class="d-flex align-start">
+                        <h5 class="fw-bold text-white tw-text-start">{{ $job->gaji }} / {{ $job->jenis_pembayaran }}</h5>
                     </div>
-                    <div class="wrapper-salary">
-                        <div class="wrapper-icon">
-                            <div class="d-flex gap-1">
-                                <img src="{{ asset('frontend/assets/icons/bulk/coin.png') }}" width="30" height="30">
-                                <h2 class="fw-bolder text-white">GAJI</h2>
-
-                            </div>
-                            <div class="" style="margin-left:33px">
-                                <div class="d-flex align-start">
-                                    <h5 class="fw-bold text-white  tw-text-start">  {{$job->gaji}} / {{ $job->jenis_pembayaran }}</h5>
-                                   
-                                </div>
-                                
-                            </div>
-                            <hr class="text-white">
-                            <div class="text-information d-flex">
-                                <span class="gap-1"> ± IDR {{number_format($job->estimasi)}} | Kurs: {{ \Carbon\Carbon::parse($job->tanggal_kurs)->format('d/m/Y') }} -  {{ $job->nominal_kurs }}</span>
-                                
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <!-- <div class="d-flex justify-content-center" style="width: 100%; background-color: var(--orange); border-radius:8px;">
-    <span style="width: 100%; margin-left: 5px; padding: 10px; color: var(--text-w);  font-size: 12px; border-radius: 8px; text-align: center;">
-        Tersedia
-    </span>
-</div> -->
-
-                    <hr class=" text-white">
-                    <div class="d-flex " style="justify-content: space-around;">
-                        <div class="col-6 content-col" >
-                            <div class="items-negara mx-2">
-<div class="row d-flex">
-                                    <div class="col-1">
-                                        <i class="fa-solid fa-location-dot fs-5 text-light" ></i>                                   
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-white " style="margin-left:-0.4rem;">Negara</h6>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                        <span style="color:#e2e8f0; margin-left:-0.4rem;">{{ $job->negara?->nama_negara }}</span>
-                                    </div>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-6 content-col">
-                            <div class="items-negara ">
-                                <div class="row d-flex">
-                                    <div class="col-1">
-                                        <i class="fa-solid fa-file fs-5 text-light"></i>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-white" style="margin-left:-0.4rem;">Kontrak Kerja</h6>
-                                        <span class="" style="color:#e2e8f0; margin-left:-0.4rem; ">{{ $job->kontrak_kerja ?? '-' }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex mx-2">
-
-                        <div class="col-6 content-col">
-                        <div class="items-negara  mt-3">
-                                <div class="row d-flex">
-                                    <div class="col-1 ">
-                                        <i class="fa-solid fa-clock fs-5 text-light"></i>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-white mb-1" style="margin-left:-0.3rem;">Jam Kerja</h6>
-                                        <span style="color:#e2e8f0;  margin-left:-0.3rem;">{{ $job->jam_kerja ?? '-' }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 content-col">
-                        <div class="items-negara mt-3">
-                                <div class="row d-flex">
-                                    <div class="col-1">
-                                        <i class="fa-solid fa-calendar-days fs-5 text-light"></i>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-white mb-1" style="margin-left:-0.3rem;">Hari Kerja</h6>
-                                        <span style="color:#e2e8f0;  margin-left:-0.3rem;">{{ $job->hari_kerja ?? '-' }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex mx-2">
-
-                        <div class="col-6 content-col">
-                        <div class="items-negara mt-3">
-                                <div class="row d-flex">
-                                    <div class="col-1">
-                                        <i class="fa-solid fa-plane fs-5 text-white"></i>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-white" style="margin-left:-0.3rem; ">Cuti Kerja</h6>
-                                        <span style="color:#e2e8f0;  margin-left:-0.3rem;">{{ $job->cuti_kerja ?? '-' }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 content-col">
-                        <div class="items-negara mt-3">
-                                <div class="row d-flex">
-                                    <div class="col-1">
-                                        <i class="fa-solid fa-language fs-5 text-light"></i>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-white" style="margin-left:-0.2rem; ">Mata Uang Gaji</h6>
-                                        <span style="color:#e2e8f0;  margin-left:-0.2rem;">{{ $job->mata_uang_gaji ?? 'tidak ada' }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex mx-2">
-                        <div class="col-6 content-col">
-                        <div class="items-negara mt-3">
-                                <div class="row d-flex">
-                                    <div class="col-1">
-                                        <i class="fa-solid fa-calendar fs-5 text-white"></i>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-white" style="margin-left:-0.3rem; margin-top:-1px;">Masa Percobaan</h6>
-                                        <span style="color:#e2e8f0;  margin-left:-0.3rem; margin-top:-1px;">{{ $job->masa_percobaan ?? 'tidak ada' }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                       
-                        </div>
-                        <div class="col-6 content-col">
-
-
-                        <div class="items-negara mt-3">
-                                <div class="row d-flex">
-                                    <div class="col-1">
-                                        <i class="fa-solid fa-hourglass-end fs-5 text-light"></i>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-white" style="margin-left:-0.3rem;">Overtime</h6>
-                                        <span style="color:#e2e8f0;  margin-left:-0.3rem;">{{ $job->kerja_lembur ?? "tidak ada" }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  
-                    <hr class="text-white">
-                    <div class="d-flex mt-4 mb-4 mx-2">
-                        <div class="col-sm  content-col">
-                            <div class="items-negara">
-                                <div class="row d-flex">
-                                    <div class="col-1">
-                                        <i class="fa-solid fa-building fs-5 text-light"></i>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-white" style="margin-top:-1px;">Industri Pekerjaan</h6>
-                                        <span style="color:#e2e8f0; margin-top:-1px; ">{{ $job->jobKategori?->nama_kategori_job }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm   ">
-                            <div class="items-negara">
-                                <div class="row d-flex ">
-                                    <div class="col-1">
-                                        <i class="fa-solid fa-file-contract fs-5 text-light"></i>
-                                    </div>
-                                    <div class="col">
-                                        <h6 class="text-white" style="margin-top:-1px;">Jenis Pekerjaan</h6>
-                                        <span style="color:#e2e8f0; margin-top:-1px; font-size:0.8rem">{{ $job->jenis_pekerjaan }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-flex" style="flex-direction: column;">
-                        @if (auth()->user()?->kandidat?->pendaftaran->status == 'Verifikasi')
-                        <div class="col-12">
-                            <button onclick="location.href='{{ route('front.jobs.apply', hashId($job->id)) }}'" class="element-button-action text-center d-block btn-apply" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
-                                Lamar Pekerjaan
-                            </button>
-                        </div>
-                        @elseif (auth()?->user()?->kandidat?->pendaftaran?->status == "Belum Verifikasi(Pending)")
-                        <div class="col-12">
-                            <a href="{{ route('front.profile') }}" class="element-button-action text-center d-block" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
-                                Menunggu Verifikasi
-                            </a>
-                        </div>
-
-
-                        @else
-                        <div class="col-12">
-                            <div class="d-flex " style="justify-content: center; align-items: center;">
-
-                                <a href="{{ route('front.login', ['job' => hashId($job->id)]) }}" class="element-button-action text-center d-block" style="magin:0 auto;width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
-                                    Masuk Untuk Melamar Pekerjaan
-                                </a>
-                            </div>
-                        </div>
-                        @endif
-                        <div class="col">
-                            <div class="element-akun fs-5 text-center mt-3">
-                                <h6 class="text-white" style="font-weight: 400;">Belum Punya Akun? <a href="{{ route('register') }}" class="text-white fw-semibold">Daftar SIPOOL</a></h6>
-                            </div>
-                        </div>
-                    </div>
-
+                </div>
+                <hr class="text-white">
+                <div class="text-information d-flex">
+                    <span class="gap-1">± IDR {{ number_format($job->estimasi) }} | Kurs: {{ \Carbon\Carbon::parse($job->tanggal_kurs)->format('d/m/Y') }} - {{ $job->nominal_kurs }}</span>
                 </div>
             </div>
-
         </div>
+        
+        <hr class="text-white">
+        
+    
+        <hr class="text-white">
+        
+        <!-- Action Buttons -->
+        <div class="d-flex" style="flex-direction: column;">
+            @if (auth()->user()?->kandidat?->pendaftaran->status == 'Verifikasi')
+            <div class="col-12">
+                <button onclick="location.href='{{ route('front.jobs.apply', hashId($job->id)) }}'" class="element-button-action text-center d-block btn-apply" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
+                    Lamar Pekerjaan
+                </button>
+            </div>
+            @elseif (auth()?->user()?->kandidat?->pendaftaran?->status == "Belum Verifikasi(Pending)")
+            <div class="col-12">
+                <a href="{{ route('front.profile') }}" class="element-button-action text-center d-block" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
+                    Menunggu Verifikasi
+                </a>
+            </div>
+            @else
+            <div class="col-12">
+                <div class="d-flex" style="justify-content: center; align-items: center;">
+                    <a href="{{ route('front.login', ['job' => hashId($job->id)]) }}" class="element-button-action text-center d-block" style="margin:0 auto;width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
+                        Masuk Untuk Melamar Pekerjaan
+                    </a>
+                </div>
+            </div>
+            @endif
+            <div class="col">
+                <div class="element-akun fs-5 text-center mt-3">
+                    <h6 class="text-white" style="font-weight: 400;">Belum Punya Akun? <a href="{{ route('register') }}" class="text-white fw-semibold">Daftar SIPOOL</a></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         <div class="row m-0">
             <div class="col-8 m-0">
                 <div class="content-warning d-block d-lg-none">
