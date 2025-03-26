@@ -443,7 +443,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Jenis Kelamin</h6>
-                                            <p>{{ $job->jenis_kelamin ?? 'Tidak Ada Ketentuan' }}</p>
+                                            <span>{{ $job->jenis_kelamin ?? 'Tidak Ada Ketentuan' }}</span>
                                         </div>
                                     </div>
                                     
@@ -453,7 +453,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Usia</h6>
-                                            <p>{{ $job->rentang_usia ?? 'Tidak Ada Ketentuan' }}</p>
+                                            <span>{{ $job->rentang_usia ?? 'Tidak Ada Ketentuan' }}</span>
                                         </div>
                                     </div>
                                     
@@ -463,7 +463,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Level Bahasa yang dibutuhkan</h6>
-                                            <p>{{ $job->level_bahasa ?? 'Tidak Ada Ketentuan' }}</p>
+                                            <span>{{ $job->level_bahasa ?? 'Tidak Ada Ketentuan' }}</span>
                                         </div>
                                     </div>
                                     
@@ -473,7 +473,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Pendidikan</h6>
-                                            <p>{{ $job->pendidikan ?? 'Tidak Ada Ketentuan' }}</p>
+                                            <span>{{ $job->pendidikan ?? 'Tidak Ada Ketentuan' }}</span>
                                         </div>
                                     </div>
                                     
@@ -483,7 +483,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Pengalaman</h6>
-                                            <p>{{ $job->pengalaman_kerja ?? 'Tidak Ada Ketentuan' }}</p>
+                                            <span>{{ $job->pengalaman_kerja ?? 'Tidak Ada Ketentuan' }}</span>
                                         </div>
                                     </div>
                                 </div>
