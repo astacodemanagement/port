@@ -201,7 +201,7 @@
             <div class="element-items-card mt-5 p-0 ">
                 <div class="row m-0">
                 @foreach ($jobs as $job)
-                        <div class="col-md-3 col-12">
+                        <div class="col-md-3 col-12 pt-5">
                             <div class="card-body">
                                 <div class="card-image job-image-container">
                                     <a href="{{ route('front.jobs.show', hashId($job->id)) }}">
