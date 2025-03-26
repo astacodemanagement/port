@@ -166,8 +166,7 @@
 
         <!-- Navigation links -->
         <div class="nav-menu">
-            <a href="{{route('front.home')}}" class="nav-link fs-6 fw-bold ">Worker</a>
-            <a href="{{route('front.employe')}}" class="nav-link fs-6 fw-bold ">Employer</a>
+            <a href="https://putrasi.id " class="nav-link fs-6 fw-bold " style="color: white">Halaman Utama</a>
 
           
 
