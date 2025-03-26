@@ -4,6 +4,32 @@
 @section('content')
 @push('css')
 <style>
+    .job-image-container {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-top: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625 or 56.25%) */
+        overflow: hidden;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+    
+    .job-image-container img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s ease;
+    }
+    
+    .job-image-container:hover img {
+        transform: scale(1.05);
+    }
+    
     @media (min-width: 767px) {
         .element-detail-share {
             display: flex;
@@ -70,7 +96,7 @@
     
     .job-info-content h6 {
         margin: 0;
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
     
     .job-info-content p {
@@ -286,8 +312,8 @@
                                             <i class="fa-solid fa-location-dot "></i>
                                         </div>
                                         <div class="job-info-content">
-                                            <h6 class="fw-bold mb-1">Negara</h6>
-                                            <p>{{ $job->negara?->nama_negara ?? '-' }}</p>
+                                            <h6 class="fw-bold  mb-1">Negara</h6>
+                                            <span>{{ $job->negara?->nama_negara ?? '-' }}</span>
                                         </div>
                                     </div>
                                     
@@ -297,7 +323,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Kontrak Kerja</h6>
-                                            <p>{{ $job->kontrak_kerja ?? '-' }}</p>
+                                            <span>{{ $job->kontrak_kerja ?? '-' }}</span>
                                         </div>
                                     </div>
                                     
@@ -307,7 +333,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Jam Kerja</h6>
-                                            <p>{{ $job->jam_kerja ?? '-' }}</p>
+                                            <span>{{ $job->jam_kerja ?? '-' }}</span>
                                         </div>
                                     </div>
                                     
@@ -317,7 +343,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Hari Kerja</h6>
-                                            <p>{{ $job->hari_kerja ?? '-' }}</p>
+                                            <span>{{ $job->hari_kerja ?? '-' }}</span>
                                         </div>
                                     </div>
                                     
@@ -327,7 +353,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Cuti Kerja</h6>
-                                            <p>{{ $job->cuti_kerja ?? '-' }}</p>
+                                            <span>{{ $job->cuti_kerja ?? '-' }}</span>
                                         </div>
                                     </div>
                                     
@@ -337,7 +363,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Mata Uang Gaji</h6>
-                                            <p>{{ $job->mata_uang_gaji ?? '-' }}</p>
+                                            <span>{{ $job->mata_uang_gaji ?? '-' }}</span>
                                         </div>
                                     </div>
                                     
@@ -347,7 +373,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Masa Percobaan</h6>
-                                            <p>{{ $job->masa_percobaan ?? '-' }}</p>
+                                            <span>{{ $job->masa_percobaan ?? '-' }}</span>
                                         </div>
                                     </div>
                                     
@@ -357,7 +383,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Overtime</h6>
-                                            <p>{{ $job->kerja_lembur ?? 'Tidak ada' }}</p>
+                                            <span>{{ $job->kerja_lembur ?? 'Tidak ada' }}</span>
                                         </div>
                                     </div>
                                     
@@ -367,7 +393,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Industri Pekerjaan</h6>
-                                            <p>{{ $job->jobKategori?->nama_kategori_job ?? '-' }}</p>
+                                            <span>{{ $job->jobKategori?->nama_kategori_job ?? '-' }}</span>
                                         </div>
                                     </div>
                                     
@@ -377,7 +403,7 @@
                                         </div>
                                         <div class="job-info-content">
                                             <h6 class="fw-bold mb-1">Jenis Pekerjaan</h6>
-                                            <p>{{ $job->jenis_pekerjaan ?? '-' }}</p>
+                                            <span>{{ $job->jenis_pekerjaan ?? '-' }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -405,79 +431,75 @@
                             </div>
                         </div>
                     </div>
-                        <div class="tab-pane" id="tab-panel-job-gallery" role="tabpanel" aria-labelledby="tab-job-gallery">
-                            <h5 class="fw-bold">Persyaratan Kandidat:</h5>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="tab-content-items mt-4">
-                                        <div class="row d-flex gap-2">
-                                            <div class="col-1">
-                                                <div class="tab-icons">
-                                                    <img src="{{ asset('frontend/assets/icons/button-gender.png') }}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-10">
-                                                <h6 class="fw-bold mt-1">Jenis Kelamin</h6>
-                                                <span>{{ $job->jenis_kelamin ?? 'Tidak Ada Ketentuan' }}</span>
-                                            </div>
+                    <div class="tab-pane px-3" id="tab-panel-job-gallery" role="tabpanel" aria-labelledby="tab-job-gallery">
+                        <div class="job-info-grid">
+                            <div class="job-info-section">
+                                <h5 class="fw-bold mb-4">Persyaratan Kandidat</h5>
+                                
+                                <div class="job-info-items">
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-venus-mars"></i>
                                         </div>
-
-                                        <div class="row d-flex gap-2 mt-3">
-                                            <div class="col-1">
-                                                <div class="tab-icons">
-                                                    <img src="{{ asset('frontend/assets/image/icon/user-tag.png') }}" alt="" height="24">
-                                                </div>
-                                            </div>
-                                            <div class="col-10">
-                                                <h6 class="fw-bold mt-1">Usia</h6>
-                                                <span>{{ $job->rentang_usia ?? 'Tidak Ada Ketentuan' }}</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="row d-flex gap-2 mt-3">
-                                            <div class="col-1">
-                                                <div class="tab-icons">
-                                                    <img src="{{ asset('frontend/assets/icons/clarity_language-solid.svg') }}" alt="">
-                                                </div>
-                                            </div>
-                                            <div class="col-10">
-                                                <h6 class="fw-bold mt-1">Level Bahasa yang dibutuhkan</h6>
-                                                <span>{{ $job->level_bahasa ?? 'Tidak Ada Ketentuan' }}</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-6 mt-4">
-                                    <div class="d-flex gap-2">
-                                        <div class="col-1">
-                                            <div class="tab-icons">
-                                                <img src="{{ asset('frontend/assets/icons/teacher.svg') }}" alt="">
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <h6 class="fw-bold mt-1">Pendidikan</h6>
-                                            <span>{{ $job->pendidikan ?? 'Tidak Ada Ketentuan' }}</span>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Jenis Kelamin</h6>
+                                            <p>{{ $job->jenis_kelamin ?? 'Tidak Ada Ketentuan' }}</p>
                                         </div>
                                     </div>
-                                    <div class="d-flex gap-2 mt-3">
-                                        <div class="col-1">
-                                            <div class="tab-icons">
-                                                <img src="{{ asset('frontend/assets/icons/briefcase.svg') }}" alt="">
-                                            </div>
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-user-tag"></i>
                                         </div>
-                                        <div class="col-6">
-                                            <h6 class="fw-bold mt-1">Pengalaman</h6>
-                                            <span>{{ $job->pengalaman_kerja ?? 'Tidak Ada Ketentuan' }}</span>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Usia</h6>
+                                            <p>{{ $job->rentang_usia ?? 'Tidak Ada Ketentuan' }}</p>
                                         </div>
                                     </div>
-
-
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-language"></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Level Bahasa yang dibutuhkan</h6>
+                                            <p>{{ $job->level_bahasa ?? 'Tidak Ada Ketentuan' }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-graduation-cap"></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Pendidikan</h6>
+                                            <p>{{ $job->pendidikan ?? 'Tidak Ada Ketentuan' }}</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="job-info-item">
+                                        <div class="job-info-icon">
+                                            <i class="fa-solid fa-briefcase"></i>
+                                        </div>
+                                        <div class="job-info-content">
+                                            <h6 class="fw-bold mb-1">Pengalaman</h6>
+                                            <p>{{ $job->pengalaman_kerja ?? 'Tidak Ada Ketentuan' }}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <hr>
-                          
                         </div>
+                        
+                        @if ($job->requirement)
+                        <div class="hr my-4"></div>
+                        <div class="persyaratan-detail">
+                            <h5 class="fw-bold">Detail Persyaratan:</h5>
+                            <div class="mt-3">
+                                <span>{!! $job->requirement !!}</span>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
                         <div class=" tab-pane" id="tab-panel-other-information" role="tabpanel" aria-labelledby="tab-other-information">
                             <div class="content-information px-3">
                                 <span class="text-small">{{ $job->info_lain }}</span>
@@ -510,9 +532,13 @@
                 </div>
             </div>
 <div class="col-4 d-block mb-4">
-    <div class="wrapper-content-right">
-        <div class="wrapper-image">
-            <img src="{{ asset('upload/gambar/' . $job->gambar) }}" alt="{{ $job->nama_job }}" style="height: 250px; object-fit:cover; border-radius:8px;" class="tw-rounded-md">
+    <div class="wrapper-content-right" style="max-height: 100%">
+        <div class="wrapper-image job-image-container">
+            <img class="lazy job-image" 
+                src="{{ asset('images/placeholder-image.png') }}" 
+                data-src="{{ asset('upload/gambar/' . $job->gambar) }}" 
+                onerror="this.src='{{ asset('images/no-image-580.png') }}'" 
+                alt="{{ $job->nama_job }}">
         </div>
         
         <div class="wrapper-salary">
@@ -536,7 +562,6 @@
         <hr class="text-white">
         
     
-        <hr class="text-white">
         
         <!-- Action Buttons -->
         <div class="d-flex" style="flex-direction: column;">
@@ -563,7 +588,7 @@
             @endif
             <div class="col">
                 <div class="element-akun fs-5 text-center mt-3">
-                    <h6 class="text-white" style="font-weight: 400;">Belum Punya Akun? <a href="{{ route('register') }}" class="text-white fw-semibold">Daftar SIPOOL</a></h6>
+                    <h6 class="text-white" style="font-weight: 400;">Belum Punya Akun? <a href="{{ route('register') }}" class="text-white fw-semibold">Daftar Sekarang</a></h6>
                 </div>
             </div>
         </div>

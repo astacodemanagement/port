@@ -26,12 +26,26 @@
   .job-image-container:hover img {
     transform: scale(1.05);
   }
+  .form-search-job{
+    width: 100%;
+  }
+  .Element-nav-items-search{
+    margin-bottom: 20px;
+  }
+  @media (min-width: 767px) {
+    .Element-nav-items-search{
+      margin-bottom: 100px;
+    }
+    .form-search-job{
+      width: 60%;
+    }
+  }
 </style>
 @endpush
 
 @section('content')
     <!-- Navbar -->
-    <section class="Element-nav-items-search" style="margin-bottom: 100px;">
+    <section class="Element-nav-items-search" >
         <div class="container">
             @include('front.compro-1.layouts.navbar')
         </div>
@@ -42,7 +56,7 @@
 <!-- List Jobs Search -->
 <div class="list-jobs-search" >
     <div class="container">
-        <form action="/" method="GET" style="width: 60%">
+        <form action="/" method="GET" class="form-search-job">
             <div class="row m-0">
              
                 
