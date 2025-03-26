@@ -4,7 +4,7 @@
         $setting = App\Models\Setting::where('compro',1)->first();
     }    
     else{
-        $setting = App\Models\Setting::where('compro',2)->first();
+        $setting = App\Models\Setting::where('compro',1)->first();
     }
 @endphp
 @push('css')
@@ -113,49 +113,24 @@
             }
           
             .auth-buttons {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                margin-top: 15px;
+                display: none; /* Hide desktop auth buttons on mobile */
             }
             
-            .auth-buttons a {
+            /* Make all mobile nav items consistent */
+            .mobile-nav-item {
                 color: var(--text-w);
-                padding: 12px;
-                margin: 5px 0;
-                font-weight: 600;
                 text-decoration: none;
+                padding: 12px;
+                margin: 0;
+                font-size: 16px;
+                width: 100%;
                 text-align: left;
                 display: block;
-                width: 100%;
             }
             
-            .auth-buttons a:hover {
+            .mobile-nav-item:hover {
                 color: var(--orange);
-                background-color: rgba(255, 255, 255, 0.1);
-                border-radius: 4px;
-            }
-            
-            /* Mobile-specific auth buttons */
-            .mobile-auth-buttons {
-                display: flex;
-                justify-content: flex-end;
-                gap: 10px;
-                margin-right: 10px;
-            }
-            
-            .mobile-auth-buttons a {
-                color: white;
                 text-decoration: none;
-                font-weight: 600;
-                font-size: 14px;
-                background-color: rgba(255, 255, 255, 0.1);
-                padding: 6px 12px;
-                border-radius: 4px;
-            }
-            
-            .mobile-auth-buttons a.register-btn {
-                background-color: var(--orange);
             }
         }
     </style>
@@ -169,16 +144,6 @@
             <span class="fw-semibold mt-2 d-none d-sm-block">{{$setting->nama_perusahaan}}</span>
         </a>
 
-        <!-- Mobile-only auth buttons -->
-        <div class="mobile-auth-buttons d-md-none">
-            @if (auth()->check())
-                <a href="{{ route('member.index') }}">Profile</a>
-            @else
-                <a href="/login">Masuk</a>
-                <a href="{{ route('register') }}" class="register-btn">Daftar</a>
-            @endif
-        </div>
-
         <!-- Toggle button (checkbox) -->
         <input type="checkbox" id="menuToggle" style="display: none;">
         <label for="menuToggle" class="hamburger d-md-none">&#9776;</label>
@@ -191,17 +156,7 @@
             <div class="auth-buttons d-none d-md-flex">
                 @if (auth()->check())
                     <a href="{{ route('member.index') }}" class="link-btn fw-semibold mx-2">Profile</a>
-                @else
-                    <a href="{{ route('register') }}" class="link-btn fw-semibold mx-2">Daftar</a>
-                    <a href="/login" class="link-btn fw-semibold">Masuk</a>
-                @endif
-            </div>
-            
-            <!-- Auth buttons that show in the mobile menu -->
-            <div class="auth-buttons d-md-none">
-                @if (auth()->check())
-                    <a href="{{ route('member.index') }}" class="link-btn fw-semibold">Profile</a>
-                    <a href="{{ route('logout') }}" class="link-btn fw-semibold" 
+                    <a href="{{ route('logout') }}" class="link-btn fw-semibold"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Keluar
                     </a>
@@ -209,8 +164,25 @@
                         @csrf
                     </form>
                 @else
-                    <a href="{{ route('register') }}" class="link-btn fw-semibold">Daftar</a>
+                    <a href="{{ route('register') }}" class="link-btn fw-semibold mx-2">Daftar</a>
                     <a href="/login" class="link-btn fw-semibold">Masuk</a>
+                @endif
+            </div>
+            
+            <!-- Auth links that show as navigation items in mobile menu only -->
+            <div class="d-md-none">
+                @if (auth()->check())
+                    <a href="{{ route('member.index') }}" class="mobile-nav-item nav-link fs-6 fw-bold">Profile</a>
+                    <a href="{{ route('logout') }}" class="mobile-nav-item nav-link fs-6 fw-bold"
+                       onclick="event.preventDefault(); document.getElementById('logout-form-mobile').submit();">
+                        Keluar
+                    </a>
+                    <form id="logout-form-mobile" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                @else
+                    <a href="{{ route('register') }}" class="mobile-nav-item nav-link fs-6 fw-bold">Daftar</a>
+                    <a href="/login" class="mobile-nav-item nav-link fs-6 fw-bold">Masuk</a>
                 @endif
             </div>
         </div>
