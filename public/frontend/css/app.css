@@ -687,7 +687,6 @@ body {
 
 .wrapper-content .row .col-4 .wrapper-content-right {
     background-color: var(--biru-bg);
-    min-height: 765px;
     border-radius: 16px;
 }
 

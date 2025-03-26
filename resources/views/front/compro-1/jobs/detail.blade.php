@@ -507,29 +507,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="content-warning d-none d-lg-block">
-                    <div class="row m-0">
-                        <div class="col-1 float-right">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
-                            </svg>
-                        </div>
-                        <div class="col-11">
-                            <span>“HATI-HATI DENGAN OKNUM YANG MENGATASNAMAKAN PERUSAHAAN. KAMI
-                                TIDAK PERNAH
-                                MELAKUKAN
-                                PEMBAYARAN
-                                DILUAR ATAS NAMA REKENING PERUSAHAAN”. Segala informasi pekerjaan di
-                                atas
-                                merupakan
-                                informasi
-                                sebenar-benarnya yang diperoleh dari Perusahaan Pemberi
-                                Kerja.</span>
-                        </div>
-                    </div>
-                </div>
+              
             </div>
 <div class="col-4 d-block mb-4">
     <div class="wrapper-content-right" style="max-height: 100%">
@@ -590,6 +568,29 @@
                 <div class="element-akun fs-5 text-center mt-3">
                     <h6 class="text-white" style="font-weight: 400;">Belum Punya Akun? <a href="{{ route('register') }}" class="text-white fw-semibold">Daftar Sekarang</a></h6>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-warning d-none d-lg-block">
+        <div class="row m-0">
+            <div class="text-center mb-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                    fill="currentColor" class="bi bi-exclamation-circle-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+                </svg>
+            </div>
+            <div class="col-12 text-center">
+                <span>“HATI-HATI DENGAN OKNUM YANG MENGATASNAMAKAN PERUSAHAAN. KAMI
+                    TIDAK PERNAH
+                    MELAKUKAN
+                    PEMBAYARAN
+                    DILUAR ATAS NAMA REKENING PERUSAHAAN”. Segala informasi pekerjaan di
+                    atas
+                    merupakan
+                    informasi
+                    sebenar-benarnya yang diperoleh dari Perusahaan Pemberi
+                    Kerja.</span>
             </div>
         </div>
     </div>
