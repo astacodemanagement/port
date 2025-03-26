@@ -1335,12 +1335,12 @@ body {
     }
 
     .recomeded-jobs .row .col .title-heading {
-        font-size: 16px;
+        font-size: 21px;
         font-weight: bold;
     }
 
     .recomeded-jobs .row .col .paraf {
-        font-size: 10px;
+        font-size: 14px;
         color: var(--text-paraf);
     }
 
