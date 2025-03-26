@@ -23,6 +23,91 @@
     transition: transform 0.3s ease;
   }
   
+  .search-container {
+    margin-top:2rem;
+    display: flex;
+    justify-content: center;
+        width: 100%;
+  }
+  
+  .form-search-job {
+    width: 100%;
+    max-width: 1000px;
+  }
+  
+  .search-form-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .form-group {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .search-button {
+    min-width: 180px;
+    max-width: 200px;
+  }
+  
+  .form-select {
+    width: 100%;
+    height: 50px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    background-color: #fff;
+    background-clip: padding-box;
+    appearance: none;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .search-btn {
+    width: 60%;
+    height: 50px;
+    background-color: #F97316;
+    color: #fff;
+    font-weight: 500;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+  }
+  
+  .search-btn:hover {
+      background-color: #EA580C;
+    }
+    /* responsice search */
+@media (max-width: 767px) {
+    .search-container {
+      margin-top: 1rem;
+      padding-right: 10px;
+        padding-left: 10px;
+    }
+    .form-search-job {
+      width: 100%;
+    }
+    .form-search-job .search-form-wrapper {
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .form-search-job .form-group {
+      min-width: 100%;
+    }
+    .form-search-job .search-button {
+      min-width: 100%;
+    }
+    /* cener the button */
+    .search-button {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
   .job-image-container:hover img {
     transform: scale(1.05);
   }
@@ -30,7 +115,7 @@
     width: 100%;
   }
   .Element-nav-items-search{
-    margin-bottom: 20px;
+    margin-bottom: 50px;
   }
   @media (min-width: 767px) {
     .Element-nav-items-search{
@@ -54,42 +139,10 @@
 
     <!-- List Jobs Search -->
 <!-- List Jobs Search -->
-<div class="list-jobs-search" >
-    <div class="container">
-        <form action="/" method="GET" class="form-search-job">
-            <div class="row m-0">
-             
-                
-                <div class="col-lg-5 mb-3">
-                    <select name="kategori" class="form-select form-select-lg" aria-label="Select example">
-                        <option>Semua Sektor</option>
-                        @foreach ($kategori as $kat)
-                            <option value="{{ $kat->nama_kategori_job }}" {{ request()->kategori == $kat->nama_kategori_job ? 'selected' : '' }}>
-                                {{ $kat->nama_kategori_job }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-lg-5 mb-3">
-                    <select name="negara" class="form-select form-select-lg" aria-label="Select example">
-                        <option>Semua Negara</option>
-                        @foreach ($negara as $neg)
-                            <option value="{{ $neg->nama_negara }}" {{ request()->negara == $neg->nama_negara ? 'selected' : '' }}>
-                                {{ $neg->nama_negara }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-2">
-                    <button type="submit" class="btn border-0 w-100">Search</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+
     <!-- #End -->
     <!-- Recomeded Jobs -->
-    <section class="recomeded-jobs">
+    <section class="recomeded-jobs" style="margin-top: 5rem">
         <div class="container">
             <div class="row m-0">
                 <div class="col">
@@ -122,6 +175,41 @@
             </div>
         </div>
     </section>
+  
+    <div class="search-container">
+        <form action="{{ route('front.jobs.index') }}" method="GET" class="form-search-job">
+            <div class="search-form-wrapper">
+                <div class="form-group">
+                    <select name="kategori" class="form-select form-select-lg" aria-label="Select example">
+                        <option>Semua Sektor</option>
+                        @foreach ($kategori as $kat)
+                            <option value="{{ $kat->nama_kategori_job }}" {{ request()->kategori == $kat->nama_kategori_job ? 'selected' : '' }}>
+                                {{ $kat->nama_kategori_job }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <select name="negara" class="form-select form-select-lg" aria-label="Select example">
+                        <option>Semua Negara</option>
+                        @foreach ($negara as $neg)
+                            <option value="{{ $neg->nama_negara }}" {{ request()->negara == $neg->nama_negara ? 'selected' : '' }}>
+                                {{ $neg->nama_negara }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                
+                <div class="form-group search-button">
+                    <button type="submit" class=" search-btn">Search</button>
+                </div>
+            </div>
+            
+        
+        </form>
+    </div>
+       
     <!-- #endregion -->
     <!-- Find Jobs -->
     <section class="find-jobs ">
