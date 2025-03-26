@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
         $user = User::create([
             'name' => 'Administrator',
             'email' => 'admin@mail.test',
-            'password' => Hash::make('12345678')
+            'password' => Hash::make('12345678'),
+            'token' => '12345678',
         ]);
 
         $user->assignRole('superadmin');

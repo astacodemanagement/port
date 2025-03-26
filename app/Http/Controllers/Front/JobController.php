@@ -5,18 +5,47 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Job;
 use App\Models\KategoriJob;
+use App\Models\Negara;
 use App\Models\Seleksi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $kategori = KategoriJob::all();
-        $jobs = Job::active()->paginate(12);
-
-        return viewCompro('jobs.index', compact('kategori', 'jobs'));
+        
+        $jobs = Job::active();
+        $negara = Negara::all();
+        
+        // Filter by keyword
+        if ($request->filled('keyword')) {
+            $keyword = $request->keyword;
+            $jobs->where(function($query) use ($keyword) {
+                $query->where('nama_job', 'like', '%' . $keyword . '%')
+                      ->orWhere('nama_perusahaan', 'like', '%' . $keyword . '%')
+                      ->orWhere('deskripsi_job', 'like', '%' . $keyword . '%');
+            });
+        }
+        
+        // Filter by category
+        if ($request->filled('kategori') && $request->kategori != 'Semua Kategori') {
+            $jobs->whereHas('jobKategori', function($query) use ($request) {
+                $query->where('nama_kategori_job', $request->kategori);
+            });
+        }
+        
+        // Filter by country
+        if ($request->filled('negara')) {
+            $jobs->whereHas('negara', function($query) use ($request) {
+                $query->where('nama_negara', 'like', '%' . $request->negara . '%');
+            });
+        }
+        
+        $jobs = $jobs->paginate(12)->withQueryString();
+    
+    return viewCompro('jobs.index', compact('kategori', 'jobs','negara'));
     }
 
     public function show($id)

@@ -1,10 +1,37 @@
 @extends('front.compro-1.layouts.app')
 
 @section('title', 'Job List')
+@push('css')
+<style>
+ .job-image-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625 or 56.25%) */
+    overflow: hidden;
+    background-color: #f8f9fa;
+  }
+  
+  .job-image-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .job-image-container:hover img {
+    transform: scale(1.05);
+  }
+</style>
+@endpush
 
 @section('content')
     <!-- Navbar -->
-    <section class="Element-nav-items-search">
+    <section class="Element-nav-items-search" style="margin-bottom: 80px;">
         <div class="container">
             @include('front.compro-1.layouts.navbar')
         </div>
@@ -12,36 +39,40 @@
     <!-- #End -->
 
     <!-- List Jobs Search -->
-    <div class="list-jobs-search">
-        <div class="container">
+<!-- List Jobs Search -->
+<div class="list-jobs-search" >
+    <div class="container">
+        <form action="/" method="GET" class="w-50">
             <div class="row m-0">
-                <div class="col-lg-3 mb-3">
-                    <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="Masukan Kata Kunci"
-                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" />
-                    </div>
-                </div>
-                <div class="col-lg-3 mb-3">
-                    <select class="form-select form-select-lg" aria-label="Select example">
-                        <option>Semua Kategori</option>
+             
+                
+                <div class="col-lg-5 mb-3">
+                    <select name="kategori" class="form-select form-select-lg" aria-label="Select example">
+                        <option>Semua Sektor</option>
                         @foreach ($kategori as $kat)
-                            <option>{{ $kat->nama_kategori_job }}</option>
+                            <option value="{{ $kat->nama_kategori_job }}" {{ request()->kategori == $kat->nama_kategori_job ? 'selected' : '' }}>
+                                {{ $kat->nama_kategori_job }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
-                <div class="col-lg-3 mb-3">
-                    <div class="input-group input-group-lg">
-                        <input type="text" class="form-control" placeholder="Masukan Negara"
-                            aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" />
-                    </div>
+                <div class="col-lg-5 mb-3">
+                    <select name="negara" class="form-select form-select-lg" aria-label="Select example">
+                        <option>Semua Negara</option>
+                        @foreach ($negara as $neg)
+                            <option value="{{ $neg->nama_negara }}" {{ request()->negara == $neg->nama_negara ? 'selected' : '' }}>
+                                {{ $neg->nama_negara }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-2">
-                    <button class="btn border-0 w-100">Search</button>
+                    <button type="submit" class="btn border-0 w-100">Search</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
-    </div>
+</div>
     <!-- #End -->
     <!-- Recomeded Jobs -->
     <section class="recomeded-jobs">
@@ -50,10 +81,10 @@
                 <div class="col">
                     <div class="title-heading-jobs-left">
                         <h1 class="title-heading">
-                            Recommended Jobs
+                            Kerja di Luar Negeri Bukan Cuma Mimpi, Mulai dari Sini!
                         </h1>
                         <span class="paraf">
-                            Jobs matched to you based on your profile
+                            Temukan pekerjaan yang sesuai dengan minat dan keahlianmu
                         </span>
                     </div>
                 </div>
@@ -87,7 +118,13 @@
                         <div class="col-md-3 col-12">
                             <div class="card-body">
                                 <div class="card-image job-image-container">
-                                    <a href="{{ route('front.jobs.show', hashId($job->id)) }}"><img class="lazy" src="{{ asset('images/placeholder-image.png') }}" data-src="{{ asset('upload/gambar/' . $job->gambar) }}" onerror="this.src='{{ asset('images/no-image-580.png') }}'" alt="{{ $job->nama_job }}" style="border-radius:15px;"></a>
+                                    <a href="{{ route('front.jobs.show', hashId($job->id)) }}">
+                                        <img class="lazy job-image" 
+                                            src="{{ asset('images/placeholder-image.png') }}" 
+                                            data-src="{{ asset('upload/gambar/' . $job->gambar) }}" 
+                                            onerror="this.src='{{ asset('images/no-image-580.png') }}'" 
+                                            alt="{{ $job->nama_job }}">
+                                    </a>
                                 </div>
                                 <div class="card-items-bagde gap-1 " style="padding-left: 1rem; padding-right: 1rem; width:100%;">
                                     <img src="{{ asset('frontend') }}/assets/icons/stop-circle.svg" alt="" width="20px"> 

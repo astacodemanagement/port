@@ -22,12 +22,6 @@ class ComproSeeder extends Seeder
                     'created_at' => now(),
                     'updated_at' =>now()
                 ],
-                [
-                    'domain' => '127.0.0.1',
-                    'view_path' => 'front.compro-2',
-                    'created_at' => now(),
-                    'updated_at' =>now()
-                ]
             ]
         );
     }

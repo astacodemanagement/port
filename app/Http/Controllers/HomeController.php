@@ -35,8 +35,7 @@ class HomeController extends Controller
       $step = Step::orderBy('urutan', 'asc')->limit(4)->get();
       
      
-      
-      return  viewCompro('home', compact('slider','alasan', 'jobs','review','negara','step'));
+l      return  viewCompro('home', compact('slider','alasan', 'jobs','review','negara','step'));
    }
    public function employe()
    {

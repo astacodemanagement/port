@@ -71,7 +71,7 @@
             <div class="col-md-8 col-12 m-0">
                 <div class="element-detail-date d-flex align-self-center">
                     <div class="items-icons">
-                        <a href="{{ route('front.jobs.index') }}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
                                     d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
@@ -150,7 +150,8 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="tab-job-gallery" data-bs-toggle="tab" href="#tab-panel-job-gallery"
-                                role="tab" aria-controls="tab-panel-job-gallery" aria-selected="false">Galeri</a>
+                                role="tab" aria-controls="tab-panel-job-gallery" aria-selected="false">Persyaratan Kandidat
+                            </a>
                         </li>
                         <li class="nav-item" role="presentation">
                             <a class="nav-link" id="tab-other-information" data-bs-toggle="tab" href="#tab-panel-other-information"
@@ -161,7 +162,29 @@
                     <div class="tab-content pt-5" id="tab-content">
                         <div class="tab-pane active px-3" id="tab-panel-job-detail" role="tabpanel"
                             aria-labelledby="tab-detail-job">
-                            <h5 class="fw-bold">Kualifikasi:</h5>
+                       
+                          
+                            <div class="deskripsi-pekerjaan">
+                                <h5 class="fw-bold">Deskripsi Pekerjaan:</h5>
+                             <!-- get html element -->
+                                <span>{!! $job->deskripsi !!}</span>
+                            </div>
+                            <div class="hr"></div>
+                            <div class="benefit-pekerjaan ">
+                                <h5 class="fw-bold mt-1">Benefit :</h5>
+                                <div class="d-flex gap-2 item-benefit">
+                                    @foreach ($job->benefits as $item)
+                                    <div class="card-item">
+                                        <span style="font-size:1rem;font-weight: 500" class="tw-font-semibold">{{ $item->fasilitas?->nama_fasilitas }}</span>
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <div class="hr"></div>
+                              
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab-panel-job-gallery" role="tabpanel" aria-labelledby="tab-job-gallery">
+                            <h5 class="fw-bold">Persyaratan Kandidat:</h5>
                             <div class="row">
                                 <div class="col-6">
                                     <div class="tab-content-items mt-4">
@@ -229,36 +252,6 @@
 
 
                                 </div>
-                            </div>
-                            <div class="hr"></div>
-
-                            <div class="deskripsi-pekerjaan">
-                                <h5 class="fw-bold">Deskripsi Pekerjaan:</h5>
-                             <!-- get html element -->
-                                <span>{!! $job->deskripsi !!}</span>
-                            </div>
-                            <div class="hr"></div>
-                            <div class="benefit-pekerjaan ">
-                                <h5 class="fw-bold mt-1">Benefit :</h5>
-                                <div class="d-flex gap-2 item-benefit">
-                                    @foreach ($job->benefits as $item)
-                                    <div class="card-item">
-                                        <span style="font-size:1rem">{{ $item->fasilitas?->nama_fasilitas }}</span>
-                                    </div>
-                                    @endforeach
-                                </div>
-                                <div class="hr"></div>
-                              
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="tab-panel-job-gallery" role="tabpanel" aria-labelledby="tab-job-gallery">
-                            <h5 class="fw-bold px-3">Galeri</h5>
-                            <div class="row m-0">
-                                @foreach ($job->galeri as $galeri)
-                                <div class="col-3 border-rounded" style="border-radius: 10px;">
-                                    <img src="{{ asset('upload/gambar/thumb_300_' . $galeri->gambar) }}" style="border-radius: 10px;" width="160" alt="">
-                                </div>
-                                @endforeach
                             </div>
                             <hr>
                           

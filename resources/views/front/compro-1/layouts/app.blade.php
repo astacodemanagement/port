@@ -61,7 +61,7 @@
         $setting = App\Models\Setting::where('compro',1)->first();
     }    
     else{
-        $setting = App\Models\Setting::where('compro',2)->first();
+        $setting = App\Models\Setting::where('compro',1)->first();
     }
     @endphp
 
