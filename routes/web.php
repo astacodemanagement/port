@@ -69,13 +69,47 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+Route::controller(FrontLoginController::class)->group(function () {
+    Route::get('/login', 'showLoginForm')->name('login');
+});
 
 
-Route::prefix('administrator')->group(function () {
+Route::name('front.')->group(function () {
+    Route::controller(FrontJobController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{id}', 'show')->name('show');
+        Route::get('/{id}/apply', 'apply')->name('apply');
+    });
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/employe', [HomeController::class, 'employe'])->name('employe');
+    
+    /** JOB */
+    Route::name('jobs.')->group(function () {
+            Route::controller(FrontJobController::class)->group(function () {
+                Route::get('/', 'index')->name('index');
+                Route::get('/{id}', 'show')->name('show');
+                Route::get('/{id}/apply', 'apply')->name('apply');
+            });
+    });
+    // pengaduan
+  
+    
+    /** AUTHENTICATION */
+    Auth::routes(['login' => false, 'logout' => false]);
+    Route::controller(FrontLoginController::class)->group(function () {
+        Route::post('/login', 'login')->name('login.store');
+        Route::post('/logout', 'logout')->name('logout');
+    });
+});
+Route::prefix('home')->group(function () {
     Auth::routes();
+});
+Route::prefix('administrator')->group(function () {
+
     Route::group(['middleware' => ['role:superadmin|admin']], function () {
         Route::middleware('auth')->group(function () {
             Route::name('back-office.')->group(function () {
@@ -366,6 +400,7 @@ Route::prefix('administrator')->group(function () {
     });
 });
 
+
 /** LANDING PAGE ROUTE */
 Route::prefix('ajax')->group(function () {
     Route::name('ajax.')->group(function () {
@@ -378,34 +413,6 @@ Route::prefix('ajax')->group(function () {
     });
 });
 
-Route::name('front.')->group(function () {
-    Route::controller(FrontJobController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/{id}', 'show')->name('show');
-        Route::get('/{id}/apply', 'apply')->name('apply');
-    });
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/employe', [HomeController::class, 'employe'])->name('employe');
-    
-    /** JOB */
-    Route::name('jobs.')->group(function () {
-            Route::controller(FrontJobController::class)->group(function () {
-                Route::get('/', 'index')->name('index');
-                Route::get('/{id}', 'show')->name('show');
-                Route::get('/{id}/apply', 'apply')->name('apply');
-            });
-    });
-    // pengaduan
-  
-    
-    /** AUTHENTICATION */
-    Auth::routes(['login' => false, 'logout' => false]);
-    Route::controller(FrontLoginController::class)->group(function () {
-        Route::get('/login', 'showLoginForm')->name('login');
-        Route::post('/login', 'login')->name('login.store');
-        Route::post('/logout', 'logout')->name('logout');
-    });
-});
 
 Route::get('register/complete', [RegisterController::class, 'completeRegistration'])->name('register.complete');
 Route::get('register/verify/{token}', [RegisterController::class, 'verifyEmail'])->name('register.verify-email');

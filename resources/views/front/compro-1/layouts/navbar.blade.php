@@ -138,7 +138,7 @@
 
 <nav class="navbar fixed-top mb-5" style="max-width:100%">
     <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center" href="{{ route('front.home') }}">
+        <a class="navbar-brand d-flex align-items-center" href="/">
             <img src="{{ asset('upload/logo/'.$setting->logo) }}" class="logo" alt="">
             <!-- Company Name with White Text -->
             <span class="fw-semibold mt-2 d-none d-sm-block">{{$setting->nama_perusahaan}}</span>
