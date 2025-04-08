@@ -558,7 +558,7 @@
             @else
             <div class="col-12">
                 <div class="d-flex" style="justify-content: center; align-items: center;">
-                    <a href="{{ route('front.login', ['job' => hashId($job->id)]) }}" class="element-button-action text-center d-block" style="margin:0 auto;width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
+                    <a href="/login" class="element-button-action text-center d-block" style="margin:0 auto;width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
                         Masuk Untuk Melamar Pekerjaan
                     </a>
                 </div>
