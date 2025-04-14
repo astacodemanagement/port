@@ -109,8 +109,9 @@ Route::prefix('home')->group(function () {
     Auth::routes();
 });
 Route::prefix('administrator')->group(function () {
-
+    
     Route::group(['middleware' => ['role:superadmin|admin']], function () {
+        
         Route::middleware('auth')->group(function () {
             Route::name('back-office.')->group(function () {
                 Route::get('/pengaturan', [SettingController::class, 'index'])->name('pengaturan.index');
@@ -136,7 +137,7 @@ Route::prefix('administrator')->group(function () {
                     Route::delete('/partner/{id}', [PartnerController::class, 'destroy'])->name('destroy');
                 });
             
-                Route::get('/', [DashboardController::class, 'index'])->name('home');
+                Route::get('/dashboard', [DashboardController::class, 'index'])->name('home');
 
                 Route::resource('pengguna', PenggunaController::class);
 
