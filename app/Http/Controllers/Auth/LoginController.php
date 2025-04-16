@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/administrator/dashboard';
 
     /**
      * Create a new controller instance.
@@ -50,23 +50,36 @@ class LoginController extends Controller
 
         $this->clearLoginAttempts($request);
 
-        if ($this->guard()->user()->hasRole('member')) {
-            $this->guard()->logout();
+        $user = $this->guard()->user();
 
+        // Jika user adalah admin/superadmin, arahkan ke dashboard admin
+        if ($user->hasRole('superadmin') || $user->hasRole('admin')) {
+            if ($response = $this->authenticated($request, $user)) {
+                return $response;
+            }
+
+            return $request->wantsJson()
+                ? new JsonResponse([], 204)
+                : redirect(route('back-office.home'));
+        } 
+        // Jika user adalah member, logout dan arahkan ke login member
+        else if ($user->hasRole('member')) {
+            $this->guard()->logout();
             $request->session()->invalidate();
-    
             $request->session()->regenerateToken();
 
-            return redirect(route('login'))->withErrors(['email' => trans('auth.failed')]);
+            return redirect(route('login'))
+                ->withErrors(['email' => 'Silakan login melalui halaman member']);
         }
+        // Jika user tidak memiliki role yang valid
+        else {
+            $this->guard()->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-        if ($response = $this->authenticated($request, $this->guard()->user())) {
-            return $response;
+            return redirect(route('login'))
+                ->withErrors(['email' => 'Anda tidak memiliki akses']);
         }
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect(route('back-office.home'));
     }
 
     public function logout(Request $request)

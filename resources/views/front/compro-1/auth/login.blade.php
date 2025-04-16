@@ -106,7 +106,7 @@
                 </div>
                 <div class="card border border-light-subtle rounded-4">
                 <div class="card-body p-3 p-md-4 p-xl-5">
-                    <form action="{{ route('login') }}" method="post">
+                    <form action="{{ route('front.login.store') }}" method="post">
                         @csrf
                         <p class="text-center mb-4">Or sign in using email</p>
                         <div class="row gy-3 overflow-hidden">

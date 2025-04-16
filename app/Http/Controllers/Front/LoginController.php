@@ -6,20 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
 
     /**
@@ -39,69 +29,88 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\View\View
+     */
     public function showLoginForm(Request $request)
     {
         if ($request->has('job')) {
             session(['redirect_to' => route('front.jobs.show', $request->job)]);
-            
-            return redirect(route('front.login'));
         }
 
         return viewCompro('auth.login');
     }
 
-    protected function credentials(Request $request)
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function login(Request $request)
     {
-        return array_merge($request->only($this->username(), 'password'));
+        $this->validateLogin($request);
+
+        // Check for too many login attempts
+        if (method_exists($this, 'hasTooManyLoginAttempts') &&
+            $this->hasTooManyLoginAttempts($request)) {
+            $this->fireLockoutEvent($request);
+            return $this->sendLockoutResponse($request);
+        }
+
+        // Attempt to log the user in
+        if (Auth::attempt($this->credentials($request), $request->filled('remember'))) {
+            $user = Auth::user();
+
+            // Check if user is a member
+            if (!$user->hasRole('member')) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect()->back()->withErrors(['email' => 'Email atau password salah']);
+            }
+
+            // Check if email is verified
+            if (is_null($user->email_verified_at)) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return redirect()->back()->withErrors(['email' => 'Email belum terverifikasi']);
+            }
+
+            // Success! Reset the login attempts
+            $request->session()->regenerate();
+            $this->clearLoginAttempts($request);
+
+            // Redirect to the intended location
+            $redirectTo = session()->has('redirect_to') ? session()->get('redirect_to') : route('member.index');
+            session()->forget('redirect_to');
+
+            return redirect()->intended($redirectTo);
+        }
+
+        // Login attempt failed, increment the number of attempts
+        $this->incrementLoginAttempts($request);
+
+        // Redirect back with an error message
+        return $this->sendFailedLoginResponse($request);
     }
 
-    protected function sendLoginResponse(Request $request)
-    {
-        $request->session()->regenerate();
-    
-        $this->clearLoginAttempts($request);
-        $user = $this->guard()->user();
-    
-        if (!$this->guard()->user()->hasRole('member')) {
-            $this->guard()->logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-    
-            return  redirect()->back()->with("error","Anda email atau password salalh");
-        }
-    
-        if (is_null($user->email_verified_at)) {
-            $this->guard()->logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
-    
-           return redirect()->back()->with("error","email belum terverikasi");
-        }
-    
-        if ($response = $this->authenticated($request, $this->guard()->user())) {
-            return $response;
-        }
-    
-        $redirectTo = session()->has('redirect_to') ? session()->get('redirect_to') : route('member.index');
-        session()->forget('redirect_to');
-    
-       return redirect()->intended($redirectTo);
-    }
-    
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function logout(Request $request)
     {
-        $this->guard()->logout();
+        Auth::logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        if ($response = $this->loggedOut($request)) {
-            return $response;
-        }
-
-        return $request->wantsJson()
-            ? new JsonResponse([], 204)
-            : redirect(route('front.login'));
+        return redirect('/');
     }
 }
