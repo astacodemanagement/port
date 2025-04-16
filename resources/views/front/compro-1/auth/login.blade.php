@@ -209,6 +209,7 @@
                         showConfirmButton: false
                     }).then(function() {
                         // Redirect ke URL yang dikembalikan dari server
+                        window.location.href = '/member';
                         console.log(response)
                     });
                 },
