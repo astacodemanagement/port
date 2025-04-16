@@ -106,7 +106,7 @@
                 </div>
                 <div class="card border border-light-subtle rounded-4">
                 <div class="card-body p-3 p-md-4 p-xl-5">
-                    <form action="{{ route('front.login.store') }}" method="post">
+                    <form action="{{ route('login') }}" method="post">
                         @csrf
                         <p class="text-center mb-4">Or sign in using email</p>
                         <div class="row gy-3 overflow-hidden">
@@ -185,53 +185,47 @@
 
 @push('script')
 <script src="{{ asset('frontend/js/sweetalert2.all.min.js') }}"></script>
-<!-- swal cdn -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- kalo ada error apapun dari session witrh tampilin -->
-   
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+<script>
+    $(function(){
+        $('form').on('submit', function(event){
+            event.preventDefault();
+            let form = $(this);
+            let button = form.find('.btn-login');
+            button.prop('disabled', true).prepend(`<div class="spinner-border spinner-border-sm" role="status"></div> `);
+            $('#err').hide();
 
-    <script>
-        $(function(){
-            $('form').on('submit', function(event){
-                event.preventDefault();
-                let form = $(this);
-                let button = form.find('.btn-login');
-                button.prop('disabled', true).prepend(`<div class="spinner-border spinner-border-sm" role="status"></div> `);
-
-                $.ajax({
-                    url: form.attr('action'),
-                    method: form.attr('method'),
-                    data: form.serialize(),
-                    success: function(response) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Login Successful',
-                            text: response.message,
-                            timer: 2000,
-                            showConfirmButton: false
-                        }).then(function() {
-                            // pinfah ke member
-                            console.log('redirect to member');
-                            window.location.href = "member";
-                        });
-                    },
-                    error: function(xhr) {
-                        let errors = xhr.responseJSON.errors;
-                        let errorMessage = 'An error occurred. Please try again.';
-                        if (errors) {
-                            errorMessage = Object.values(errors).map(errorArray => errorArray.join(' ')).join(' ');
-                        }
-                        // display to id err
-                        $('#err').text(errorMessage).show();
-                    },
-                    complete: function() {
-
-                        button.prop('disabled', false).find('.spinner-border').remove();
+            $.ajax({
+                url: form.attr('action'),
+                method: form.attr('method'),
+                data: form.serialize(),
+                success: function(response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login Successful',
+                        text: response.message,
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(function() {
+                        // Redirect ke URL yang dikembalikan dari server
+                        console.log(response)
+                    });
+                },
+                error: function(xhr) {
+                    let errors = xhr.responseJSON.errors;
+                    let errorMessage = 'An error occurred. Please try again.';
+                    if (errors) {
+                        errorMessage = Object.values(errors).map(errorArray => errorArray.join(' ')).join(' ');
                     }
-                });
+                    // display to id err
+                    $('#err').text(errorMessage).show();
+                },
+                complete: function() {
+                    button.prop('disabled', false).find('.spinner-border').remove();
+                }
             });
         });
-    </script>
-    <!-- swal -->
+    });
+</script>
 @endpush
