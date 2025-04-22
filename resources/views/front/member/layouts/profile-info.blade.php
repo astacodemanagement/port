@@ -66,7 +66,14 @@
                             <h6 class="mb-1 fw-7">
                                 {{ $appliedJob->job?->nama_job }}
                             </h6>
-                            <a href="{{ route('member.jobs.applied.show', hashId($appliedJob->id)) }}"><small class="text-muted">Menunggu {{$appliedJob->status}}</small></a>
+                            <a href="{{ route('member.jobs.applied.show', hashId($appliedJob->id)) }}"><small class="text-muted">
+                                @if ($appliedJob->status == 'Terbang')
+                                {{$appliedJob->status}}
+                                @else
+                                Menunggu {{$appliedJob->status}}
+                                    
+                                @endif    
+                            </small></a>
                         </div>
                     </a>
                 @empty
