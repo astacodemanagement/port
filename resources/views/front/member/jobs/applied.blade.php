@@ -38,7 +38,9 @@
     <div class="row" >
         @include('front.member.layouts.profile-info')
         <div class="col-md-9">
+
             @foreach ($seleksi as $item)
+            {{ $item->status }}
             <div class="card mb-4">
                 @if ($item->status !== "batal")
                 <div class="card-body">
