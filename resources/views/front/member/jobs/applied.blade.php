@@ -40,7 +40,7 @@
         <div class="col-md-9">
             @foreach ($seleksi as $item)
             <div class="card mb-4">
-                @if ($item->status !== "Batal")
+                @if ($item->status !== "batal")
                 <div class="card-body">
                     <div class="card-title">
                         <h5 class="fw-semibold float-start">{{ $item->job->nama_perusahaan . ' - ' .  $item->job->nama_job}}</h5>
