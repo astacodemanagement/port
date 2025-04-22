@@ -18,6 +18,7 @@
 
         <div class="card">
             @php
+            dd($appliedJob->stasus);
                 dd($appliedJob->stasus == "Batal");
             @endphp
             @if ($appliedJob->stasus == "Batal")
