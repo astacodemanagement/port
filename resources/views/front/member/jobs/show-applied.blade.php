@@ -18,7 +18,7 @@
 
         <div class="card">
         @php
-            dd($appliedJob);
+            dd($appliedJob->status);
         @endphp
             @if ($appliedJob->job->stasus == "Batal")
             <div class="card-body">
