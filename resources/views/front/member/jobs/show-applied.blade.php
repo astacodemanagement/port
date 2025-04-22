@@ -18,7 +18,18 @@
 
         <div class="card">
            
-            @if ($appliedJob->stasus != "Batal")
+            @if ($appliedJob->stasus == "Batal")
+            <div class="card-body">
+                <div class="card-title">
+                    <h5 class="fw-semibold float-start">{{ $appliedJob->job->nama_perusahaan . ' - ' .  $appliedJob->job->nama_job}}</h5>
+                    <!-- <a href="{{ route('member.work-experience.edit') }}" class="float-end btn btn-light-primary text-primary mt-n2"><i class="ti ti-pencil-minus"></i></a> -->
+                </div>
+                <h2>
+                    <span class="badge bg-danger">Lamaran Dibatalkan</span>
+                </h2>
+            </div>
+           
+            @else
             <div class="card-body">
                 <div class="card-title">
                     <h5 class="fw-semibold float-start">{{ $appliedJob->job->nama_perusahaan . ' - ' .  $appliedJob->job->nama_job}}</h5>
@@ -241,16 +252,6 @@
 
 
 
-            </div>
-            @else
-            <div class="card-body">
-                <div class="card-title">
-                    <h5 class="fw-semibold float-start">{{ $appliedJob->job->nama_perusahaan . ' - ' .  $appliedJob->job->nama_job}}</h5>
-                    <!-- <a href="{{ route('member.work-experience.edit') }}" class="float-end btn btn-light-primary text-primary mt-n2"><i class="ti ti-pencil-minus"></i></a> -->
-                </div>
-                <h2>
-                    <span class="badge bg-danger">Lamaran Dibatalkan</span>
-                </h2>
             </div>
             @endif
 
