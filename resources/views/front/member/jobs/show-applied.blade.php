@@ -17,7 +17,9 @@
 
 
         <div class="card">
-            
+        @php
+            dd($appliedJob);
+        @endphp
             @if ($appliedJob->job->stasus == "Batal")
             <div class="card-body">
                 <div class="card-title">
