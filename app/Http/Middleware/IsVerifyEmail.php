@@ -19,7 +19,7 @@ class IsVerifyEmail
     {
         if (Auth::user()->email_verified_at == null) {
             auth()->logout();
-            return route('front.login');
+            return '/login';
           }
    
         return $next($request);
