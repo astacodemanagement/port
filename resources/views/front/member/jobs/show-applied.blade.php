@@ -17,11 +17,8 @@
 
 
         <div class="card">
-            @php
-            dd($appliedJob->stasus);
-                dd($appliedJob->stasus == "Batal");
-            @endphp
-            @if ($appliedJob->stasus == "Batal")
+            
+            @if ($appliedJob->job->stasus == "Batal")
             <div class="card-body">
                 <div class="card-title">
                     <h5 class="fw-semibold float-start">{{ $appliedJob->job->nama_perusahaan . ' - ' .  $appliedJob->job->nama_job}}</h5>
