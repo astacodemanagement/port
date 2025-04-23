@@ -551,7 +551,7 @@
             </div>
             @elseif (auth()?->user()?->kandidat?->pendaftaran?->status == "Belum Verifikasi(Pending)")
             <div class="col-12">
-                <a href="{{ route('front.profile') }}" class="element-button-action text-center d-block" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
+                <a href="/member" class="element-button-action text-center d-block" style="width:100%;text-decoration: none;font-weight: 700;color: var(--biru-d);">
                     Menunggu Verifikasi
                 </a>
             </div>

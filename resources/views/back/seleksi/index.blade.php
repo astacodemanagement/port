@@ -128,11 +128,7 @@
                                             <select class="form-control" id="status_multiple" name="status_multiple">
                                                 <option value="">--Pilih Status--</option>
                                                 <option value="Lolos Kualifikasi">Lolos Kualifikasi</option>
-                                                <option value="Interview">Interview</option>
-                                                <option value="Lolos Interview">Lolos Interview</option>
-                                                <option value="Dalam Proses">Dalam Proses</option>
-                                                <option value="Terbang">Terbang</option>
-                                                <option value="Selesai Kontrak">Selesai Kontrak</option>
+                                                
                                                 <option value="Batal">Batal</option>
                                                 <!-- Add other status options if needed -->
                                             </select>
@@ -220,25 +216,22 @@
                                                                                     Status:</label>
                                                                                 <select class="form-control"
                                                                                     id="statusSelect{{ $p2->id }}"
-                                                                                    name="status">
+                                                                                    name="status" onchange="toggleKeteranganBatal({{ $p2->id }})">
                                                                                     {{-- <option value="Cek Kualifikasi">Cek Kualifikasi</option> --}}
                                                                                     <option value="Lolos Kualifikasi">
                                                                                         Lolos Kualifikasi</option>
-                                                                                    <option value="Interview">Interview
-                                                                                    </option>
-                                                                                    <option value="Lolos Interview">
-                                                                                        Lolos Interview</option>
-                                                                                    <option value="Dalam Proses">Dalam
-                                                                                        Proses</option>
-                                                                                    <option value="Terbang">Terbang
-                                                                                    </option>
-                                                                                    <option value="Selesai Kontrak">
-                                                                                        Selesai Kontrak</option>
                                                                                     <option value="Batal">Batal
                                                                                     </option>
                                                                                     <!-- Add other status options if needed -->
                                                                                 </select>
                                                                             </div>
+                                                                            
+                                                                            <!-- Keterangan Batal field (initially hidden) -->
+                                                                            <div class="form-group" id="keteranganBatalDiv{{ $p2->id }}" style="display: none;">
+                                                                                <label for="keteranganBatal">Keterangan Batal:</label>
+                                                                                <textarea class="form-control" id="keteranganBatal{{ $p2->id }}" name="keterangan_batal" rows="3" placeholder="Masukkan alasan pembatalan..."></textarea>
+                                                                            </div>
+                                                                            
                                                                             <!-- Add hidden input for the Pendaftaran ID -->
                                                                             <input type="hidden" name="id"
                                                                                 value="{{ $p2->id }}">
@@ -455,6 +448,17 @@
                     console.error(error);
                 }
             });
+        }
+
+        function toggleKeteranganBatal(id) {
+            var statusSelect = document.getElementById('statusSelect' + id);
+            var keteranganBatalDiv = document.getElementById('keteranganBatalDiv' + id);
+
+            if (statusSelect.value === 'Batal') {
+                keteranganBatalDiv.style.display = 'block';
+            } else {
+                keteranganBatalDiv.style.display = 'none';
+            }
         }
     </script>
 @endpush

@@ -40,9 +40,9 @@
         <div class="col-md-9">
 
             @foreach ($seleksi as $item)
-            {{ $item->status }}
+            <h1>{{ $item->status }}</h1>
             <div class="card mb-4">
-                @if ($item->status !== "batal")
+                @if ($item->status != "Batal")
                 <div class="card-body">
                     <div class="card-title">
                         <h5 class="fw-semibold float-start">{{ $item->job->nama_perusahaan . ' - ' .  $item->job->nama_job}}</h5>
@@ -148,11 +148,16 @@
                             <div class="tw-mt-3 sm:tw-pe-8 tw-mb-4">
                                 <button type="button" class="tw-text-sm tw-font-semibold tw-text-gray-900 md:tw-mx-0 tw-w-full" data-bs-toggle="modal" data-bs-target="#modal_{{ $status }}{{ $item->id }}">
                                     {{ $title[$status] }}
-                                    @if($isCurrent)
-                                    <span class="{{$stepStatus}} tw-ml-2">{{ $statusText }}</span>
-                                    @endif
                                 </button>
-                                <time class="tw-block tw-text-sm tw-font-normal tw-leading-none tw-text-gray-400 md:tw-text-start tw-text-center">{{ $tanggal }}</time>
+                                <div class="tw-mt-1">
+                                    @if($isCurrent)
+                                        <span class="{{$stepStatus}}">{{ $statusText }}</span>
+                                    @else
+                                        <time class="tw-block tw-text-sm tw-font-normal tw-leading-none tw-text-gray-400 md:tw-text-start tw-text-center">
+                                            {{ $isCompleted ? $tanggal : $statusText }}
+                                        </time>
+                                    @endif
+                                </div>
                             </div>
                         </li>
                        

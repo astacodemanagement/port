@@ -67,7 +67,6 @@ class SeleksiController extends Controller
     {
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
-        // dd($status);
 
         $cek_kualifikasi = Seleksi::findOrFail($cek_kualifikasi_id);
         $oldData = $cek_kualifikasi->getOriginal();
@@ -76,7 +75,11 @@ class SeleksiController extends Controller
             'status' => $status,
             'tanggal_cek_kualifikasi' => Carbon::now()->toDateString()
         ]);
-
+        if($status = 'Batal'){
+            Seleksi::where('id', $cek_kualifikasi_id)->update([
+                'keterangan_batal' => $request->input('keterangan_batal')
+            ]);
+        }
         $updatedData = Seleksi::findOrFail($cek_kualifikasi_id)->getOriginal();
 
         $loggedInUserId = Auth::id();
