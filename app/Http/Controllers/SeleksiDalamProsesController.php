@@ -129,61 +129,61 @@ class SeleksiDalamProsesController extends Controller
 
     public function updateStatus(Request $request)
     {
-        $mik = $request->has('mik') ? true : false;
-        $iktt = $request->has('iktt') ? true : false;
-        $mjk = $request->has('mjk') ? true : false;
-        $jak = $request->has('jak') ? true : false;
-        $vt = $request->has('vt') ? true : false;
-        $vd = $request->has('vd') ? true : false;
-        $pap = $request->has('pap') ? true : false;
-
-
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
-        $keterangan_dalam_proses = $request->input('keterangan_dalam_proses');
-        $tanggal_ak = $request->input('tanggal_ak');
-        $tanggal_validity = $request->input('tanggal_validity');
-        $tanggal_terbit = $request->input('tanggal_terbit');
-        $tanggal_habis = $request->input('tanggal_habis');
-        $tanggal_berangkat = $request->input('tanggal_berangkat');
-        $jam_terbang = $request->input('jam_terbang');
-        $supplier_id = $request->input('supplier_id');
-        $keterangan_dalam_proses = $request->input('keterangan_dalam_proses');
-
-
+        
         // Get the original data before the update
         $cek_kualifikasi = Seleksi::findOrFail($cek_kualifikasi_id);
         $oldData = $cek_kualifikasi->getOriginal();
+        
+        // Prepare update data based on status
+        if ($status === 'Batal') {
+            // Untuk status Batal, hanya update status, tanggal_batal, dan keterangan_batal
+            $updateData = [
+                'status' => $status,
+                'tanggal_batal' => Carbon::now()->toDateString(),
+                'keterangan_batal' => $request->input('keterangan_batal')
+            ];
+        } else {
+            // Untuk status lain, gunakan update data yang sudah ada
+            $mik = $request->has('mik') ? true : false;
+            $iktt = $request->has('iktt') ? true : false;
+            $mjk = $request->has('mjk') ? true : false;
+            $jak = $request->has('jak') ? true : false;
+            $vt = $request->has('vt') ? true : false;
+            $vd = $request->has('vd') ? true : false;
+            $pap = $request->has('pap') ? true : false;
+            
+            $updateData = [
+                'status' => $status,
+                'tanggal_dalam_proses' => Carbon::now()->toDateString(),
+                'keterangan_dalam_proses' => $request->input('keterangan_dalam_proses'),
+                'mik' => $mik,
+                'iktt' => $iktt,
+                'mjk' => $mjk,
+                'jak' => $jak,
+                'vt' => $vt,
+                'vd' => $vd,
+                'pap' => $pap,
+                'tanggal_ak' => $request->input('tanggal_ak'),
+                'tanggal_validity' => $request->input('tanggal_validity'),
+                'tanggal_terbit' => $request->input('tanggal_terbit'),
+                'tanggal_habis' => $request->input('tanggal_habis'),
+                'tanggal_berangkat' => $request->input('tanggal_berangkat'),
+                'jam_terbang' => $request->input('jam_terbang'),
+                'supplier_id' => $request->input('supplier_id'),
+            ];
+        }
 
         // Update the status in the database
-        Seleksi::where('id', $cek_kualifikasi_id)->update([
-            'status' => $status,
-            'tanggal_dalam_proses' => Carbon::now()->toDateString(),
-            'keterangan_dalam_proses' => $keterangan_dalam_proses,
-            'mik' => $mik,
-            'iktt' => $iktt,
-            'mjk' => $mjk,
-            'jak' => $jak,
-            'vt' => $vt,
-            'vd' => $vd,
-            'pap' => $pap,
-            'tanggal_ak' => $tanggal_ak,
-            'tanggal_validity' => $tanggal_validity,
-            'tanggal_terbit' => $tanggal_terbit,
-            'tanggal_habis' => $tanggal_habis,
-            'tanggal_berangkat' => $tanggal_berangkat,
-            'jam_terbang' => $jam_terbang,
-            'supplier_id' => $supplier_id,
-            'keterangan_dalam_proses' => $keterangan_dalam_proses,
-
-        ]);
+        Seleksi::where('id', $cek_kualifikasi_id)->update($updateData);
 
         // Get the updated data after the update
         $updatedData = Seleksi::findOrFail($cek_kualifikasi_id)->getOriginal();
 
         // Log the histori
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Update', 'Lolos Kualifikasi', $cek_kualifikasi_id, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
+        $this->simpanLogHistori('Update', 'Dalam Proses', $cek_kualifikasi_id, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
 
         return response()->json(['message' => 'Status updated successfully']);
     }

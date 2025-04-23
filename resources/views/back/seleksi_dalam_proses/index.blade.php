@@ -196,386 +196,198 @@
                                                                                     Status:</label>
                                                                                 <select class="form-control"
                                                                                     id="statusSelect{{ $p2->id }}"
-                                                                                    name="status">
+                                                                                    name="status"
+                                                                                    onchange="toggleKeteranganBatal({{ $p2->id }})">
 
-                                                                                    <option value="Dalam Proses">Dalam
-                                                                                        Proses
-                                                                                    </option>
+                                                                                  
                                                                                     <option value="Terbang">Terbang
                                                                                     </option>
-                                                                                    <option value="Cek Kualifikasi">Cek
-                                                                                        Kualifikasi</option>
-                                                                                    <option value="Lolos Kualifikasi">
-                                                                                        Lolos Kualifikasi</option>
-                                                                                    <option value="Interview">
-                                                                                        Interview</option>
-                                                                                    <option value="Lolos Interview">
-                                                                                        Lolos Interview</option>
-
-                                                                                    <option value="Selesai Kontrak">
-                                                                                        Selesai Kontrak</option>
+                       
                                                                                     <option value="Batal">Batal
                                                                                     </option>
                                                                                     <!-- Add other status options if needed -->
                                                                                 </select>
                                                                             </div>
-                                                                            <div class="form-group">
-                                                                                <label for="statusSelectDk">Status
-                                                                                    Dalam Kerja :</label>
 
-                                                                                <div class="col-sm-12">
+                                                                            <!-- Field untuk keterangan batal -->
+                                                                            <div class="form-group"
+                                                                                id="keteranganBatalDiv{{ $p2->id }}"
+                                                                                style="display: none;">
+                                                                                <label for="keteranganBatal">Keterangan
+                                                                                    Batal:</label>
+                                                                                <textarea name="keterangan_batal" id="keteranganBatal{{ $p2->id }}" cols="30" rows="3"
+                                                                                    class="form-control"
+                                                                                    placeholder="Masukkan alasan pembatalan..."></textarea>
+                                                                            </div>
 
-                                                                                    <div
-                                                                                        class="border-checkbox-section">
+                                                                            <!-- Fields untuk Dalam Proses & Terbang -->
+                                                                            <div class="form-group" id="dalamProsesFields{{ $p2->id }}">
+                                                                                <!-- Semua field form yang ada (status dalam kerja, tanggal, dll) -->
+                                                                                <div class="form-group">
+                                                                                    <label for="statusSelectDk">Status Dalam Kerja :</label>
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="border-checkbox-section">
+                                                                                            <!-- Checkbox fields yang sudah ada -->
+                                                                                            <div class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input class="border-checkbox" type="checkbox" id="mik" name="mik" value="{{ $p2->mik }}" {{ $p2->mik == 1 ? 'checked' : '' }}>
+                                                                                                <label class="border-checkbox-label" for="mik">Menunggu Izin Kerja</label>
+                                                                                            </div>
+                                                                                            <br>
+                                                                                            <div class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input class="border-checkbox" type="checkbox" id="iktt" name="iktt" value="{{ $p2->iktt }}" {{ $p2->iktt == 1 ? 'checked' : '' }}>
+                                                                                                <label class="border-checkbox-label" for="iktt">Izin Kerja Telah Terbit</label>
+                                                                                            </div>
+                                                                                            <br>
+                                                                                            <div class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input class="border-checkbox" type="checkbox" id="mjk" name="mjk" value="{{ $p2->mjk }}" {{ $p2->mjk == 1 ? 'checked' : '' }}>
+                                                                                                <label class="border-checkbox-label" for="mjk">Menunggu Jadwal Kedutaan</label>
+                                                                                            </div>
+                                                                                            <script>
+                                                                                                // Get references to the checkboxes
+                                                                                                const ikttCheckbox = document.getElementById("iktt");
+                                                                                                const mjkCheckbox = document.getElementById("mjk");
 
-
-                                                                                        <div
-                                                                                            class="border-checkbox-group border-checkbox-group-success">
-                                                                                            <input
-                                                                                                class="border-checkbox"
-                                                                                                type="checkbox"
-                                                                                                id="mik"
-                                                                                                name="mik"
-                                                                                                value="{{ $p2->mik }}"
-                                                                                                {{ $p2->mik == 1 ? 'checked' : '' }}>
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="mik">Menunggu
-                                                                                                Izin Kerja</label>
-                                                                                        </div>
-                                                                                        <br>
-                                                                                        <div
-                                                                                            class="border-checkbox-group border-checkbox-group-success">
-                                                                                            <input
-                                                                                                class="border-checkbox"
-                                                                                                type="checkbox"
-                                                                                                id="iktt"
-                                                                                                name="iktt"
-                                                                                                value="{{ $p2->iktt }}"
-                                                                                                {{ $p2->iktt == 1 ? 'checked' : '' }}>
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="iktt">Izin
-                                                                                                Kerja Telah
-                                                                                                Terbit</label>
-                                                                                        </div>
-                                                                                        <br>
-                                                                                        <div
-                                                                                            class="border-checkbox-group border-checkbox-group-success">
-                                                                                            <input
-                                                                                                class="border-checkbox"
-                                                                                                type="checkbox"
-                                                                                                id="mjk"
-                                                                                                name="mjk"
-                                                                                                value="{{ $p2->mjk }}"
-                                                                                                {{ $p2->mjk == 1 ? 'checked' : '' }}>
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="mjk">Menunggu
-                                                                                                Jadwal Kedutaan</label>
-                                                                                        </div>
-
-                                                                                        <script>
-                                                                                            // Get references to the checkboxes
-                                                                                            const ikttCheckbox = document.getElementById("iktt");
-                                                                                            const mjkCheckbox = document.getElementById("mjk");
-
-                                                                                            // Function to update 'mjk' checkbox based on 'iktt' checkbox
-                                                                                            function updateMJKCheckbox() {
-                                                                                                mjkCheckbox.checked = ikttCheckbox.checked;
-                                                                                                mjkCheckbox.readOnly = ikttCheckbox.checked;
-                                                                                            }
-
-                                                                                            // Function to update 'iktt' checkbox based on 'mjk' checkbox
-                                                                                            function updateIKTTCheckbox() {
-                                                                                                ikttCheckbox.checked = mjkCheckbox.checked;
-                                                                                                ikttCheckbox.readOnly = mjkCheckbox.checked;
-                                                                                            }
-
-                                                                                            // Add event listener to the 'iktt' checkbox
-                                                                                            ikttCheckbox.addEventListener("change", function() {
-                                                                                                // Set 'mjk' checkbox status based on 'iktt' checkbox status
-                                                                                                updateMJKCheckbox();
-                                                                                            });
-
-                                                                                            // Add event listener to the 'mjk' checkbox
-                                                                                            mjkCheckbox.addEventListener("change", function() {
-                                                                                                // Set 'iktt' checkbox status based on 'mjk' checkbox status
-                                                                                                updateIKTTCheckbox();
-                                                                                            });
-                                                                                        </script>
-
-                                                                                        <br>
-                                                                                        <div
-                                                                                            class="border-checkbox-group border-checkbox-group-success">
-                                                                                            <input
-                                                                                                class="border-checkbox"
-                                                                                                type="checkbox"
-                                                                                                id="jak"
-                                                                                                name="jak"
-                                                                                                value="{{ $p2->jak }}"
-                                                                                                {{ $p2->jak == 1 ? 'checked' : '' }}>
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="jak">Jadwal
-                                                                                                Appointment
-                                                                                                Kedutaan</label>
-                                                                                        </div>
-
-                                                                                        <div class="">
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="tanggal_ak">Janji Temu</label>
-                                                                                            <input class="form-control"
-                                                                                                type="date"
-                                                                                                id="tanggal_ak"
-                                                                                                name="tanggal_ak"
-                                                                                                value="{{ $p2->tanggal_ak }}">
-
-                                                                                        </div>
-
-                                                                                        <br>
-                                                                                        <div
-                                                                                            class="border-checkbox-group border-checkbox-group-success">
-                                                                                            <input
-                                                                                                class="border-checkbox"
-                                                                                                type="checkbox"
-                                                                                                id="vt"
-                                                                                                name="vt"
-                                                                                                value="{{ $p2->vt }}"
-                                                                                                {{ $p2->vt == 1 ? 'checked' : '' }}>
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="vt">Visa
-                                                                                                Terbit</label>
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="border-checkbox-group border-checkbox-group-success">
-                                                                                            <input
-                                                                                                class="border-checkbox"
-                                                                                                type="checkbox"
-                                                                                                id="vd"
-                                                                                                name="vd"
-                                                                                                value="{{ $p2->vd }}"
-                                                                                                {{ $p2->vd == 1 ? 'checked' : '' }}>
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="vd">Visa
-                                                                                                Ditolak</label>
-                                                                                        </div>
-
-                                                                                        <script>
-                                                                                            // Mengambil elemen-elemen kotak centang
-                                                                                            const vtCheckbox = document.getElementById('vt');
-                                                                                            const vdCheckbox = document.getElementById('vd');
-
-                                                                                            // Menambahkan event listener untuk setiap kotak centang
-                                                                                            vtCheckbox.addEventListener('change', function() {
-                                                                                                if (this.checked) {
-                                                                                                    // Jika kotak centang 'Visa Terbit' dipilih, pastikan kotak centang 'Visa Ditolak' tidak dipilih
-                                                                                                    vdCheckbox.checked = false;
+                                                                                                // Function to update 'mjk' checkbox based on 'iktt' checkbox
+                                                                                                function updateMJKCheckbox() {
+                                                                                                    mjkCheckbox.checked = ikttCheckbox.checked;
+                                                                                                    mjkCheckbox.readOnly = ikttCheckbox.checked;
                                                                                                 }
-                                                                                            });
 
-                                                                                            vdCheckbox.addEventListener('change', function() {
-                                                                                                if (this.checked) {
-                                                                                                    // Jika kotak centang 'Visa Ditolak' dipilih, pastikan kotak centang 'Visa Terbit' tidak dipilih
-                                                                                                    vtCheckbox.checked = false;
+                                                                                                // Function to update 'iktt' checkbox based on 'mjk' checkbox
+                                                                                                function updateIKTTCheckbox() {
+                                                                                                    ikttCheckbox.checked = mjkCheckbox.checked;
+                                                                                                    ikttCheckbox.readOnly = mjkCheckbox.checked;
                                                                                                 }
-                                                                                            });
-                                                                                        </script>
-                                                                                        
-                                                                                        <div class="">
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="tanggal_terbit">Tanggal
-                                                                                                Terbit</label>
-                                                                                            <input class="form-control"
-                                                                                                type="date"
-                                                                                                id="tanggal_terbit"
-                                                                                                name="tanggal_terbit"
-                                                                                                value="{{ $p2->tanggal_terbit }}">
 
+                                                                                                // Add event listener to the 'iktt' checkbox
+                                                                                                ikttCheckbox.addEventListener("change", function() {
+                                                                                                    // Set 'mjk' checkbox status based on 'iktt' checkbox status
+                                                                                                    updateMJKCheckbox();
+                                                                                                });
+
+                                                                                                // Add event listener to the 'mjk' checkbox
+                                                                                                mjkCheckbox.addEventListener("change", function() {
+                                                                                                    // Set 'iktt' checkbox status based on 'mjk' checkbox status
+                                                                                                    updateIKTTCheckbox();
+                                                                                                });
+                                                                                            </script>
+                                                                                            <br>
+                                                                                            <div class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input class="border-checkbox" type="checkbox" id="jak" name="jak" value="{{ $p2->jak }}" {{ $p2->jak == 1 ? 'checked' : '' }}>
+                                                                                                <label class="border-checkbox-label" for="jak">Jadwal Appointment Kedutaan</label>
+                                                                                            </div>
+                                                                                            <div class="">
+                                                                                                <label class="border-checkbox-label" for="tanggal_ak">Janji Temu</label>
+                                                                                                <input class="form-control" type="date" id="tanggal_ak" name="tanggal_ak" value="{{ $p2->tanggal_ak }}">
+                                                                                            </div>
+                                                                                            <br>
+                                                                                            <div class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input class="border-checkbox" type="checkbox" id="vt" name="vt" value="{{ $p2->vt }}" {{ $p2->vt == 1 ? 'checked' : '' }}>
+                                                                                                <label class="border-checkbox-label" for="vt">Visa Terbit</label>
+                                                                                            </div>
+                                                                                            <div class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input class="border-checkbox" type="checkbox" id="vd" name="vd" value="{{ $p2->vd }}" {{ $p2->vd == 1 ? 'checked' : '' }}>
+                                                                                                <label class="border-checkbox-label" for="vd">Visa Ditolak</label>
+                                                                                            </div>
+                                                                                            <script>
+                                                                                                // Mengambil elemen-elemen kotak centang
+                                                                                                const vtCheckbox = document.getElementById('vt');
+                                                                                                const vdCheckbox = document.getElementById('vd');
+
+                                                                                                // Menambahkan event listener untuk setiap kotak centang
+                                                                                                vtCheckbox.addEventListener('change', function() {
+                                                                                                    if (this.checked) {
+                                                                                                        // Jika kotak centang 'Visa Terbit' dipilih, pastikan kotak centang 'Visa Ditolak' tidak dipilih
+                                                                                                        vdCheckbox.checked = false;
+                                                                                                    }
+                                                                                                });
+
+                                                                                                vdCheckbox.addEventListener('change', function() {
+                                                                                                    if (this.checked) {
+                                                                                                        // Jika kotak centang 'Visa Ditolak' dipilih, pastikan kotak centang 'Visa Terbit' tidak dipilih
+                                                                                                        vtCheckbox.checked = false;
+                                                                                                    }
+                                                                                                });
+                                                                                            </script>
+                                                                                            <div class="">
+                                                                                                <label class="border-checkbox-label" for="tanggal_terbit">Tanggal Terbit</label>
+                                                                                                <input class="form-control" type="date" id="tanggal_terbit" name="tanggal_terbit" value="{{ $p2->tanggal_terbit }}">
+                                                                                            </div>
+                                                                                            <br>
+                                                                                            <div class="">
+                                                                                                <label class="border-checkbox-label" for="tanggal_validity">Tanggal Valid Visa</label>
+                                                                                                <input class="form-control" type="date" id="tanggal_validity" name="tanggal_validity" value="{{ $p2->tanggal_validity }}">
+                                                                                            </div>
+                                                                                            <br>
+                                                                                            <div class="">
+                                                                                                <label class="border-checkbox-label" for="tanggal_habis">Tanggal Expiry Visa</label>
+                                                                                                <input class="form-control" type="date" id="tanggal_habis" name="tanggal_habis" value="{{ $p2->tanggal_habis }}">
+                                                                                            </div>
+                                                                                            <br>
+                                                                                            <div class="border-checkbox-group border-checkbox-group-success">
+                                                                                                <input class="border-checkbox" type="checkbox" id="pap" name="pap" value="{{ $p2->pap }}" {{ $p2->pap == 1 ? 'checked' : '' }}>
+                                                                                                <label class="border-checkbox-label" for="pap">Tanggal P.A.P</label>
+                                                                                            </div>
                                                                                         </div>
-                                                                                        <br>
-                                                                                        <div class="">
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="tanggal_validity">Tanggal
-                                                                                                Valid Visa</label>
-                                                                                            <input class="form-control"
-                                                                                                type="date"
-                                                                                                id="tanggal_validity"
-                                                                                                name="tanggal_validity"
-                                                                                                value="{{ $p2->tanggal_validity }}">
-
-                                                                                        </div>
-                                                                                        <br>
-                                                                                        <div class="">
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="tanggal_habis">Tanggal
-                                                                                                Expiry Visa</label>
-                                                                                            <input class="form-control"
-                                                                                                type="date"
-                                                                                                id="tanggal_habis"
-                                                                                                name="tanggal_habis"
-                                                                                                value="{{ $p2->tanggal_habis }}">
-
-                                                                                        </div>
-
-                                                                                        <br>
-                                                                                        <div
-                                                                                            class="border-checkbox-group border-checkbox-group-success">
-                                                                                            <input
-                                                                                                class="border-checkbox"
-                                                                                                type="checkbox"
-                                                                                                id="pap"
-                                                                                                name="pap"
-                                                                                                value="{{ $p2->pap }}"
-                                                                                                {{ $p2->pap == 1 ? 'checked' : '' }}>
-                                                                                            <label
-                                                                                                class="border-checkbox-label"
-                                                                                                for="pap">Tanggal P.A.P</label>
-                                                                                        </div>
-
-
-
-
-
-
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group">
-                                                                                        <label
-                                                                                            for="tanggal_berangkat">Tanggal
-                                                                                            Keberangkatan:</label>
-                                                                                        <input type="date"
-                                                                                            class="form-control"
-                                                                                            id="tanggal_berangkat"
-                                                                                            name="tanggal_berangkat"
-                                                                                            value="{{ $p2->tanggal_berangkat }}">
+                                                                                <div class="row">
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group">
+                                                                                            <label for="tanggal_berangkat">Tanggal Keberangkatan:</label>
+                                                                                            <input type="date" class="form-control" id="tanggal_berangkat" name="tanggal_berangkat" value="{{ $p2->tanggal_berangkat }}">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-md-6">
+                                                                                        <div class="form-group">
+                                                                                            <label for="jam_terbang">Jam Terbang:</label>
+                                                                                            <select name="jam_terbang" id="jam_terbang" class="form-control">
+                                                                                                <option value="01" {{ $p2->jam_terbang == '01' ? 'selected' : '' }}>01</option>
+                                                                                                <option value="02" {{ $p2->jam_terbang == '02' ? 'selected' : '' }}>02</option>
+                                                                                                <option value="03" {{ $p2->jam_terbang == '03' ? 'selected' : '' }}>03</option>
+                                                                                                <option value="04" {{ $p2->jam_terbang == '04' ? 'selected' : '' }}>04</option>
+                                                                                                <option value="05" {{ $p2->jam_terbang == '05' ? 'selected' : '' }}>05</option>
+                                                                                                <option value="06" {{ $p2->jam_terbang == '06' ? 'selected' : '' }}>06</option>
+                                                                                                <option value="07" {{ $p2->jam_terbang == '07' ? 'selected' : '' }}>07</option>
+                                                                                                <option value="08" {{ $p2->jam_terbang == '08' ? 'selected' : '' }}>08</option>
+                                                                                                <option value="09" {{ $p2->jam_terbang == '09' ? 'selected' : '' }}>09</option>
+                                                                                                <option value="10" {{ $p2->jam_terbang == '10' ? 'selected' : '' }}>10</option>
+                                                                                                <option value="11" {{ $p2->jam_terbang == '11' ? 'selected' : '' }}>11</option>
+                                                                                                <option value="12" {{ $p2->jam_terbang == '12' ? 'selected' : '' }}>12</option>
+                                                                                                <option value="13" {{ $p2->jam_terbang == '13' ? 'selected' : '' }}>13</option>
+                                                                                                <option value="14" {{ $p2->jam_terbang == '14' ? 'selected' : '' }}>14</option>
+                                                                                                <option value="15" {{ $p2->jam_terbang == '15' ? 'selected' : '' }}>15</option>
+                                                                                                <option value="16" {{ $p2->jam_terbang == '16' ? 'selected' : '' }}>16</option>
+                                                                                                <option value="17" {{ $p2->jam_terbang == '17' ? 'selected' : '' }}>17</option>
+                                                                                                <option value="18" {{ $p2->jam_terbang == '18' ? 'selected' : '' }}>18</option>
+                                                                                                <option value="19" {{ $p2->jam_terbang == '19' ? 'selected' : '' }}>19</option>
+                                                                                                <option value="20" {{ $p2->jam_terbang == '20' ? 'selected' : '' }}>20</option>
+                                                                                                <option value="21" {{ $p2->jam_terbang == '21' ? 'selected' : '' }}>21</option>
+                                                                                                <option value="22" {{ $p2->jam_terbang == '22' ? 'selected' : '' }}>22</option>
+                                                                                                <option value="23" {{ $p2->jam_terbang == '23' ? 'selected' : '' }}>23</option>
+                                                                                                <option value="00" {{ $p2->jam_terbang == '00' ? 'selected' : '' }}>00</option>
+                                                                                            </select>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="col-md-6">
-                                                                                    <div class="form-group">
-                                                                                        <label for="jam_terbang">Jam
-                                                                                            Terbang:</label>
-                                                                                        <select name="jam_terbang"
-                                                                                            id="jam_terbang"
-                                                                                            class="form-control">
-                                                                                            <option value="01"
-                                                                                                {{ $p2->jam_terbang == '01' ? 'selected' : '' }}>
-                                                                                                01</option>
-                                                                                            <option value="02"
-                                                                                                {{ $p2->jam_terbang == '02' ? 'selected' : '' }}>
-                                                                                                02</option>
-                                                                                            <option value="03"
-                                                                                                {{ $p2->jam_terbang == '03' ? 'selected' : '' }}>
-                                                                                                03</option>
-                                                                                            <option value="04"
-                                                                                                {{ $p2->jam_terbang == '04' ? 'selected' : '' }}>
-                                                                                                04</option>
-                                                                                            <option value="05"
-                                                                                                {{ $p2->jam_terbang == '05' ? 'selected' : '' }}>
-                                                                                                05</option>
-                                                                                            <option value="06"
-                                                                                                {{ $p2->jam_terbang == '06' ? 'selected' : '' }}>
-                                                                                                06</option>
-                                                                                            <option value="07"
-                                                                                                {{ $p2->jam_terbang == '07' ? 'selected' : '' }}>
-                                                                                                07</option>
-                                                                                            <option value="08"
-                                                                                                {{ $p2->jam_terbang == '08' ? 'selected' : '' }}>
-                                                                                                08</option>
-                                                                                            <option value="09"
-                                                                                                {{ $p2->jam_terbang == '09' ? 'selected' : '' }}>
-                                                                                                09</option>
-                                                                                            <option value="10"
-                                                                                                {{ $p2->jam_terbang == '10' ? 'selected' : '' }}>
-                                                                                                10</option>
-                                                                                            <option value="11"
-                                                                                                {{ $p2->jam_terbang == '11' ? 'selected' : '' }}>
-                                                                                                11</option>
-                                                                                            <option value="12"
-                                                                                                {{ $p2->jam_terbang == '12' ? 'selected' : '' }}>
-                                                                                                12</option>
-                                                                                            <option value="13"
-                                                                                                {{ $p2->jam_terbang == '13' ? 'selected' : '' }}>
-                                                                                                13</option>
-                                                                                            <option value="14"
-                                                                                                {{ $p2->jam_terbang == '14' ? 'selected' : '' }}>
-                                                                                                14</option>
-                                                                                            <option value="15"
-                                                                                                {{ $p2->jam_terbang == '15' ? 'selected' : '' }}>
-                                                                                                15</option>
-                                                                                            <option value="16"
-                                                                                                {{ $p2->jam_terbang == '16' ? 'selected' : '' }}>
-                                                                                                16</option>
-                                                                                            <option value="17"
-                                                                                                {{ $p2->jam_terbang == '17' ? 'selected' : '' }}>
-                                                                                                17</option>
-                                                                                            <option value="18"
-                                                                                                {{ $p2->jam_terbang == '18' ? 'selected' : '' }}>
-                                                                                                18</option>
-                                                                                            <option value="19"
-                                                                                                {{ $p2->jam_terbang == '19' ? 'selected' : '' }}>
-                                                                                                19</option>
-                                                                                            <option value="20"
-                                                                                                {{ $p2->jam_terbang == '20' ? 'selected' : '' }}>
-                                                                                                20</option>
-                                                                                            <option value="21"
-                                                                                                {{ $p2->jam_terbang == '21' ? 'selected' : '' }}>
-                                                                                                21</option>
-                                                                                            <option value="22"
-                                                                                                {{ $p2->jam_terbang == '22' ? 'selected' : '' }}>
-                                                                                                22</option>
-                                                                                            <option value="23"
-                                                                                                {{ $p2->jam_terbang == '23' ? 'selected' : '' }}>
-                                                                                                23</option>
-                                                                                            <option value="00"
-                                                                                                {{ $p2->jam_terbang == '00' ? 'selected' : '' }}>
-                                                                                                00</option>
-                                                                                        </select>
-                                                                                    </div>
+                                                                                <div class="form-group">
+                                                                                    <label for="supplier_id">Supplied By :</label>
+                                                                                    <select name="supplier_id" id="supplier_id" class="form-control">
+                                                                                        <option value="">--Pilih Supplier--</option>
+                                                                                        @foreach ($supplierList as $id => $supplierName)
+                                                                                            <option value="{{ $id }}" {{ $p2->supplier_id == $id ? 'selected' : '' }}>
+                                                                                                {{ $supplierName }}
+                                                                                            </option>
+                                                                                        @endforeach
+                                                                                    </select>
                                                                                 </div>
-                                                                            </div>
-
-
-                                                                            <div class="form-group">
-                                                                                <label for="supplier_id">Supplied By
-                                                                                    :</label>
-                                                                                <select name="supplier_id"
-                                                                                    id="supplier_id"
-                                                                                    class="form-control">
-                                                                                    <option value="">--Pilih
-                                                                                        Supplier--</option>
-                                                                                    @foreach ($supplierList as $id => $supplierName)
-                                                                                        <option
-                                                                                            value="{{ $id }}"
-                                                                                            {{ $p2->supplier_id == $id ? 'selected' : '' }}>
-                                                                                            {{ $supplierName }}
-                                                                                        </option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-
-
-
-                                                                            <div class="form-group">
-                                                                                <label
-                                                                                    for="keterangan_dalam_proses">Keterangan
-                                                                                    Dari Dalam Proses :</label>
-                                                                                <textarea name="keterangan_dalam_proses" id="keterangan_dalam_proses" cols="30" rows="3"
-                                                                                    class="form-control">{{ $p2->keterangan_dalam_proses }}</textarea>
-
+                                                                                <div class="form-group">
+                                                                                    <label for="keterangan_dalam_proses">Keterangan Dari Dalam Proses :</label>
+                                                                                    <textarea name="keterangan_dalam_proses" id="keterangan_dalam_proses" cols="30" rows="3" class="form-control">{{ $p2->keterangan_dalam_proses }}</textarea>
+                                                                                </div>
                                                                             </div>
                                                                             <!-- Add hidden input for the Pendaftaran ID -->
-                                                                            <input type="hidden" name="id"
-                                                                                value="{{ $p2->id }}">
+                                                                            <input type="hidden" name="id" value="{{ $p2->id }}">
                                                                         </form>
                                                                     </div>
                                                                     <div class="modal-footer">
@@ -662,8 +474,22 @@
 
     <script>
         function submitUbahStatus(id) {
+            var statusSelect = document.getElementById('statusSelect' + id);
             var formData = $('#ubahStatusForm' + id).serialize();
-            // Tambahkan script berikut di bagian head template atau di dalam tag script Anda
+            
+            // Tambahkan validasi untuk status Batal
+            if (statusSelect.value === 'Batal') {
+                var keteranganBatal = document.getElementById('keteranganBatal' + id).value;
+                if (!keteranganBatal.trim()) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Perhatian',
+                        text: 'Silakan berikan keterangan untuk pembatalan!'
+                    });
+                    return;
+                }
+            }
+            
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -672,22 +498,19 @@
 
             $.ajax({
                 type: 'POST',
-                url: '{{ route('back-office.seleksi.update_seleksi_dalam_proses.status') }}', // Sesuaikan dengan URL rute Anda
+                url: '{{ route('back-office.seleksi.update_seleksi_dalam_proses.status') }}',
                 data: formData,
                 success: function(response) {
-                    // Handle success, tampilkan SweetAlert untuk konfirmasi OK
                     Swal.fire({
                         icon: 'success',
                         title: 'Status berhasil diubah',
                         showConfirmButton: true,
                         confirmButtonText: 'OK'
                     }).then(function() {
-                        // Reload halaman setelah pengguna mengklik OK
                         location.reload();
                     });
                 },
                 error: function(error) {
-                    // Handle error, tampilkan SweetAlert error jika diperlukan
                     Swal.fire({
                         icon: 'error',
                         title: 'Terjadi kesalahan',
@@ -697,5 +520,31 @@
                 }
             });
         }
+
+        function toggleKeteranganBatal(id) {
+            var statusSelect = document.getElementById('statusSelect' + id);
+            var keteranganBatalDiv = document.getElementById('keteranganBatalDiv' + id);
+            var dalamProsesFields = document.getElementById('dalamProsesFields' + id);
+
+            if (statusSelect.value === 'Batal') {
+                keteranganBatalDiv.style.display = 'block';
+                dalamProsesFields.style.display = 'none';
+            } else {
+                keteranganBatalDiv.style.display = 'none';
+                dalamProsesFields.style.display = 'block';
+            }
+        }
+
+        // Initialize toggle status on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize for each modal that might be open
+            const modals = document.querySelectorAll('[id^="ubahStatusModal"]');
+            modals.forEach(modal => {
+                const id = modal.id.replace('ubahStatusModal', '');
+                toggleKeteranganBatal(id);
+            });
+        });
     </script>
+    
+    <!-- Script lainnya yang sudah ada tetap dipertahankan -->
 @endpush

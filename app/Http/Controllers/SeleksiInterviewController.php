@@ -70,26 +70,34 @@ class SeleksiInterviewController extends Controller
         $cek_kualifikasi_id = $request->input('id');
         $status = $request->input('status');
         $keterangan_dari_interview = $request->input('keterangan_dari_interview');
-       
+        $keterangan_batal = $request->input('keterangan_batal');
 
         // Get the original data before the update
         $cek_kualifikasi = Seleksi::findOrFail($cek_kualifikasi_id);
         $oldData = $cek_kualifikasi->getOriginal();
 
-        // Update the status in the database
-        Seleksi::where('id', $cek_kualifikasi_id)->update([
+        // Prepare update data based on selected status
+        $updateData = [
             'status' => $status,
-            'tanggal_dari_interview' => Carbon::now()->toDateString(),
-            'keterangan_dari_interview' => $keterangan_dari_interview,
-             
-        ]);
+        ];
+
+        if ($status === 'Batal') {
+            $updateData['tanggal_batal'] = Carbon::now()->toDateString();
+            $updateData['keterangan_batal'] = $keterangan_batal;
+        } else {
+            $updateData['tanggal_dari_interview'] = Carbon::now()->toDateString();
+            $updateData['keterangan_dari_interview'] = $keterangan_dari_interview;
+        }
+
+        // Update the status in the database
+        Seleksi::where('id', $cek_kualifikasi_id)->update($updateData);
 
         // Get the updated data after the update
         $updatedData = Seleksi::findOrFail($cek_kualifikasi_id)->getOriginal();
 
         // Log the histori
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Update', 'Lolos Kualifikasi', $cek_kualifikasi_id, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
+        $this->simpanLogHistori('Update', 'Interview', $cek_kualifikasi_id, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
 
         return response()->json(['message' => 'Status updated successfully']);
     }
@@ -100,7 +108,7 @@ class SeleksiInterviewController extends Controller
         $selectedIds = $request->input('ids');
         $status = $request->input('status');
         $keterangan_dari_interview = $request->input('keterangan');
-
+        $keterangan_batal = $request->input('keterangan_multiple_batal');
 
         // Memastikan minimal satu ID dipilih
         if (empty($selectedIds)) {
@@ -109,22 +117,29 @@ class SeleksiInterviewController extends Controller
 
         // Update status untuk setiap ID yang dipilih
         foreach ($selectedIds as $id) {
-            Seleksi::where('id', $id)->update([
+            // Prepare update data based on selected status
+            $updateData = [
                 'status' => $status,
-                'keterangan_dari_interview' => $keterangan_dari_interview,
-                'tanggal_dari_interview' => Carbon::now()->toDateString()
-            ]);
+            ];
+
+            if ($status === 'Batal') {
+                $updateData['tanggal_batal'] = Carbon::now()->toDateString();
+                $updateData['keterangan_batal'] = $keterangan_batal;
+            } else {
+                $updateData['tanggal_dari_interview'] = Carbon::now()->toDateString();
+                $updateData['keterangan_dari_interview'] = $keterangan_dari_interview;
+            }
+
+            Seleksi::where('id', $id)->update($updateData);
 
             // Log histori untuk setiap ID yang diperbarui
             $cek_kualifikasi = Seleksi::findOrFail($id);
             $loggedInUserId = Auth::id();
-            $this->simpanLogHistori('Update', 'Cek Kualifikasi', $id, $loggedInUserId, json_encode($cek_kualifikasi->getOriginal()), json_encode($cek_kualifikasi));
+            $this->simpanLogHistori('Update', 'Interview', $id, $loggedInUserId, json_encode($cek_kualifikasi->getOriginal()), json_encode($cek_kualifikasi));
         }
 
         return response()->json(['message' => 'Status berhasil diperbarui untuk semua data yang dipilih.']);
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -191,21 +206,5 @@ class SeleksiInterviewController extends Controller
     {
       
     }
-
-
-
-
-
-
-
-
-
-    // Simpan log histori untuk operasi Delete dengan user_id yang sedang login dan informasi data yang dihapus
-
-
-
-
-
-
 
 }

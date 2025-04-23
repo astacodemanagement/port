@@ -83,29 +83,47 @@ class SeleksiTerbangController extends Controller
      
     public function updateStatus(Request $request)
     {
-        $cek_kualifikasi_id = $request->input('id');
+        $seleksi_id = $request->input('id');
         $status = $request->input('status');
         $keterangan_seleksi_terbang = $request->input('keterangan_seleksi_terbang');
-       
+        $keterangan_batal = $request->input('keterangan_batal');
 
         // Get the original data before the update
-        $cek_kualifikasi = Seleksi::findOrFail($cek_kualifikasi_id);
-        $oldData = $cek_kualifikasi->getOriginal();
+        $seleksi = Seleksi::findOrFail($seleksi_id);
+        $oldData = $seleksi->getOriginal();
+
+        // Prepare update data based on status
+        $updateData = [
+            'status' => $status,
+        ];
+
+        if ($status === 'Batal') {
+            // Untuk status Batal
+            $updateData['tanggal_batal'] = Carbon::now()->toDateString();
+            $updateData['keterangan_batal'] = $keterangan_batal;
+        } else {
+            // Untuk status Selesai Kontrak
+            $updateData['tanggal_seleksi_terbang'] = Carbon::now()->toDateString();
+            $updateData['keterangan_seleksi_terbang'] = $keterangan_seleksi_terbang;
+            $updateData['tanggal_selesai_kontrak'] = Carbon::now()->toDateString();
+        }
 
         // Update the status in the database
-        Seleksi::where('id', $cek_kualifikasi_id)->update([
-            'status' => $status,
-            'tanggal_seleksi_terbang' => Carbon::now()->toDateString(),
-            'keterangan_seleksi_terbang' => $keterangan_seleksi_terbang,
-             
-        ]);
+        Seleksi::where('id', $seleksi_id)->update($updateData);
 
         // Get the updated data after the update
-        $updatedData = Seleksi::findOrFail($cek_kualifikasi_id)->getOriginal();
+        $updatedData = Seleksi::findOrFail($seleksi_id)->getOriginal();
 
         // Log the histori
         $loggedInUserId = Auth::id();
-        $this->simpanLogHistori('Update', 'Lolos Kualifikasi', $cek_kualifikasi_id, $loggedInUserId, json_encode($oldData), json_encode($updatedData));
+        $this->simpanLogHistori(
+            'Update', 
+            'Seleksi Terbang', 
+            $seleksi_id, 
+            $loggedInUserId, 
+            json_encode($oldData), 
+            json_encode($updatedData)
+        );
 
         return response()->json(['message' => 'Status updated successfully']);
     }

@@ -117,26 +117,26 @@
                                     <div class="d-flex align-items-center">
                                         <!-- Select dropdown -->
                                         <div class="mr-2" style="width: 200px;">
-                                            <select class="form-control" id="status_multiple" name="status_multiple">
+                                            <select class="form-control" id="status_multiple" name="status_multiple" onchange="toggleMultipleBatalField()">
                                                 <option value="">--Pilih Status--</option>
                                                 <option value="Lolos Interview">Lolos Interview</option>
-                                                <option value="Cek Kualifikasi">Cek Kualifikasi</option>
-                                                <option value="Lolos Kualifikasi">Lolos Kualifikasi</option>
-                                                <option value="Dalam Proses">Dalam Proses</option>
-                                                <option value="Terbang">Terbang</option>
-                                                <option value="Selesai Kontrak">Selesai Kontrak</option>
                                                 <option value="Batal">Batal</option>
-                                                <!-- Add other status options if needed -->
+                                                <!-- Hanya sediakan opsi "Lolos Interview" dan "Batal" -->
                                             </select>
                                         </div>
-                                        <!-- Input keterangan_multiple -->
-                                        <div class="mr-2" style="width: 300px;">
-                                            <input type="text" class="form-control" id="keterangan_multiple"
-                                                name="keterangan_multiple" placeholder="Keterangan Dari Interview">
+
+                                        <!-- Tambahkan field keterangan batal untuk multiple update -->
+                                        <div class="mr-2" style="width: 300px;" id="keterangan_multiple_batal_div" style="display: none;">
+                                            <input type="text" class="form-control" id="keterangan_multiple_batal" name="keterangan_multiple_batal" placeholder="Alasan Pembatalan">
                                         </div>
-                                        <!-- Tombol "Update Status" -->
-                                        <button id="updateStatusBtn" class="btn btn-primary">Multiple Update
-                                            Status</button>
+
+                                        <!-- Keterangan Interview untuk status selain Batal -->
+                                        <div class="mr-2" style="width: 300px;" id="keterangan_multiple_div">
+                                            <input type="text" class="form-control" id="keterangan_multiple" name="keterangan_multiple" placeholder="Keterangan Dari Interview">
+                                        </div>
+
+                                        <!-- Tombol Update Status -->
+                                        <button id="updateStatusBtn" class="btn btn-primary">Multiple Update Status</button>
                                     </div>
                                 </div>
 
@@ -210,45 +210,33 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+                                <!-- Modal Body -->
                                 <div class="modal-body">
-                                    <!-- Add your form with combo box for status update -->
                                     <form id="ubahStatusForm{{ $p2->id }}">
                                         <!-- Combo box for status update -->
                                         <div class="form-group">
-                                            <label for="statusSelect">Ubah
-                                                Status:</label>
-                                            <select class="form-control"
-                                                id="statusSelect{{ $p2->id }}"
-                                                name="status">
-                                                {{-- <option value="Cek Kualifikasi">Cek Kualifikasi</option> --}}
-                                                <option value="Lolos Kualifikasi">
-                                                    Lolos Kualifikasi</option>
-                                                <option value="Interview">Interview
-                                                </option>
-                                                <option value="Lolos Interview">
-                                                    Lolos Interview</option>
-                                                <option value="Dalam Proses">Dalam
-                                                    Proses</option>
-                                                <option value="Terbang">Terbang
-                                                </option>
-                                                <option value="Selesai Kontrak">
-                                                    Selesai Kontrak</option>
-                                                <option value="Batal">Batal
-                                                </option>
-                                                <!-- Add other status options if needed -->
+                                            <label for="statusSelect">Ubah Status:</label>
+                                            <select class="form-control" id="statusSelect{{ $p2->id }}" name="status" onchange="toggleKeteranganBatal({{ $p2->id }})">
+                                                <option value="Lolos Interview">Lolos Interview</option>
+                                                <option value="Batal">Batal</option>
+                                                <!-- Batasi opsi hanya "Lolos Interview" dan "Batal" -->
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                                                                    <label
-                                                                                        for="keterangan_dari_interview">Keterangan
-                                                                                        Dari  Interview :</label>
-                                                                                    <textarea name="keterangan_dari_interview" id="keterangan_dari_interview" cols="30" rows="3"
-                                                                                        class="form-control"></textarea>
-
-                                                                                </div>
+                                            
+                                        <!-- Field untuk keterangan batal -->
+                                        <div class="form-group" id="keteranganBatalDiv{{ $p2->id }}" style="display: none;">
+                                            <label for="keteranganBatal">Keterangan Batal:</label>
+                                            <textarea name="keterangan_batal" id="keteranganBatal{{ $p2->id }}" cols="30" rows="3" class="form-control" placeholder="Masukkan alasan pembatalan..."></textarea>
+                                        </div>
+                                            
+                                        <!-- Field untuk keterangan interview -->
+                                        <div class="form-group" id="keteranganInterviewDiv{{ $p2->id }}">
+                                            <label for="keterangan_dari_interview">Keterangan Dari Interview:</label>
+                                            <textarea name="keterangan_dari_interview" id="keterangan_dari_interview{{ $p2->id }}" cols="30" rows="3" class="form-control"></textarea>
+                                        </div>
+                                            
                                         <!-- Add hidden input for the Pendaftaran ID -->
-                                        <input type="hidden" name="id"
-                                            value="{{ $p2->id }}">
+                                        <input type="hidden" name="id" value="{{ $p2->id }}">
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -350,9 +338,6 @@
                     return; // Menghentikan proses jika status belum dipilih
                 }
 
-                // Mendapatkan nilai keterangan_multiple
-                var keterangan = $('#keterangan_multiple').val();
-
                 // Array untuk menyimpan ID yang dicentang
                 var selectedIds = [];
 
@@ -375,14 +360,19 @@
                 var formData = {
                     ids: selectedIds,
                     status: status,
-                    keterangan: keterangan, // Menambahkan keterangan_multiple ke dalam objek formData
-                    // Anda bisa menambahkan data lain yang diperlukan di sini
                 };
+
+                // Tambahkan data sesuai dengan status yang dipilih
+                if (status === 'Batal') {
+                    formData.keterangan_multiple_batal = $('#keterangan_multiple_batal').val();
+                } else {
+                    formData.keterangan = $('#keterangan_multiple').val();
+                }
 
                 // Mengirim data ke server menggunakan AJAX
                 $.ajax({
                     type: 'POST',
-                    url: '{{ route('back-office.seleksi.update.statusMultipleInterview') }}', // Sesuaikan dengan URL rute Anda
+                    url: '{{ route('back-office.seleksi.update.statusMultipleInterview') }}', 
                     data: formData,
                     dataType: 'json',
                     headers: {
@@ -395,8 +385,7 @@
                             title: 'Status berhasil diperbarui!',
                             showConfirmButton: true, // Tampilkan tombol OK
                         }).then(function() {
-                            location
-                        .reload(); // Reload halaman setelah pengguna mengklik OK
+                            location.reload(); // Reload halaman setelah pengguna mengklik OK
                         });
                     },
                     error: function(error) {
@@ -412,8 +401,6 @@
             });
         });
     </script>
-
-
 
     <script>
         function submitUbahStatus(id) {
@@ -453,4 +440,41 @@
             });
         }
     </script>
+
+    <script>
+    // Fungsi untuk toggle field batal pada form individual
+    function toggleKeteranganBatal(id) {
+        var statusSelect = document.getElementById('statusSelect' + id);
+        var keteranganBatalDiv = document.getElementById('keteranganBatalDiv' + id);
+        var keteranganInterviewDiv = document.getElementById('keteranganInterviewDiv' + id);
+
+        if (statusSelect.value === 'Batal') {
+            keteranganBatalDiv.style.display = 'block';
+            keteranganInterviewDiv.style.display = 'none';
+        } else {
+            keteranganBatalDiv.style.display = 'none';
+            keteranganInterviewDiv.style.display = 'block';
+        }
+    }
+
+    // Fungsi untuk toggle field batal pada multiple update
+    function toggleMultipleBatalField() {
+        var statusMultiple = document.getElementById('status_multiple');
+        var keteranganMultipleBatalDiv = document.getElementById('keterangan_multiple_batal_div');
+        var keteranganMultipleDiv = document.getElementById('keterangan_multiple_div');
+
+        if (statusMultiple.value === 'Batal') {
+            keteranganMultipleBatalDiv.style.display = 'block';
+            keteranganMultipleDiv.style.display = 'none';
+        } else {
+            keteranganMultipleBatalDiv.style.display = 'none';
+            keteranganMultipleDiv.style.display = 'block';
+        }
+    }
+    
+    // Panggil toggle function saat halaman dimuat
+    document.addEventListener('DOMContentLoaded', function() {
+        toggleMultipleBatalField();
+    });
+</script>
 @endpush
