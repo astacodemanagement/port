@@ -17,7 +17,7 @@ class JobController extends Controller
     public function applied()
     {
 
-        $seleksi = Seleksi::where('kandidat_id', auth()->user()->kandidat->id)->where('status', '!=', 'Selesai Kontrak')->get();
+        $seleksi = Seleksi::where('kandidat_id', auth()->user()->kandidat->id)->get();
         return view('front.member.jobs.applied',compact('seleksi'));
     }
 
